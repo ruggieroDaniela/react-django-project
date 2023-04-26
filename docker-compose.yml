@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  web:
+    build: ./backend
+    ports:
+      - "8000:8000"
+
+  client:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://web:8000/api/
+
