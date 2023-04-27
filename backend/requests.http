@@ -1,0 +1,11 @@
+POST http://127.0.0.1:8000/users/
+content-type: application/json
+
+{
+    "name": "Gabriel",
+    "last_name": "Carrizo",
+    "email": "gabo@gmail.com"
+}
+
+###
+GET http://127.0.0.1:8000/users/
