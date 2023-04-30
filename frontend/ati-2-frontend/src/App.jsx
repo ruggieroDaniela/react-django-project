@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import './styles/_main.scss'
 import User from './components/user'
 
 function App() {
