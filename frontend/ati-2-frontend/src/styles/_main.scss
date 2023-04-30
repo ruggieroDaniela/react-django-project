@@ -1,5 +1,13 @@
-$primary: blue;
+$rojo:          rgb(255, 0, 0);
+$rosa:          rgb(255, 0, 102);
+$morado:        rgb(112, 48, 160);
+$azul-oscuro:   rgb(0, 112, 192);
+$azul-claro:    rgb(0, 176, 240);
+$verde:         rgb(146, 208, 80);
+$amarillo:      rgb(255, 255, 0);
+$dorado:        rgb(255, 192, 0);
+$gris:          rgb(191, 191, 191);
 
 h1{
-    color: $primary;
+    color: $azul-claro;
 }
