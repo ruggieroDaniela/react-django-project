@@ -1,19 +1,19 @@
 import React from "react";
-import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import NavbarDropdown from "./NavbarDropdown";
 
 import '../styles/Navbar.scss';
 
-
-
 const Navbar = () => {
+
+    const { t, i18n } = useTranslation();
 
     return (
         <nav className="navbar">
             <ul className="list">
                 <li className="item">
-                    <a href="/" className="link">Nuestros<br/>servicios</a>
+                    <a href="/" className="link">{t('navbar.nuestros_servicios')}</a>
                 </li>
                 
                 <NavbarDropdown

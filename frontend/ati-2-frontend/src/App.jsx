@@ -1,9 +1,13 @@
+// React Dependencies
 import { useState, useEffect } from 'react'
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
+// Components
 import User from './components/user'
 import Navbar from './components/Navbar'
+
+// Routes
 import { NuestrosServicios } from './routes/NuestrosServicios';
 import { Contactenos } from './routes/Contactenos';
 import { About } from './routes/About';
@@ -11,7 +15,18 @@ import { Ayuda } from './routes/Ayuda';
 import { Empleo } from './routes/Empleo';
 
 function App() {
-  const [users, setUsers] = useState([])
+  
+  // init internationalization module
+  // const {t, i18n} = useTranslation();
+  // useEffect(
+  //   () => {
+  //     const lng = navigator.language;
+  //     i18n.changeLanguage(lng);
+  //   }
+  // );
+  // const lng = navigator.language;
+  
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:8000/users')
@@ -21,7 +36,7 @@ function App() {
       .then(data => {
         setUsers(data)
       })
-  }, [])
+  }, []);
 
   return (
     <>
