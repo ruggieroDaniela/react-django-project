@@ -1,9 +1,9 @@
 import React from "react";
 
-export const About = () => {
+export const Empleo = () => {
 
     return <>
-        <h1>about</h1>
+        <h1>Empleo</h1>
     </>
 
 };

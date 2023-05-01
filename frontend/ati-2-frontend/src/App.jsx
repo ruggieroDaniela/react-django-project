@@ -4,9 +4,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import User from './components/user'
 import Navbar from './components/Navbar'
-import { Home } from './routes/Home';
-import { Contact } from './routes/Contact';
+import { NuestrosServicios } from './routes/NuestrosServicios';
+import { Contactenos } from './routes/Contactenos';
 import { About } from './routes/About';
+import { Ayuda } from './routes/Ayuda';
+import { Empleo } from './routes/Empleo';
 
 function App() {
   const [users, setUsers] = useState([])
@@ -26,9 +28,11 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<Home/>} />
+          <Route exact path="/" element={<NuestrosServicios/>} />
           <Route exact path="/about" element={<About/>} />
-          <Route exact path="/contact" element={<Contact/>} />
+          <Route exact path="/contact" element={<Contactenos/>} />
+          <Route exact path="/help" element={<Ayuda/>} />
+          <Route exact path="/employment" element={<Empleo/>} />
         </Routes>
       </Router>
       {/* <h1>Vite + React</h1>

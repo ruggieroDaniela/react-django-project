@@ -13,7 +13,7 @@ const Navbar = () => {
         <nav className="navbar">
             <ul className="list">
                 <li className="item">
-                    <a href="#" className="link">Nuestros<br/>servicios</a>
+                    <a href="/" className="link">Nuestros<br/>servicios</a>
                 </li>
                 
                 <NavbarDropdown
@@ -95,7 +95,7 @@ const Navbar = () => {
                 />
 
                 <li className="item">
-                    <a href="#" className="link">Empleo</a>
+                    <a href="/employment" className="link">Empleo</a>
                 </li>
                 
                 <NavbarDropdown
@@ -110,11 +110,11 @@ const Navbar = () => {
                 />
 
                 <li className="item">
-                    <a href="#" className="link">Ayuda</a>
+                    <a href="/help" className="link">Ayuda</a>
                 </li>
 
                 <li className="item">
-                    <a href="#" className="link">Contáctenos</a>
+                    <a href="/contact" className="link">Contáctenos</a>
                 </li>
 
                 <li className="item">
