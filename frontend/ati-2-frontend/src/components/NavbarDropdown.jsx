@@ -10,7 +10,7 @@ const NavbarDropdown = ({label, items}) =>{
     let keyIndex = 0;
 
     return (
-        <li className="item dropdown" onMouseLeave={() => setDropdownVisible((prev) => false)}>
+        <li key={label.text + "99"} className="item dropdown" onMouseLeave={() => setDropdownVisible((prev) => false)}>
             <div className="label" onClick={() => setDropdownVisible((prev) => !prev) }>
                 <button >
                     {label.text}
@@ -22,7 +22,7 @@ const NavbarDropdown = ({label, items}) =>{
                     item => {
                         keyIndex++;
                         return 'link' in item?
-                            <li key={label + keyIndex} className="item"> <a className="link" href={item.link}>{item.label}</a> </li>
+                            <li key={label.text + keyIndex.toString()} className="item"> <a className="link" href={item.link}>{item.label}</a> </li>
                             :
                             <NavbarDropdown
                                 label={item.label}

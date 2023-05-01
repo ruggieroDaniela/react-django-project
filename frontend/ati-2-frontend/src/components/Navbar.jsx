@@ -22,18 +22,18 @@ const Navbar = () => {
                         arrow: "▾"
                     }}
                     items={[
-                        {label: "1", link:"#"},
-                        {label: "2", link:"#"},
                         {
                             label: {
-                                text: "3",
+                                text: "Publicar anuncio",
                                 arrow: "▸"
                             },
                             items:[
-                                {label: "1", link:"#"},
-                                {label: "2", link:"#"}
+                                {label: "Solicitar Niñera(o)", link:"#"},
+                                {label: "Solicitar Cuidador(a) ocupacional", link:"#"}
                             ]
-                        }
+                        },
+                        {label: "1", link:"#"},
+                        {label: "2", link:"#"}
                     ]}
                 />
 

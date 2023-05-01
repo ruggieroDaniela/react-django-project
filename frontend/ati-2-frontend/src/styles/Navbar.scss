@@ -44,10 +44,12 @@
         }
 
         .dropdown{
+
             .label{
                 display: flex;
                 justify-content: space-between;
                 align-items: start;
+                height: 1rem;
                 button{
                     @include item-text;
                     background-color: rgba(0,0,0,0);
@@ -62,6 +64,7 @@
             .list{
                 display: none;
                 position: absolute;
+                margin-top: 2.5%;
                 background-color: $azul-claro;
                 width: 15%;
             }
