@@ -2,9 +2,9 @@ POST http://127.0.0.1:8000/users/
 content-type: application/json
 
 {
-    "name": "Gabriel",
-    "last_name": "Carrizo",
-    "email": "gabo@gmail.com"
+    "first_name": "Jose",
+    "last_name": "Miguel",
+    "login_email": "miguel@gmail.com"
 }
 
 ###
