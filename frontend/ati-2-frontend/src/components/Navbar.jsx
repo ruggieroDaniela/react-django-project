@@ -17,7 +17,10 @@ const Navbar = () => {
                 </li>
                 
                 <NavbarDropdown
-                    label="Solicitar personal"
+                    label={{
+                        text: "Solicitar personal",
+                        arrow: "▾"
+                    }}
                     items={[
                         {label: "1", link:"#"},
                         {label: "2", link:"#"}
@@ -25,7 +28,10 @@ const Navbar = () => {
                 />
 
                 <NavbarDropdown
-                    label="Empresas"
+                    label={{
+                        text: "Empresas",
+                        arrow: "▾"
+                    }}
                     items={[
                         {label: "1", link:"#"},
                         {label: "2", link:"#"}
@@ -33,7 +39,10 @@ const Navbar = () => {
                 />
 
                 <NavbarDropdown
-                    label="Ofrecer mis servicios"
+                    label={{
+                        text: "Ofrecer mis servicios",
+                        arrow: "▾"
+                    }}
                     items={[
                         {label: "1", link:"#"},
                         {label: "2", link:"#"}
@@ -45,7 +54,10 @@ const Navbar = () => {
                 </li>
                 
                 <NavbarDropdown
-                    label="Juegos"
+                    label={{
+                        text: "Juegos",
+                        arrow: "▾"
+                    }}
                     items={[
                         {label: "1", link:"#"},
                         {label: "2", link:"#"}
@@ -59,7 +71,7 @@ const Navbar = () => {
                 <li className="item">
                     <a href="#" className="link">Contáctenos</a>
                 </li>
-                
+
                 <li className="item">
                     <a href="#" className="link">Idiomas</a>
                 </li>

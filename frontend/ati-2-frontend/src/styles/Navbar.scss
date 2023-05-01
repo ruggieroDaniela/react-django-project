@@ -38,7 +38,6 @@
 
             .link {
                 @include item-text;
-                // display: flex;
             }
 
         }
@@ -54,6 +53,10 @@
                     box-shadow: none;
                     border: 0;
                 }
+                p{
+                    position: relative;
+                    margin-top: -0.05rem;
+                }
             }
             .list{
                 display: none;
@@ -68,6 +71,12 @@
                         @include item-text;
                     }
                     
+                }
+                &~.label{
+                    button{
+                        color: $amarillo;
+                        text-decoration: underline;
+                    }
                 }
             }
         }

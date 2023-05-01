@@ -13,9 +13,9 @@ const NavbarDropdown = ({label, items}) =>{
         <li className="item dropdown"  onMouseLeave={() => setDropdownVisible((prev) => false)}>
             <div className="label">
                 <button onClick={() => setDropdownVisible((prev) => !prev) }>
-                    {label}
+                    {label.text}
                 </button>
-                <p>▾</p>
+                <p>{label.arrow}</p>
             </div>
             <ul className={`list ${dropdownVisible? "show" : ""}`} >
                 {items.map(
