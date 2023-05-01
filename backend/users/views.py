@@ -4,27 +4,34 @@ from users.serializers import UserSerializer
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
-def get_token_response(user):
+def get_token_key(user):
     token, _ = Token.objects.get_or_create(user=user)
-    response = {"token": str(token)}
-    return response
+    return 'Token ' + token.key
 
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    
+    def get_permissions(self):
+        if self.action == 'create':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+
+        return [permission() for permission in permission_classes]
+    
+    def create(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+        id = response.data["id"]
+        user = User.objects.get(id=id)
+        return Response({'token': get_token_key(user), 'user_id': id}, status=201)
+    
 class CustomAuthToken(ObtainAuthToken):
     
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
-        token, _ = Token.objects.get_or_create(user=user)
-        return Response({'token': token.key, 'user_id': user.pk })
-
-
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    
-    def create(self, request, *args, **kwargs):
-        response = super().create(request, *args, **kwargs)
-        user = User.objects.get(id=response.data["id"])
-        return Response(get_token_response(user), status=201)
+        return Response({'token': get_token_key(user), 'user_id': user.pk })

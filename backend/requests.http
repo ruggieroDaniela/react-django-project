@@ -9,3 +9,13 @@ content-type: application/json
 
 ###
 GET http://127.0.0.1:8000/users/
+
+
+### Formato para las request a AUTH-TOKEN
+POST http://localhost:8000/token-auth/
+content-type: application/json
+
+{
+    "username": "gabriel24ddb@gmail.com",
+    "password": "12345"
+}
