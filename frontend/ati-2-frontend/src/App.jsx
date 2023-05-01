@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import './App.css'
-import './styles/_main.scss'
+// import './App.css'
 import User from './components/user'
+import Navbar from './components/Navbar'
 
 function App() {
   const [users, setUsers] = useState([])
@@ -18,6 +18,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <h1>Vite + React</h1>
       <div className="card">
         <p> Los usuarios actuales son: </p>

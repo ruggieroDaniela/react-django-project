@@ -1,0 +1,47 @@
+@import 'colors';
+
+.navbar {
+    background-color: $azul-claro;
+    display: block;
+    // justify-content: center;
+    // height: 60px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    
+    .list {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        
+        .item {
+            padding-left: 0.75rem;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            margin: 0 0;
+            // border-left: 1px solid white;
+            // border-right: 1px solid white;
+            width: 100%;
+
+            .link {
+                color: #fff;
+                text-decoration: none;
+                // text-transform: uppercase;
+                font-weight: 600;
+                font-size: 1rem;
+                // padding: 10px;
+                text-indent: 0;
+                // border-radius: 5px;
+
+                &:hover {
+                    color: $amarillo;
+                    text-decoration: underline;
+                }
+            }
+
+        }
+
+    }
+}
