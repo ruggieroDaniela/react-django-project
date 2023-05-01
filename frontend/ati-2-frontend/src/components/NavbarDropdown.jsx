@@ -10,9 +10,9 @@ const NavbarDropdown = ({label, items}) =>{
     let keyIndex = 0;
 
     return (
-        <li className="item dropdown"  onMouseLeave={() => setDropdownVisible((prev) => false)}>
-            <div className="label">
-                <button onClick={() => setDropdownVisible((prev) => !prev) }>
+        <li className="item dropdown" onMouseLeave={() => setDropdownVisible((prev) => false)}>
+            <div className="label" onClick={() => setDropdownVisible((prev) => !prev) }>
+                <button >
                     {label.text}
                 </button>
                 <p>{label.arrow}</p>
