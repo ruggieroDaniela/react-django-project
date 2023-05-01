@@ -23,7 +23,17 @@ const Navbar = () => {
                     }}
                     items={[
                         {label: "1", link:"#"},
-                        {label: "2", link:"#"}
+                        {label: "2", link:"#"},
+                        {
+                            label: {
+                                text: "3",
+                                arrow: "▸"
+                            },
+                            items:[
+                                {label: "1", link:"#"},
+                                {label: "2", link:"#"}
+                            ]
+                        }
                     ]}
                 />
 

@@ -21,7 +21,13 @@ const NavbarDropdown = ({label, items}) =>{
                 {items.map(
                     item => {
                         keyIndex++;
-                        return <li key={label + keyIndex} className="item"> <a className="link" href={item.link}>{item.label}</a> </li>
+                        return 'link' in item?
+                            <li key={label + keyIndex} className="item"> <a className="link" href={item.link}>{item.label}</a> </li>
+                            :
+                            <NavbarDropdown
+                                label={item.label}
+                                items={item.items}
+                            />
                     }
                 )}
 

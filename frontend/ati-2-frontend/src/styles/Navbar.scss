@@ -1,6 +1,7 @@
 @import 'colors';
 
 @mixin item-text{
+    display: block;
     color: #fff;
     text-decoration: none;
     font-weight: 500;
@@ -77,6 +78,15 @@
                         color: $amarillo;
                         text-decoration: underline;
                     }
+                }
+            }
+            .dropdown{
+                padding-left: 0.5rem;
+                width: 95%;
+                .list{
+                    margin-left: 95%;
+                    margin-top: -20%;
+                    width: 100%;
                 }
             }
         }
