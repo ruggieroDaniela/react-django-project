@@ -18,107 +18,107 @@ const Navbar = () => {
                 
                 <NavbarDropdown
                     label={{
-                        text: "Solicitar personal",
+                        text: t('navbar.solicitar_personal'),
                         arrow: "▾"
                     }}
                     items={[
                         {
                             label: {
-                                text: "Publicar anuncio",
+                                text: t("navbar.publicar_anuncio"),
                                 arrow: "▸"
                             },
                             items:[
-                                {label: "Solicitar Niñera(o)", link:"#"},
-                                {label: "Solicitar Cuidador(a) ocupacional", link:"#"}
+                                {label: t("navbar.solicitar.babysitter"), link:"#"},
+                                {label: t("navbar.solicitar.cuidador"), link:"#"}
                             ]
                         },
-                        {label: "Ver publicaciones", link:"#"},
-                        {label: "Buscar", link:"#"},
-                        {label: "Modificar", link:"#"},
-                        {label: "Eliminar", link:"#"},
-                        {label: "Habilitar", link:"#"},
-                        {label: "deshabilitar", link:"#"}
+                        {label: t("navbar.operaciones.ver_publicaciones"), link:"#"},
+                        {label: t("navbar.operaciones.buscar"), link:"#"},
+                        {label: t("navbar.operaciones.modificar"), link:"#"},
+                        {label: t("navbar.operaciones.eliminar"), link:"#"},
+                        {label: t("navbar.operaciones.habilitar"), link:"#"},
+                        {label: t("navbar.operaciones.deshabilitar"), link:"#"}
                     ]}
                 />
 
                 <NavbarDropdown
                     label={{
-                        text: "Empresas",
+                        text: t("navbar.empresas"),
                         arrow: "▾"
                     }}
                     items={[
                         {
                             label: {
-                                text: "Publicar anuncio como",
+                                text: t("navbar.publicar_anuncio_como"),
                                 arrow: "▸"
                             },
                             items:[
-                                {label: "Empresa de uniformes", link:"#"},
-                                {label: "Zapatería", link:"#"},
-                                {label: "Librerías", link:"#"},
-                                {label: "Empresas de artículos de limpieza", link:"#"},
-                                {label: "Empresas de seguros", link:"#"},
+                                {label: t("navbar.lista_empresas.uniformes"), link:"#"},
+                                {label: t("navbar.lista_empresas.zapateria"), link:"#"},
+                                {label: t("navbar.lista_empresas.libreria"), link:"#"},
+                                {label: t("navbar.lista_empresas.limpieza"), link:"#"},
+                                {label: t("navbar.lista_empresas.seguro"), link:"#"},
                             ]
                         },
-                        {label: "Ver publicaciones", link:"#"},
-                        {label: "Buscar", link:"#"},
-                        {label: "Modificar", link:"#"},
-                        {label: "Eliminar", link:"#"},
-                        {label: "Habilitar", link:"#"},
-                        {label: "deshabilitar", link:"#"}
+                        {label: t("navbar.operaciones.ver_publicaciones"), link:"#"},
+                        {label: t("navbar.operaciones.buscar"), link:"#"},
+                        {label: t("navbar.operaciones.modificar"), link:"#"},
+                        {label: t("navbar.operaciones.eliminar"), link:"#"},
+                        {label: t("navbar.operaciones.habilitar"), link:"#"},
+                        {label: t("navbar.operaciones.deshabilitar"), link:"#"}
                     ]}
                 />
 
                 <NavbarDropdown
                     label={{
-                        text: "Ofrecer mis servicios",
+                        text: t("navbar.ofrecer_mis_servicios"),
                         arrow: "▾"
                     }}
                     items={[
                         {
                             label: {
-                                text: "Publicar anuncio",
+                                text: t("navbar.publicar_anuncio"),
                                 arrow: "▸"
                             },
                             items:[
-                                {label: "Ofrecerme como Niñera(o)", link:"#"},
-                                {label: "Ofrecerme como Cuidador(a) ocupacional", link:"#"}
+                                {label: t("navbar.ofrecerme.babysitter"), link:"#"},
+                                {label: t("navbar.ofrecerme.cuidador"), link:"#"}
                             ]
                         },
-                        {label: "Ver publicaciones", link:"#"},
-                        {label: "Buscar", link:"#"},
-                        {label: "Modificar", link:"#"},
-                        {label: "Eliminar", link:"#"},
-                        {label: "Habilitar", link:"#"},
-                        {label: "deshabilitar", link:"#"}
+                        {label: t("navbar.operaciones.ver_publicaciones"), link:"#"},
+                        {label: t("navbar.operaciones.buscar"), link:"#"},
+                        {label: t("navbar.operaciones.modificar"), link:"#"},
+                        {label: t("navbar.operaciones.eliminar"), link:"#"},
+                        {label: t("navbar.operaciones.habilitar"), link:"#"},
+                        {label: t("navbar.operaciones.deshabilitar"), link:"#"}
                     ]}
                 />
 
                 <li className="item">
-                    <a href="/employment" className="link">Empleo</a>
+                    <a href="/employment" className="link">{t("navbar.empleo")}</a>
                 </li>
                 
                 <NavbarDropdown
                     label={{
-                        text: "Juegos",
+                        text: t("navbar.juegos"),
                         arrow: "▾"
                     }}
                     items={[
-                        {label: "Bingo en línea", link:"#"},
-                        {label: "Gana dinero jugando", link:"#"}
+                        {label: t("navbar.bingo"), link:"#"},
+                        {label: t("navbar.loteria"), link:"#"}
                     ]}
                 />
 
                 <li className="item">
-                    <a href="/help" className="link">Ayuda</a>
+                    <a href="/help" className="link">{t("navbar.ayuda")}</a>
                 </li>
 
                 <li className="item">
-                    <a href="/contact" className="link">Contáctenos</a>
+                    <a href="/contact" className="link">{t("navbar.contactanos")}</a>
                 </li>
 
                 <li className="item">
-                    <a href="#" className="link">Idiomas</a>
+                    <a href="#" className="link">{t("navbar.idiomas")}</a>
                 </li>
             </ul>
         </nav>

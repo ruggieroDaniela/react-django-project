@@ -1,5 +1,50 @@
 {
     "navbar": {
-        "nuestros_servicios": "Our Services"
+        "operaciones":{
+            "ver_publicaciones": "See Posts",
+            "buscar": "Search",
+            "modificar": "Update",
+            "eliminar": "Delete",
+            "habilitar": "Enable",
+            "deshabilitar": "Disable"
+        },
+        "publicar_anuncio": "Post ad",
+        "publicar_anuncio_como": "Post ad as",
+
+        "nuestros_servicios": "Our Services",
+        
+        "solicitar_personal": "Request Staff",
+        "solicitar":{
+            "babysitter": "Request Babysitter",
+            "cuidador": "Request Occupational caregiver"
+        },
+
+        "empresas": "Businesses",
+        "lista_empresas":{
+            "uniformes": "Uniform company",
+            "zapateria": "Shoe Shop",
+            "libreria": "Library",
+            "limpieza": "Cleaning supplies companies",
+            "seguro": "Insurance companies"
+        },
+
+        "ofrecer_mis_servicios": "Offer my services",
+        "ofrecerme": {
+            "babysitter": "Offer me as a babysitter",
+            "cuidador": "Offer me as a caregiver"
+        },
+
+        "empleo": "Employment",
+
+        "juegos": "Games",
+        "bingo": "Bingo online",
+        "loteria": "Win money playing",
+
+        "ayuda": "Help",
+
+        "contactanos": "Contact us",
+
+        "idiomas": "Language"
+
     }
 }
