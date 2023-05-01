@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react'
-// import './App.css'
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import User from './components/user'
 import Navbar from './components/Navbar'
+import { Home } from './routes/Home';
+import { Contact } from './routes/Contact';
+import { About } from './routes/About';
 
 function App() {
   const [users, setUsers] = useState([])
@@ -18,8 +23,15 @@ function App() {
 
   return (
     <>
-      <Navbar />
-      <h1>Vite + React</h1>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Home/>} />
+          <Route exact path="/about" element={<About/>} />
+          <Route exact path="/contact" element={<Contact/>} />
+        </Routes>
+      </Router>
+      {/* <h1>Vite + React</h1>
       <div className="card">
         <p> Los usuarios actuales son: </p>
         <ul>
@@ -27,7 +39,7 @@ function App() {
             <User key={user.id} user={user} />
           )}
         </ul>
-      </div>
+      </div> */}
     </>
   )
 }
