@@ -22,7 +22,7 @@ const NavbarDropdown = ({label, items}) =>{
                     item => {
                         keyIndex++;
                         return 'link' in item?
-                            <li key={label.text + keyIndex.toString()} className="item"> <a className="link" href={item.link}>{item.label}</a> </li>
+                            <li key={label.text + item.label + keyIndex.toString()} className="item"> <a className="link" href={item.link}>{item.label}</a> </li>
                             :
                             <NavbarDropdown
                                 label={item.label}

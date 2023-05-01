@@ -32,8 +32,12 @@ const Navbar = () => {
                                 {label: "Solicitar Cuidador(a) ocupacional", link:"#"}
                             ]
                         },
-                        {label: "1", link:"#"},
-                        {label: "2", link:"#"}
+                        {label: "Ver publicaciones", link:"#"},
+                        {label: "Buscar", link:"#"},
+                        {label: "Modificar", link:"#"},
+                        {label: "Eliminar", link:"#"},
+                        {label: "Habilitar", link:"#"},
+                        {label: "deshabilitar", link:"#"}
                     ]}
                 />
 
@@ -43,8 +47,25 @@ const Navbar = () => {
                         arrow: "▾"
                     }}
                     items={[
-                        {label: "1", link:"#"},
-                        {label: "2", link:"#"}
+                        {
+                            label: {
+                                text: "Publicar anuncio como",
+                                arrow: "▸"
+                            },
+                            items:[
+                                {label: "Empresa de uniformes", link:"#"},
+                                {label: "Zapatería", link:"#"},
+                                {label: "Librerías", link:"#"},
+                                {label: "Empresas de artículos de limpieza", link:"#"},
+                                {label: "Empresas de seguros", link:"#"},
+                            ]
+                        },
+                        {label: "Ver publicaciones", link:"#"},
+                        {label: "Buscar", link:"#"},
+                        {label: "Modificar", link:"#"},
+                        {label: "Eliminar", link:"#"},
+                        {label: "Habilitar", link:"#"},
+                        {label: "deshabilitar", link:"#"}
                     ]}
                 />
 
@@ -54,8 +75,22 @@ const Navbar = () => {
                         arrow: "▾"
                     }}
                     items={[
-                        {label: "1", link:"#"},
-                        {label: "2", link:"#"}
+                        {
+                            label: {
+                                text: "Publicar anuncio",
+                                arrow: "▸"
+                            },
+                            items:[
+                                {label: "Ofrecerme como Niñera(o)", link:"#"},
+                                {label: "Ofrecerme como Cuidador(a) ocupacional", link:"#"}
+                            ]
+                        },
+                        {label: "Ver publicaciones", link:"#"},
+                        {label: "Buscar", link:"#"},
+                        {label: "Modificar", link:"#"},
+                        {label: "Eliminar", link:"#"},
+                        {label: "Habilitar", link:"#"},
+                        {label: "deshabilitar", link:"#"}
                     ]}
                 />
 
@@ -69,8 +104,8 @@ const Navbar = () => {
                         arrow: "▾"
                     }}
                     items={[
-                        {label: "1", link:"#"},
-                        {label: "2", link:"#"}
+                        {label: "Bingo en línea", link:"#"},
+                        {label: "Gana dinero jugando", link:"#"}
                     ]}
                 />
 
