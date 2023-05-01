@@ -7,20 +7,12 @@ const NavbarDropdown = ({label, items}) =>{
 
     const [dropdownVisible, setDropdownVisible] = useState(false);
 
-    const handleMouseEnter = () => {
-        setDropdownVisible(true);
-    };
-
-    const handleMouseLeave = () => {
-        setDropdownVisible(false);
-    };
-
     let keyIndex = 0;
 
     return (
-        <li className="item dropdown">
+        <li className="item dropdown"  onMouseLeave={() => setDropdownVisible((prev) => false)}>
             <div className="label">
-                <button onClick={() => setDropdownVisible((prev) => !prev)}>
+                <button onClick={() => setDropdownVisible((prev) => !prev) }>
                     {label}
                 </button>
                 <p>▾</p>
