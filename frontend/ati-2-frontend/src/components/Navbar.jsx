@@ -25,8 +25,17 @@ const Navbar = () => {
                         <p>{t("navbar.usuario.label")}</p>
                         <p className="arrow">▾</p>
                     </div>
-                    <ul className="list">
-
+                    <ul className="list show">
+                        <li className="item">
+                            <a className="link" href="#">
+                                Datos de usuario
+                            </a>
+                        </li>
+                        <li className="item">
+                            <a className="link" href="#">
+                                Cerrar sesión
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
