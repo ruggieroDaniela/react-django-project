@@ -9,7 +9,7 @@ import '../styles/Footer.scss';
 const Footer = () => {
 
     const [userDropdownVisible, setUserDropdownVisible] = useState(false);
-    const [isAuth, setAuth] = useState(false);
+    const [isAuth, setAuth] = useState(true);
 
     const { t, i18n } = useTranslation();
 
@@ -28,7 +28,7 @@ const Footer = () => {
                 </div>
             </div>
             :
-            <div className="user">
+            <div className="user-footer">
                 <div className="card">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="" />
                     <div className="info">
