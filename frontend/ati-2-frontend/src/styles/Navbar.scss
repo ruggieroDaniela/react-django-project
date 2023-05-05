@@ -107,3 +107,17 @@
 
     }
 }
+
+.user{
+    display: flex;
+    justify-content: end;
+    .card{
+        display: flex;
+        img{
+            height: 5vh;
+        }
+    }
+    .dropdown{
+        background-color: $dorado;
+    }
+}
