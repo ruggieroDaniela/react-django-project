@@ -1,11 +1,14 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
+import { useState } from "react";
 
 import NavbarDropdown from "./NavbarDropdown";
 
 import '../styles/Navbar.scss';
 
 const Navbar = () => {
+
+    const [userDropdownVisible, setUserDropdownVisible] = useState(false);
 
     const { t, i18n } = useTranslation();
 
@@ -20,12 +23,12 @@ const Navbar = () => {
                         user@mail.com
                     </div>
                 </div>
-                <div className="dropdown">
+                <div className="dropdown" onClick={() => setUserDropdownVisible((prev) => !prev) }  onMouseLeave={() => setUserDropdownVisible((prev) => false)}>
                     <div className="label">
                         <p>{t("navbar.usuario.label")}</p>
                         <p className="arrow">▾</p>
                     </div>
-                    <ul className="list show">
+                    <ul className={`list ${userDropdownVisible? "show" : ""}`}>
                         <li className="item">
                             <a className="link" href="#">
                                 Datos de usuario
