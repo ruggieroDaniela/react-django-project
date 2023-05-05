@@ -1,5 +1,9 @@
 {
     "navbar": {
+        "usuario":{
+            "label": "User"
+        },
+
         "operaciones":{
             "ver_publicaciones": "See Posts",
             "buscar": "Search",

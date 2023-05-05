@@ -22,7 +22,8 @@ const Navbar = () => {
                 </div>
                 <div className="dropdown">
                     <div className="label">
-                        {t("navbar.usuario.label")}
+                        <p>{t("navbar.usuario.label")}</p>
+                        <p className="arrow">▾</p>
                     </div>
                     <ul className="list">
 

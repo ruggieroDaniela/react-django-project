@@ -111,13 +111,41 @@
 .user{
     display: flex;
     justify-content: end;
+    font-size: x-small;
+    font-weight: bold;
+    line-height: 0.75rem;
     .card{
+        margin-right: 1vw;
         display: flex;
         img{
-            height: 5vh;
+            height: 6vh;
+            margin-top: 1vh;
+            margin-right: 5%;
+        }
+        .info{
+            display: flex;
+            align-items: end;
+            padding-bottom: 0.5vh;
         }
     }
     .dropdown{
+        // margin-right: 1vw;
+        margin-left: 1vw;
+        border-radius: 15% 15% 0 0;
+        color: white;
         background-color: $dorado;
+        margin-top: 2vh;
+        height: 5vh;
+        width: 12vw;
+        .label{
+            font-size: small;
+            display: flex;
+            align-content: center;
+            padding: 0;
+            margin: 0;
+            padding-left: 5%;
+            padding-right: 5%;
+            justify-content: space-between;
+        }
     }
 }
