@@ -1,8 +1,6 @@
 import React from "react";
 import { useState } from "react";
 
-import '../styles/Navbar.scss';
-
 const NavbarDropdown = ({label, items}) =>{
 
     const [dropdownVisible, setDropdownVisible] = useState(false);
