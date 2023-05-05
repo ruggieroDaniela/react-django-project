@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 // Components
-import User from './components/user'
-import Navbar from './components/Navbar'
+import User from './components/user';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 // Routes
 import { NuestrosServicios } from './routes/NuestrosServicios';
@@ -42,6 +43,7 @@ function App() {
     <>
       <Router>
         <Navbar />
+        <Footer/>
         <Routes>
           <Route exact path="/" element={<NuestrosServicios/>} />
           <Route exact path="/about" element={<About/>} />
