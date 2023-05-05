@@ -9,11 +9,25 @@ import '../styles/Navbar.scss';
 const Navbar = () => {
 
     const [userDropdownVisible, setUserDropdownVisible] = useState(false);
+    const [isAuth, setAuth] = useState(false);
 
     const { t, i18n } = useTranslation();
 
     return (
-        <>
+        <>  {!isAuth?
+            <div className="user">
+                <div className="dropdown">
+                    <div className="label">
+                        <a href="#">{t("navbar.usuario.iniciar_sesion")}</a>
+                    </div>
+                </div>
+                <div className="dropdown">
+                    <div className="label">
+                        <a href="#">{t("navbar.usuario.registrarse")}</a>
+                    </div>
+                </div>
+            </div>
+            :
             <div className="user">
                 <div className="card">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="" />
@@ -41,7 +55,8 @@ const Navbar = () => {
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div>}
+
             <nav className="navbar">
 
                 <ul className="list">

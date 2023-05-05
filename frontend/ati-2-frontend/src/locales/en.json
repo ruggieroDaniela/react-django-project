@@ -1,7 +1,9 @@
 {
     "navbar": {
         "usuario":{
-            "label": "User"
+            "label": "User",
+            "iniciar_sesion": "Log in",
+            "registrarse": "Register"
         },
 
         "operaciones":{
