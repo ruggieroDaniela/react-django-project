@@ -131,21 +131,35 @@
     .dropdown{
         // margin-right: 1vw;
         margin-left: 1vw;
-        border-radius: 15% 15% 0 0;
+        border-radius: 10% 10% 0 0;
         color: white;
         background-color: $dorado;
-        margin-top: 2vh;
-        height: 5vh;
+        margin-top: 2.5vh;
+        height: 4.5vh;
         width: 12vw;
         .label{
+            height: 100%;
             font-size: small;
             display: flex;
-            align-content: center;
+            line-height: normal;
             padding: 0;
             margin: 0;
-            padding-left: 5%;
-            padding-right: 5%;
             justify-content: space-between;
+            p{
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                width: 100%;
+            }
+
+            .arrow{
+                width: 0;
+                margin-right: 1vw;
+            }
+
         }
     }
 }
