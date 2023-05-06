@@ -40,7 +40,7 @@ export const Registrar = () => {
                                         setSignupStage((prev) => i);
                                 }}
                             >
-                                {(i+1)+"- "+t('registrar.fases.'+i)}
+                                {(i+1)+"- "+t('registrar.fases.'+i+'.nombre')}
                             </button>
                         );
                     })
@@ -58,7 +58,7 @@ export const Registrar = () => {
                     ← {t('registrar.atras')}
                 </button>
                 <span>
-                    {t('registrar.fases.'+signupStage)}
+                    {t('registrar.fases.'+signupStage+'.nombre')}
                 </span>
                 <button 
                     onClick={() => {
@@ -99,7 +99,9 @@ export const Registrar = () => {
 
 const RegistrarFase0 = () => {
     return(
-        <div>Fase 0</div>
+        <>
+            <div>Fase 0</div>
+        </>
     )
 };
 

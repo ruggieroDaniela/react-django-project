@@ -61,12 +61,12 @@
             "If at any time you need to access a section of the registry, click on the green panel, which is your preference"
         ],
         "fases":[
-            "How did you hear about us?",
-            "register user",
-            "Website language",
-            "Login data",
-            "Frequency and information to receive",
-            "billing information"
+            {"nombre":"How did you hear about us?" },
+            {"nombre":"register user" },
+            {"nombre":"Website language" },
+            {"nombre":"Login data" },
+            {"nombre":"Frequency and information to receive" },
+            {"nombre":"billing information" }
         ],
         "continuar": "Continue",
         "atras": "Back"
