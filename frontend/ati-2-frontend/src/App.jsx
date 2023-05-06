@@ -17,6 +17,7 @@ import { Contactenos } from './routes/Contactenos';
 import { About } from './routes/About';
 import { Ayuda } from './routes/Ayuda';
 import { Empleo } from './routes/Empleo';
+import { Registrar } from './routes/Registrar';
 
 function App() {
 
@@ -55,6 +56,7 @@ function App() {
             <Route exact path="/contact" element={<Contactenos/>} />
             <Route exact path="/help" element={<Ayuda/>} />
             <Route exact path="/employment" element={<Empleo/>} />
+            <Route exact path="/register" element={<Registrar/>} />
           </Routes>
         </Router>
       </AuthContext.Provider>
