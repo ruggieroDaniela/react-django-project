@@ -68,6 +68,7 @@
             "Frequency and information to receive",
             "billing information"
         ],
-        "continuar": "continue"
+        "continuar": "Continue",
+        "atras": "Back"
     }
 }

@@ -63,11 +63,12 @@
 .fase-actual{
     width: 75vw;
     display: grid;
-    grid-template-columns: 12fr 2fr;
+    grid-template-columns: 2fr 10fr 2fr;
     gap: 1rem;
     height: 8vh;
-    margin-left: 10vw;
+    // margin-left: 10vw;
     span{
+        margin: 0;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -83,7 +84,6 @@
         box-shadow: none;
         border: none;
         border-radius: 0.3rem;
-        width: 8.5vw;
     }
 
 }

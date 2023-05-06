@@ -47,13 +47,23 @@ export const Registrar = () => {
                 }
             </div>
             <div className="fase-actual">
+                <button 
+                    className={`${signupStage <= 0?"ghost":""}`}
+                    onClick={() => {
+                        if(signupStage > 0)
+                            setSignupStage((prev) => prev-1);
+                    }}
+                >
+                    ← {t('registrar.atras')}
+                </button>
                 <span>
                     {t('registrar.fases.'+signupStage)}
                 </span>
                 <button 
                     onClick={() => {
                         setSignupStage((prev) => prev+1);
-                        setSignupStageDone((prev) => prev+1);
+                        if( signupStage >= signupStageDone )
+                            setSignupStageDone((prev) => prev+1);
                     }}
                 >
                     {t('registrar.continuar')} →
