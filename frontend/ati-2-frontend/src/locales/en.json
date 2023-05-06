@@ -54,6 +54,9 @@
 
     },
 
+    "otro": "Other",
+    "especifique": "Specify",
+
     "registrar":{
         "titulo": "SIGN UP PANEL",
         "indicaciones": [
@@ -61,7 +64,21 @@
             "If at any time you need to access a section of the registry, click on the green panel, which is your preference"
         ],
         "fases":[
-            {"nombre":"How did you hear about us?" },
+            {
+                "nombre":"How did you hear about us?",
+                "descripcion":"Please tell us how you found out about the company's services\nIt is important to us, because it helps us to improve the service we offer you.",
+                "metodos": [
+                    "Website",
+                    "Social Network",
+                    "Friends",
+                    "Other"
+                ],
+                "otros_metodos":[
+                    "Radio",
+                    "Press",
+                    "Other"
+                ]
+            },
             {"nombre":"register user" },
             {"nombre":"Website language" },
             {"nombre":"Login data" },

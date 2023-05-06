@@ -8,7 +8,7 @@ import AuthContext from "../components/AuthContext";
 import "../styles/Registrar.scss"
 
 export const Registrar = () => {
-
+    
     const { t, i18n } = useTranslation();
 
     const [signupStage, setSignupStage] = useState(0);
@@ -98,9 +98,95 @@ export const Registrar = () => {
 };
 
 const RegistrarFase0 = () => {
+    
+    const { t, i18n } = useTranslation();
+
     return(
         <>
-            <div>Fase 0</div>
+            <div>
+                <div className="descripcion">
+                    
+                </div>
+                <div className="metodos-container">
+
+                    <div className="metodo">
+                        <label>
+                            <input type="checkbox"/>
+                            {t('registrar.fases.0.metodos.0')}
+                        </label>
+                    </div>
+
+                    <div className="metodo">
+                        <label>
+                            <input type="checkbox"/>
+                            {t('registrar.fases.0.metodos.1')}
+                        </label>
+                        <div className="social-network">
+                            <label>
+                                <input type="checkbox"/>
+                                Facebook
+                            </label>
+                            <label>
+                                <input type="checkbox"/>
+                                Twitter
+                            </label>
+                            <label>
+                                <input type="checkbox"/>
+                                Instagram
+                            </label>
+                            <label>
+                                <input type="checkbox"/>
+                                {t('otro')}
+                            </label>
+                            <label>
+                                {t('especifique')}
+                                <input type="text"/>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className="metodo">
+                        <label>
+                            <input type="checkbox"/>
+                            {t('registrar.fases.0.metodos.2')}
+                        </label>
+                    </div>
+
+                    <div className="metodo">
+                        <label>
+                            <input type="checkbox"/>
+                            {t('registrar.fases.0.metodos.3')}
+                        </label>
+                        <div className="social-network">
+                            <label>
+                                <input type="checkbox"/>
+                                {t('registrar.fases.0.otros_metodos.0')}
+                            </label>
+                            <label>
+                                {t('especifique')}
+                                <input type="text"/>
+                            </label>
+                            <label>
+                                <input type="checkbox"/>
+                                {t('registrar.fases.0.otros_metodos.1')}
+                            </label>
+                            <label>
+                                {t('especifique')}
+                                <input type="text"/>
+                            </label>
+                            <label>
+                                <input type="checkbox"/>
+                                {t('otro')}
+                            </label>
+                            <label>
+                                {t('especifique')}
+                                <input type="text"/>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </>
     )
 };
