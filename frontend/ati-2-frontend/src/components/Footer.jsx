@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from 'react-i18next';
 import { useState } from "react";
+
+import AuthContext from "./AuthContext";
 
 import NavbarDropdown from "./NavbarDropdown";
 
@@ -9,7 +11,7 @@ import '../styles/Footer.scss';
 const Footer = () => {
 
     const [userDropdownVisible, setUserDropdownVisible] = useState(false);
-    const [isAuth, setAuth] = useState(true);
+    const isAuth = useContext(AuthContext);
 
     const { t, i18n } = useTranslation();
 
