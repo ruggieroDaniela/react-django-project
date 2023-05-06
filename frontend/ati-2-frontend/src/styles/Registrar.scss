@@ -46,6 +46,17 @@
         border-style: none;
         border-radius: 0.5rem;
         height: 2.5rem;
+        cursor: pointer;
+
+        &.inactive{
+            background-color: $gris;
+            cursor: initial;
+        }
+
+        &.current{
+            text-decoration: underline;
+            cursor: initial;
+        }
     }
 }
 

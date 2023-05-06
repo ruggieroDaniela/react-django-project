@@ -12,6 +12,7 @@ export const Registrar = () => {
     const { t, i18n } = useTranslation();
 
     const [signupStage, setSignupStage] = useState(0);
+    const [signupStageDone, setSignupStageDone] = useState(0);
 
     const nFases = [0,1,2,3,4,5];
 
@@ -31,7 +32,16 @@ export const Registrar = () => {
                 {
                     nFases.map(i => {
                         return(
-                            <button key={'boton_registrar_fase_'+i} className="fase">{t('registrar.fases.'+i)}</button>
+                            <button
+                                key={'boton_registrar_fase_'+i}
+                                className={`fase ${i>signupStageDone? "inactive":""} ${i==signupStage? "current":""}`}
+                                onClick={() => {
+                                    if( i<=signupStageDone )
+                                        setSignupStage((prev) => i);
+                                }}
+                            >
+                                {t('registrar.fases.'+i)}
+                            </button>
                         );
                     })
                 }
@@ -40,7 +50,14 @@ export const Registrar = () => {
                 <span>
                     {t('registrar.fases.'+signupStage)}
                 </span>
-                <button onClick={() => setSignupStage((prev) => prev+1)}>{t('registrar.continuar')} →</button>
+                <button 
+                    onClick={() => {
+                        setSignupStage((prev) => prev+1);
+                        setSignupStageDone((prev) => prev+1);
+                    }}
+                >
+                    {t('registrar.continuar')} →
+                </button>
             </div>
         </div>
     )
