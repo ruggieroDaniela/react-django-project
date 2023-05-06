@@ -56,7 +56,7 @@ function App() {
             <Route exact path="/contact" element={<Contactenos/>} />
             <Route exact path="/help" element={<Ayuda/>} />
             <Route exact path="/employment" element={<Empleo/>} />
-            <Route exact path="/register" element={<Registrar/>} />
+            <Route exact path="/sign-up" element={<Registrar/>} />
           </Routes>
         </Router>
       </AuthContext.Provider>

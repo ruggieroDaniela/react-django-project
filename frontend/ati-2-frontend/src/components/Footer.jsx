@@ -25,7 +25,7 @@ const Footer = () => {
                 </div>
                 <div className="dropdown">
                     <div className="label">
-                        <a href="#">{t("navbar.usuario.registrarse")}</a>
+                        <a href="/sign-up">{t("navbar.usuario.registrarse")}</a>
                     </div>
                 </div>
             </div>
