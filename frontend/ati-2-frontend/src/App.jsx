@@ -49,7 +49,6 @@ function App() {
       <AuthContext.Provider value={false}>
         <Router>
           <Navbar />
-          <Footer/>
           <Routes>
             <Route exact path="/" element={<NuestrosServicios/>} />
             <Route exact path="/about" element={<About/>} />
@@ -58,6 +57,7 @@ function App() {
             <Route exact path="/employment" element={<Empleo/>} />
             <Route exact path="/sign-up" element={<Registrar/>} />
           </Routes>
+          <Footer/>
         </Router>
       </AuthContext.Provider>
       

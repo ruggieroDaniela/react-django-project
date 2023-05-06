@@ -105,8 +105,9 @@ const RegistrarFase0 = () => {
         <>
             <div>
                 <div className="descripcion">
-                    
+                    {t('registrar.fases.0.descripcion')}
                 </div>
+                
                 <div className="metodos-container">
 
                     <div className="metodo">
