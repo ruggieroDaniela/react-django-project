@@ -46,6 +46,7 @@ export const Registrar = () => {
                     })
                 }
             </div>
+
             <div className="fase-actual">
                 <button 
                     className={`${signupStage <= 0?"ghost":""}`}
@@ -61,15 +62,73 @@ export const Registrar = () => {
                 </span>
                 <button 
                     onClick={() => {
-                        setSignupStage((prev) => prev+1);
-                        if( signupStage >= signupStageDone )
-                            setSignupStageDone((prev) => prev+1);
+                        if( signupStage+1 < nFases.length ){
+                            setSignupStage((prev) => prev+1);
+                            if( signupStage >= signupStageDone )
+                                setSignupStageDone((prev) => prev+1);
+                        }
                     }}
                 >
                     {t('registrar.continuar')} →
                 </button>
             </div>
+            {(() => {
+                switch (signupStage) {
+                    case 0:
+                        return <RegistrarFase0/>
+                    case 1:
+                        return <RegistrarFase1/>
+                    case 2:
+                        return <RegistrarFase2/>
+                    case 3:
+                        return <RegistrarFase3/>
+                    case 4:
+                        return <RegistrarFase4/>
+                    case 5:
+                        return <RegistrarFase5/>
+                    default:
+                        return null;
+                }
+            })()}
+
         </div>
+
     )
 
+};
+
+const RegistrarFase0 = () => {
+    return(
+        <div>Fase 0</div>
+    )
+};
+
+const RegistrarFase1 = () => {
+    return(
+        <div>Fase 1</div>
+    )
+};
+
+const RegistrarFase2 = () => {
+    return(
+        <div>Fase 2</div>
+    )
+};
+
+const RegistrarFase3 = () => {
+    return(
+        <div>Fase 3</div>
+    )
+};
+
+const RegistrarFase4 = () => {
+    return(
+        <div>Fase 4</div>
+    )
+};
+
+const RegistrarFase5 = () => {
+    return(
+        <div>Fase 5</div>
+    )
 };
