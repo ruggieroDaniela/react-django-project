@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': 'ati2-proyecto',
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
-            'host': 'mongodb+srv://admin:admin@cluster0.jghkftl.mongodb.net/?retryWrites=true&w=majority'
+            'host': 'mongodb+srv://ati2proyecto:QUzU2k6noC7y3HKs@cluster0.jkljwzu.mongodb.net/?retryWrites=true&w=majority'
         }  
     }
 }
