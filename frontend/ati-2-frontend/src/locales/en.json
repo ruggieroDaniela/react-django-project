@@ -52,5 +52,22 @@
 
         "idiomas": "Language"
 
+    },
+
+    "registrar":{
+        "titulo": "SIGN UP PANEL",
+        "indicaciones": [
+            "These are the steps to follow to complete your registration.",
+            "If at any time you need to access a section of the registry, click on the green panel, which is your preference"
+        ],
+        "fases":[
+            "How did you hear about us?",
+            "register user",
+            "Website language",
+            "Login data",
+            "Frequency and information to receive",
+            "billing information"
+        ],
+        "continuar": "continue"
     }
 }
