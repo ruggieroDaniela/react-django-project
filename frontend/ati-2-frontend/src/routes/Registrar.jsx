@@ -40,7 +40,7 @@ export const Registrar = () => {
                                         setSignupStage((prev) => i);
                                 }}
                             >
-                                {t('registrar.fases.'+i)}
+                                {(i+1)+"- "+t('registrar.fases.'+i)}
                             </button>
                         );
                     })
