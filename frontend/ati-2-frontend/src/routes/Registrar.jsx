@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 
 import AuthContext from "../components/AuthContext";
 
+import "../styles/Registrar.scss"
+
 export const Registrar = () => {
 
     const { t, i18n } = useTranslation();
@@ -13,26 +15,34 @@ export const Registrar = () => {
 
     const nFases = [0,1,2,3,4,5];
 
-    return <>
-        <h3>{t('registrar.titulo')}</h3>
-        <div>
-            <span>*</span> <span>{t('registrar.indicaciones.0')}</span>
-            <br />
-            <span>*</span> <span>{t('registrar.indicaciones.1')}</span>
+    return (
+        <div className="registrar">
+            <div className="title">
+                <h4>{t('registrar.titulo')}</h4>
+            </div>
+
+            <div className="indicaciones">
+                <span>*</span> <span className="indicacion">{t('registrar.indicaciones.0')}</span>
+                <br />
+                <span>*</span> <span className="indicacion">{t('registrar.indicaciones.1')}</span>
+            </div>
+
+            <div className="fases-grid">
+                {
+                    nFases.map(i => {
+                        return(
+                            <button key={'boton_registrar_fase_'+i} className="fase">{t('registrar.fases.'+i)}</button>
+                        );
+                    })
+                }
+            </div>
+            <div className="fase-actual">
+                <span>
+                    {t('registrar.fases.'+signupStage)}
+                </span>
+                <button onClick={() => setSignupStage((prev) => prev+1)}>{t('registrar.continuar')} →</button>
+            </div>
         </div>
-        <div>
-            {
-                nFases.map(i => {
-                    return(
-                        <button>{t('registrar.fases.'+i)}</button>
-                    );
-                })
-            }
-        </div>
-        <div>
-            {t('registrar.fases.'+signupStage)}
-            <button onClick={() => setSignupStage((prev) => prev+1)}>{t('registrar.continuar')}</button>
-        </div>
-    </>
+    )
 
 };
