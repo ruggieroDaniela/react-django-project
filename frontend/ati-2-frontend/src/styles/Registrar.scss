@@ -105,6 +105,14 @@
     grid-template-columns: 1fr;
 }
 
+.metodo{
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: start;
+    // align-items: center;
+    padding-left: 35%;
+}
+
 .ghost{
     visibility: hidden;
 }

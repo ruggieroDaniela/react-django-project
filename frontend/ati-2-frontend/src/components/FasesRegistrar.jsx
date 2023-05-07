@@ -3,6 +3,8 @@ import { RegisterFormContext } from "./context/RegisterFormContext";
 
 import { useTranslation } from 'react-i18next';
 
+import "../styles/Registrar.scss"
+
 // Fase 0: de donde nos conoces?
 const Fase0 = () =>
     {
