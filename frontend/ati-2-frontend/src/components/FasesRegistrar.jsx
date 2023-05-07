@@ -263,7 +263,7 @@ const Fase1 = () => {
             <div className="fase1">
                 
                 <div id="tipo_usuario">
-                    <span>{t('registrar.fases.1.tipo_usuario')+": "}</span>
+                    <label>{t('registrar.fases.1.tipo_usuario')+": "}</label>
                     <label>
                         <input
                             type="radio"
@@ -297,6 +297,17 @@ const Fase1 = () => {
                         {t('registrar.fases.1.tipo_empresa')}
                     </label>
                 </div>
+
+                {
+                    registerFormState.phase[1].tipo_usuario === 'natural'?
+                    <div id="usuario_natural" className="container">
+                        natural
+                    </div>
+                    :
+                    <div id="usuario_empresa" className="container">
+                        empresa
+                    </div>
+                }
 
             </div>
         );
