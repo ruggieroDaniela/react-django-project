@@ -108,7 +108,7 @@ const Fase0 = () =>
                                 />
                                 {t('otro')}
                             </div>
-                            <div>
+                            <div style={ {display: registerFormState.phase[0].social_network_other? "block":"none"} }>
                                 {t('especifique')+": "}
                                 <input
                                     type="text"
@@ -159,29 +159,89 @@ const Fase0 = () =>
                         </label>
                         <div className={` ${registerFormState.phase[0].other? "":"ghost" }`}>
                             <div>
-                                <input type="checkbox"/>
+                                <input
+                                    type="checkbox"
+                                    onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[0] = {... prev.phase[0]};
+                                            newState.phase[0].radio = e.target.checked;
+                                            return newState;
+                                        } );
+                                    }}    
+                                />
                                 {t('registrar.fases.0.otros_metodos.0')}
                             </div>
-                            <div>
+                            <div style={ {display: registerFormState.phase[0].radio? "block":"none"} } >
                                 {t('especifique')+": "}
-                                <input type="text"/>
+                                <input
+                                    type="text"
+                                    onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[0] = {... prev.phase[0]};
+                                            newState.phase[0].radio_spec = e.target.value;
+                                            return newState;
+                                        } );
+                                    }}  
+                                />
                             </div>
                             <div>
-                                <input type="checkbox"/>
+                                <input
+                                    type="checkbox"
+                                    onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[0] = {... prev.phase[0]};
+                                            newState.phase[0].press = e.target.checked;
+                                            return newState;
+                                        } );
+                                    }}  
+                                />
                                 {t('registrar.fases.0.otros_metodos.1')}
                             </div>
-                            <div>
+                            <div style={ {display: registerFormState.phase[0].press? "block":"none"} } >
                                 {t('especifique')+": "}
-                                <input type="text"/>
+                                <input
+                                    type="text"
+                                    onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[0] = {... prev.phase[0]};
+                                            newState.phase[0].press_spec = e.target.value;
+                                            return newState;
+                                        } );
+                                    }} 
+                                />
                             </div>
                             <div>
-                                <input type="checkbox"/>
+                                <input
+                                    type="checkbox"
+                                    onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[0] = {... prev.phase[0]};
+                                            newState.phase[0].other_other = e.target.checked;
+                                            return newState;
+                                        } );
+                                    }} 
+                                />
                                 {t('otro')}
                             </div>
-                            <label>
+                            <div style={ {display: registerFormState.phase[0].other_other? "block":"none"} }>
                                 {t('especifique')+": "}
-                                <input type="text"/>
-                            </label>
+                                <input
+                                    type="text"
+                                    onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[0] = {... prev.phase[0]};
+                                            newState.phase[0].other_other_spec = e.target.value;
+                                            return newState;
+                                        } );
+                                    }} 
+                                />
+                            </div>
                         </div>
                     </div>
 
