@@ -23,7 +23,35 @@ function RegisterFormContextProvider({children}){
                 other_other: false,
                 other_other_spec: ""
             },
-            {}
+            {   
+                tipo_usuario: "natural",
+                natural:{
+                    nombre: "",
+                    apellido: "",
+                    identificacion: "",
+                    correo: "",
+                    pais: "",
+                    telefono:{
+                        tipo: "",
+                        numero: "",
+                        ext: ""
+                    }
+                },
+                empresa:{
+                    nombre_empresa: "",
+                    razon_rif: "",
+                    pais: "",
+                    ciudad: "",
+                    direccion: "",
+                    nombre_representante: "",
+                    correo: "",
+                    telefono:{
+                        tipo: "",
+                        numero: "",
+                        ext: ""
+                    }
+                }
+            }
         ]
     });
 
