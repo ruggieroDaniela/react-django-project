@@ -16,7 +16,7 @@ const Footer = () => {
     const { t, i18n } = useTranslation();
 
     return (
-        <div>  {!isAuth?
+        <div className="footer-container">  {!isAuth?
             <div className="user-footer">
                 <div className="dropdown">
                     <div className="label">
