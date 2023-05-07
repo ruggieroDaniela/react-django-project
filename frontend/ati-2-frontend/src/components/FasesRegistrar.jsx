@@ -14,7 +14,7 @@ const Fase0 = () =>
 
         return(
         <>
-            <div>
+            <div className="fase0">
                 <div className="descripcion">
                     {t('registrar.fases.0.descripcion')}
                 </div>
@@ -254,36 +254,62 @@ const Fase0 = () =>
 
     };
 
-const FasesRegistrar = [
+// Fase 1: registrar usuario
+const Fase1 = () => {
+        const { t, i18n } = useTranslation();
+        const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
-    Fase0
-    // ,
+        return(
+            <div>
+                Fase 1
+            </div>
+        );
+    }
 
-    // // Fase 1: registrar usuario
-    // () => {
+const Fase2 = () => {
+        const { t, i18n } = useTranslation();
+        const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
-    // },
+        return(
+            <div>
+                Fase 2
+            </div>
+        );
+    }
 
-    // // Fase 2: idioma
-    // () => {
+const Fase3 = () => {
+        const { t, i18n } = useTranslation();
+        const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
-    // },
+        return(
+            <div>
+                Fase 3
+            </div>
+        );
+    }
 
-    // // Fase 3: Login data
-    // () => {
+const Fase4 = () => {
+        const { t, i18n } = useTranslation();
+        const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
-    // },
+        return(
+            <div>
+                Fase 4
+            </div>
+        );
+    }
 
-    // // Fase 4: Newsletter
-    // () => {
+const Fase5 = () => {
+        const { t, i18n } = useTranslation();
+        const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
-    // },
+        return(
+            <div>
+                Fase 5
+            </div>
+        );
+    }
 
-    // // Fase 5: Facturación
-    // () => {
-
-    // }
-
-];
+const FasesRegistrar = [Fase0, Fase1, Fase2, Fase3, Fase4, Fase5];
 
 export {FasesRegistrar};
