@@ -301,7 +301,127 @@ const Fase1 = () => {
                 {
                     registerFormState.phase[1].tipo_usuario === 'natural'?
                     <div id="usuario_natural" className="container">
-                        natural
+                        {t('registrar.fases.1.natural.nota_inicial')+": "}
+
+                        <div className="field">
+                            {t('registrar.fases.1.natural.nombre')+": "}
+                            <input
+                                type="text"
+                                onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[1] = {... prev.phase[1]};
+                                        newState.phase[1].natural.nombre = e.target.value;
+                                        return newState;
+                                    } );
+                                }} 
+                            />
+                        </div>
+
+                        <div className="field">
+                            {t('registrar.fases.1.natural.apellido')+": "}
+                            <input
+                                type="text"
+                                onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[1] = {... prev.phase[1]};
+                                        newState.phase[1].natural.apellido = e.target.value;
+                                        return newState;
+                                    } );
+                                }} 
+                            />
+                        </div>
+
+                        <div className="field">
+                            {t('registrar.fases.1.natural.id')+": "}
+                            <input
+                                type="text"
+                                onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[1] = {... prev.phase[1]};
+                                        newState.phase[1].natural.identificacion = e.target.value;
+                                        return newState;
+                                    } );
+                                }} 
+                            />
+                        </div>
+
+                        <div className="field">
+                            {t('registrar.fases.1.natural.correo')+": "}
+                            <input
+                                type="text"
+                                onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[1] = {... prev.phase[1]};
+                                        newState.phase[1].natural.correo = e.target.value;
+                                        return newState;
+                                    } );
+                                }} 
+                            />
+                        </div>
+
+                        <div className="field">
+                            {t('registrar.fases.1.natural.pais')+": "}
+                            <input
+                                type="text"
+                                onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[1] = {... prev.phase[1]};
+                                        newState.phase[1].natural.pais = e.target.value;
+                                        return newState;
+                                    } );
+                                }} 
+                            />
+                        </div>
+
+
+                        <div className="field">
+                            
+                            {t('registrar.fases.1.natural.telefono')+": "}
+                            
+                            <div className="note">
+                                {t('registrar.fases.1.natural.telefono_nota')}
+                            </div>
+
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="movil"
+                                    checked={ registerFormState.phase[1].natural.telefono.tipo === 'movil' }
+                                    onChange={ e => {
+                                        setRegisterFormState( prev => {
+                                                const newState = {... prev};
+                                                newState.phase[1] = {... prev.phase[1]};
+                                                newState.phase[1].natural.telefono.tipo = 'movil';
+                                                return newState;
+                                            } );
+                                    }}
+                                />
+                                {t('registrar.fases.1.natural.movil')}
+                            </label>
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="local"
+                                    checked={ registerFormState.phase[1].natural.telefono.tipo === 'local' }
+                                    onChange={ e => {
+                                        setRegisterFormState( prev => {
+                                                const newState = {... prev};
+                                                newState.phase[1] = {... prev.phase[1]};
+                                                newState.phase[1].natural.telefono.tipo = 'local';
+                                                return newState;
+                                            } );
+                                    }}
+                                />
+                                {t('registrar.fases.1.natural.local')}
+                            </label>
+                            
+                        </div>
+
                     </div>
                     :
                     <div id="usuario_empresa" className="container">

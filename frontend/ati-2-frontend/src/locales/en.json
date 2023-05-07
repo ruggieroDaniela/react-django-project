@@ -80,15 +80,28 @@
                 ]
             },
             {
-                "nombre":"register user",
+                "nombre":"Register user",
                 "tipo_usuario": "Select user type",
                 "tipo_natural": "Natural person",
-                "tipo_empresa": "Business"
+                "tipo_empresa": "Business",
+                "natural":{
+                    "nota_inicial": "Insert the solicited data",
+                    "nombre": "First Name",
+                    "apellido": "Last Name",
+                    "id": "Passport/ID Card/DNI",
+                    "correo": "Email",
+                    "pais": "Country",
+                    "telefono": "Phone",
+                    "telefono_nota": "Select the phone of your preference",
+                    "movil": "Cellphone",
+                    "local": "Local",
+                    "nota_final": "Please verify that your data is correct, as it will be used to generate your publication, send you your access data, or generate your invoice"
+                }
             },
             {"nombre":"Website language" },
             {"nombre":"Login data" },
             {"nombre":"Frequency and information to receive" },
-            {"nombre":"billing information" }
+            {"nombre":"Billing information" }
         ],
         "continuar": "Continue",
         "atras": "Back"
