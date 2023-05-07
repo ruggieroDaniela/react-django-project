@@ -79,7 +79,12 @@
                     "Other"
                 ]
             },
-            {"nombre":"register user" },
+            {
+                "nombre":"register user",
+                "tipo_usuario": "Select user type",
+                "tipo_natural": "Natural person",
+                "tipo_empresa": "Business"
+            },
             {"nombre":"Website language" },
             {"nombre":"Login data" },
             {"nombre":"Frequency and information to receive" },

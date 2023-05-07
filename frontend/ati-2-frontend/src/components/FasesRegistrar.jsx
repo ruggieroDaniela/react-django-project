@@ -260,8 +260,44 @@ const Fase1 = () => {
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
         return(
-            <div>
-                Fase 1
+            <div className="fase1">
+                
+                <div id="tipo_usuario">
+                    <span>{t('registrar.fases.1.tipo_usuario')+": "}</span>
+                    <label>
+                        <input
+                            type="radio"
+                            value="natural"
+                            checked={ registerFormState.phase[1].tipo_usuario === 'natural' }
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[1] = {... prev.phase[1]};
+                                        newState.phase[1].tipo_usuario = 'natural';
+                                        return newState;
+                                    } );
+                            }}
+                        />
+                        {t('registrar.fases.1.tipo_natural')}
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            value="empresa"
+                            checked={ registerFormState.phase[1].tipo_usuario === 'empresa' }
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[1] = {... prev.phase[1]};
+                                        newState.phase[1].tipo_usuario = 'empresa';
+                                        return newState;
+                                    } );
+                            }}
+                        />
+                        {t('registrar.fases.1.tipo_empresa')}
+                    </label>
+                </div>
+
             </div>
         );
     }
