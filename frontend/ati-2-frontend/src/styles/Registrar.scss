@@ -89,10 +89,20 @@
 
 }
 
+.descripcion{
+    margin-top: 1rem;
+}
+
 .metodos-container{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     width: 90vw;
+    margin-top: 1rem;
+}
+
+#social-network{
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
 .ghost{

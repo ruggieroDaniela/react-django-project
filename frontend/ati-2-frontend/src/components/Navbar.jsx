@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import { useTranslation } from 'react-i18next';
 import { useState } from "react";
 
-import AuthContext from "./AuthContext";
+import AuthContext from "./context/AuthContext";
 
 import NavbarDropdown from "./NavbarDropdown";
 
