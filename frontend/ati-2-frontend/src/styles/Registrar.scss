@@ -66,7 +66,6 @@
     grid-template-columns: 2fr 10fr 2fr;
     gap: 1rem;
     height: 8vh;
-    // margin-left: 10vw;
     span{
         margin: 0;
         width: 100%;
@@ -89,29 +88,31 @@
 
 }
 
-.descripcion{
-    margin-top: 1rem;
+.fase0{
+
+    .descripcion{
+        margin-top: 1rem;
+    }
+    
+    .metodos-container{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        width: 90vw;
+        margin-top: 1rem;
+    }
+    
+    #social-network{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+    .metodo{
+        padding-left: 35%;
+    }
+
 }
 
-.metodos-container{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    width: 90vw;
-    margin-top: 1rem;
-}
 
-#social-network{
-    display: grid;
-    grid-template-columns: 1fr;
-}
-
-.metodo{
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: start;
-    // align-items: center;
-    padding-left: 35%;
-}
 
 .ghost{
     visibility: hidden;
