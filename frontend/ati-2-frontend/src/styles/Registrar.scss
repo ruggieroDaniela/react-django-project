@@ -129,6 +129,24 @@
         width: 100%;
         padding-left: 3vw;
     }
+    .tipo_telefono{
+        background-color: $dorado;
+        padding: 0.25rem;
+        color: white;
+        font-weight: bold;
+        width: 15vw;
+        display: flex;
+        justify-content: center;
+    }
+
+    #telefono_container{
+        display: flex;
+
+        label{
+            display: flex;
+            margin-right: 3rem;
+        }
+    }
 }
 
 .ghost{

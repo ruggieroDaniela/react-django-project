@@ -33,6 +33,7 @@ function RegisterFormContextProvider({children}){
                     pais: "",
                     telefono:{
                         tipo: "",
+                        codigo: "",
                         numero: "",
                         ext: ""
                     }
