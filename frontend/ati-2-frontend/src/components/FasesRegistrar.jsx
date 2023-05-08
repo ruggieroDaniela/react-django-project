@@ -304,7 +304,9 @@ const Fase1 = () => {
                         {t('registrar.fases.1.natural.nota_inicial')+": "}
 
                         <div className="field">
-                            {t('registrar.fases.1.natural.nombre')+": "}
+                            <span className="label">
+                                <span className="required">*</span> {t('registrar.fases.1.natural.nombre')+": "}
+                            </span>
                             <input
                                 type="text"
                                 onChange={ e => {
@@ -319,7 +321,9 @@ const Fase1 = () => {
                         </div>
 
                         <div className="field">
-                            {t('registrar.fases.1.natural.apellido')+": "}
+                            <span className="label">
+                                <span className="required">*</span> {t('registrar.fases.1.natural.apellido')+": "}
+                            </span>
                             <input
                                 type="text"
                                 onChange={ e => {
@@ -334,7 +338,9 @@ const Fase1 = () => {
                         </div>
 
                         <div className="field">
-                            {t('registrar.fases.1.natural.id')+": "}
+                            <span className="label">
+                                <span className="required">*</span> {t('registrar.fases.1.natural.id')+": "}
+                            </span>
                             <input
                                 type="text"
                                 onChange={ e => {
@@ -349,7 +355,9 @@ const Fase1 = () => {
                         </div>
 
                         <div className="field">
-                            {t('registrar.fases.1.natural.correo')+": "}
+                            <span className="label">
+                                <span className="required">*</span> {t('registrar.fases.1.natural.correo')+": "}
+                            </span>
                             <input
                                 type="text"
                                 onChange={ e => {
@@ -364,7 +372,9 @@ const Fase1 = () => {
                         </div>
 
                         <div className="field">
-                            {t('registrar.fases.1.natural.pais')+": "}
+                            <span className="label">
+                                <span className="required">*</span> {t('registrar.fases.1.natural.pais')+": "}
+                            </span>
                             <input
                                 type="text"
                                 onChange={ e => {
@@ -381,92 +391,97 @@ const Fase1 = () => {
 
                         <div className="field">
                             
-                            {t('registrar.fases.1.natural.telefono')+": "}
-                            
-                            <div className="note">
-                                {t('registrar.fases.1.natural.telefono_nota')}
-                            </div>
-                            
-                            <div id="telefono_container">
-                                <label>
-                                    <input
-                                        type="radio"
-                                        value="movil"
-                                        checked={ registerFormState.phase[1].natural.telefono.tipo === 'movil' }
-                                        onChange={ e => {
-                                            setRegisterFormState( prev => {
-                                                    const newState = {... prev};
-                                                    newState.phase[1] = {... prev.phase[1]};
-                                                    newState.phase[1].natural.telefono.tipo = 'movil';
-                                                    return newState;
-                                                } );
-                                        }}
-                                    />
-                                    <div className="tipo_telefono">
-                                        {t('registrar.fases.1.natural.movil')}
-                                    </div>
-                                </label>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        value="local"
-                                        checked={ registerFormState.phase[1].natural.telefono.tipo === 'local' }
-                                        onChange={ e => {
-                                            setRegisterFormState( prev => {
-                                                    const newState = {... prev};
-                                                    newState.phase[1] = {... prev.phase[1]};
-                                                    newState.phase[1].natural.telefono.tipo = 'local';
-                                                    return newState;
-                                                } );
-                                        }}
-                                    />
-                                    <div className="tipo_telefono">
-                                        {t('registrar.fases.1.natural.local')}
-                                    </div>
-                                </label>
-                            </div>
+                            <div>
+                                <span className="label">
+                                    <span className="required">*</span> {t('registrar.fases.1.natural.telefono')+": "}
+                                </span>
 
-                            <div
-                                className="field"
-                                style={{ visibility: registerFormState.phase[1].natural.telefono.tipo === ""? "hidden":"visible" }}
-                            >
-                                <input
-                                    type="text"
-                                    onChange={ e => {
-                                    setRegisterFormState( prev => {
-                                            const newState = {... prev};
-                                            newState.phase[1] = {... prev.phase[1]};
-                                            newState.phase[1].natural.telefono.codigo = e.target.value;
-                                            return newState;
-                                        } );
-                                    }} 
-                                />
-                                <input
-                                    type="text"
-                                    onChange={ e => {
-                                    setRegisterFormState( prev => {
-                                            const newState = {... prev};
-                                            newState.phase[1] = {... prev.phase[1]};
-                                            newState.phase[1].natural.telefono.numero = e.target.value;
-                                            return newState;
-                                        } );
-                                    }} 
-                                />
-                                <label style={{ visibility: registerFormState.phase[1].natural.telefono.tipo === "local"? "visible":"hidden" }}>
-                                    Ext
+                                <div className="note">
+                                    {t('registrar.fases.1.natural.telefono_nota')}
+                                </div>
+                                
+                                <div id="telefono_container">
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            value="movil"
+                                            checked={ registerFormState.phase[1].natural.telefono.tipo === 'movil' }
+                                            onChange={ e => {
+                                                setRegisterFormState( prev => {
+                                                        const newState = {... prev};
+                                                        newState.phase[1] = {... prev.phase[1]};
+                                                        newState.phase[1].natural.telefono.tipo = 'movil';
+                                                        return newState;
+                                                    } );
+                                            }}
+                                        />
+                                        <div className="tipo_telefono">
+                                            {t('registrar.fases.1.natural.movil')}
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            value="local"
+                                            checked={ registerFormState.phase[1].natural.telefono.tipo === 'local' }
+                                            onChange={ e => {
+                                                setRegisterFormState( prev => {
+                                                        const newState = {... prev};
+                                                        newState.phase[1] = {... prev.phase[1]};
+                                                        newState.phase[1].natural.telefono.tipo = 'local';
+                                                        return newState;
+                                                    } );
+                                            }}
+                                        />
+                                        <div className="tipo_telefono">
+                                            {t('registrar.fases.1.natural.local')}
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div
+                                    className="field"
+                                    style={{ visibility: registerFormState.phase[1].natural.telefono.tipo === ""? "hidden":"visible" }}
+                                >
                                     <input
                                         type="text"
                                         onChange={ e => {
                                         setRegisterFormState( prev => {
                                                 const newState = {... prev};
                                                 newState.phase[1] = {... prev.phase[1]};
-                                                newState.phase[1].natural.telefono.ext = e.target.value;
+                                                newState.phase[1].natural.telefono.codigo = e.target.value;
                                                 return newState;
                                             } );
                                         }} 
                                     />
-                                </label>
+                                    <input
+                                        type="text"
+                                        onChange={ e => {
+                                        setRegisterFormState( prev => {
+                                                const newState = {... prev};
+                                                newState.phase[1] = {... prev.phase[1]};
+                                                newState.phase[1].natural.telefono.numero = e.target.value;
+                                                return newState;
+                                            } );
+                                        }} 
+                                    />
+                                    <label style={{ visibility: registerFormState.phase[1].natural.telefono.tipo === "local"? "visible":"hidden" }}>
+                                        Ext
+                                        <input
+                                            type="text"
+                                            onChange={ e => {
+                                            setRegisterFormState( prev => {
+                                                    const newState = {... prev};
+                                                    newState.phase[1] = {... prev.phase[1]};
+                                                    newState.phase[1].natural.telefono.ext = e.target.value;
+                                                    return newState;
+                                                } );
+                                            }} 
+                                        />
+                                    </label>
+                                </div>
                             </div>
+
 
                             
                         </div>

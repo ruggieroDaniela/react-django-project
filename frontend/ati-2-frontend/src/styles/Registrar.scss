@@ -141,7 +141,7 @@
 
     #telefono_container{
         display: flex;
-
+        margin-left: 2vw;
         label{
             display: flex;
             margin-right: 3rem;
@@ -152,8 +152,27 @@
         margin-left: 8vw;
         .field{
             margin-left: 2vw;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 45%;
+            margin-bottom: 0.25rem;
+            .label{
+                font-weight: 600;
+                .required{
+                    color: $rojo;
+                }
+            }
         }
     }
+
+    .note{
+        margin-left: 4vw;
+        color: $azul-oscuro;
+        font-size: 0.9rem;
+        margin-top: 0.25rem;
+        margin-bottom: 0.5rem;
+    }
+
 }
 
 .ghost{
