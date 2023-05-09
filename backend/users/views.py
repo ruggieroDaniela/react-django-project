@@ -62,6 +62,14 @@ class CustomAuthToken(ObtainAuthToken):
     
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data, context={'request': request})
-        serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
-        return Response({'token': get_token_key(user), 'user_id': user.pk })
+    
+        if serializer.is_valid():
+            user = serializer.validated_data['user']
+            return Response({'token': get_token_key(user), 'user_id': user.pk })
+        else:
+            userExists = User.objects.filter(email=request.data['username'])
+            if userExists: 
+                return Response({'error': 'Wrong password' }, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({'error': 'Email does not exist' }, status=status.HTTP_400_BAD_REQUEST)
+        
