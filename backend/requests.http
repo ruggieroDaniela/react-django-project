@@ -5,14 +5,18 @@ content-type: application/json
     "email": "admin@gmail.com",
     "password": "12345",
     "found_app_by": "Twitter",
-    "first_name": "Admin3",
+    "type_user": "natural",
+    "identification": "V-126125",
+    "contact_email": "admin@gmail.com",
+    "country": "Alemania",
+    "first_name": "Admin",
     "last_name": "Ati-2",
     "language": "es"
 }
 
 ###
-GET http://127.0.0.1:8000/users
-Authorization: Token ee1d8523eb6a606aa9ecb0528eff0b0a0b5db7fc
+GET http://127.0.0.1:8000/users/2
+Authorization: Token 193aebae46e343e601f10f73de0f32d27e671dda
 
 ### Formato para las request a AUTH-TOKEN
 POST http://localhost:8000/token-auth/
