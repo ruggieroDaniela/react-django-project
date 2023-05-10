@@ -158,22 +158,6 @@
             font-weight: 600;
         }
     }
-    #telefono_field{
-        margin-top: 1rem;
-        padding-left: 1.25rem;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        
-        input{
-            height: 1rem;
-        }
-
-        label{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-        }
-    }
 
     #telefono_codigo{
         width: 3rem;
@@ -182,6 +166,32 @@
     #telefono_ext{
         width: 3rem;
     }
+
+    #telefono_field{
+        margin-top: 1rem;
+        padding-left: 1.25rem;
+        // grid-template-columns: repeat(3, 1fr);
+        // gap: 1rem;
+        
+        display: flex;
+
+        input{
+            height: 1rem;
+            margin-left: 1.5rem;
+        }
+
+        label{
+            // display: grid;
+            // grid-template-columns: 1fr 1fr;
+            // gap: 0.25rem;
+            display: flex;
+            margin-left: 1.5rem;
+            input{
+                margin-left: 0.25rem;
+            }
+        }
+    }
+
     #usuario_natural{
         margin-left: 8vw;
     }
@@ -253,9 +263,11 @@
             }
         }
 
-        // #datos_representante{
-        //     background-color: blue;
-        // }
+        #datos_representante{
+            .field{
+                width: 80%;
+            }
+        }
     }
 
 
