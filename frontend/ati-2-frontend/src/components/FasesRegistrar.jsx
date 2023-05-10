@@ -441,9 +441,11 @@ const Fase1 = () => {
 
                                 <div
                                     className="field"
+                                    id="telefono_field"
                                     style={{ visibility: registerFormState.phase[1].natural.telefono.tipo === ""? "hidden":"visible" }}
                                 >
                                     <input
+                                        id="telefono_codigo"
                                         type="text"
                                         onChange={ e => {
                                         setRegisterFormState( prev => {
@@ -455,6 +457,7 @@ const Fase1 = () => {
                                         }} 
                                     />
                                     <input
+                                        id="telefono_numero"
                                         type="text"
                                         onChange={ e => {
                                         setRegisterFormState( prev => {
@@ -468,6 +471,7 @@ const Fase1 = () => {
                                     <label style={{ visibility: registerFormState.phase[1].natural.telefono.tipo === "local"? "visible":"hidden" }}>
                                         Ext
                                         <input
+                                            id="telefono_ext"
                                             type="text"
                                             onChange={ e => {
                                             setRegisterFormState( prev => {
