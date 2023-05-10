@@ -127,7 +127,7 @@
     }
     .container{
         width: 100%;
-        padding-left: 3vw;
+        // padding-left: 3vw;
     }
     .tipo_telefono{
         background-color: $dorado;
@@ -148,42 +148,42 @@
         }
     }
 
-    #usuario_natural{
-        margin-left: 8vw;
-        .field{
-            margin-left: 2vw;
+    .field{
+        margin-left: 2vw;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 45%;
+        margin-bottom: 0.25rem;
+        .label{
+            font-weight: 600;
+        }
+    }
+    #telefono_field{
+        margin-top: 1rem;
+        padding-left: 1.25rem;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        
+        input{
+            height: 1rem;
+        }
+
+        label{
             display: grid;
             grid-template-columns: 1fr 1fr;
-            width: 45%;
-            margin-bottom: 0.25rem;
-            .label{
-                font-weight: 600;
-            }
+            gap: 0.5rem;
         }
-        #telefono_field{
-            margin-top: 1rem;
-            padding-left: 1.25rem;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            
-            input{
-                height: 1rem;
-            }
+    }
 
-            label{
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 0.5rem;
-            }
-        }
-    
-        #telefono_codigo{
-            width: 3rem;
-        }
+    #telefono_codigo{
+        width: 3rem;
+    }
 
-        #telefono_ext{
-            width: 3rem;
-        }
+    #telefono_ext{
+        width: 3rem;
+    }
+    #usuario_natural{
+        margin-left: 8vw;
     }
 
     .note{
@@ -205,9 +205,28 @@
     #usuario_empresa{
         display: grid;
         grid-template-columns: 1fr 1fr;
+        // display: flex;
+        // justify-content: space-around;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        // background-color: red;
+        gap: 1rem;
 
         .container{
-            width: 37vw;
+            display: grid;
+            grid-template-columns: 1fr;
+            // display: flex;
+            // justify-content: center;
+            // background-color: blue;
+
+        }
+
+        .title{
+            background-color: $azul-claro;
+            color: white;
+            font-weight: bold;
+            width: 60%;
         }
 
         // #datos_empresa{
