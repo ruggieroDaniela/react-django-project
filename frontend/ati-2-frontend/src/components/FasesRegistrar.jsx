@@ -778,17 +778,66 @@ const Fase2 = () => {
                         Español
                     </div>
                 </label>
+                
             </div>
         );
     }
 
+// Fase 3: login data
 const Fase3 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
         return(
-            <div>
-                Fase 3
+            <div id="fase3">
+                <div className="field">
+                    <span className="label">
+                        {t('registrar.fases.3.correo')+": "}
+                    </span>
+                    <input
+                        type="text"
+                        onChange={ e => {
+                        setRegisterFormState( prev => {
+                                const newState = {... prev};
+                                newState.phase[3] = {... prev.phase[3]};
+                                newState.phase[3].correo = e.target.value;
+                                return newState;
+                            } );
+                        }} 
+                    />
+                </div>
+                <div className="field">
+                    <span className="label">
+                        {t('registrar.fases.3.clave')+": "}
+                    </span>
+                    <input
+                        type="password"
+                        onChange={ e => {
+                        setRegisterFormState( prev => {
+                                const newState = {... prev};
+                                newState.phase[3] = {... prev.phase[3]};
+                                newState.phase[3].clave = e.target.value;
+                                return newState;
+                            } );
+                        }} 
+                    />
+                </div>
+                <div className="field" id="newsletter">
+                    <label>
+                        <input
+                            type="checkbox"
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                    const newState = {... prev};
+                                    newState.phase[3] = {... prev.phase[3]};
+                                    newState.phase[3].newsletter = e.target.checked;
+                                    return newState;
+                                } );   
+                            }}
+                        />
+                        {t('registrar.fases.3.newsletter')}
+                    </label>
+                </div>
             </div>
         );
     }

@@ -59,6 +59,10 @@ function RegisterFormContextProvider({children}){
                 }
             },{
                 idioma: ""
+            },{
+                correo: "",
+                clave: "",
+                newsletter: false
             }
         ]
     });

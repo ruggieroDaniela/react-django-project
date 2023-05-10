@@ -117,7 +117,12 @@
                 "nota_final": "Please verify that your data is correct, as it will be used to generate your publication, send you your access data, or generate your invoice"
             },
             {"nombre":"Website language" },
-            {"nombre":"Login data" },
+            {
+                "nombre":"Login data",
+                "correo": "Login Email",
+                "clave": "Password",
+                "newsletter": "I want to stay informed about the services offered by the company, and other aspects of interest"
+            },
             {"nombre":"Frequency and information to receive" },
             {"nombre":"Billing information" }
         ],
