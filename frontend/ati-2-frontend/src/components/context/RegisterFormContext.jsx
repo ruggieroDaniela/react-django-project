@@ -57,6 +57,8 @@ function RegisterFormContextProvider({children}){
                     numero: "",
                     ext: ""
                 }
+            },{
+                idioma: ""
             }
         ]
     });

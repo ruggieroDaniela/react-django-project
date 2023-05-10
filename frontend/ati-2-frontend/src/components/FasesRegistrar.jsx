@@ -14,7 +14,7 @@ const Fase0 = () =>
 
         return(
         <>
-            <div className="fase0">
+            <div id="fase0">
                 <div className="descripcion">
                     {t('registrar.fases.0.descripcion')}
                 </div>
@@ -260,7 +260,7 @@ const Fase1 = () => {
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
         return(
-            <div className="fase1">
+            <div id="fase1">
                 
                 <div id="tipo_usuario">
                     <label>{t('registrar.fases.1.tipo_usuario')+": "}</label>
@@ -737,13 +737,47 @@ const Fase1 = () => {
         );
     }
 
+// Fase 2: idioma
 const Fase2 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
         return(
-            <div>
-                Fase 2
+            <div id="fase2">
+                <label>
+                    <input
+                        type="radio"
+                        value="english"
+                        checked={ registerFormState.phase[2].idioma === 'english' }
+                        onChange={ e => {
+                            setRegisterFormState( prev => {
+                                    const newState = {... prev};
+                                    newState.phase[2].idioma = 'english';
+                                    return newState;
+                                } );
+                        }}
+                    />
+                    <div>
+                        English
+                    </div>
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        value="español"
+                        checked={ registerFormState.phase[2].idioma === 'español' }
+                        onChange={ e => {
+                            setRegisterFormState( prev => {
+                                    const newState = {... prev};
+                                    newState.phase[2].idioma = 'español';
+                                    return newState;
+                                } );
+                        }}
+                    />
+                    <div>
+                        Español
+                    </div>
+                </label>
             </div>
         );
     }
