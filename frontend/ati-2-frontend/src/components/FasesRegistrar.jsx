@@ -570,8 +570,8 @@ const Fase1 = () => {
                                 <span className="label">
                                     <span className="required">*</span> {t('registrar.fases.1.empresa.empresa.direccion')+": "}
                                 </span>
-                                <input
-                                    type="text"
+                                <textarea
+                                    type="textarea"
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
