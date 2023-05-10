@@ -51,6 +51,11 @@ function RegisterFormContextProvider({children}){
                         numero: "",
                         ext: ""
                     }
+                },
+                telefono:{
+                    tipo: "",
+                    numero: "",
+                    ext: ""
                 }
             }
         ]

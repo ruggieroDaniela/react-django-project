@@ -405,12 +405,12 @@ const Fase1 = () => {
                                         <input
                                             type="radio"
                                             value="movil"
-                                            checked={ registerFormState.phase[1].natural.telefono.tipo === 'movil' }
+                                            checked={ registerFormState.phase[1].telefono.tipo === 'movil' }
                                             onChange={ e => {
                                                 setRegisterFormState( prev => {
                                                         const newState = {... prev};
                                                         newState.phase[1] = {... prev.phase[1]};
-                                                        newState.phase[1].natural.telefono.tipo = 'movil';
+                                                        newState.phase[1].telefono.tipo = 'movil';
                                                         return newState;
                                                     } );
                                             }}
@@ -423,12 +423,12 @@ const Fase1 = () => {
                                         <input
                                             type="radio"
                                             value="local"
-                                            checked={ registerFormState.phase[1].natural.telefono.tipo === 'local' }
+                                            checked={ registerFormState.phase[1].telefono.tipo === 'local' }
                                             onChange={ e => {
                                                 setRegisterFormState( prev => {
                                                         const newState = {... prev};
                                                         newState.phase[1] = {... prev.phase[1]};
-                                                        newState.phase[1].natural.telefono.tipo = 'local';
+                                                        newState.phase[1].telefono.tipo = 'local';
                                                         return newState;
                                                     } );
                                             }}
@@ -442,7 +442,7 @@ const Fase1 = () => {
                                 <div
                                     className="field"
                                     id="telefono_field"
-                                    style={{ visibility: registerFormState.phase[1].natural.telefono.tipo === ""? "hidden":"visible" }}
+                                    style={{ visibility: registerFormState.phase[1].telefono.tipo === ""? "hidden":"visible" }}
                                 >
                                     <input
                                         id="telefono_codigo"
@@ -451,7 +451,7 @@ const Fase1 = () => {
                                         setRegisterFormState( prev => {
                                                 const newState = {... prev};
                                                 newState.phase[1] = {... prev.phase[1]};
-                                                newState.phase[1].natural.telefono.codigo = e.target.value;
+                                                newState.phase[1].telefono.codigo = e.target.value;
                                                 return newState;
                                             } );
                                         }} 
@@ -463,12 +463,12 @@ const Fase1 = () => {
                                         setRegisterFormState( prev => {
                                                 const newState = {... prev};
                                                 newState.phase[1] = {... prev.phase[1]};
-                                                newState.phase[1].natural.telefono.numero = e.target.value;
+                                                newState.phase[1].telefono.numero = e.target.value;
                                                 return newState;
                                             } );
                                         }} 
                                     />
-                                    <label style={{ visibility: registerFormState.phase[1].natural.telefono.tipo === "local"? "visible":"hidden" }}>
+                                    <label style={{ visibility: registerFormState.phase[1].telefono.tipo === "local"? "visible":"hidden" }}>
                                         Ext
                                         <input
                                             id="telefono_ext"
@@ -477,7 +477,7 @@ const Fase1 = () => {
                                             setRegisterFormState( prev => {
                                                     const newState = {... prev};
                                                     newState.phase[1] = {... prev.phase[1]};
-                                                    newState.phase[1].natural.telefono.ext = e.target.value;
+                                                    newState.phase[1].telefono.ext = e.target.value;
                                                     return newState;
                                                 } );
                                             }} 
@@ -508,7 +508,7 @@ const Fase1 = () => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
                                             newState.phase[1] = {... prev.phase[1]};
-                                            newState.phase[1].natural.apellido = e.target.value;
+                                            newState.phase[1].empresa.nombre_empresa = e.target.value;
                                             return newState;
                                         } );
                                     }} 
@@ -525,7 +525,7 @@ const Fase1 = () => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
                                             newState.phase[1] = {... prev.phase[1]};
-                                            newState.phase[1].natural.apellido = e.target.value;
+                                            newState.phase[1].empresa.razon_rif = e.target.value;
                                             return newState;
                                         } );
                                     }} 
@@ -542,7 +542,7 @@ const Fase1 = () => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
                                             newState.phase[1] = {... prev.phase[1]};
-                                            newState.phase[1].natural.apellido = e.target.value;
+                                            newState.phase[1].empresa.pais = e.target.value;
                                             return newState;
                                         } );
                                     }} 
@@ -559,7 +559,7 @@ const Fase1 = () => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
                                             newState.phase[1] = {... prev.phase[1]};
-                                            newState.phase[1].natural.apellido = e.target.value;
+                                            newState.phase[1].empresa.ciudad = e.target.value;
                                             return newState;
                                         } );
                                     }} 
@@ -576,7 +576,7 @@ const Fase1 = () => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
                                             newState.phase[1] = {... prev.phase[1]};
-                                            newState.phase[1].natural.apellido = e.target.value;
+                                            newState.phase[1].empresa.direccion = e.target.value;
                                             return newState;
                                         } );
                                     }} 
@@ -602,7 +602,7 @@ const Fase1 = () => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
                                             newState.phase[1] = {... prev.phase[1]};
-                                            newState.phase[1].natural.apellido = e.target.value;
+                                            newState.phase[1].empresa.nombre_representante = e.target.value;
                                             return newState;
                                         } );
                                     }} 
@@ -619,7 +619,7 @@ const Fase1 = () => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
                                             newState.phase[1] = {... prev.phase[1]};
-                                            newState.phase[1].natural.apellido = e.target.value;
+                                            newState.phase[1].empresa.correo = e.target.value;
                                             return newState;
                                         } );
                                     }} 
@@ -642,12 +642,12 @@ const Fase1 = () => {
                                             <input
                                                 type="radio"
                                                 value="movil"
-                                                checked={ registerFormState.phase[1].natural.telefono.tipo === 'movil' }
+                                                checked={ registerFormState.phase[1].telefono.tipo === 'movil' }
                                                 onChange={ e => {
                                                     setRegisterFormState( prev => {
                                                             const newState = {... prev};
                                                             newState.phase[1] = {... prev.phase[1]};
-                                                            newState.phase[1].natural.telefono.tipo = 'movil';
+                                                            newState.phase[1].telefono.tipo = 'movil';
                                                             return newState;
                                                         } );
                                                 }}
@@ -660,12 +660,12 @@ const Fase1 = () => {
                                             <input
                                                 type="radio"
                                                 value="local"
-                                                checked={ registerFormState.phase[1].natural.telefono.tipo === 'local' }
+                                                checked={ registerFormState.phase[1].telefono.tipo === 'local' }
                                                 onChange={ e => {
                                                     setRegisterFormState( prev => {
                                                             const newState = {... prev};
                                                             newState.phase[1] = {... prev.phase[1]};
-                                                            newState.phase[1].natural.telefono.tipo = 'local';
+                                                            newState.phase[1].telefono.tipo = 'local';
                                                             return newState;
                                                         } );
                                                 }}
@@ -679,7 +679,7 @@ const Fase1 = () => {
                                     <div
                                         className="field"
                                         id="telefono_field"
-                                        style={{ visibility: registerFormState.phase[1].natural.telefono.tipo === ""? "hidden":"visible" }}
+                                        style={{ visibility: registerFormState.phase[1].telefono.tipo === ""? "hidden":"visible" }}
                                     >
                                         <input
                                             id="telefono_codigo"
@@ -688,7 +688,7 @@ const Fase1 = () => {
                                             setRegisterFormState( prev => {
                                                     const newState = {... prev};
                                                     newState.phase[1] = {... prev.phase[1]};
-                                                    newState.phase[1].natural.telefono.codigo = e.target.value;
+                                                    newState.phase[1].telefono.codigo = e.target.value;
                                                     return newState;
                                                 } );
                                             }} 
@@ -700,12 +700,12 @@ const Fase1 = () => {
                                             setRegisterFormState( prev => {
                                                     const newState = {... prev};
                                                     newState.phase[1] = {... prev.phase[1]};
-                                                    newState.phase[1].natural.telefono.numero = e.target.value;
+                                                    newState.phase[1].telefono.numero = e.target.value;
                                                     return newState;
                                                 } );
                                             }} 
                                         />
-                                        <label style={{ visibility: registerFormState.phase[1].natural.telefono.tipo === "local"? "visible":"hidden" }}>
+                                        <label style={{ visibility: registerFormState.phase[1].telefono.tipo === "local"? "visible":"hidden" }}>
                                             Ext
                                             <input
                                                 id="telefono_ext"
@@ -714,7 +714,7 @@ const Fase1 = () => {
                                                 setRegisterFormState( prev => {
                                                         const newState = {... prev};
                                                         newState.phase[1] = {... prev.phase[1]};
-                                                        newState.phase[1].natural.telefono.ext = e.target.value;
+                                                        newState.phase[1].telefono.ext = e.target.value;
                                                         return newState;
                                                     } );
                                                 }} 
