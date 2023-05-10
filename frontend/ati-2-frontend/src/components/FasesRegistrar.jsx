@@ -847,8 +847,41 @@ const Fase4 = () => {
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
         return(
-            <div>
-                Fase 4
+            <div id="fase4">
+                <label>
+                    <input
+                        type="radio"
+                        value="english"
+                        checked={ registerFormState.phase[2].idioma === 'english' }
+                        onChange={ e => {
+                            setRegisterFormState( prev => {
+                                    const newState = {... prev};
+                                    newState.phase[2].idioma = 'english';
+                                    return newState;
+                                } );
+                        }}
+                    />
+                    <div>
+                        English
+                    </div>
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        value="español"
+                        checked={ registerFormState.phase[2].idioma === 'español' }
+                        onChange={ e => {
+                            setRegisterFormState( prev => {
+                                    const newState = {... prev};
+                                    newState.phase[2].idioma = 'español';
+                                    return newState;
+                                } );
+                        }}
+                    />
+                    <div>
+                        Español
+                    </div>
+                </label>
             </div>
         );
     }

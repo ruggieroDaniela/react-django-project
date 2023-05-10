@@ -123,7 +123,27 @@
                 "clave": "Password",
                 "newsletter": "I want to stay informed about the services offered by the company, and other aspects of interest"
             },
-            {"nombre":"Frequency and information to receive" },
+            {
+                "nombre":"Frequency and information to receive",
+                "nota_frecuencia": "How often would you like to be informed about the services offered by the company?",
+                "frecuencias":[
+                    "Once a week",
+                    "Once every 2 weeks",
+                    "Once a month",
+                    "Other"
+                ],
+                "etiqueta_servicios": "Services of interest",
+                "servicios": [
+                    "Available personal",
+                    "Professional advice"
+                ],
+                "etiqueta_medio": "Means by which you would like to be informed",
+                "correo_pesonalizado": "Email according to your preferences",
+                "redes": "Company social networks",
+                "sms": "SMS",
+                "otros": "Other",
+                "facebook": "Direct message on my Facebook account"
+            },
             {"nombre":"Billing information" }
         ],
         "continuar": "Continue",
