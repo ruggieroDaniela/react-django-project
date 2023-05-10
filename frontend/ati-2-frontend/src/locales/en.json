@@ -90,9 +90,26 @@
                     "apellido": "Last Name",
                     "id": "Passport/ID Card/DNI",
                     "correo": "Email",
-                    "pais": "Country",
-                    "telefono": "Phone",
-                    "telefono_nota": "Select the phone of your preference",
+                    "pais": "Country"
+                },
+                "empresa":{
+                    "empresa":{
+                        "titulo": "Business Data",
+                        "rif": "Social Reason/RIF",
+                        "pais": "Country",
+                        "ciudad": "City",
+                        "direccion": "Address"
+                    },
+                    "representante":{
+                        "titulo": "Business Representative Data",
+                        "nombre": "Full Name",
+                        "correo": "Email",
+                        "telefono": "Phone"
+                    }
+                },
+                "telefono": {
+                    "titulo": "Phone",
+                    "nota": "Select the phone of your preference",
                     "movil": "Cellphone",
                     "local": "Local"
                 },

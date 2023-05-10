@@ -202,6 +202,23 @@
         color: $rojo;
     }
 
+    #usuario_empresa{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .container{
+            width: 37vw;
+        }
+
+        // #datos_empresa{
+        //     background-color: red;
+        // }
+
+        // #datos_representante{
+        //     background-color: blue;
+        // }
+    }
+
 
 }
 

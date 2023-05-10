@@ -393,11 +393,11 @@ const Fase1 = () => {
                             
                             <div>
                                 <span className="label">
-                                    <span className="required">*</span> {t('registrar.fases.1.natural.telefono')+": "}
+                                    <span className="required">*</span> {t('registrar.fases.1.telefono.titulo')+": "}
                                 </span>
 
                                 <div className="note">
-                                    {t('registrar.fases.1.natural.telefono_nota')}
+                                    {t('registrar.fases.1.telefono.nota')}
                                 </div>
                                 
                                 <div id="telefono_container">
@@ -416,7 +416,7 @@ const Fase1 = () => {
                                             }}
                                         />
                                         <div className="tipo_telefono">
-                                            {t('registrar.fases.1.natural.movil')}
+                                            {t('registrar.fases.1.telefono.movil')}
                                         </div>
                                     </label>
                                     <label>
@@ -434,7 +434,7 @@ const Fase1 = () => {
                                             }}
                                         />
                                         <div className="tipo_telefono">
-                                            {t('registrar.fases.1.natural.local')}
+                                            {t('registrar.fases.1.telefono.local')}
                                         </div>
                                     </label>
                                 </div>
@@ -491,7 +491,16 @@ const Fase1 = () => {
                     </div>
                     :
                     <div id="usuario_empresa" className="container">
-                        empresa
+                        <div id="datos_empresa" className="container">
+                            <div className="title">
+                                {t('registrar.fases.1.empresa.empresa.titulo')}
+                            </div>
+                        </div>
+                        <div id="datos_representante" className="container">
+                            <div className="title">
+                                {t('registrar.fases.1.empresa.representante.titulo')}
+                            </div>
+                        </div>
                     </div>
                 }
 
