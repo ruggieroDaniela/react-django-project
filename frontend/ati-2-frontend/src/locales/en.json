@@ -94,9 +94,9 @@
                     "telefono": "Phone",
                     "telefono_nota": "Select the phone of your preference",
                     "movil": "Cellphone",
-                    "local": "Local",
-                    "nota_final": "Please verify that your data is correct, as it will be used to generate your publication, send you your access data, or generate your invoice"
-                }
+                    "local": "Local"
+                },
+                "nota_final": "Please verify that your data is correct, as it will be used to generate your publication, send you your access data, or generate your invoice"
             },
             {"nombre":"Website language" },
             {"nombre":"Login data" },

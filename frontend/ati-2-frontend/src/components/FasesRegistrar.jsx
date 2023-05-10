@@ -484,9 +484,7 @@ const Fase1 = () => {
                                         />
                                     </label>
                                 </div>
-                            </div>
-
-
+                            </div>   
                             
                         </div>
 
@@ -496,6 +494,10 @@ const Fase1 = () => {
                         empresa
                     </div>
                 }
+
+                <div id="nota_final" className="note">
+                    <span className="required">*</span> {t('registrar.fases.1.nota_final')}
+                </div>
 
             </div>
         );

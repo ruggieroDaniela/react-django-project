@@ -158,9 +158,6 @@
             margin-bottom: 0.25rem;
             .label{
                 font-weight: 600;
-                .required{
-                    color: $rojo;
-                }
             }
         }
         #telefono_field{
@@ -195,6 +192,14 @@
         font-size: 0.9rem;
         margin-top: 0.25rem;
         margin-bottom: 0.5rem;
+    }
+
+    #nota_final{
+        font-weight: bold;
+    }
+
+    .required{
+        color: $rojo;
     }
 
 
