@@ -95,6 +95,7 @@
                 "empresa":{
                     "empresa":{
                         "titulo": "Business Data",
+                        "nombre": "Business Name",
                         "rif": "Social Reason/RIF",
                         "pais": "Country",
                         "ciudad": "City",

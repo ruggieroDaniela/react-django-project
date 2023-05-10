@@ -497,6 +497,92 @@ const Fase1 = () => {
                                     {t('registrar.fases.1.empresa.empresa.titulo')}
                                 </div>
                             </div>
+
+                            <div className="field">
+                                <span className="label">
+                                    <span className="required">*</span> {t('registrar.fases.1.empresa.empresa.nombre')+": "}
+                                </span>
+                                <input
+                                    type="text"
+                                    onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[1] = {... prev.phase[1]};
+                                            newState.phase[1].natural.apellido = e.target.value;
+                                            return newState;
+                                        } );
+                                    }} 
+                                />
+                            </div>
+
+                            <div className="field">
+                                <span className="label">
+                                    <span className="required">*</span> {t('registrar.fases.1.empresa.empresa.rif')+": "}
+                                </span>
+                                <input
+                                    type="text"
+                                    onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[1] = {... prev.phase[1]};
+                                            newState.phase[1].natural.apellido = e.target.value;
+                                            return newState;
+                                        } );
+                                    }} 
+                                />
+                            </div>
+
+                            <div className="field">
+                                <span className="label">
+                                    <span className="required">*</span> {t('registrar.fases.1.empresa.empresa.pais')+": "}
+                                </span>
+                                <input
+                                    type="text"
+                                    onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[1] = {... prev.phase[1]};
+                                            newState.phase[1].natural.apellido = e.target.value;
+                                            return newState;
+                                        } );
+                                    }} 
+                                />
+                            </div>
+
+                            <div className="field">
+                                <span className="label">
+                                    <span className="required">*</span> {t('registrar.fases.1.empresa.empresa.ciudad')+": "}
+                                </span>
+                                <input
+                                    type="text"
+                                    onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[1] = {... prev.phase[1]};
+                                            newState.phase[1].natural.apellido = e.target.value;
+                                            return newState;
+                                        } );
+                                    }} 
+                                />
+                            </div>
+
+                            <div className="field">
+                                <span className="label">
+                                    <span className="required">*</span> {t('registrar.fases.1.empresa.empresa.direccion')+": "}
+                                </span>
+                                <input
+                                    type="text"
+                                    onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[1] = {... prev.phase[1]};
+                                            newState.phase[1].natural.apellido = e.target.value;
+                                            return newState;
+                                        } );
+                                    }} 
+                                />
+                            </div>
+
                         </div>
 
                         <div id="datos_representante" className="container">
