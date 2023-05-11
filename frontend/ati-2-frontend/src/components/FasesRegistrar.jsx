@@ -971,11 +971,11 @@ const Fase4 = () => {
                 </div>
 
                 <div id="medios" className="container">
-                    <div>
+                    <div className="title">
                         {t('registrar.fases.4.etiqueta_medio')+": "}
                     </div>
 
-                    <div>
+                    <div className="field">
                         <label>
                             <input
                                 type="checkbox"
@@ -1003,7 +1003,7 @@ const Fase4 = () => {
                         />
                     </div>
 
-                    <div>
+                    <div className="field">
                         <label>
                             <input
                                 type="checkbox"
@@ -1018,40 +1018,42 @@ const Fase4 = () => {
                             />
                             {t('registrar.fases.4.redes')}
                         </label>
+                        
+                        <div>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    onChange={ e => {
+                                        setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[4] = {... prev.phase[4]};
+                                            newState.phase[4].facebook = e.target.checked;
+                                            return newState;
+                                        } );   
+                                    }}
+                                />
+                                Facebook
+                            </label>
 
-                        <label>
-                            <input
-                                type="checkbox"
-                                onChange={ e => {
-                                    setRegisterFormState( prev => {
-                                        const newState = {... prev};
-                                        newState.phase[4] = {... prev.phase[4]};
-                                        newState.phase[4].facebook = e.target.checked;
-                                        return newState;
-                                    } );   
-                                }}
-                            />
-                            Facebook
-                        </label>
-
-                        <label>
-                            <input
-                                type="checkbox"
-                                onChange={ e => {
-                                    setRegisterFormState( prev => {
-                                        const newState = {... prev};
-                                        newState.phase[4] = {... prev.phase[4]};
-                                        newState.phase[4].twitter = e.target.checked;
-                                        return newState;
-                                    } );   
-                                }}
-                            />
-                            Twitter
-                        </label>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    onChange={ e => {
+                                        setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[4] = {... prev.phase[4]};
+                                            newState.phase[4].twitter = e.target.checked;
+                                            return newState;
+                                        } );   
+                                    }}
+                                />
+                                Twitter
+                            </label>
+                        </div>
 
                     </div>
 
-                    <div>
+                    <div className="field">
                         <label>
                             <input
                                 type="checkbox"
@@ -1079,7 +1081,7 @@ const Fase4 = () => {
                         />
                     </div>
 
-                    <div>
+                    <div className="field">
                         <label>
                             <input
                                 type="checkbox"
@@ -1107,7 +1109,7 @@ const Fase4 = () => {
                         />
                     </div>
 
-                    <div>
+                    <div className="field">
                         <label>
                             <input
                                 type="checkbox"

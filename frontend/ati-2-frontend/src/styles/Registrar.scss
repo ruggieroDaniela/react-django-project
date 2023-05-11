@@ -327,8 +327,30 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
         margin-top: 1rem;
+        
+    }
+    
+    #medios{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .title{
+            width: 100%;
+            display: block;
+        }
     }
 
+    .field{
+        display: flex;
+        justify-content: space-between;
+        width: 52vw;
+        margin-top: 0.25rem;
+
+        input[type=text]{
+            width: 20vw;
+        }
+    }
 
 }
 
