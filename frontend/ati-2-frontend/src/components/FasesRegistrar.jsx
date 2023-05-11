@@ -1161,7 +1161,7 @@ const Fase5 = () => {
                     </div>
 
                     <div className="nota">
-                        {t('registrar.fases.5.nota')}
+                        {t('registrar.fases.5.nota.0')} <span>{t('registrar.fases.5.nota.1')}</span> {t('registrar.fases.5.nota.2')}
                     </div>
                 </div>
 

@@ -455,6 +455,19 @@
     .descripcion{
         width: 90%;
     }
+
+    .nota{
+        width: 30vw;
+        font-size: small;
+        margin-bottom: 1.5vh;
+        border-style: solid;
+        border-color: $azul-oscuro;
+        padding: 0.5rem;
+        span{
+            color: red;
+            font-weight: bold;
+        }
+    }
 }
 
 .ghost{
