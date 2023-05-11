@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 // Contexts
-import AuthContext from './components/AuthContext';
+import AuthContext from './components/context/AuthContext';
 
 // Components
 import User from './components/user';
@@ -17,6 +17,7 @@ import { Contactenos } from './routes/Contactenos';
 import { About } from './routes/About';
 import { Ayuda } from './routes/Ayuda';
 import { Empleo } from './routes/Empleo';
+import { Registrar } from './routes/Registrar';
 
 function App() {
 
@@ -48,14 +49,15 @@ function App() {
       <AuthContext.Provider value={false}>
         <Router>
           <Navbar />
-          <Footer/>
           <Routes>
             <Route exact path="/" element={<NuestrosServicios/>} />
             <Route exact path="/about" element={<About/>} />
             <Route exact path="/contact" element={<Contactenos/>} />
             <Route exact path="/help" element={<Ayuda/>} />
             <Route exact path="/employment" element={<Empleo/>} />
+            <Route exact path="/sign-up" element={<Registrar/>} />
           </Routes>
+          <Footer/>
         </Router>
       </AuthContext.Provider>
       

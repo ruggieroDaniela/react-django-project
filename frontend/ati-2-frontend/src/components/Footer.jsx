@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useTranslation } from 'react-i18next';
 import { useState } from "react";
 
-import AuthContext from "./AuthContext";
+import AuthContext from "./context/AuthContext";
 
 import NavbarDropdown from "./NavbarDropdown";
 
@@ -16,7 +16,7 @@ const Footer = () => {
     const { t, i18n } = useTranslation();
 
     return (
-        <div>  {!isAuth?
+        <div className="footer-container">  {!isAuth?
             <div className="user-footer">
                 <div className="dropdown">
                     <div className="label">
@@ -25,7 +25,7 @@ const Footer = () => {
                 </div>
                 <div className="dropdown">
                     <div className="label">
-                        <a href="#">{t("navbar.usuario.registrarse")}</a>
+                        <a href="/sign-up">{t("navbar.usuario.registrarse")}</a>
                     </div>
                 </div>
             </div>

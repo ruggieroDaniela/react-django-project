@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import { useTranslation } from 'react-i18next';
 import { useState } from "react";
 
-import AuthContext from "./AuthContext";
+import AuthContext from "./context/AuthContext";
 
 import NavbarDropdown from "./NavbarDropdown";
 
@@ -25,7 +25,7 @@ const Navbar = () => {
                 </div>
                 <div className="dropdown">
                     <div className="label">
-                        <a href="#">{t("navbar.usuario.registrarse")}</a>
+                        <a href="/sign-up">{t("navbar.usuario.registrarse")}</a>
                     </div>
                 </div>
             </div>

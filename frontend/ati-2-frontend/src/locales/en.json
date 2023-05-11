@@ -52,5 +52,121 @@
 
         "idiomas": "Language"
 
+    },
+
+    "otro": "Other",
+    "especifique": "Specify",
+
+    "registrar":{
+        "titulo": "SIGN UP PANEL",
+        "indicaciones": [
+            "These are the steps to follow to complete your registration.",
+            "If at any time you need to access a section of the registry, click on the green panel, which is your preference"
+        ],
+        "botones":{
+            "registrar": "Register",
+            "cancelar": "Cancel"
+        },
+        "fases":[
+            {
+                "nombre":"How did you hear about us?",
+                "descripcion":"Please tell us how you found out about the company's services\nIt is important to us, because it helps us to improve the service we offer you.",
+                "metodos": [
+                    "Website",
+                    "Social Network",
+                    "Friends",
+                    "Other"
+                ],
+                "otros_metodos":[
+                    "Radio",
+                    "Press",
+                    "Other"
+                ]
+            },
+            {
+                "nombre":"Register user",
+                "tipo_usuario": "Select user type",
+                "tipo_natural": "Natural person",
+                "tipo_empresa": "Business",
+                "natural":{
+                    "nota_inicial": "Insert the solicited data",
+                    "nombre": "First Name",
+                    "apellido": "Last Name",
+                    "id": "Passport/ID Card/DNI",
+                    "correo": "Email",
+                    "pais": "Country"
+                },
+                "empresa":{
+                    "empresa":{
+                        "titulo": "Business Data",
+                        "nombre": "Business Name",
+                        "rif": "Social Reason/RIF",
+                        "pais": "Country",
+                        "ciudad": "City",
+                        "direccion": "Address"
+                    },
+                    "representante":{
+                        "titulo": "Business Representative Data",
+                        "nombre": "Full Name",
+                        "correo": "Email",
+                        "telefono": "Phone"
+                    }
+                },
+                "telefono": {
+                    "titulo": "Phone",
+                    "nota": "Select the phone of your preference",
+                    "movil": "Cellphone",
+                    "local": "Local"
+                },
+                "nota_final": "Please verify that your data is correct, as it will be used to generate your publication, send you your access data, or generate your invoice"
+            },
+            {"nombre":"Website language" },
+            {
+                "nombre":"Login data",
+                "correo": "Login Email",
+                "clave": "Password",
+                "newsletter": "I want to stay informed about the services offered by the company, and other aspects of interest"
+            },
+            {
+                "nombre":"Frequency and information to receive",
+                "nota_frecuencia": "How often would you like to be informed about the services offered by the company?",
+                "frecuencias":[
+                    "Once a week",
+                    "Once every 2 weeks",
+                    "Once a month",
+                    "Other"
+                ],
+                "etiqueta_servicios": "Services of interest",
+                "servicios": [
+                    "Available personal",
+                    "Professional advice"
+                ],
+                "etiqueta_medio": "Means by which you would like to be informed",
+                "correo_personalizado": "Email according to your preferences",
+                "redes": "Company social networks",
+                "sms": "SMS",
+                "otros": "Other",
+                "facebook": "Direct message on my Facebook account"
+            },
+            {
+                "nombre":"Billing information",
+                "codigo": "Your client code is",
+                "nota": ["It is important that you", "FORMALIZE your payment to be able to publish your request for various profiles of home assistants,", "through your PAYMENT."],
+                "titulo": "Data to be used to facilitate payment notifications",
+                "descripcion": "We want to help you, facilitating the payment of the publication of your home assistant, and for which, we ask you to provide the data that you consider using, to make your transfers or deposits, specified below",
+                "banco_origen": "Source Bank",
+                "pais": "Bank's Country",
+                "banco_destino": "Destiny Bank",
+                "sugerencia_titulo": "Suggestion to make your payments",
+                "sugerencia_cuerpo": "It is recommended that you log in to the company's Web portal, so that the data you have provided can be used to facilitate the payment notification process for your publication. Otherwise, you must fill out the requested information on the company's Web portal and on the payment notification portal.",
+                "horario_titulo": "Public service hours",
+                "dias": "Monday to Friday",
+                "horas": "From 8:00 a.m. to 12:00 p.m. and from 1:00 p.m. to 5:00 p.m.",
+                "telefono": "Phones",
+                "correo": "Email"
+            }
+        ],
+        "continuar": "Continue",
+        "atras": "Back"
     }
 }
