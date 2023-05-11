@@ -356,6 +356,70 @@
 
 }
 
+#fase5{
+
+    padding-top: 2.5vh;
+    width: 75vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .codigo{
+        color: red;
+        font-size: x-large;
+        font-weight: bold;
+    }
+
+    .container{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .title{
+        background-color: $azul-claro;
+        color: white;
+        font-weight: bold;
+        width: 50%;
+        height: 1.75rem;
+    }
+
+    #bancos{
+        margin-top: 1rem;
+        width: 90%;
+
+        .field{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+
+            .etiqueta{
+                background-color: $azul-claro;
+                padding: 0.125rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                color: white;
+                font-weight: bold;
+                margin-right: 0.5rem;
+                font-size: small;
+            }
+            
+            input{
+                width: 18vw;
+            }
+        }
+
+        .container_banco{
+            
+        }
+
+    }
+
+    .descripcion{
+        width: 90%;
+    }
+}
+
 .ghost{
     visibility: hidden;
 }

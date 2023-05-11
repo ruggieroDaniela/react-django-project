@@ -842,6 +842,7 @@ const Fase3 = () => {
         );
     }
 
+// Fase 4: frecuencia
 const Fase4 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
@@ -1146,13 +1147,67 @@ const Fase4 = () => {
         );
     }
 
+
 const Fase5 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
         return(
-            <div>
-                Fase 5
+            <div id="fase5">
+                
+                <div className="container">
+                    <div id="codigo_cliente">
+                        codigo <span className="codigo">123</span>
+                    </div>
+
+                    <div className="nota">
+                        nota
+                    </div>
+                </div>
+
+
+                <div className="title">
+                    titulo
+                </div>
+                <div className="descripcion">
+                    desc
+                </div>
+
+                <div className="container" id="bancos">
+                    <div id="banco_origen" className="container_banco">
+                        <label className="field">
+                            <div className="etiqueta">
+                                banco origen
+                            </div>
+                            <input type="text"/>
+                        </label>
+
+                        <label className="field">
+                            <div className="etiqueta">
+                                pais
+                            </div>
+                            <input type="text"/>
+                        </label>
+                    </div>
+
+                    <div id="banco_destino" className="container_banco">
+                        <label className="field">
+                            <div className="etiqueta">
+                                banco destino
+                            </div>
+                            <input type="text"/>
+                        </label>
+
+                        <label className="field">
+                            <div className="etiqueta">
+                                banco destino
+                            </div>
+                            <input type="text"/>
+                        </label>
+                    </div>
+                </div>
+
+
             </div>
         );
     }
