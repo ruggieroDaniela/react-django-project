@@ -5,27 +5,28 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from django.db import IntegrityError
 from django.db.utils import DatabaseError
+from rest_framework.decorators import action
 
 def get_token_key(user):
     token, _ = Token.objects.get_or_create(user=user)
     return 'Token ' + token.key
 
+def get_hash(email):
+    return abs(hash(email)) % (10 ** 9)
+
 def get_user_data(data):
+    common = ['language', 'want_inform', 'frecuency_to_inform', 'services_interest', 'email_to_inform', 'social_media_to_inform', 
+              'phone_to_inform', 'other_to_inform', 'facebook_to_inform', 'bank_origin', 'bank_country', 'client_code']
+    
     if(data['type_user'] == 'natural'):
-        user = {key: data[key] 
-                for key in ['id', 'first_name', 'last_name', 'dni', 'contact_email', 'country',
-                            'cellphone', 'telephone', 'language', 'client_code'
-                    ]
-                }    
+        fields = ['id', 'first_name', 'last_name', 'dni', 'contact_email', 'country', 'cellphone', 'telephone'] + common
+        user = {key: data[key] for key in fields}
+            
     elif(data['type_user'] == 'enterprise'):
-        user = {key: data[key] 
-                for key in ['id', 'company_name', 'rif', 'country', 'city', 'address',
-                            'representant_name', 'representant_cellphone', 'representant_telephone', 
-                            'language', 'client_code'
-                    ]
-                }   
+        fields = ['id', 'company_name', 'rif', 'country', 'city', 'address', 'representant_name', 'representant_cellphone', 'representant_telephone'] + common
+        user = {key: data[key] for key in fields}
+        
     return user
     
 class UserViewSet(viewsets.ModelViewSet):
@@ -33,7 +34,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     
     def get_permissions(self):
-        if self.action == 'create':
+        if self.action == 'create' or 'unique_email':
             permission_classes = [AllowAny]
         else:
             permission_classes = [IsAuthenticated]
@@ -52,12 +53,29 @@ class UserViewSet(viewsets.ModelViewSet):
         
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        data = serializer.data
-        user = get_user_data(data)
+        passed_token = request.META.get('HTTP_AUTHORIZATION')
+        correct_token = get_token_key(instance)
         
-        return Response(user)
+        if correct_token == passed_token: 
+            serializer = self.get_serializer(instance)
+            data = serializer.data
+            user = get_user_data(data)
+            return Response(user)
+        
+        else:
+            content = {'error': 'Invalid Token'}
+            return Response(content, status=status.HTTP_400_BAD_REQUEST)
+        
     
+    @action(detail=False, methods=['post'])
+    def unique_email(self, request):
+        email = request.data['email']
+        userExists = User.objects.filter(email=email)
+        if userExists: 
+            return Response({'error': 'Email already exists' }, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({'client_code': get_hash(email) }, status=status.HTTP_200_OK)
+
 class CustomAuthToken(ObtainAuthToken):
     
     def post(self, request, *args, **kwargs):
@@ -72,4 +90,3 @@ class CustomAuthToken(ObtainAuthToken):
                 return Response({'error': 'Wrong password' }, status=status.HTTP_400_BAD_REQUEST)
             else:
                 return Response({'error': 'Email does not exist' }, status=status.HTTP_400_BAD_REQUEST)
-        

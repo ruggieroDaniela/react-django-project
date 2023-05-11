@@ -66,6 +66,20 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=128)
     
+    #Step 5
+    want_inform = models.BooleanField()
+    frecuency_to_inform = models.CharField(max_length=128, null=True)
+    services_interest = models.JSONField(null=True)
+    email_to_inform = models.CharField(max_length=256, null=True)
+    social_media_to_inform = models.JSONField(null=True)
+    phone_to_inform = models.CharField(max_length=24, null=True)
+    other_to_inform = models.CharField(max_length=256, null=True)
+    facebook_to_inform = models.CharField(max_length=256, null=True)
+    
+    #Step 6
+    bank_origin = models.CharField(max_length=128)
+    bank_country = models.CharField(max_length=128)
+    
     #Metadata
     client_code = models.CharField(max_length=50, default='')
     date_joined = models.JSONField(default=get_date_joined)
