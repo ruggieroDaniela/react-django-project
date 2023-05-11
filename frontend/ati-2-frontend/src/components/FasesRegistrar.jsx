@@ -1157,34 +1157,34 @@ const Fase5 = () => {
                 
                 <div className="container">
                     <div id="codigo_cliente">
-                        codigo <span className="codigo">123</span>
+                        {t('registrar.fases.5.codigo')}:  <span className="codigo">XXX</span>
                     </div>
 
                     <div className="nota">
-                        nota
+                        {t('registrar.fases.5.nota')}
                     </div>
                 </div>
 
 
                 <div className="title">
-                    titulo
+                    {t('registrar.fases.5.titulo')}
                 </div>
                 <div className="descripcion">
-                    desc
+                    {t('registrar.fases.5.descripcion')}
                 </div>
 
                 <div className="container" id="bancos">
                     <div id="banco_origen" className="container_banco">
                         <label className="field">
                             <div className="etiqueta">
-                                banco origen
+                                {t('registrar.fases.5.banco_origen')}
                             </div>
                             <input type="text"/>
                         </label>
 
                         <label className="field">
                             <div className="etiqueta">
-                                pais
+                                {t('registrar.fases.5.pais')}
                             </div>
                             <input type="text"/>
                         </label>
@@ -1193,17 +1193,35 @@ const Fase5 = () => {
                     <div id="banco_destino" className="container_banco">
                         <label className="field">
                             <div className="etiqueta">
-                                banco destino
+                                {t('registrar.fases.5.banco_destino')}
                             </div>
                             <input type="text"/>
                         </label>
 
-                        <label className="field">
+                        {/* <label className="field">
                             <div className="etiqueta">
                                 banco destino
                             </div>
                             <input type="text"/>
-                        </label>
+                        </label> */}
+                    </div>
+                </div>
+
+                <div className="container" id="info_container">
+                    <div id="sugerencias">
+                        <p className="cont_title">{t('registrar.fases.5.sugerencia_titulo')}</p>
+                        <p>{t('registrar.fases.5.sugerencia_cuerpo')}</p>
+                    </div>
+
+                    <div id="horario">
+                        <p className="cont_title">{t('registrar.fases.5.horario_titulo')}</p>
+                        <p className="cont_subtitle">{t('registrar.fases.5.dias')}</p>
+                        <p id="horas">{t('registrar.fases.5.horas')}</p>
+                        <br/>
+                        <p className="cont_title">{t('registrar.fases.5.telefono')}</p>
+                        <p>0414-389-74-44</p>
+                        <p>0058-0212-362-82-68</p>
+                        <p> <span className="cont_title">{t('registrar.fases.5.correo')}: </span> nirvana01@gmail.com </p>
                     </div>
                 </div>
 
