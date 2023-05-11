@@ -848,7 +848,7 @@ const Fase4 = () => {
 
         return(
             <div id="fase4">
-                <div className="container">
+                <div className="container title">
                     {t('registrar.fases.4.nota_frecuencia')}
                 </div>
 
@@ -934,7 +934,7 @@ const Fase4 = () => {
 
                 <div id="servicios" className="container">
 
-                    <div>
+                    <div className="title">
                         {t('registrar.fases.4.etiqueta_servicios')+":"}
                     </div>
 
@@ -992,6 +992,7 @@ const Fase4 = () => {
                         </label>
                         <input
                             type="text"
+                            style={{visibility: registerFormState.phase[4].usar_correo? "visible":"hidden"}}
                             onChange={ e => {
                                 setRegisterFormState( prev => {
                                     const newState = {... prev};
@@ -1011,7 +1012,7 @@ const Fase4 = () => {
                                     setRegisterFormState( prev => {
                                         const newState = {... prev};
                                         newState.phase[4] = {... prev.phase[4]};
-                                        newState.phase[4].usar_correo = e.target.checked;
+                                        newState.phase[4].redes = e.target.checked;
                                         return newState;
                                     } );   
                                 }}
@@ -1019,7 +1020,7 @@ const Fase4 = () => {
                             {t('registrar.fases.4.redes')}
                         </label>
                         
-                        <div>
+                        <div style={{visibility: registerFormState.phase[4].redes? "visible":"hidden"}}>
                             <label>
                                 <input
                                     type="checkbox"
@@ -1069,6 +1070,7 @@ const Fase4 = () => {
                             {t('registrar.fases.4.sms')}
                         </label>
                         <input
+                            style={{visibility: registerFormState.phase[4].usar_sms? "visible":"hidden"}}
                             type="text"
                             onChange={ e => {
                                 setRegisterFormState( prev => {
@@ -1097,6 +1099,7 @@ const Fase4 = () => {
                             {t('registrar.fases.4.otros')}
                         </label>
                         <input
+                            style={{visibility: registerFormState.phase[4].usar_otros? "visible":"hidden"}}
                             type="text"
                             onChange={ e => {
                                 setRegisterFormState( prev => {
@@ -1126,6 +1129,7 @@ const Fase4 = () => {
                         </label>
                         <input
                             type="text"
+                            style={{visibility: registerFormState.phase[4].usar_facebook? "visible":"hidden"}}
                             onChange={ e => {
                                 setRegisterFormState( prev => {
                                     const newState = {... prev};

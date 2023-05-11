@@ -335,10 +335,12 @@
         flex-direction: column;
         align-items: center;
 
-        .title{
-            width: 100%;
-            display: block;
-        }
+    }
+    
+    .title{
+        width: 100%;
+        display: block;
+        font-weight: bold;
     }
 
     .field{
