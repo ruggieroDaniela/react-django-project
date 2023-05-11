@@ -306,6 +306,19 @@
     }
 }
 
+#fase4{
+    padding-top: 2.5vh;
+
+    #frecuencias{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        label{
+            display: flex;
+        }
+    }
+}
+
 .ghost{
     visibility: hidden;
 }

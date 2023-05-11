@@ -63,6 +63,18 @@ function RegisterFormContextProvider({children}){
                 correo: "",
                 clave: "",
                 newsletter: false
+            },{
+                frecuencia: "",
+                servicios: [],
+                correo: "",
+                redes: [],
+                sms: "",
+                otros: "",
+                facebook: ""
+            },{
+                banco_origen: "",
+                pais: "",
+                banco_destino: ""
             }
         ]
     });

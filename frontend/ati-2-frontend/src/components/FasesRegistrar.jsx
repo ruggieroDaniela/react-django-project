@@ -848,40 +848,89 @@ const Fase4 = () => {
 
         return(
             <div id="fase4">
-                <label>
-                    <input
-                        type="radio"
-                        value="english"
-                        checked={ registerFormState.phase[2].idioma === 'english' }
-                        onChange={ e => {
-                            setRegisterFormState( prev => {
-                                    const newState = {... prev};
-                                    newState.phase[2].idioma = 'english';
-                                    return newState;
-                                } );
-                        }}
-                    />
-                    <div>
-                        English
-                    </div>
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        value="español"
-                        checked={ registerFormState.phase[2].idioma === 'español' }
-                        onChange={ e => {
-                            setRegisterFormState( prev => {
-                                    const newState = {... prev};
-                                    newState.phase[2].idioma = 'español';
-                                    return newState;
-                                } );
-                        }}
-                    />
-                    <div>
-                        Español
-                    </div>
-                </label>
+                <div>
+                    {t('registrar.fases.4.nota_frecuencia')}
+                </div>
+                
+                <div className="container" id="frecuencias">
+
+                    <label>
+                        <input
+                            type="radio"
+                            value="semanal"
+                            checked={ registerFormState.phase[4].frecuencia === 'semanal' }
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[4] = {... prev.phase[4]};
+                                        newState.phase[4].frecuencia = 'semanal';
+                                        return newState;
+                                    } );
+                            }}
+                        />
+                        <div>
+                            {t('registrar.fases.4.frecuencias.0')}
+                        </div>
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            value="bisemanal"
+                            checked={ registerFormState.phase[4].frecuencia === 'bisemanal' }
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[4] = {... prev.phase[4]};
+                                        newState.phase[4].frecuencia = 'bisemanal';
+                                        return newState;
+                                    } );
+                            }}
+                        />
+                        <div>
+                            {t('registrar.fases.4.frecuencias.1')}
+                        </div>
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            value="mensual"
+                            checked={ registerFormState.phase[4].frecuencia === 'mensual' }
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[4] = {... prev.phase[4]};
+                                        newState.phase[4].frecuencia = 'mensual';
+                                        return newState;
+                                    } );
+                            }}
+                        />
+                        <div>
+                            {t('registrar.fases.4.frecuencias.2')}
+                        </div>
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            value="otro"
+                            checked={ registerFormState.phase[4].frecuencia === 'otro' }
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[4] = {... prev.phase[4]};
+                                        newState.phase[4].frecuencia = 'otro';
+                                        return newState;
+                                    } );
+                            }}
+                        />
+                        <div>
+                            {t('registrar.fases.4.frecuencias.3')}
+                        </div>
+                    </label>
+
+                </div>
             </div>
         );
     }
