@@ -848,11 +848,11 @@ const Fase4 = () => {
 
         return(
             <div id="fase4">
-                <div>
+                <div className="container">
                     {t('registrar.fases.4.nota_frecuencia')}
                 </div>
-                
-                <div className="container" id="frecuencias">
+
+                <div id="frecuencias" className="container">
 
                     <label>
                         <input
@@ -929,6 +929,211 @@ const Fase4 = () => {
                             {t('registrar.fases.4.frecuencias.3')}
                         </div>
                     </label>
+
+                </div>
+
+                <div id="servicios" className="container">
+
+                    <div>
+                        {t('registrar.fases.4.etiqueta_servicios')+":"}
+                    </div>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                    const newState = {... prev};
+                                    newState.phase[4] = {... prev.phase[4]};
+                                    newState.phase[4].servicio_personal = e.target.checked;
+                                    return newState;
+                                } );   
+                            }}
+                        />
+                        {t('registrar.fases.4.servicios.0')}
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                    const newState = {... prev};
+                                    newState.phase[4] = {... prev.phase[4]};
+                                    newState.phase[4].servicio_profesional = e.target.checked;
+                                    return newState;
+                                } );   
+                            }}
+                        />
+                        {t('registrar.fases.4.servicios.1')}
+                    </label>
+
+                </div>
+
+                <div id="medios" className="container">
+                    <div>
+                        {t('registrar.fases.4.etiqueta_medio')+": "}
+                    </div>
+
+                    <div>
+                        <label>
+                            <input
+                                type="checkbox"
+                                onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[4] = {... prev.phase[4]};
+                                        newState.phase[4].usar_correo = e.target.checked;
+                                        return newState;
+                                    } );   
+                                }}
+                            />
+                            {t('registrar.fases.4.correo_personalizado')}
+                        </label>
+                        <input
+                            type="text"
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                    const newState = {... prev};
+                                    newState.phase[4] = {... prev.phase[4]};
+                                    newState.phase[4].correo = e.target.value;
+                                    return newState;
+                                } );   
+                            }}
+                        />
+                    </div>
+
+                    <div>
+                        <label>
+                            <input
+                                type="checkbox"
+                                onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[4] = {... prev.phase[4]};
+                                        newState.phase[4].usar_correo = e.target.checked;
+                                        return newState;
+                                    } );   
+                                }}
+                            />
+                            {t('registrar.fases.4.redes')}
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[4] = {... prev.phase[4]};
+                                        newState.phase[4].facebook = e.target.checked;
+                                        return newState;
+                                    } );   
+                                }}
+                            />
+                            Facebook
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[4] = {... prev.phase[4]};
+                                        newState.phase[4].twitter = e.target.checked;
+                                        return newState;
+                                    } );   
+                                }}
+                            />
+                            Twitter
+                        </label>
+
+                    </div>
+
+                    <div>
+                        <label>
+                            <input
+                                type="checkbox"
+                                onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[4] = {... prev.phase[4]};
+                                        newState.phase[4].usar_sms = e.target.checked;
+                                        return newState;
+                                    } );   
+                                }}
+                            />
+                            {t('registrar.fases.4.sms')}
+                        </label>
+                        <input
+                            type="text"
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                    const newState = {... prev};
+                                    newState.phase[4] = {... prev.phase[4]};
+                                    newState.phase[4].sms = e.target.value;
+                                    return newState;
+                                } );   
+                            }}
+                        />
+                    </div>
+
+                    <div>
+                        <label>
+                            <input
+                                type="checkbox"
+                                onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[4] = {... prev.phase[4]};
+                                        newState.phase[4].usar_otros = e.target.checked;
+                                        return newState;
+                                    } );   
+                                }}
+                            />
+                            {t('registrar.fases.4.otros')}
+                        </label>
+                        <input
+                            type="text"
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                    const newState = {... prev};
+                                    newState.phase[4] = {... prev.phase[4]};
+                                    newState.phase[4].otros = e.target.value;
+                                    return newState;
+                                } );   
+                            }}
+                        />
+                    </div>
+
+                    <div>
+                        <label>
+                            <input
+                                type="checkbox"
+                                onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[4] = {... prev.phase[4]};
+                                        newState.phase[4].usar_facebook = e.target.checked;
+                                        return newState;
+                                    } );   
+                                }}
+                            />
+                            {t('registrar.fases.4.facebook')}
+                        </label>
+                        <input
+                            type="text"
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                    const newState = {... prev};
+                                    newState.phase[4] = {... prev.phase[4]};
+                                    newState.phase[4].facebook = e.target.value;
+                                    return newState;
+                                } );   
+                            }}
+                        />
+                    </div>
 
                 </div>
             </div>

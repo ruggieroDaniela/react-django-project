@@ -65,11 +65,18 @@ function RegisterFormContextProvider({children}){
                 newsletter: false
             },{
                 frecuencia: "",
-                servicios: [],
+                servicio_personal: false,
+                servicio_profesional: false,
+                usar_correo: false,
                 correo: "",
-                redes: [],
+                redes: false,
+                facebook: false,
+                twitter: false,
+                usar_sms: false,
                 sms: "",
+                usar_otros: false,
                 otros: "",
+                usar_facebook: false,
                 facebook: ""
             },{
                 banco_origen: "",

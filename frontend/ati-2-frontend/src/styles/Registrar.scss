@@ -309,6 +309,10 @@
 #fase4{
     padding-top: 2.5vh;
 
+    // .container{
+    //     // margin-top: 0.5rem;
+    // }
+
     #frecuencias{
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -317,6 +321,15 @@
             display: flex;
         }
     }
+
+    #servicios{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: 1rem;
+    }
+
+
 }
 
 .ghost{
