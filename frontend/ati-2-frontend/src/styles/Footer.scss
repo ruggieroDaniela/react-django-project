@@ -16,7 +16,10 @@
     }
 }
 
-.navbar {
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     color: white;
     background-color: $azul-claro;
     display: block;
@@ -28,6 +31,7 @@
     
     .list {
         display: flex;
+        
         list-style-type: none;
         margin: 0;
         padding: 0;
@@ -47,7 +51,8 @@
         }
 
         .dropdown{
-
+            display: flex;
+            flex-direction: column-reverse;
             .label{
                 display: flex;
                 justify-content: space-between;
@@ -69,6 +74,7 @@
                 }
             }
             .list{
+                
                 display: none;
                 position: absolute;
                 background-color: $azul-claro;
@@ -93,8 +99,7 @@
                 padding-left: 0.75rem;
                 width: 95%;
                 .list{
-                    margin-left: 90%;
-                    margin-top: -12.5%;
+                    margin-left: 95%;
                     width: 20vw;
                 }
                 .label{
@@ -107,7 +112,10 @@
     }
 }
 
-.user{
+.user-footer{
+    position: fixed;
+    bottom: 8vh;
+    right: 0vw;
     display: flex;
     justify-content: end;
     font-size: x-small;

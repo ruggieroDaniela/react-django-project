@@ -1,5 +1,11 @@
 {
     "navbar": {
+        "usuario":{
+            "label": "User",
+            "iniciar_sesion": "Log in",
+            "registrarse": "Register"
+        },
+
         "operaciones":{
             "ver_publicaciones": "See Posts",
             "buscar": "Search",

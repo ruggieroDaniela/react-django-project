@@ -1,11 +1,15 @@
 // React Dependencies
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+// Contexts
+import AuthContext from './components/AuthContext';
+
 // Components
-import User from './components/user'
-import Navbar from './components/Navbar'
+import User from './components/user';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 // Routes
 import { NuestrosServicios } from './routes/NuestrosServicios';
@@ -15,6 +19,7 @@ import { Ayuda } from './routes/Ayuda';
 import { Empleo } from './routes/Empleo';
 
 function App() {
+
   
   // init internationalization module
   // const {t, i18n} = useTranslation();
@@ -40,16 +45,20 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route exact path="/" element={<NuestrosServicios/>} />
-          <Route exact path="/about" element={<About/>} />
-          <Route exact path="/contact" element={<Contactenos/>} />
-          <Route exact path="/help" element={<Ayuda/>} />
-          <Route exact path="/employment" element={<Empleo/>} />
-        </Routes>
-      </Router>
+      <AuthContext.Provider value={false}>
+        <Router>
+          <Navbar />
+          <Footer/>
+          <Routes>
+            <Route exact path="/" element={<NuestrosServicios/>} />
+            <Route exact path="/about" element={<About/>} />
+            <Route exact path="/contact" element={<Contactenos/>} />
+            <Route exact path="/help" element={<Ayuda/>} />
+            <Route exact path="/employment" element={<Empleo/>} />
+          </Routes>
+        </Router>
+      </AuthContext.Provider>
+      
       {/* <h1>Vite + React</h1>
       <div className="card">
         <p> Los usuarios actuales son: </p>

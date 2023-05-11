@@ -1,8 +1,6 @@
 import React from "react";
 import { useState } from "react";
 
-import '../styles/Navbar.scss';
-
 const NavbarDropdown = ({label, items}) =>{
 
     const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -10,7 +8,7 @@ const NavbarDropdown = ({label, items}) =>{
     let keyIndex = 0;
 
     return (
-        <li key={Math.random()} className="item dropdown" onMouseLeave={() => setDropdownVisible((prev) => false)}>
+        <li key={Math.random().toString(36)} className="item dropdown" onMouseLeave={() => setDropdownVisible((prev) => false)}>
             <div className="label" onClick={() => setDropdownVisible((prev) => !prev) }>
                 <button >
                     {label.text}
@@ -23,7 +21,7 @@ const NavbarDropdown = ({label, items}) =>{
                         keyIndex++;
                         
                         return 'link' in item?
-                            <li key={Math.random()} className="item"> <a className="link" href={item.link}>{item.label}</a> </li>
+                            <li key={Math.random().toString(36)} className="item"> <a className="link" href={item.link}>{item.label}</a> </li>
                             :
                             <NavbarDropdown
                                 label={item.label}
