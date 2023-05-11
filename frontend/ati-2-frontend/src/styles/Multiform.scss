@@ -1,0 +1,113 @@
+@import 'colors';
+
+.registrar{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+}
+
+.indicaciones{
+    border-style: solid;
+    border-width: 2px;
+    border-color: $azul-oscuro;
+    width: 80vw;
+    padding: 0.5rem;
+
+    span{
+        color: $rojo;
+    }
+
+    .indicacion{
+        color: black;
+    }
+
+}
+
+.fases-grid{
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+    display: grid;
+    gap: 0.25rem;
+    grid-template-columns: repeat(3, 1fr);
+    width: 50vw;
+
+    .fase{
+        color: white;
+        background-color: $verde;
+        box-shadow: none;
+        border-style: none;
+        border-radius: 0.5rem;
+        height: 2.5rem;
+        cursor: pointer;
+
+        &.inactive{
+            background-color: $gris;
+            cursor: initial;
+        }
+
+        &.current{
+            text-decoration: underline;
+            cursor: initial;
+        }
+    }
+}
+
+.fase-actual{
+    width: 75vw;
+    display: grid;
+    grid-template-columns: 2fr 10fr 2fr;
+    gap: 1rem;
+    height: 8vh;
+    span{
+        margin: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $azul-claro;
+        border-radius: 0.3rem;
+        color: white;
+        font-weight: bold;
+    }
+
+    button{
+        background-color: $rojo;
+        box-shadow: none;
+        border: none;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        color: white;
+    }
+
+}
+
+#botones{
+    display: flex;
+    justify-content: space-around;
+    width: 50vw;
+    margin-top: 5vh;
+
+    button{
+        background-color: $dorado;
+        box-shadow: none;
+        border-style: none;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
+.ghost{
+    visibility: hidden;
+}
