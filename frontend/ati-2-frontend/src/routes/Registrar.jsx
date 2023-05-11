@@ -1,6 +1,8 @@
 import React from "react";
 import { createContext, useContext } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 
@@ -22,6 +24,11 @@ export const Registrar = () => {
 
     const nFases = [0,1,2,3,4,5];
     const CurrentFase = FasesRegistrar[signupStage];
+
+    let navigate = useNavigate(); 
+    const goHome = () => {
+        navigate(`/`);
+    };
 
     return (
         <div className="registrar">
@@ -68,6 +75,7 @@ export const Registrar = () => {
                     {t('registrar.fases.'+signupStage+'.nombre')}
                 </span>
                 <button 
+                    className={`${signupStage === nFases.length-1?"ghost":""}`}
                     onClick={() => {
                         if( signupStage+1 < nFases.length ){
                             setSignupStage((prev) => prev+1);
@@ -81,115 +89,28 @@ export const Registrar = () => {
             </div>
             <form>
                 <RegisterFormContextProvider>
-                    {/* {FasesRegistrar[signupStage]()} */}
                     <CurrentFase/>
                 </RegisterFormContextProvider>
-            
             </form>
+            <div id="botones">
+                <button
+                    id="boton_cancelar"
+                    onClick={goHome}
+                >
+                    {t('registrar.botones.cancelar')}
+                </button>
+                <button
+                    id="boton_registrar"
+                    style={{
+                        display: signupStage == nFases.length-1? "block":"none"
+                    }}
+                >
+                    {t('registrar.botones.registrar')}
+                </button>
+            </div>
 
         </div>
 
     )
 
-};
-
-const RegistrarFase0 = () => {
-    
-    const { t, i18n } = useTranslation();
-
-    const {formState, setFormState} = useContext(FormContext);
-    console.log(formState);
-
-    return(
-        <>
-            <div>
-                <div className="descripcion">
-                    {t('registrar.fases.0.descripcion')}
-                </div>
-
-                <div className="metodos-container">
-
-                    <div className="metodo">
-                        <label>
-                            <input
-                                type="checkbox"
-                                onChange={ e => setFormState( {...formState, phase: [  ] } )}
-                            />
-                            {t('registrar.fases.0.metodos.0')}
-                        </label>
-                    </div>
-
-                    <div className="metodo">
-                        <label>
-                            <input type="checkbox" onChange={ e => setFormState( {...formState, social_network: e.target.checked} )}/>
-                            {t('registrar.fases.0.metodos.1')}
-                        </label>
-                        <div id="social-network" className={`${formState.phase[0].other? "":"ghost" }`}>
-                            <div>
-                                <input type="checkbox"/>
-                                Facebook
-                            </div>
-                            <div>
-                                <input type="checkbox"/>
-                                Twitter
-                            </div>
-                            <div>
-                                <input type="checkbox"/>
-                                Instagram
-                            </div>
-                            <div>
-                                <input type="checkbox"/>
-                                {t('otro')}
-                            </div>
-                            <div>
-                                {t('especifique')+": "}
-                                <input type="text"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="metodo">
-                        <label>
-                            <input type="checkbox"/>
-                            {t('registrar.fases.0.metodos.2')}
-                        </label>
-                    </div>
-
-                    <div className="metodo">
-                        <label>
-                            <input type="checkbox"/>
-                            {t('registrar.fases.0.metodos.3')}
-                        </label>
-                        <div className={` ${formState.phase[0].other? "":"ghost" }`}>
-                            <div>
-                                <input type="checkbox"/>
-                                {t('registrar.fases.0.otros_metodos.0')}
-                            </div>
-                            <div>
-                                {t('especifique')+": "}
-                                <input type="text"/>
-                            </div>
-                            <div>
-                                <input type="checkbox"/>
-                                {t('registrar.fases.0.otros_metodos.1')}
-                            </div>
-                            <div>
-                                {t('especifique')+": "}
-                                <input type="text"/>
-                            </div>
-                            <div>
-                                <input type="checkbox"/>
-                                {t('otro')}
-                            </div>
-                            <label>
-                                {t('especifique')+": "}
-                                <input type="text"/>
-                            </label>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </>
-    )
 };

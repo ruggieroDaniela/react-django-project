@@ -63,6 +63,10 @@
             "These are the steps to follow to complete your registration.",
             "If at any time you need to access a section of the registry, click on the green panel, which is your preference"
         ],
+        "botones":{
+            "registrar": "Register",
+            "cancelar": "Cancel"
+        },
         "fases":[
             {
                 "nombre":"How did you hear about us?",

@@ -90,6 +90,24 @@
 
 }
 
+#botones{
+    display: flex;
+    justify-content: space-around;
+    width: 50vw;
+    margin-top: 5vh;
+
+    button{
+        background-color: $dorado;
+        box-shadow: none;
+        border-style: none;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
 #fase0{
 
     .descripcion{
