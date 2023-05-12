@@ -2,10 +2,65 @@ POST http://127.0.0.1:8000/users/
 content-type: application/json
 
 {
-    "name": "Gabriel",
-    "last_name": "Carrizo",
-    "email": "gabo@gmail.com"
+    "email": "admin@gmail.com",
+    "password": "12345",
+    "found_app_by": "Twitter",
+    "type_user": "natural",
+    "country": "Alemania",
+    "first_name": "Admin",
+    "last_name": "Ati-2",
+    "dni": "V-126125",
+    "contact_email": "admin@gmail.com",
+    "language": "es",
+    "want_inform": false,
+    "bank_origin": "Banesco",
+    "bank_country": "Venezuela"
+
+}
+###
+POST http://127.0.0.1:8000/users/
+content-type: application/json
+
+{
+    "email": "admin-company@gmail.com",
+    "password": "12345",
+    "found_app_by": "Twitter",
+    "type_user": "enterprise",
+    "country": "Venezuela",
+    "companty_name": "Compañia Admin",
+    "rif": "F126125",
+    "city": "Caracas",
+    "language": "es",
+    "bank_origin": "Banesco",
+    "bank_country": "Venezuela",
+    "want_inform": true, 
+    "social_media_to_inform": {
+        "Facebook": true,
+        "Twitter": false
+    }
 }
 
 ###
-GET http://127.0.0.1:8000/users/
+GET http://127.0.0.1:8000/users/1
+Authorization: Token e871f81c8072db9c89e8e05f872827f07cdf5c3e
+
+###
+GET http://127.0.0.1:8000/users/2
+Authorization: Token e871f81c8072db9c89e8e05f872827f07cdf5c3e
+
+### Formato para las request a AUTH-TOKEN
+POST http://localhost:8000/token-auth/
+content-type: application/json
+
+{
+    "username": "admin22@gmail.com",
+    "password": "12345"
+}
+
+###
+POST http://127.0.0.1:8000/users/unique_email/
+content-type: application/json
+
+{
+    "email": "admin-company2@gmail.com"
+}

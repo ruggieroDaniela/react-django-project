@@ -1,0 +1,495 @@
+@import 'colors';
+
+.registrar{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+}
+
+.indicaciones{
+    border-style: solid;
+    border-width: 2px;
+    border-color: $azul-oscuro;
+    width: 80vw;
+    padding: 0.5rem;
+
+    span{
+        color: $rojo;
+    }
+
+    .indicacion{
+        color: black;
+    }
+
+}
+
+.fases-grid{
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+    display: grid;
+    gap: 0.25rem;
+    grid-template-columns: repeat(3, 1fr);
+    width: 50vw;
+
+    .fase{
+        color: white;
+        background-color: $verde;
+        box-shadow: none;
+        border-style: none;
+        border-radius: 0.5rem;
+        height: 2.5rem;
+        cursor: pointer;
+
+        &.inactive{
+            background-color: $gris;
+            cursor: initial;
+        }
+
+        &.current{
+            text-decoration: underline;
+            cursor: initial;
+        }
+    }
+}
+
+.fase-actual{
+    width: 75vw;
+    display: grid;
+    grid-template-columns: 2fr 10fr 2fr;
+    gap: 1rem;
+    height: 8vh;
+    span{
+        margin: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $azul-claro;
+        border-radius: 0.3rem;
+        color: white;
+        font-weight: bold;
+    }
+
+    button{
+        background-color: $rojo;
+        box-shadow: none;
+        border: none;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        color: white;
+    }
+
+}
+
+#botones{
+    display: flex;
+    justify-content: space-around;
+    width: 50vw;
+    margin-top: 5vh;
+
+    button{
+        background-color: $dorado;
+        box-shadow: none;
+        border-style: none;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
+
+#fase0{
+
+    .descripcion{
+        margin-top: 1rem;
+    }
+    
+    .metodos-container{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        width: 90vw;
+        margin-top: 1rem;
+    }
+    
+    #social-network{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    
+    .metodo{
+        padding-left: 35%;
+    }
+
+}
+
+#fase1{
+    border-style: solid;
+    border-color: $azul-oscuro;
+    width: 90vw;
+    margin-top: 1rem;
+    #tipo_usuario{
+        width: 50%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        margin-top: 1rem;
+        margin-left: 3vw;
+    }
+    .container{
+        width: 100%;
+        // padding-left: 3vw;
+    }
+    .tipo_telefono{
+        background-color: $dorado;
+        padding: 0.25rem;
+        color: white;
+        font-weight: bold;
+        width: 15vw;
+        display: flex;
+        justify-content: center;
+    }
+
+    #telefono_container{
+        display: flex;
+        margin-left: 2vw;
+        label{
+            display: flex;
+            margin-right: 3rem;
+        }
+    }
+
+    .field{
+        margin-left: 1.5vw;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 45%;
+        margin-bottom: 0.25rem;
+        .label{
+            font-weight: 600;
+        }
+    }
+
+    #telefono_codigo{
+        width: 3rem;
+    }
+
+    #telefono_ext{
+        width: 3rem;
+    }
+
+    #telefono_field{
+        margin-top: 1rem;
+        padding-left: 1.25rem;
+        // grid-template-columns: repeat(3, 1fr);
+        // gap: 1rem;
+        
+        display: flex;
+
+        input{
+            height: 1rem;
+            margin-left: 1.5rem;
+        }
+
+        label{
+            // display: grid;
+            // grid-template-columns: 1fr 1fr;
+            // gap: 0.25rem;
+            display: flex;
+            margin-left: 1.5rem;
+            input{
+                margin-left: 0.25rem;
+            }
+        }
+    }
+
+    #usuario_natural{
+        margin-left: 8vw;
+    }
+
+    .note{
+        margin-left: 4vw;
+        color: $azul-oscuro;
+        font-size: 0.9rem;
+        margin-top: 0.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    #nota_final{
+        font-weight: bold;
+        margin-top: 1.5rem;
+    }
+
+    .required{
+        color: $rojo;
+    }
+
+    #usuario_empresa{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        // display: flex;
+        // justify-content: space-around;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        // background-color: red;
+        gap: 1rem;
+
+        .container{
+            display: grid;
+            grid-template-columns: 1fr;
+            width: 100%;
+            // display: flex;
+            // flex-direction: column;
+            // align-items: center;
+            // justify-content: center;
+            // background-color: blue;
+            .field{
+                width: 60%;
+            }
+        }
+
+        .title_container{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .title{
+            background-color: $azul-claro;
+            color: white;
+            font-weight: bold;
+            width: 60%;
+            margin-bottom: 2vh;
+            margin-top: 2vh;
+        }
+
+        #datos_empresa{
+            .field{
+                width: 100%;
+                height: 1.5rem;
+                textarea{
+                    height: 3rem;
+                }
+            }
+        }
+
+        #datos_representante{
+            .field{
+                width: 80%;
+            }
+        }
+    }
+
+
+}
+
+#fase2{
+    margin-top: 5vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10vw;
+
+    label{
+        display: flex;
+    }
+}
+
+#fase3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .field{
+        display: flex;
+        width: 30vw;
+        justify-content: space-between;
+        margin-top: 1rem;
+        input{
+            width: 20vw;
+        }
+    }
+    #newsletter{
+        width: 50vw;
+        color: $azul-oscuro;
+        input{
+            width: 2rem;
+        }
+    }
+}
+
+#fase4{
+    padding-top: 2.5vh;
+
+    // .container{
+    //     // margin-top: 0.5rem;
+    // }
+
+    #frecuencias{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        label{
+            display: flex;
+        }
+    }
+
+    #servicios{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: 1rem;
+        
+    }
+    
+    #medios{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    .title{
+        width: 100%;
+        display: block;
+        font-weight: bold;
+    }
+
+    .field{
+        display: flex;
+        justify-content: space-between;
+        width: 52vw;
+        margin-top: 0.25rem;
+
+        input[type=text]{
+            width: 20vw;
+        }
+    }
+
+}
+
+#fase5{
+
+    padding-top: 2.5vh;
+    width: 75vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .codigo{
+        color: red;
+        font-size: x-large;
+        font-weight: bold;
+    }
+
+    .container{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .title{
+        background-color: $azul-claro;
+        color: white;
+        font-weight: bold;
+        width: 50%;
+        height: 1.75rem;
+    }
+
+    #bancos{
+        margin-top: 1rem;
+        width: 90%;
+
+        .field{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+
+            .etiqueta{
+                background-color: $azul-claro;
+                padding: 0.125rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                color: white;
+                font-weight: bold;
+                margin-right: 0.5rem;
+                font-size: small;
+            }
+            
+            input{
+                width: 18vw;
+            }
+        }
+
+
+
+    }
+
+    #info_container{
+        width: 72vw;
+
+        div{
+            border-style: solid;
+            border-color: $azul-oscuro;
+        }
+
+        #sugerencias{
+            // background-color: red;
+            width: 49vw;
+            padding-left: 0.2rem;
+            padding-right: 0.2rem;
+            // line-height: 0.25rem;
+            font-size: small;
+        }
+
+        #horario{
+            // background-color: blue;
+            width: 20vw;
+            line-height: 0.25rem;
+            font-size: small;
+            padding-left: 0.2rem;
+            #horas{
+                line-height: 1rem;
+            }
+        }
+
+        .cont_title{
+            color: red;
+            font-weight: bold;
+        }
+
+        .cont_subtitle{
+            font-weight: bold;
+        }
+
+    }
+
+    .descripcion{
+        width: 90%;
+    }
+
+    .nota{
+        width: 30vw;
+        font-size: small;
+        margin-bottom: 1.5vh;
+        border-style: solid;
+        border-color: $azul-oscuro;
+        padding: 0.5rem;
+        span{
+            color: red;
+            font-weight: bold;
+        }
+    }
+}
+
+.ghost{
+    visibility: hidden;
+}
