@@ -1,38 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "../styles/IniciarSesion.scss"
+import { useTranslation } from 'react-i18next';
 
 export const IniciarSesion = () => {
+    
+    const { t, i18n } = useTranslation();
+
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('submit exitoso')
+        console.log('submit exitoso', email, password)
     }
-
 
 
   return (
     <div className='container'>
     <div className='login'>
-        <h2 className='title'>Iniciar Sesión</h2>
+        <h2 className='title'>{t('login.titulo')}</h2>
 
         <form onSubmit={handleSubmit} className='form'>
-            <p>Selecciona la cuenta en la que desea acceder</p>
+            <p>{t('login.descripcion')}</p>
 
-            <div className='form'>
+            <div>
                 <div>
-                    <label id="input-login">correo </label>
-                    <input type="text" name="uname" required />
+                    <label id="input-login">{t('login.correo')}</label>
+                    <input type="text" onChange={e => setEmail(e.target.value)} required />
                 </div>
                 <div>
-                    <label>contraseña </label>
-                    <input type="password" name="pass" required />
+                    <label>{t('login.contrasena')} </label>
+                    <input type="password" onChange={e => setPassword(e.target.value)} required />
                 </div>
             </div>
 
             
-            <button id="submit-button" type="submit">Iniciar Sesión</button>
+            <button type="submit">{t('login.boton')}</button>
             
-            <a href="#">Olvidé mi contraseña, o mis datos</a>
+            <a href="#">{t('login.olvide_contrasena')}</a>
 
         </form>
         
