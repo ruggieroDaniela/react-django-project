@@ -34,7 +34,7 @@ export const Multiform = (props) => {
 
             <div className="fases-grid">
                 {
-                    props.stages.map(i => {
+                    props.stages.map((stage, i) => {
                         return(
                             <button
                                 key={'boton_registrar_fase_'+i}
