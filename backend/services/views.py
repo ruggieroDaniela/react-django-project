@@ -4,23 +4,28 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from .models import Services
-from .serializers import ServicesSerializer
+from .models import Services, ProvideService
+from .serializers import ServicesSerializer, ProvideServiceSerializer
 
 # Create your views here.
 class ServicesViewSet(viewsets.ModelViewSet):
-    queryset = Services.objects.all()
-    serializer_class = ServicesSerializer
+    queryset = ProvideService.objects.all()
+    serializer_class = ProvideServiceSerializer
 
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+#    authentication_classes = (TokenAuthentication,)
+#    permission_classes = (IsAuthenticated,)
 
     @action(detail=False, methods=['post'])
     def post_ad(self, request):
-        serializer = ServicesSerializer(data=request.data)
+        serializer = ProvideServiceSerializer(data=request.data)
 
         if serializer.is_valid():
             serializer.save()
             return Response({'message': 'OK'})
         else:
             return Response(serializer.errors, status=400)
+
+    @action(detail=False, methods=['post'])
+    def delete_all(self, request):
+        ProvideService.objects.all().delete()
+        return Response({'message': 'All Services objects have been deleted'})

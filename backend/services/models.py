@@ -1,8 +1,8 @@
 from django.db import models
 
 # Create your models here.
-class Services(models.Model):
 
+class Services(models.Model):
     # Choices
     EDUCATION_LEVEL_CHOICES = (
         ('PRI', 'Primaria'),
@@ -60,17 +60,6 @@ class Services(models.Model):
         ('CONVENIR', 'A convenir')
     )
 
-    ORIGIN_CHOICES = (
-        ('NO', 'Me es indiferente'),
-        ('SI', 'Quiero especificar la procedencia del cliente')
-    )
-
-    CLIENT_TYPE_CHOICES = (
-        ('NAT', 'Natural'),
-        ('EMP', 'Empresa'),
-        ('NO', 'Me es indiferente si es persona natural o empresa')
-    )
-
     DOCUMENTS_CHOICES = (
         ('PASAPORTE', 'Documento de identidad o pasaporte'),
         ('CURRICULUM', 'Currículum actualizado'),
@@ -91,29 +80,24 @@ class Services(models.Model):
         ('12', '12 meses')
     )
 
-    # Fields
-    # 1 - Basic data
-    age = models.PositiveIntegerField(blank=False)
-    have_children = models.BooleanField(blank=False)
+    # Fields 
+    # Basic data
     education_level = models.CharField(blank=False, max_length=3, choices=EDUCATION_LEVEL_CHOICES)
 
-    # 2 - Place of Origin 
+    # Place of Origin 
     country = models.TextField(blank=False)
     state = models.TextField(blank=False)
     city = models.TextField(blank=False)
     zone = models.TextField(blank=True)
 
-    # 3 - Job description
-    description = models.TextField(blank=False)
-
-    # 4 - Availability to travel 
+    # Availability to travel 
     travel = models.BooleanField(blank=False)
     travel_decription = models.TextField(blank=True)
 
-    # 5 - Activities 
+    # Activities 
     activities = models.TextField(blank=False)
 
-    # 6 - Working Conditions
+    # Working Conditions
     workday = models.CharField(blank=False, max_length=15, choices=WORKDAY_CHOICES)
     workday_other = models.TextField(blank=True)
 
@@ -122,7 +106,7 @@ class Services(models.Model):
     
     # Salary
     payment = models.CharField(blank=False, max_length=8, choices=PAYMENT_CHOICES)
-    payment_amount = models.DecimalField(max_digits=8, decimal_places=2)
+    payment_amount = models.DecimalField(blank=True, max_digits=8, decimal_places=2)
     currency = models.CharField(blank=False, max_length=4, choices=CURRENCY_CHOICES)
     currency_other = models.TextField(blank=True)
     salary_offered = models.CharField(blank=False, max_length=9, choices=SALARY_OFFERED_CHOICES)
@@ -130,19 +114,11 @@ class Services(models.Model):
     benefits = models.BooleanField(blank=False)
     benefits_description = models.TextField(blank=True)
 
-    # 7 - Availability to start 
+    # Availability to start 
     availability = models.CharField(blank=False, max_length=8, choices=AVAILABILITY_CHOICES)
     availability_date = models.DateField(blank=True)
 
-    # 8 - Customers i want to work with
-    origin = models.CharField(blank=False, max_length=2, choices=ORIGIN_CHOICES)
-    origin_continent = models.TextField(blank=True)
-    origin_country = models.TextField(blank=True)
-    origin_state = models.TextField(blank=True)
-    origin_city = models.TextField(blank=True)
-    client_type = models.CharField(blank=True, max_length=3, choices=CLIENT_TYPE_CHOICES)
-    
-    # 9 - Documents 
+    # Documents 
     have_documentation = models.BooleanField(blank=False)
     documents = models.CharField(blank=True, max_length=18, choices=DOCUMENTS_CHOICES)
     documents_other = models.TextField(blank=True)
@@ -153,8 +129,49 @@ class Services(models.Model):
     billing_country = models.TextField(blank=False)
     billing_bank = models.TextField(blank=False)
 
+    class Meta:
+        abstract = True
+
+# A - Ofrecer mis servicios como personal doméstico 
+class ProvideService(Services):
+    ORIGIN_CHOICES = (
+        ('NO', 'Me es indiferente'),
+        ('SI', 'Quiero especificar la procedencia del cliente')
+    )
+
+    CLIENT_TYPE_CHOICES = (
+        ('NAT', 'Natural'),
+        ('EMP', 'Empresa'),
+        ('NO', 'Me es indiferente si es persona natural o empresa')
+    )
+
+    # Fields
+    # 1 - Basic data
+    age = models.PositiveIntegerField(blank=False)
+    have_children = models.BooleanField(blank=False)
     
+    # 2 - Place of Origin 
+
+    # 3 - Job description
+    description = models.TextField(blank=False)
+
+    # 4 - Availability to travel 
+    # 5 - Activities 
+    # 6 - Working Conditions    
+    # 7 - Availability to start 
+
+    # 8 - Customers i want to work with
+    origin = models.CharField(blank=False, max_length=2, choices=ORIGIN_CHOICES)
+    origin_continent = models.TextField(blank=True)
+    origin_country = models.TextField(blank=True)
+    origin_state = models.TextField(blank=True)
+    origin_city = models.TextField(blank=True)
+    client_type = models.CharField(blank=True, max_length=3, choices=CLIENT_TYPE_CHOICES)
+    
+    # 9 - Documents 
+    # 14 - Billing information
 
 
-    
-   
+
+# B - Solicitar personal doméstico 
+#class Request_Service():

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Services
+from .models import Services, ProvideService
 
 
 class ServicesSerializer(serializers.ModelSerializer):
@@ -25,9 +25,6 @@ class ServicesSerializer(serializers.ModelSerializer):
         
         if data['availability'] == 'FECHA' and not data.get('availability_date'):
             raise serializers.ValidationError("Por favor, seleccione la fecha de inicio")
-        
-        if data['origin'] == 'SI' and not ( data.get('origin_continent') and data.get('origin_country') and data.get('origin_state') and data.get('origin_city') ):
-            raise serializers.ValidationError("Por favor, especifique la procedencia del cliente")
 
         if data['have_documentation'] == True and not data.get('documents'):
             raise serializers.ValidationError("Por favor, seleccione uno o más documentos de su preferencia")
@@ -39,4 +36,18 @@ class ServicesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Services
+        fields = "__all__"
+
+class ProvideServiceSerializer(ServicesSerializer):
+    def validate(self, data):
+        data = super().validate(data)
+        
+        # validaciones adicionales para el serializer de "Provide"
+        if data['origin'] == 'SI' and not ( data.get('origin_continent') and data.get('origin_country') and data.get('origin_state') and data.get('origin_city') ):
+            raise serializers.ValidationError("Por favor, especifique la procedencia del cliente")
+        return data
+    
+    class Meta:
+        model = ProvideService
         fields = ['id', 'age', 'have_children', 'education_level', 'country', 'state', 'city', 'zone', 'description', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'origin', 'origin_continent', 'origin_country', 'origin_state', 'origin_city', 'client_type', 'have_documentation', 'documents', 'documents_other', 'publication_time', 'publication_plan', 'billing_country', 'billing_bank']
+
