@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { useTranslation } from 'react-i18next';
 import { useState } from "react";
 
@@ -6,9 +6,9 @@ import AuthContext from "./context/AuthContext";
 
 import NavbarDropdown from "./NavbarDropdown";
 
-import '../styles/Navbar.scss';
+import '../styles/Footer.scss';
 
-const Navbar = () => {
+const Footer = () => {
 
     const [userDropdownVisible, setUserDropdownVisible] = useState(false);
     const isAuth = useContext(AuthContext);
@@ -16,8 +16,8 @@ const Navbar = () => {
     const { t, i18n } = useTranslation();
 
     return (
-        <>  {!isAuth?
-            <div className="user">
+        <div className="footer-container">  {!isAuth?
+            <div className="user-footer">
                 <div className="dropdown">
                     <div className="label">
                         <a href="#">{t("navbar.usuario.iniciar_sesion")}</a>
@@ -30,7 +30,7 @@ const Navbar = () => {
                 </div>
             </div>
             :
-            <div className="user">
+            <div className="user-footer">
                 <div className="card">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="" />
                     <div className="info">
@@ -59,7 +59,7 @@ const Navbar = () => {
                 </div>
             </div>}
 
-            <nav className="navbar">
+            <footer className="footer">
 
                 <ul className="list">
                     <li className="item">
@@ -171,9 +171,9 @@ const Navbar = () => {
                         <a href="#" className="link">{t("navbar.idiomas")}</a>
                     </li>
                 </ul>
-            </nav>
-        </>
+            </footer>
+        </div>
     );
 };
 
-export default Navbar;
+export default Footer;
