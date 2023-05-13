@@ -14,20 +14,20 @@
         align-items: center;
         border: solid 3px black;
 
-        .title{
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            align-content: center;
-            padding-bottom: 10px;
-            border-bottom: solid 2px black;
-            margin: 0;
-            background-color: $azul-claro;
-            color: white;
-        }
     }
 }
 
+.title{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    padding-bottom: 10px;
+    border-bottom: solid 2px black;
+    margin: 0;
+    background-color: $azul-claro;
+    color: white;
+}
 
 .form {
     display: flex;
