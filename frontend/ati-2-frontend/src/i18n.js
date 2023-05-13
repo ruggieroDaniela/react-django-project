@@ -2,8 +2,31 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-import en from './locales/en.json';
-import es from './locales/es.json';
+import navbar_en from './locales/en/Navbar.json';
+import registrar_en from "./locales/en/Registrar.json";
+import multiform_en from "./locales/en/Multiform.json";
+import general_en from "./locales/en/General.json";
+
+import navbar_es from './locales/es/Navbar.json';
+import registrar_es from "./locales/es/Registrar.json";
+import multiform_es from "./locales/es/Multiform.json";
+import general_es from "./locales/es/General.json";
+
+const en = Object.assign(
+  {},
+  navbar_en,
+  registrar_en,
+  multiform_en,
+  general_en
+);
+
+const es = Object.assign(
+  {},
+  navbar_es,
+  registrar_es,
+  multiform_es,
+  general_es
+);
 
 i18n
   // detect user language
