@@ -33,7 +33,7 @@ export const Registrar = () => {
     }
 
     return (
-        <div className="registrar">
+        <div id="registrar">
             <div>
                 <h4>{t('registrar.titulo')}</h4>
             </div>
