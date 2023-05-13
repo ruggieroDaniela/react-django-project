@@ -110,14 +110,5 @@
         ],
         "continuar": "Continue",
         "atras": "Back"
-    },
-    
-    "login": {
-        "titulo": "Iniciar Sesión",
-        "boton": "Iniciar Sesión",
-        "descripcion": "Selecciona la cuenta en la que desea acceder",
-        "correo": "Correo",
-        "contrasena": "Contraseña",
-        "olvide_contrasena": "Olvidé mi contraseña, o mis datos"
     }
 }
