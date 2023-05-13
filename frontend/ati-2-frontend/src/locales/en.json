@@ -53,6 +53,12 @@
         "idiomas": "Language"
 
     },
+    "multiform":{
+        "atras": "Back",
+        "continuar": "Continue",
+        "cancelar": "Cancel",
+        "registrar": "Register"
+    },
 
     "otro": "Other",
     "especifique": "Specify",
