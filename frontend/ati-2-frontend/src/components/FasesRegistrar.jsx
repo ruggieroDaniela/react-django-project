@@ -294,13 +294,13 @@ const Fase1 = () => {
                     <label>
                         <input
                             type="radio"
-                            value="empresa"
-                            checked={ registerFormState.phase[1].tipo_usuario === 'empresa' }
+                            value="enterprise"
+                            checked={ registerFormState.phase[1].tipo_usuario === 'enterprise' }
                             onChange={ e => {
                                 setRegisterFormState( prev => {
                                         const newState = {... prev};
                                         newState.phase[1] = {... prev.phase[1]};
-                                        newState.phase[1].tipo_usuario = 'empresa';
+                                        newState.phase[1].tipo_usuario = 'enterprise';
                                         return newState;
                                     } );
                             }}
