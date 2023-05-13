@@ -1,0 +1,10 @@
+{
+    "login": {
+        "titulo": "Sign in",
+        "boton": "Sign in",
+        "descripcion": "Select the account you want to access",
+        "correo": "Email",
+        "contrasena": "Password",
+        "olvide_contrasena": "I forgot my password, or my data"
+    }
+}

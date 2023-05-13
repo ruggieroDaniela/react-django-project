@@ -20,7 +20,7 @@ const Footer = () => {
             <div className="user-footer">
                 <div className="dropdown">
                     <div className="label">
-                        <a href="#">{t("navbar.usuario.iniciar_sesion")}</a>
+                        <a href="/login">{t("navbar.usuario.iniciar_sesion")}</a>
                     </div>
                 </div>
                 <div className="dropdown">
