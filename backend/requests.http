@@ -67,14 +67,14 @@ content-type: application/json
 
 
 ###
-POST http://127.0.0.1:8000/api-services/services/post_ad/
+POST http://127.0.0.1:8000/api-services/services/post_ad_provide/
 content-type: application/json
 
 {
-    "age": 55,
+    "age": 26,
     "have_children": false,
     "education_level": "PRI",
-    "country": "Venezuela",
+    "country": "Colombia",
     "state": "Distrito Capital",
     "city": "Caracas",
     "zone": "",

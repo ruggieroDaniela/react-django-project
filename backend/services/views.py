@@ -15,13 +15,14 @@ class ServicesViewSet(viewsets.ModelViewSet):
 #    authentication_classes = (TokenAuthentication,)
 #    permission_classes = (IsAuthenticated,)
 
+    # Option A - "Ofrecer mis servicios como personal doméstico" 
     @action(detail=False, methods=['post'])
-    def post_ad(self, request):
+    def post_ad_provide(self, request):
         serializer = ProvideServiceSerializer(data=request.data)
 
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'OK'}, {'data': request.data})
+            return Response({'message': 'OK', 'data': request.data})
         else:
             return Response(serializer.errors, status=400)
 
