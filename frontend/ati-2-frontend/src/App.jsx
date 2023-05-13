@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 // Contexts
 import AuthContext from './components/context/AuthContext';
+import { AuthContextProvider } from './components/context/AuthContext';
 
 // Components
 import User from './components/user';
@@ -48,7 +49,7 @@ function App() {
 
   return (
     <>
-      <AuthContext.Provider value={false}>
+      <AuthContextProvider>
         <Router>
           <Navbar />
           <Routes>
@@ -62,7 +63,7 @@ function App() {
           </Routes>
           <Footer/>
         </Router>
-      </AuthContext.Provider>
+      </AuthContextProvider>
       
       {/* <h1>Vite + React</h1>
       <div className="card">

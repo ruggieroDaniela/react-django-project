@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 
-import AuthContext from "../components/context/AuthContext";
+// import AuthContext from "../components/context/AuthContext";
 import { RegisterFormContext, RegisterFormContextProvider } from "../components/context/RegisterFormContext";
 
 import { Multiform } from "../components/Multiform";

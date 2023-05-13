@@ -11,7 +11,8 @@ import '../styles/Footer.scss';
 const Footer = () => {
 
     const [userDropdownVisible, setUserDropdownVisible] = useState(false);
-    const isAuth = useContext(AuthContext);
+    const {authState, setAuthState} = useContext(AuthContext);
+    const isAuth = authState.logged_in;
 
     const { t, i18n } = useTranslation();
 
