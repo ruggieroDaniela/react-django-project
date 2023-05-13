@@ -16,7 +16,7 @@ export const IniciarSesion = () => {
 
 
   return (
-    <div className='container'>
+    <div id='iniciar-sesion' className='container'>
         <div className='login'>
             <h2 className='title'>{t('login.titulo')}</h2>
 
@@ -24,11 +24,11 @@ export const IniciarSesion = () => {
                 <p>{t('login.descripcion')}</p>
 
                 <div>
-                    <div>
+                    <div className='field'>
                         <label id="input-login">{t('login.correo')} </label>
                         <input type="text" onChange={e => setEmail(e.target.value)} required />
                     </div>
-                    <div>
+                    <div className='field'>
                         <label>{t('login.contrasena')} </label>
                         <input type="password" onChange={e => setPassword(e.target.value)} required />
                     </div>
