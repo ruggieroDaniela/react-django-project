@@ -25,6 +25,7 @@ const Fase0 = () =>
                         <label>
                             <input
                                 type="checkbox"
+                                checked={registerFormState.phase[0].website}
                                 onChange={ e => {
                                     setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -42,6 +43,7 @@ const Fase0 = () =>
                         <label>
                             <input
                                 type="checkbox"
+                                checked={registerFormState.phase[0].social_network}
                                 onChange={ e => {
                                     setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -57,6 +59,7 @@ const Fase0 = () =>
                             <div>
                                 <input
                                     type="checkbox"
+                                    checked={registerFormState.phase[0].facebook}
                                     onChange={ e => {
                                         setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -71,6 +74,7 @@ const Fase0 = () =>
                             <div>
                                 <input
                                     type="checkbox"
+                                    checked={registerFormState.phase[0].twitter}
                                     onChange={ e => {
                                         setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -85,6 +89,7 @@ const Fase0 = () =>
                             <div>
                                 <input
                                     type="checkbox"
+                                    checked={registerFormState.phase[0].instagram}
                                     onChange={ e => {
                                         setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -99,6 +104,7 @@ const Fase0 = () =>
                             <div>
                                 <input
                                     type="checkbox"
+                                    checked={registerFormState.phase[0].social_network_other}
                                     onChange={ e => {
                                         setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -131,6 +137,7 @@ const Fase0 = () =>
                         <label>
                             <input
                                 type="checkbox"
+                                checked={registerFormState.phase[0].friends}
                                 onChange={ e => {
                                     setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -148,6 +155,7 @@ const Fase0 = () =>
                         <label>
                             <input
                                 type="checkbox"
+                                checked={registerFormState.phase[0].other}
                                 onChange={ e => {
                                     setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -163,6 +171,7 @@ const Fase0 = () =>
                             <div>
                                 <input
                                     type="checkbox"
+                                    checked={registerFormState.phase[0].radio}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -191,6 +200,7 @@ const Fase0 = () =>
                             <div>
                                 <input
                                     type="checkbox"
+                                    checked={registerFormState.phase[0].press}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -219,6 +229,7 @@ const Fase0 = () =>
                             <div>
                                 <input
                                     type="checkbox"
+                                    checked={registerFormState.phase[0].other_other}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -826,6 +837,7 @@ const Fase3 = () => {
                     <label>
                         <input
                             type="checkbox"
+                            checked={registerFormState.phase[3].newsletter}
                             onChange={ e => {
                                 setRegisterFormState( prev => {
                                     const newState = {... prev};
@@ -942,6 +954,7 @@ const Fase4 = () => {
                     <label>
                         <input
                             type="checkbox"
+                            checked={registerFormState.phase[4].servicio_personal}
                             onChange={ e => {
                                 setRegisterFormState( prev => {
                                     const newState = {... prev};
@@ -957,6 +970,7 @@ const Fase4 = () => {
                     <label>
                         <input
                             type="checkbox"
+                            checked={registerFormState.phase[4].servicio_profesional}
                             onChange={ e => {
                                 setRegisterFormState( prev => {
                                     const newState = {... prev};
@@ -980,6 +994,7 @@ const Fase4 = () => {
                         <label>
                             <input
                                 type="checkbox"
+                                checked={registerFormState.phase[4].usar_correo}
                                 onChange={ e => {
                                     setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -1009,6 +1024,7 @@ const Fase4 = () => {
                         <label>
                             <input
                                 type="checkbox"
+                                checked={registerFormState.phase[4].redes}
                                 onChange={ e => {
                                     setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -1025,6 +1041,7 @@ const Fase4 = () => {
                             <label>
                                 <input
                                     type="checkbox"
+                                    checked={registerFormState.phase[4].facebook}
                                     onChange={ e => {
                                         setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -1040,6 +1057,7 @@ const Fase4 = () => {
                             <label>
                                 <input
                                     type="checkbox"
+                                    checked={registerFormState.phase[4].twitter}
                                     onChange={ e => {
                                         setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -1059,6 +1077,7 @@ const Fase4 = () => {
                         <label>
                             <input
                                 type="checkbox"
+                                checked={registerFormState.phase[4].usar_sms}
                                 onChange={ e => {
                                     setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -1088,6 +1107,7 @@ const Fase4 = () => {
                         <label>
                             <input
                                 type="checkbox"
+                                checked={registerFormState.phase[4].usar_otros}
                                 onChange={ e => {
                                     setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -1117,6 +1137,7 @@ const Fase4 = () => {
                         <label>
                             <input
                                 type="checkbox"
+                                checked={registerFormState.phase[4].usar_facebook}
                                 onChange={ e => {
                                     setRegisterFormState( prev => {
                                         const newState = {... prev};
