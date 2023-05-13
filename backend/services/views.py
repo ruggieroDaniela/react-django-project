@@ -21,7 +21,7 @@ class ServicesViewSet(viewsets.ModelViewSet):
 
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'OK'})
+            return Response({'message': 'OK'}, {'data': request.data})
         else:
             return Response(serializer.errors, status=400)
 
