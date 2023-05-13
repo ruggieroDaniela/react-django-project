@@ -1,16 +1,13 @@
 import React from "react";
-import { useContext } from "react";
 
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
-
-import { RegisterFormContext, RegisterFormContextProvider } from "../components/context/RegisterFormContext";
 
 import "../styles/Multiform.scss"
 
 export const Multiform = (props) => {
     
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const [currentStage, setCurrentStage] = useState(0);
     const [stagesDone, setStagesDone] = useState(0);
@@ -33,7 +30,7 @@ export const Multiform = (props) => {
                                         setCurrentStage((prev) => i);
                                 }}
                             >
-                                {(i+1)+"- "+t('registrar.fases.'+i+'.nombre')}
+                                {(i+1)+"- "+props.stagesNames[i]}
                             </button>
                         );
                     })
@@ -48,10 +45,10 @@ export const Multiform = (props) => {
                             setCurrentStage((prev) => prev-1);
                     }}
                 >
-                    ← {t('registrar.atras')}
+                    ← {t('multiform.atras')}
                 </button>
                 <span>
-                    {t('registrar.fases.'+currentStage+'.nombre')}
+                    {props.stagesNames[currentStage]}
                 </span>
                 <button 
                     className={`${currentStage === props.stages.length-1?"ghost":""}`}
@@ -63,20 +60,20 @@ export const Multiform = (props) => {
                         }
                     }}
                 >
-                    {t('registrar.continuar')} →
+                    {t('multiform.continuar')} →
                 </button>
             </div>
             <form>
-                <RegisterFormContextProvider>
+                <ContextProvider>
                     <RenderStage/>
-                </RegisterFormContextProvider>
+                </ContextProvider>
             </form>
             <div id="botones">
                 <button
                     id="boton_cancelar"
                     onClick={ props.cancelEvent }
                 >
-                    {t('registrar.botones.cancelar')}
+                    {t('multiform.cancelar')}
                 </button>
                 <button
                     id="boton_registrar"
@@ -85,7 +82,7 @@ export const Multiform = (props) => {
                         display: currentStage == props.stages.length-1? "block":"none"
                     }}
                 >
-                    {t('registrar.botones.registrar')}
+                    {t('multiform.registrar')}
                 </button>
             </div>
 

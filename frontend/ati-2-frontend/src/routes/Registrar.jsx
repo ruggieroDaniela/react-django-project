@@ -20,18 +20,17 @@ export const Registrar = () => {
     
     const { t, i18n } = useTranslation();
 
-    const [signupStage, setSignupStage] = useState(0);
-    const [signupStageDone, setSignupStageDone] = useState(0);
-
-    const nFases = [0,1,2,3,4,5];
-    const CurrentFase = FasesRegistrar[signupStage];
-
     let navigate = useNavigate(); 
     const goHome = () => {
         navigate(`/`);
     };
 
     const register = () => {};
+
+    let stagesNames = [];
+    for (let i = 0; i < FasesRegistrar.length; i++) {
+        stagesNames.push(t('registrar.fases.'+i+'.nombre'));
+    }
 
     return (
         <div className="registrar">
@@ -47,9 +46,10 @@ export const Registrar = () => {
 
             <Multiform
                 stages={FasesRegistrar}
+                stagesNames={stagesNames}
                 cancelEvent={goHome}
                 submitEvent={register}
-                FormContextProvider={RegisterFormContext}
+                FormContextProvider={RegisterFormContextProvider}
             />
 
         </div>
