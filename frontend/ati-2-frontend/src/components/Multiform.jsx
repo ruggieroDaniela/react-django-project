@@ -1,19 +1,12 @@
 import React from "react";
-import { createContext, useContext } from "react";
-
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 
-import AuthContext from "../components/context/AuthContext";
 import { RegisterFormContext, RegisterFormContextProvider } from "../components/context/RegisterFormContext";
 
-import { FasesRegistrar } from "../components/FasesRegistrar";
-
-import "../styles/Registrar.scss"
-
-const FormContext = createContext();
+import "../styles/Multiform.scss"
 
 export const Multiform = (props) => {
     
@@ -23,21 +16,17 @@ export const Multiform = (props) => {
     const [stagesDone, setStagesDone] = useState(0);
 
     const RenderStage = props.stages[currentStage];
-
-    let navigate = useNavigate(); 
-    const goHome = () => {
-        navigate(`/`);
-    };
+    const ContextProvider = props.FormContextProvider;
 
     return (
-        <div className="registrar">
+        <div className="multiform">
 
             <div className="fases-grid">
                 {
                     props.stages.map((stage, i) => {
                         return(
                             <button
-                                key={'boton_registrar_fase_'+i}
+                                key={'boton_form_stage_'+i}
                                 className={`fase ${i>stagesDone? "inactive":""} ${i==currentStage? "current":""}`}
                                 onClick={() => {
                                     if( i<=stagesDone )
@@ -85,12 +74,13 @@ export const Multiform = (props) => {
             <div id="botones">
                 <button
                     id="boton_cancelar"
-                    onClick={goHome}
+                    onClick={ props.cancelEvent }
                 >
                     {t('registrar.botones.cancelar')}
                 </button>
                 <button
                     id="boton_registrar"
+                    onClick={ props.submitEvent }
                     style={{
                         display: currentStage == props.stages.length-1? "block":"none"
                     }}

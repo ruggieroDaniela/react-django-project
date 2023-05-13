@@ -31,6 +31,8 @@ export const Registrar = () => {
         navigate(`/`);
     };
 
+    const register = () => {};
+
     return (
         <div className="registrar">
             <div className="title">
@@ -43,7 +45,12 @@ export const Registrar = () => {
                 <span>*</span> <span className="indicacion">{t('registrar.indicaciones.1')}</span>
             </div>
 
-            <Multiform stages={FasesRegistrar} />
+            <Multiform
+                stages={FasesRegistrar}
+                cancelEvent={goHome}
+                submitEvent={register}
+                FormContextProvider={RegisterFormContext}
+            />
 
         </div>
 
