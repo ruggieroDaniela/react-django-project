@@ -1,9 +1,15 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
-# Create your models here.
+# Models
 class Services(models.Model):
-
     # Choices
+    SERVICE_CHOICES = (
+        ('NIN', 'Niñero(a)'), 
+        ('CUI', 'Cuidador(a) ocupacional'), 
+        ('ENF', 'Enfermero(a)')
+    )
+
     EDUCATION_LEVEL_CHOICES = (
         ('PRI', 'Primaria'),
         ('TEC', 'Técnico Univeristario'), 
@@ -60,17 +66,6 @@ class Services(models.Model):
         ('CONVENIR', 'A convenir')
     )
 
-    ORIGIN_CHOICES = (
-        ('NO', 'Me es indiferente'),
-        ('SI', 'Quiero especificar la procedencia del cliente')
-    )
-
-    CLIENT_TYPE_CHOICES = (
-        ('NAT', 'Natural'),
-        ('EMP', 'Empresa'),
-        ('NO', 'Me es indiferente si es persona natural o empresa')
-    )
-
     DOCUMENTS_CHOICES = (
         ('PASAPORTE', 'Documento de identidad o pasaporte'),
         ('CURRICULUM', 'Currículum actualizado'),
@@ -91,29 +86,25 @@ class Services(models.Model):
         ('12', '12 meses')
     )
 
-    # Fields
-    # 1 - Basic data
-    age = models.PositiveIntegerField(blank=False)
-    have_children = models.BooleanField(blank=False)
+    # Fields 
+    # Basic data
+    service = models.CharField(max_length=3, choices=SERVICE_CHOICES)
     education_level = models.CharField(blank=False, max_length=3, choices=EDUCATION_LEVEL_CHOICES)
 
-    # 2 - Place of Origin 
+    # Place of Origin 
     country = models.TextField(blank=False)
     state = models.TextField(blank=False)
     city = models.TextField(blank=False)
     zone = models.TextField(blank=True)
 
-    # 3 - Job description
-    description = models.TextField(blank=False)
-
-    # 4 - Availability to travel 
+    # Availability to travel 
     travel = models.BooleanField(blank=False)
     travel_decription = models.TextField(blank=True)
 
-    # 5 - Activities 
+    # Activities 
     activities = models.TextField(blank=False)
 
-    # 6 - Working Conditions
+    # Working Conditions
     workday = models.CharField(blank=False, max_length=15, choices=WORKDAY_CHOICES)
     workday_other = models.TextField(blank=True)
 
@@ -122,7 +113,7 @@ class Services(models.Model):
     
     # Salary
     payment = models.CharField(blank=False, max_length=8, choices=PAYMENT_CHOICES)
-    payment_amount = models.DecimalField(max_digits=8, decimal_places=2)
+    payment_amount = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     currency = models.CharField(blank=False, max_length=4, choices=CURRENCY_CHOICES)
     currency_other = models.TextField(blank=True)
     salary_offered = models.CharField(blank=False, max_length=9, choices=SALARY_OFFERED_CHOICES)
@@ -130,19 +121,11 @@ class Services(models.Model):
     benefits = models.BooleanField(blank=False)
     benefits_description = models.TextField(blank=True)
 
-    # 7 - Availability to start 
+    # Availability to start 
     availability = models.CharField(blank=False, max_length=8, choices=AVAILABILITY_CHOICES)
-    availability_date = models.DateField(blank=True)
+    availability_date = models.DateField(null=True, blank=True)
 
-    # 8 - Customers i want to work with
-    origin = models.CharField(blank=False, max_length=2, choices=ORIGIN_CHOICES)
-    origin_continent = models.TextField(blank=True)
-    origin_country = models.TextField(blank=True)
-    origin_state = models.TextField(blank=True)
-    origin_city = models.TextField(blank=True)
-    client_type = models.CharField(blank=True, max_length=3, choices=CLIENT_TYPE_CHOICES)
-    
-    # 9 - Documents 
+    # Documents 
     have_documentation = models.BooleanField(blank=False)
     documents = models.CharField(blank=True, max_length=18, choices=DOCUMENTS_CHOICES)
     documents_other = models.TextField(blank=True)
@@ -153,8 +136,82 @@ class Services(models.Model):
     billing_country = models.TextField(blank=False)
     billing_bank = models.TextField(blank=False)
 
+    class Meta:
+        abstract = True
+
+# Option A - "Ofrecer mis servicios como personal doméstico"
+class ProvideService(Services):
+    ORIGIN_CHOICES = (
+        ('NO', 'Me es indiferente'),
+        ('SI', 'Quiero especificar la procedencia del cliente')
+    )
+
+    CLIENT_TYPE_CHOICES = (
+        ('NAT', 'Natural'),
+        ('EMP', 'Empresa'),
+        ('NO', 'Me es indiferente si es persona natural o empresa')
+    )
+
+    # Fields
+    # 1 - Basic data
+    age = models.PositiveIntegerField(blank=False)
+    have_children = models.BooleanField(blank=False)
     
+    # 2 - Place of Origin 
+
+    # 3 - Job description
+    description = models.TextField(blank=False)
+
+    # 4 - Availability to travel 
+    # 5 - Activities 
+    # 6 - Working Conditions    
+    # 7 - Availability to start 
+
+    # 8 - Customers i want to work with
+    origin = models.CharField(blank=False, max_length=2, choices=ORIGIN_CHOICES)
+    origin_continent = models.TextField(blank=True)
+    origin_country = models.TextField(blank=True)
+    origin_state = models.TextField(blank=True)
+    origin_city = models.TextField(blank=True)
+    client_type = models.CharField(blank=True, max_length=3, choices=CLIENT_TYPE_CHOICES)
+    
+    # 9 - Documents 
+    # 14 - Billing information
 
 
+# Option B - "Solicitar personal doméstico"
+class RequestService(Services):
+    # Choices
+    GENDER_CHOICES = (
+        ('FEM', 'Niñera'), 
+        ('MAS', 'Niñero'), 
+        ('IDC', 'Me es indiferente su sexo')
+    )
     
-   
+    CHILDREN_CHOICES = (
+        ('NO', 'Sin hijos'), 
+        ('SI', 'Con hijos'), 
+        ('IDC', 'Me es indiferente si tiene hijos o no')
+    )
+    
+    # 1 - Basic data
+    gender = models.CharField(blank=False, max_length=3, choices=GENDER_CHOICES)
+    age_required_from = models.PositiveIntegerField()
+    age_required_to = models.PositiveIntegerField()
+    children = models.CharField(blank=False, max_length=3, choices=CHILDREN_CHOICES)
+
+    # 2 - Place of Origin 
+
+    # 3 - About the person(people) taken care of (tco)
+    number_tco = models.PositiveIntegerField(blank=False)
+    age_tco = models.PositiveIntegerField(blank=False)
+    gender_tco = models.TextField(blank=False)
+    disabilities_tco = models.BooleanField(blank=False)
+    disabilities_tco_decrip = models.TextField(blank=True)
+
+    # 4 - Availability to travel 
+    # 5 - Activities 
+    # 6 - Working Conditions
+    # 7 - Availability to start 
+    # 8 - Documents
+    # 12 - Billing Information
