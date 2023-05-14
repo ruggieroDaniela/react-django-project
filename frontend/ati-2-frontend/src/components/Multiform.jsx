@@ -84,7 +84,12 @@ export const Multiform = ({stages, FormContextProvider, SubmitButton, cancelEven
                         >
                         {t('multiform.registrar')}
                     </button> */}
-                    <SubmitButton/>
+                    {
+                        currentStage == stages.length-1?
+                            <SubmitButton/>
+                        :
+                            ""
+                    }
                 </div>
             </FormContextProvider>
 
