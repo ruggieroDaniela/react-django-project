@@ -25,7 +25,7 @@ export const Registrar = () => {
         navigate(`/`);
     };
 
-    const register = (userData) => {
+    const register = async (userData) => {
         let postBody = {};
 
         // De donde nos conoce?
@@ -116,6 +116,33 @@ export const Registrar = () => {
         // Billing
         postBody.bank_origin = userData.phase[5].banco_origen;
         postBody.bank_country = userData.phase[5].pais;
+
+        // send request
+        const url = 'http://localhost:8000/users'
+        try {
+            
+            const response = await fetch( url,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(postBody),
+                }
+            );
+
+            if (response.ok) {
+                // Request was successful
+                console.log('POST request successful');
+                console.log(response);
+            } else {
+                // Request failed
+                console.log('POST request failed');
+            }
+
+        } catch (error) {
+            console.log("error registrando");
+            console.log(error);
+        }
 
     };
 
