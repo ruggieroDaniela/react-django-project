@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 // Contexts
 import AuthContext from './context/AuthContext';
+import { AuthContextProvider } from './context/AuthContext';
 
 // Components
 import User from './components/user';
