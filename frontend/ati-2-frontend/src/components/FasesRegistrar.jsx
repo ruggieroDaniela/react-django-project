@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { RegisterFormContext } from "./context/RegisterFormContext";
+import { RegisterFormContext } from "../context/RegisterFormContext";
 
 import { useTranslation } from 'react-i18next';
 

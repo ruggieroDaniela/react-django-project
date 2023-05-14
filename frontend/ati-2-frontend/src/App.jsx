@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 // Contexts
-import AuthContext from './components/context/AuthContext';
+import AuthContext from './context/AuthContext';
 
 // Components
 import User from './components/user';
