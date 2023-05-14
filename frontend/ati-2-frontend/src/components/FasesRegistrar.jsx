@@ -120,6 +120,7 @@ const Fase0 = () =>
                                 {t('especifique')+": "}
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[0].social_network_other}
                                     onChange={ e => {
                                         setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -187,6 +188,7 @@ const Fase0 = () =>
                                 {t('especifique')+": "}
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[0].radio_spec}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -216,6 +218,7 @@ const Fase0 = () =>
                                 {t('especifique')+": "}
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[0].press_spec}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -245,6 +248,7 @@ const Fase0 = () =>
                                 {t('especifique')+": "}
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[0].other_other_spec}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -320,6 +324,7 @@ const Fase1 = () => {
                             </span>
                             <input
                                 type="text"
+                                value={registerFormState.phase[1].natural.nombre}
                                 onChange={ e => {
                                 setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -337,6 +342,7 @@ const Fase1 = () => {
                             </span>
                             <input
                                 type="text"
+                                value={registerFormState.phase[1].natural.apellido}
                                 onChange={ e => {
                                 setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -354,6 +360,7 @@ const Fase1 = () => {
                             </span>
                             <input
                                 type="text"
+                                value={registerFormState.phase[1].natural.identificacion}
                                 onChange={ e => {
                                 setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -371,6 +378,7 @@ const Fase1 = () => {
                             </span>
                             <input
                                 type="text"
+                                value={registerFormState.phase[1].natural.correo}
                                 onChange={ e => {
                                 setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -388,6 +396,7 @@ const Fase1 = () => {
                             </span>
                             <input
                                 type="text"
+                                value={registerFormState.phase[1].natural.pais}
                                 onChange={ e => {
                                 setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -458,6 +467,7 @@ const Fase1 = () => {
                                     <input
                                         id="telefono_codigo"
                                         type="text"
+                                        value={registerFormState.phase[1].telefono.codigo}
                                         onChange={ e => {
                                         setRegisterFormState( prev => {
                                                 const newState = {... prev};
@@ -470,6 +480,7 @@ const Fase1 = () => {
                                     <input
                                         id="telefono_numero"
                                         type="text"
+                                        value={registerFormState.phase[1].telefono.numero}
                                         onChange={ e => {
                                         setRegisterFormState( prev => {
                                                 const newState = {... prev};
@@ -484,6 +495,7 @@ const Fase1 = () => {
                                         <input
                                             id="telefono_ext"
                                             type="text"
+                                            value={registerFormState.phase[1].telefono.ext}
                                             onChange={ e => {
                                             setRegisterFormState( prev => {
                                                     const newState = {... prev};
@@ -515,6 +527,7 @@ const Fase1 = () => {
                                 </span>
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[1].empresa.nombre_empresa}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -532,6 +545,7 @@ const Fase1 = () => {
                                 </span>
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[1].empresa.razon_rif}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -549,6 +563,7 @@ const Fase1 = () => {
                                 </span>
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[1].empresa.pais}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -566,6 +581,7 @@ const Fase1 = () => {
                                 </span>
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[1].empresa.ciudad}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -609,6 +625,7 @@ const Fase1 = () => {
                                 </span>
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[1].empresa.nombre_representante}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -626,6 +643,7 @@ const Fase1 = () => {
                                 </span>
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[1].empresa.correo}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -695,6 +713,7 @@ const Fase1 = () => {
                                         <input
                                             id="telefono_codigo"
                                             type="text"
+                                            value={registerFormState.phase[1].telefono.codigo}
                                             onChange={ e => {
                                             setRegisterFormState( prev => {
                                                     const newState = {... prev};
@@ -707,6 +726,7 @@ const Fase1 = () => {
                                         <input
                                             id="telefono_numero"
                                             type="text"
+                                            value={registerFormState.phase[1].telefono.numero}
                                             onChange={ e => {
                                             setRegisterFormState( prev => {
                                                     const newState = {... prev};
@@ -721,6 +741,7 @@ const Fase1 = () => {
                                             <input
                                                 id="telefono_ext"
                                                 type="text"
+                                                value={registerFormState.phase[1].telefono.ext}
                                                 onChange={ e => {
                                                 setRegisterFormState( prev => {
                                                         const newState = {... prev};
@@ -807,6 +828,7 @@ const Fase3 = () => {
                     </span>
                     <input
                         type="text"
+                        value={registerFormState.phase[3].correo}
                         onChange={ e => {
                         setRegisterFormState( prev => {
                                 const newState = {... prev};
@@ -1008,6 +1030,7 @@ const Fase4 = () => {
                         </label>
                         <input
                             type="text"
+                            value={registerFormState.phase[4].correo}
                             style={{visibility: registerFormState.phase[4].usar_correo? "visible":"hidden"}}
                             onChange={ e => {
                                 setRegisterFormState( prev => {
@@ -1092,6 +1115,7 @@ const Fase4 = () => {
                         <input
                             style={{visibility: registerFormState.phase[4].usar_sms? "visible":"hidden"}}
                             type="text"
+                            value={registerFormState.phase[4].sms}
                             onChange={ e => {
                                 setRegisterFormState( prev => {
                                     const newState = {... prev};
@@ -1122,6 +1146,7 @@ const Fase4 = () => {
                         <input
                             style={{visibility: registerFormState.phase[4].usar_otros? "visible":"hidden"}}
                             type="text"
+                            value={registerFormState.phase[4].otros}
                             onChange={ e => {
                                 setRegisterFormState( prev => {
                                     const newState = {... prev};
@@ -1151,6 +1176,7 @@ const Fase4 = () => {
                         </label>
                         <input
                             type="text"
+                            value={registerFormState.phase[4].facebook_spec}
                             style={{visibility: registerFormState.phase[4].usar_facebook? "visible":"hidden"}}
                             onChange={ e => {
                                 setRegisterFormState( prev => {
@@ -1200,14 +1226,36 @@ const Fase5 = () => {
                             <div className="etiqueta">
                                 {t('registrar.fases.5.banco_origen')}
                             </div>
-                            <input type="text"/>
+                            <input
+                                type="text"
+                                value={registerFormState.phase[5].banco_origen}
+                                onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[5] = {... prev.phase[5]};
+                                        newState.phase[5].banco_origen = e.target.value;
+                                        return newState;
+                                    } );   
+                                }}
+                            />
                         </label>
 
                         <label className="field">
                             <div className="etiqueta">
                                 {t('registrar.fases.5.pais')}
                             </div>
-                            <input type="text"/>
+                            <input
+                                type="text"
+                                value={registerFormState.phase[5].pais}
+                                onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[5] = {... prev.phase[5]};
+                                        newState.phase[5].pais = e.target.value;
+                                        return newState;
+                                    } );   
+                                }}
+                            />
                         </label>
                     </div>
 
@@ -1216,7 +1264,18 @@ const Fase5 = () => {
                             <div className="etiqueta">
                                 {t('registrar.fases.5.banco_destino')}
                             </div>
-                            <input type="text"/>
+                            <input
+                                type="text"
+                                value={registerFormState.phase[5].banco_destino}
+                                onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[5] = {... prev.phase[5]};
+                                        newState.phase[5].banco_destino = e.target.value;
+                                        return newState;
+                                    } );   
+                                }}
+                            />
                         </label>
 
                         {/* <label className="field">
