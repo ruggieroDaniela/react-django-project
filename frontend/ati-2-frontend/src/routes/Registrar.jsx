@@ -3,7 +3,6 @@ import { createContext, useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 
 // import AuthContext from "../components/context/AuthContext";
@@ -48,7 +47,7 @@ export const Registrar = () => {
                 cancelEvent={goHome}
                 submitEvent={registrarUsuario}
                 FormContextProvider={RegisterFormContextProvider}
-                submitButton={botonRegistrar}
+                SubmitButton={botonRegistrar}
             />
 
         </div>
