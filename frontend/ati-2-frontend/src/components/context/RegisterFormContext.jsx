@@ -67,7 +67,7 @@ function RegisterFormContextProvider({children}){
                 usar_otros: false,
                 otros: "",
                 usar_facebook: false,
-                facebook: ""
+                facebook_spec: ""
             },{
                 banco_origen: "",
                 pais: "",

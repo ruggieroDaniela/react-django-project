@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useTranslation } from 'react-i18next';
 
 import "../styles/Multiform.scss"
@@ -14,6 +14,8 @@ export const Multiform = (props) => {
 
     const RenderStage = props.stages[currentStage];
     const ContextProvider = props.FormContextProvider;
+
+    const BotonRegistrar = props.submitButton;
 
     return (
         <div className="multiform">
@@ -63,28 +65,31 @@ export const Multiform = (props) => {
                     {t('multiform.continuar')} →
                 </button>
             </div>
-            <form>
-                <ContextProvider>
+            <ContextProvider>
+                <form>
                     <RenderStage/>
-                </ContextProvider>
-            </form>
-            <div id="botones">
-                <button
-                    id="boton_cancelar"
-                    onClick={ props.cancelEvent }
-                >
-                    {t('multiform.cancelar')}
-                </button>
-                <button
-                    id="boton_registrar"
-                    onClick={ props.submitEvent }
-                    style={{
-                        display: currentStage == props.stages.length-1? "block":"none"
-                    }}
-                >
-                    {t('multiform.registrar')}
-                </button>
-            </div>
+                </form>
+                <div id="botones">
+                    <button
+                        id="boton_cancelar"
+                        onClick={ props.cancelEvent }
+                        >
+                        {t('multiform.cancelar')}
+                    </button>
+                    {/* <button
+                        id="boton_registrar"
+                        
+                        onClick={ () => props.submitEvent() }
+
+                        style={{
+                            display: currentStage == props.stages.length-1? "block":"none"
+                        }}
+                        >
+                        {t('multiform.registrar')}
+                    </button> */}
+                    < BotonRegistrar />
+                </div>
+            </ContextProvider>
 
         </div>
 
