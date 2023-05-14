@@ -187,9 +187,31 @@ class RequestService(Services):
         ('MAS', 'Niñero'), 
         ('IDC', 'Me es indiferente su sexo')
     )
-
+    
+    CHILDREN_CHOICES = (
+        ('NO', 'Sin hijos'), 
+        ('SI', 'Con hijos'), 
+        ('IDC', 'Me es indiferente si tiene hijos o no')
+    )
+    
     # 1 - Basic data
     gender = models.CharField(blank=False, max_length=3, choices=GENDER_CHOICES)
     age_required_from = models.PositiveIntegerField()
     age_required_to = models.PositiveIntegerField()
+    children = models.CharField(blank=False, max_length=3, choices=CHILDREN_CHOICES)
 
+    # 2 - Place of Origin 
+
+    # 3 - About the person(people) taken care of (tco)
+    number_tco = models.PositiveIntegerField(blank=False)
+    age_tco = models.PositiveIntegerField(blank=False)
+    gender_tco = models.TextField(blank=False)
+    disabilities_tco = models.BooleanField(blank=False)
+    disabilities_tco_decrip = models.TextField(blank=True)
+
+    # 4 - Availability to travel 
+    # 5 - Activities 
+    # 6 - Working Conditions
+    # 7 - Availability to start 
+    # 8 - Documents
+    # 12 - Billing Information

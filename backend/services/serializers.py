@@ -62,8 +62,11 @@ class RequestServiceSerializer(ServicesSerializer):
         if data['service'] == 'CUI' and not ( data['age_required_from'] >= 13 ):
             raise serializers.ValidationError("Edad no permitida, debe ser mayor de 13 años")
 
+        if data['disabilities_tco'] == True and not data.get('disabilities_tco_decrip'):
+            raise serializers.ValidationError("Por favor, indique las enfermedades que presentan")
+
         return data
     
     class Meta: 
         model = RequestService
-        fields = '__all__'
+        fields = ['id', 'service', 'gender', 'age_required_from', 'age_required_to', 'children', 'education_level', 'country', 'state', 'city', 'zone', 'number_tco', 'age_tco', 'gender_tco', 'disabilities_tco', 'disabilities_tco_decrip', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'have_documentation', 'documents', 'documents_other',  'publication_time', 'publication_plan', 'billing_country', 'billing_bank' ]
