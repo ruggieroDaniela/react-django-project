@@ -1,9 +1,15 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
-# Create your models here.
-
+# Models
 class Services(models.Model):
     # Choices
+    SERVICE_CHOICES = (
+        ('NIN', 'Niñero(a)'), 
+        ('CUI', 'Cuidador(a) ocupacional'), 
+        ('ENF', 'Enfermero(a)')
+    )
+
     EDUCATION_LEVEL_CHOICES = (
         ('PRI', 'Primaria'),
         ('TEC', 'Técnico Univeristario'), 
@@ -82,6 +88,7 @@ class Services(models.Model):
 
     # Fields 
     # Basic data
+    service = models.CharField(max_length=3, choices=SERVICE_CHOICES)
     education_level = models.CharField(blank=False, max_length=3, choices=EDUCATION_LEVEL_CHOICES)
 
     # Place of Origin 
@@ -106,7 +113,7 @@ class Services(models.Model):
     
     # Salary
     payment = models.CharField(blank=False, max_length=8, choices=PAYMENT_CHOICES)
-    payment_amount = models.DecimalField(blank=True, max_digits=8, decimal_places=2)
+    payment_amount = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     currency = models.CharField(blank=False, max_length=4, choices=CURRENCY_CHOICES)
     currency_other = models.TextField(blank=True)
     salary_offered = models.CharField(blank=False, max_length=9, choices=SALARY_OFFERED_CHOICES)
@@ -116,7 +123,7 @@ class Services(models.Model):
 
     # Availability to start 
     availability = models.CharField(blank=False, max_length=8, choices=AVAILABILITY_CHOICES)
-    availability_date = models.DateField(blank=True)
+    availability_date = models.DateField(null=True, blank=True)
 
     # Documents 
     have_documentation = models.BooleanField(blank=False)
@@ -132,7 +139,7 @@ class Services(models.Model):
     class Meta:
         abstract = True
 
-# A - Ofrecer mis servicios como personal doméstico 
+# Option A - "Ofrecer mis servicios como personal doméstico"
 class ProvideService(Services):
     ORIGIN_CHOICES = (
         ('NO', 'Me es indiferente'),
@@ -172,6 +179,17 @@ class ProvideService(Services):
     # 14 - Billing information
 
 
+# Option B - "Solicitar personal doméstico"
+class RequestService(Services):
+    # Choices
+    GENDER_CHOICES = (
+        ('FEM', 'Niñera'), 
+        ('MAS', 'Niñero'), 
+        ('IDC', 'Me es indiferente su sexo')
+    )
 
-# B - Solicitar personal doméstico 
-#class Request_Service():
+    # 1 - Basic data
+    gender = models.CharField(blank=False, max_length=3, choices=GENDER_CHOICES)
+    age_required_from = models.PositiveIntegerField()
+    age_required_to = models.PositiveIntegerField()
+

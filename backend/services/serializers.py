@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Services, ProvideService
+from .models import Services, ProvideService, RequestService
 
 
 class ServicesSerializer(serializers.ModelSerializer):
@@ -36,18 +36,34 @@ class ServicesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Services
-        fields = "__all__"
+        fields = '__all__' 
 
+# Option A - 'Ofrecer mis servicios como personal doméstico'
 class ProvideServiceSerializer(ServicesSerializer):
     def validate(self, data):
         data = super().validate(data)
         
-        # validaciones adicionales para el serializer de "Provide"
         if data['origin'] == 'SI' and not ( data.get('origin_continent') and data.get('origin_country') and data.get('origin_state') and data.get('origin_city') ):
             raise serializers.ValidationError("Por favor, especifique la procedencia del cliente")
         return data
     
     class Meta:
         model = ProvideService
-        fields = ['id', 'age', 'have_children', 'education_level', 'country', 'state', 'city', 'zone', 'description', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'origin', 'origin_continent', 'origin_country', 'origin_state', 'origin_city', 'client_type', 'have_documentation', 'documents', 'documents_other', 'publication_time', 'publication_plan', 'billing_country', 'billing_bank']
+        fields = ['service', 'age', 'have_children', 'education_level', 'country', 'state', 'city', 'zone', 'description', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'origin', 'origin_continent', 'origin_country', 'origin_state', 'origin_city', 'client_type', 'have_documentation', 'documents', 'documents_other', 'publication_time', 'publication_plan', 'billing_country', 'billing_bank']
 
+# Option B - 'Solicitar personal doméstico' 
+class RequestServiceSerializer(ServicesSerializer):
+    def validate(self, data):
+        data =  super().validate(data)
+
+        if data['service'] == 'NIN' and not ( data['age_required_from'] >= 0 and data['age_required_to'] <=12 ):
+            raise serializers.ValidationError("Edad no permitida, debe ser entre 0 y 12 años")
+
+        if data['service'] == 'CUI' and not ( data['age_required_from'] >= 13 ):
+            raise serializers.ValidationError("Edad no permitida, debe ser mayor de 13 años")
+
+        return data
+    
+    class Meta: 
+        model = RequestService
+        fields = '__all__'

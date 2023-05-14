@@ -67,10 +67,11 @@ content-type: application/json
 
 
 ###
-POST http://127.0.0.1:8000/api-services/services/post_ad_provide/
+POST http://127.0.0.1:8000/api-services/provideService/post_ad/
 content-type: application/json
 
 {
+    "service": "CUI", 
     "age": 26,
     "have_children": false,
     "education_level": "PRI",
@@ -86,8 +87,8 @@ content-type: application/json
     "workday_other": "",
     "schedule": "LUN",
     "schedule_other": "",
-    "payment": "MONTO",
-    "payment_amount": "30.00",
+    "payment": "CONVENIR",
+    "payment_amount": null,
     "currency": "USD",
     "currency_other": "",
     "salary_offered": "HORA",
@@ -108,4 +109,43 @@ content-type: application/json
     "publication_plan": "1",
     "billing_country": "Venezuela",
     "billing_bank": "Banesco"
+}
+
+###
+POST http://127.0.0.1:8000/api-services/requestService/post_ad/
+content-type: application/json
+
+{
+    "service": "CUI",
+    "education_level": "PRI",
+    "country": "SPain",
+    "state": "ggg",
+    "city": "ggg",
+    "zone": "ggg",
+    "travel": false,
+    "travel_decription": "",
+    "activities": "gggggg",
+    "workday": "SEMANAL",
+    "workday_other": "",
+    "schedule": "LUN",
+    "schedule_other": "",
+    "payment": "CONVENIR",
+    "payment_amount": null,
+    "currency": "USD",
+    "currency_other": "",
+    "salary_offered": "HORA",
+    "benefits": false,
+    "benefits_description": "",
+    "availability": "CONVENIR",
+    "availability_date": null,
+    "have_documentation": false,
+    "documents": "",
+    "documents_other": "",
+    "publication_time": "1",
+    "publication_plan": "1",
+    "billing_country": "dfgdfg",
+    "billing_bank": "dfgdfg",
+    "gender": "FEM",
+    "age_required_from": 13,
+    "age_required_to": 16
 }
