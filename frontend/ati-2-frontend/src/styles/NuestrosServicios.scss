@@ -1,7 +1,57 @@
+@import 'colors';
+
 #nuestros-servicios{
     width: 100%;
+    padding: 5vw;
+    padding-top: 1rem;
 
-    padding: 2rem;
+    .info{
+        .note-title{
+            color: $azul-oscuro;
+            font-weight: bold;
+        }
+        ol{
+            margin-top: 0;
+            list-style: none; /* Remove default numbering style */
+            counter-reset: my-counter; /* Reset the counter */
+            li:before {
+                content: counter(my-counter) "- "; /* Add counter value and hyphen before each list item */
+                counter-increment: my-counter; /* Increment the counter */
+            }
+        }
+    }
+
+    #opciones{
+        width: 100%;
+        .label{
+            font-weight: bold;
+            margin-top: 0.5rem;
+            .required{
+                color: red;
+            }
+        }
+        #botones{
+            width: 90vw;
+            display: flex;
+            justify-content: space-around;
+            .button_dropdown{
+                // display: flex;
+                button{
+                    width: 35vw;
+                    height: 3rem;
+                }
+            }
+            .button_dropdown_content{
+                display: flex;
+                justify-content: space-around;
+                button{
+                    margin-top: 0.5rem;
+                    background-color: $rosa;
+                    width: 15vw;
+                }
+            }
+        }
+    }
 
     // background-color: red;
 }

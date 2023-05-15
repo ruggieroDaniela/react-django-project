@@ -12,7 +12,7 @@ export const NuestrosServicios = () => {
 
     return <>
         <div id="nuestros-servicios">
-            <div id="info-solicitantes">
+            <div className="info" id="info-solicitantes">
                 <div className="note-title">
                     {t('nuestros_servicios.notas.0.titulo')}
                 </div>
@@ -25,7 +25,8 @@ export const NuestrosServicios = () => {
                     </li>
                 </ol>
             </div>
-            <div id="info-personal">
+
+            <div className="info" id="info-personal">
                 <div className="note-title">
                     {t('nuestros_servicios.notas.1.titulo')}
                 </div>
@@ -38,6 +39,7 @@ export const NuestrosServicios = () => {
                     </li>
                 </ol>
             </div>
+            
             <div id="opciones">
                 <div className="label">
                     {t('nuestros_servicios.seleccionar_servicio')}
