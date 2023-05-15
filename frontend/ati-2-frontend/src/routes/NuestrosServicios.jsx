@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../styles/NuestrosServicios.scss"
 
@@ -9,6 +9,9 @@ import { useTranslation } from 'react-i18next';
 export const NuestrosServicios = () => {
 
     const { t } = useTranslation();
+
+    const [clickPostAd, setClickPostAd] = useState(false);
+    const [clickFind, setClickFind] = useState(false);
 
     return <>
         <div id="nuestros-servicios">
@@ -39,40 +42,46 @@ export const NuestrosServicios = () => {
                     </li>
                 </ol>
             </div>
-            
+
             <div id="opciones">
                 <div className="label">
                     {t('nuestros_servicios.seleccionar_servicio')}
                 </div>
                 <div id="botones">
                     <div className="button_dropdown">
-                        <button>
+                        <button onClick={() => { setClickPostAd( (prev) => !prev ) }}>
                             {t('nuestros_servicios.publicar_anuncio')}
                         </button>
-                        <div className="label">
+                        <div
+                            className="label"
+                            style={{visibility: clickPostAd? "visible":"hidden"}}
+                        >
                             <span className="required">*</span> {t('nuestros_servicios.seleccionar_opcion')}
                             <div className="button_dropdown_content">
                                 <button>
-                                    {t('nuestros_servicios.opciones.0')}
+                                    A- {t('nuestros_servicios.opciones.0')}
                                 </button>
                                 <button>
-                                    {t('nuestros_servicios.opciones.1')}
+                                    B- {t('nuestros_servicios.opciones.1')}
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div className="button_dropdown">
-                        <button>
+                        <button onClick={() => { setClickFind( (prev) => !prev ) }}>
                             {t('nuestros_servicios.buscar_personas')}
                         </button>
-                        <div className="label">
+                        <div
+                            className="label"
+                            style={{visibility: clickFind? "visible":"hidden"}}
+                        >
                             <span className="required">*</span> {t('nuestros_servicios.seleccionar_opcion')}
                             <div className="button_dropdown_content">
                                 <button>
-                                    {t('nuestros_servicios.opciones.2')}
+                                    C- {t('nuestros_servicios.opciones.2')}
                                 </button>
                                 <button>
-                                    {t('nuestros_servicios.opciones.3')}
+                                    D- {t('nuestros_servicios.opciones.3')}
                                 </button>
                             </div>
                         </div>
