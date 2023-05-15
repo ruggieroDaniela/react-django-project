@@ -1,5 +1,10 @@
 import React from "react";
+
+import "../styles/NuestrosServicios.scss"
+
 import { useTranslation } from 'react-i18next';
+
+
 
 export const NuestrosServicios = () => {
 
