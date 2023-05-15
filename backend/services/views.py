@@ -12,8 +12,8 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
     queryset = ProvideService.objects.all()
     serializer_class = ProvideServiceSerializer
 
-#    authentication_classes = (TokenAuthentication,)
-#    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     @action(detail=False, methods=['post'])
     def post_ad(self, request):
@@ -36,8 +36,8 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
     queryset = RequestService.objects.all()
     serializer_class = RequestServiceSerializer    
 
-    #    authentication_classes = (TokenAuthentication,)
-    #    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     @action(detail=False, methods=['post'])
     def post_ad(self, request):

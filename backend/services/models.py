@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from users.models import User
 
 # Models
 class Services(models.Model):
@@ -88,6 +89,7 @@ class Services(models.Model):
 
     # Fields 
     # Basic data
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     service = models.CharField(max_length=3, choices=SERVICE_CHOICES)
     education_level = models.CharField(blank=False, max_length=3, choices=EDUCATION_LEVEL_CHOICES)
 
