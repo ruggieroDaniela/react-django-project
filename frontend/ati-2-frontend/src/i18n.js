@@ -7,12 +7,14 @@ import registrar_en from "./locales/en/Registrar.json";
 import multiform_en from "./locales/en/Multiform.json";
 import general_en from "./locales/en/General.json";
 import login_en from "./locales/en/IniciarSesion.json"
+import servicios_en from "./locales/en/NuestrosServicios.json"
 
 import navbar_es from './locales/es/Navbar.json';
 import registrar_es from "./locales/es/Registrar.json";
 import multiform_es from "./locales/es/Multiform.json";
 import general_es from "./locales/es/General.json";
 import login_es from "./locales/es/IniciarSesion.json"
+import servicios_es from "./locales/es/NuestrosServicios.json"
 
 const en = Object.assign(
   {},
@@ -20,7 +22,8 @@ const en = Object.assign(
   registrar_en,
   multiform_en,
   general_en,
-  login_en
+  login_en,
+  servicios_en
 );
 
 const es = Object.assign(
@@ -29,7 +32,8 @@ const es = Object.assign(
   registrar_es,
   multiform_es,
   general_es,
-  login_es
+  login_es,
+  servicios_es
 );
 
 i18n

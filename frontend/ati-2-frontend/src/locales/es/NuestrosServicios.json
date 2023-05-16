@@ -1,0 +1,30 @@
+{
+    "nuestros_servicios": {
+        "notas":[
+            {
+                "titulo": "For people who request domestic staff",
+                "items": [
+                    "Post domestic staff search ads",
+                    "The search for domestic staff according to your preferences"
+                ]
+            },
+            {
+                "titulo": "For domestic staff",
+                "items": [
+                    "Post ads where various people offer domestic services",
+                    "The search for clients according to their preferences"
+                ]
+            }
+        ],
+        "seleccionar_servicio": "Select the service of your preference",
+        "publicar_anuncio": "Post Ad",
+        "seleccionar_opcion": "Select an Option",
+        "buscar_personas": "Find clients or domestic staff",
+        "opciones": [
+            "Offer my services as domestic staff",
+            "Request domestic staff",
+            "Find domestic staff",
+            "Find clients"
+        ] 
+    }
+}
