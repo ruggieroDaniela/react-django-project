@@ -9,9 +9,41 @@ export const IniciarSesion = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        //console.log(email, password)
+    
+        const data = {
+            username: email,
+            password: password
+        };
+
+        const url = 'http://127.0.0.1:8000/token-auth/'
+        try {
+            
+            const response = await fetch( url,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                    // body: JSON.stringify(postBody),
+                }
+            );
+    
+            if (response.ok) {
+                // Request was successful
+                console.log('POST request successful');
+                console.log(response);
+            } else {
+                // Request failed
+                console.log('POST request failed');
+            }
+    
+        } catch (error) {
+            console.log("error registrando");
+            console.log(error);
+        }
+
     }
 
 
