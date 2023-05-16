@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext} from 'react'
 import "../styles/IniciarSesion.scss"
 import { useTranslation } from 'react-i18next';
+
+import AuthContext from '../context/AuthContext';
 
 export const IniciarSesion = () => {
     
     const { t, i18n } = useTranslation();
+    const {authState, setAuthState} = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -33,10 +36,23 @@ export const IniciarSesion = () => {
             if (response.ok) {
                 // Request was successful
                 console.log('POST request successful');
-                console.log(response);
+                const responseData = await response.json();
+
+                setAuthState(
+                    () => {
+                        return {
+                            token: responseData.token,
+                            id: responseData.id,
+                            logged_in: true
+                        }
+                    }
+                );
+
+                console.log(responseData);
             } else {
                 // Request failed
                 console.log('POST request failed');
+                console.log(response.json());
             }
     
         } catch (error) {
