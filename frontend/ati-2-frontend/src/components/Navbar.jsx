@@ -51,7 +51,10 @@ const Navbar = () => {
                                 Datos de usuario
                             </a>
                         </li>
-                        <li className="item">
+                        <li 
+                            className="item"
+                            onClick={ () => { setAuthState( () => { return {logged_in:false} } ) }}
+                        >
                             <a className="link" href="#">
                                 Cerrar sesión
                             </a>
