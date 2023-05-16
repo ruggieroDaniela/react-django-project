@@ -4,8 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 // Contexts
-import AuthContext from './context/AuthContext';
-import { AuthContextProvider } from './context/AuthContext';
+import { AppContextProvider } from './context/AppContext';
 
 // Components
 import User from './components/user';
@@ -49,7 +48,7 @@ function App() {
 
   return (
     <>
-      <AuthContextProvider>
+      <AppContextProvider>
         <Router>
           <Navbar />
           <Routes>
@@ -63,7 +62,7 @@ function App() {
           </Routes>
           <Footer/>
         </Router>
-      </AuthContextProvider>
+      </AppContextProvider>
       
       {/* <h1>Vite + React</h1>
       <div className="card">
