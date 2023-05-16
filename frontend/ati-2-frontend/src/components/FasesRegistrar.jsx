@@ -1539,6 +1539,23 @@ const botonRegistrar = () => {
     postBody.bank_origin = userData.phase[5].banco_origen;
     postBody.bank_country = userData.phase[5].pais;
 
+
+    const data = {
+        email: "anotherone@gmail.com",
+        password: "12345",
+        found_app_by: "Twitter",
+        type_user: "natural",
+        country: "Alemania",
+        first_name: "Admin",
+        last_name: "Ati-2",
+        dni: "V-126125",
+        contact_email: "admin@gmail.com",
+        language: "es",
+        want_inform: false,
+        bank_origin: "Banesco",
+        bank_country: "Venezuela"
+    };
+
     return(
         <button
             id="boton_registrar"
@@ -1546,7 +1563,7 @@ const botonRegistrar = () => {
             onClick={
                 async () => {
 
-                    const url = 'http://127.0.0.1:8000/users'
+                    const url = 'http://127.0.0.1:8000/users/'
                     try {
                         
                         const response = await fetch( url,{
@@ -1554,7 +1571,8 @@ const botonRegistrar = () => {
                                 headers: {
                                     'Content-Type': 'application/json',
                                 },
-                                body: JSON.stringify(postBody),
+                                body: JSON.stringify(data),
+                                // body: JSON.stringify(postBody),
                             }
                         );
                 
