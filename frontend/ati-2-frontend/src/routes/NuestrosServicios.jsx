@@ -60,21 +60,9 @@ export const NuestrosServicios = () => {
                         >
                             <span className="required">*</span> {t('nuestros_servicios.seleccionar_opcion')}
                             <div className="button_dropdown_content">
-
-                                <RequestDomesticFormContextProvider>
-                                    <button
-                                        onClick={
-                                            () => {
-                                                const [requestDomesticFormState, setRequestDomesticFormState] = useContext(RequestDomesticFormContext);
-
-                                                console.log( requestDomesticFormState );
-                                            }
-                                        }
-                                    >
-                                        A- {t('nuestros_servicios.opciones.0')}
-                                    </button>
-                                </RequestDomesticFormContextProvider>
-
+                                <button>
+                                    A- {t('nuestros_servicios.opciones.0')}
+                                </button>
                                 <button>
                                     B- {t('nuestros_servicios.opciones.1')}
                                 </button>
