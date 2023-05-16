@@ -27,7 +27,7 @@ export const IniciarSesion = () => {
         const url = 'http://127.0.0.1:8000/token-auth/'
         try {
             
-            const response = await fetch( url,{
+            let response = await fetch( url,{
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -40,20 +40,40 @@ export const IniciarSesion = () => {
             if (response.ok) {
                 // Request was successful
                 console.log('POST request successful');
-                const responseData = await response.json();
+                const responseDataAuth = await response.json();
+                console.log(responseDataAuth);
 
-                setAuthState(
-                    () => {
-                        return {
-                            token: responseData.token,
-                            id: responseData.id,
-                            logged_in: true
+                response = await fetch( `http://127.0.0.1:8000/users/${responseDataAuth.user_id}?Authorization=${responseDataAuth.token}`,{
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
                         }
+                        // body: JSON.stringify({Authorization: responseDataAuth.token})
                     }
                 );
 
-                console.log(responseData);
-                navigate('/');
+                if(response.ok){
+                    console.log(response);
+                    const responseDataUser = await response.json();
+                    console.log(responseDataUser);
+
+                    setAuthState(
+                        () => {
+                            return {
+                                token: responseDataAuth.token,
+                                id: responseDataAuth.user_id,
+                                logged_in: true
+                            }
+                        }
+                    );
+    
+                    console.log(responseDataAuth);
+                    navigate('/');
+                }else{
+                    console.log("GET request failed: error fetching user data");
+                    console.log(response);
+                }
+
             } else {
                 // Request failed
                 console.log('POST request failed');
