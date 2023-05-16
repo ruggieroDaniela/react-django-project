@@ -12,16 +12,16 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
     queryset = ProvideService.objects.all()
     serializer_class = ProvideServiceSerializer
 
-#    authentication_classes = (TokenAuthentication,)
-#    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     @action(detail=False, methods=['post'])
     def post_ad(self, request):
         serializer = ProvideServiceSerializer(data=request.data)
 
         if serializer.is_valid():
-            serializer.save()
-            return Response({'message': 'OK', 'data': request.data})
+            post = serializer.save()
+            return Response({'message': 'OK', 'post_code': str(post.code)})
         else:
             return Response(serializer.errors, status=400)
 
@@ -36,16 +36,16 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
     queryset = RequestService.objects.all()
     serializer_class = RequestServiceSerializer    
 
-    #    authentication_classes = (TokenAuthentication,)
-    #    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     @action(detail=False, methods=['post'])
     def post_ad(self, request):
         serializer = RequestServiceSerializer(data=request.data)
 
         if serializer.is_valid():
-            serializer.save()
-            return Response({'message': 'OK', 'data': request.data})
+            post = serializer.save()
+            return Response({'message': 'OK', 'post_code': str(post.code)})
         else:
             return Response(serializer.errors, status=400)
     

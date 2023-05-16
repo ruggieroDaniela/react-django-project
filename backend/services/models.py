@@ -1,9 +1,16 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from users.models import User
+import uuid
 
 # Models
 class Services(models.Model):
     # Choices
+    STATUS_CHOICES = (
+        ('ACT', 'ACTIVADA'), 
+        ('PEN', 'PENDIENTE POR ACTIVAR')
+    )
+
     SERVICE_CHOICES = (
         ('NIN', 'Niñero(a)'), 
         ('CUI', 'Cuidador(a) ocupacional'), 
@@ -87,6 +94,10 @@ class Services(models.Model):
     )
 
     # Fields 
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='PEN')
+    code = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+
     # Basic data
     service = models.CharField(max_length=3, choices=SERVICE_CHOICES)
     education_level = models.CharField(blank=False, max_length=3, choices=EDUCATION_LEVEL_CHOICES)

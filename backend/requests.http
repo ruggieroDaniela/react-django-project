@@ -65,21 +65,32 @@ content-type: application/json
     "email": "admin-company2@gmail.com"
 }
 
-
 ###
-POST http://127.0.0.1:8000/api-services/provideService/post_ad/
+
+POST http://localhost:8000/token-auth/
 content-type: application/json
 
 {
+    "username": "admin-company@gmail.com",
+    "password": "12345"
+}
+
+###
+POST http://127.0.0.1:8000/api-services/provideService/post_ad/
+Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
+content-type: application/json
+
+{
+    "user": 1, 
     "service": "CUI", 
-    "age": 26,
+    "age": 40,
     "have_children": false,
     "education_level": "PRI",
-    "country": "Colombia",
+    "country": "Peru",
     "state": "Distrito Capital",
     "city": "Caracas",
     "zone": "",
-    "description": "Descripcion del perfil laboral",
+    "description": "Otro perfil",
     "travel": false,
     "travel_decription": "",
     "activities": "Cocinar",
@@ -113,16 +124,18 @@ content-type: application/json
 
 ###
 POST http://127.0.0.1:8000/api-services/requestService/post_ad/
+Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
 content-type: application/json
 
 {
-    "service": "NIN",
+    "user": 2, 
+    "service": "CUI",
     "gender": "IDC",
-    "age_required_from": 0,
-    "age_required_to": 10,
+    "age_required_from": 13,
+    "age_required_to": 13,
     "children": "IDC",
     "education_level": "PRI",
-    "country": "a",
+    "country": "Prueba2",
     "state": "sdfsdf",
     "city": "sdfsdf",
     "zone": "",
