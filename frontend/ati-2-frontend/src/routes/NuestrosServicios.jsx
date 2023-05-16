@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-
-import "../styles/NuestrosServicios.scss"
+import React, { useState, useContext } from "react";
 
 import { useTranslation } from 'react-i18next';
 
+import { RequestDomesticFormContext, RequestDomesticFormContextProvider } from "../context/RequestDomesticFormContext";
+
+import "../styles/NuestrosServicios.scss"
 
 
 export const NuestrosServicios = () => {
 
     const { t } = useTranslation();
+    // const [requestDomesticFormState, setRequestDomesticFormState] = useContext(RequestDomesticFormContext);
 
     const [clickPostAd, setClickPostAd] = useState(false);
     const [clickFind, setClickFind] = useState(false);
@@ -58,9 +60,21 @@ export const NuestrosServicios = () => {
                         >
                             <span className="required">*</span> {t('nuestros_servicios.seleccionar_opcion')}
                             <div className="button_dropdown_content">
-                                <button>
-                                    A- {t('nuestros_servicios.opciones.0')}
-                                </button>
+
+                                <RequestDomesticFormContextProvider>
+                                    <button
+                                        onClick={
+                                            () => {
+                                                const [requestDomesticFormState, setRequestDomesticFormState] = useContext(RequestDomesticFormContext);
+
+                                                console.log( requestDomesticFormState );
+                                            }
+                                        }
+                                    >
+                                        A- {t('nuestros_servicios.opciones.0')}
+                                    </button>
+                                </RequestDomesticFormContextProvider>
+
                                 <button>
                                     B- {t('nuestros_servicios.opciones.1')}
                                 </button>
