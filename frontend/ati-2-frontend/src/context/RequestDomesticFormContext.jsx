@@ -6,13 +6,14 @@ function RequestDomesticFormContextProvider({children}){
 
     const [requestDomesticFormState, setRequestDomesticFormState] = useState(
     {
-        service: "NIN",
+        user: 2, 
+        service: "CUI",
         gender: "IDC",
-        age_required_from: 0,
-        age_required_to: 10,
+        age_required_from: 13,
+        age_required_to: 13,
         children: "IDC",
         education_level: "PRI",
-        country: "a",
+        country: "Prueba2",
         state: "sdfsdf",
         city: "sdfsdf",
         zone: "",
