@@ -2,12 +2,16 @@ import React, { useState, useContext} from 'react'
 import "../styles/IniciarSesion.scss"
 import { useTranslation } from 'react-i18next';
 
+import { useNavigate } from 'react-router-dom';
+
 import AuthContext from '../context/AuthContext';
 
 export const IniciarSesion = () => {
     
     const { t, i18n } = useTranslation();
     const {authState, setAuthState} = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -49,6 +53,7 @@ export const IniciarSesion = () => {
                 );
 
                 console.log(responseData);
+                navigate('/');
             } else {
                 // Request failed
                 console.log('POST request failed');
