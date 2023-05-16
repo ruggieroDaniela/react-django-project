@@ -46,7 +46,6 @@ export const Registrar = () => {
                 stagesNames={stagesNames}
                 cancelEvent={goHome}
                 submitEvent={registrarUsuario}
-                FormContextProvider={RegisterFormContextProvider}
                 SubmitButton={botonRegistrar}
             />
 

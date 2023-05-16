@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import "../styles/Multiform.scss"
 
-export const Multiform = ({stages, FormContextProvider, SubmitButton, cancelEvent, stagesNames }) => {
+export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames }) => {
     
     const { t } = useTranslation();
 
@@ -62,7 +62,7 @@ export const Multiform = ({stages, FormContextProvider, SubmitButton, cancelEven
                     {t('multiform.continuar')} →
                 </button>
             </div>
-            <FormContextProvider>
+            
                 <form>
                     <RenderStage/>
                 </form>
@@ -91,7 +91,7 @@ export const Multiform = ({stages, FormContextProvider, SubmitButton, cancelEven
                             ""
                     }
                 </div>
-            </FormContextProvider>
+            
 
         </div>
 
