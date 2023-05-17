@@ -61,39 +61,39 @@ export const NuestrosServicios = () => {
                             <span className="required">*</span> {t('nuestros_servicios.seleccionar_opcion')}
                             <div className="button_dropdown_content">
                                 <button
-                                    onClick={
-                                        async () => {
-                                            const data = {...requestDomesticFormState};
-                                            console.log(data);
+                                    // onClick={
+                                    //     async () => {
+                                    //         const data = {...requestDomesticFormState};
+                                    //         console.log(data);
 
-                                            const url = 'http://127.0.0.1:8000/api-services/requestService/post_ad/'
-                                            try {
+                                    //         const url = 'http://127.0.0.1:8000/api-services/requestService/post_ad/'
+                                    //         try {
                                                 
-                                                const response = await fetch( url,{
-                                                        method: 'POST',
-                                                        headers: {
-                                                            'Content-Type': 'application/json',
-                                                        },
-                                                        body: JSON.stringify(data),
-                                                    }
-                                                );
+                                    //             const response = await fetch( url,{
+                                    //                     method: 'POST',
+                                    //                     headers: {
+                                    //                         'Content-Type': 'application/json',
+                                    //                     },
+                                    //                     body: JSON.stringify(data),
+                                    //                 }
+                                    //             );
                                         
-                                                if (response.ok) {
-                                                    // Request was successful
-                                                    console.log('POST request successful');
-                                                    console.log(response);
-                                                } else {
-                                                    // Request failed
-                                                    console.log('POST request failed');
-                                                }
+                                    //             if (response.ok) {
+                                    //                 // Request was successful
+                                    //                 console.log('POST request successful');
+                                    //                 console.log(response);
+                                    //             } else {
+                                    //                 // Request failed
+                                    //                 console.log('POST request failed');
+                                    //             }
                                         
-                                            } catch (error) {
-                                                console.log("error registrando");
-                                                console.log(error);
-                                            }
+                                    //         } catch (error) {
+                                    //             console.log("error registrando");
+                                    //             console.log(error);
+                                    //         }
 
-                                        }
-                                    }
+                                    //     }
+                                    // }
                                 >
                                     A- {t('nuestros_servicios.opciones.0')}
                                 </button>
