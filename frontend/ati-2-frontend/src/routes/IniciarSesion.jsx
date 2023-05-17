@@ -43,10 +43,10 @@ export const IniciarSesion = () => {
                 const responseDataAuth = await response.json();
                 console.log(responseDataAuth);
 
-                response = await fetch( `http://127.0.0.1:8000/users/${responseDataAuth.user_id}?Authorization=${responseDataAuth.token}`,{
+                response = await fetch( `http://127.0.0.1:8000/users/${responseDataAuth.user_id}`,{
                         method: 'GET',
                         headers: {
-                            'Content-Type': 'application/json',
+                            'Authorization': responseDataAuth.token,
                         }
                         // body: JSON.stringify({Authorization: responseDataAuth.token})
                     }
@@ -62,7 +62,9 @@ export const IniciarSesion = () => {
                             return {
                                 token: responseDataAuth.token,
                                 id: responseDataAuth.user_id,
-                                logged_in: true
+                                logged_in: true,
+                                email: responseDataUser.contact_email,
+                                name: responseDataUser.first_name + " " + responseDataUser.last_name
                             }
                         }
                     );

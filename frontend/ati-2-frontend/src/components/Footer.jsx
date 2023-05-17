@@ -35,9 +35,9 @@ const Footer = () => {
                 <div className="card">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="" />
                     <div className="info">
-                        John Doe
+                        {authState.name}
                         <br />
-                        user@mail.com
+                        {authState.email}
                     </div>
                 </div>
                 <div className="dropdown" onClick={() => setUserDropdownVisible((prev) => !prev) }  onMouseLeave={() => setUserDropdownVisible((prev) => false)}>
