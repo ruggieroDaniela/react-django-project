@@ -30,13 +30,7 @@ function RegisterFormContextProvider({children}){
                     apellido: "",
                     identificacion: "",
                     correo: "",
-                    pais: "",
-                    telefono:{
-                        tipo: "",
-                        codigo: "",
-                        numero: "",
-                        ext: ""
-                    }
+                    pais: ""
                 },
                 empresa:{
                     nombre_empresa: "",
@@ -45,15 +39,11 @@ function RegisterFormContextProvider({children}){
                     ciudad: "",
                     direccion: "",
                     nombre_representante: "",
-                    correo: "",
-                    telefono:{
-                        tipo: "",
-                        numero: "",
-                        ext: ""
-                    }
+                    correo: ""
                 },
                 telefono:{
                     tipo: "",
+                    codigo: "",
                     numero: "",
                     ext: ""
                 }
@@ -77,7 +67,7 @@ function RegisterFormContextProvider({children}){
                 usar_otros: false,
                 otros: "",
                 usar_facebook: false,
-                facebook: ""
+                facebook_spec: ""
             },{
                 banco_origen: "",
                 pais: "",

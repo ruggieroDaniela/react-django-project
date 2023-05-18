@@ -1,26 +1,25 @@
 import React from "react";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useTranslation } from 'react-i18next';
 
 import "../styles/Multiform.scss"
 
-export const Multiform = (props) => {
+export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames }) => {
     
     const { t } = useTranslation();
 
     const [currentStage, setCurrentStage] = useState(0);
     const [stagesDone, setStagesDone] = useState(0);
 
-    const RenderStage = props.stages[currentStage];
-    const ContextProvider = props.FormContextProvider;
+    const RenderStage = stages[currentStage];
 
     return (
         <div className="multiform">
 
             <div className="fases-grid">
                 {
-                    props.stages.map((stage, i) => {
+                    stages.map((stage, i) => {
                         return(
                             <button
                                 key={'boton_form_stage_'+i}
@@ -30,7 +29,7 @@ export const Multiform = (props) => {
                                         setCurrentStage((prev) => i);
                                 }}
                             >
-                                {(i+1)+"- "+props.stagesNames[i]}
+                                {(i+1)+"- "+stagesNames[i]}
                             </button>
                         );
                     })
@@ -48,12 +47,12 @@ export const Multiform = (props) => {
                     ← {t('multiform.atras')}
                 </button>
                 <span>
-                    {props.stagesNames[currentStage]}
+                    {stagesNames[currentStage]}
                 </span>
                 <button 
-                    className={`${currentStage === props.stages.length-1?"ghost":""}`}
+                    className={`${currentStage === stages.length-1?"ghost":""}`}
                     onClick={() => {
-                        if( currentStage+1 < props.stages.length ){
+                        if( currentStage+1 < stages.length ){
                             setCurrentStage((prev) => prev+1);
                             if( currentStage >= stagesDone )
                                 setStagesDone((prev) => prev+1);
@@ -63,28 +62,36 @@ export const Multiform = (props) => {
                     {t('multiform.continuar')} →
                 </button>
             </div>
-            <form>
-                <ContextProvider>
+            
+                <form>
                     <RenderStage/>
-                </ContextProvider>
-            </form>
-            <div id="botones">
-                <button
-                    id="boton_cancelar"
-                    onClick={ props.cancelEvent }
-                >
-                    {t('multiform.cancelar')}
-                </button>
-                <button
-                    id="boton_registrar"
-                    onClick={ props.submitEvent }
-                    style={{
-                        display: currentStage == props.stages.length-1? "block":"none"
-                    }}
-                >
-                    {t('multiform.registrar')}
-                </button>
-            </div>
+                </form>
+                <div id="botones">
+                    <button
+                        id="boton_cancelar"
+                        onClick={ cancelEvent }
+                        >
+                        {t('multiform.cancelar')}
+                    </button>
+                    {/* <button
+                        id="boton_registrar"
+                        
+                        onClick={ () => props.submitEvent() }
+
+                        style={{
+                            display: currentStage == props.stages.length-1? "block":"none"
+                        }}
+                        >
+                        {t('multiform.registrar')}
+                    </button> */}
+                    {
+                        currentStage == stages.length-1?
+                            <SubmitButton/>
+                        :
+                            ""
+                    }
+                </div>
+            
 
         </div>
 

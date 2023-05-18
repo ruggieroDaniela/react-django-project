@@ -3,14 +3,13 @@ import { createContext, useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 
 import AuthContext from "../context/AuthContext";
 import { RegisterFormContext, RegisterFormContextProvider } from "../context/RegisterFormContext";
 
 import { Multiform } from "../components/Multiform";
-import { FasesRegistrar } from "../components/FasesRegistrar";
+import { FasesRegistrar, botonRegistrar, registrarUsuario } from "../components/FasesRegistrar";
 
 import "../styles/Registrar.scss"
 
@@ -24,8 +23,6 @@ export const Registrar = () => {
     const goHome = () => {
         navigate(`/`);
     };
-
-    const register = () => {};
 
     let stagesNames = [];
     for (let i = 0; i < FasesRegistrar.length; i++) {
@@ -48,8 +45,8 @@ export const Registrar = () => {
                 stages={FasesRegistrar}
                 stagesNames={stagesNames}
                 cancelEvent={goHome}
-                submitEvent={register}
-                FormContextProvider={RegisterFormContextProvider}
+                submitEvent={registrarUsuario}
+                SubmitButton={botonRegistrar}
             />
 
         </div>
