@@ -64,10 +64,13 @@ export const IniciarSesion = () => {
                                 id: responseDataAuth.user_id,
                                 logged_in: true,
                                 email: responseDataUser.contact_email,
-                                name: responseDataUser.first_name + " " + responseDataUser.last_name
+                                name: responseDataUser.first_name + " " + responseDataUser.last_name,
+                                lang: responseDataUser.language
                             }
                         }
                     );
+
+                    i18n.changeLanguage(authState.lang);
     
                     console.log(responseDataAuth);
                     navigate('/');
