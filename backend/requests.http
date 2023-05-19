@@ -42,11 +42,11 @@ content-type: application/json
 
 ###
 GET http://127.0.0.1:8000/users/1
-Authorization: Token e871f81c8072db9c89e8e05f872827f07cdf5c3e
+Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
 
 ###
 GET http://127.0.0.1:8000/users/2
-Authorization: Token e871f81c8072db9c89e8e05f872827f07cdf5c3e
+Authorization: Token c6590074c0cd1d6a141b2e59475968ee9ea5efab
 
 ### Formato para las request a AUTH-TOKEN
 POST http://localhost:8000/token-auth/
@@ -71,7 +71,7 @@ POST http://localhost:8000/token-auth/
 content-type: application/json
 
 {
-    "username": "admin-company@gmail.com",
+    "username": "admin@gmail.com",
     "password": "12345"
 }
 
@@ -81,7 +81,7 @@ Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
 content-type: application/json
 
 {
-    "user": 1, 
+    "user": 2, 
     "service": "CUI", 
     "age": 40,
     "have_children": false,
@@ -90,7 +90,7 @@ content-type: application/json
     "state": "Distrito Capital",
     "city": "Caracas",
     "zone": "",
-    "description": "Otro perfil",
+    "description": "Otro perfil 2",
     "travel": false,
     "travel_decription": "",
     "activities": "Cocinar",
@@ -124,7 +124,7 @@ content-type: application/json
 
 ###
 POST http://127.0.0.1:8000/api-services/requestService/post_ad/
-Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
+Authorization: Token c6590074c0cd1d6a141b2e59475968ee9ea5efab
 content-type: application/json
 
 {

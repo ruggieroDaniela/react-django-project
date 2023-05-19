@@ -17,6 +17,11 @@ class Services(models.Model):
         ('ENF', 'Enfermero(a)')
     )
 
+    MODE_CHOICES = (
+        ('PROVIDE', "Ofrecer un servicio"), 
+        ('REQUEST', "Solicitar un servicio")
+    )
+
     EDUCATION_LEVEL_CHOICES = (
         ('PRI', 'Primaria'),
         ('TEC', 'Técnico Univeristario'), 
@@ -97,6 +102,8 @@ class Services(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='PEN')
     code = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    enable = models.BooleanField(default=False)
+    mode = models.CharField(max_length=7)
 
     # Basic data
     service = models.CharField(max_length=3, choices=SERVICE_CHOICES)
@@ -152,6 +159,10 @@ class Services(models.Model):
 
 # Option A - "Ofrecer mis servicios como personal doméstico"
 class ProvideService(Services):
+    def __init__(self, *args, **kargs):
+        super().__init__(*args, **kargs)
+        self.mode = "PROVIDE"
+
     ORIGIN_CHOICES = (
         ('NO', 'Me es indiferente'),
         ('SI', 'Quiero especificar la procedencia del cliente')
@@ -163,7 +174,6 @@ class ProvideService(Services):
         ('NO', 'Me es indiferente si es persona natural o empresa')
     )
 
-    # Fields
     # 1 - Basic data
     age = models.PositiveIntegerField(blank=False)
     have_children = models.BooleanField(blank=False)
@@ -192,6 +202,10 @@ class ProvideService(Services):
 
 # Option B - "Solicitar personal doméstico"
 class RequestService(Services):
+    def __init__(self, *args, **kargs):
+        super().__init__(*args, **kargs)
+        self.mode = "REQUEST"
+
     # Choices
     GENDER_CHOICES = (
         ('FEM', 'Niñera'), 
@@ -204,7 +218,7 @@ class RequestService(Services):
         ('SI', 'Con hijos'), 
         ('IDC', 'Me es indiferente si tiene hijos o no')
     )
-    
+
     # 1 - Basic data
     gender = models.CharField(blank=False, max_length=3, choices=GENDER_CHOICES)
     age_required_from = models.PositiveIntegerField()
