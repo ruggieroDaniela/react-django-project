@@ -110,6 +110,7 @@ class Services(models.Model):
     education_level = models.CharField(blank=False, max_length=3, choices=EDUCATION_LEVEL_CHOICES)
 
     # Place of Origin 
+    continent = models.TextField(blank=False)
     country = models.TextField(blank=False)
     state = models.TextField(blank=False)
     city = models.TextField(blank=False)

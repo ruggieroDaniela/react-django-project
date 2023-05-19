@@ -81,14 +81,15 @@ Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
 content-type: application/json
 
 {
-    "user": 2, 
-    "service": "CUI", 
+    "user": 1, 
+    "service": "NIN", 
     "age": 40,
     "have_children": false,
     "education_level": "PRI",
+    "continent": "Suramerica", 
     "country": "Peru",
-    "state": "Distrito Capital",
-    "city": "Caracas",
+    "state": "estado_1",
+    "city": "ciudad",
     "zone": "",
     "description": "Otro perfil 2",
     "travel": false,
@@ -135,6 +136,7 @@ content-type: application/json
     "age_required_to": 13,
     "children": "IDC",
     "education_level": "PRI",
+    "continent": "Suramerica", 
     "country": "Prueba2",
     "state": "sdfsdf",
     "city": "sdfsdf",
