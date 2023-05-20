@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 
 import { FieldDropdown } from "../components/search/FieldDropdown";
+import { FieldDropdownCheckbox } from "../components/search/FieldDropdownCheckbox";
 
 import "../styles/BuscarPersonalDomestico.scss"
 
@@ -31,7 +32,7 @@ export const BuscarPersonalDomestico = () => {
                             placeholder="placeholder 1"
                             items={["1", "2"]}
                         />
-                        <FieldDropdown
+                        <FieldDropdownCheckbox
                             title="title 1"
                             placeholder="placeholder 1"
                             items={["1", "2"]}
