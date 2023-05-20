@@ -2,6 +2,8 @@ import React from "react";
 
 import { useState } from "react";
 
+import { FieldDropdown } from "../components/search/FieldDropdown";
+
 import "../styles/BuscarPersonalDomestico.scss"
 
 export const BuscarPersonalDomestico = () => {
@@ -24,62 +26,27 @@ export const BuscarPersonalDomestico = () => {
                 {busquedaRapida?
                 
                     <div className="dropdown-content">
-                        <div className="field">
-                            <div className="field-title">
-                                t
-                            </div>
-                            <div className="field-dropdown">
-                                <div className="field-dropdown-title">
-                                    title <span>V</span> 
-                                </div>
-                                <ul className="field-dropdown-content">
-                                    <li>1</li>
-                                    <li>2</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="field">
-                            <div className="field-title">
-                                t
-                            </div>
-                            <div className="field-dropdown">
-                                <div className="field-dropdown-title">
-                                    title <span>V</span> 
-                                </div>
-                                <ul className="field-dropdown-content">
-                                    <li>1</li>
-                                    <li>2</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="field">
-                            <div className="field-title">
-                                t
-                            </div>
-                            <div className="field-dropdown">
-                                <div className="field-dropdown-title">
-                                    title <span>V</span> 
-                                </div>
-                                <ul className="field-dropdown-content">
-                                    <li>1</li>
-                                    <li>2</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="field">
-                            <div className="field-title">
-                                t
-                            </div>
-                            <div className="field-dropdown">
-                                <div className="field-dropdown-title">
-                                    title <span>V</span> 
-                                </div>
-                                <ul className="field-dropdown-content">
-                                    <li>1</li>
-                                    <li>2</li>
-                                </ul>
-                            </div>
-                        </div>
+                        <FieldDropdown
+                            title="title 1"
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+                        <FieldDropdown
+                            title="title 1"
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+                        <FieldDropdown
+                            title="title 1"
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+                        <FieldDropdown
+                            title="title 1"
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+                        
                         <div></div>
                         <button>Buscar</button>
                         <button>Cancelar</button>

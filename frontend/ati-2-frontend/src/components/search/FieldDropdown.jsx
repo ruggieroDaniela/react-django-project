@@ -2,7 +2,7 @@ import React from "react";
 
 import { useState } from "react";
 
-import "../styles/BuscarPersonalDomestico.scss"
+import "../../styles/BuscarPersonalDomestico.scss"
 
 export const FieldDropdown = ({title, placeholder, items}) => {
 
