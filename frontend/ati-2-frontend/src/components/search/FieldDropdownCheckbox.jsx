@@ -28,14 +28,14 @@ export const FieldDropdownCheckbox = ({title, placeholder, items}) => {
                     <ul className="field-dropdown-content">
                         {items.map(
                             x =>
-                                <li
-                                    className="field-dropdown-item"
-                                >
-                                    <label>
-                                        <input type="checkbox"/>
-                                        <span>{x}</span>
-                                    </label>
-                                </li>
+                                <label>
+                                    <li
+                                        className="field-dropdown-item"
+                                    >
+                                            <input type="checkbox"/>
+                                            <span>{x}</span>
+                                    </li>
+                                </label>
                         )}
                     </ul>
                 : ""}
