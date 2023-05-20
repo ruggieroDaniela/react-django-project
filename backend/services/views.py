@@ -64,8 +64,34 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
     queryset = RequestService.objects.all()
     serializer_class = RequestServiceSerializer    
 
+    # Authorization
     #authentication_classes = (TokenAuthentication,)
     #permission_classes = (IsAuthenticated,)
+
+    # Filters 
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = {
+        # Búsqueda rápida
+        'continent': ["exact"], 
+        'country': ['exact', 'in'], 
+        'state': ['exact', 'in'], 
+        'city': ['exact'], 
+    #    'client_type': ['exact'], 
+        'service': ['exact', 'in'], 
+
+        # Búsqueda personalizada 
+        'workday' : ['exact', 'in'], 
+        'schedule': ['exact', 'in'], 
+        'payment': ['exact'],        
+        'payment_amount': ['range'], 
+        'salary_offered': ['exact'], 
+        'currency': ['exact'], 
+        'currency_other': ['exact'], 
+        'benefits': ['exact'], 
+        'availability': ['exact'], 
+        'availability_date' : ['exact'],
+    }
+    ordering_fields = ['payment_amount', 'availability_date', 'created_at']
 
     @action(detail=False, methods=['post'])
     def post_ad(self, request):
