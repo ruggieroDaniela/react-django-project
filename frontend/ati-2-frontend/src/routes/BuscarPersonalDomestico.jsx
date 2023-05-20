@@ -26,7 +26,7 @@ export const BuscarPersonalDomestico = () => {
         continentes.push( t('continentes.'+index) )
     }
 
-    return <>
+    return <main>
         <div id="buscar-personal-domestico">
             <div className="dropdown">
                 <div
@@ -80,7 +80,60 @@ export const BuscarPersonalDomestico = () => {
                 
                 : ""}
             </div>
+
+            <div className="dropdown">
+                <div
+                    className="dropdown-title"
+                    onClick={ () => setBusquedaDetallada( (prev) => !prev ) }
+                >
+                    <span className="dropdown-arrow">
+                        {busquedaRapida?"▾":"▸"}
+                    </span>
+                    {t('search.busqueda_rapida')}
+                </div>
+                {busquedaDetallada?
+                
+                    <div className="dropdown-content">
+                        <FieldDropdown
+                            title={t('search.continente')}
+                            placeholder={
+                                selectedContinent>=0?
+                                    continentes[selectedContinent]:t('search.selecciona_continente')
+                            }
+                            items={continentes}
+                            setSelectedState={setSelectedContinent}
+                        />
+                        <FieldDropdownCheckbox
+                            title="title 1"
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+                        <FieldDropdownCheckbox
+                            title="title 1"
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+                        <FieldDropdownCheckbox
+                            title="title 1"
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+                        
+                        <div></div>
+                        <button>
+                            {t('search.buscar')}
+                        </button>
+                        <button
+                            onClick={() => navigate("/")}
+                        >
+                            {t('search.cancelar')}
+                        </button>
+                        <div></div>
+                    </div>
+                
+                : ""}
+            </div>
         </div>
-    </>
+    </main>
 
 };
