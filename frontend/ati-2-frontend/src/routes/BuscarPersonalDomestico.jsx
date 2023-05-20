@@ -67,10 +67,14 @@ export const BuscarPersonalDomestico = () => {
                         />
                         
                         <div></div>
-                        <button>Buscar</button>
+                        <button>
+                            {t('search.buscar')}
+                        </button>
                         <button
                             onClick={() => navigate("/")}
-                        >Cancelar</button>
+                        >
+                            {t('search.cancelar')}
+                        </button>
                         <div></div>
                     </div>
                 

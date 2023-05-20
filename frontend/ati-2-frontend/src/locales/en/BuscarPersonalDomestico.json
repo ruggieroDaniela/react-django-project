@@ -9,6 +9,8 @@
     "search":{
         "busqueda_rapida": "Quick Search",
         "continente": "Continent",
-        "selecciona_continente": "Select a Continent"
+        "selecciona_continente": "Select a Continent",
+        "buscar": "Search",
+        "cancelar": "Cancel"
     }
 }
