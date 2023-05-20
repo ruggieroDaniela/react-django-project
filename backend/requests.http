@@ -106,8 +106,8 @@ content-type: application/json
     "salary_offered": "HORA",
     "benefits": 0,
     "benefits_description": "",
-    "availability": "CONVENIR",
-    "availability_date": null,
+    "availability": "FECHA",
+    "availability_date": "2023-10-02",
     "origin": "NO",
     "origin_continent": "",
     "origin_country": "",
@@ -173,5 +173,6 @@ content-type: application/json
 
 ### C - Buscar personal doméstico 
 # Búsqueda : ?field__in=valor,valor&field=valor
+# Ordenar: ?ordering=field
 GET http://127.0.0.1:8000/api-services/provideService/?country=Venezuela
 Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878

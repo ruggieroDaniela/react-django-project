@@ -5,6 +5,7 @@ from rest_framework.decorators import action
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter
 from .models import ProvideService, RequestService
 from .serializers import ProvideServiceSerializer, RequestServiceSerializer
 
@@ -12,13 +13,13 @@ from .serializers import ProvideServiceSerializer, RequestServiceSerializer
 class ProvideServiceViewSet(viewsets.ModelViewSet):
     queryset = ProvideService.objects.all()
     serializer_class = ProvideServiceSerializer
-    #filterset_class = MyFilter
+
     # Authorization
     #authentication_classes = (TokenAuthentication,)
     #permission_classes = (IsAuthenticated,)
 
     # Filters 
-    
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = {
         # Búsqueda rápida
         'continent': ["exact"], 
@@ -38,7 +39,7 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
         'availability': ['exact'], 
         'availability_date' : ['exact'],
     }
-    filter_backends = [DjangoFilterBackend]
+    ordering_fields = ['payment_amount', 'availability_date', 'created_at']
 
 
     # Post ad 
