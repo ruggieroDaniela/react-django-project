@@ -4,11 +4,9 @@ import { useState } from "react";
 
 import "../../styles/BuscarPersonalDomestico.scss"
 
-export const FieldDropdown = ({title, placeholder, items}) => {
+export const FieldDropdown = ({title, placeholder, items, setSelectedState}) => {
 
     const [displayContent, setDisplayContent] = useState(false);
-    const [prevContent, setPrevContent] = useState(placeholder);
-    const [selected, setSelected] = useState(-1);
 
     return <>
         <div className="field">
@@ -23,7 +21,7 @@ export const FieldDropdown = ({title, placeholder, items}) => {
                     className="field-dropdown-title"
                     onClick={ () => setDisplayContent( (prev) => !prev ) }
                 >
-                    {prevContent} <span>▾</span> 
+                    {placeholder} <span>▾</span> 
                 </div>
                 
                 {displayContent?
@@ -32,10 +30,7 @@ export const FieldDropdown = ({title, placeholder, items}) => {
                             <li
                                 className="field-dropdown-item"
                                 value={index}
-                                onClick={ () => {
-                                    setPrevContent( () => x );
-                                    setSelected( () => index );
-                                } }
+                                onClick={ () => {setSelectedState( () => index );} }
                             >
                                 {x}
                             </li>

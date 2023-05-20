@@ -10,6 +10,8 @@ import "../styles/BuscarPersonalDomestico.scss"
 
 export const BuscarPersonalDomestico = () => {
 
+    const [selectedContinent, setSelectedContinent] = useState(-1);
+
     const [busquedaRapida, setBusquedaRapida] = useState(false);
     const [busquedaDetallada, setBusquedaDetallada] = useState(false);
 
@@ -38,8 +40,12 @@ export const BuscarPersonalDomestico = () => {
                     <div className="dropdown-content">
                         <FieldDropdown
                             title={t('search.continente')}
-                            placeholder={t('search.selecciona_continente')}
+                            placeholder={
+                                selectedContinent>=0?
+                                    continentes[selectedContinent]:t('search.selecciona_continente')
+                            }
                             items={continentes}
+                            setSelectedState={setSelectedContinent}
                         />
                         <FieldDropdownCheckbox
                             title="title 1"
