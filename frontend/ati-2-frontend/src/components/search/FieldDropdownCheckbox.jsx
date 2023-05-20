@@ -18,7 +18,7 @@ export const FieldDropdownCheckbox = ({title, placeholder, items}) => {
                     className="field-dropdown-title"
                     onClick={ () => setDisplayContent( (prev) => !prev ) }
                 >
-                    {placeholder} <span>V</span> 
+                    {placeholder} <span>▾</span> 
                 </div>
                 
                 {displayContent?
