@@ -19,7 +19,7 @@ export const BuscarPersonalDomestico = () => {
                     onClick={ () => setBusquedaRapida( (prev) => !prev ) }
                 >
                     <span className="dropdown-arrow">
-                        {">"}
+                        {busquedaRapida?"▾":"▸"}
                     </span>
                     Búsqueda Rápida
                 </div>
