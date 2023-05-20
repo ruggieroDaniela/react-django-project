@@ -75,18 +75,18 @@ content-type: application/json
     "password": "12345"
 }
 
-###
+### A - Ofrecer mis servicios como personal domestico
 POST http://127.0.0.1:8000/api-services/provideService/post_ad/
 Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
 content-type: application/json
 
 {
     "user": 1, 
-    "service": "NIN", 
+    "service": "CUI", 
     "age": 40,
     "have_children": false,
     "education_level": "PRI",
-    "continent": "Suramerica", 
+    "continent": "mrWorld", 
     "country": "Peru",
     "state": "estado_1",
     "city": "ciudad",
@@ -95,16 +95,16 @@ content-type: application/json
     "travel": false,
     "travel_decription": "",
     "activities": "Cocinar",
-    "workday": "SEMANAL",
+    "workday": "QUINCENAL",
     "workday_other": "",
     "schedule": "LUN",
     "schedule_other": "",
     "payment": "MONTO",
-    "payment_amount": "50.00",
+    "payment_amount": 70.00,
     "currency": "USD",
     "currency_other": "",
     "salary_offered": "HORA",
-    "benefits": false,
+    "benefits": 0,
     "benefits_description": "",
     "availability": "CONVENIR",
     "availability_date": null,
@@ -123,7 +123,7 @@ content-type: application/json
     "billing_bank": "Banesco"
 }
 
-###
+### B - Solicitar personal domestico
 POST http://127.0.0.1:8000/api-services/requestService/post_ad/
 Authorization: Token c6590074c0cd1d6a141b2e59475968ee9ea5efab
 content-type: application/json
@@ -154,11 +154,11 @@ content-type: application/json
     "schedule": "LUN",
     "schedule_other": "",
     "payment": "MONTO",
-    "payment_amount": "30.00",
+    "payment_amount": 30.00,
     "currency": "USD",
     "currency_other": "",
     "salary_offered": "HORA",
-    "benefits": false,
+    "benefits": 0,
     "benefits_description": "",
     "availability": "FECHA",
     "availability_date": "2023-05-27",
@@ -170,3 +170,8 @@ content-type: application/json
     "billing_country": "dsfdf",
     "billing_bank": "sdfsdf"
 }
+
+### C - Buscar personal doméstico 
+# Búsqueda : ?field__in=valor,valor&field=valor
+GET http://127.0.0.1:8000/api-services/provideService/?country=Venezuela
+Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878

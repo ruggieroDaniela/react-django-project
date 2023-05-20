@@ -20,7 +20,7 @@ class ServicesSerializer(serializers.ModelSerializer):
         if data['currency'] == 'OTRA' and not data.get('currency_other'):
             raise serializers.ValidationError("Por favor, especifique la moneda")
         
-        if data['benefits'] == True and not data.get('benefits_description'):
+        if data['benefits'] == 1 and not data.get('benefits_description'):
             raise serializers.ValidationError("Por favor, especifique otro beneficio laboral")
         
         if data['availability'] == 'FECHA' and not data.get('availability_date'):

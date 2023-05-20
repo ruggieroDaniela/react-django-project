@@ -12,17 +12,31 @@ from .serializers import ProvideServiceSerializer, RequestServiceSerializer
 class ProvideServiceViewSet(viewsets.ModelViewSet):
     queryset = ProvideService.objects.all()
     serializer_class = ProvideServiceSerializer
-
+    #filterset_class = MyFilter
     # Authorization
     #authentication_classes = (TokenAuthentication,)
     #permission_classes = (IsAuthenticated,)
 
     # Filters 
+    
     filterset_fields = {
-        'country': ["exact"], 
+        # Búsqueda rápida
+        'continent': ["exact"], 
         'country': ['exact', 'in'], 
         'state': ['exact', 'in'], 
-        'service': ['exact', 'in']
+        'service': ['exact', 'in'], 
+
+        # Búsqueda personalizada 
+        'workday' : ['exact'], 
+        'schedule': ['exact'], 
+        'payment': ['exact'],        
+        'payment_amount': ['range'], 
+        'salary_offered': ['exact'], 
+        'currency': ['exact'], 
+        'currency_other': ['exact'], 
+        'benefits': ['exact'], 
+        'availability': ['exact'], 
+        'availability_date' : ['exact'],
     }
     filter_backends = [DjangoFilterBackend]
 
