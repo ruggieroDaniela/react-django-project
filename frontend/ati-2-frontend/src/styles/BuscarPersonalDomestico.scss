@@ -1,5 +1,91 @@
 @import 'colors';
 
 #buscar-personal-domestico{
-    background-color: red;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    
+    .dropdown{
+        width: 80vw;
+        
+        .dropdown-title{
+            cursor: pointer;
+            border-style: solid;
+            border-radius: 0.5rem;
+            border-width: 0.2rem;
+            border-color: $azul-claro;
+            padding: 0.5rem;
+            font-weight: bold;
+            .dropdown-arrow{
+                color: $dorado;
+            }
+        }
+
+        .dropdown-content{
+            margin-top: 2vh;
+            border-style: solid;
+            border-width: 0.2rem;
+            border-color: $azul-claro;
+            padding: 0.5rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3vw;
+            padding-left: 3vw;
+            padding-right: 3vw;
+            padding-top: 2vh;
+            .field{
+                // background-color: red;
+                .field-title{
+                    background-color: $azul-oscuro;
+                    color: white;
+                    display: flex;
+                    justify-content: center;
+                    border-radius: 0.25rem;
+                }
+                .field-dropdown{
+                    .field-dropdown-title{
+                        color: $gris-oscuro;
+                        border-style: solid;
+                        border-width: 0.2rem;
+                        border-radius: 0.25rem;
+                        border-color: $gris;
+                        display: flex;
+                        justify-content: space-between;
+                        padding-left: 0.25rem;
+                        padding-right: 0.25rem;
+                        margin-top: 0.25rem;
+                    }
+                    .field-dropdown-content{
+                        margin-top: 0;
+                        position: absolute;
+                        width: 15.75vw;
+                        color: $gris-oscuro;
+                        border-color: $gris;
+                        border-style: solid;
+                        border-width: 0.2rem;
+                        padding: 0;
+                        li{
+                            list-style-type: none;
+                            background-color: white;
+                        }
+                    }
+                    
+                }
+            }
+            button{
+                color: white;
+                background-color: $dorado;
+                font-weight: bold;
+                padding: 0.5rem;
+                box-shadow: none;
+                border: none;
+                border-radius: 0.25rem;
+                margin-top: 10vh;
+            }
+        }
+
+    }
+    
 }
