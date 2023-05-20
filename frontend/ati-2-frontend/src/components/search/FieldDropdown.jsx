@@ -7,6 +7,8 @@ import "../../styles/BuscarPersonalDomestico.scss"
 export const FieldDropdown = ({title, placeholder, items}) => {
 
     const [displayContent, setDisplayContent] = useState(false);
+    const [prevContent, setPrevContent] = useState(placeholder);
+    const [selected, setSelected] = useState(-1);
 
     return <>
         <div className="field">
@@ -21,12 +23,23 @@ export const FieldDropdown = ({title, placeholder, items}) => {
                     className="field-dropdown-title"
                     onClick={ () => setDisplayContent( (prev) => !prev ) }
                 >
-                    {placeholder} <span>▾</span> 
+                    {prevContent} <span>▾</span> 
                 </div>
                 
                 {displayContent?
                     <ul className="field-dropdown-content">
-                        {items.map( x => <li>{x}</li> )}
+                        {items.map( (x, index) =>
+                            <li
+                                className="field-dropdown-item"
+                                value={index}
+                                onClick={ () => {
+                                    setPrevContent( () => x );
+                                    setSelected( () => index );
+                                } }
+                            >
+                                {x}
+                            </li>
+                        )}
                     </ul>
                 : ""}
 

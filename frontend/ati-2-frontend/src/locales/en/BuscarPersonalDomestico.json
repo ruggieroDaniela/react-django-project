@@ -5,5 +5,10 @@
         "Europe",
         "Asia",
         "Oceania"
-    ]
+    ],
+    "search":{
+        "busqueda_rapida": "Quick Search",
+        "continente": "Continent",
+        "selecciona_continente": "Select a Continent"
+    }
 }
