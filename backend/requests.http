@@ -176,3 +176,10 @@ content-type: application/json
 # Ordenar: ?ordering=field
 GET http://127.0.0.1:8000/api-services/provideService/?country=Venezuela
 Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
+
+
+### D - Buscar clientes 
+# Búsqueda : ?field__in=valor,valor&field=valor
+# Ordenar: ?ordering=field
+GET http://127.0.0.1:8000/api-services/requestService/?country=Venezuela
+Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878

@@ -134,13 +134,10 @@ class Services(models.Model):
     # Salary
     payment = models.CharField(blank=False, max_length=8, choices=PAYMENT_CHOICES)
     payment_amount = models.FloatField(null=True, blank=True)
-    #payment_amount = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
     currency = models.CharField(blank=False, max_length=4, choices=CURRENCY_CHOICES)
     currency_other = models.TextField(blank=True)
     salary_offered = models.CharField(blank=False, max_length=9, choices=SALARY_OFFERED_CHOICES)
 
-    #benefits = models.BooleanField(blank=False)
-    #benefits = models.CharField(blank=False, max_length=5, choices=BENEFITS_CHOICES)
     benefits = models.IntegerField(blank=False)
     benefits_description = models.TextField(blank=True)
 

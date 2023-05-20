@@ -15,10 +15,10 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
     serializer_class = ProvideServiceSerializer
 
     # Authorization
-    #authentication_classes = (TokenAuthentication,)
-    #permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
-    # Filters 
+    # Filters. Option C - "Buscar personal doméstico"
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = {
         # Búsqueda rápida
@@ -65,10 +65,10 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
     serializer_class = RequestServiceSerializer    
 
     # Authorization
-    #authentication_classes = (TokenAuthentication,)
-    #permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
-    # Filters 
+    # Filters. Option D - Buscar Clientes
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = {
         # Búsqueda rápida
