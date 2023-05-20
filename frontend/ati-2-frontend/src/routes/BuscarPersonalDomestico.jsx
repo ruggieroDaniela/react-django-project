@@ -2,6 +2,7 @@ import React from "react";
 
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownCheckbox } from "../components/search/FieldDropdownCheckbox";
@@ -9,6 +10,8 @@ import { FieldDropdownCheckbox } from "../components/search/FieldDropdownCheckbo
 import "../styles/BuscarPersonalDomestico.scss"
 
 export const BuscarPersonalDomestico = () => {
+
+    const navigate = useNavigate();
 
     const [selectedContinent, setSelectedContinent] = useState(-1);
 
@@ -65,7 +68,9 @@ export const BuscarPersonalDomestico = () => {
                         
                         <div></div>
                         <button>Buscar</button>
-                        <button>Cancelar</button>
+                        <button
+                            onClick={() => navigate("/")}
+                        >Cancelar</button>
                         <div></div>
                     </div>
                 
