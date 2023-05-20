@@ -77,11 +77,11 @@ content-type: application/json
 
 ### A - Ofrecer mis servicios como personal domestico
 POST http://127.0.0.1:8000/api-services/provideService/post_ad/
-Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
+Authorization: Token c6590074c0cd1d6a141b2e59475968ee9ea5efab
 content-type: application/json
 
 {
-    "user": 1, 
+    "user": 2, 
     "service": "CUI", 
     "age": 40,
     "have_children": false,
@@ -129,7 +129,7 @@ Authorization: Token c6590074c0cd1d6a141b2e59475968ee9ea5efab
 content-type: application/json
 
 {
-    "user": 2, 
+    "user": 1, 
     "service": "CUI",
     "gender": "IDC",
     "age_required_from": 13,
@@ -182,4 +182,13 @@ Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
 # Búsqueda : ?field__in=valor,valor&field=valor
 # Ordenar: ?ordering=field
 GET http://127.0.0.1:8000/api-services/requestService/?country=Venezuela
+Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
+
+
+### Ver mis publicaciones: Ofrecer 
+GET http://127.0.0.1:8000/api-services/provideService/2
+Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
+
+### Ver mis publicaciones: Solicitar 
+GET http://127.0.0.1:8000/api-services/requestService/2
 Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878

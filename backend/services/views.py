@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -15,8 +15,8 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
     serializer_class = ProvideServiceSerializer
 
     # Authorization
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    #authentication_classes = (TokenAuthentication,)
+    #permission_classes = (IsAuthenticated,)
 
     # Filters. Option C - "Buscar personal doméstico"
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -41,6 +41,11 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
     }
     ordering_fields = ['payment_amount', 'availability_date', 'created_at']
 
+    # See my posts
+    def retrieve(self, request, pk=None):
+        queryset = self.queryset.filter(user=pk)
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
 
     # Post ad 
     @action(detail=False, methods=['post'])
@@ -65,8 +70,8 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
     serializer_class = RequestServiceSerializer    
 
     # Authorization
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    #authentication_classes = (TokenAuthentication,)
+    #permission_classes = (IsAuthenticated,)
 
     # Filters. Option D - Buscar Clientes
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -93,6 +98,14 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
     }
     ordering_fields = ['payment_amount', 'availability_date', 'created_at']
 
+    # See my posts
+    def retrieve(self, request, pk=None):
+        queryset = self.queryset.filter(user=pk)
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
+
+
+    # Post ad
     @action(detail=False, methods=['post'])
     def post_ad(self, request):
         serializer = RequestServiceSerializer(data=request.data)
