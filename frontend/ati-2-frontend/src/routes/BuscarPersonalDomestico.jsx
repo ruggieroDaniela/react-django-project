@@ -37,12 +37,12 @@ export const BuscarPersonalDomestico = () => {
                             placeholder="placeholder 1"
                             items={["1", "2"]}
                         />
-                        <FieldDropdown
+                        <FieldDropdownCheckbox
                             title="title 1"
                             placeholder="placeholder 1"
                             items={["1", "2"]}
                         />
-                        <FieldDropdown
+                        <FieldDropdownCheckbox
                             title="title 1"
                             placeholder="placeholder 1"
                             items={["1", "2"]}
