@@ -13,7 +13,10 @@ export const FieldDropdownCheckbox = ({title, placeholder, items}) => {
             <div className="field-title">
                 {title}
             </div>
-            <div className="field-dropdown">
+            <div
+                className="field-dropdown"
+                onMouseLeave={ () => setDisplayContent( () => false ) }
+            >
                 <div
                     className="field-dropdown-title"
                     onClick={ () => setDisplayContent( (prev) => !prev ) }
