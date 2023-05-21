@@ -1,4 +1,8 @@
+from email.message import EmailMessage
+import smtplib
+from django.http import HttpResponse, JsonResponse
 from rest_framework import viewsets, status
+from backend.settings import EMAIL_HOST, EMAIL_HOST_PASSWORD, EMAIL_HOST_USER
 from users.models import User
 from users.serializers import UserSerializer
 from rest_framework.response import Response
@@ -7,6 +11,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.db.utils import DatabaseError
 from rest_framework.decorators import action
+from rest_framework.views import APIView
 
 def get_token_key(user):
     token, _ = Token.objects.get_or_create(user=user)
@@ -28,6 +33,32 @@ def get_user_data(data):
         user = {key: data[key] for key in fields}
         
     return user
+
+def send_password_email(user):
+    receiver = "proyectoati2.2023@gmail.com" # cambiar a -> user.email
+    message ='<b>Su usuario es:</b> {}.'.format(user.email) + \
+            '<br>' + \
+            'Adicionalmente, acabamos de recibir una solicitud para restablecer la contraseña de {}.'.format(user.email) + \
+            '<br>' + \
+            '<h4>Restablecer contraseña</h4>' + \
+            'Haga clic aquí para restablecer su contraseña.' + \
+            '<br>' + \
+            'Si el enlace no funciona, copia y pega el siguiente enlace en la barra del navegador.' + \
+            '<br>' + \
+            '<h4>Enlace:</h4>' + \
+            '[ENLACE]'
+
+    email = EmailMessage()
+    email["From"] = EMAIL_HOST_USER
+    email["To"] = receiver
+    email["Subject"] = "Cambio de contraseña"
+    email.set_content(message, subtype="html")
+
+    smtp = smtplib.SMTP_SSL(EMAIL_HOST)
+    smtp.login(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)
+    smtp.sendmail(EMAIL_HOST_USER, receiver, email.as_string())
+    smtp.quit()
+    return
     
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -90,3 +121,18 @@ class CustomAuthToken(ObtainAuthToken):
                 return Response({'error': 'Wrong password' }, status=status.HTTP_400_BAD_REQUEST)
             else:
                 return Response({'error': 'Email does not exist' }, status=status.HTTP_400_BAD_REQUEST)
+            
+class ForgotPasswordView(APIView):
+
+    def post(self, request):
+        id = request.data.get('id')
+        email = request.data.get('email')
+
+        try:
+            user = User.objects.get(email=email, rif=id)
+
+            send_password_email(user)
+
+            return Response({'message': 'Acabamos de enviar tu usuario y un link para restablecer tu contraseña, al correo: {}'.format(user.email)}, status=status.HTTP_200_OK)
+        except User.DoesNotExist:
+            return Response({'error': 'No se encontró un usuario con la identificación y correo electrónico proporcionados.'}, status=status.HTTP_404_NOT_FOUND)

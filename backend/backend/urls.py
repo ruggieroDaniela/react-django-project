@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from users.views import UserViewSet, CustomAuthToken
+from users.views import ForgotPasswordView, UserViewSet, CustomAuthToken
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -26,5 +26,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
     path('token-auth/', CustomAuthToken.as_view()),
-    path('api-services/', include('services.urls'))
+    path('api-services/', include('services.urls')),
+    path('forgot-password/', ForgotPasswordView.as_view())
 ]
