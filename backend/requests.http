@@ -83,7 +83,7 @@ content-type: application/json
 {
     "user": 2, 
     "service": "CUI", 
-    "age": 40,
+    "age": 29,
     "have_children": false,
     "education_level": "PRI",
     "continent": "mrWorld", 
@@ -191,4 +191,12 @@ Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
 
 ### Ver mis publicaciones: Solicitar 
 GET http://127.0.0.1:8000/api-services/requestService/2
+Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
+
+###
+DELETE http://localhost:8000/api-services/request/get_post/5d8ca180-242a-4a8b-b954-e7928cf37599/
+Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
+
+###
+DELETE http://localhost:8000/api-services/provide/get_post/c5395339-d335-415c-89a8-bb8c9abc353d/
 Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878

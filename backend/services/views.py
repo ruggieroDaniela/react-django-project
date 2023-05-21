@@ -46,6 +46,13 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
         queryset = self.queryset.filter(user=pk)
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
+    
+    # Get post
+    @action(detail=False, methods=['get'])
+    def get_post(self, request, pk=None):
+        queryset = self.queryset.get(code=pk)
+        serializer = self.serializer_class(queryset, many=False)
+        return Response(serializer.data)
 
     # Post ad 
     @action(detail=False, methods=['post'])
@@ -54,14 +61,15 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
 
         if serializer.is_valid():
             post = serializer.save()
-            return Response({'message': 'OK', 'post_code': str(post.code)})
+            return Response({'message': 'OK', 'post_code': post.code})
         else:
             return Response(serializer.errors, status=400)
 
-    @action(detail=False, methods=['post'])
-    def delete_all(self, request):
-        ProvideService.objects.all().delete()
-        return Response({'message': 'All Services objects have been deleted'})
+    # Delete
+    def delete(self, request, pk=None):
+        queryset = self.queryset.get(code=pk)
+        queryset.delete()
+        return Response({"message": "Post deleted"})
 
 
 # Option B - "Solicitar personal doméstico"
@@ -104,7 +112,22 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
-
+    # Get post
+    @action(detail=False, methods=['get'])
+    def get_post(self, request, pk=None):
+        queryset = self.queryset.get(code=pk)
+        if queryset:
+            serializer = self.serializer_class(queryset, many=False)
+            return Response(serializer.data)
+        else:
+            return Response({'message': 'Not found'})
+        
+    # Delete
+    def delete(self, request, pk=None):
+        queryset = self.queryset.get(code=pk)
+        queryset.delete()
+        return Response({"message": "Post deleted"})
+    
     # Post ad
     @action(detail=False, methods=['post'])
     def post_ad(self, request):
@@ -117,3 +140,62 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
             return Response(serializer.errors, status=400)
 
 
+def find_post(code):
+
+    if ProvideService.objects.filter(code=code):
+        return 1
+    elif RequestService.objects.filter(code=code):
+        return 0
+    else:
+        return 2
+
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = ProvideService.objects.all()            
+    serializer_class = ProvideServiceSerializer
+    http_method_names = ['get', 'post', 'delete']
+
+    # Details
+    @action(detail=False, methods=['get'])
+    def get_post(self, request, pk=None):
+        location = find_post(pk)
+
+        if location == 1:
+            # Provide Service
+            queryset = self.queryset.get(code=pk)
+            serializer = self.serializer_class(queryset, many=False)
+            return Response(serializer.data)
+        elif location == 0:
+            # Request Service
+            queryset = RequestService.objects.all()            
+            serializer_class = RequestServiceSerializer
+            queryset = queryset.get(code=pk)
+            serializer = serializer_class(queryset, many=False)
+            return Response(serializer.data)
+        else:
+            return Response({'message': "Not found"})
+
+
+    # Delete
+    #@action(detail=False, methods=['post'])
+    def delete(self, request, pk=None):
+        location = find_post(pk)
+
+        if location == 1:
+            # Provide Service
+            queryset = self.queryset.get(code=pk)
+            queryset.delete()
+            return Response({"message": "Post deleted successfully"})
+        elif location == 0:
+            # Request Service
+            queryset = RequestService.objects.all()            
+            serializer_class = RequestServiceSerializer
+            queryset = queryset.get(code=pk)
+            queryset.delete()
+            return Response({"message": "Post deleted successfully"})
+        else:
+            return Response({'message': "Not found"})
+    
+
+        
+        
