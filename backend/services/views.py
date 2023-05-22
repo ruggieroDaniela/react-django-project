@@ -61,7 +61,7 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
 
         if serializer.is_valid():
             post = serializer.save()
-            return Response({'message': 'OK', 'post_code': post.code})
+            return Response({'message': 'OK', 'post_code': post.id})
         else:
             return Response(serializer.errors, status=400)
 
@@ -135,7 +135,7 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
 
         if serializer.is_valid():
             post = serializer.save()
-            return Response({'message': 'OK', 'post_code': str(post.code)})
+            return Response({'message': 'OK', 'post_code(id)': post.id})
         else:
             return Response(serializer.errors, status=400)
 
