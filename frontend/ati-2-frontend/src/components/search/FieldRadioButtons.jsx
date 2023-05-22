@@ -11,7 +11,7 @@ export const FieldRadioButtons = ({title, items}) => {
             <div className="field-title">
                 {title}
             </div>
-            <ul className="field-content">
+            <ul className="field-content field-content-radio">
                 {items.map(
                     (x, index) =>
                         <label>

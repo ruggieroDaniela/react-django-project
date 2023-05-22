@@ -46,10 +46,13 @@
                     border-radius: 0.25rem;
                 }
                 .field-content{
-                    padding: 0;
+                    padding: 0.2rem;
                     .field-radio-item{
                         list-style-type: none;
                     }
+                }
+                .field-content-radio{
+                    margin-top: 0;
                 }
                 .field-dropdown{
                     .field-dropdown-title{
@@ -89,6 +92,15 @@
                         }
                     }
                     
+                }
+                .field-range-input{
+                    margin-top: -0.5rem;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                    input{
+                        width: 4.5rem;
+                    }
                 }
             }
             button{

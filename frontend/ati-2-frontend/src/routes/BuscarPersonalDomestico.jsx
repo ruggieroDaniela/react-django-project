@@ -137,11 +137,20 @@ export const BuscarPersonalDomestico = () => {
                             items={["1", "2"]}
                         />
 
-                        <FieldRadioButtons
-                            title={t('search.remuneracion')}
-                            placeholder="placeholder 1"
-                            items={["1", "2"]}
-                        />
+                        <div className="field">
+                            <FieldRadioButtons
+                                title={t('search.remuneracion')}
+                                placeholder="placeholder 1"
+                                items={["A convenir", "Por rango"]}
+                            />
+                            
+                            <div className="field-range-input">
+                                <input type="text"/>
+                                <span> - </span>
+                                <input type="text"/>
+                            </div>
+                            
+                        </div>
 
                         <FieldDropdown
                             title={t('search.remuneracion_frecuencia')}
