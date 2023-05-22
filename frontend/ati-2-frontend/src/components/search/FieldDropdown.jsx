@@ -30,7 +30,10 @@ export const FieldDropdown = ({title, placeholder, items, setSelectedState}) => 
                             <li
                                 className="field-dropdown-item"
                                 value={index}
-                                onClick={ () => {setSelectedState( () => index );} }
+                                onClick={ () => {
+                                    setSelectedState( () => index );
+                                    setDisplayContent( () => false );
+                                } }
                             >
                                 {x}
                             </li>

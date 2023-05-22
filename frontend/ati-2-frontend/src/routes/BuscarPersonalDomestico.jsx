@@ -142,13 +142,13 @@ export const BuscarPersonalDomestico = () => {
                             items={["1", "2"]}
                         />
 
-                        <FieldDropdownCheckbox
+                        <FieldDropdown
                             title={t('search.remuneracion_frecuencia')}
                             placeholder="placeholder 1"
                             items={["1", "2"]}
                         />
 
-                        <FieldDropdownCheckbox
+                        <FieldDropdown
                             title={t('search.moneda')}
                             placeholder="placeholder 1"
                             items={["1", "2"]}
