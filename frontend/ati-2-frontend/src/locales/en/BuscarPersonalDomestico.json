@@ -9,8 +9,21 @@
     "search":{
         "busqueda_rapida": "Quick Search",
         "continente": "Continent",
+        "pais": "Country",
+        "estado": "State",
+        "ciudad": "City",
+        "personal_solicitado": "Requested Staff",
         "selecciona_continente": "Select a Continent",
         "buscar": "Search",
-        "cancelar": "Cancel"
+        "cancelar": "Cancel",
+        "busqueda_detallada": "Advanced Search",
+        "salida_personal": "Staff Checkout",
+        "horario": "Schedule",
+        "remuneracion": "Payment",
+        "remuneracion_frecuencia": "Payment Frequency",
+        "moneda": "Currency",
+        "benefeicio": "Other employment benefits?",
+        "disponibilidad": "Availability of staff to start work",
+        "listar": "Sort by"
     }
 }

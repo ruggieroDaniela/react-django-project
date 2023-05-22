@@ -51,17 +51,17 @@ export const BuscarPersonalDomestico = () => {
                             setSelectedState={setSelectedContinent}
                         />
                         <FieldDropdownCheckbox
-                            title="title 1"
+                            title={t('search.pais')}
                             placeholder="placeholder 1"
                             items={["1", "2"]}
                         />
                         <FieldDropdownCheckbox
-                            title="title 1"
+                            title={t('search.estado')}
                             placeholder="placeholder 1"
                             items={["1", "2"]}
                         />
                         <FieldDropdownCheckbox
-                            title="title 1"
+                            title={t('search.personal_solicitado')}
                             placeholder="placeholder 1"
                             items={["1", "2"]}
                         />
@@ -87,9 +87,9 @@ export const BuscarPersonalDomestico = () => {
                     onClick={ () => setBusquedaDetallada( (prev) => !prev ) }
                 >
                     <span className="dropdown-arrow">
-                        {busquedaRapida?"▾":"▸"}
+                        {busquedaDetallada?"▾":"▸"}
                     </span>
-                    {t('search.busqueda_rapida')}
+                    {t('search.busqueda_detallada')}
                 </div>
                 {busquedaDetallada?
                 
@@ -103,18 +103,19 @@ export const BuscarPersonalDomestico = () => {
                             items={continentes}
                             setSelectedState={setSelectedContinent}
                         />
+                        
                         <FieldDropdownCheckbox
-                            title="title 1"
+                            title={t('search.pais')}
                             placeholder="placeholder 1"
                             items={["1", "2"]}
                         />
                         <FieldDropdownCheckbox
-                            title="title 1"
+                            title={t('search.estado')}
                             placeholder="placeholder 1"
                             items={["1", "2"]}
                         />
                         <FieldDropdownCheckbox
-                            title="title 1"
+                            title={t('search.personal_solicitado')}
                             placeholder="placeholder 1"
                             items={["1", "2"]}
                         />
