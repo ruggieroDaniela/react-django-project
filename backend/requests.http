@@ -81,7 +81,7 @@ Authorization: Token 6bd60149a92e5fb71324d41f4ad9a101ff0497f5
 content-type: application/json
 
 {
-    "user": 6, 
+    "user": 7, 
     "service": "CUI", 
     "age": 29,
     "have_children": false,
@@ -129,7 +129,7 @@ Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
 content-type: application/json
 
 {
-    "user": 7, 
+    "user": 6, 
     "service": "CUI",
     "gender": "IDC",
     "age_required_from": 13,
@@ -184,19 +184,40 @@ Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
 GET http://127.0.0.1:8000/api-services/requestService/?country=Venezuela
 Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
 
-
-### Ver mis publicaciones: Ofrecer 
-GET http://127.0.0.1:8000/api-services/provideService/2
+### Ver mis publicaciones {user_id}
+### Ofrecer/Provide 
+GET http://127.0.0.1:8000/api-services/provideService/2/
 Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
 
-### Ver mis publicaciones: Solicitar 
-GET http://127.0.0.1:8000/api-services/requestService/2
-Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
+### Solicitar/Request 
+GET http://127.0.0.1:8000/api-services/requestService/2/
+Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
 
-###
-DELETE http://localhost:8000/api-services/request/get_post/5d8ca180-242a-4a8b-b954-e7928cf37599/
-Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
+### Ver detalles: {id}: 
+### Ofrecer/Provide
+GET http://localhost:8000/api-services/provide/get_post/9f989823-ea54-40af-b379-198633fdaa79/
+Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
 
-###
-DELETE http://localhost:8000/api-services/provide/get_post/c5395339-d335-415c-89a8-bb8c9abc353d/
-Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
+### Solicitar/Request
+GET http://localhost:8000/api-services/request/get_post/b37e43dc-b602-44cf-9ec7-f4dcc27c5240/
+Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
+
+### Habilitar/Deshabilitar publicación
+### Ofrecer/Provide
+PUT http://localhost:8000/api-services/provide/enable_post/dd14ae5c-fdc5-46a9-a826-df7f9a4f8f73/
+Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
+
+### Solicitar/Request
+PUT http://localhost:8000/api-services/request/enable_post/bc09db74-2809-4051-896a-96ab7ed8b7a8/
+Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
+
+### Delete {id}: 
+### Ofrecer/Provide
+DELETE http://127.0.0.1:8000/api-services/provide/delete_post/9f989823-ea54-40af-b379-198633fdaa79/
+Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
+
+### Solicitar/Request
+DELETE http://127.0.0.1:8000/api-services/request/delete_post/b57e824d-190c-423b-b550-21966bdfb846/
+Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
+
+

@@ -49,7 +49,7 @@ class ProvideServiceSerializer(ServicesSerializer):
     
     class Meta:
         model = ProvideService
-        fields = ['id', 'user', 'service', 'age', 'have_children', 'education_level', 'continent', 'country', 'state', 'city', 'zone', 'description', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'origin', 'origin_continent', 'origin_country', 'origin_state', 'origin_city', 'client_type', 'have_documentation', 'documents', 'documents_other', 'publication_time', 'publication_plan', 'billing_country', 'billing_bank']
+        fields = ['id', 'user', 'service', 'enable', 'age', 'have_children', 'education_level', 'continent', 'country', 'state', 'city', 'zone', 'description', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'origin', 'origin_continent', 'origin_country', 'origin_state', 'origin_city', 'client_type', 'have_documentation', 'documents', 'documents_other', 'publication_time', 'publication_plan', 'billing_country', 'billing_bank']
 
 # Option B - 'Solicitar personal doméstico' 
 class RequestServiceSerializer(ServicesSerializer):
@@ -69,4 +69,4 @@ class RequestServiceSerializer(ServicesSerializer):
     
     class Meta: 
         model = RequestService
-        fields = ['id', 'user' , 'service', 'gender', 'age_required_from', 'age_required_to', 'children', 'education_level', 'continent', 'country', 'state', 'city', 'zone', 'number_tco', 'age_tco', 'gender_tco', 'disabilities_tco', 'disabilities_tco_decrip', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'have_documentation', 'documents', 'documents_other',  'publication_time', 'publication_plan', 'billing_country', 'billing_bank']
+        fields = ['id', 'user' , 'service', 'enable', 'gender', 'age_required_from', 'age_required_to', 'children', 'education_level', 'continent', 'country', 'state', 'city', 'zone', 'number_tco', 'age_tco', 'gender_tco', 'disabilities_tco', 'disabilities_tco_decrip', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'have_documentation', 'documents', 'documents_other',  'publication_time', 'publication_plan', 'billing_country', 'billing_bank']

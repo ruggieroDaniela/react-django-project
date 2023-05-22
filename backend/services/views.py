@@ -8,11 +8,13 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
 from .models import ProvideService, RequestService
 from .serializers import ProvideServiceSerializer, RequestServiceSerializer
+from django.db.utils import DatabaseError
 
 # Option A - "Ofrecer mis servicios como personal doméstico"
 class ProvideServiceViewSet(viewsets.ModelViewSet):
     queryset = ProvideService.objects.all()
     serializer_class = ProvideServiceSerializer
+    http_method_names = ['get', 'post', 'delete', 'put'] 
 
     # Authorization
     #authentication_classes = (TokenAuthentication,)
@@ -41,19 +43,6 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
     }
     ordering_fields = ['payment_amount', 'availability_date', 'created_at']
 
-    # See my posts
-    def retrieve(self, request, pk=None):
-        queryset = self.queryset.filter(user=pk)
-        serializer = self.serializer_class(queryset, many=True)
-        return Response(serializer.data)
-    
-    # Get post
-    @action(detail=False, methods=['get'])
-    def get_post(self, request, pk=None):
-        queryset = self.queryset.get(code=pk)
-        serializer = self.serializer_class(queryset, many=False)
-        return Response(serializer.data)
-
     # Post ad 
     @action(detail=False, methods=['post'])
     def post_ad(self, request):
@@ -64,13 +53,48 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
             return Response({'message': 'OK', 'post_code': post.id})
         else:
             return Response(serializer.errors, status=400)
+        
+    # See my posts
+    def retrieve(self, request, pk=None):
+        queryset = self.queryset.filter(user=pk)
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
+    
+    # Get post
+    @action(detail=False, methods=['get'])
+    def get_post(self, request, pk=None):
+        try: 
+            queryset = self.queryset.get(id=pk)
+            serializer = self.serializer_class(queryset, many=False)
+            return Response(serializer.data)
+        except ProvideService.DoesNotExist:
+            return Response({'message': 'Not found'}, status=404)
+    
+    # Enable post
+    @action(detail=False, methods=['put'])
+    def enable_post(self, request, pk=None):
+        try:
+            queryset = self.queryset.get(id=pk)
+            queryset.enable = not queryset.enable
+            queryset.save()
+            if queryset.enable:
+                return Response({'message': 'The post is now available'})
+            else:
+                return Response({'message': 'The post is now unavailable'})
+        except ProvideService.DoesNotExist:
+            return Response({'message': 'Not found'}, status=404)
 
-    # Delete
-    def delete(self, request, pk=None):
-        queryset = self.queryset.get(code=pk)
-        queryset.delete()
-        return Response({"message": "Post deleted"})
-
+    # Delete a post
+    @action(detail=False, methods=['delete'])
+    def delete_post(self, request, pk=None):
+        try:
+            queryset = self.queryset.get(id=pk)
+            queryset.delete()
+            return Response({"message": "Post deleted"})
+        except ProvideService.DoesNotExist:
+            return Response({'message': 'Not found'}, status=404)
+        
+        
 
 # Option B - "Solicitar personal doméstico"
 class RequestServiceViewSet(viewsets.ModelViewSet):
@@ -106,28 +130,6 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
     }
     ordering_fields = ['payment_amount', 'availability_date', 'created_at']
 
-    # See my posts
-    def retrieve(self, request, pk=None):
-        queryset = self.queryset.filter(user=pk)
-        serializer = self.serializer_class(queryset, many=True)
-        return Response(serializer.data)
-
-    # Get post
-    @action(detail=False, methods=['get'])
-    def get_post(self, request, pk=None):
-        queryset = self.queryset.get(code=pk)
-        if queryset:
-            serializer = self.serializer_class(queryset, many=False)
-            return Response(serializer.data)
-        else:
-            return Response({'message': 'Not found'})
-        
-    # Delete
-    def delete(self, request, pk=None):
-        queryset = self.queryset.get(code=pk)
-        queryset.delete()
-        return Response({"message": "Post deleted"})
-    
     # Post ad
     @action(detail=False, methods=['post'])
     def post_ad(self, request):
@@ -138,64 +140,51 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
             return Response({'message': 'OK', 'post_code(id)': post.id})
         else:
             return Response(serializer.errors, status=400)
+        
+    # See my posts
+    def retrieve(self, request, pk=None):
+        queryset = self.queryset.filter(user=pk)
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
 
-
-def find_post(code):
-
-    if ProvideService.objects.filter(code=code):
-        return 1
-    elif RequestService.objects.filter(code=code):
-        return 0
-    else:
-        return 2
-
-
-class PostViewSet(viewsets.ModelViewSet):
-    queryset = ProvideService.objects.all()            
-    serializer_class = ProvideServiceSerializer
-    http_method_names = ['get', 'post', 'delete']
-
-    # Details
+    # Get post
     @action(detail=False, methods=['get'])
     def get_post(self, request, pk=None):
-        location = find_post(pk)
-
-        if location == 1:
-            # Provide Service
-            queryset = self.queryset.get(code=pk)
+        try: 
+            queryset = self.queryset.get(id=pk)
             serializer = self.serializer_class(queryset, many=False)
             return Response(serializer.data)
-        elif location == 0:
-            # Request Service
-            queryset = RequestService.objects.all()            
-            serializer_class = RequestServiceSerializer
-            queryset = queryset.get(code=pk)
-            serializer = serializer_class(queryset, many=False)
-            return Response(serializer.data)
-        else:
-            return Response({'message': "Not found"})
+        except DatabaseError:
+            return Response({'message': 'Not found'}, status=404)
 
-
+    # Enable post
+    @action(detail=False, methods=['put'])
+    def enable_post(self, request, pk=None):
+        try:
+            queryset = self.queryset.get(id=pk)
+            queryset.enable = not queryset.enable
+            queryset.save()
+            if queryset.enable:
+                return Response({'message': 'The post is now available'})
+            else:
+                return Response({'message': 'The post is now unavailable'})
+        except RequestService.DoesNotExist:
+            return Response({'message': 'Not found'}, status=404)
+         
     # Delete
-    #@action(detail=False, methods=['post'])
-    def delete(self, request, pk=None):
-        location = find_post(pk)
-
-        if location == 1:
-            # Provide Service
-            queryset = self.queryset.get(code=pk)
+    @action(detail=False, methods=['delete'])
+    def delete_post(self, request, pk=None):
+        try:
+            queryset = self.queryset.get(id=pk)
             queryset.delete()
-            return Response({"message": "Post deleted successfully"})
-        elif location == 0:
-            # Request Service
-            queryset = RequestService.objects.all()            
-            serializer_class = RequestServiceSerializer
-            queryset = queryset.get(code=pk)
-            queryset.delete()
-            return Response({"message": "Post deleted successfully"})
-        else:
-            return Response({'message': "Not found"})
+            return Response({"message": "Post deleted"})
+        except RequestService.DoesNotExist:
+            return Response({'message': 'Not found'}, status=404)
     
+
+
+
+
 
         
         
