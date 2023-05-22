@@ -103,7 +103,7 @@ export const BuscarPersonalDomestico = () => {
                             items={continentes}
                             setSelectedState={setSelectedContinent}
                         />
-                        
+
                         <FieldDropdownCheckbox
                             title={t('search.pais')}
                             placeholder="placeholder 1"
@@ -115,12 +115,64 @@ export const BuscarPersonalDomestico = () => {
                             items={["1", "2"]}
                         />
                         <FieldDropdownCheckbox
+                            title={t('search.ciudad')}
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+                        <FieldDropdownCheckbox
+                            title={t('search.salida_personal')}
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+                        <FieldDropdownCheckbox
                             title={t('search.personal_solicitado')}
                             placeholder="placeholder 1"
                             items={["1", "2"]}
                         />
+
+                        <FieldDropdownCheckbox
+                            title={t('search.horario')}
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+
+                        <FieldDropdownCheckbox
+                            title={t('search.remuneracion')}
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+
+                        <FieldDropdownCheckbox
+                            title={t('search.remuneracion_frecuencia')}
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+
+                        <FieldDropdownCheckbox
+                            title={t('search.moneda')}
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+
+                        <FieldDropdownCheckbox
+                            title={t('search.beneficio')}
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+
+                        <FieldDropdownCheckbox
+                            title={t('search.disponibilidad')}
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
+
+                        <FieldDropdownCheckbox
+                            title={t('search.listar')}
+                            placeholder="placeholder 1"
+                            items={["1", "2"]}
+                        />
                         
-                        <div></div>
+                        {/* <div></div> */}
                         <button>
                             {t('search.buscar')}
                         </button>
