@@ -45,6 +45,12 @@
                     justify-content: center;
                     border-radius: 0.25rem;
                 }
+                .field-content{
+                    padding: 0;
+                    .field-radio-item{
+                        list-style-type: none;
+                    }
+                }
                 .field-dropdown{
                     .field-dropdown-title{
                         color: $gris-oscuro;
@@ -93,7 +99,7 @@
                 box-shadow: none;
                 border: none;
                 border-radius: 0.25rem;
-                margin-top: 10vh;
+                // margin-top: 10vh;
                 cursor: pointer;
             }
         }

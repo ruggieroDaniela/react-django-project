@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownCheckbox } from "../components/search/FieldDropdownCheckbox";
+import { FieldRadioButtons } from "../components/search/FieldRadioButtons";
 
 import "../styles/BuscarPersonalDomestico.scss"
 
@@ -136,7 +137,7 @@ export const BuscarPersonalDomestico = () => {
                             items={["1", "2"]}
                         />
 
-                        <FieldDropdownCheckbox
+                        <FieldRadioButtons
                             title={t('search.remuneracion')}
                             placeholder="placeholder 1"
                             items={["1", "2"]}
@@ -160,19 +161,21 @@ export const BuscarPersonalDomestico = () => {
                             items={["1", "2"]}
                         />
 
-                        <FieldDropdownCheckbox
+                        <FieldRadioButtons
                             title={t('search.disponibilidad')}
                             placeholder="placeholder 1"
                             items={["1", "2"]}
                         />
 
-                        <FieldDropdownCheckbox
+                        <FieldRadioButtons
                             title={t('search.listar')}
-                            placeholder="placeholder 1"
                             items={["1", "2"]}
                         />
                         
-                        {/* <div></div> */}
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
                         <button>
                             {t('search.buscar')}
                         </button>
