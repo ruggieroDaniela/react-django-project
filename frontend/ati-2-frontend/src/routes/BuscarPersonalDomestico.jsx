@@ -158,11 +158,19 @@ export const BuscarPersonalDomestico = () => {
                             items={["1", "2"]}
                         />
 
-                        <FieldDropdown
-                            title={t('search.moneda')}
-                            placeholder="placeholder 1"
-                            items={["1", "2"]}
-                        />
+                        <div className="field">
+                            <FieldDropdown
+                                title={t('search.moneda')}
+                                placeholder="placeholder 1"
+                                items={["1", "2"]}
+                            />
+                            
+                            <div className="field-spec">
+                                spec: 
+                                <input type="text"/>
+                            </div>
+                            
+                        </div>
 
                         <FieldDropdownCheckbox
                             title={t('search.beneficio')}
