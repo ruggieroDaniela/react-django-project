@@ -15,6 +15,10 @@ urlpatterns = [
     path('provide/enable_post/<str:pk>/', views.ProvideServiceViewSet.as_view({'put': 'enable_post'}), name='enable_post'), 
     path('request/enable_post/<str:pk>/', views.RequestServiceViewSet.as_view({'put': 'enable_post'}), name='enable_post'), 
 
+    # Update post
+    path('provide/update_post/<str:pk>/', views.ProvideServiceViewSet.as_view({'put': 'update_post'}), name='enable_post'), 
+    path('request/update_post/<str:pk>/', views.RequestServiceViewSet.as_view({'put': 'update_post'}), name='enable_post'), 
+
     # Delete post
     path('provide/delete_post/<str:pk>/', views.ProvideServiceViewSet.as_view({'delete': 'delete_post'}), name='delete_post'),
     path('request/delete_post/<str:pk>/', views.RequestServiceViewSet.as_view({'delete': 'delete_post'}), name='delete_post'),

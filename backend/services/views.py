@@ -70,7 +70,7 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
         except ProvideService.DoesNotExist:
             return Response({'message': 'Not found'}, status=404)
     
-    # Enable post
+    # Enable/disable post
     @action(detail=False, methods=['put'])
     def enable_post(self, request, pk=None):
         try:
@@ -81,6 +81,22 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
                 return Response({'message': 'The post is now available'})
             else:
                 return Response({'message': 'The post is now unavailable'})
+        except ProvideService.DoesNotExist:
+            return Response({'message': 'Not found'}, status=404)
+
+    # Update post
+    @action(detail=False, methods=['put'])
+    def update_post(self, request, pk=None):
+        try:
+            queryset = self.queryset.get(id=pk)
+            serializer = ProvideServiceSerializer(queryset, data=request.data)
+
+            if serializer.is_valid():
+                serializer.save()
+                return Response({'message': 'OK'})
+            else:
+                return Response(serializer.errors, status=400)
+            
         except ProvideService.DoesNotExist:
             return Response({'message': 'Not found'}, status=404)
 
@@ -170,7 +186,23 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
                 return Response({'message': 'The post is now unavailable'})
         except RequestService.DoesNotExist:
             return Response({'message': 'Not found'}, status=404)
-         
+
+    # Update post
+    @action(detail=False, methods=['put'])
+    def update_post(self, request, pk=None):
+        try:
+            queryset = self.queryset.get(id=pk)
+            serializer = RequestServiceSerializer(queryset, data=request.data)
+
+            if serializer.is_valid():
+                serializer.save()
+                return Response({'message': 'OK'})
+            else:
+                return Response(serializer.errors, status=400)
+            
+        except RequestService.DoesNotExist:
+            return Response({'message': 'Not found'}, status=404)
+             
     # Delete
     @action(detail=False, methods=['delete'])
     def delete_post(self, request, pk=None):
