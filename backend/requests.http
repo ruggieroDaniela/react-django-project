@@ -182,7 +182,7 @@ Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
 # Búsqueda : ?field__in=valor,valor&field=valor
 # Ordenar: ?ordering=field
 GET http://127.0.0.1:8000/api-services/requestService/?country=Venezuela
-Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
+Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
 
 ### Ver mis publicaciones {user_id}
 ### Ofrecer/Provide 
@@ -191,6 +191,15 @@ Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
 
 ### Solicitar/Request 
 GET http://127.0.0.1:8000/api-services/requestService/2/
+Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
+
+### Ver publicaciones de otros 
+### Ofrecer/Provide
+GET http://127.0.0.1:8000/api-services/provideService/
+Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
+
+### Solicitar/Provide
+GET http://127.0.0.1:8000/api-services/requestService/
 Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
 
 ### Ver detalles: {id}: 
