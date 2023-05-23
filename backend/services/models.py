@@ -99,9 +99,9 @@ class Services(models.Model):
     )
 
     # Fields 
+    id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False, primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='PEN')
-    code = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
     enable = models.BooleanField(default=False)
     mode = models.CharField(max_length=7)
     created_at = models.DateTimeField(auto_now_add=True)
