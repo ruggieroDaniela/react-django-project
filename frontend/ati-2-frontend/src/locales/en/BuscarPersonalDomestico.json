@@ -24,6 +24,63 @@
         "moneda": "Currency",
         "beneficio": "Other employment benefits?",
         "disponibilidad": "Availability of staff to start work",
-        "listar": "Sort by"
+        "listar": "Sort by",
+        "tipos_personal": [
+            "Babysitter",
+            "Occupational Caretaker",
+            "Nurse",
+            "Domestic Staff",
+            "Clean",
+            "Wash",
+            "Iron",
+            "Cook",
+            "Estate Caretaker",
+            "Cleaning",
+            "Painting",
+            "For maintenance or repairs",
+            "To maintain services of the property up to date"
+        ],
+        "monedas": [
+            "USD",
+            "EUR",
+            "Other"
+        ],
+        "dias_semana": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+        ],
+        "salida_personal_opciones": [
+            "Weekly",
+            "Bi-Weekly",
+            "Monthly",
+            "Every 2 Days",
+            "Half-time",
+            "Weekend",
+            "Per night",
+            "Per season",
+            "Per hour",
+            "To Agree"
+        ],
+        "si": "yes",
+        "no": "no",
+        "remuneracion_frecuencia_opciones": [
+            "Per hour",
+            "Per day",
+            "Per week",
+            "Per two weeks",
+            "Per month"
+        ],
+        "listar_opciones": [
+            "By payment",
+            "By available date",
+            "By post date"
+        ],
+        "ascendente": "ascendent",
+        "descendente": "descendent"
     }
 }
