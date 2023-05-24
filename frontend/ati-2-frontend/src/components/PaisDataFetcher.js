@@ -11,7 +11,8 @@ export const getAllCountries = async () => {
             }
         });
 
-        return response.data;
+        const ans = response.data.map( x => x.name );
+        return ans;
         
     } catch (error) {
         console.error(error);
@@ -19,7 +20,19 @@ export const getAllCountries = async () => {
 
 };
 
-export const getCountriesInContinent = async (continent) => {};
+export const getCountriesInRegion = async (reg) => {
+    try {
+        const response = await axios.get(`https://restcountries.com/v3.1/region/${reg}`);
+        const ans = response.data.map( x => x.name.common );
+
+        console.log(ans);
+
+        return ans;
+        
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 export const getStatesInCountry = async (country) => {};
 

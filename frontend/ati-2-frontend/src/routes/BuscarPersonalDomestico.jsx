@@ -10,7 +10,7 @@ import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownCheckbox } from "../components/search/FieldDropdownCheckbox";
 import { FieldRadioButtons } from "../components/search/FieldRadioButtons";
 
-import { getAllCountries } from "../components/PaisDataFetcher";
+import { getAllCountries, getCountriesInRegion } from "../components/PaisDataFetcher";
 
 import "../styles/BuscarPersonalDomestico.scss"
 
@@ -18,62 +18,61 @@ export const BuscarPersonalDomestico = () => {
 
     const [countries, setCountries] = useState([]);
 
+    
+    const navigate = useNavigate();
+    
+    const regions = ["north america", "south america", "europe", "asia", "oceania"];
+    const [selectedContinent, setSelectedContinent] = useState(-1);
+    const [selectedCountries, setSelectedCountries] = useState("");
+    
     useEffect(() => {
         const fetchCountries = async () => {
             try {
-                const data = await getAllCountries()
-                setCountries(data);
+                let data = await ( selectedContinent == -1? getAllCountries(): getCountriesInRegion( regions[selectedContinent])  )
+                setCountries( data );
             } catch (error) {
                 console.error(error);
             }
         };
 
         fetchCountries();
-    }, []);
-
-    const navigate = useNavigate();
-
-    const [selectedContinent, setSelectedContinent] = useState(-1);
-
+    }, [selectedContinent]);
+    
     const [busquedaRapida, setBusquedaRapida] = useState(false);
     const [busquedaDetallada, setBusquedaDetallada] = useState(false);
 
     const { t, i18n } = useTranslation();
 
-    const continentes = [];
+    
     const salida_personal = [];
-    const tipos_personal = [];
-    const dias = [];
-    const remuneracion_frecuencia = [];
-    const monedas = [];
-    const ordenes = [];
-    const paises = [];
-
     for (let i = 0; i < 10; i++) 
         salida_personal.push( t('search.salida_personal_opciones.'+i) )
-
+        
+    const tipos_personal = [];
     for (let i = 0; i < 13; i++) 
         tipos_personal.push( t('search.tipos_personal.'+i) )
-
+    
+    const dias = [];
     for (let i = 0; i < 7; i++) 
         dias.push( t('search.dias_semana.'+i) )
     
+    const remuneracion_frecuencia = [];
     for (let i = 0; i < 5; i++) 
         remuneracion_frecuencia.push( t('search.remuneracion_frecuencia_opciones.'+i) )
 
+    const continentes = [];
     for (let index = 0; index < 5; index++) 
-        continentes.push( t('continentes.'+index) )
+    continentes.push( t('continentes.'+index) )
     
+    const monedas = [];
     for (let index = 0; index < 3; index++) 
         monedas.push( t('search.monedas.'+index) )
-    
+        
+    const ordenes = [];
     for (let index = 0; index < 3; index++){
         ordenes.push( t('search.listar_opciones.'+index) + " " + t('search.ascendente') );
         ordenes.push( t('search.listar_opciones.'+index) + " " + t('search.descendente') );
     }
-    
-    for (let i = 0; i < countries.length; i++)
-        paises.push(countries[i].name)
     
 
     return <main>
@@ -103,7 +102,9 @@ export const BuscarPersonalDomestico = () => {
                         <FieldDropdownCheckbox
                             title={t('search.pais')}
                             placeholder="placeholder 1"
-                            items={paises}
+                            items={countries}
+                            state={selectedCountries}
+                            setState={setSelectedCountries}
                         />
                         <FieldDropdownCheckbox
                             title={t('search.estado')}
@@ -157,7 +158,7 @@ export const BuscarPersonalDomestico = () => {
                         <FieldDropdownCheckbox
                             title={t('search.pais')}
                             placeholder="placeholder 1"
-                            items={paises}
+                            items={countries}
                         />
                         <FieldDropdownCheckbox
                             title={t('search.estado')}

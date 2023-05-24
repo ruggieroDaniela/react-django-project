@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import "../../styles/BuscarPersonalDomestico.scss"
 
-export const FieldDropdownCheckbox = ({title, placeholder, items}) => {
+export const FieldDropdownCheckbox = ({title, placeholder, items, state, setState}) => {
 
     const [displayContent, setDisplayContent] = useState(false);
 
@@ -33,7 +33,20 @@ export const FieldDropdownCheckbox = ({title, placeholder, items}) => {
                                         key={"" + x + index}
                                         className="field-dropdown-item"
                                     >
-                                            <input type="checkbox"/>
+                                            <input
+                                                type="checkbox"
+                                                checked={state.includes(x)}
+                                                onClick={
+                                                    () => {
+
+                                                        if( state.includes(x) == false ){
+                                                            setState( prev => { return prev + "," + x } )
+                                                        }else{
+                                                            setState( prev => prev.replace(','+x, '') )
+                                                        }
+                                                    }
+                                                }
+                                            />
                                             <span>{x}</span>
                                     </li>
                                 </label>
