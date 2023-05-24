@@ -24,6 +24,10 @@
         "moneda": "Currency",
         "beneficio": "Other employment benefits?",
         "disponibilidad": "Availability of staff to start work",
+        "disponibilidad_opciones":[
+            "Start Date",
+            "To Agree"
+        ],
         "listar": "Sort by",
         "tipos_personal": [
             "Babysitter",
@@ -66,8 +70,9 @@
             "Per hour",
             "To Agree"
         ],
-        "si": "yes",
-        "no": "no",
+        "si": "Yes",
+        "no": "No",
+        "especificar": "Specify",
         "remuneracion_frecuencia_opciones": [
             "Per hour",
             "Per day",
@@ -81,6 +86,8 @@
             "By post date"
         ],
         "ascendente": "ascendent",
-        "descendente": "descendent"
+        "descendente": "descendent",
+        "a_convenir": "To Agree",
+        "rango": "Range"
     }
 }

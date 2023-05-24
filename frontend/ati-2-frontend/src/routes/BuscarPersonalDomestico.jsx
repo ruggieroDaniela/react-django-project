@@ -21,11 +21,37 @@ export const BuscarPersonalDomestico = () => {
 
     const { t, i18n } = useTranslation();
 
-    const continentes = []
+    const continentes = [];
+    let salida_personal = [];
+    let tipos_personal = [];
+    let dias = [];
+    let remuneracion_frecuencia = [];
+    let monedas = [];
+    let ordenes = [];
 
-    for (let index = 0; index < 5; index++) {
+    for (let i = 0; i < 10; i++) 
+        salida_personal.push( t('search.salida_personal_opciones.'+i) )
+
+    for (let i = 0; i < 13; i++) 
+        tipos_personal.push( t('search.tipos_personal.'+i) )
+
+    for (let i = 0; i < 7; i++) 
+        dias.push( t('search.dias_semana.'+i) )
+    
+    for (let i = 0; i < 5; i++) 
+        remuneracion_frecuencia.push( t('search.remuneracion_frecuencia_opciones.'+i) )
+
+    for (let index = 0; index < 5; index++) 
         continentes.push( t('continentes.'+index) )
+    
+    for (let index = 0; index < 3; index++) 
+        monedas.push( t('search.monedas.'+index) )
+    
+    for (let index = 0; index < 3; index++){
+        ordenes.push( t('search.listar_opciones.'+index) + " " + t('search.ascendente') );
+        ordenes.push( t('search.listar_opciones.'+index) + " " + t('search.descendente') );
     }
+    
 
     return <main>
         <div id="buscar-personal-domestico">
@@ -64,7 +90,7 @@ export const BuscarPersonalDomestico = () => {
                         <FieldDropdownCheckbox
                             title={t('search.personal_solicitado')}
                             placeholder="placeholder 1"
-                            items={["1", "2"]}
+                            items={tipos_personal}
                         />
                         
                         <div></div>
@@ -123,25 +149,25 @@ export const BuscarPersonalDomestico = () => {
                         <FieldDropdownCheckbox
                             title={t('search.salida_personal')}
                             placeholder="placeholder 1"
-                            items={["1", "2"]}
+                            items={salida_personal}
                         />
                         <FieldDropdownCheckbox
                             title={t('search.personal_solicitado')}
                             placeholder="placeholder 1"
-                            items={["1", "2"]}
+                            items={tipos_personal}
                         />
 
                         <FieldDropdownCheckbox
                             title={t('search.horario')}
                             placeholder="placeholder 1"
-                            items={["1", "2"]}
+                            items={dias}
                         />
 
                         <div className="field">
                             <FieldRadioButtons
                                 title={t('search.remuneracion')}
                                 placeholder="placeholder 1"
-                                items={["A convenir", "Por rango"]}
+                                items={[t('search.a_convenir'), t('search.rango')]}
                             />
                             
                             <div className="field-range-input">
@@ -155,38 +181,38 @@ export const BuscarPersonalDomestico = () => {
                         <FieldDropdown
                             title={t('search.remuneracion_frecuencia')}
                             placeholder="placeholder 1"
-                            items={["1", "2"]}
+                            items={remuneracion_frecuencia}
                         />
 
                         <div className="field">
                             <FieldDropdown
                                 title={t('search.moneda')}
                                 placeholder="placeholder 1"
-                                items={["1", "2"]}
+                                items={monedas}
                             />
                             
                             <div className="field-spec">
-                                spec: 
+                                {t('search.especificar')+": "}
                                 <input type="text"/>
                             </div>
                             
                         </div>
 
-                        <FieldDropdownCheckbox
+                        <FieldRadioButtons
                             title={t('search.beneficio')}
                             placeholder="placeholder 1"
-                            items={["1", "2"]}
+                            items={[t('search.si'), t('search.no')]}
                         />
 
                         <FieldRadioButtons
                             title={t('search.disponibilidad')}
                             placeholder="placeholder 1"
-                            items={["1", "2"]}
+                            items={[t('search.disponibilidad_opciones.0'), t('search.disponibilidad_opciones.1')]}
                         />
 
                         <FieldRadioButtons
                             title={t('search.listar')}
-                            items={["1", "2"]}
+                            items={ordenes}
                         />
                         
                         <div></div>
