@@ -27,9 +27,10 @@ export const FieldDropdownCheckbox = ({title, placeholder, items}) => {
                 {displayContent?
                     <ul className="field-dropdown-content">
                         {items.map(
-                            x =>
+                            (x, index) =>
                                 <label>
                                     <li
+                                        key={"" + x + index}
                                         className="field-dropdown-item"
                                     >
                                             <input type="checkbox"/>

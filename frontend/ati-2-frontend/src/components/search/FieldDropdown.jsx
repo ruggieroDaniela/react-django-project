@@ -28,6 +28,7 @@ export const FieldDropdown = ({title, placeholder, items, setSelectedState}) => 
                     <ul className="field-dropdown-content">
                         {items.map( (x, index) =>
                             <li
+                                key={x + index}
                                 className="field-dropdown-item"
                                 value={index}
                                 onClick={ () => {

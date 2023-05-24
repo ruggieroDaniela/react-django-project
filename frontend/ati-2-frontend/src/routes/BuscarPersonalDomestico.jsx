@@ -1,16 +1,35 @@
 import React from "react";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
 
 import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownCheckbox } from "../components/search/FieldDropdownCheckbox";
 import { FieldRadioButtons } from "../components/search/FieldRadioButtons";
 
+import { getAllCountries } from "../components/PaisDataFetcher";
+
 import "../styles/BuscarPersonalDomestico.scss"
 
 export const BuscarPersonalDomestico = () => {
+
+    const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+        const fetchCountries = async () => {
+            try {
+                const data = await getAllCountries()
+                setCountries(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchCountries();
+    }, []);
 
     const navigate = useNavigate();
 
@@ -22,12 +41,13 @@ export const BuscarPersonalDomestico = () => {
     const { t, i18n } = useTranslation();
 
     const continentes = [];
-    let salida_personal = [];
-    let tipos_personal = [];
-    let dias = [];
-    let remuneracion_frecuencia = [];
-    let monedas = [];
-    let ordenes = [];
+    const salida_personal = [];
+    const tipos_personal = [];
+    const dias = [];
+    const remuneracion_frecuencia = [];
+    const monedas = [];
+    const ordenes = [];
+    const paises = [];
 
     for (let i = 0; i < 10; i++) 
         salida_personal.push( t('search.salida_personal_opciones.'+i) )
@@ -51,6 +71,9 @@ export const BuscarPersonalDomestico = () => {
         ordenes.push( t('search.listar_opciones.'+index) + " " + t('search.ascendente') );
         ordenes.push( t('search.listar_opciones.'+index) + " " + t('search.descendente') );
     }
+    
+    for (let i = 0; i < countries.length; i++)
+        paises.push(countries[i].name)
     
 
     return <main>
@@ -80,7 +103,7 @@ export const BuscarPersonalDomestico = () => {
                         <FieldDropdownCheckbox
                             title={t('search.pais')}
                             placeholder="placeholder 1"
-                            items={["1", "2"]}
+                            items={paises}
                         />
                         <FieldDropdownCheckbox
                             title={t('search.estado')}
@@ -134,7 +157,7 @@ export const BuscarPersonalDomestico = () => {
                         <FieldDropdownCheckbox
                             title={t('search.pais')}
                             placeholder="placeholder 1"
-                            items={["1", "2"]}
+                            items={paises}
                         />
                         <FieldDropdownCheckbox
                             title={t('search.estado')}
