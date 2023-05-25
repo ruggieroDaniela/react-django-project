@@ -17,28 +17,36 @@ import "../styles/BuscarPersonalDomestico.scss"
 
 export const BuscarPersonalDomestico = () => {
 
+    // some necessary hooks
+    const { t, i18n } = useTranslation();
+    const navigate = useNavigate();
+
+    // names and values that need backend fetching
     const [countries, setCountries] = useState([]);
     const [states, setStates] = useState([]);
     const [cities, setCities] = useState([]);
-
     
-    const navigate = useNavigate();
-    
+    // values that don't need backend fetching
     const regions = ["north america", "south america", "europe", "asia", "oceania"];
     const services = getServices();
 
+    // display dropdown contents for both search types
+    const [busquedaRapida, setBusquedaRapida] = useState(false);
+    const [busquedaDetallada, setBusquedaDetallada] = useState(false);
+    
+    // field values in the frontend
     const [selectedContinent, setSelectedContinent] = useState(-1);
     const [selectedCountries, setSelectedCountries] = useState("");
     const [selectedStates, setSelectedStates] = useState("");
     const [selectedCities, setSelectedCities] = useState("");
     const [selectedServices, setSelectedServices] = useState("");
-    
+
+    // fetch values from the backend
+        // Countries
     useEffect(() => {
         const fetchCountries = async () => {
             try {
-                let [names, values] = await ( selectedContinent == -1? getAllCountries(): getCountriesInRegion( regions[selectedContinent])  )
-                console.log(names);
-                console.log(values);
+                let [names, values] = await ( selectedContinent == -1? getAllCountries(): getCountriesInRegion( regions[selectedContinent])  );
                 setCountries( [names, values] );
             } catch (error) {
                 console.error(error);
@@ -48,11 +56,10 @@ export const BuscarPersonalDomestico = () => {
         fetchCountries();
     }, [selectedContinent]);
 
+        // States
     useEffect(() => {
         const fetchStates = async () => {
             try {
-                // const 
-                console.log(selectedCountries);
                 let [names, values] = await ( selectedCountries.length > 0? getStatesInCountry(selectedCountries): [[], []])
                 setStates( [names, values] );
             } catch (error) {
@@ -63,10 +70,10 @@ export const BuscarPersonalDomestico = () => {
         fetchStates();
     }, [selectedCountries]);
 
+        // Cities
     useEffect(() => {
         const fetchCities = async () => {
             try {
-                // const 
                 let [names, values] = await ( selectedStates.length > 0? getCitiesInStates(selectedStates): [[], []])
                 setCities( [names, values] );
             } catch (error) {
@@ -76,13 +83,8 @@ export const BuscarPersonalDomestico = () => {
 
         fetchCities();
     }, [selectedStates]);
-    
-    const [busquedaRapida, setBusquedaRapida] = useState(false);
-    const [busquedaDetallada, setBusquedaDetallada] = useState(false);
 
-    const { t, i18n } = useTranslation();
-
-    
+    // fill field's items frontend
     const salida_personal = [];
     for (let i = 0; i < 10; i++) 
         salida_personal.push( t('search.salida_personal_opciones.'+i) )
@@ -234,6 +236,9 @@ export const BuscarPersonalDomestico = () => {
                             title={t('search.personal_solicitado')}
                             placeholder="placeholder 1"
                             items={tipos_personal}
+                            values={services}
+                            state={selectedServices}
+                            setState={setSelectedServices}
                         />
 
                         <FieldDropdownCheckbox
