@@ -46,6 +46,7 @@ export const BuscarPersonalDomestico = () => {
     const [selectedShedules, setSelectedShedules] = useState("");
     const [selectedCheckout, setSelectedCheckout] = useState("");
     const [selectedPaymentFreq, setSelectedPaymentFreq] = useState("");
+    const [selectedCurrency, setSelectedCurrency] = useState("");
 
     // fetch values from the backend
         // Countries
@@ -262,7 +263,7 @@ export const BuscarPersonalDomestico = () => {
                         <div className="field">
                             <FieldRadioButtons
                                 title={t('search.remuneracion')}
-                                placeholder="placeholder 1"
+                                placeholder="placeholder"
                                 items={[t('search.a_convenir'), t('search.rango')]}
                             />
                             
@@ -286,14 +287,21 @@ export const BuscarPersonalDomestico = () => {
                         <div className="field">
                             <FieldDropdown
                                 title={t('search.moneda')}
-                                placeholder="placeholder 1"
+                                placeholder={
+                                    selectedCurrency !== ""?
+                                        monedas[selectedCurrency]:"ph"
+                                }
                                 items={monedas}
+                                setSelectedState={setSelectedCurrency}
                             />
-                            
-                            <div className="field-spec">
-                                {t('search.especificar')+": "}
-                                <input type="text"/>
-                            </div>
+                            {selectedCurrency == 2?
+                                <div className="field-spec">
+                                    {t('search.especificar')+": "}
+                                    <input type="text"/>
+                                </div>
+                                :
+                                ""
+                            }
                             
                         </div>
 
