@@ -11,7 +11,7 @@ import { FieldDropdownCheckbox } from "../components/search/FieldDropdownCheckbo
 import { FieldRadioButtons } from "../components/search/FieldRadioButtons";
 
 import { getAllCountries, getCountriesInRegion, getStatesInCountry, getCitiesInStates } from "../components/dataFetchers/PaisDataFetcher";
-import { getServices } from "../components/dataFetchers/ServicesDataFetcher";
+import { getCheckout, getHorario, getPaymentFreq, getServices } from "../components/dataFetchers/ServicesDataFetcher";
 
 import "../styles/BuscarPersonalDomestico.scss"
 
@@ -29,6 +29,9 @@ export const BuscarPersonalDomestico = () => {
     // values that don't need backend fetching
     const regions = ["north america", "south america", "europe", "asia", "oceania"];
     const services = getServices();
+    const schedules = getHorario();
+    const checkout = getCheckout();
+    const paymentFreq = getPaymentFreq();
 
     // display dropdown contents for both search types
     const [busquedaRapida, setBusquedaRapida] = useState(false);
@@ -40,6 +43,9 @@ export const BuscarPersonalDomestico = () => {
     const [selectedStates, setSelectedStates] = useState("");
     const [selectedCities, setSelectedCities] = useState("");
     const [selectedServices, setSelectedServices] = useState("");
+    const [selectedShedules, setSelectedShedules] = useState("");
+    const [selectedCheckout, setSelectedCheckout] = useState("");
+    const [selectedPaymentFreq, setSelectedPaymentFreq] = useState("");
 
     // fetch values from the backend
         // Countries
@@ -231,6 +237,9 @@ export const BuscarPersonalDomestico = () => {
                             title={t('search.salida_personal')}
                             placeholder="placeholder 1"
                             items={salida_personal}
+                            values={checkout}
+                            state={selectedCheckout}
+                            setState={setSelectedCheckout}
                         />
                         <FieldDropdownCheckbox
                             title={t('search.personal_solicitado')}
@@ -245,6 +254,9 @@ export const BuscarPersonalDomestico = () => {
                             title={t('search.horario')}
                             placeholder="placeholder 1"
                             items={dias}
+                            values={schedules}
+                            state={selectedShedules}
+                            setState={setSelectedShedules}
                         />
 
                         <div className="field">
@@ -266,6 +278,9 @@ export const BuscarPersonalDomestico = () => {
                             title={t('search.remuneracion_frecuencia')}
                             placeholder="placeholder 1"
                             items={remuneracion_frecuencia}
+                            values={paymentFreq}
+                            state={selectedPaymentFreq}
+                            setState={setSelectedPaymentFreq}
                         />
 
                         <div className="field">
