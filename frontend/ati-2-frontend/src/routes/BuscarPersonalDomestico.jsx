@@ -44,7 +44,7 @@ export const BuscarPersonalDomestico = () => {
         const fetchCountries = async () => {
             try {
                 // const 
-                let data = await ( selectedCountries.length > 0? getStatesInCountry(countries): [])
+                let data = await ( selectedCountries.length > 0? getStatesInCountry(selectedCountries): [])
                 setStates( data );
             } catch (error) {
                 console.error(error);

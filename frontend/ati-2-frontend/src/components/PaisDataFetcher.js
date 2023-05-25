@@ -48,10 +48,11 @@ export const getStatesInCountry = async (countries) => {
         const ans = [];
         let countryCode;
         let responseStates;
-        console.log("yo");
+        console.log(countries);
         for (let i = 0; i < response.data.length; i++) {
             if( countries.includes(response.data[i].name) ){
                 countryCode = response.data[i].iso2;
+                console.log(countryCode);
                 responseStates = await axios.get(`https://api.countrystatecity.in/v1/countries/${countryCode}/states`, {
                     headers: {
                         'X-CSCAPI-KEY': API_KEY
