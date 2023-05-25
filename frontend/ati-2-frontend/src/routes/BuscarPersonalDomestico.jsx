@@ -10,7 +10,7 @@ import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownCheckbox } from "../components/search/FieldDropdownCheckbox";
 import { FieldRadioButtons } from "../components/search/FieldRadioButtons";
 
-import { getAllCountries, getCountriesInRegion, getStatesInCountry } from "../components/PaisDataFetcher";
+import { getAllCountries, getCountriesInRegion, getStatesInCountry, getCitiesInStates } from "../components/PaisDataFetcher";
 
 import "../styles/BuscarPersonalDomestico.scss"
 
@@ -18,6 +18,7 @@ export const BuscarPersonalDomestico = () => {
 
     const [countries, setCountries] = useState([]);
     const [states, setStates] = useState([]);
+    const [cities, setCities] = useState([]);
 
     
     const navigate = useNavigate();
@@ -26,33 +27,51 @@ export const BuscarPersonalDomestico = () => {
     const [selectedContinent, setSelectedContinent] = useState(-1);
     const [selectedCountries, setSelectedCountries] = useState("");
     const [selectedStates, setSelectedStates] = useState("");
+    const [selectedCities, setSelectedCities] = useState("");
     
     useEffect(() => {
         const fetchCountries = async () => {
             try {
-                let data = await ( selectedContinent == -1? getAllCountries(): getCountriesInRegion( regions[selectedContinent])  )
-                setCountries( data );
+                let [names, values] = await ( selectedContinent == -1? getAllCountries(): getCountriesInRegion( regions[selectedContinent])  )
+                console.log(names);
+                console.log(values);
+                setCountries( [names, values] );
             } catch (error) {
                 console.error(error);
-            }
+            } 
         };
 
         fetchCountries();
     }, [selectedContinent]);
 
     useEffect(() => {
-        const fetchCountries = async () => {
+        const fetchStates = async () => {
             try {
                 // const 
-                let data = await ( selectedCountries.length > 0? getStatesInCountry(selectedCountries): [])
-                setStates( data );
+                console.log(selectedCountries);
+                let [names, values] = await ( selectedCountries.length > 0? getStatesInCountry(selectedCountries): [[], []])
+                setStates( [names, values] );
             } catch (error) {
                 console.error(error);
             }
         };
 
-        fetchCountries();
+        fetchStates();
     }, [selectedCountries]);
+
+    useEffect(() => {
+        const fetchCities = async () => {
+            try {
+                // const 
+                let [names, values] = await ( selectedStates.length > 0? getCitiesInStates(selectedStates): [[], []])
+                setCities( [names, values] );
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchCities();
+    }, [selectedStates]);
     
     const [busquedaRapida, setBusquedaRapida] = useState(false);
     const [busquedaDetallada, setBusquedaDetallada] = useState(false);
@@ -118,14 +137,16 @@ export const BuscarPersonalDomestico = () => {
                         <FieldDropdownCheckbox
                             title={t('search.pais')}
                             placeholder="placeholder 1"
-                            items={countries}
+                            items={countries[0]}
+                            values={countries[1]}
                             state={selectedCountries}
                             setState={setSelectedCountries}
                         />
                         <FieldDropdownCheckbox
                             title={t('search.estado')}
                             placeholder="placeholder 1"
-                            items={states}
+                            items={states[0]}
+                            values={states[1]}
                             state={selectedStates}
                             setState={setSelectedStates}
                         />
@@ -176,17 +197,26 @@ export const BuscarPersonalDomestico = () => {
                         <FieldDropdownCheckbox
                             title={t('search.pais')}
                             placeholder="placeholder 1"
-                            items={countries}
+                            items={countries[0]}
+                            values={countries[1]}
+                            state={selectedCountries}
+                            setState={setSelectedCountries}
                         />
                         <FieldDropdownCheckbox
                             title={t('search.estado')}
                             placeholder="placeholder 1"
-                            items={["1", "2"]}
+                            items={states[0]}
+                            values={states[1]}
+                            state={selectedStates}
+                            setState={setSelectedStates}
                         />
                         <FieldDropdownCheckbox
                             title={t('search.ciudad')}
                             placeholder="placeholder 1"
-                            items={["1", "2"]}
+                            items={cities[0]}
+                            values={cities[1]}
+                            state={selectedCities}
+                            setState={setSelectedCities}
                         />
                         <FieldDropdownCheckbox
                             title={t('search.salida_personal')}

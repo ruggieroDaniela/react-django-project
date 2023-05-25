@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import "../../styles/BuscarPersonalDomestico.scss"
 
-export const FieldDropdownCheckbox = ({title, placeholder, items, state, setState}) => {
+export const FieldDropdownCheckbox = ({title, placeholder, items, values, state, setState}) => {
 
     const [displayContent, setDisplayContent] = useState(false);
 
@@ -28,26 +28,27 @@ export const FieldDropdownCheckbox = ({title, placeholder, items, state, setStat
                     <ul className="field-dropdown-content">
                         {items.map(
                             (x, index) =>
-                                <label>
+                                <label key={"label" + values[index] + index}>
                                     <li
-                                        key={"" + x + index}
+                                        key={"li" + values[index] + index}
                                         className="field-dropdown-item"
                                     >
                                             <input
+                                                key={"checkbox" + values[index] + index}
                                                 type="checkbox"
-                                                checked={state.includes(x)}
-                                                onClick={
+                                                checked={state.includes(values[index])}
+                                                onChange={
                                                     () => {
 
-                                                        if( state.includes(x) == false ){
-                                                            setState( prev => { return prev + "," + x } )
+                                                        if( state.includes(values[index]) == false ){
+                                                            setState( prev => { return prev + "," + values[index] } )
                                                         }else{
-                                                            setState( prev => prev.replace(','+x, '') )
+                                                            setState( prev => prev.replace(','+values[index], '') )
                                                         }
                                                     }
                                                 }
                                             />
-                                            <span>{x}</span>
+                                            <span key={"span" + values[index] + index}>{x}</span>
                                     </li>
                                 </label>
                         )}
