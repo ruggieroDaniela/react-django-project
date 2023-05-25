@@ -10,13 +10,14 @@ import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownCheckbox } from "../components/search/FieldDropdownCheckbox";
 import { FieldRadioButtons } from "../components/search/FieldRadioButtons";
 
-import { getAllCountries, getCountriesInRegion } from "../components/PaisDataFetcher";
+import { getAllCountries, getCountriesInRegion, getStatesInCountry } from "../components/PaisDataFetcher";
 
 import "../styles/BuscarPersonalDomestico.scss"
 
 export const BuscarPersonalDomestico = () => {
 
     const [countries, setCountries] = useState([]);
+    const [states, setStates] = useState([]);
 
     
     const navigate = useNavigate();
@@ -24,6 +25,7 @@ export const BuscarPersonalDomestico = () => {
     const regions = ["north america", "south america", "europe", "asia", "oceania"];
     const [selectedContinent, setSelectedContinent] = useState(-1);
     const [selectedCountries, setSelectedCountries] = useState("");
+    const [selectedStates, setSelectedStates] = useState("");
     
     useEffect(() => {
         const fetchCountries = async () => {
@@ -37,6 +39,20 @@ export const BuscarPersonalDomestico = () => {
 
         fetchCountries();
     }, [selectedContinent]);
+
+    useEffect(() => {
+        const fetchCountries = async () => {
+            try {
+                // const 
+                let data = await ( selectedCountries.length > 0? getStatesInCountry(countries): [])
+                setStates( data );
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchCountries();
+    }, [selectedCountries]);
     
     const [busquedaRapida, setBusquedaRapida] = useState(false);
     const [busquedaDetallada, setBusquedaDetallada] = useState(false);
@@ -109,7 +125,9 @@ export const BuscarPersonalDomestico = () => {
                         <FieldDropdownCheckbox
                             title={t('search.estado')}
                             placeholder="placeholder 1"
-                            items={["1", "2"]}
+                            items={states}
+                            state={selectedStates}
+                            setState={setSelectedStates}
                         />
                         <FieldDropdownCheckbox
                             title={t('search.personal_solicitado')}
