@@ -10,7 +10,8 @@ import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownCheckbox } from "../components/search/FieldDropdownCheckbox";
 import { FieldRadioButtons } from "../components/search/FieldRadioButtons";
 
-import { getAllCountries, getCountriesInRegion, getStatesInCountry, getCitiesInStates } from "../components/PaisDataFetcher";
+import { getAllCountries, getCountriesInRegion, getStatesInCountry, getCitiesInStates } from "../components/dataFetchers/PaisDataFetcher";
+import { getServices } from "../components/dataFetchers/ServicesDataFetcher";
 
 import "../styles/BuscarPersonalDomestico.scss"
 
@@ -24,10 +25,13 @@ export const BuscarPersonalDomestico = () => {
     const navigate = useNavigate();
     
     const regions = ["north america", "south america", "europe", "asia", "oceania"];
+    const services = getServices();
+
     const [selectedContinent, setSelectedContinent] = useState(-1);
     const [selectedCountries, setSelectedCountries] = useState("");
     const [selectedStates, setSelectedStates] = useState("");
     const [selectedCities, setSelectedCities] = useState("");
+    const [selectedServices, setSelectedServices] = useState("");
     
     useEffect(() => {
         const fetchCountries = async () => {
@@ -154,6 +158,9 @@ export const BuscarPersonalDomestico = () => {
                             title={t('search.personal_solicitado')}
                             placeholder="placeholder 1"
                             items={tipos_personal}
+                            values={services}
+                            state={selectedServices}
+                            setState={setSelectedServices}
                         />
                         
                         <div></div>

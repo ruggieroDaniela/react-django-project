@@ -28,27 +28,28 @@ export const FieldDropdownCheckbox = ({title, placeholder, items, values, state,
                     <ul className="field-dropdown-content">
                         {items.map(
                             (x, index) =>
-                                <label key={"label" + values[index] + index}>
+                                <label key={"label" + x + index}>
                                     <li
-                                        key={"li" + values[index] + index}
+                                        key={"li" + x + index}
                                         className="field-dropdown-item"
                                     >
                                             <input
-                                                key={"checkbox" + values[index] + index}
+                                                key={"checkbox" + x + index}
                                                 type="checkbox"
-                                                checked={state.includes(values[index])}
+                                                checked={ index < values.length && state.includes(values[index])}
                                                 onChange={
                                                     () => {
-
-                                                        if( state.includes(values[index]) == false ){
-                                                            setState( prev => { return prev + "," + values[index] } )
-                                                        }else{
-                                                            setState( prev => prev.replace(','+values[index], '') )
+                                                        if( index < values.length ){
+                                                            if( state.includes(values[index]) == false ){
+                                                                setState( prev => { return prev + "," + values[index] } )
+                                                            }else{
+                                                                setState( prev => prev.replace(','+values[index], '') )
+                                                            }
                                                         }
                                                     }
                                                 }
                                             />
-                                            <span key={"span" + values[index] + index}>{x}</span>
+                                            <span key={"span" + x + index}>{x}</span>
                                     </li>
                                 </label>
                         )}
