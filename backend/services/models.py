@@ -17,6 +17,11 @@ class Services(models.Model):
         ('ENF', 'Enfermero(a)')
     )
 
+    MODE_CHOICES = (
+        ('PROVIDE', "Ofrecer un servicio"), 
+        ('REQUEST', "Solicitar un servicio")
+    )
+
     EDUCATION_LEVEL_CHOICES = (
         ('PRI', 'Primaria'),
         ('TEC', 'Técnico Univeristario'), 
@@ -94,15 +99,19 @@ class Services(models.Model):
     )
 
     # Fields 
+    id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False, primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='PEN')
-    code = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    enable = models.BooleanField(default=False)
+    mode = models.CharField(max_length=7)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     # Basic data
     service = models.CharField(max_length=3, choices=SERVICE_CHOICES)
     education_level = models.CharField(blank=False, max_length=3, choices=EDUCATION_LEVEL_CHOICES)
 
     # Place of Origin 
+    continent = models.TextField(blank=False)
     country = models.TextField(blank=False)
     state = models.TextField(blank=False)
     city = models.TextField(blank=False)
@@ -124,12 +133,12 @@ class Services(models.Model):
     
     # Salary
     payment = models.CharField(blank=False, max_length=8, choices=PAYMENT_CHOICES)
-    payment_amount = models.DecimalField(null=True, blank=True, max_digits=8, decimal_places=2)
+    payment_amount = models.FloatField(null=True, blank=True)
     currency = models.CharField(blank=False, max_length=4, choices=CURRENCY_CHOICES)
     currency_other = models.TextField(blank=True)
     salary_offered = models.CharField(blank=False, max_length=9, choices=SALARY_OFFERED_CHOICES)
 
-    benefits = models.BooleanField(blank=False)
+    benefits = models.IntegerField(blank=False)
     benefits_description = models.TextField(blank=True)
 
     # Availability to start 
@@ -146,12 +155,16 @@ class Services(models.Model):
     publication_plan = models.CharField(blank=False, max_length=2, choices=PUBLICATION_CHOICES)
     billing_country = models.TextField(blank=False)
     billing_bank = models.TextField(blank=False)
-
+    
     class Meta:
         abstract = True
 
 # Option A - "Ofrecer mis servicios como personal doméstico"
 class ProvideService(Services):
+    def __init__(self, *args, **kargs):
+        super().__init__(*args, **kargs)
+        self.mode = "PROVIDE"
+
     ORIGIN_CHOICES = (
         ('NO', 'Me es indiferente'),
         ('SI', 'Quiero especificar la procedencia del cliente')
@@ -163,7 +176,6 @@ class ProvideService(Services):
         ('NO', 'Me es indiferente si es persona natural o empresa')
     )
 
-    # Fields
     # 1 - Basic data
     age = models.PositiveIntegerField(blank=False)
     have_children = models.BooleanField(blank=False)
@@ -192,6 +204,10 @@ class ProvideService(Services):
 
 # Option B - "Solicitar personal doméstico"
 class RequestService(Services):
+    def __init__(self, *args, **kargs):
+        super().__init__(*args, **kargs)
+        self.mode = "REQUEST"
+
     # Choices
     GENDER_CHOICES = (
         ('FEM', 'Niñera'), 
@@ -204,7 +220,7 @@ class RequestService(Services):
         ('SI', 'Con hijos'), 
         ('IDC', 'Me es indiferente si tiene hijos o no')
     )
-    
+
     # 1 - Basic data
     gender = models.CharField(blank=False, max_length=3, choices=GENDER_CHOICES)
     age_required_from = models.PositiveIntegerField()
