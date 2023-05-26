@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import axios from 'axios';
-
 import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownCheckbox } from "../components/search/FieldDropdownCheckbox";
 import { FieldRadioButtons } from "../components/search/FieldRadioButtons";
@@ -47,6 +45,8 @@ export const BuscarPersonalDomestico = () => {
     const [selectedCheckout, setSelectedCheckout] = useState("");
     const [selectedPaymentFreq, setSelectedPaymentFreq] = useState("");
     const [selectedCurrency, setSelectedCurrency] = useState("");
+    const [selectedBeneficio, setSelectedBeneficio] = useState("");
+    const [selectedPayment, setSelectedPayment] = useState("");
 
     // fetch values from the backend
         // Countries
@@ -265,6 +265,9 @@ export const BuscarPersonalDomestico = () => {
                                 title={t('search.remuneracion')}
                                 placeholder="placeholder"
                                 items={[t('search.a_convenir'), t('search.rango')]}
+                                values={["agree", "range"]}
+                                state={selectedPayment}
+                                setState={setSelectedPayment}
                             />
                             
                             <div className="field-range-input">
@@ -275,7 +278,7 @@ export const BuscarPersonalDomestico = () => {
                             
                         </div>
 
-                        <FieldDropdown
+                        <FieldDropdownCheckbox
                             title={t('search.remuneracion_frecuencia')}
                             placeholder="placeholder 1"
                             items={remuneracion_frecuencia}
@@ -309,6 +312,9 @@ export const BuscarPersonalDomestico = () => {
                             title={t('search.beneficio')}
                             placeholder="placeholder 1"
                             items={[t('search.si'), t('search.no')]}
+                            values={["y", "n"]}
+                            state={selectedBeneficio}
+                            setState={setSelectedBeneficio}
                         />
 
                         <FieldRadioButtons

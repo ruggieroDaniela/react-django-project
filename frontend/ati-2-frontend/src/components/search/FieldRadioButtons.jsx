@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import "../../styles/BuscarPersonalDomestico.scss"
 
-export const FieldRadioButtons = ({title, items}) => {
+export const FieldRadioButtons = ({title, items, values, state, setState}) => {
 
     return <>
         <div className="field">
@@ -18,7 +18,11 @@ export const FieldRadioButtons = ({title, items}) => {
                             <li
                                 className="field-radio-item"
                             >
-                                    <input type="radio"/>
+                                    <input
+                                        type="radio"
+                                        checked={ state == values[index] }
+                                        onChange={ () => setState( () => values[index] ) }
+                                    />
                                     <span>{x}</span>
                             </li>
                         </label>
