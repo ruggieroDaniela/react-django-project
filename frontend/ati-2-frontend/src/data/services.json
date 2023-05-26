@@ -35,5 +35,17 @@
         "per-week",
         "per-two weeks",
         "per-month"
+    ],
+    "disponibilidad":[
+        "now",
+        "agree"
+    ],
+    "ordenar_por": [
+        "payment-asc",
+        "payment-desc",
+        "available date-asc",
+        "available date-desc",
+        "post date-asc",
+        "post date-desc"
     ]
 }

@@ -9,7 +9,7 @@ import { FieldDropdownCheckbox } from "../components/search/FieldDropdownCheckbo
 import { FieldRadioButtons } from "../components/search/FieldRadioButtons";
 
 import { getAllCountries, getCountriesInRegion, getStatesInCountry, getCitiesInStates } from "../components/dataFetchers/PaisDataFetcher";
-import { getCheckout, getHorario, getPaymentFreq, getServices } from "../components/dataFetchers/ServicesDataFetcher";
+import { getAvailability, getCheckout, getHorario, getPaymentFreq, getServices, getSortBy } from "../components/dataFetchers/ServicesDataFetcher";
 
 import "../styles/BuscarPersonalDomestico.scss"
 
@@ -30,6 +30,8 @@ export const BuscarPersonalDomestico = () => {
     const schedules = getHorario();
     const checkout = getCheckout();
     const paymentFreq = getPaymentFreq();
+    const availability = getAvailability();
+    const sortBy = getSortBy();
 
     // display dropdown contents for both search types
     const [busquedaRapida, setBusquedaRapida] = useState(false);
@@ -47,6 +49,8 @@ export const BuscarPersonalDomestico = () => {
     const [selectedCurrency, setSelectedCurrency] = useState("");
     const [selectedBeneficio, setSelectedBeneficio] = useState("");
     const [selectedPayment, setSelectedPayment] = useState("");
+    const [selectedAvailability, setSelectedAvailability] = useState("");
+    const [selectedSortBy, setSelectedSortBy] = useState("");
 
     // fetch values from the backend
         // Countries
@@ -310,7 +314,6 @@ export const BuscarPersonalDomestico = () => {
 
                         <FieldRadioButtons
                             title={t('search.beneficio')}
-                            placeholder="placeholder 1"
                             items={[t('search.si'), t('search.no')]}
                             values={["y", "n"]}
                             state={selectedBeneficio}
@@ -319,13 +322,18 @@ export const BuscarPersonalDomestico = () => {
 
                         <FieldRadioButtons
                             title={t('search.disponibilidad')}
-                            placeholder="placeholder 1"
                             items={[t('search.disponibilidad_opciones.0'), t('search.disponibilidad_opciones.1')]}
+                            values={availability}
+                            state={selectedAvailability}
+                            setState={setSelectedAvailability}
                         />
 
                         <FieldRadioButtons
                             title={t('search.listar')}
                             items={ordenes}
+                            values={sortBy}
+                            state={selectedSortBy}
+                            setState={setSelectedSortBy}
                         />
                         
                         <div></div>
