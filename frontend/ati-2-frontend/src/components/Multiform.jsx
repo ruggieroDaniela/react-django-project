@@ -1,17 +1,21 @@
 import React from "react";
 
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 
 import "../styles/Multiform.scss"
 
 export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames }) => {
     
+    // hook para la internacionalizacion
     const { t } = useTranslation();
 
+    // indice del stage que se muestra actualmente
     const [currentStage, setCurrentStage] = useState(0);
+    // stages por los que ya ha pasado el usuario
     const [stagesDone, setStagesDone] = useState(0);
 
+    // pointer al stage que se muestra actualmente
     const RenderStage = stages[currentStage];
 
     return (
@@ -19,11 +23,16 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames }) => 
 
             <div className="fases-grid">
                 {
+                    // listar todos los stages (los botones verdes y grises)
                     stages.map((stage, i) => {
                         return(
                             <button
                                 key={'boton_form_stage_'+i}
+
+                                // checkear el color de la fase listada (verde o gris)
                                 className={`fase ${i>stagesDone? "inactive":""} ${i==currentStage? "current":""}`}
+                                
+                                // dar click en cada boton me lleva al respectivo stage (si ya pasé por ahí)
                                 onClick={() => {
                                     if( i<=stagesDone )
                                         setCurrentStage((prev) => i);
@@ -36,7 +45,10 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames }) => 
                 }
             </div>
 
+            {/* stage actual */}
             <div className="fase-actual">
+
+                {/* Devolverse al stage anterior */}
                 <button 
                     className={`${currentStage <= 0?"ghost":""}`}
                     onClick={() => {
@@ -46,9 +58,13 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames }) => 
                 >
                     ← {t('multiform.atras')}
                 </button>
+                
+                {/* nombre del stage actual */}
                 <span>
                     {stagesNames[currentStage]}
                 </span>
+
+                {/* ir al siguiente stage */}
                 <button 
                     className={`${currentStage === stages.length-1?"ghost":""}`}
                     onClick={() => {
@@ -61,37 +77,32 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames }) => 
                 >
                     {t('multiform.continuar')} →
                 </button>
+            
             </div>
             
-                <form>
-                    <RenderStage/>
-                </form>
-                <div id="botones">
-                    <button
-                        id="boton_cancelar"
-                        onClick={ cancelEvent }
-                        >
-                        {t('multiform.cancelar')}
-                    </button>
-                    {/* <button
-                        id="boton_registrar"
-                        
-                        onClick={ () => props.submitEvent() }
+            {/* renderizar stage actual */}
+            <form>
+                <RenderStage/>
+            </form>
 
-                        style={{
-                            display: currentStage == props.stages.length-1? "block":"none"
-                        }}
-                        >
-                        {t('multiform.registrar')}
-                    </button> */}
-                    {
-                        currentStage == stages.length-1?
-                            <SubmitButton/>
-                        :
-                            ""
-                    }
-                </div>
-            
+            <div id="botones">
+
+                {/* boton de cancelar */}
+                <button
+                    id="boton_cancelar"
+                    onClick={ cancelEvent }
+                    >
+                    {t('multiform.cancelar')}
+                </button>
+                
+                {/* boton de submit */}
+                {
+                    currentStage == stages.length-1?
+                        <SubmitButton/>
+                    :""
+                }
+
+            </div>
 
         </div>
 
