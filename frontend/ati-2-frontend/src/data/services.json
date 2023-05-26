@@ -40,6 +40,10 @@
         "now",
         "agree"
     ],
+    "remuneracion":[
+        "agree",
+        "range"
+    ],
     "ordenar_por": [
         "payment-asc",
         "payment-desc",
@@ -47,5 +51,9 @@
         "available date-desc",
         "post date-asc",
         "post date-desc"
+    ],
+    "beneficios": [
+        "yes",
+        "no"
     ]
 }

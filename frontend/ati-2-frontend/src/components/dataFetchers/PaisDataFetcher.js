@@ -2,6 +2,8 @@ import axios from 'axios';
 
 const API_KEY = "M3F5RW5Hb1dkWFpNN2kwN1k1eEhNYlRYZUJuQW5Wb3NETlF6YTd5cg=="
 
+export const getContinents = () => ["north america", "south america", "europe", "asia", "oceania"]
+
 export const getAllCountries = async () => {
     
     try {

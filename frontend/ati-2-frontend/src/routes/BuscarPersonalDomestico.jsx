@@ -8,8 +8,8 @@ import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownCheckbox } from "../components/search/FieldDropdownCheckbox";
 import { FieldRadioButtons } from "../components/search/FieldRadioButtons";
 
-import { getAllCountries, getCountriesInRegion, getStatesInCountry, getCitiesInStates } from "../components/dataFetchers/PaisDataFetcher";
-import { getAvailability, getCheckout, getHorario, getPaymentFreq, getServices, getSortBy } from "../components/dataFetchers/ServicesDataFetcher";
+import { getAllCountries, getCountriesInRegion, getStatesInCountry, getCitiesInStates, getContinents } from "../components/dataFetchers/PaisDataFetcher";
+import { getAvailability, getBenefits, getCheckout, getHorario, getPayment, getPaymentFreq, getServices, getSortBy } from "../components/dataFetchers/ServicesDataFetcher";
 
 import "../styles/BuscarPersonalDomestico.scss"
 
@@ -25,13 +25,15 @@ export const BuscarPersonalDomestico = () => {
     const [cities, setCities] = useState([]);
     
     // values that don't need backend fetching
-    const regions = ["north america", "south america", "europe", "asia", "oceania"];
+    const regions = getContinents();
     const services = getServices();
     const schedules = getHorario();
     const checkout = getCheckout();
     const paymentFreq = getPaymentFreq();
     const availability = getAvailability();
     const sortBy = getSortBy();
+    const benefits = getBenefits();
+    const payment = getPayment();
 
     // display dropdown contents for both search types
     const [busquedaRapida, setBusquedaRapida] = useState(false);
@@ -269,7 +271,7 @@ export const BuscarPersonalDomestico = () => {
                                 title={t('search.remuneracion')}
                                 placeholder="placeholder"
                                 items={[t('search.a_convenir'), t('search.rango')]}
-                                values={["agree", "range"]}
+                                values={payment}
                                 state={selectedPayment}
                                 setState={setSelectedPayment}
                             />
@@ -317,7 +319,7 @@ export const BuscarPersonalDomestico = () => {
                         <FieldRadioButtons
                             title={t('search.beneficio')}
                             items={[t('search.si'), t('search.no')]}
-                            values={["y", "n"]}
+                            values={benefits}
                             state={selectedBeneficio}
                             setState={setSelectedBeneficio}
                         />
