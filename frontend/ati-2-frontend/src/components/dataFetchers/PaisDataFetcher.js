@@ -17,7 +17,6 @@ export const getAllCountries = async () => {
 
         const names = response.data.map( x => x.name );
         const values = response.data.map( x => x.iso2 );
-        console.log(values);
         return [names, values];
         
     } catch (error) {
@@ -29,7 +28,6 @@ export const getAllCountries = async () => {
 export const getCountriesInRegion = async (reg) => {
     try {
         const response = await axios.get(`https://restcountries.com/v3.1/region/${reg}`);
-        console.log(response.data);
         const names = response.data.map( x => x.name.common );
         const values = response.data.map( x => x.cca2 );
 
@@ -91,7 +89,6 @@ export const getCitiesInStates = async (stateCodes) => {
                     'X-CSCAPI-KEY': API_KEY
                 }
             });
-            console.log(response.data);
 
             for (let j = 0; j < response.data.length; j++) {
                 names.push( response.data[j].name );
