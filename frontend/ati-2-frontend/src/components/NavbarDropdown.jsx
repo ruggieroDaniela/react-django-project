@@ -9,13 +9,13 @@ const NavbarDropdown = ({label, items}) =>{
 
     return (
         <li key={Math.random().toString(36)} className="item dropdown" onMouseLeave={() => setDropdownVisible((prev) => false)}>
-            <div className="label" onClick={() => setDropdownVisible((prev) => !prev) }>
-                <button >
+            <div key={Math.random().toString(36)} className="label" onClick={() => setDropdownVisible((prev) => !prev) }>
+                <button key={Math.random().toString(36)} >
                     {label.text}
                 </button>
-                <p>{label.arrow}</p>
+                <p key={Math.random().toString(36)}>{label.arrow}</p>
             </div>
-            <ul className={`list ${dropdownVisible? "show" : ""}`} >
+            <ul key={Math.random().toString(36)} className={`list ${dropdownVisible? "show" : ""}`} >
                 {items.map(
                     item => {
                         keyIndex++;
@@ -24,6 +24,7 @@ const NavbarDropdown = ({label, items}) =>{
                             <li key={Math.random().toString(36)} className="item"> <a className="link" href={item.link}>{item.label}</a> </li>
                             :
                             <NavbarDropdown
+                                key={Math.random().toString(36)}
                                 label={item.label}
                                 items={item.items}
                             />

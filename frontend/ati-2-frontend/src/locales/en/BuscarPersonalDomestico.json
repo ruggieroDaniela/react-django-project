@@ -1,0 +1,93 @@
+{
+    "continentes":[
+        "North America",
+        "South America",
+        "Europe",
+        "Asia",
+        "Oceania"
+    ],
+    "search":{
+        "busqueda_rapida": "Quick Search",
+        "continente": "Continent",
+        "pais": "Country",
+        "estado": "State",
+        "ciudad": "City",
+        "personal_solicitado": "Requested Staff",
+        "selecciona_continente": "Select a Continent",
+        "buscar": "Search",
+        "cancelar": "Cancel",
+        "busqueda_detallada": "Advanced Search",
+        "salida_personal": "Staff Checkout",
+        "horario": "Schedule",
+        "remuneracion": "Payment",
+        "remuneracion_frecuencia": "Payment Frequency",
+        "moneda": "Currency",
+        "beneficio": "Other employment benefits?",
+        "disponibilidad": "Availability of staff to start work",
+        "disponibilidad_opciones":[
+            "Start Date",
+            "To Agree"
+        ],
+        "listar": "Sort by",
+        "tipos_personal": [
+            "Babysitter",
+            "Occupational Caretaker",
+            "Nurse",
+            "Domestic Staff",
+            "Clean",
+            "Wash",
+            "Iron",
+            "Cook",
+            "Estate Caretaker",
+            "Cleaning",
+            "Painting",
+            "For maintenance or repairs",
+            "To maintain services of the property up to date"
+        ],
+        "monedas": [
+            "USD",
+            "EUR",
+            "Other"
+        ],
+        "dias_semana": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+        ],
+        "salida_personal_opciones": [
+            "Weekly",
+            "Bi-Weekly",
+            "Monthly",
+            "Every 2 Days",
+            "Half-time",
+            "Weekend",
+            "Per night",
+            "Per season",
+            "Per hour",
+            "To Agree"
+        ],
+        "si": "Yes",
+        "no": "No",
+        "especificar": "Specify",
+        "remuneracion_frecuencia_opciones": [
+            "Per hour",
+            "Per day",
+            "Per week",
+            "Per two weeks",
+            "Per month"
+        ],
+        "listar_opciones": [
+            "By payment",
+            "By available date",
+            "By post date"
+        ],
+        "ascendente": "ascendent",
+        "descendente": "descendent",
+        "a_convenir": "To Agree",
+        "rango": "Range"
+    }
+}

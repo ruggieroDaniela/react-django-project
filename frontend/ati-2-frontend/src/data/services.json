@@ -1,0 +1,59 @@
+{
+    "tipos": [
+        "babysitter",
+        "caretaker"
+    ],
+    "monedas": [
+        "USD",
+        "EUR",
+        "other"
+    ],
+    "dias_semana": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+    ],
+    "salida_personal": [
+        "weekly",
+        "bi-weekly",
+        "monthly",
+        "every-2-days",
+        "half-time",
+        "weekend",
+        "per-night",
+        "per-season",
+        "per-hour",
+        "to-agree"
+    ],
+    "remuneracion_frecuencia": [
+        "per-hour",
+        "per-day",
+        "per-week",
+        "per-two weeks",
+        "per-month"
+    ],
+    "disponibilidad":[
+        "now",
+        "agree"
+    ],
+    "remuneracion":[
+        "agree",
+        "range"
+    ],
+    "ordenar_por": [
+        "payment-asc",
+        "payment-desc",
+        "available date-asc",
+        "available date-desc",
+        "post date-asc",
+        "post date-desc"
+    ],
+    "beneficios": [
+        "yes",
+        "no"
+    ]
+}

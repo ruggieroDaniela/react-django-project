@@ -16,6 +16,10 @@
   margin: 0;
 }
 
+html, body{
+  height: 100%;
+  margin: 0;
+}
 
 body {
   /* padding-bottom: 15vh; */
@@ -25,6 +29,12 @@ body {
   /* place-items: center; */
   /* min-width: 320px; */
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main{
+  flex-grow: 1;
 }
 
 /*

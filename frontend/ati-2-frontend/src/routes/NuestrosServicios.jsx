@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { RequestDomesticFormContext, RequestDomesticFormContextProvider } from "../context/RequestDomesticFormContext";
 
@@ -11,6 +12,7 @@ export const NuestrosServicios = () => {
 
     const { t } = useTranslation();
     const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+    const navigate = useNavigate();
 
     const [clickPostAd, setClickPostAd] = useState(false);
     const [clickFind, setClickFind] = useState(false);
@@ -113,7 +115,11 @@ export const NuestrosServicios = () => {
                         >
                             <span className="required">*</span> {t('nuestros_servicios.seleccionar_opcion')}
                             <div className="button_dropdown_content">
-                                <button>
+                                <button
+                                    onClick={ () => {
+                                        navigate("/search-domestic-staff");
+                                    } }
+                                >
                                     C- {t('nuestros_servicios.opciones.2')}
                                 </button>
                                 <button>
