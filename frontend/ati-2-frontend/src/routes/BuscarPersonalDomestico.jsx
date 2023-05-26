@@ -273,12 +273,14 @@ export const BuscarPersonalDomestico = () => {
                                 state={selectedPayment}
                                 setState={setSelectedPayment}
                             />
-                            
-                            <div className="field-range-input">
-                                <input type="text"/>
-                                <span> - </span>
-                                <input type="text"/>
-                            </div>
+                            {selectedPayment.includes("range")?
+                                <div className="field-range-input">
+                                    <input type="text"/>
+                                    <span> - </span>
+                                    <input type="text"/>
+                                </div>
+                                :""
+                            }
                             
                         </div>
 
