@@ -115,7 +115,7 @@ export const IniciarSesion = () => {
                 
                 <button type="submit">{t('login.boton')}</button>
                 
-                <a href="#">{t('login.olvide_contrasena')}</a>
+                <a href="/forgot-password">{t('login.olvide_contrasena')}</a>
 
             </form>
             
