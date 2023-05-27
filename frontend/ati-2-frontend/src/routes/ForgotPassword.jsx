@@ -3,6 +3,7 @@ import "../styles/ForgotPassword.scss"
 import { useTranslation } from 'react-i18next';
 
 import { useNavigate } from 'react-router-dom';
+import { FormForgotPassword } from '../components/FormForgotPassword';
 
 export const ForgotPassword = () => {
 
@@ -18,16 +19,12 @@ export const ForgotPassword = () => {
         if ( info === 'cedula' ){
             setformIdDoc(true);
             setFormEmail(false);
-            console.log('dsdsdsds')
         }
+
         else if ( info === 'correo' ){
             setformIdDoc(false);
             setFormEmail(true);
         }
-    }
-
-    const handleSubmitResetPassword = e => {
-        e.preventDefault();
     }
 
     const onRadioChange = e => {
@@ -40,41 +37,19 @@ export const ForgotPassword = () => {
         { 
             formIdDoc === true
             ? 
-                <div id='forgot'>
-                    <h2 id='title'>Recuperar mi contraseña, o mis datos</h2>
-
-                    <form onSubmit={ handleSubmitResetPassword } className='form'>
-                        <p>Ingresa tu cedula de identidad, DNI o pasaporte</p>
-                        <div id='input-forgot-password'>
-                            <input type="text"  />
-                        </div>
-                        <div id="buttons">
-                            <button type="submit">Aceptar</button>
-                            <button type="button">Cancelar</button>
-                        </div>
-                    </form>
-                </div>
+                <FormForgotPassword
+                    message={"Ingresa tu cedula de identidad, DNI o pasaporte"}
+                />
             : 
                 null
         }
 
         { 
             formEmail === true
-            ? 
-                <div id='forgot'>
-                    <h2 id='title'>Recuperar mi contraseña, o mis datos</h2>
-
-                    <form onSubmit={ handleSubmitResetPassword } className='form'>
-                        <p>Ingresa tu correo electrónico o usuario</p>
-                        <div id='input-forgot-password'>
-                            <input type="text"  />
-                        </div>
-                        <div id="buttons">
-                            <button type="submit">Aceptar</button>
-                            <button type="button">Cancelar</button>
-                        </div>
-                    </form>
-                </div>
+            ?
+                <FormForgotPassword
+                    message={"Ingresa tu correo electrónico o usuario"}
+                />
             : 
                 null
         }
