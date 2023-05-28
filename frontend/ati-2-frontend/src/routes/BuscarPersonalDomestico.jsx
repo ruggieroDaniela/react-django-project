@@ -1,8 +1,11 @@
 import React from "react";
+import axios from 'axios';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+
+import AuthContext from "../context/AuthContext";
 
 import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownCheckbox } from "../components/search/FieldDropdownCheckbox";
@@ -18,6 +21,7 @@ export const BuscarPersonalDomestico = () => {
     // some necessary hooks
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
+    const {authState, setAuthState} = useContext(AuthContext);
 
     // names and values that need backend fetching
     const [countries, setCountries] = useState([]);
@@ -179,7 +183,37 @@ export const BuscarPersonalDomestico = () => {
                         />
                         
                         <div></div>
-                        <button>
+                        <button
+                            onClick={ async () => {
+                                try {
+                                    let query = "?";
+
+                                    if(selectedContinent != -1)
+                                        query += `continent=${regions[selectedContinent]}&`
+                                    
+                                    if(selectedCountries != "")
+                                        query += `country__in=${selectedCountries.substring(1)}&`
+                                    
+                                    if(selectedStates != "")
+                                        query += `state__in=${selectedStates.substring(1)}&`
+                                    
+                                    if(selectedServices != "")
+                                        query += `service__in=${selectedServices.substring(1)}`
+                                    
+                                    query = query.substring(0, query.length-1)
+                                    console.log(query);
+
+                                    const response = await axios.get(`http://127.0.0.1:8000/api-services/provideService/${query}`,{
+                                        headers: {
+                                            "Authorization": authState.token
+                                        }
+                                    })
+                                    console.log(response.data);
+                                } catch (error) {
+                                    console.log(error);
+                                }
+                            }}
+                        >
                             {t('search.buscar')}
                         </button>
                         <button
@@ -344,7 +378,20 @@ export const BuscarPersonalDomestico = () => {
                         <div></div>
                         <div></div>
                         <div></div>
-                        <button>
+                        <button
+                            onClick={ async () => {
+                                try {
+                                    const response = await axios.get(`http://127.0.0.1:8000/api-services/provideService/`,{
+                                        headers: {
+                                            "Authorization": authState.token
+                                        }
+                                    })
+                                    console.log(response.data);
+                                } catch (error) {
+                                    console.log(error);
+                                }
+                            }}
+                        >
                             {t('search.buscar')}
                         </button>
                         <button
