@@ -186,7 +186,24 @@ export const BuscarPersonalDomestico = () => {
                         <button
                             onClick={ async () => {
                                 try {
-                                    const response = await axios.get(`http://127.0.0.1:8000/api-services/provideService/`,{
+                                    let query = "?";
+
+                                    if(selectedContinent != -1)
+                                        query += `continent=${regions[selectedContinent]}&`
+                                    
+                                    if(selectedCountries != "")
+                                        query += `country__in=${selectedCountries.substring(1)}&`
+                                    
+                                    if(selectedStates != "")
+                                        query += `state__in=${selectedStates.substring(1)}&`
+                                    
+                                    if(selectedServices != "")
+                                        query += `service__in=${selectedServices.substring(1)}`
+                                    
+                                    query = query.substring(0, query.length-1)
+                                    console.log(query);
+
+                                    const response = await axios.get(`http://127.0.0.1:8000/api-services/provideService/${query}`,{
                                         headers: {
                                             "Authorization": authState.token
                                         }

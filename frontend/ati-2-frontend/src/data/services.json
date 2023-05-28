@@ -1,44 +1,43 @@
 {
     "tipos": [
-        "babysitter",
-        "caretaker"
+        "NIN",
+        "CUI"
     ],
     "monedas": [
         "USD",
         "EUR",
-        "other"
+        "OTRA"
     ],
     "dias_semana": [
-        "mon",
-        "tue",
-        "wed",
-        "thu",
-        "fri",
-        "sat",
-        "sun"
+        "LUN",
+        "MAR",
+        "MIE",
+        "JUE",
+        "VIE",
+        "SAB",
+        "DOM"
     ],
     "salida_personal": [
-        "weekly",
-        "bi-weekly",
-        "monthly",
-        "every-2-days",
-        "half-time",
-        "weekend",
-        "per-night",
-        "per-season",
-        "per-hour",
-        "to-agree"
+        "SEMANAL",
+        "QUINCENAL", 
+        "MENSUAL", 
+        "INTERDIARIO",
+        "MEDIO_TIEMPO",
+        "FIN_SEMANA",
+        "NOCHE",
+        "HORAS",
+        "OTRO"
     ],
     "remuneracion_frecuencia": [
-        "per-hour",
-        "per-day",
-        "per-week",
-        "per-two weeks",
-        "per-month"
+        "HORA",
+        "DIA" ,
+        "SEMANAL",
+        "QUINCENAL",
+        "MENSUAL"
     ],
     "disponibilidad":[
         "now",
-        "agree"
+        "CONVENIR"
     ],
     "remuneracion":[
         "agree",
