@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react'
+import React, { useState } from 'react'
 import "../styles/ResetPassword.scss"
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -9,9 +9,6 @@ export const ResetPassword = () => {
   const [submitPassword, setSubmitPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [iniciarSesion, setIniciarSesion] = useState(false);
-  const [navegar, setNavegar] = useState(false);
-  const [salir, setSalir] = useState(false);
   const [action, setAcction] = useState('');
 
   const handleSubmitRadio = (e) => {
@@ -67,33 +64,33 @@ const onRadioChange = e => {
         ?
         <div className='reset-password'>
           <div className='reset'>
-              <h2 id='title'>Contraseña restablecida</h2>
+              <h2 id='title'>{t('resetPassword.titulo1')}</h2>
 
               <form onSubmit={ handleSubmitRadio } className='form'>
-                  <p>Seleccione la información que va a proporcionar</p>
-                  <p>¿Qué desea hacer?</p>
+                  <p>{t('resetPassword.descripcion')}</p>
+                  <p>{t('resetPassword.pregunta')}</p>
                   <div>
                       <div>
                           <input type="radio" id="radio" className='radio-button' checked={ action === "../login" } onChange={ onRadioChange } name="iniciar" value="login"/>
-                          <label for="radio">Iniciar sesión</label>
+                          <label for="radio">{t('resetPassword.radio1')}</label>
                       </div>
 
                       <div>
-                          <input type="radio" id="radio2" className='radio-button' checked={ action === "../portal" } onChange={ onRadioChange } name="portal" value="portal"/>
-                          <label for="radio2">Seguir navegando en el portal</label>
+                          <input type="radio" id="radio2" className='radio-button' checked={ action === "../" } onChange={ onRadioChange } name="portal" value=""/>
+                          <label for="radio2">{t('resetPassword.radio2')}</label>
                       </div>
 
                       <div>
-                          <input type="radio" id="radio3" className='radio-button' checked={ action === "../salir" } onChange={ onRadioChange } name="salir" value="salir"/>
-                          <label for="radio3">Salir</label>
+                          <input type="radio" id="radio3" className='radio-button' checked={ action === "" } onChange={ onRadioChange } name="salir" value=""/>
+                          <label for="radio3">{t('resetPassword.radio3')}</label>
                       </div>
                   </div>
 
                   <div id="buttons">
                       <Link to={action} id="padre-btn-aceptar">
-                        <button type="submit"  id="btn-aceptar" >Aceptar</button>
+                        <button type="submit"  id="btn-aceptar" >{t('resetPassword.botonAceptar')}</button>
                       </Link>
-                      <button>Cancelar</button>
+                      <button>{t('resetPassword.botonCancelar')}</button>
                   </div>
               </form>
             </div>
@@ -103,24 +100,24 @@ const onRadioChange = e => {
 
           <div className='reset-password'>
               <div className='reset'>
-                  <h2 id='title'>Restablece tu contraseña</h2>
+                  <h2 id='title'>{t('resetPassword.titulo2')}</h2>
 
                   <form onSubmit={ handleSubmit } className='form'>
-                      <p>Cambiando la contraseña de correo de la persona <a href="#">{ dataGET.email }</a> </p>
+                      <p>{t('resetPassword.descripcion2')} <a href="#">{ dataGET.email }</a> </p>
 
                       <div>
                           <div className='field'>
-                              <label>Contraseña</label>
+                              <label>{t('resetPassword.contraseña')}</label>
                               <input type="password" onChange={e => setPassword(e.target.value)} required />
                           </div>
                           <div className='field'>
-                              <label>Confirmar contraseña</label>
+                              <label>{t('resetPassword.confirmarContraseña')}</label>
                               <input type="password" onChange={e => setConfirmPassword(e.target.value)} required />
                           </div>
                       </div>
 
                       <div id='buttons'>
-                        <button id="btnCambiarContrasena" type="submit">Cambiar contraseña</button>
+                        <button id="btnCambiarContrasena" type="submit">{t('resetPassword.cambiarContraseña')}</button>
                       </div>
 
                   </form>

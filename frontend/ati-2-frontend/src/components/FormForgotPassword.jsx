@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next';
 
 export const FormForgotPassword = ({ message }) => {
 
     const [correoEnviado, setCorreoEnviado] = useState(false)
+    const { t, i18n } = useTranslation();
   
     const handleSubmit = e => {
         e.preventDefault();
@@ -39,24 +41,24 @@ export const FormForgotPassword = ({ message }) => {
 
             ?
                 <div id='forgot'>
-                    <h2 id='title'>Recuperar mi contraseña, o mis datos</h2>
+                    <h2 id='title'>{t('forgotPassword.titulo1')}</h2>
 
                     <form onSubmit={ handleSendEmail } className='form'>
-                        <p id="message">Acabamos de enviar tu usuario, y un link para restablecer tu contraseña, al correo: <br/>
+                        <p id="message">{t('forgotPassword.descripcion2.1')} <br/>
                             <a href="#">{ data.email }</a><br/>
-                            y al número de teléfono: {data.phone} <br/><br/>
-                            <span id="text">Si este no es su correo o teléfono, debe modificar su correo electrónico, o teléfono, en la cuenta que posee con la empresa, y solicitar nuevamente el envío de dicha información</span>
+                            {t('forgotPassword.descripcion2.2')} {data.phone} <br/><br/>
+                            <span id="text">{t('forgotPassword.descripcion2.3')}</span>
                         </p>
 
                         <div id="buttons">
-                            <button type="submit">Aceptar</button>
-                            <button type="button">Cancelar</button>
+                            <button type="submit">{t('forgotPassword.botonAceptar')}</button>
+                            <button type="button">{t('forgotPassword.botonCancelar')}</button>
                         </div>
                     </form>
                 </div>
             : 
                 <div id='forgot'>
-                    <h2 id='title'>Recuperar mi contraseña, o mis datos</h2>
+                    <h2 id='title'>{t('forgotPassword.titulo1')}</h2>
 
                     <form onSubmit={ handleSubmit } className='form'>
                         <p>{ message }</p>
@@ -64,8 +66,8 @@ export const FormForgotPassword = ({ message }) => {
                             <input type="text"  />
                         </div>
                         <div id="buttons">
-                            <button type="submit">Aceptar</button>
-                            <button type="button">Cancelar</button>
+                            <button type="submit">{t('forgotPassword.botonAceptar')}</button>
+                            <button type="button">{t('forgotPassword.botonCancelar')}</button>
                         </div>
                     </form>
                 </div>

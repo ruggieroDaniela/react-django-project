@@ -38,7 +38,7 @@ export const ForgotPassword = () => {
             formIdDoc === true
             ? 
                 <FormForgotPassword
-                    message={"Ingresa tu cedula de identidad, DNI o pasaporte"}
+                    message = {t("forgotPassword.mensaje1")} 
                 />
             : 
                 null
@@ -48,7 +48,7 @@ export const ForgotPassword = () => {
             formEmail === true
             ?
                 <FormForgotPassword
-                    message={"Ingresa tu correo electrónico o usuario"}
+                    message = {t("forgotPassword.mensaje2")}
                 />
             : 
                 null
@@ -58,31 +58,31 @@ export const ForgotPassword = () => {
             formEmail === false && formIdDoc === false
             ?
                 <div id='forgot'>
-                    <h2 id='title'>Recuperar mi contraseña, o mis datos</h2>
+                    <h2 id='title'>{t('forgotPassword.titulo1')}</h2>
 
-                    <form onSubmit={handleSubmitRadio} className='form'>
-                        <p>Seleccione la información que va a proporcionar</p>
+                    <form onSubmit={ handleSubmitRadio } className='form'>
+                        <p>{t("forgotPassword.descripcion1")}</p>
 
                         <div>
                             <div>
                                 <input type="radio" id="radio" className='radio-button' checked={ info === "cedula" } onChange={ onRadioChange } name="cedula" value="cedula"/>
-                                <label for="radio">Cédula de identidad, DNI o pasaporte</label>
+                                <label for="radio">{t("forgotPassword.radio1")}</label>
                             </div>
 
                             <div>
                                 <input type="radio" id="radio2" className='radio-button' checked={ info === "correo" } onChange={ onRadioChange } name="correo" value="correo"/>
-                                <label for="radio2">Correo electrónico o usuario</label>
+                                <label for="radio2">{t("forgotPassword.radio2")}</label>
                             </div>
 
                             <div>
                                 <input type="radio" id="radio3" className='radio-button' checked={ info === "telefono" } onChange={ onRadioChange } name="telefono" value="telefono"/>
-                                <label for="radio3">Teléfono celular o móvil</label>
+                                <label for="radio3">{t("forgotPassword.radio3")}</label>
                             </div>
                         </div>
 
                         <div id="buttons">
-                            <button type="submit">Aceptar</button>
-                            <button type="button">Cancelar</button>
+                            <button type="submit">{t('forgotPassword.botonAceptar')}</button>
+                            <button type="button">{t('forgotPassword.botonAceptar')}</button>
                         </div>
 
                     </form>

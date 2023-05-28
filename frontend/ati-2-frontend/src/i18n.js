@@ -9,6 +9,8 @@ import general_en from "./locales/en/General.json";
 import login_en from "./locales/en/IniciarSesion.json"
 import servicios_en from "./locales/en/NuestrosServicios.json"
 import buscar_personal_domestico_en from "./locales/en/BuscarPersonalDomestico.json"
+import reset_password_en from "./locales/en/RestablecerContraseña.json"
+import forgot_password_en from "./locales/en/ForgotPassword.json"
 
 import navbar_es from './locales/es/Navbar.json';
 import registrar_es from "./locales/es/Registrar.json";
@@ -17,6 +19,8 @@ import general_es from "./locales/es/General.json";
 import login_es from "./locales/es/IniciarSesion.json"
 import servicios_es from "./locales/es/NuestrosServicios.json"
 import buscar_personal_domestico_es from "./locales/es/BuscarPersonalDomestico.json"
+import reset_password_es from "./locales/es/RestablecerContraseña.json"
+import forgot_password_es from "./locales/es/ForgotPassword.json"
 
 const en = Object.assign(
   {},
@@ -26,7 +30,9 @@ const en = Object.assign(
   general_en,
   login_en,
   servicios_en,
-  buscar_personal_domestico_en
+  buscar_personal_domestico_en,
+  reset_password_en,
+  forgot_password_en
 );
 
 const es = Object.assign(
@@ -37,7 +43,9 @@ const es = Object.assign(
   general_es,
   login_es,
   servicios_es,
-  buscar_personal_domestico_es
+  buscar_personal_domestico_es,
+  reset_password_es,
+  forgot_password_en
 );
 
 i18n
