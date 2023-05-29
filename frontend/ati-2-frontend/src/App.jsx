@@ -62,7 +62,7 @@ function App() {
             <Route exact path="/sign-up" element={<Registrar/>} />
             <Route exact path="/login" element={<IniciarSesion />} />
             <Route exact path='/search-domestic-staff' element={<BuscarPersonalDomestico/>}/>
-            <Route path='/show-posts' element={<BuscarPersonalDomestico/>}/>
+            <Route path='/show-posts' element={<ListarPublicaciones/>}/>
           </Routes>
           <Footer/>
         </Router>
