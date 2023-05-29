@@ -1,0 +1,93 @@
+@import 'colors';
+
+#lista-posts{
+    border-style: solid;
+    border-color: $dorado;
+    border-width: 1px;
+    margin-top: 2.5vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+
+    .header{
+        background-color: $dorado;
+        color: white;
+        font-weight: bold;
+        font-size: small;
+    }
+
+    .row{
+        border-style: solid;
+        border-color: $dorado;
+        border-width: 1px;
+        display: flex;
+        height: max-content;
+        align-items: center;
+    }
+
+    .note{
+        color: $azul-oscuro;
+        font-size: small;
+        padding-left: 8vw;
+    }
+
+    .title{
+        color: red;
+        font-size: small;
+        font-weight: bold;
+        width: 20vw;
+    }
+
+    .input-group{
+        list-style-type: none;
+        display: flex;
+        margin: 0;
+        font-size: small;
+        li{
+            margin: 0.25rem 2rem 0.25rem 0rem;
+            label{
+                display: flex;
+            }            
+            .checkbox-label, button{
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+                border-radius: 0.5rem;
+                padding: 0.25rem 1.25rem 0.25rem 1.25rem;
+                color: white;
+                font-weight: bold;
+                box-shadow: none;
+                border-style: none;
+            }
+
+            &:first-child{
+                .checkbox-label, button{
+                    background-color: $azul-claro;
+                }
+            }
+
+            &:nth-child(2){
+                .checkbox-label, button{
+                    background-color: $dorado;
+                }
+            }
+
+            &:nth-child(3){
+                .checkbox-label, button{
+                    background-color: $rosa;
+                }
+            }
+
+            &:nth-child(4){
+                .checkbox-label, button{
+                    background-color: $verde;
+                }
+            }
+
+            &:nth-child(5){
+                .checkbox-label, button{
+                    background-color: $morado;
+                }
+            }
+
+        }
+    }
+}
