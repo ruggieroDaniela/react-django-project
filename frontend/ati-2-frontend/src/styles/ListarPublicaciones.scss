@@ -37,6 +37,18 @@
         width: 20vw;
     }
 
+    .subtitle{
+        color: $azul-oscuro;
+        font-size: small;
+        font-weight: bold;
+        // width: 20vw;
+    }
+
+    .center{
+        display: flex;
+        justify-content: center;
+    }
+
     .input-group{
         list-style-type: none;
         display: flex;
@@ -87,7 +99,11 @@
                     background-color: $morado;
                 }
             }
+    
+        }
 
+        .input-link{
+            margin: 0.125rem;
         }
     }
 }

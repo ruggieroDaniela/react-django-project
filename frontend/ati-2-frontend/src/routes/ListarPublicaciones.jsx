@@ -102,6 +102,23 @@ export const ListarPublicaciones = () => {
                 </ul>
             </div>
 
+            <div className="row center">
+                <span className="subtitle">
+                    página:
+                </span>
+                <ul className="input-group">
+                    <li className='input-link'>
+                        <a href="#">1</a>
+                    </li>
+                    <li className='input-link'>
+                        <a href="#">2</a>
+                    </li>
+                    <li className='input-link'>
+                        <a href="#">3</a>
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </>);
 
