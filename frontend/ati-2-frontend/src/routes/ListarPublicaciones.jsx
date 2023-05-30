@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
+import { PublicacionLista } from '../components/PublicacionLista';
+
 import "../styles/ListarPublicaciones.scss"
 
 export const ListarPublicaciones = () => {
@@ -35,7 +37,6 @@ export const ListarPublicaciones = () => {
         fetchPosts();
     }, []);
 
-    console.log(searchParams);
     return(<>
         <div id="lista-posts">
             <div className="header">
@@ -117,6 +118,10 @@ export const ListarPublicaciones = () => {
                         <a href="#">3</a>
                     </li>
                 </ul>
+            </div>
+
+            <div className="row" id='post-group'>
+                { postList.map( (post) => <PublicacionLista post={post}/> ) }
             </div>
 
         </div>
