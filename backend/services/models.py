@@ -231,10 +231,11 @@ class RequestService(Services):
 
     # 3 - About the person(people) taken care of (tco)
     number_tco = models.PositiveIntegerField(blank=False)
-    age_tco = models.PositiveIntegerField(blank=False)
+    age_tco = models.TextField(blank=False)
     gender_tco = models.TextField(blank=False)
     disabilities_tco = models.BooleanField(blank=False)
     disabilities_tco_decrip = models.TextField(blank=True)
+    diseases_tco_descrip = models.TextField(blank=True)
 
     # 4 - Availability to travel 
     # 5 - Activities 
