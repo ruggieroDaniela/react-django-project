@@ -1,4 +1,33 @@
+@import 'colors';
+
 .post-lista{
     display: grid;
     grid-template-columns: 1fr 2fr 8fr 1fr;
+
+    .detalles{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        font-size: small;
+
+        .header-grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .detalles-title{
+            font-weight: bold;
+            color: red;
+        }
+
+        .bold-subtitle{
+            font-weight: bold;
+        }
+
+        .blue-body{
+            font-weight: normal;
+            color: $azul-oscuro;
+        }
+
+    }
+
 }

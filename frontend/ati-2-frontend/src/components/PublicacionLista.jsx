@@ -8,14 +8,21 @@ export const PublicacionLista = ({post}) => {
             <div>x</div>
             <div>foto</div>
             <div className="detalles">
-                
+
                 <div className="column">
-                    <div className="title">{post.service}</div>
-                    <div className="subtitle">{post.country}</div>
-                    <div className="bold-subtitle">estado: <span className="blue-body">{post.state}</span></div>
-                    <div className="bold-subtitle">ciudad: <span className="blue-body">{post.city}</span></div>
-                    <div className="bold-subtitle">{post.user}</div>
-                    <div className="bold-subtitle">{post.age}</div>
+                    <div className="header-grid">
+                        <div className="detalles-title">{post.service}</div>
+                        <div className="subtitle">{post.country}</div>
+                        <div>
+                            <div className="bold-subtitle">estado: <span className="blue-body">{post.state}</span></div>
+                            <div className="bold-subtitle">ciudad: <span className="blue-body">{post.city}</span></div>
+                        </div>
+                        <div>
+                            <div className="bold-subtitle">{post.user}</div>
+                            <div className="bold-subtitle">{post.age}</div>
+                        </div>
+                    
+                    </div>
                     <div className="title">{post.publication_time}</div>
                     <div className="desc-body">{post.description}</div>
                     <ul className="info-list">
