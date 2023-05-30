@@ -10,40 +10,69 @@ from .models import ProvideService, RequestService
 from .serializers import ProvideServiceSerializer, RequestServiceSerializer
 from django.db.utils import DatabaseError
 
-from PIL import Image
+from email.message import EmailMessage
+import smtplib
+from backend.settings import EMAIL_HOST, EMAIL_HOST_PASSWORD, EMAIL_HOST_USER
 from io import BytesIO
-from django.conf import settings
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter, A4
-from django.core.mail import EmailMessage
-
-from django.http import HttpResponse
-from django.conf import settings
-import os
-
-def createPDF(request, data):
-    buffer = BytesIO()
-    c = canvas.Canvas(buffer, pagesize=A4)
-    # ... Código para dibujar en el lienzo ...
-    c.drawString(100, 100, 'Hola, este es el pdf')
-
-    c.save()
-
-    # Guardar el PDF físicamente
-    pdf_bytes = buffer.getvalue()
-    buffer.close()
-
-    # Ruta de guardado en el sistema de archivos
-    path = os.path.join(settings.MEDIA_ROOT, 'nombre_archivo.pdf')
-    with open(path, 'wb') as file:
-        file.write(pdf_bytes)
-
-    # Retorna una respuesta HTTP con el PDF descargable
-    response = HttpResponse(pdf_bytes, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="nombre_archivo.pdf"'
-    return response
 
 
+def createPDF(post, status):
+   buffer=BytesIO()
+   c = canvas.Canvas(buffer, pagesize=A4)
+
+   # CONTENT
+   title_style = "Helvetica-Bold"
+   body_style = "Helvetica"
+
+    # Escribir el contenido en el PDF
+   c.setFont(title_style, 16)
+   c.drawString(100, 700, "PUBLICACIÓN NRO <" + str(post.id) + "> HA SIDO CREADA - ESTATUS DE LA PUBLICACIÓN: " + status)
+
+   c.setFont(body_style, 12)
+   c.drawString(100, 650, "Le notificamos que su publicación ha sido creada en nuestro sitio Web 3.137.150.119:5173 con el código número " + str(post.id))
+   # CONTENT
+
+
+   c.showPage()
+   c.save()
+   pdf = buffer.getvalue()
+   buffer.close()
+   return pdf
+
+def sendEmail(post):
+    # STATUS
+    if post.status == 'PEN': 
+        status = 'PENDIENTE POR ACTIVAR'
+    elif post.status == 'ACT': 
+        status = 'ACTIVADA'
+
+    pdf = createPDF(post, status)
+    
+
+
+    receiver = "chachy.drs@gmail.com"                      # cambiar a -> post.user.email
+    message = post.user.email
+
+    email = EmailMessage()
+    email["From"] = EMAIL_HOST_USER
+    email["To"] = receiver
+    email["Subject"] = "PUBLICACIÓN NRO <" + str(post.id) + "> HA SIDO CREADA - ESTATUS DE LA PUBLICACIÓN: " + status
+    email.set_content(message, subtype="html")
+    
+    email.add_attachment(
+        pdf,
+        filename="publicacion_creada.pdf",
+        maintype="application",
+        subtype="pdf"
+    )
+
+    smtp = smtplib.SMTP_SSL(EMAIL_HOST)
+    smtp.login(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)
+    smtp.sendmail(EMAIL_HOST_USER, receiver, email.as_string())
+    smtp.quit()
+    return
 
 # Option A - "Ofrecer mis servicios como personal doméstico"
 class ProvideServiceViewSet(viewsets.ModelViewSet):
@@ -85,7 +114,7 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
 
         if serializer.is_valid():
             post = serializer.save()
-            createPDF(request, 'info')
+            sendEmail(post)
             return Response({'message': 'OK', 'post_code': post.id})
         else:
             return Response(serializer.errors, status=400)
