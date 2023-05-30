@@ -16,6 +16,8 @@ from backend.settings import EMAIL_HOST, EMAIL_HOST_PASSWORD, EMAIL_HOST_USER
 from io import BytesIO
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import SimpleDocTemplate, Paragraph, FrameBreak
 from reportlab.lib import colors
 
 def drawRectangle(x, y, width, height, c, title): 
@@ -72,16 +74,27 @@ def drawData(x, y, data, c):
    c.setFillColor(colors.black)
    c.drawString(x + 20, y, data)
 
+def drawParagraph(text, x, y, c): 
+   styles = getSampleStyleSheet()
+   paragraph_style = styles["Normal"]
+   paragraph_style.alignment = 4
+   paragraph = Paragraph(text, paragraph_style)
+   paragraph.aligment = 1
+   paragraph.wrapOn(c, 400, 100)
+   paragraph.drawOn(c, x, y)
+
 def savePDF(post): 
    filename = './publicacion_creada.pdf'
+   doc = SimpleDocTemplate(filename, pagesize=letter)
+   elements = []
    buffer=BytesIO()
    c = canvas.Canvas(filename, pagesize=letter)
 
    # Rectangulo
    x = 100  # Coordenada X del rectángulo
-   y = 700  # Coordenada Y del rectángulo
+   y = 750  # Coordenada Y del rectángulo
    width = 400  # Ancho del rectángulo
-   height = 40  # Alto del rectángulo
+   height = 30  # Alto del rectángulo
 
    drawRectangle(x, y, width, height, c, "DATOS BÁSICOS DE LA NIÑERA(O)")
    
@@ -114,7 +127,7 @@ def savePDF(post):
    drawData(x, y,  post.get_education_level_display(), c)
 
    # LUGAR DE PROCEDENCIA
-   y -= 30
+   y -= 40
    drawRectangle(x, y, width, height, c, "LUGAR DE PROCEDENCIA")
 
    # País de procedencia
@@ -153,15 +166,108 @@ def savePDF(post):
    if post.disabilities_tco == True:
       y -= 30
       drawTag(x, y, c, "¿Posee(n) alguna discapacidad o enfermedad? ", "Si")
+
       # Indique la(s) discapacidad(es)
+      y -= 30
+      drawTag(x, y, c, "Indique la(s) discapacidad(es)", " ")
+      y -= 40
+      drawParagraph(post.disabilities_tco_decrip, x, y, c)
+
       # Enfermedad(es) que presenta(n)
+      y -= 10
+      drawTag(x, y, c, "Enfermedad(es) que presenta(n)", " ")
+
+      y -= 60
+      drawParagraph(post.diseases_tco_descrip, x, y, c)
+
    else:
       y -= 30
       drawTag(x, y, c, "¿Posee(n) alguna discapacidad o enfermedad? ", "No")
 
-   
+   c.showPage()
+   # New page
+   # DISPONIBILIDAD PARA VIAJAR DE LA NIÑERA(O)
+   y = 750
+   drawRectangle(x, y, width, height, c, "DISPONIBILIDAD PARA VIAJAR DE LA NIÑERA(O)")
 
+   if post.travel == True: 
+      y -= 20
+      drawData(x, y,  "Si", c)
+      y -= 20
+      drawParagraph(post.travel_decription, x + 20, y, c)
+   else:
+      drawData(x, y,  "No", c) 
    
+   # FUNCIONES QUE DEBE CUMPLIR LA NIÑERA O EL NIÑERO
+   y -= 40
+   drawRectangle(x, y, width, height, c, "FUNCIONES QUE DEBE CUMPLIR")
+   y -= 20
+   drawParagraph(post.activities, x + 20, y, c)
+
+   # CONDICIONES DE TRABAJO
+   y -= 40
+   drawRectangle(x, y, width, height, c, "CONDICIONES DE TRABAJO")
+
+   # Cómo van a ser las salidas de la persona contratada
+   y -= 10
+   drawTag(x, y, c, "Cómo van a ser las salidas de la persona contratada ", post.get_workday_display())
+
+   if post.workday == "OTRO": 
+      y -= 30
+      drawData(x, y,  'Otro: ' + post.workday_other, c) 
+
+   # Horario de trabajo
+   y -= 30
+   drawTag(x, y, c, "Horario de trabajo ", post.get_schedule_display())
+
+   if post.schedule == "OTRO": 
+      y -= 30
+      drawData(x, y,  'Otro: ' + post.schedule_other, c) 
+
+   # Salario ofrecido
+   y -= 30
+   if post.payment == "MONTO": 
+      drawTag(x, y, c, "Salario ofrecido ", str(post.payment_amount))
+   else: 
+      drawTag(x, y, c, "Salario ofrecido ", post.get_payment_display())
+
+   # ¿Ofrece otros beneficios? 
+   y -= 30
+   if post.benefits == 1:
+      drawTag(x, y, c, "¿Ofrece otros beneficios? ", "Si")
+      y -= 50
+      drawParagraph('Especifique: ' + post.benefits_description, x , y, c)
+
+   if post.benefits == 0:
+      drawTag(x, y, c, "¿Ofrece otros beneficios? ", "No") 
+
+   # DISPONIBILIDAD PARA COMENZAR A TRABAJAR
+   y -= 40
+   drawRectangle(x, y, width, height, c, "DISPONIBILIDAD PARA COMENZAR A TRABAJAR")
+
+   # Fecha de inicio
+   y -= 20
+
+   if post.availability == "FECHA": 
+      drawTag(x, y, c, "Fecha de inicio ", str(post.availability_date))
+   else: 
+      drawTag(x, y, c, "Fecha de inicio ", post.get_availability_display())
+
+   # DOCUMENTOS A SOLICITAR A LAS CANDIDATAS(OS)
+   y -= 60
+   drawRectangle(x, y, width, height, c, "DOCUMENTOS A SOLICITAR")
+
+   y -= 20
+   if post.have_documentation == True:
+      drawData(x, y, "Si", c) 
+      y -= 20
+      drawParagraph(post.get_documents_display(), x + 20 , y, c)
+
+      if post.documents == "OTRO": 
+         y -= 20
+         drawData(x, y,  'Especifique: ' + post.documents_other, c) 
+   else: 
+      drawData(x, y, "No", c) 
 
    c.showPage()
    c.save()
@@ -202,7 +308,7 @@ def createPDF(post, status):
    # CONTENT
 
 
-   c.showPage()
+   #c.showPage()
    c.save()
    pdf = buffer.getvalue()
    buffer.close()
