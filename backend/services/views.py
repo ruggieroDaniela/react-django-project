@@ -10,6 +10,41 @@ from .models import ProvideService, RequestService
 from .serializers import ProvideServiceSerializer, RequestServiceSerializer
 from django.db.utils import DatabaseError
 
+from PIL import Image
+from io import BytesIO
+from django.conf import settings
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter, A4
+from django.core.mail import EmailMessage
+
+from django.http import HttpResponse
+from django.conf import settings
+import os
+
+def createPDF(request, data):
+    buffer = BytesIO()
+    c = canvas.Canvas(buffer, pagesize=A4)
+    # ... Código para dibujar en el lienzo ...
+    c.drawString(100, 100, 'Hola, este es el pdf')
+
+    c.save()
+
+    # Guardar el PDF físicamente
+    pdf_bytes = buffer.getvalue()
+    buffer.close()
+
+    # Ruta de guardado en el sistema de archivos
+    path = os.path.join(settings.MEDIA_ROOT, 'nombre_archivo.pdf')
+    with open(path, 'wb') as file:
+        file.write(pdf_bytes)
+
+    # Retorna una respuesta HTTP con el PDF descargable
+    response = HttpResponse(pdf_bytes, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="nombre_archivo.pdf"'
+    return response
+
+
+
 # Option A - "Ofrecer mis servicios como personal doméstico"
 class ProvideServiceViewSet(viewsets.ModelViewSet):
     queryset = ProvideService.objects.all()
@@ -50,6 +85,7 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
 
         if serializer.is_valid():
             post = serializer.save()
+            createPDF(request, 'info')
             return Response({'message': 'OK', 'post_code': post.id})
         else:
             return Response(serializer.errors, status=400)
