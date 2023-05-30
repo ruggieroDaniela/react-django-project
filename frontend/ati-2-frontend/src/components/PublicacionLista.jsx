@@ -25,21 +25,23 @@ export const PublicacionLista = ({post}) => {
                     </div>
                     <div className="title">{post.publication_time}</div>
                     <div className="desc-body">{post.description}</div>
-                    <ul className="info-list">
-                        <li>
-                            <span className="item-title">instrucción: </span> 123 
-                        </li>
-                        <li>
-                            <span className="item-title">perfil laboral: </span><a href="" className="item-link">Ver detalles</a>
-                        </li>
-                        <li>
-                            <span className="item-title">funciones: </span><a href="" className="item-link">Ver detalles</a>
-                        </li>
-                        <li>
-                            <span className="item-title">documentacion: </span><a href="" className="item-link">Ver detalles</a>
-                        </li>
-                    </ul>
-                    <button>contactar</button>
+                    <div className="info-and-contact">
+                        <ul className="info-list">
+                            <li>
+                                <span className="item-title">instrucción: </span> 123 
+                            </li>
+                            <li>
+                                <span className="item-title">perfil laboral: </span><a href="" className="item-link">Ver detalles</a>
+                            </li>
+                            <li>
+                                <span className="item-title">funciones: </span><a href="" className="item-link">Ver detalles</a>
+                            </li>
+                            <li>
+                                <span className="item-title">documentacion: </span><a href="" className="item-link">Ver detalles</a>
+                            </li>
+                        </ul>
+                        <button>contactar</button>
+                    </div>
                     <a href="" className="title link">mas info</a>
                 </div>
 

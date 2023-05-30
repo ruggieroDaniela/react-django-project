@@ -28,6 +28,23 @@
             color: $azul-oscuro;
         }
 
+        .info-and-contact{
+            display: grid;
+            grid-template-columns: 8fr 4fr;
+
+            button{
+                height: 2rem;
+                background-color: $dorado;
+                border-radius: 0.25rem;
+                box-shadow: none;
+                border-style: none;
+                color: white;
+                font-weight: bold;
+                place-self: center;
+            }
+
+        }
+
     }
 
 }
