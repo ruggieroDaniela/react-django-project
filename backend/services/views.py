@@ -20,19 +20,17 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import SimpleDocTemplate, Paragraph, FrameBreak
 from reportlab.lib import colors
 
-def drawRectangle(x, y, width, height, c, title): 
+def drawRectangle(x, y, width, height, c, title, size = 12): 
    c.setFillColor(colors.HexColor('#0099CC'))  # Establece el color de relleno
    c.rect(x, y, width, height, fill=True, stroke=False)
    
-   c.setFont("Helvetica-Bold", 16)  # Establece la fuente y el tamaño del texto
-   c.setFillColor(colors.white)  # Establece el color de texto en blanco
+   c.setFont("Helvetica-Bold", size)  # Establece la fuente y el tamaño del texto
+   c.setFillColor(colors.white)  # Establece el color de texto en blanc
 
-   c.setFont("Helvetica-Bold", 16)  # Establece la fuente y el tamaño del texto
-   c.setFillColor(colors.white)  # Establece el color de texto en blanco
    
    # Calcula las coordenadas del texto para que esté centrado
    text_width = c.stringWidth(title)
-   text_height = 16  
+   text_height = size
    text_x = x + (width - text_width) / 2
    text_y = y + (height - text_height) / 2
 
@@ -74,10 +72,11 @@ def drawData(x, y, data, c):
    c.setFillColor(colors.black)
    c.drawString(x + 20, y, data)
 
-def drawParagraph(text, x, y, c): 
+def drawParagraph(text, x, y, c, color=colors.black): 
    styles = getSampleStyleSheet()
    paragraph_style = styles["Normal"]
    paragraph_style.alignment = 4
+   paragraph_style.textColor = color
    paragraph = Paragraph(text, paragraph_style)
    paragraph.aligment = 1
    paragraph.wrapOn(c, 400, 100)
@@ -259,15 +258,74 @@ def savePDF(post):
 
    y -= 20
    if post.have_documentation == True:
-      drawData(x, y, "Si", c) 
-      y -= 20
-      drawParagraph(post.get_documents_display(), x + 20 , y, c)
+      drawData(x - 20, y, "Si", c) 
+      y -= 30
+      drawParagraph(post.get_documents_display(), x , y, c)
 
       if post.documents == "OTRO": 
          y -= 20
          drawData(x, y,  'Especifique: ' + post.documents_other, c) 
    else: 
       drawData(x, y, "No", c) 
+
+   c.showPage()
+   # New page
+   y = 750
+
+   # SUGERENCIAS DE TRABAJO PARA EL DÍA A DÍA CON EL PERSONAL CONTRATADO
+   drawRectangle(x, y, width, height, c, "SUGERENCIAS DE TRABAJO PARA EL DÍA A DÍA CON EL PERSONAL CONTRATADO", 8)
+   y -= 20
+
+   # Antes de iniciar sus labores
+   drawTag(x, y, c, "Antes de iniciar sus labores", "")
+   y -= 60
+   drawParagraph("Indicarle a la persona contratada que debe mantener una buena higiene personal, y abstenerse de fumar, ingerir bebidas alcohólicas o tener conductas que atenten contra la moral y las buenas costumbres, principalmente delante de los niños", x , y, c)
+   y -= 60
+   drawParagraph("Indíquele al personal recomendaciones o procedimientos de seguridad para abrir la puerta, contestar el teléfono, personas a recibir en el inmueble, y cualquier otro asunto relacionado con las personas a su cuidado, o con el inmueble donde se realizarán las labores", x , y, c)
+   y -= 70
+   drawParagraph("Proporcione información de contacto a su niñera(o) en caso de emergencia, como: Médico tratante, teléfono de empresas donde la(s) persona(s) bajo su cuidado están aseguradas, listado de clínicas cercanas a las que se pueda llevar a la persona en caso de emergencia, datos de contacto directo con usted en caso de cualquier emergencia, o consulta que pueda tener la persona contratada ", x , y, c)
+   y -= 50
+   drawParagraph("Si puede, registre las huellas dactilares del personal a su servicio para que tenga una base para deslindar responsabilidades en caso de robo o cualquier incidente que podría haber originado dicha persona en el inmueble, o hacia las personas bajo su cuidado", x , y, c)
+
+   # En el día a día 
+   y -= 10
+   drawTag(x, y, c, "En el día a día ", "")
+   y -= 40
+   drawParagraph("Conversar con las personas que el cuidador(a) tendrá bajo su cargo, para verificar que la persona contratada le proporciona un buen trato a la persona", x , y, c)
+   y -= 20
+   drawParagraph("Monitorear el desempeño de la persona contratada en sus labores", x , y, c)
+   y -= 30
+   drawParagraph("Se le recomienda instalar cámaras de seguridad para supervisar las labores del personal, y verificar el trato que se le proporciona a las personas a cuidar", x , y, c)
+
+   # Cuando el personal finalice sus labores
+   y -= 10
+   drawTag(x, y, c, "Cuando el personal finalice sus labores ", "")
+   y -= 30
+   drawParagraph("Solicitarles que muestren el bolso antes de salir", x , y, c)
+
+   # Sugerencias adicionales 
+   y -= 10
+   drawTag(x, y, c, "Sugerencias adicionales ", "")
+   y -= 30
+   drawParagraph("Guardar joyas u objetos de valor que considere en lugares seguros", x , y, c)
+
+   # SUGERENCIAS AL MOMENTO DE REALIZAR LA ENTREVISTA
+   y -= 40
+   drawRectangle(x, y, width, height, c, "SUGERENCIAS AL MOMENTO DE REALIZAR LA ENTREVISTA", 8)
+   y -= 20 
+   drawParagraph("Obtenga toda la información posible de sus empleados. ", x , y, c)
+   y -= 40 
+   drawParagraph("Averigüe dónde viven, datos de los familiares para avisar en caso de alguna emergencia (eso también le servirá a usted en caso de robo o si alguna de las personas bajo la responsabilidad del cuidador sufre algún daño que sea imputable a la persona).", x , y, c)
+
+   # CONSIDERACIONES DEL SERVICIO 
+   y -= 40
+   drawRectangle(x, y, width, height, c, "CONSIDERACIONES DEL SERVICIO", 8)
+   y -= 30 
+   drawParagraph("Los datos proporcionados son bajo la responsabilidad del anunciante, y la empresa queda exonerada de verificar su veracidad", x , y, c, colors.red)
+   y -= 40 
+   drawParagraph(" Las sugerencias proporcionadas son para orientar al cliente o al personal, y al aceptar la publicación de dicho anuncio la empresa queda exonerada de cualquier incidente que pudiera ocurrir entre el cliente y el personal contratado", x , y, c, colors.red)
+
+   # DATOS DE FACTURACIÓN
 
    c.showPage()
    c.save()
