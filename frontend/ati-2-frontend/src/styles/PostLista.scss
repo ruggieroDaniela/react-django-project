@@ -2,9 +2,16 @@
 
 .post-lista{
     display: grid;
-    grid-template-columns: 1fr 2fr 8fr 1fr;
+    grid-template-columns: 1fr 2fr 10fr 1fr;
+
+    section{
+        border-style: solid;
+        border-color: $dorado;
+        border-width: 1px;
+    }
 
     .detalles{
+        padding: 0.5rem;
         display: grid;
         grid-template-columns: 1fr 1fr;
         font-size: small;
@@ -43,6 +50,41 @@
                 place-self: center;
             }
 
+        }
+
+        .info-container{
+            border-style: solid;
+            border-color: $dorado;
+            border-width: 6px;
+        }
+
+        .container-title{
+            color: $rojo;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .item-title{
+            color: $azul-oscuro;
+            font-weight: bold;
+        }
+
+        .item-link{
+            color: $rojo;
+        }
+
+        .info-list{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            padding-left: 0.5rem;
+            padding-bottom: 0.5rem;
+            li::before{
+                color: $azul-oscuro;
+                content: "•";
+                margin-right: 0.5em;
+            }
         }
 
     }

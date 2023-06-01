@@ -27,6 +27,7 @@ export const ListarPublicaciones = () => {
                 });
 
                 setPostList(response.data)
+                // console.log(response.data);
                 return response.data;
 
             } catch (error) {
@@ -121,7 +122,7 @@ export const ListarPublicaciones = () => {
             </div>
 
             <div className="row" id='post-group'>
-                { postList.map( (post) => <PublicacionLista post={post}/> ) }
+                { postList.map( (post) => <PublicacionLista key={post.id} post={post}/> ) }
             </div>
 
         </div>

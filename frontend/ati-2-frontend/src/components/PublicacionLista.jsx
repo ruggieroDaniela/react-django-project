@@ -5,9 +5,9 @@ import "../styles/PostLista.scss"
 export const PublicacionLista = ({post}) => {
     return(<>
         <div className="post-lista">
-            <div>x</div>
-            <div>foto</div>
-            <div className="detalles">
+            <section>x</section>
+            <section>foto</section>
+            <section className="detalles">
 
                 <div className="column">
                     <div className="header-grid">
@@ -79,8 +79,8 @@ export const PublicacionLista = ({post}) => {
                     </div>
                     <a href="" className="title link">mas info</a>
                 </div>
-            </div>
-            <div>x</div>
+            </section>
+            <section>x</section>
         </div>
     </>);
 }
