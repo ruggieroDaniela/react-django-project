@@ -20,10 +20,28 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import SimpleDocTemplate, Paragraph, FrameBreak
 from reportlab.lib import colors
 
+def setCost(plan): 
+   cost = 0 
+
+   if plan == '1': 
+      cost = 10
+   elif plan == '3': 
+      cost = 25
+   elif plan == '6': 
+      cost = 50
+   elif plan == '9': 
+      cost = 70
+   elif plan == '12': 
+      cost = 90
+
+   return cost
+
+
 def drawRectangle(x, y, width, height, c, title, size = 12): 
    c.setFillColor(colors.HexColor('#0099CC'))  # Establece el color de relleno
-   c.rect(x, y, width, height, fill=True, stroke=False)
-   
+   #c.rect(x, y, width, height, fill=True, stroke=False)
+   c.roundRect(x, y, width, height, 5, fill=True, stroke=False)
+
    c.setFont("Helvetica-Bold", size)  # Establece la fuente y el tamaño del texto
    c.setFillColor(colors.white)  # Establece el color de texto en blanc
 
@@ -62,8 +80,8 @@ def drawTag(x, y, c, text, data):
     c.setFillColor(colors.black)
     c.drawString(text_x + text_width + 30, text_y - 12, data)
 
-def drawSubtitle(x, y, color, text, c): 
-   c.setFont("Helvetica-Bold", 12) 
+def drawSubtitle(x, y, color, text, c, size = 12): 
+   c.setFont("Helvetica-Bold", size) 
    c.setFillColor(color)  
    c.drawString(x, y, text)
 
@@ -83,11 +101,11 @@ def drawParagraph(text, x, y, c, color=colors.black):
    paragraph.drawOn(c, x, y)
 
 def savePDF(post): 
-   filename = './publicacion_creada.pdf'
-   doc = SimpleDocTemplate(filename, pagesize=letter)
-   elements = []
+   #filename = './publicacion_creada.pdf'
+   #doc = SimpleDocTemplate(filename, pagesize=letter)
+   #elements = []
    buffer=BytesIO()
-   c = canvas.Canvas(filename, pagesize=letter)
+   c = canvas.Canvas(buffer, pagesize=letter)
 
    # Rectangulo
    x = 100  # Coordenada X del rectángulo
@@ -96,14 +114,22 @@ def savePDF(post):
    height = 30  # Alto del rectángulo
 
    drawRectangle(x, y, width, height, c, "DATOS BÁSICOS DE LA NIÑERA(O)")
+  
    
    # Solicito
    y -= 30 
    drawSubtitle(x, y, colors.red, "Solicito", c)
-   
+
    # Gender 
    y -= 20 
    drawData(x, y, post.get_gender_display(), c)
+
+   if post.status == 'PEN': 
+      drawSubtitle(x + 400, y, colors.red, post.get_status_display(), c, 8)
+   else: 
+      drawSubtitle(x + 400, y, colors.green, post.get_status_display(), c, 8)
+
+   c.setFillColor(colors.black)  
    y -= 20 
    c.drawString(x , y, "Con buena presencia, responsable, honesta, buen carácter, que le gusten los niños")
 
@@ -324,8 +350,51 @@ def savePDF(post):
    drawParagraph("Los datos proporcionados son bajo la responsabilidad del anunciante, y la empresa queda exonerada de verificar su veracidad", x , y, c, colors.red)
    y -= 40 
    drawParagraph(" Las sugerencias proporcionadas son para orientar al cliente o al personal, y al aceptar la publicación de dicho anuncio la empresa queda exonerada de cualquier incidente que pudiera ocurrir entre el cliente y el personal contratado", x , y, c, colors.red)
+   c.showPage()
 
+   # New Page
    # DATOS DE FACTURACIÓN
+   y = 750
+   drawRectangle(x, y, 150, height, c, "DATOS DE FACTURACIÓN", 8)
+   drawRectangle(x + 170 , y, 230, height, c, "DATOS DE FACTURACIÓN", 8)
+
+   # PLAN SELECCIONADO
+   y -= 20
+   drawSubtitle(x + 10, y, colors.blue, "Plan seleccionado", c)
+   drawRectangle(x + 170 , y - 15, 150, 20, c, "País donde va a realizar el depósito", 8)
+   drawSubtitle(x + 325, y - 13, colors.black, post.billing_country.upper(), c, 10)
+
+   y -= 20
+   drawSubtitle(x + 20, y, colors.black, post.get_publication_plan_display(), c)
+   cost  = setCost(post.publication_plan)   
+   drawSubtitle(x + 80, y, colors.red, str(cost) + ' USD', c)
+   drawRectangle(x + 170 , y -20, 150, 20, c, "Datos de la cuenta seleccionada", 8)
+
+   y -= 70
+   drawRectangle(x + 170 , y, 230, height, c, post.billing_bank, 8)
+   c.setStrokeColor(colors.HexColor('#FFC000'))
+   c.rect(x + 170, y - 100, 230, 100, fill=False, stroke=True)
+
+   y -= 15
+   drawSubtitle(x + 180, y, colors.red,"Formas de pago", c, 12)
+   y -= 15
+   drawData(x + 170, y, " * Depósito", c)
+
+   y -= 15
+   drawData(x + 170, y, " * Transferencia Bancaria", c)
+
+   y -= 20
+   drawSubtitle(x + 180, y, colors.black, "País: ", c, 10)
+   drawData(x + 200, y, post.billing_country, c)
+
+   y -= 15
+   drawSubtitle(x + 180, y, colors.black, "Banco: ", c, 10)
+   drawData(x + 200, y, post.billing_bank, c)
+
+   y -= 15
+   drawSubtitle(x + 180, y, colors.black, "Nro de cuenta: ", c, 10)
+   drawData(x + 240, y, "XXXXXXXXXXXXXX", c)
+
 
    c.showPage()
    c.save()
@@ -379,11 +448,12 @@ def sendEmail(post):
     elif post.status == 'ACT': 
         status = 'ACTIVADA'
 
-    pdf = createPDF(post, status)
+    #pdf = createPDF(post, status)
+    pdf = savePDF(post)
     
 
 
-    receiver = "chachy.drs@gmail.com"                      # cambiar a -> post.user.email
+    receiver = "gabo.c.liendo@gmail.com"                      # cambiar a -> post.user.email
     message = post.user.email
 
     email = EmailMessage()
@@ -550,7 +620,8 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
 
         if serializer.is_valid():
             post = serializer.save()
-            savePDF(post)
+            #savePDF(post)
+            sendEmail(post)
             return Response({'message': 'OK', 'post_code(id)': post.id})
         else:
             return Response(serializer.errors, status=400)
