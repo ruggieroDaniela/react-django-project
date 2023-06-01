@@ -27,7 +27,7 @@ export const ListarPublicaciones = () => {
                 });
 
                 setPostList(response.data)
-                // console.log(response.data);
+                console.log(response.data);
                 return response.data;
 
             } catch (error) {
@@ -73,6 +73,7 @@ export const ListarPublicaciones = () => {
                 </span>
                 <ul className="input-group">
                     {
+                        /* eslint-disable-next-line */
                         tipoPersona.map( (item, i) => 
                             <li className="checkbox">
                                 <label>
@@ -122,7 +123,10 @@ export const ListarPublicaciones = () => {
             </div>
 
             <div className="row" id='post-group'>
-                { postList.map( (post) => <PublicacionLista key={post.id} post={post}/> ) }
+                {/* eslint-disable-next-line */}
+                {   /* eslint-disable-next-line */
+                    postList.map( (post) => <PublicacionLista key={post.id} post={post}/> )
+                }
             </div>
 
         </div>

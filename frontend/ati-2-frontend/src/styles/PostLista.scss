@@ -13,7 +13,7 @@
     .detalles{
         padding: 0.5rem;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 10fr 8fr;
         font-size: small;
 
         .header-grid{
@@ -24,6 +24,10 @@
         .detalles-title{
             font-weight: bold;
             color: red;
+        }
+
+        .desc-body{
+            color: $verde-oscuro;
         }
 
         .bold-subtitle{
@@ -48,6 +52,8 @@
                 color: white;
                 font-weight: bold;
                 place-self: center;
+                font-size: normal;
+                padding: 0.5rem 1rem 0.5rem 1rem;
             }
 
         }
@@ -85,6 +91,19 @@
                 content: "•";
                 margin-right: 0.5em;
             }
+        }
+
+        .column{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .more-info{
+            // background-color: green;
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
 
     }
