@@ -14,10 +14,33 @@ export const ListarPublicaciones = () => {
     const searchParams = location.search;
 
     const [postList, setPostList] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
 
     const [selectedTipoPersona, setSelectedTipoPersona] = useState("");
+    const [pageLinks, setPageLinks] = useState([]);
+
     const tipoPersona = ["1", "2", "3", "4", "5"];
     const ordenes = ["1", "2", "3", "4"];
+
+    const sizeOfPage = 5;
+
+    pageLinks.length = 0;
+    for (let index = 0; index < postList.length/sizeOfPage; index++) {
+        pageLinks.push(
+            <li 
+                key={`page ${index+1}`}
+                className={`input-link ${index == currentPage? "active":""}`}
+                onClick={ () => setCurrentPage(() => index) }
+            >
+                <a
+                    href="#"
+                >
+                    {index+1}
+                </a>
+            </li>
+        );
+        
+    }
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -26,8 +49,15 @@ export const ListarPublicaciones = () => {
                     headers: {}
                 });
 
+                const totalPages = response.data.length/sizeOfPage;
+                console.log(totalPages);
+
+                
+
+                // console.log(pageLinks);
+
                 setPostList(response.data)
-                console.log(response.data);
+                // console.log(response.data);
                 return response.data;
 
             } catch (error) {
@@ -110,22 +140,16 @@ export const ListarPublicaciones = () => {
                     página:
                 </span>
                 <ul className="input-group">
-                    <li className='input-link'>
-                        <a href="#">1</a>
-                    </li>
-                    <li className='input-link'>
-                        <a href="#">2</a>
-                    </li>
-                    <li className='input-link'>
-                        <a href="#">3</a>
-                    </li>
+                    { pageLinks }
                 </ul>
             </div>
 
             <div className="row" id='post-group'>
-                {/* eslint-disable-next-line */}
-                {   /* eslint-disable-next-line */
-                    postList.map( (post) => <PublicacionLista key={post.id} post={post}/> )
+                {   
+                    /* eslint-disable-next-line */
+                    postList
+                        .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
+                        .map( (post) => <PublicacionLista key={post.id} post={post}/> )
                 }
             </div>
 

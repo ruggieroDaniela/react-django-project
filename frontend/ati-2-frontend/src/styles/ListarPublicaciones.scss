@@ -105,10 +105,19 @@
         .input-link{
             margin: 0.125rem;
         }
+
+        .input-link.active{
+            a{
+                color: black;
+                text-decoration: none;
+            }
+        }
+        
     }
 
     #post-group{
         display: block;
         // width: 100%;
     }
+
 }
