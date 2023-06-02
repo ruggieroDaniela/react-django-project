@@ -2,7 +2,7 @@
 
 .post-lista{
     display: grid;
-    grid-template-columns: 1fr 2fr 10fr 1fr;
+    grid-template-columns: 1fr 2fr 12fr 1fr;
 
     section{
         border-style: solid;
@@ -13,7 +13,7 @@
     .detalles{
         padding: 0.5rem;
         display: grid;
-        grid-template-columns: 10fr 8fr;
+        grid-template-columns: 10fr 7fr;
         font-size: small;
 
         .header-grid{

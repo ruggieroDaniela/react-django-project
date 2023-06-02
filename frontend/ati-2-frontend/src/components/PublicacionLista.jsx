@@ -48,9 +48,9 @@ export const PublicacionLista = ({post}) => {
                     <div className="title" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                         {post.publication_time}
                     </div>
-                    <div className="desc-body">{post.description}</div>
-                    <div className="info-and-contact">
-                        <ul className="info-list">
+                    <div className="desc-body" key={`post ${post.id} ${self.crypto.randomUUID()}`}>{post.description}</div>
+                    <div className="info-and-contact" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                        <ul className="info-list" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                             <li key={`post ${post.id} instruccion`}>
                                 <span className="item-title">{t(`publicaciones_vista_lista.grado_instruccion`)}: </span> {t(`publicaciones_vista_lista.${post.education_level}`)}
                             </li>
@@ -64,30 +64,30 @@ export const PublicacionLista = ({post}) => {
                                 <span className="item-title">{t(`publicaciones_vista_lista.documentacion`)}: </span><a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
                             </li>
                         </ul>
-                        <button>{t(`publicaciones_vista_lista.contactar`)}</button>
+                        <button key={`post ${post.id} ${self.crypto.randomUUID()}`}>{t(`publicaciones_vista_lista.contactar`)}</button>
                     </div>
-                    <div className="more-info">
-                        <a href="" className="title link">{t(`publicaciones_vista_lista.ver_informacion`)}</a>
+                    <div className="more-info" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                        <a href="" className="title link" key={`post ${post.id} ${self.crypto.randomUUID()}`}>{t(`publicaciones_vista_lista.ver_informacion`)}</a>
                     </div>
                 </div>
 
-                <div className="column">
-                    <div className="info-container">
-                        <div className="container-title">
+                <div className="column" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                    <div className="info-container" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                        <div className="container-title" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                             {t(`publicaciones_vista_lista.condiciones`)}
                         </div>
-                        <ul className="info-list">
+                        <ul className="info-list" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                             <li key={`post ${post.id} salario`}>
                                 <span className="item-title">{t(`publicaciones_vista_lista.salario`)}: </span> {post.payment_amount} {post.currency} 
                             </li>
                             <li key={`post ${post.id} beneficios`}>
-                                <span className="item-title">{t(`publicaciones_vista_lista.beneficios`)}: </span>No / Si <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
+                                <span className="item-title">{t(`publicaciones_vista_lista.beneficios`)}: </span>{t('no')} / {t('si')} <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
                             </li>
                             <li key={`post ${post.id} disponibilidad`}>
                                 <span className="item-title">{t(`publicaciones_vista_lista.disponibilidad`)}: </span> {post.availability_date}
                             </li>
                             <li key={`post ${post.id} viajar`}>
-                                <span className="item-title">{t(`publicaciones_vista_lista.viajar`)}: </span> Si. <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
+                                <span className="item-title">{t(`publicaciones_vista_lista.viajar`)}: </span> {t('si')} . <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
                             </li>
                             <li key={`post ${post.id} horario`}>
                                 <span className="item-title">{t(`publicaciones_vista_lista.horario`)}: </span> <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
@@ -103,12 +103,12 @@ export const PublicacionLista = ({post}) => {
                             </li>
                         </ul>
                     </div>
-                    <div className="more-info">
-                        <a href="" className="title link">{t(`publicaciones_vista_lista.ver_informacion`)}</a>
+                    <div className="more-info" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                        <a href="" className="title link" key={`post ${post.id} ${self.crypto.randomUUID()}`}>{t(`publicaciones_vista_lista.ver_informacion`)}</a>
                     </div>
                 </div>
             </section>
-            <section>x</section>
+            <section key={`post ${post.id} ${self.crypto.randomUUID()}`}>x</section>
         </div>
     </>);
 }

@@ -52,6 +52,7 @@
     .input-group{
         list-style-type: none;
         display: flex;
+        align-items: center;
         margin: 0;
         font-size: small;
         li{
@@ -68,6 +69,8 @@
                 font-weight: bold;
                 box-shadow: none;
                 border-style: none;
+                text-align: center;
+                cursor: pointer;
             }
 
             &:first-child{

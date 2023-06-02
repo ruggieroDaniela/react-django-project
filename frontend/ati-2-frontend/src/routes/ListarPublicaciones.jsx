@@ -105,10 +105,10 @@ export const ListarPublicaciones = () => {
                     {
                         /* eslint-disable-next-line */
                         tipoPersona.map( (item, i) => 
-                            <li className="checkbox">
-                                <label>
-                                    <input type="checkbox"/>
-                                    <div className="checkbox-label">
+                            <li className="checkbox" key={`${self.crypto.randomUUID()}`}>
+                                <label key={`${self.crypto.randomUUID()}`}>
+                                    <input type="checkbox" key={`${self.crypto.randomUUID()}`}/>
+                                    <div className="checkbox-label" key={`${self.crypto.randomUUID()}`}>
                                         {t(`lista_publicaciones.tipos_personal.${i}`)}
                                     </div>
                                 </label>
@@ -125,8 +125,8 @@ export const ListarPublicaciones = () => {
                 <ul className="input-group">
                     {
                         ordenes.map( (item, i) => 
-                            <li className="button">
-                                <button>
+                            <li className="button" key={`${self.crypto.randomUUID()}`}>
+                                <button key={`${self.crypto.randomUUID()}`}>
                                     {t(`lista_publicaciones.ordenar_por.${i}`)}
                                 </button>
                             </li>
