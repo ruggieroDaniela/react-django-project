@@ -801,7 +801,7 @@ def provideCreatePDF(post):
     drawData(x + 110, y,  have_children, c)
 
     # Grado de Instrucción
-    y -= 30 
+    y -= 20 
     drawSubtitle(x, y, colors.blue, "Grado de Instrucción", c)
     drawData(x + 110, y,  post.get_education_level_display(), c)
 
@@ -903,6 +903,31 @@ def provideCreatePDF(post):
         drawTag(x, y, c, "Fecha de inicio ", str(post.availability_date))
     else: 
         drawTag(x, y, c, "Fecha de inicio ", post.get_availability_display())
+
+    # CLIENTES CON LOS QUE QUIERO TRABAJAR 
+    y -= 60
+    drawRectangle(x, y, width, height, c, "CLIENTES CON LOS QUE QUIERO TRABAJAR")
+
+    y -= 10
+    drawTag(x, y, c, "Lugar de Procedencia ", post.get_origin_display())
+
+    if post.origin == 'SI': 
+        # País de procedencia
+        y -= 30
+        drawTag(x, y, c, "País de procedencia", post.origin_country)
+
+        # Estado / Provincia
+        y -= 30
+        drawTag(x, y, c, "Estado / Provincia ", post.origin_state)
+
+        # Ciudad 
+        y -= 30
+        drawTag(x, y, c, "Ciudad ", post.origin_city)
+
+
+    
+
+
     '''
     
 
