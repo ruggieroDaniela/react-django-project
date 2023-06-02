@@ -968,85 +968,62 @@ def provideCreatePDF(post):
     drawParagraph("Averigüe dónde viven, datos de los familiares para avisar en caso de alguna emergencia (eso también le servirá a usted en caso de que su empleador, la exponga a maltratos laborales que no están permitidos en la ley, como explotación laboral, el no recibir la compensación acordada en el contrato de trabajo, humillaciones, gritos, entre otros.", x , y, c)
     y -= 60
 
+    # SUGERENCIAS DE TRABAJO PARA EL DÍA A DÍA CON EL CLIENTE
+    drawRectangle(x, y, width, height, c, "SUGERENCIAS DE TRABAJO PARA EL DÍA A DÍA CON EL CLIENTE", 8)
+    y -= 20
 
-    '''
-    
-
-    # SOBRE LA PERSONA A CUIDAR
+    # Antes de iniciar sus labores
+    drawTag(x, y, c, "Antes de iniciar sus labores ", "")
     y -= 50
-    drawRectangle(x, y, width, height, c, "SOBRE LA PERSONA A CUIDAR")
-
-    # Cantidad de personas a cuidar
-    y -= 10
-    drawTag(x, y, c, "Cantidad de personas a cuidar ", str(post.number_tco))
-
-    # Edad(es)
-    y -= 30
-    drawTag(x, y, c, "Edad(es) ", post.age_tco)
-
-    # Sexo(s)
-    y -= 30
-    drawTag(x, y, c, "Sexo(s) ", post.gender_tco)
-
-    # ¿Posee(n) alguna discapacidad o enfermedad?
-    if post.disabilities_tco == True:
-        y -= 30
-        drawTag(x, y, c, "¿Posee(n) alguna discapacidad o enfermedad? ", "Si")
-
-        # Indique la(s) discapacidad(es)
-        y -= 30
-        drawTag(x, y, c, "Indique la(s) discapacidad(es)", " ")
-        y -= 40
-        drawParagraph(post.disabilities_tco_decrip, x, y, c)
-
-        # Enfermedad(es) que presenta(n)
-        y -= 10
-        drawTag(x, y, c, "Enfermedad(es) que presenta(n)", " ")
-
-        y -= 60
-        drawParagraph(post.diseases_tco_descrip, x, y, c)
-
-    else:
-        y -= 30
-        drawTag(x, y, c, "¿Posee(n) alguna discapacidad o enfermedad? ", "No")
-
-    c.showPage()
-    # New page
-    
-
-    c.showPage()
-    # New page
-    y = 700
+    drawParagraph("Solicita tu contrato de trabajo por escrito, ya que este es el documento que certifica que estas laborando para el cliente", x , y, c)
+    y -= 50
+    drawParagraph("Asegúrese de tener una buena higiene personal, y abstenerse de fumar, ingerir bebidas alcohólicas o tener conductas que atenten contra la moral y las buenas costumbres, principalmente delante de los niños", x , y, c)
+    y -= 60
+    drawParagraph("Pregúntele al cliente cuáles son los procedimientos de seguridad para abrir la puerta, contestar el teléfono, personas a recibir en el inmueble, y cualquier otro asunto relacionado con las personas a su cuidado, o con el inmueble donde se realizarán las labores", x , y, c)
+    y -= 70
+    drawParagraph("Solicite información de contacto a su cliente sobre las personas a su cuidado como: Médico tratante, teléfono de empresas donde la(s) persona(s) bajo su cuidado están aseguradas, listado de clínicas cercanas a las que se pueda llevar a la persona en caso de emergencia, datos de contacto directo con el cliente, y con usted en caso de cualquier emergencia, o consulta que pueda tener la persona contratada o usted. ", x , y, c)
+    y -= 50
+    drawParagraph("Si puede, registre las huellas dactilares del personal a su servicio para que tenga una base para deslindar responsabilidades en caso de robo o cualquier incidente que podría haber originado dicha persona en el inmueble, o hacia las personas bajo su cuidado", x , y, c)
+    y -= 20
 
     # En el día a día 
-    y -= 10
     drawTag(x, y, c, "En el día a día ", "")
-    y -= 40
-    drawParagraph("Conversar con las personas que el cuidador(a) tendrá bajo su cargo, para verificar que la persona contratada le proporciona un buen trato a la persona", x , y, c)
-    y -= 20
-    drawParagraph("Monitorear el desempeño de la persona contratada en sus labores", x , y, c)
+    y -= 80
+    drawParagraph("Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado.", x , y, c)
     y -= 30
-    drawParagraph("Se le recomienda instalar cámaras de seguridad para supervisar las labores del personal, y verificar el trato que se le proporciona a las personas a cuidar", x , y, c)
+    drawParagraph("Mantén una comunicación constante con tu empleador,  y solicítale que quieres saber su opinión en relación al trabajo que estas desempeñando.", x , y, c)
+    y -= 20
+
+    # Si consideras que estas recibiendo un trato inadecuado por parte de tu empleador
+    drawTag(x, y, c, "Si consideras que estas recibiendo un trato inadecuado por parte de tu empleador", "")
+    y -= 90
+    drawParagraph("Convérsalo con el y determina si las cosas pueden mejorar. Si las cosas no mejoran, puedes irte si lo deseas. Y en este caso ningún empleador puede retenerte por la fuerza, porque esto es un delito. Además también existen otros organismos que defienden los derechos de los trabajadores en caso de explotación laboral, o de condiciones no aptas para trabajar, y en los cuales debes presentar tu contrato y recibos de pago.", x , y, c)
+
+
+    c.showPage()
+    y = 750
+    # Cuando recibas tu pago
+    drawTag(x, y, c, "Cuando recibas tu pago", "")
+    y -= 90
+    drawParagraph("Solicita tu recibo de pago al cliente, para tener constancias de los pagos recibidos, ya que este documento, junto con el contrato de trabajo son tus pruebas ante las autoridades competentes de que tienes una relación laboral con el cliente, y para que ellos puedan ayudarte si tienes algún problema de explotación laboral, o falta de pago por parte de tu empleador", x , y, c)
+    y -= 20
 
     # Cuando el personal finalice sus labores
-    y -= 10
-    drawTag(x, y, c, "Cuando el personal finalice sus labores ", "")
-    y -= 30
-    drawParagraph("Solicitarles que muestren el bolso antes de salir", x , y, c)
-
-    # Sugerencias adicionales 
-    y -= 10
-    drawTag(x, y, c, "Sugerencias adicionales ", "")
-    y -= 30
-    drawParagraph("Guardar joyas u objetos de valor que considere en lugares seguros", x , y, c)
-
-    # SUGERENCIAS AL MOMENTO DE REALIZAR LA ENTREVISTA
+    drawTag(x, y, c, "Cuando el personal finalice sus labores", "")
     y -= 40
-    drawRectangle(x, y, width, height, c, "SUGERENCIAS AL MOMENTO DE REALIZAR LA ENTREVISTA", 8)
-    y -= 20 
-    drawParagraph("Obtenga toda la información posible de sus empleados. ", x , y, c)
-    y -= 40 
-    drawParagraph("Averigüe dónde viven, datos de los familiares para avisar en caso de alguna emergencia (eso también le servirá a usted en caso de robo o si alguna de las personas bajo la responsabilidad del cuidador sufre algún daño que sea imputable a la persona).", x , y, c)
+    drawParagraph("Muestra tu bolso antes de salir del lugar de trabajo", x , y, c)
+
+    y -= 20
+    # Si usted decide no seguir trabajando con el cliente
+    drawTag(x, y, c, "Si usted decide no seguir trabajando con el cliente", "")
+    y -= 50
+    drawParagraph("Avise con anticipación para que el cliente pueda buscar otra persona. Esto también ayuda a que deje una buena referencia con el cliente", x , y, c)
+
+    # Sugerencias adicionales
+    y -= 20
+    drawTag(x, y, c, "Sugerencias adicionales", "")
+    y -= 40
+    drawParagraph("Guarda joyas u objetos que sean de valor para ti en lugares seguros", x , y, c)
 
     # CONSIDERACIONES DEL SERVICIO 
     y -= 40
@@ -1055,11 +1032,9 @@ def provideCreatePDF(post):
     drawParagraph("Los datos proporcionados son bajo la responsabilidad del anunciante, y la empresa queda exonerada de verificar su veracidad", x , y, c, colors.red)
     y -= 40 
     drawParagraph(" Las sugerencias proporcionadas son para orientar al cliente o al personal, y al aceptar la publicación de dicho anuncio la empresa queda exonerada de cualquier incidente que pudiera ocurrir entre el cliente y el personal contratado", x , y, c, colors.red)
-    c.showPage()
 
-    # New Page
+    y -= 70
     # DATOS DE FACTURACIÓN
-    y = 700
     drawRectangle(x, y, 150, height, c, "DATOS DE FACTURACIÓN", 8)
     drawRectangle(x + 170 , y, 230, height, c, "DATOS DE FACTURACIÓN", 8)
 
@@ -1099,7 +1074,7 @@ def provideCreatePDF(post):
     y -= 15
     drawSubtitle(x + 180, y, colors.black, "Nro de cuenta: ", c, 10)
     drawData(x + 240, y, "XXXXXXXXXXXXXX", c)
-    '''
+
 
     c.showPage()
     c.save()

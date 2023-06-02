@@ -82,7 +82,7 @@ content-type: application/json
 
 {
     "user": 6, 
-    "service": "CUI", 
+    "service": "NIN", 
     "age": 29,
     "have_children": false,
     "education_level": "PRI",
