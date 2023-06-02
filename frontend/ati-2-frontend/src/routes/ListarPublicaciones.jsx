@@ -57,7 +57,7 @@ export const ListarPublicaciones = () => {
                 // console.log(pageLinks);
 
                 setPostList(response.data)
-                // console.log(response.data);
+                console.log(response.data);
                 return response.data;
 
             } catch (error) {
@@ -137,7 +137,7 @@ export const ListarPublicaciones = () => {
 
             <div className="row center">
                 <span className="subtitle">
-                    página:
+                    {t(`lista_publicaciones.pagina`)}:
                 </span>
                 <ul className="input-group">
                     { pageLinks }

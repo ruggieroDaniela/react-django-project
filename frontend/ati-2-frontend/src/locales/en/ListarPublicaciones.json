@@ -18,8 +18,34 @@
             "Payment",
             "Availability",
             "Degree of Instruction",
-            "Voyage Availability"
+            "Travel Availability"
         ],
         "pagina": "Page"
+    },
+    "publicaciones_vista_lista": {
+        "CUI": "Occupational Caretaker",
+        "NIN": "Babysitter",
+        "estado": "State",
+        "ciudad": "City",
+        "años": "years old",
+        "publicado": "Posted # days ago",
+        "ver_detalles": "View details",
+        "contactar": "Contact",
+        "PRI": "Primary",
+        "UNI": "University",
+        "ver_informacion": "See full info",
+        "grado_instruccion": "Degree of Instruction",
+        "perfil_laboral": "Work Profile Description",
+        "funciones_previas": "Functions that I have performed",
+        "documentacion": "Documentation that I can send",
+        "condiciones": "Work Terms",
+        "salario": "Payment",
+        "beneficios": "Other benefits?",
+        "disponibilidad": "Availability date",
+        "viajar": "Travel Availability",
+        "horario": "Work Schedule",
+        "salidas": "Preferred Checkout",
+        "clientes": "Clients I want to work with"
+
     }
 }
