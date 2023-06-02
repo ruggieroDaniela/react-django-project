@@ -955,6 +955,19 @@ def provideCreatePDF(post):
     y -= 40
     drawParagraph("* Ten a la mano la documentación que se te sugirió en puntos anteriores, en caso de que algún cliente te la solicite. Así puedes incrementar tus probabilidades de éxito de ser contratado más rápidamente", x , y, c)
 
+    c.showPage()
+    # New page
+    y = 750
+
+    # SUGERENCIAS AL MOMENTO DE REALIZAR LA ENTREVISTA
+    drawRectangle(x, y, width, height, c, "SUGERENCIAS AL MOMENTO DE REALIZAR LA ENTREVISTA", 8)
+    y -= 50
+
+    drawParagraph("Trate de determinar, con el mayor detalle posible, cuales son las necesidades del cliente, y pregunte todo lo que considere, y que le ayude a determinar si usted desea trabajar con ese cliente, o no", x , y, c)
+    y -= 50
+    drawParagraph("Averigüe dónde viven, datos de los familiares para avisar en caso de alguna emergencia (eso también le servirá a usted en caso de que su empleador, la exponga a maltratos laborales que no están permitidos en la ley, como explotación laboral, el no recibir la compensación acordada en el contrato de trabajo, humillaciones, gritos, entre otros.", x , y, c)
+    y -= 60
+
 
     '''
     
