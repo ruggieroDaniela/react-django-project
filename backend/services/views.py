@@ -743,6 +743,11 @@ def provideCreatePDF(post):
    
 
 def sendEmail(post):
+    post_id = str(post.id).upper()      # Código de la publicación
+    status = post.get_status_display().upper()  # Status
+    billing_country = post.billing_country
+    billing_bank = post.billing_bank
+    nro_cuenta = "XXXXXXXXXXXXX"
 
     # Create PDF 
     if post.mode == 'REQUEST':
@@ -752,7 +757,79 @@ def sendEmail(post):
 
 
     receiver = "chachy.drs@gmail.com"                      # cambiar a -> post.user.email
-    message = post.user.email
+    message = f"""
+        <p>Le notificamos que su publicación ha sido creada en nuestro sitio Web 3.137.150.119:5173 con el código número 
+        <span style="color: blue;"> <b>{post_id} </b></span>.</p>
+        <p>En este correo, además, puede ver en el archivo adjunto la publicación que ha creado en nuestro sitio Web.</p>
+        <p> <b> Fecha de creación de la publicación: </b> 23 de Abril del 2020 </p>
+        <p> ESTATUS DE LA PUBLICACIÓN: <span style="color: red;"> {status} </span> </p>
+        <p> <b> <span style="color: blue;">Plazo para notificar el pago de la publicación: 3 días luego de haber sido creada la publicación en nuestro sitio Web</b>  </span>
+        <p> <b> Fecha límite para notificar el pago de la publicación: </b> 26 de Abril del 2020 </p>
+        <p> <span style="color: red;"> <b> Datos de la cuenta seleccionada por usted, para realizar su pago </b> </span> </p>
+
+        <table style="border: 2px solid #FFC000;">
+            <tr style="background-color: #0099CC; color: white;">
+                <td> {billing_bank} </td>
+            </tr>
+            <tr>
+                <td color: red;> <b> Formas de pago </b> </td>
+            </tr>
+            <tr>
+                <td> </td> 
+            </tr>
+            <tr> 
+                <td> * Depósito </td> 
+            </tr>
+            <tr> 
+                <td> * Transferencia bancaria </td> 
+            </tr>
+            <tr>
+                <td> <b> País: </b> { billing_country }</td>
+            </tr>
+            <tr>
+                <td> <b> Banco: </b> { billing_bank }  </td>
+            </tr>
+            <tr>
+                <td> <b> Nro de Cuenta: </b> { nro_cuenta }</td>
+            </tr>
+        </table>
+
+        <br>
+        <p> <span style="color: blue;"> <b> ¿Que pasa si no he notificado el pago de la publicación luego de la fecha límite? </b> </span> </p>
+        <p> La publicación será eliminada al día siguiente, y se le enviará un correo, con copia a la empresa, indicándole que su publicación fue eliminada por haber expirado el tiempo límite de notificación de pago, y deberá volver a crear su publicación nuevamente </p>
+        <br> 
+
+        <p> <span style="color: blue;"> <b> ¿Cómo puedo activar mi publicación? </b> </span>
+        <ol type='1'>
+            <li> Realice el depósito o transferencia en la cuenta que selecciono para notificar el pago </li>
+            <li> Notifique el pago de su publicación enviando un correo a nirvana01@gmail.com . En dicho correo debe indicar los siguientes datos: 
+                <ol type="a">
+                <b>
+                    <li> Tipo de operación: Depósito / Transferencia </li>
+                    <li> Monto: </li>
+                    <li> Fecha en que realizó la operación: </li>
+                    <li> Banco origen   : </li>
+                    <li> Banco destino :  </li>
+                    <li> Número depósito/transferencia: </li>
+                    <li> Código de la publicación: </li> 
+                    <li> En el título del mensaje colocar esto: </b> 
+                     NOTIFICACIÓN  - PAGO DE PUBLICACIÓN - <código de su publicación> - PORTAL SD  
+                     <br>
+                     <b> EJEMPLO </b>
+                     <br>
+                     NOTIFICACIÓN  - PAGO DE PUBLICACIÓN - 2347998 - PORTAL SD  
+                </ol>
+            </li>
+            <li> Luego recibirá un correo de nuestra parte indicándole que su pago está siendo verificado , y cuando se haya verificado se activará la publicación en un plazo de 1 a 2 días hábiles. En algunos casos, las transferencias internacionales pueden tomar hasta 5 días hábiles, por razones externas a la empresa </li>
+            <li> Cuando la empresa haya verificado su pago, le enviará un correo indicándole que su pago fue procesado y además le enviaremos información para que pueda verificar que su publicación ya esta disponible </li> 
+        </ol>
+        <br>
+        <p> <span style="color: blue;"> <b> ¿Tiene alguna duda sobre nuestro servicio, o sobre tu publicación?  </b> </span> </p>
+        <ol> 
+            <li> Revise la sección Preguntas frecuentes haciendo clic aquí: <u style="color: blue;"> <b> Preguntas frecuentes </b>  </u> </li> 
+            <li> Si la sección de preguntas frecuentas no responde su inquietud, escríbanos a nirvana01@gmail.com </li> 
+        </ol> 
+    """
 
     email = EmailMessage()
     email["From"] = EMAIL_HOST_USER
