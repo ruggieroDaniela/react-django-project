@@ -890,6 +890,19 @@ def provideCreatePDF(post):
         drawParagraph('Especifique: ' + post.benefits_description, x , y, c)
     elif post.benefits == 0:
         drawData(x - 20, y, "No ", c)
+
+
+    # DISPONIBILIDAD PARA COMENZAR A TRABAJAR
+    y -= 40
+    drawRectangle(x, y, width, height, c, "DISPONIBILIDAD PARA COMENZAR A TRABAJAR")
+
+    # Fecha de inicio
+    y -= 20
+
+    if post.availability == "FECHA": 
+        drawTag(x, y, c, "Fecha de inicio ", str(post.availability_date))
+    else: 
+        drawTag(x, y, c, "Fecha de inicio ", post.get_availability_display())
     '''
     
 
