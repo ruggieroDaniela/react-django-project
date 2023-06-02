@@ -37,9 +37,8 @@ def setCost(plan):
    return cost
 
 
-def drawRectangle(x, y, width, height, c, title, size = 12): 
+def drawRectangle(x, y, width, height, c, title, size = 10): 
    c.setFillColor(colors.HexColor('#0099CC'))  # Establece el color de relleno
-   #c.rect(x, y, width, height, fill=True, stroke=False)
    c.roundRect(x, y, width, height, 5, fill=True, stroke=False)
 
    c.setFont("Helvetica-Bold", size)  # Establece la fuente y el tamaño del texto
@@ -113,7 +112,7 @@ def savePDF(post):
    width = 400  # Ancho del rectángulo
    height = 30  # Alto del rectángulo
 
-   drawRectangle(x, y, width, height, c, "DATOS BÁSICOS DE LA NIÑERA(O)")
+   drawRectangle(x, y, width, height, c, "DATOS BÁSICOS DEL " + post.get_service_display().upper())
   
    
    # Solicito
@@ -212,8 +211,8 @@ def savePDF(post):
    c.showPage()
    # New page
    # DISPONIBILIDAD PARA VIAJAR DE LA NIÑERA(O)
-   y = 750
-   drawRectangle(x, y, width, height, c, "DISPONIBILIDAD PARA VIAJAR DE LA NIÑERA(O)")
+   y = 700
+   drawRectangle(x, y, width, height, c, "DISPONIBILIDAD PARA VIAJAR DEL " + post.get_service_display().upper())
 
    if post.travel == True: 
       y -= 20
@@ -223,9 +222,9 @@ def savePDF(post):
    else:
       drawData(x, y,  "No", c) 
    
-   # FUNCIONES QUE DEBE CUMPLIR LA NIÑERA O EL NIÑERO
+   # FUNCIONES QUE DEBE CUMPLIR
    y -= 40
-   drawRectangle(x, y, width, height, c, "FUNCIONES QUE DEBE CUMPLIR")
+   drawRectangle(x, y, width, height, c, "FUNCIONES QUE DEBE CUMPLIR EL " +  post.get_service_display().upper())
    y -= 20
    drawParagraph(post.activities, x + 20, y, c)
 
@@ -296,7 +295,7 @@ def savePDF(post):
 
    c.showPage()
    # New page
-   y = 750
+   y = 700
 
    # SUGERENCIAS DE TRABAJO PARA EL DÍA A DÍA CON EL PERSONAL CONTRATADO
    drawRectangle(x, y, width, height, c, "SUGERENCIAS DE TRABAJO PARA EL DÍA A DÍA CON EL PERSONAL CONTRATADO", 8)
@@ -354,7 +353,7 @@ def savePDF(post):
 
    # New Page
    # DATOS DE FACTURACIÓN
-   y = 750
+   y = 700
    drawRectangle(x, y, 150, height, c, "DATOS DE FACTURACIÓN", 8)
    drawRectangle(x + 170 , y, 230, height, c, "DATOS DE FACTURACIÓN", 8)
 
@@ -453,7 +452,7 @@ def sendEmail(post):
     
 
 
-    receiver = "gabo.c.liendo@gmail.com"                      # cambiar a -> post.user.email
+    receiver = "chachy.drs@gmail.com"                      # cambiar a -> post.user.email
     message = post.user.email
 
     email = EmailMessage()
