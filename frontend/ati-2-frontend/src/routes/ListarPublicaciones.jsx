@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import { PublicacionLista } from '../components/PublicacionLista';
+import { getServices } from '../components/dataFetchers/ServicesDataFetcher';
 
 import "../styles/ListarPublicaciones.scss"
 
@@ -11,7 +12,7 @@ export const ListarPublicaciones = () => {
 
     const {t} = useTranslation();
     const location = useLocation();
-    const searchParams = location.search;
+    let searchParams = location.search;
 
     const [postList, setPostList] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
@@ -21,6 +22,8 @@ export const ListarPublicaciones = () => {
 
     const tipoPersona = ["1", "2", "3", "4", "5"];
     const ordenes = ["1", "2", "3", "4"];
+
+    const services = getServices();
 
     const sizeOfPage = 5;
 
@@ -45,14 +48,23 @@ export const ListarPublicaciones = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
+                if( selectedTipoPersona.length > 0 ){
+                    if( searchParams.length > 0 )
+                        searchParams += "&service__in=";
+                    else
+                        searchParams += "?service__in=";
+                
+                    searchParams += selectedTipoPersona.substring(0, selectedTipoPersona.length-1);
+                    console.log(selectedTipoPersona);
+                    console.log(searchParams);
+                }
+
                 const response = await axios.get(`http://127.0.0.1:8000/api-services/provideService/${searchParams}`, {
                     headers: {}
                 });
 
                 const totalPages = response.data.length/sizeOfPage;
-                console.log(totalPages);
-
-                
+                // console.log(totalPages);
 
                 // console.log(pageLinks);
 
@@ -66,7 +78,7 @@ export const ListarPublicaciones = () => {
         };
 
         fetchPosts();
-    }, []);
+    }, [selectedTipoPersona]);
 
     return(<>
         <div id="lista-posts">
@@ -107,7 +119,12 @@ export const ListarPublicaciones = () => {
                         tipoPersona.map( (item, i) => 
                             <li className="checkbox" key={`${self.crypto.randomUUID()}`}>
                                 <label key={`${self.crypto.randomUUID()}`}>
-                                    <input type="checkbox" key={`${self.crypto.randomUUID()}`}/>
+                                    <input
+                                        type="checkbox"
+                                        key={`${self.crypto.randomUUID()}`}
+                                        checked={ services.length > i && selectedTipoPersona.includes(services[i]) }
+                                        onChange={ () => setSelectedTipoPersona( prev => prev.includes(services[i])? prev.replace(services[i]+",", ""):prev+services[i]+"," ) }
+                                    />
                                     <div className="checkbox-label" key={`${self.crypto.randomUUID()}`}>
                                         {t(`lista_publicaciones.tipos_personal.${i}`)}
                                     </div>
