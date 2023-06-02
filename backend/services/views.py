@@ -852,7 +852,7 @@ def provideCreatePDF(post):
 
     c.showPage()
     # New page
-    y = 700
+    y = 750
 
     # CONDICIONES DE TRABAJO
     drawRectangle(x, y, width, height, c, "CONDICIONES DE TRABAJO")
@@ -880,6 +880,16 @@ def provideCreatePDF(post):
     else: 
         drawTag(x, y, c, "Salario deseado ", post.get_payment_display())
 
+    # ¿SOLICITO OTROS BENEFICIOS? 
+    y -= 60
+    drawRectangle(x, y, width, height, c, "¿SOLICITO OTROS BENEFICIOS? ")
+    y -= 20
+    if post.benefits == 1:
+        drawData(x - 20, y, "Si ", c)
+        y -= 40
+        drawParagraph('Especifique: ' + post.benefits_description, x , y, c)
+    elif post.benefits == 0:
+        drawData(x - 20, y, "No ", c)
     '''
     
 
@@ -925,16 +935,6 @@ def provideCreatePDF(post):
     # New page
     
 
-
-    # ¿Ofrece otros beneficios? 
-    y -= 30
-    if post.benefits == 1:
-        drawTag(x, y, c, "¿Ofrece otros beneficios? ", "Si")
-        y -= 50
-        drawParagraph('Especifique: ' + post.benefits_description, x , y, c)
-
-    if post.benefits == 0:
-        drawTag(x, y, c, "¿Ofrece otros beneficios? ", "No") 
 
     # DISPONIBILIDAD PARA COMENZAR A TRABAJAR
     y -= 40
