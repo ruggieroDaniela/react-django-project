@@ -216,6 +216,7 @@ def requestCreatePDF(post):
         y -= 20
         drawParagraph(post.travel_decription, x + 20, y, c)
     else:
+        y -= 20
         drawData(x, y,  "No", c) 
 
     # FUNCIONES QUE DEBE CUMPLIR
@@ -831,66 +832,56 @@ def provideCreatePDF(post):
     drawParagraph(post.description , x, y, c)
 
     # FUNCIONES QUE HE DESEMPEÑADO
-    #y -= 40
-    #drawRectangle(x, y, width, height, c, "FUNCIONES QUE HE DESEMPEÑADO COMO " +  post.get_service_display().upper())
-    #y -= 20
-    #drawParagraph(post.activities, x + 20, y, c)
+    y -= 60
+    drawRectangle(x, y, width, height, c, "FUNCIONES QUE HE DESEMPEÑADO COMO " +  post.get_service_display().upper())
+    y -= 50
+    drawParagraph(post.activities, x , y, c)
+
+    # DISPONIBILIDAD PARA VIAJAR DE LA NIÑERA(O)
+    y -= 60
+    drawRectangle(x, y, width, height, c, "DISPONIBILIDAD PARA VIAJAR DEL " + post.get_service_display().upper())
+
+    if post.travel == True: 
+        y -= 20
+        drawData(x, y,  "Si", c)
+        y -= 20
+        drawParagraph(post.travel_decription, x + 20, y, c)
+    else:
+        y -= 20
+        drawData(x, y,  "No", c) 
+
+    c.showPage()
+    # New page
+    y = 700
+
+    # CONDICIONES DE TRABAJO
+    drawRectangle(x, y, width, height, c, "CONDICIONES DE TRABAJO")
+
+    # Salidas que prefiero
+    y -= 10
+    drawTag(x, y, c, "Salidas que prefiero ", post.get_workday_display())
+
+    if post.workday == "OTRO": 
+        y -= 30
+        drawData(x, y,  'Otro: ' + post.workday_other, c) 
+
+    # Horario
+    y -= 30
+    drawTag(x, y, c, "Horario", post.get_schedule_display())
+
+    if post.schedule == "OTRO": 
+        y -= 30
+        drawData(x, y,  'Otro: ' + post.schedule_other, c) 
+
+    # Salario deseado
+    y -= 30
+    if post.payment == "MONTO": 
+        drawTag(x, y, c, "Salario deseado ", str(post.payment_amount))
+    else: 
+        drawTag(x, y, c, "Salario deseado ", post.get_payment_display())
 
     '''
-    # Solicito
-    y -= 30 
-    drawSubtitle(x, y, colors.red, "Solicito", c)
-
-    # Gender 
-    y -= 20 
-    drawData(x, y, post.get_gender_display(), c)
-
-    if post.status == 'PEN': 
-        drawSubtitle(x + 400, y, colors.red, post.get_status_display(), c, 8)
-    else: 
-        drawSubtitle(x + 400, y, colors.green, post.get_status_display(), c, 8)
-
-    c.setFillColor(colors.black)  
-    y -= 20 
-    c.drawString(x , y, "Con buena presencia, responsable, honesta, buen carácter, que le gusten los niños")
-
-    # Edad que solicita
-    y -= 30 
-    drawSubtitle(x, y, colors.blue, "Edad que solicita", c)
-    y -= 20
-    drawData(x, y, 'Entre ' + str(post.age_required_from) + ' y ' + str(post.age_required_to) + ' años / ' + post.get_children_display(), c)
-
-    # Situación familiar
-    y -= 30 
-    drawSubtitle(x, y, colors.blue, "Situación familiar", c)
-    y -= 20
-    drawData(x, y,  post.get_children_display(), c)
-
-    # Grado de instrucción
-    y -= 30 
-    drawSubtitle(x, y, colors.blue, "Grado de Instrucción", c)
-    y -= 20
-    drawData(x, y,  post.get_education_level_display(), c)
-
-    # LUGAR DE PROCEDENCIA
-    y -= 40
-    drawRectangle(x, y, width, height, c, "LUGAR DE PROCEDENCIA")
-
-    # País de procedencia
-    y -= 10
-    drawTag(x, y, c, "País de procedencia", post.country)
-
-    # Estado / Provincia
-    y -= 30
-    drawTag(x, y, c, "Estado / Provincia ", post.state)
-
-    # Ciudad 
-    y -= 30
-    drawTag(x, y, c, "Ciudad ", post.city)
-
-    # Zona 
-    y -= 30
-    drawTag(x, y, c, "Zona ", post.zone)
+    
 
     # SOBRE LA PERSONA A CUIDAR
     y -= 50
@@ -932,50 +923,8 @@ def provideCreatePDF(post):
 
     c.showPage()
     # New page
-    # DISPONIBILIDAD PARA VIAJAR DE LA NIÑERA(O)
-    y = 700
-    drawRectangle(x, y, width, height, c, "DISPONIBILIDAD PARA VIAJAR DEL " + post.get_service_display().upper())
+    
 
-    if post.travel == True: 
-        y -= 20
-        drawData(x, y,  "Si", c)
-        y -= 20
-        drawParagraph(post.travel_decription, x + 20, y, c)
-    else:
-        drawData(x, y,  "No", c) 
-
-    # FUNCIONES QUE DEBE CUMPLIR
-    y -= 40
-    drawRectangle(x, y, width, height, c, "FUNCIONES QUE DEBE CUMPLIR EL " +  post.get_service_display().upper())
-    y -= 20
-    drawParagraph(post.activities, x + 20, y, c)
-
-    # CONDICIONES DE TRABAJO
-    y -= 40
-    drawRectangle(x, y, width, height, c, "CONDICIONES DE TRABAJO")
-
-    # Cómo van a ser las salidas de la persona contratada
-    y -= 10
-    drawTag(x, y, c, "Cómo van a ser las salidas de la persona contratada ", post.get_workday_display())
-
-    if post.workday == "OTRO": 
-        y -= 30
-        drawData(x, y,  'Otro: ' + post.workday_other, c) 
-
-    # Horario de trabajo
-    y -= 30
-    drawTag(x, y, c, "Horario de trabajo ", post.get_schedule_display())
-
-    if post.schedule == "OTRO": 
-        y -= 30
-        drawData(x, y,  'Otro: ' + post.schedule_other, c) 
-
-    # Salario ofrecido
-    y -= 30
-    if post.payment == "MONTO": 
-        drawTag(x, y, c, "Salario ofrecido ", str(post.payment_amount))
-    else: 
-        drawTag(x, y, c, "Salario ofrecido ", post.get_payment_display())
 
     # ¿Ofrece otros beneficios? 
     y -= 30
