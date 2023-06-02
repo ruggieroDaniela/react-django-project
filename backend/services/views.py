@@ -756,7 +756,7 @@ def sendEmail(post):
        pdf = provideCreatePDF(post)    
 
 
-    receiver = "chachy.drs@gmail.com"                      # cambiar a -> post.user.email
+    receiver = "ati2.proyecto@gmail.com"                      # cambiar a -> post.user.email
     message = f"""
         <p>Le notificamos que su publicación ha sido creada en nuestro sitio Web 3.137.150.119:5173 con el código número 
         <span style="color: blue;"> <b>{post_id} </b></span>.</p>
