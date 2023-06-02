@@ -118,11 +118,11 @@ export const ListarPublicaciones = () => {
                 <ul className="input-group">
                     <li className="radio">
                         <label>
-                            <input type="radio"/>
+                            <input type="radio" checked={true} onChange={() => {}}/>
                             {t(`lista_publicaciones.tipo_lista`)}
                         </label>
                     </li>
-                    <li className="radio">
+                    <li className="radio" checked={false} onChange={(e) => { e.target.checked = false }}>
                         <label>
                             <input type="radio"/>
                             {t(`lista_publicaciones.tipo_foto`)}
