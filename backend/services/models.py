@@ -210,8 +210,8 @@ class RequestService(Services):
 
     # Choices
     GENDER_CHOICES = (
-        ('FEM', 'Niñera'), 
-        ('MAS', 'Niñero'), 
+        ('FEM', 'Femenino'), 
+        ('MAS', 'Masculino'), 
         ('IDC', 'Me es indiferente su sexo')
     )
     
