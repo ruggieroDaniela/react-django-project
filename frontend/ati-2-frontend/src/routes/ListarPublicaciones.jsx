@@ -18,10 +18,11 @@ export const ListarPublicaciones = () => {
     const [currentPage, setCurrentPage] = useState(0);
 
     const [selectedTipoPersona, setSelectedTipoPersona] = useState("");
+    const [selectedOrdering, setSelectedOrdering] = useState("");
     const [pageLinks, setPageLinks] = useState([]);
 
     const tipoPersona = ["1", "2", "3", "4", "5"];
-    const ordenes = ["1", "2", "3", "4"];
+    const ordenes = ["payment_amount", "availability_date", "education_level", "travel"];
 
     const services = getServices();
 
@@ -55,7 +56,17 @@ export const ListarPublicaciones = () => {
                         searchParams += "?service__in=";
                 
                     searchParams += selectedTipoPersona.substring(0, selectedTipoPersona.length-1);
-                    console.log(selectedTipoPersona);
+                    // console.log(selectedTipoPersona);
+                    // console.log(searchParams);
+                }
+
+                if( selectedOrdering.length > 0 ){
+                    if( searchParams.length > 0 )
+                        searchParams += "&ordering=";
+                    else
+                        searchParams += "?ordering=";
+                
+                    searchParams += selectedOrdering;
                     console.log(searchParams);
                 }
 
@@ -68,6 +79,21 @@ export const ListarPublicaciones = () => {
 
                 // console.log(pageLinks);
 
+                let posts = response.data;
+
+                // for (let i = 0; i < posts.length; i++) {
+                //     try {
+                //         const responseUser = await axios.get(`http://127.0.0.1:8000/users/${posts[i].user}`, {
+                //             headers: {}
+                //         });
+
+                //         console.log(responseUser);
+
+                //     } catch (error) {
+                //         console.error(error);
+                //     } 
+                // }
+
                 setPostList(response.data)
                 console.log(response.data);
                 return response.data;
@@ -78,7 +104,7 @@ export const ListarPublicaciones = () => {
         };
 
         fetchPosts();
-    }, [selectedTipoPersona]);
+    }, [selectedTipoPersona, selectedOrdering]);
 
     return(<>
         <div id="lista-posts">
@@ -143,7 +169,10 @@ export const ListarPublicaciones = () => {
                     {
                         ordenes.map( (item, i) => 
                             <li className="button" key={`${self.crypto.randomUUID()}`}>
-                                <button key={`${self.crypto.randomUUID()}`}>
+                                <button
+                                    key={`${self.crypto.randomUUID()}`}
+                                    onClick={ () => setSelectedOrdering( () => selectedOrdering == ""? ordenes[i]:"" ) }
+                                >
                                     {t(`lista_publicaciones.ordenar_por.${i}`)}
                                 </button>
                             </li>
