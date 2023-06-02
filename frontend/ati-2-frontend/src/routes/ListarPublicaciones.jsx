@@ -71,35 +71,35 @@ export const ListarPublicaciones = () => {
     return(<>
         <div id="lista-posts">
             <div className="header">
-                Publicaciones Realizadas
+                {t(`lista_publicaciones.titulo`)}
             </div>
             <div className="row">
                 <span className="title">
-                    Ver listado como:
+                    {t(`lista_publicaciones.ver_como`)}:
                 </span>
                 <ul className="input-group">
                     <li className="radio">
                         <label>
                             <input type="radio"/>
-                            lista
+                            {t(`lista_publicaciones.tipo_lista`)}
                         </label>
                     </li>
                     <li className="radio">
                         <label>
                             <input type="radio"/>
-                            foto
+                            {t(`lista_publicaciones.tipo_foto`)}
                         </label>
                     </li>
                 </ul>
             </div>
             
             <div className="row note">
-                seleccione
+                {t(`lista_publicaciones.seleccione`)}
             </div>
 
             <div className="row">
                 <span className="title">
-                    Tipo de persona:
+                    {t(`lista_publicaciones.tipo_persona`)}:
                 </span>
                 <ul className="input-group">
                     {
@@ -109,7 +109,7 @@ export const ListarPublicaciones = () => {
                                 <label>
                                     <input type="checkbox"/>
                                     <div className="checkbox-label">
-                                        {item}
+                                        {t(`lista_publicaciones.tipos_personal.${i}`)}
                                     </div>
                                 </label>
                             </li>
@@ -120,14 +120,14 @@ export const ListarPublicaciones = () => {
 
             <div className="row">
                 <span className="title">
-                    Ordenar:
+                    {t(`lista_publicaciones.ordenar`)}:
                 </span>
                 <ul className="input-group">
                     {
                         ordenes.map( (item, i) => 
                             <li className="button">
                                 <button>
-                                        {item}
+                                    {t(`lista_publicaciones.ordenar_por.${i}`)}
                                 </button>
                             </li>
                         )

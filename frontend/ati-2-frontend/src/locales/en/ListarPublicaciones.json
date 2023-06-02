@@ -1,0 +1,25 @@
+{
+    "lista_publicaciones": {
+        "titulo": "Public Posts",
+        "ver_como": "View Type",
+        "tipo_lista": "List View",
+        "tipo_foto": "Thumbnail View",
+        "seleccione": "Select the filters specified below, if you want to filter the results obtained",
+        "tipo_persona": "Domestic Staff Type",
+        "tipos_personal": [
+            "Babysitter",
+            "Caretaker",
+            "Nurse",
+            "Domestic Staff",
+            "Real Estate Caretaker"
+        ],
+        "ordenar": "Sort By",
+        "ordenar_por": [
+            "Payment",
+            "Availability",
+            "Degree of Instruction",
+            "Voyage Availability"
+        ],
+        "pagina": "Page"
+    }
+}
