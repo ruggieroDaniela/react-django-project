@@ -925,7 +925,35 @@ def provideCreatePDF(post):
         drawTag(x, y, c, "Ciudad ", post.origin_city)
 
 
+    # DOCUMENTOS QUE PUEDO PRESENTAR A LOS CLIENTES
+    y -= 60
+    drawRectangle(x, y, width, height, c, "DOCUMENTOS QUE PUEDO PRESENTAR A LOS CLIENTES")
+
+    y -= 20
+    if post.have_documentation == True:
+        drawData(x - 20, y, "Si", c) 
+        y -= 30
+        drawParagraph(post.get_documents_display(), x , y, c)
+
+        if post.documents == "OTRO": 
+            y -= 20
+            drawData(x, y,  'Especifique: ' + post.documents_other, c) 
+    else: 
+        drawData(x, y, "No", c) 
     
+    y -= 60
+    
+    # SUGERENCIAS ANTES DE REALIZAR UNA ENTREVISTA DE TRABAJO
+    drawRectangle(x, y, width, height, c, "SUGERENCIAS ANTES DE REALIZAR UNA ENTREVISTA DE TRABAJO", 8)
+    y -= 30
+
+    drawParagraph("* Elije que ropa vas a utilizar en caso de una entrevista en vivo, o vía internet con tu empleador", x , y, c)
+    y -= 20
+    drawParagraph("* Descarta la ropa sexy. No es profesional", x , y, c)
+    y -= 30
+    drawParagraph("* Lee varias veces el anuncio que coloca un cliente, y elabora una lista de preguntas que quieras realizarle al potencial empleador", x , y, c)
+    y -= 40
+    drawParagraph("* Ten a la mano la documentación que se te sugirió en puntos anteriores, en caso de que algún cliente te la solicite. Así puedes incrementar tus probabilidades de éxito de ser contratado más rápidamente", x , y, c)
 
 
     '''
@@ -973,53 +1001,9 @@ def provideCreatePDF(post):
     # New page
     
 
-
-    # DISPONIBILIDAD PARA COMENZAR A TRABAJAR
-    y -= 40
-    drawRectangle(x, y, width, height, c, "DISPONIBILIDAD PARA COMENZAR A TRABAJAR")
-
-    # Fecha de inicio
-    y -= 20
-
-    if post.availability == "FECHA": 
-        drawTag(x, y, c, "Fecha de inicio ", str(post.availability_date))
-    else: 
-        drawTag(x, y, c, "Fecha de inicio ", post.get_availability_display())
-
-    # DOCUMENTOS A SOLICITAR A LAS CANDIDATAS(OS)
-    y -= 60
-    drawRectangle(x, y, width, height, c, "DOCUMENTOS A SOLICITAR")
-
-    y -= 20
-    if post.have_documentation == True:
-        drawData(x - 20, y, "Si", c) 
-        y -= 30
-        drawParagraph(post.get_documents_display(), x , y, c)
-
-        if post.documents == "OTRO": 
-            y -= 20
-            drawData(x, y,  'Especifique: ' + post.documents_other, c) 
-    else: 
-        drawData(x, y, "No", c) 
-
     c.showPage()
     # New page
     y = 700
-
-    # SUGERENCIAS DE TRABAJO PARA EL DÍA A DÍA CON EL PERSONAL CONTRATADO
-    drawRectangle(x, y, width, height, c, "SUGERENCIAS DE TRABAJO PARA EL DÍA A DÍA CON EL PERSONAL CONTRATADO", 8)
-    y -= 20
-
-    # Antes de iniciar sus labores
-    drawTag(x, y, c, "Antes de iniciar sus labores", "")
-    y -= 60
-    drawParagraph("Indicarle a la persona contratada que debe mantener una buena higiene personal, y abstenerse de fumar, ingerir bebidas alcohólicas o tener conductas que atenten contra la moral y las buenas costumbres, principalmente delante de los niños", x , y, c)
-    y -= 60
-    drawParagraph("Indíquele al personal recomendaciones o procedimientos de seguridad para abrir la puerta, contestar el teléfono, personas a recibir en el inmueble, y cualquier otro asunto relacionado con las personas a su cuidado, o con el inmueble donde se realizarán las labores", x , y, c)
-    y -= 70
-    drawParagraph("Proporcione información de contacto a su niñera(o) en caso de emergencia, como: Médico tratante, teléfono de empresas donde la(s) persona(s) bajo su cuidado están aseguradas, listado de clínicas cercanas a las que se pueda llevar a la persona en caso de emergencia, datos de contacto directo con usted en caso de cualquier emergencia, o consulta que pueda tener la persona contratada ", x , y, c)
-    y -= 50
-    drawParagraph("Si puede, registre las huellas dactilares del personal a su servicio para que tenga una base para deslindar responsabilidades en caso de robo o cualquier incidente que podría haber originado dicha persona en el inmueble, o hacia las personas bajo su cuidado", x , y, c)
 
     # En el día a día 
     y -= 10
