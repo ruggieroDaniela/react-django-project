@@ -804,6 +804,38 @@ def provideCreatePDF(post):
     drawSubtitle(x, y, colors.blue, "Grado de Instrucción", c)
     drawData(x + 110, y,  post.get_education_level_display(), c)
 
+    # LUGAR DE PROCEDENCIA
+    y -= 40
+    drawRectangle(x, y, width, height, c, "LUGAR DE PROCEDENCIA")
+
+    # País de procedencia
+    y -= 10
+    drawTag(x, y, c, "País de procedencia", post.country)
+
+    # Estado / Provincia
+    y -= 30
+    drawTag(x, y, c, "Estado / Provincia ", post.state)
+
+    # Ciudad 
+    y -= 30
+    drawTag(x, y, c, "Ciudad ", post.city)
+
+    # Zona 
+    y -= 30
+    drawTag(x, y, c, "Zona ", post.zone)
+
+    # DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL
+    y -= 60
+    drawRectangle(x, y, width, height, c, "DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL")
+    y -= 50
+    drawParagraph(post.description , x, y, c)
+
+    # FUNCIONES QUE HE DESEMPEÑADO
+    #y -= 40
+    #drawRectangle(x, y, width, height, c, "FUNCIONES QUE HE DESEMPEÑADO COMO " +  post.get_service_display().upper())
+    #y -= 20
+    #drawParagraph(post.activities, x + 20, y, c)
+
     '''
     # Solicito
     y -= 30 
