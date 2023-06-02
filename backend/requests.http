@@ -66,6 +66,14 @@ content-type: application/json
 }
 
 ###
+POST http://127.0.0.1:8000/users/get_name/
+content-type: application/json
+
+{
+    "id": 7
+}
+
+###
 
 POST http://localhost:8000/token-auth/
 content-type: application/json
