@@ -31,18 +31,16 @@ const FieldViewDetails = ({label, detalles_texto, value=""}) => {
 export const PublicacionLista = ({post}) => {
 
     const {t} = useTranslation();
+    const [username, setUsername] = useState("  ")
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
 
-                const response = await axios.post(`http://127.0.0.1:8000/api-services/users/get_name/`, {id: post.user});
-
-                // console.log(totalPages);
-
-                // console.log(pageLinks);
+                const response = await axios.post(`http://127.0.0.1:8000/users/get_name/`, {id: post.user});
 
                 console.log(response.data);
+                setUsername( () => response.data.name + " " + response.data.last_name );
                 return response.data;
 
             } catch (error) {
@@ -72,7 +70,7 @@ export const PublicacionLista = ({post}) => {
                                 {t(`publicaciones_vista_lista.${post.service}`)}
                             </div>
                             <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                                {post.user}
+                                {username}
                             </div>
                             <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                                 {post.age} {t(`publicaciones_vista_lista.años`)}
