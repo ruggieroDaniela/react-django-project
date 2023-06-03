@@ -69,8 +69,8 @@ export const PublicacionLista = ({post}) => {
                         </div>
                     
                     </div>
-                    <div className="title" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                        {post.publication_time}
+                    <div className="title" style={ {width: "100%"} } key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                        {t(`publicaciones_vista_lista.publicado`)}{post.created_at.split("T")[0]}
                     </div>
                     <div className="desc-body" key={`post ${post.id} ${self.crypto.randomUUID()}`}>{post.description}</div>
                     <div className="info-and-contact" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
