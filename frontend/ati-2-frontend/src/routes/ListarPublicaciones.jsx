@@ -79,21 +79,6 @@ export const ListarPublicaciones = () => {
 
                 // console.log(pageLinks);
 
-                let posts = response.data;
-
-                // for (let i = 0; i < posts.length; i++) {
-                //     try {
-                //         const responseUser = await axios.get(`http://127.0.0.1:8000/users/${posts[i].user}`, {
-                //             headers: {}
-                //         });
-
-                //         console.log(responseUser);
-
-                //     } catch (error) {
-                //         console.error(error);
-                //     } 
-                // }
-
                 setPostList(response.data)
                 console.log(response.data);
                 return response.data;

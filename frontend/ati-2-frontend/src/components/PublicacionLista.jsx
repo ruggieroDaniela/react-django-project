@@ -1,4 +1,5 @@
-import { useState, useTransition } from "react"
+import axios from 'axios'
+import { useState, useEffect } from "react"
 import { useTranslation } from 'react-i18next'
 
 import "../styles/PostLista.scss"
@@ -30,6 +31,27 @@ const FieldViewDetails = ({label, detalles_texto, value=""}) => {
 export const PublicacionLista = ({post}) => {
 
     const {t} = useTranslation();
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+
+                const response = await axios.post(`http://127.0.0.1:8000/api-services/users/get_name/`, {id: post.user});
+
+                // console.log(totalPages);
+
+                // console.log(pageLinks);
+
+                console.log(response.data);
+                return response.data;
+
+            } catch (error) {
+                console.error(error);
+            } 
+        };
+
+        fetchUser();
+    }, []);
 
     return(<>
         <div key={`post ${post.id}`} className="post-lista">
