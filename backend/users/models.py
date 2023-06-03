@@ -22,7 +22,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=128, null=True)
         
     #Step 1
-    found_app_by = models.CharField(max_length=256)
+    found_app_by = models.JSONField(null=True)
     
     #Step 2
     type_user = models.CharField(max_length=10, choices=USER_CHOICES)

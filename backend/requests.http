@@ -70,8 +70,21 @@ POST http://127.0.0.1:8000/users/get_name/
 content-type: application/json
 
 {
-    "id": 7
+    "id": 6
 }
+
+### BANKS
+POST http://127.0.0.1:8000/banks/
+content-type: application/json
+
+{
+    "name": "Banesco Panamá",
+    "account" : "201800948693",
+    "swift_code" : "BANSPAPA"
+}
+
+###
+GET http://127.0.0.1:8000/banks/
 
 ###
 
