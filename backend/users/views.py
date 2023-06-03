@@ -5,6 +5,7 @@ from rest_framework import viewsets, status
 from backend.settings import EMAIL_HOST, EMAIL_HOST_PASSWORD, EMAIL_HOST_USER
 from users.models import User
 from users.serializers import UserSerializer
+from users.serializers import ChangePasswordSerializer
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -12,6 +13,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.db.utils import DatabaseError
 from rest_framework.decorators import action
 from rest_framework.views import APIView
+from django.contrib.auth.hashers import make_password
 
 def get_token_key(user):
     token, _ = Token.objects.get_or_create(user=user)
@@ -35,7 +37,7 @@ def get_user_data(data):
     return user
 
 def send_password_email(user):
-    receiver = "proyectoati2.2023@gmail.com" # cambiar a -> user.email
+    receiver = user.email
     message ='<b>Su usuario es:</b> {}.'.format(user.email) + \
             '<br>' + \
             'Adicionalmente, acabamos de recibir una solicitud para restablecer la contraseña de {}.'.format(user.email) + \
@@ -106,6 +108,23 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response({'error': 'Email already exists' }, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({'client_code': get_hash(email) }, status=status.HTTP_200_OK)
+        
+    @action(detail=True, methods=['post'])
+    def change_password(self, request, pk=None):
+        user = self.get_object()
+        serializer = ChangePasswordSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        new_password = serializer.validated_data['new_password']
+        confirm_password = serializer.validated_data['confirm_password']
+
+        if new_password != confirm_password:
+            return Response({'error': 'La nueva contraseña y la confirmación no coinciden.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user.password = make_password(new_password)
+        user.save()
+
+        return Response({'success': 'Contraseña cambiada exitosamente.'}, status=status.HTTP_200_OK)
 
 class CustomAuthToken(ObtainAuthToken):
     
