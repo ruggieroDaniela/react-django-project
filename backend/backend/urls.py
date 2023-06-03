@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from users.views import ForgotPasswordView, UserViewSet, CustomAuthToken
+from banks.views import BankViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'banks', BankViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

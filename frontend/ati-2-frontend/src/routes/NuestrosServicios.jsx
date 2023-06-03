@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { RequestDomesticFormContext, RequestDomesticFormContextProvider } from "../context/RequestDomesticFormContext";
 
@@ -10,7 +11,8 @@ import "../styles/NuestrosServicios.scss"
 export const NuestrosServicios = () => {
 
     const { t } = useTranslation();
-    // const [requestDomesticFormState, setRequestDomesticFormState] = useContext(RequestDomesticFormContext);
+    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+    const navigate = useNavigate();
 
     const [clickPostAd, setClickPostAd] = useState(false);
     const [clickFind, setClickFind] = useState(false);
@@ -60,7 +62,41 @@ export const NuestrosServicios = () => {
                         >
                             <span className="required">*</span> {t('nuestros_servicios.seleccionar_opcion')}
                             <div className="button_dropdown_content">
-                                <button>
+                                <button
+                                    // onClick={
+                                    //     async () => {
+                                    //         const data = {...requestDomesticFormState};
+                                    //         console.log(data);
+
+                                    //         const url = 'http://127.0.0.1:8000/api-services/requestService/post_ad/'
+                                    //         try {
+                                                
+                                    //             const response = await fetch( url,{
+                                    //                     method: 'POST',
+                                    //                     headers: {
+                                    //                         'Content-Type': 'application/json',
+                                    //                     },
+                                    //                     body: JSON.stringify(data),
+                                    //                 }
+                                    //             );
+                                        
+                                    //             if (response.ok) {
+                                    //                 // Request was successful
+                                    //                 console.log('POST request successful');
+                                    //                 console.log(response);
+                                    //             } else {
+                                    //                 // Request failed
+                                    //                 console.log('POST request failed');
+                                    //             }
+                                        
+                                    //         } catch (error) {
+                                    //             console.log("error registrando");
+                                    //             console.log(error);
+                                    //         }
+
+                                    //     }
+                                    // }
+                                >
                                     A- {t('nuestros_servicios.opciones.0')}
                                 </button>
                                 <button>
@@ -79,7 +115,11 @@ export const NuestrosServicios = () => {
                         >
                             <span className="required">*</span> {t('nuestros_servicios.seleccionar_opcion')}
                             <div className="button_dropdown_content">
-                                <button>
+                                <button
+                                    onClick={ () => {
+                                        navigate("/search-domestic-staff");
+                                    } }
+                                >
                                     C- {t('nuestros_servicios.opciones.2')}
                                 </button>
                                 <button>

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 // Contexts
-import AuthContext from './context/AuthContext';
+import { AppContextProvider } from './context/AppContext';
 
 // Components
 import User from './components/user';
@@ -19,6 +19,7 @@ import { Ayuda } from './routes/Ayuda';
 import { Empleo } from './routes/Empleo';
 import { Registrar } from './routes/Registrar';
 import { IniciarSesion } from './routes/IniciarSesion';
+import { BuscarPersonalDomestico } from './routes/BuscarPersonalDomestico';
 
 
 function App() {
@@ -36,19 +37,19 @@ function App() {
   
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:8000/users')
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        setUsers(data)
-      })
-  }, []);
+  // useEffect(() => {
+  //   fetch('http://localhost:8000/users')
+  //     .then(response => {
+  //       return response.json()
+  //     })
+  //     .then(data => {
+  //       setUsers(data)
+  //     })
+  // }, []);
 
   return (
     <>
-      <AuthContext.Provider value={false}>
+      <AppContextProvider>
         <Router>
           <Navbar />
           <Routes>
@@ -59,10 +60,11 @@ function App() {
             <Route exact path="/employment" element={<Empleo/>} />
             <Route exact path="/sign-up" element={<Registrar/>} />
             <Route exact path="/login" element={<IniciarSesion />} />
+            <Route exact path='/search-domestic-staff' element={<BuscarPersonalDomestico/>}/>
           </Routes>
           <Footer/>
         </Router>
-      </AuthContext.Provider>
+      </AppContextProvider>
       
       {/* <h1>Vite + React</h1>
       <div className="card">

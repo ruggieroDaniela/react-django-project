@@ -120,6 +120,7 @@ const Fase0 = () =>
                                 {t('especifique')+": "}
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[0].social_network_other}
                                     onChange={ e => {
                                         setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -187,6 +188,7 @@ const Fase0 = () =>
                                 {t('especifique')+": "}
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[0].radio_spec}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -216,6 +218,7 @@ const Fase0 = () =>
                                 {t('especifique')+": "}
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[0].press_spec}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -245,6 +248,7 @@ const Fase0 = () =>
                                 {t('especifique')+": "}
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[0].other_other_spec}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -294,13 +298,13 @@ const Fase1 = () => {
                     <label>
                         <input
                             type="radio"
-                            value="empresa"
-                            checked={ registerFormState.phase[1].tipo_usuario === 'empresa' }
+                            value="enterprise"
+                            checked={ registerFormState.phase[1].tipo_usuario === 'enterprise' }
                             onChange={ e => {
                                 setRegisterFormState( prev => {
                                         const newState = {... prev};
                                         newState.phase[1] = {... prev.phase[1]};
-                                        newState.phase[1].tipo_usuario = 'empresa';
+                                        newState.phase[1].tipo_usuario = 'enterprise';
                                         return newState;
                                     } );
                             }}
@@ -320,6 +324,7 @@ const Fase1 = () => {
                             </span>
                             <input
                                 type="text"
+                                value={registerFormState.phase[1].natural.nombre}
                                 onChange={ e => {
                                 setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -337,6 +342,7 @@ const Fase1 = () => {
                             </span>
                             <input
                                 type="text"
+                                value={registerFormState.phase[1].natural.apellido}
                                 onChange={ e => {
                                 setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -354,6 +360,7 @@ const Fase1 = () => {
                             </span>
                             <input
                                 type="text"
+                                value={registerFormState.phase[1].natural.identificacion}
                                 onChange={ e => {
                                 setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -371,6 +378,7 @@ const Fase1 = () => {
                             </span>
                             <input
                                 type="text"
+                                value={registerFormState.phase[1].natural.correo}
                                 onChange={ e => {
                                 setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -388,6 +396,7 @@ const Fase1 = () => {
                             </span>
                             <input
                                 type="text"
+                                value={registerFormState.phase[1].natural.pais}
                                 onChange={ e => {
                                 setRegisterFormState( prev => {
                                         const newState = {... prev};
@@ -458,6 +467,7 @@ const Fase1 = () => {
                                     <input
                                         id="telefono_codigo"
                                         type="text"
+                                        value={registerFormState.phase[1].telefono.codigo}
                                         onChange={ e => {
                                         setRegisterFormState( prev => {
                                                 const newState = {... prev};
@@ -470,6 +480,7 @@ const Fase1 = () => {
                                     <input
                                         id="telefono_numero"
                                         type="text"
+                                        value={registerFormState.phase[1].telefono.numero}
                                         onChange={ e => {
                                         setRegisterFormState( prev => {
                                                 const newState = {... prev};
@@ -484,6 +495,7 @@ const Fase1 = () => {
                                         <input
                                             id="telefono_ext"
                                             type="text"
+                                            value={registerFormState.phase[1].telefono.ext}
                                             onChange={ e => {
                                             setRegisterFormState( prev => {
                                                     const newState = {... prev};
@@ -515,6 +527,7 @@ const Fase1 = () => {
                                 </span>
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[1].empresa.nombre_empresa}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -532,6 +545,7 @@ const Fase1 = () => {
                                 </span>
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[1].empresa.razon_rif}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -549,6 +563,7 @@ const Fase1 = () => {
                                 </span>
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[1].empresa.pais}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -566,6 +581,7 @@ const Fase1 = () => {
                                 </span>
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[1].empresa.ciudad}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -609,6 +625,7 @@ const Fase1 = () => {
                                 </span>
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[1].empresa.nombre_representante}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -626,6 +643,7 @@ const Fase1 = () => {
                                 </span>
                                 <input
                                     type="text"
+                                    value={registerFormState.phase[1].empresa.correo}
                                     onChange={ e => {
                                     setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -695,6 +713,7 @@ const Fase1 = () => {
                                         <input
                                             id="telefono_codigo"
                                             type="text"
+                                            value={registerFormState.phase[1].telefono.codigo}
                                             onChange={ e => {
                                             setRegisterFormState( prev => {
                                                     const newState = {... prev};
@@ -707,6 +726,7 @@ const Fase1 = () => {
                                         <input
                                             id="telefono_numero"
                                             type="text"
+                                            value={registerFormState.phase[1].telefono.numero}
                                             onChange={ e => {
                                             setRegisterFormState( prev => {
                                                     const newState = {... prev};
@@ -721,6 +741,7 @@ const Fase1 = () => {
                                             <input
                                                 id="telefono_ext"
                                                 type="text"
+                                                value={registerFormState.phase[1].telefono.ext}
                                                 onChange={ e => {
                                                 setRegisterFormState( prev => {
                                                         const newState = {... prev};
@@ -807,6 +828,7 @@ const Fase3 = () => {
                     </span>
                     <input
                         type="text"
+                        value={registerFormState.phase[3].correo}
                         onChange={ e => {
                         setRegisterFormState( prev => {
                                 const newState = {... prev};
@@ -1008,6 +1030,7 @@ const Fase4 = () => {
                         </label>
                         <input
                             type="text"
+                            value={registerFormState.phase[4].correo}
                             style={{visibility: registerFormState.phase[4].usar_correo? "visible":"hidden"}}
                             onChange={ e => {
                                 setRegisterFormState( prev => {
@@ -1092,6 +1115,7 @@ const Fase4 = () => {
                         <input
                             style={{visibility: registerFormState.phase[4].usar_sms? "visible":"hidden"}}
                             type="text"
+                            value={registerFormState.phase[4].sms}
                             onChange={ e => {
                                 setRegisterFormState( prev => {
                                     const newState = {... prev};
@@ -1122,6 +1146,7 @@ const Fase4 = () => {
                         <input
                             style={{visibility: registerFormState.phase[4].usar_otros? "visible":"hidden"}}
                             type="text"
+                            value={registerFormState.phase[4].otros}
                             onChange={ e => {
                                 setRegisterFormState( prev => {
                                     const newState = {... prev};
@@ -1151,12 +1176,13 @@ const Fase4 = () => {
                         </label>
                         <input
                             type="text"
+                            value={registerFormState.phase[4].facebook_spec}
                             style={{visibility: registerFormState.phase[4].usar_facebook? "visible":"hidden"}}
                             onChange={ e => {
                                 setRegisterFormState( prev => {
                                     const newState = {... prev};
                                     newState.phase[4] = {... prev.phase[4]};
-                                    newState.phase[4].facebook = e.target.value;
+                                    newState.phase[4].facebook_spec = e.target.value;
                                     return newState;
                                 } );   
                             }}
@@ -1200,14 +1226,36 @@ const Fase5 = () => {
                             <div className="etiqueta">
                                 {t('registrar.fases.5.banco_origen')}
                             </div>
-                            <input type="text"/>
+                            <input
+                                type="text"
+                                value={registerFormState.phase[5].banco_origen}
+                                onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[5] = {... prev.phase[5]};
+                                        newState.phase[5].banco_origen = e.target.value;
+                                        return newState;
+                                    } );   
+                                }}
+                            />
                         </label>
 
                         <label className="field">
                             <div className="etiqueta">
                                 {t('registrar.fases.5.pais')}
                             </div>
-                            <input type="text"/>
+                            <input
+                                type="text"
+                                value={registerFormState.phase[5].pais}
+                                onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[5] = {... prev.phase[5]};
+                                        newState.phase[5].pais = e.target.value;
+                                        return newState;
+                                    } );   
+                                }}
+                            />
                         </label>
                     </div>
 
@@ -1216,7 +1264,18 @@ const Fase5 = () => {
                             <div className="etiqueta">
                                 {t('registrar.fases.5.banco_destino')}
                             </div>
-                            <input type="text"/>
+                            <input
+                                type="text"
+                                value={registerFormState.phase[5].banco_destino}
+                                onChange={ e => {
+                                    setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[5] = {... prev.phase[5]};
+                                        newState.phase[5].banco_destino = e.target.value;
+                                        return newState;
+                                    } );   
+                                }}
+                            />
                         </label>
 
                         {/* <label className="field">
@@ -1251,6 +1310,293 @@ const Fase5 = () => {
         );
     }
 
+const registrarUsuario = () => {
+    
+    const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
+    
+    const userData = {...registerFormState};
+    let postBody = {};
+
+    // De donde nos conoce?
+    found_app_by = {
+        website: userData.phase[0].website,
+        social_network: {
+            selected: userData.phase[0].social_network,
+            facebook: userData.phase[0].facebook,
+            twitter: userData.phase[0].twitter,
+            other: userData.phase[0].social_network_other,
+            other_spec: userData.phase[0].social_network_other_spec
+        },
+        friends: userData.phase[0].friends,
+        other:{
+            selected: userData.phase[0].other,
+            radio: userData.phase[0].radio,
+            radio_spec: userData.phase[0].radio_spec,
+            press: userData.phase[0].press,
+            press_spec: userData.phase[0].press_spec,
+            other: userData.phase[0].other,
+            other_spec: userData.phase[0].other_spec
+        }
+    };
+
+    postBody.found_app_by = JSON.stringify(found_app_by);
+
+    // Registrar Usuario
+    postBody.type_user = userData.phase[1].tipo_usuario;
+
+    if( postBody.type_user == "natural" ){
+    
+        postBody.country = userData.phase[1].natural.pais;
+        postBody.first_name = userData.phase[1].natural.nombre;
+        postBody.last_name = userData.phase[1].natural.apellido;
+        postBody.dni = userData.phase[1].natural.identification;
+        postBody.contact_email = userData.phase[1].natural.correo;
+
+        if(userData.phase[1].telefono.tipo == "movil"){
+            postBody.cellphone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero;
+        }else{
+            postBody.telephone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero + userData.phase[1].telefono.ext;
+        }
+    
+    }else if( postBody.type_user == "enterprise" ){
+
+        postBody.country = userData.phase[1].empresa.pais;
+        postBody.company_name = userData.phase[1].empresa.nombre_empresa;
+        postBody.rif = userData.phase[1].empresa.razon_rif;
+        postBody.city = userData.phase[1].empresa.ciudad;
+        postBody.address = userData.phase[1].empresa.direccion;
+        postBody.representant_email = userData.phase[1].empresa.correo;
+        postBody.representant_name = userData.phase[1].empresa.nombre_representante;
+
+        if(userData.phase[1].telefono.tipo == "movil"){
+            postBody.representant_cellphone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero;
+        }else{
+            postBody.representant_telephone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero + userData.phase[1].telefono.ext;
+        }
+
+    }
+
+    // Idioma
+    postBody.language = userData.phase[2].idioma;
+
+    // Datos de Login
+    postBody.email = userData.phase[3].correo;
+    postBody.password = userData.phase[3].clave;
+    postBody.want_inform = userData.phase[3].newsletter;
+
+    // Newsletter
+    postBody.frecuency_to_inform = userData.phase[4].frecuencia;
+
+    postBody.services_interest = {
+        available_personal: userData.phase[4].servicio_personal,
+        professional_advice: userData.phase[4].servicio_profesional
+    };
+
+    postBody.email_to_inform = userData.phase[4].correo;
+
+    postBody.social_media_to_inform = {
+        Facebook: userData.phase[4].facebook,
+        Twitter: userData.phase[4].twitter
+    }
+    
+    postBody.phone_to_inform = userData.phase[4].sms
+    postBody.other_to_inform = userData.phase[4].otros
+    postBody.facebook_to_inform = userData.phase[4].facebook_spec
+
+    // Billing
+    postBody.bank_origin = userData.phase[5].banco_origen;
+    postBody.bank_country = userData.phase[5].pais;
+
+    // send request
+    const fetchData = async () => {
+
+        const url = 'http://localhost:8000/users'
+        try {
+            
+            const response = await fetch( url,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(postBody),
+                }
+            );
+    
+            if (response.ok) {
+                // Request was successful
+                console.log('POST request successful');
+                console.log(response);
+            } else {
+                // Request failed
+                console.log('POST request failed');
+            }
+    
+        } catch (error) {
+            console.log("error registrando");
+            console.log(error);
+        }
+
+    };
+
+    return null;
+
+}
+
+const botonRegistrar = () => {
+    const { t, i18n } = useTranslation();
+    const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
+    
+    const userData = {...registerFormState};
+    let postBody = {};
+
+    // De donde nos conoce?
+    let found_app_by = {
+        website: userData.phase[0].website,
+        social_network: {
+            selected: userData.phase[0].social_network,
+            facebook: userData.phase[0].facebook,
+            twitter: userData.phase[0].twitter,
+            other: userData.phase[0].social_network_other,
+            other_spec: userData.phase[0].social_network_other_spec
+        },
+        friends: userData.phase[0].friends,
+        other:{
+            selected: userData.phase[0].other,
+            radio: userData.phase[0].radio,
+            radio_spec: userData.phase[0].radio_spec,
+            press: userData.phase[0].press,
+            press_spec: userData.phase[0].press_spec,
+            other: userData.phase[0].other,
+            other_spec: userData.phase[0].other_spec
+        }
+    };
+
+    postBody.found_app_by = JSON.stringify(found_app_by);
+
+    // Registrar Usuario
+    postBody.type_user = userData.phase[1].tipo_usuario;
+
+    if( postBody.type_user == "natural" ){
+    
+        postBody.country = userData.phase[1].natural.pais;
+        postBody.first_name = userData.phase[1].natural.nombre;
+        postBody.last_name = userData.phase[1].natural.apellido;
+        postBody.dni = userData.phase[1].natural.identification;
+        postBody.contact_email = userData.phase[1].natural.correo;
+
+        if(userData.phase[1].telefono.tipo == "movil"){
+            postBody.cellphone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero;
+        }else{
+            postBody.telephone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero + userData.phase[1].telefono.ext;
+        }
+    
+    }else if( postBody.type_user == "enterprise" ){
+
+        postBody.country = userData.phase[1].empresa.pais;
+        postBody.company_name = userData.phase[1].empresa.nombre_empresa;
+        postBody.rif = userData.phase[1].empresa.razon_rif;
+        postBody.city = userData.phase[1].empresa.ciudad;
+        postBody.address = userData.phase[1].empresa.direccion;
+        postBody.representant_email = userData.phase[1].empresa.correo;
+        postBody.representant_name = userData.phase[1].empresa.nombre_representante;
+
+        if(userData.phase[1].telefono.tipo == "movil"){
+            postBody.representant_cellphone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero;
+        }else{
+            postBody.representant_telephone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero + userData.phase[1].telefono.ext;
+        }
+
+    }
+
+    // Idioma
+    postBody.language = userData.phase[2].idioma;
+
+    // Datos de Login
+    postBody.email = userData.phase[3].correo;
+    postBody.password = userData.phase[3].clave;
+    postBody.want_inform = userData.phase[3].newsletter;
+
+    // Newsletter
+    postBody.frecuency_to_inform = userData.phase[4].frecuencia;
+
+    postBody.services_interest = {
+        available_personal: userData.phase[4].servicio_personal,
+        professional_advice: userData.phase[4].servicio_profesional
+    };
+
+    postBody.email_to_inform = userData.phase[4].correo;
+
+    postBody.social_media_to_inform = {
+        Facebook: userData.phase[4].facebook,
+        Twitter: userData.phase[4].twitter
+    }
+    
+    postBody.phone_to_inform = userData.phase[4].sms
+    postBody.other_to_inform = userData.phase[4].otros
+    postBody.facebook_to_inform = userData.phase[4].facebook_spec
+
+    // Billing
+    postBody.bank_origin = userData.phase[5].banco_origen;
+    postBody.bank_country = userData.phase[5].pais;
+
+
+    const data = {
+        email: "anotherone@gmail.com",
+        password: "12345",
+        found_app_by: "Twitter",
+        type_user: "natural",
+        country: "Alemania",
+        first_name: "Admin",
+        last_name: "Ati-2",
+        dni: "V-126125",
+        contact_email: "admin@gmail.com",
+        language: "es",
+        want_inform: false,
+        bank_origin: "Banesco",
+        bank_country: "Venezuela"
+    };
+
+    return(
+        <button
+            id="boton_registrar"
+            
+            onClick={
+                async () => {
+
+                    const url = 'http://127.0.0.1:8000/users/'
+                    try {
+                        
+                        const response = await fetch( url,{
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(data),
+                                // body: JSON.stringify(postBody),
+                            }
+                        );
+                
+                        if (response.ok) {
+                            // Request was successful
+                            console.log('POST request successful');
+                            console.log(response);
+                        } else {
+                            // Request failed
+                            console.log('POST request failed');
+                        }
+                
+                    } catch (error) {
+                        console.log("error registrando");
+                        console.log(error);
+                    }
+                }
+            }
+            >
+            {t('multiform.registrar')}
+        </button>
+    );
+}
+
 const FasesRegistrar = [Fase0, Fase1, Fase2, Fase3, Fase4, Fase5];
 
-export {FasesRegistrar};
+export {FasesRegistrar, registrarUsuario, botonRegistrar};

@@ -1,0 +1,58 @@
+{
+    "tipos": [
+        "NIN",
+        "CUI"
+    ],
+    "monedas": [
+        "USD",
+        "EUR",
+        "OTRA"
+    ],
+    "dias_semana": [
+        "LUN",
+        "MAR",
+        "MIE",
+        "JUE",
+        "VIE",
+        "SAB",
+        "DOM"
+    ],
+    "salida_personal": [
+        "SEMANAL",
+        "QUINCENAL", 
+        "MENSUAL", 
+        "INTERDIARIO",
+        "MEDIO_TIEMPO",
+        "FIN_SEMANA",
+        "NOCHE",
+        "HORAS",
+        "OTRO"
+    ],
+    "remuneracion_frecuencia": [
+        "HORA",
+        "DIA" ,
+        "SEMANAL",
+        "QUINCENAL",
+        "MENSUAL"
+    ],
+    "disponibilidad":[
+        "now",
+        "CONVENIR"
+    ],
+    "remuneracion":[
+        "agree",
+        "range"
+    ],
+    "ordenar_por": [
+        "payment-asc",
+        "payment-desc",
+        "available date-asc",
+        "available date-desc",
+        "post date-asc",
+        "post date-desc"
+    ],
+    "beneficios": [
+        "yes",
+        "no"
+    ]
+}

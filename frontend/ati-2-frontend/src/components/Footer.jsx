@@ -11,7 +11,8 @@ import '../styles/Footer.scss';
 const Footer = () => {
 
     const [userDropdownVisible, setUserDropdownVisible] = useState(false);
-    const isAuth = useContext(AuthContext);
+    const {authState, setAuthState} = useContext(AuthContext);
+    const isAuth = authState.logged_in;
 
     const { t, i18n } = useTranslation();
 
@@ -34,9 +35,9 @@ const Footer = () => {
                 <div className="card">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="" />
                     <div className="info">
-                        John Doe
+                        {authState.name}
                         <br />
-                        user@mail.com
+                        {authState.email}
                     </div>
                 </div>
                 <div className="dropdown" onClick={() => setUserDropdownVisible((prev) => !prev) }  onMouseLeave={() => setUserDropdownVisible((prev) => false)}>
@@ -50,7 +51,10 @@ const Footer = () => {
                                 Datos de usuario
                             </a>
                         </li>
-                        <li className="item">
+                        <li
+                            className="item"
+                            onClick={ () => { setAuthState( () => { return {logged_in:false} } ) }}
+                        >
                             <a className="link" href="#">
                                 Cerrar sesión
                             </a>

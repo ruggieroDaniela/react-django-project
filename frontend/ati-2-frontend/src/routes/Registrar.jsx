@@ -1,32 +1,27 @@
 import React from "react";
-import { createContext, useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
-
-import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 
-import AuthContext from "../context/AuthContext";
-import { RegisterFormContext, RegisterFormContextProvider } from "../context/RegisterFormContext";
-
 import { Multiform } from "../components/Multiform";
-import { FasesRegistrar } from "../components/FasesRegistrar";
+import { FasesRegistrar, botonRegistrar, registrarUsuario } from "../components/FasesRegistrar";
 
 import "../styles/Registrar.scss"
 
-const FormContext = createContext();
-
 export const Registrar = () => {
     
-    const { t, i18n } = useTranslation();
+    // hook para la internacionalizacion
+    const { t } = useTranslation();
 
+    // hook para redireccionar
     let navigate = useNavigate(); 
+
+    // onClick event del botón de cancelar
     const goHome = () => {
         navigate(`/`);
     };
 
-    const register = () => {};
-
+    // nombres de los stages en el idioma actual
     let stagesNames = [];
     for (let i = 0; i < FasesRegistrar.length; i++) {
         stagesNames.push(t('registrar.fases.'+i+'.nombre'));
@@ -34,6 +29,7 @@ export const Registrar = () => {
 
     return (
         <div id="registrar">
+            
             <div>
                 <h4>{t('registrar.titulo')}</h4>
             </div>
@@ -45,11 +41,10 @@ export const Registrar = () => {
             </div>
 
             <Multiform
-                stages={FasesRegistrar}
-                stagesNames={stagesNames}
-                cancelEvent={goHome}
-                submitEvent={register}
-                FormContextProvider={RegisterFormContextProvider}
+                stages={FasesRegistrar}         // array de componentes que serán usados como stages
+                stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
+                cancelEvent={goHome}            // onClick event del botón de cancelar
+                SubmitButton={botonRegistrar}   // componente con el botón de submit
             />
 
         </div>

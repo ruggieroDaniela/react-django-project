@@ -20,7 +20,7 @@ class ServicesSerializer(serializers.ModelSerializer):
         if data['currency'] == 'OTRA' and not data.get('currency_other'):
             raise serializers.ValidationError("Por favor, especifique la moneda")
         
-        if data['benefits'] == True and not data.get('benefits_description'):
+        if data['benefits'] == 1 and not data.get('benefits_description'):
             raise serializers.ValidationError("Por favor, especifique otro beneficio laboral")
         
         if data['availability'] == 'FECHA' and not data.get('availability_date'):
@@ -49,7 +49,7 @@ class ProvideServiceSerializer(ServicesSerializer):
     
     class Meta:
         model = ProvideService
-        fields = [ 'user', 'service', 'age', 'have_children', 'education_level', 'country', 'state', 'city', 'zone', 'description', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'origin', 'origin_continent', 'origin_country', 'origin_state', 'origin_city', 'client_type', 'have_documentation', 'documents', 'documents_other', 'publication_time', 'publication_plan', 'billing_country', 'billing_bank']
+        fields = ['id', 'user', 'service', 'enable', 'created_at' , 'age', 'have_children', 'education_level', 'continent', 'country', 'state', 'city', 'zone', 'description', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'origin', 'origin_continent', 'origin_country', 'origin_state', 'origin_city', 'client_type', 'have_documentation', 'documents', 'documents_other', 'publication_time', 'publication_plan', 'billing_country', 'billing_bank']
 
 # Option B - 'Solicitar personal doméstico' 
 class RequestServiceSerializer(ServicesSerializer):
@@ -63,10 +63,13 @@ class RequestServiceSerializer(ServicesSerializer):
             raise serializers.ValidationError("Edad no permitida, debe ser mayor de 13 años")
 
         if data['disabilities_tco'] == True and not data.get('disabilities_tco_decrip'):
+            raise serializers.ValidationError("Por favor, indique las discapacidades que presentan")
+        
+        if data['disabilities_tco'] == True and not data.get('diseases_tco_descrip'):
             raise serializers.ValidationError("Por favor, indique las enfermedades que presentan")
 
         return data
     
     class Meta: 
         model = RequestService
-        fields = ['id', 'user' , 'service', 'gender', 'age_required_from', 'age_required_to', 'children', 'education_level', 'country', 'state', 'city', 'zone', 'number_tco', 'age_tco', 'gender_tco', 'disabilities_tco', 'disabilities_tco_decrip', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'have_documentation', 'documents', 'documents_other',  'publication_time', 'publication_plan', 'billing_country', 'billing_bank']
+        fields = ['id', 'user' , 'service', 'enable', 'created_at', 'gender', 'age_required_from', 'age_required_to', 'children', 'education_level', 'continent', 'country', 'state', 'city', 'zone', 'number_tco', 'age_tco', 'gender_tco', 'disabilities_tco', 'disabilities_tco_decrip', 'diseases_tco_descrip', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'have_documentation', 'documents', 'documents_other',  'publication_time', 'publication_plan', 'billing_country', 'billing_bank']
