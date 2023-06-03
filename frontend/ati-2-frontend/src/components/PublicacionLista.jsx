@@ -1,7 +1,31 @@
-import { useTransition } from "react"
+import { useState, useTransition } from "react"
 import { useTranslation } from 'react-i18next'
 
 import "../styles/PostLista.scss"
+
+import { Tooltip } from "./Tooltip"
+
+const FieldViewDetails = ({label, detalles_texto, value=""}) => {
+    const {t} = useTranslation();
+
+    const [hover, setHover] = useState(false);
+
+    return (<>
+        <span className="item-title">{label}: </span>
+        {value + " "}
+        <a
+            href=""
+            className="item-link"
+            onMouseEnter={ () => setHover(true) }
+            onMouseLeave={ () => setHover(false) }
+        >
+            {t(`publicaciones_vista_lista.ver_detalles`)}
+        </a>
+        {hover?
+            <Tooltip title={label} text={detalles_texto} />
+        :""}
+    </>)
+}
 
 export const PublicacionLista = ({post}) => {
 
@@ -54,14 +78,21 @@ export const PublicacionLista = ({post}) => {
                             <li key={`post ${post.id} instruccion`}>
                                 <span className="item-title">{t(`publicaciones_vista_lista.grado_instruccion`)}: </span> {t(`publicaciones_vista_lista.${post.education_level}`)}
                             </li>
-                            <li key={`post ${post.id} perfil laboral`}>
+                            {/* <li key={`post ${post.id} perfil laboral`}>
                                 <span className="item-title">{t(`publicaciones_vista_lista.perfil_laboral`)}: </span><a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
-                            </li>
+                            </li> */}
                             <li key={`post ${post.id} funciones`}>
-                                <span className="item-title">{t(`publicaciones_vista_lista.funciones_previas`)}: </span><a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
+                                <FieldViewDetails
+                                    label={t(`publicaciones_vista_lista.funciones_previas`)}
+                                    detalles_texto={post.activities}
+                                    // detalles_texto={t(`publicaciones_vista_lista.${post.activities}`)}
+                                />
                             </li>
                             <li key={`post ${post.id} documentacion`}>
-                                <span className="item-title">{t(`publicaciones_vista_lista.documentacion`)}: </span><a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
+                                <FieldViewDetails
+                                    label={t(`publicaciones_vista_lista.documentacion`)}
+                                    detalles_texto={t(`publicaciones_vista_lista.${post.documents}`)}
+                                />
                             </li>
                         </ul>
                         <button key={`post ${post.id} ${self.crypto.randomUUID()}`}>{t(`publicaciones_vista_lista.contactar`)}</button>
@@ -81,20 +112,47 @@ export const PublicacionLista = ({post}) => {
                                 <span className="item-title">{t(`publicaciones_vista_lista.salario`)}: </span> {post.payment_amount} {post.currency} 
                             </li>
                             <li key={`post ${post.id} beneficios`}>
-                                <span className="item-title">{t(`publicaciones_vista_lista.beneficios`)}: </span>{t('no')} / {t('si')} <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
+                                { post.benefits > 0?
+                                    <FieldViewDetails
+                                        label={t(`publicaciones_vista_lista.beneficios`)}
+                                        value={t('si')}
+                                        detalles_texto={post.benefits_description}
+                                    />
+                                    :
+                                    <>
+                                        <span className="item-title">{t(`publicaciones_vista_lista.beneficios`)+": "}</span>{t('no')} 
+                                    </>
+                                }
                             </li>
                             <li key={`post ${post.id} disponibilidad`}>
                                 <span className="item-title">{t(`publicaciones_vista_lista.disponibilidad`)}: </span> {post.availability_date}
                             </li>
                             <li key={`post ${post.id} viajar`}>
-                                <span className="item-title">{t(`publicaciones_vista_lista.viajar`)}: </span> {t('si')} . <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
+                                { post.travel?
+                                    <FieldViewDetails
+                                        label={t(`publicaciones_vista_lista.viajar`)}
+                                        value={t('si')}
+                                        detalles_texto={post.travel_description}
+                                    />
+                                    :
+                                    <>
+                                        <span className="item-title">{t(`publicaciones_vista_lista.viajar`)+": "}</span>{t('no')} 
+                                    </>
+                                }
                             </li>
                             <li key={`post ${post.id} horario`}>
-                                <span className="item-title">{t(`publicaciones_vista_lista.horario`)}: </span> <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
+                                <FieldViewDetails
+                                    label={t(`publicaciones_vista_lista.horario`)}
+                                    detalles_texto={t(`${post.schedule}`)}
+                                />
                             </li>
-                            <li key={`post ${post.id} salidas`}>
+                            {/* <li key={`post ${post.id} salidas`}>
+                                <FieldViewDetails
+                                    label={t(`publicaciones_vista_lista.salidas`)}
+                                    detalles_texto={t(`${post.schedule}`)}
+                                />
                                 <span className="item-title">{t(`publicaciones_vista_lista.salidas`)}: </span> <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
-                            </li>
+                            </li> */}
                             <li key={`post ${post.id} condiciones`}>
                                 <span className="item-title">{t(`publicaciones_vista_lista.condiciones`)}: </span> <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
                             </li>

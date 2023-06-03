@@ -45,7 +45,9 @@
         "viajar": "Travel Availability",
         "horario": "Work Schedule",
         "salidas": "Preferred Checkout",
-        "clientes": "Clients I want to work with"
+        "clientes": "Clients I want to work with",
+        "CONST_RESIDENCIA": "Proof of Residence",
+        "Cocinar": "Cook"
 
     }
 }
