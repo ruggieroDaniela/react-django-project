@@ -47,8 +47,8 @@ export const PublicacionLista = ({post}) => {
                 console.error(error);
             } 
         };
-
-        fetchUser();
+        if( post.client_type != "NO" )
+            fetchUser();
     }, []);
 
     return(<>
