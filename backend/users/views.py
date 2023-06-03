@@ -75,6 +75,20 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response({'error': 'Email already exists' }, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({'client_code': get_hash(email) }, status=status.HTTP_200_OK)
+        
+    @action(detail=False, methods=['post'])
+    def get_name(self, request):
+        id = request.data['id']
+        try: 
+            user = User.objects.get(id=id)
+            if user.type_user != "natural": 
+                return Response({'error': 'User is not a natural person' }, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({'name': user.first_name, 'last_name': user.last_name }, status=status.HTTP_200_OK)
+        except:
+             return Response({'error': 'This id does not match any user' }, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 class CustomAuthToken(ObtainAuthToken):
     
