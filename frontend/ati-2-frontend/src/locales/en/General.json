@@ -9,5 +9,14 @@
     "JUE": "Thursday",
     "VIE": "Friday",
     "SAB": "Saturday",
-    "DOM": "Sunday"
+    "DOM": "Sunday",
+    "SEMANAL": "Weekly",
+    "QUINCENAL": "Bi-Weekly", 
+    "MENSUAL": "Monthly", 
+    "INTERDIARIO": "Every 2 days",
+    "MEDIO_TIEMPO": "Half-Time",
+    "FIN_SEMANA": "Weekend",
+    "NOCHE": "Night",
+    "HORAS": "Hourly",
+    "OTRO": "Other"
 }

@@ -166,13 +166,12 @@ export const PublicacionLista = ({post}) => {
                                     detalles_texto={t(`${post.schedule}`)}
                                 />
                             </li>
-                            {/* <li key={`post ${post.id} salidas`}>
+                            <li key={`post ${post.id} salidas`}>
                                 <FieldViewDetails
                                     label={t(`publicaciones_vista_lista.salidas`)}
-                                    detalles_texto={t(`${post.schedule}`)}
+                                    detalles_texto={t(`${post.workday}`)}
                                 />
-                                <span className="item-title">{t(`publicaciones_vista_lista.salidas`)}: </span> <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
-                            </li> */}
+                            </li>
                             <li key={`post ${post.id} condiciones`}>
                                 <span className="item-title">{t(`publicaciones_vista_lista.condiciones`)}: </span> <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
                             </li>
