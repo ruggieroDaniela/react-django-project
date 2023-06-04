@@ -184,35 +184,25 @@ export const BuscarPersonalDomestico = () => {
                         
                         <div></div>
                         <button
-                            onClick={ async () => {
-                                try {
-                                    let query = "?";
+                            onClick={ () => {
+                                let query = "?";
 
-                                    if(selectedContinent != -1)
-                                        query += `continent=${regions[selectedContinent]}&`
-                                    
-                                    if(selectedCountries != "")
-                                        query += `country__in=${selectedCountries.substring(1)}&`
-                                    
-                                    if(selectedStates != "")
-                                        query += `state__in=${selectedStates.substring(1)}&`
-                                    
-                                    if(selectedServices != "")
-                                        query += `service__in=${selectedServices.substring(1)}`
-                                    
-                                    query = query.substring(0, query.length-1)
-                                    console.log(query);
+                                if(selectedContinent != -1)
+                                    query += `continent=${regions[selectedContinent]}&`
+                                
+                                if(selectedCountries != "")
+                                    query += `country__in=${selectedCountries.substring(1)}&`
+                                
+                                if(selectedStates != "")
+                                    query += `state__in=${selectedStates.substring(1)}&`
+                                
+                                if(selectedServices != "")
+                                    query += `service__in=${selectedServices.substring(1)}`
+                                
+                                query = query.substring(0, query.length-1)
 
-                                    const response = await axios.get(`http://127.0.0.1:8000/api-services/provideService/${query}`,{
-                                        headers: {
-                                            "Authorization": authState.token
-                                        }
-                                    })
-                                    console.log(response.data);
-                                } catch (error) {
-                                    console.log(error);
-                                }
-                            }}
+                                navigate(`/show-posts${query}`);
+                            } }
                         >
                             {t('search.buscar')}
                         </button>
@@ -379,18 +369,25 @@ export const BuscarPersonalDomestico = () => {
                         <div></div>
                         <div></div>
                         <button
-                            onClick={ async () => {
-                                try {
-                                    const response = await axios.get(`http://127.0.0.1:8000/api-services/provideService/`,{
-                                        headers: {
-                                            "Authorization": authState.token
-                                        }
-                                    })
-                                    console.log(response.data);
-                                } catch (error) {
-                                    console.log(error);
-                                }
-                            }}
+                            onClick={ () => {
+                                let query = "?";
+
+                                if(selectedContinent != -1)
+                                    query += `continent=${regions[selectedContinent]}&`
+                                
+                                if(selectedCountries != "")
+                                    query += `country__in=${selectedCountries.substring(1)}&`
+                                
+                                if(selectedStates != "")
+                                    query += `state__in=${selectedStates.substring(1)}&`
+                                
+                                if(selectedServices != "")
+                                    query += `service__in=${selectedServices.substring(1)}`
+                                
+                                query = query.substring(0, query.length-1)
+
+                                navigate(`/show-posts${query}`);
+                            } }
                         >
                             {t('search.buscar')}
                         </button>
