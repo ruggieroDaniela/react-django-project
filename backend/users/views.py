@@ -160,7 +160,7 @@ class ForgotPasswordView(APIView):
         email = request.data.get('email')
 
         try:
-            user = User.objects.get(email=email, rif=id)
+            user = User.objects.get(email=email, dni=id)
 
             send_password_email(user)
 

@@ -362,6 +362,7 @@ content-type: application/json
     "type_user": "enterprise",
     "country": "Venezuela",
     "companty_name": "Compañia Admin",
+    "dni": "26343836",
     "rif": "F123456",
     "city": "Caracas",
     "language": "es",
@@ -384,7 +385,7 @@ content-type: application/json
 
 {
     "email": "diegochz98@gmail.com",
-    "id": "F123456"
+    "dni": "26343836"
 }
 
 ###
