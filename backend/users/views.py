@@ -156,11 +156,11 @@ class CustomAuthToken(ObtainAuthToken):
 class ForgotPasswordView(APIView):
 
     def post(self, request):
-        id = request.data.get('id')
+        dni = request.data.get('dni')
         email = request.data.get('email')
 
         try:
-            user = User.objects.get(email=email, dni=id)
+            user = User.objects.get(email=email, dni=dni)
 
             send_password_email(user)
 
