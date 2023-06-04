@@ -47,8 +47,8 @@ export const PublicacionLista = ({post}) => {
                 console.error(error);
             } 
         };
-        if( post.client_type != "NO" )
-            fetchUser();
+        // if( post.client_type != "NO" )
+        fetchUser();
     }, []);
 
     return(<>
@@ -173,10 +173,17 @@ export const PublicacionLista = ({post}) => {
                                 />
                             </li>
                             <li key={`post ${post.id} condiciones`}>
-                                <span className="item-title">{t(`publicaciones_vista_lista.condiciones`)}: </span> <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
+                                {/* <span className="item-title">{t(`publicaciones_vista_lista.condiciones`)}: </span> <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a> */}
+                                <FieldViewDetails
+                                    label={t(`publicaciones_vista_lista.salario_deseado`)}
+                                    detalles_texto={ post.payment_amount + " " + post.currency + " " + t(`${post.salary_offered}`)}
+                                />
                             </li>
                             <li key={`post ${post.id} clientes`}>
-                                <span className="item-title">{t(`publicaciones_vista_lista.clientes`)}: </span> <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a>
+                                <FieldViewDetails
+                                    label={t(`publicaciones_vista_lista.clientes`)}
+                                    detalles_texto={t(`publicaciones_vista_lista.tipo_cliente.${post.client_type}`)}
+                                />
                             </li>
                         </ul>
                     </div>

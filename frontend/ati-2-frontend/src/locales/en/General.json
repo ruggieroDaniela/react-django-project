@@ -18,5 +18,6 @@
     "FIN_SEMANA": "Weekend",
     "NOCHE": "Night",
     "HORAS": "Hourly",
-    "OTRO": "Other"
+    "OTRO": "Other",
+    "HORA": "an Hour"
 }
