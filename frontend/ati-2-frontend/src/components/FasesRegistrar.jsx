@@ -2,16 +2,19 @@ import React, { useContext, useEffect, useState } from "react";
 import { RegisterFormContext } from "../context/RegisterFormContext";
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-import { getAllCountries, getCitiesInCountry} from "../components/dataFetchers/PaisDataFetcher";
+import { getCitiesInCountry} from "../components/dataFetchers/PaisDataFetcher";
 
 import "../styles/Registrar.scss"
 
 // Fase 0: de donde nos conoces?
 const Fase0 = () =>
     {
-
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
+        const selectionEmpty = registerFormState.errors[0].option_required
+        const specifyEmpty = registerFormState.errors[0].other_empty
+        const socialRequired = registerFormState.errors[0].social_required  
+        const otherRequired = registerFormState.errors[0].other_required
 
         return(
         <>
@@ -19,6 +22,11 @@ const Fase0 = () =>
                 <div className="descripcion">
                     {t('registrar.fases.0.descripcion')}
                 </div>
+
+                {selectionEmpty && <div> {t('registrar.errores.0.requerido')}</div> }
+                {specifyEmpty && <div> {t('registrar.errores.0.especificar_vacio')}</div> }
+                {socialRequired && <div> {t('registrar.errores.0.social_requerida')}</div> }
+                {otherRequired && <div> {t('registrar.errores.0.otro_requerido')}</div> }
 
                 <div className="metodos-container">
 
@@ -121,7 +129,7 @@ const Fase0 = () =>
                                 {t('especifique')+": "}
                                 <input
                                     type="text"
-                                    value={registerFormState.phase[0].social_network_other}
+                                    value={registerFormState.phase[0].social_network_other_spec}
                                     onChange={ e => {
                                         setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -275,24 +283,9 @@ const Fase1 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
-        const [countries, setCountries] = useState([]);
+        const countries = registerFormState.countries;
         const [cities, setCities] = useState([]);
         const [countryCode, setCountryCode] = useState("");
-
-        useEffect(() => {
-            const fetchCountries = async () => {
-                const [names, codes] = await getAllCountries();
-                const pairs = names.map((name, index) => {
-                    return {
-                        "name": name, 
-                        "code": codes[index]
-                    }
-                })
-                setCountries( pairs );
-            };
-
-            fetchCountries();
-        }, [])
 
         useEffect(() => {
             const fetchCities = async () => {
@@ -613,7 +606,7 @@ const Fase1 = () => {
                                         setRegisterFormState( prev => {
                                             const newState = {... prev};
                                             newState.phase[1] = {... prev.phase[1]};
-                                            newState.phase[1].empresa.pais = country.name;
+                                            newState.phase[1].empresa.pais = e.target.value;
                                             return newState;
                                         } )
                                     }}>
@@ -878,6 +871,7 @@ const Fase2 = () => {
 const Fase3 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
+        const  invalidEmail = registerFormState.errors[3].invalid_mail
 
         return(
             <div id="fase3">
@@ -897,6 +891,7 @@ const Fase3 = () => {
                             } );
                         }} 
                     />
+                    { invalidEmail == true && <p> YEAH </p> }
                 </div>
                 <div className="field">
                     <span className="label">
@@ -1256,17 +1251,8 @@ const Fase4 = () => {
 
 const Fase5 = () => {
         const { t, i18n } = useTranslation();
-        const [banks, setBanks] = useState([]);
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
-
-        const fetchBanks= async () => {
-            const { data } = await axios.get('http://127.0.0.1:8000/banks/'); 
-            setBanks(data)  
-        }
-
-        useEffect(() => {
-            fetchBanks()
-        }, []);
+        const banks = registerFormState.banks;
 
         return(
             <div id="fase5">

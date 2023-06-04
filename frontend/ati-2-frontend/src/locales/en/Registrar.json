@@ -112,6 +112,14 @@
             }
         ],
         "continuar": "Continue",
-        "atras": "Back"
+        "atras": "Back",
+        "errores":[
+            {
+                "requerido": "You must select at least one option",
+                "especificar_vacio": "The fields to be specified cannot be empty",
+                "social_requerida": "Select a social network",
+                "otro_requerido": "Select an option"
+            }
+        ]
     }
 }

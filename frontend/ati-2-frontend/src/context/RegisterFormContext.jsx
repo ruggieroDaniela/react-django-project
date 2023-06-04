@@ -73,6 +73,33 @@ function RegisterFormContextProvider({children}){
                 pais: "",
                 banco_destino: ""
             }
+        ],
+        countries:[],
+        banks:[],
+        errors:[
+            {
+                option_required: false,
+                other_empty: false,
+                social_required: false,
+                other_required: false,
+            },
+            {
+                invalid_stage: false
+            },
+            {
+                invalid_stage: false,
+                invalid_mail: false,
+                invalid_password: false
+            },
+            {
+                invalid_stage: false
+            },
+            {
+                invalid_stage: false
+            },
+            {
+                invalid_stage: false
+            }
         ]
     });
 

@@ -112,6 +112,11 @@
             }
         ],
         "continuar": "Continue",
-        "atras": "Back"
+        "atras": "Back",
+        "errores":[
+            {
+                "requerido": "You must select at least one option"
+            }
+        ]
     }
 }
