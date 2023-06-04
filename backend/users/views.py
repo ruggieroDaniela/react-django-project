@@ -37,18 +37,19 @@ def get_user_data(data):
     return user
 
 def send_password_email(user):
+    redirectUrl="http://3.137.150.119:5173/reset-password"
     receiver = user.email
     message ='<b>Su usuario es:</b> {}.'.format(user.email) + \
             '<br>' + \
             'Adicionalmente, acabamos de recibir una solicitud para restablecer la contraseña de {}.'.format(user.email) + \
             '<br>' + \
             '<h4>Restablecer contraseña</h4>' + \
-            'Haga clic aquí para restablecer su contraseña.' + \
+            'Haga clic <a href="{}">aquí</a> para restablecer su contraseña.'.format(redirectUrl) + \
             '<br>' + \
             'Si el enlace no funciona, copia y pega el siguiente enlace en la barra del navegador.' + \
             '<br>' + \
             '<h4>Enlace:</h4>' + \
-            '[ENLACE]'
+            '{}'.format(redirectUrl)
 
     email = EmailMessage()
     email["From"] = EMAIL_HOST_USER
@@ -156,11 +157,11 @@ class CustomAuthToken(ObtainAuthToken):
 class ForgotPasswordView(APIView):
 
     def post(self, request):
-        id = request.data.get('id')
+        dni = request.data.get('dni')
         email = request.data.get('email')
 
         try:
-            user = User.objects.get(email=email, rif=id)
+            user = User.objects.get(email=email, dni=dni)
 
             send_password_email(user)
 
