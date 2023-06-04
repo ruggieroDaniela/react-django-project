@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { RegisterFormContext } from "../context/RegisterFormContext";
-
+import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import { getAllCountries, getCitiesInCountry} from "../components/dataFetchers/PaisDataFetcher";
 
 import "../styles/Registrar.scss"
 
@@ -274,9 +275,39 @@ const Fase1 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
+        const [countries, setCountries] = useState([]);
+        const [cities, setCities] = useState([]);
+        const [countryCode, setCountryCode] = useState("");
+
+        useEffect(() => {
+            const fetchCountries = async () => {
+                const [names, codes] = await getAllCountries();
+                const pairs = names.map((name, index) => {
+                    return {
+                        "name": name, 
+                        "code": codes[index]
+                    }
+                })
+                setCountries( pairs );
+            };
+
+            fetchCountries();
+        }, [])
+
+        useEffect(() => {
+            const fetchCities = async () => {
+                if(countryCode != ""){
+                    let names = await getCitiesInCountry(countryCode);
+                    names  = [...new Set(names)];
+                    setCities(names);
+                }
+            };
+
+            fetchCities();
+        }, [countryCode])
+
         return(
             <div id="fase1">
-                
                 <div id="tipo_usuario">
                     <label>{t('registrar.fases.1.tipo_usuario')+": "}</label>
                     <label>
@@ -394,18 +425,28 @@ const Fase1 = () => {
                             <span className="label">
                                 <span className="required">*</span> {t('registrar.fases.1.natural.pais')+": "}
                             </span>
-                            <input
-                                type="text"
+
+                            <select 
+                                style={{width: '100%' , boxSizing: 'border-box'}}
+                                name="select" 
                                 value={registerFormState.phase[1].natural.pais}
                                 onChange={ e => {
-                                setRegisterFormState( prev => {
+                                    setRegisterFormState( prev => {
                                         const newState = {... prev};
                                         newState.phase[1] = {... prev.phase[1]};
                                         newState.phase[1].natural.pais = e.target.value;
                                         return newState;
-                                    } );
-                                }} 
-                            />
+                                    } )
+                                }}>
+                                
+                                <option value="" disabled> {t('registrar.fases.1.seleccionar_pais')} </option>
+
+                                {countries?.map( country => {
+                                    return (<option key={country.name} value={country.name}>{country.name}</option>);
+                                })}
+
+                            </select>
+                            
                         </div>
 
 
@@ -561,36 +602,54 @@ const Fase1 = () => {
                                 <span className="label">
                                     <span className="required">*</span> {t('registrar.fases.1.empresa.empresa.pais')+": "}
                                 </span>
-                                <input
-                                    type="text"
+
+                                <select 
+                                    style={{width: '100%' , boxSizing: 'border-box'}}
+                                    name="select" 
                                     value={registerFormState.phase[1].empresa.pais}
                                     onChange={ e => {
-                                    setRegisterFormState( prev => {
+                                        const country =  JSON.parse(e.target.options[e.target.selectedIndex].getAttribute('data-country'))
+                                        setCountryCode(country.code)
+                                        setRegisterFormState( prev => {
                                             const newState = {... prev};
                                             newState.phase[1] = {... prev.phase[1]};
-                                            newState.phase[1].empresa.pais = e.target.value;
+                                            newState.phase[1].empresa.pais = country.name;
                                             return newState;
-                                        } );
-                                    }} 
-                                />
+                                        } )
+                                    }}>
+                                    
+                                    <option value="" disabled> {t('registrar.fases.1.seleccionar_pais')} </option>
+
+                                    {countries?.map( country => {
+                                        return (<option key={country.code} value={country.name} data-country={JSON.stringify(country)}> {country.name}</option>);
+                                    })}
+                                </select>
                             </div>
 
                             <div className="field">
                                 <span className="label">
                                     <span className="required">*</span> {t('registrar.fases.1.empresa.empresa.ciudad')+": "}
                                 </span>
-                                <input
-                                    type="text"
+
+                                <select 
+                                    style={{width: '100%' , boxSizing: 'border-box'}}
+                                    name="select" 
                                     value={registerFormState.phase[1].empresa.ciudad}
                                     onChange={ e => {
-                                    setRegisterFormState( prev => {
+                                        setRegisterFormState( prev => {
                                             const newState = {... prev};
                                             newState.phase[1] = {... prev.phase[1]};
                                             newState.phase[1].empresa.ciudad = e.target.value;
                                             return newState;
                                         } );
-                                    }} 
-                                />
+                                    }}>
+                                    
+                                    <option value="" disabled> {t('registrar.fases.1.seleccionar_ciudad')} </option>
+
+                                    {cities?.map( city => {
+                                        return (<option key={city} value={city}>{city}</option>);
+                                    })}
+                                </select>
                             </div>
 
                             <div className="field">
@@ -1197,7 +1256,17 @@ const Fase4 = () => {
 
 const Fase5 = () => {
         const { t, i18n } = useTranslation();
+        const [banks, setBanks] = useState([]);
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
+
+        const fetchBanks= async () => {
+            const { data } = await axios.get('http://127.0.0.1:8000/banks/'); 
+            setBanks(data)  
+        }
+
+        useEffect(() => {
+            fetchBanks()
+        }, []);
 
         return(
             <div id="fase5">
@@ -1264,8 +1333,9 @@ const Fase5 = () => {
                             <div className="etiqueta">
                                 {t('registrar.fases.5.banco_destino')}
                             </div>
-                            <input
-                                type="text"
+                            <select 
+                                style={{width: '20vw'}}
+                                name="select" 
                                 value={registerFormState.phase[5].banco_destino}
                                 onChange={ e => {
                                     setRegisterFormState( prev => {
@@ -1274,8 +1344,16 @@ const Fase5 = () => {
                                         newState.phase[5].banco_destino = e.target.value;
                                         return newState;
                                     } );   
-                                }}
-                            />
+                                }}>
+                                
+                                <option value="" disabled> {t('registrar.fases.5.seleccionar_destino')} </option>
+
+                                {banks.map( bank => { 
+                                    const value = bank.name + " - " + "Cuenta nro: " + bank.account + " - " + "Código SWIFT: " + bank.swift_code
+                                    return (<option key={bank.account} value={value}>{value}</option>);
+                                })}
+
+                            </select>
                         </label>
 
                         {/* <label className="field">

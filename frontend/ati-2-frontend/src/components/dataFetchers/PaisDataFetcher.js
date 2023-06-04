@@ -103,3 +103,28 @@ export const getCitiesInStates = async (stateCodes) => {
         console.error(error);
     }
 };
+
+
+export const getCitiesInCountry = async (countryCode) => {
+    try {
+
+        let response;
+        const names = [];
+
+        response = await axios.get(`https://api.countrystatecity.in/v1/countries/${countryCode}/cities`, {
+            headers: {
+                'X-CSCAPI-KEY': API_KEY
+            }
+        });
+
+        for (let j = 0; j < response.data.length; j++) {
+            names.push( response.data[j].name );
+        }
+
+        return names;
+        
+    } catch (error) {
+        console.error(error);
+    }
+};
+

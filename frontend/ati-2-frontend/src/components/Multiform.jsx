@@ -73,6 +73,9 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames }) => 
                             if( currentStage >= stagesDone )
                                 setStagesDone((prev) => prev+1);
                         }
+                        if( currentStage == 3){
+                            console.log(currentStage)
+                        }
                     }}
                 >
                     {t('multiform.continuar')} →

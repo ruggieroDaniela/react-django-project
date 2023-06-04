@@ -60,7 +60,9 @@
                     "movil": "Cellphone",
                     "local": "Local"
                 },
-                "nota_final": "Please verify that your data is correct, as it will be used to generate your publication, send you your access data, or generate your invoice"
+                "nota_final": "Please verify that your data is correct, as it will be used to generate your publication, send you your access data, or generate your invoice",
+                "seleccionar_pais": "Select a country",
+                "seleccionar_ciudad": "Select a city"
             },
             {"nombre":"Website language" },
             {
@@ -105,7 +107,8 @@
                 "dias": "Monday to Friday",
                 "horas": "From 8:00 a.m. to 12:00 p.m. and from 1:00 p.m. to 5:00 p.m.",
                 "telefono": "Phones",
-                "correo": "Email"
+                "correo": "Email",
+                "seleccionar_destino": "Select the bank where you deposited or transferred the funds"
             }
         ],
         "continuar": "Continue",
