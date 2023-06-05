@@ -156,7 +156,12 @@ export const ListarPublicaciones = () => {
                             <li className="button" key={`${self.crypto.randomUUID()}`}>
                                 <button
                                     key={`${self.crypto.randomUUID()}`}
-                                    onClick={ () => setSelectedOrdering( () => selectedOrdering == ""? ordenes[i]:"" ) }
+                                    onClick={ () => {
+                                        if( searchParams.includes("ordering") )
+                                            searchParams = searchParams.substring( 0, searchParams.indexOf("ordering") );
+
+                                        setSelectedOrdering( () => selectedOrdering == ""? ordenes[i]:"" );
+                                    } }
                                 >
                                     {t(`lista_publicaciones.ordenar_por.${i}`)}
                                 </button>
