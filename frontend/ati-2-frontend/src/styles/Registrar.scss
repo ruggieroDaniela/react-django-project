@@ -274,7 +274,6 @@
             #datos_empresa{
                 .field{
                     width: 100%;
-                    height: 1.5rem;
                     textarea{
                         height: 3rem;
                     }
@@ -490,5 +489,10 @@
     
     .ghost{
         visibility: hidden;
+    }
+
+    .error{
+        border: 1px solid darkred; 
+        background: salmon;
     }
 }

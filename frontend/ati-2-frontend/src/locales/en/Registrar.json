@@ -119,6 +119,20 @@
                 "especificar_vacio": "The fields to be specified cannot be empty",
                 "social_requerida": "Select a social network",
                 "otro_requerido": "Select an option"
+            },
+            {
+                "requerido": "This field is required",
+                "minimo": "Must be at least 2 letters",
+                "id": "Invalid identification",
+                "email": "Invalid email"
+            },
+            {
+                "requerido": "You must select at least one option"
+            },
+            {
+                "mail_invalido": "This email is invalid",
+                "mail_exists": "This email already exists",
+                "clave_invalida": "The password must have al least 6 characters"
             }
         ]
     }

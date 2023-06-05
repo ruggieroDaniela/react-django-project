@@ -84,15 +84,33 @@ function RegisterFormContextProvider({children}){
                 other_required: false,
             },
             {
-                invalid_stage: false
+                name_required: false,
+                name_invalid: false,
+                last_name_required: false,
+                last_name_invalid: false,
+                id_required: false,
+                id_invalid: false,
+                email_required: false,
+                email_invalid: false,
+
+                business_required: false,
+                business_invalid: false,
+                rif_required: false,
+                rif_invalid: false,
+                address_required: false,
+                rep_name_required: false,
+                rep_name_invalid: false,
+                rep_email_required: false,
+                rep_email_invalid: false,
+
             },
             {
-                invalid_stage: false,
+                option_required: false,
+            },
+            {
                 invalid_mail: false,
+                mail_exists: false,
                 invalid_password: false
-            },
-            {
-                invalid_stage: false
             },
             {
                 invalid_stage: false

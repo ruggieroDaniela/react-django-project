@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RegisterFormContext } from "../context/RegisterFormContext";
-import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { getCitiesInCountry} from "../components/dataFetchers/PaisDataFetcher";
+import ErrorMessage from "./ErrorMessage";
 
 import "../styles/Registrar.scss"
 
@@ -23,10 +23,10 @@ const Fase0 = () =>
                     {t('registrar.fases.0.descripcion')}
                 </div>
 
-                {selectionEmpty && <div> {t('registrar.errores.0.requerido')}</div> }
-                {specifyEmpty && <div> {t('registrar.errores.0.especificar_vacio')}</div> }
-                {socialRequired && <div> {t('registrar.errores.0.social_requerida')}</div> }
-                {otherRequired && <div> {t('registrar.errores.0.otro_requerido')}</div> }
+                {selectionEmpty && <ErrorMessage message={t('registrar.errores.0.requerido')}/> }
+                {specifyEmpty && <ErrorMessage message={t('registrar.errores.0.especificar_vacio')}/>  }
+                {socialRequired && <ErrorMessage message={t('registrar.errores.0.social_requerida')}/>  }
+                {otherRequired && <ErrorMessage message={t('registrar.errores.0.otro_requerido')}/> }
 
                 <div className="metodos-container">
 
@@ -287,6 +287,25 @@ const Fase1 = () => {
         const [cities, setCities] = useState([]);
         const [countryCode, setCountryCode] = useState("");
 
+        const nameRequired = registerFormState.errors[1].name_required 
+        const nameInvalid = registerFormState.errors[1].name_invalid
+        const lastNameRequired = registerFormState.errors[1].last_name_required
+        const lastNameInvalid = registerFormState.errors[1].last_name_invalid
+        const idRequired = registerFormState.errors[1].id_required
+        const idInvalid = registerFormState.errors[1].id_invalid
+        const emailRequired = registerFormState.errors[1].email_required
+        const emailInvalid = registerFormState.errors[1].email_invalid
+
+        const business_required = registerFormState.errors[1].business_required
+        const business_invalid = registerFormState.errors[1].business_invalid
+        const rif_required = registerFormState.errors[1].rif_required
+        const rif_invalid = registerFormState.errors[1].rif_invalid
+        const address_required = registerFormState.errors[1].address_required
+        const rep_name_required = registerFormState.errors[1].rep_name_required
+        const rep_name_invalid = registerFormState.errors[1].rep_name_invalid
+        const rep_email_required = registerFormState.errors[1].rep_email_required
+        const rep_email_invalid = registerFormState.errors[1].rep_email_invalid
+
         useEffect(() => {
             const fetchCities = async () => {
                 if(countryCode != ""){
@@ -358,6 +377,9 @@ const Fase1 = () => {
                                     } );
                                 }} 
                             />
+
+                            { nameRequired && <ErrorMessage message={t('registrar.errores.1.requerido')}/> }
+                            { nameInvalid && <ErrorMessage message={t('registrar.errores.1.minimo')}/>}
                         </div>
 
                         <div className="field">
@@ -376,7 +398,12 @@ const Fase1 = () => {
                                     } );
                                 }} 
                             />
+
+                            { lastNameRequired && <ErrorMessage message={t('registrar.errores.1.requerido')}/> }
+                            { lastNameInvalid && <ErrorMessage message={t('registrar.errores.1.minimo')}/> }    
                         </div>
+
+                        
 
                         <div className="field">
                             <span className="label">
@@ -394,7 +421,12 @@ const Fase1 = () => {
                                     } );
                                 }} 
                             />
+
+                            { idRequired && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
+                            { idInvalid && <ErrorMessage message={t('registrar.errores.1.id')}/> }
                         </div>
+                        
+                        
 
                         <div className="field">
                             <span className="label">
@@ -412,7 +444,12 @@ const Fase1 = () => {
                                     } );
                                 }} 
                             />
+
+                            { emailRequired && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
+                            { emailInvalid && <ErrorMessage message={t('registrar.errores.1.email')}/> }
                         </div>
+                        
+                        
 
                         <div className="field">
                             <span className="label">
@@ -431,8 +468,6 @@ const Fase1 = () => {
                                         return newState;
                                     } )
                                 }}>
-                                
-                                <option value="" disabled> {t('registrar.fases.1.seleccionar_pais')} </option>
 
                                 {countries?.map( country => {
                                     return (<option key={country.name} value={country.name}>{country.name}</option>);
@@ -571,8 +606,12 @@ const Fase1 = () => {
                                         } );
                                     }} 
                                 />
-                            </div>
+                                { business_required && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
+                                { business_invalid && <ErrorMessage message={t('registrar.errores.1.minimo')}/> }
+              
 
+                            </div>
+                            
                             <div className="field">
                                 <span className="label">
                                     <span className="required">*</span> {t('registrar.fases.1.empresa.empresa.rif')+": "}
@@ -589,6 +628,8 @@ const Fase1 = () => {
                                         } );
                                     }} 
                                 />
+                                { rif_required && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
+                                { rif_invalid && <ErrorMessage message={t('registrar.errores.1.id')}/> }
                             </div>
 
                             <div className="field">
@@ -660,6 +701,8 @@ const Fase1 = () => {
                                         } );
                                     }} 
                                 />
+
+                                { address_required && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
                             </div>
 
                         </div>
@@ -687,6 +730,9 @@ const Fase1 = () => {
                                         } );
                                     }} 
                                 />
+
+                                { rep_name_required && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
+                                { rep_name_invalid && <ErrorMessage message={t('registrar.errores.1.minimo')}/> }
                             </div>
 
                             <div className="field">
@@ -705,6 +751,9 @@ const Fase1 = () => {
                                         } );
                                     }} 
                                 />
+
+                                { rep_email_required && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
+                                { rep_email_invalid && <ErrorMessage message={t('registrar.errores.1.email')}/> }
                             </div>
 
                             <div className="field">
@@ -826,44 +875,49 @@ const Fase2 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
+        const required = registerFormState.errors[2].option_required
+
         return(
-            <div id="fase2">
-                <label>
-                    <input
-                        type="radio"
-                        value="english"
-                        checked={ registerFormState.phase[2].idioma === 'english' }
-                        onChange={ e => {
-                            setRegisterFormState( prev => {
-                                    const newState = {... prev};
-                                    newState.phase[2].idioma = 'english';
-                                    return newState;
-                                } );
-                        }}
-                    />
-                    <div>
-                        English
-                    </div>
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        value="español"
-                        checked={ registerFormState.phase[2].idioma === 'español' }
-                        onChange={ e => {
-                            setRegisterFormState( prev => {
-                                    const newState = {... prev};
-                                    newState.phase[2].idioma = 'español';
-                                    return newState;
-                                } );
-                        }}
-                    />
-                    <div>
-                        Español
-                    </div>
-                </label>
-                
-            </div>
+            <div>
+                <div id="fase2">
+                    <label>
+                        <input
+                            type="radio"
+                            value="english"
+                            checked={ registerFormState.phase[2].idioma === 'english' }
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[2].idioma = 'english';
+                                        return newState;
+                                    } );
+                            }}
+                        />
+                        <div>
+                            English
+                        </div>
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            value="español"
+                            checked={ registerFormState.phase[2].idioma === 'español' }
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[2].idioma = 'español';
+                                        return newState;
+                                    } );
+                            }}
+                        />
+                        <div>
+                            Español
+                        </div>
+                    </label>
+                </div>
+
+                { required && <ErrorMessage message={t('registrar.errores.2.requerido')}/> }
+            </div> 
         );
     }
 
@@ -871,7 +925,10 @@ const Fase2 = () => {
 const Fase3 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
-        const  invalidEmail = registerFormState.errors[3].invalid_mail
+
+        const invalidEmail = registerFormState.errors[3].invalid_mail
+        const emailExists = registerFormState.errors[3].mail_exists
+        const invalidPassword = registerFormState.errors[3].invalid_password
 
         return(
             <div id="fase3">
@@ -891,7 +948,8 @@ const Fase3 = () => {
                             } );
                         }} 
                     />
-                    { invalidEmail == true && <p> YEAH </p> }
+                    { invalidEmail && <ErrorMessage message={t('registrar.errores.3.mail_invalido')}/>  }
+                    { emailExists && <ErrorMessage message={t('registrar.errores.3.mail_exists')}/>  }
                 </div>
                 <div className="field">
                     <span className="label">
