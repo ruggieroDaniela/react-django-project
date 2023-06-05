@@ -52,8 +52,8 @@ export const PublicacionLista = ({post, postType}) => {
     const {t} = useTranslation();
     const [username, setUsername] = useState("  ");
     const {authState, setAuthState} = useContext(AuthContext);
-    // const canEdit = authState.logged_in && post.user == authState.user_id;
-    const canEdit = true;
+    const canEdit = authState.logged_in && post.user == authState.user_id;
+    // const canEdit = true;
 
     useEffect(() => {
         const fetchUser = async () => {
