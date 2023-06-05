@@ -367,9 +367,9 @@ def requestCreatePDF(post):
     drawRectangle(x + 170 , y -20, 150, 20, c, "Datos de la cuenta seleccionada", 8)
 
     y -= 70
-    drawRectangle(x + 170 , y, 230, height, c, str(post.billing_bank), 8)
+    drawRectangle(x + 170 , y, 230, height, c, post.billing_bank.name, 8)
     c.setStrokeColor(colors.HexColor('#FFC000'))
-    c.rect(x + 170, y - 100, 230, 100, fill=False, stroke=True)
+    c.rect(x + 170, y - 150, 230, 150, fill=False, stroke=True)
 
     y -= 15
     drawSubtitle(x + 180, y, colors.red,"Formas de pago", c, 12)
@@ -385,12 +385,15 @@ def requestCreatePDF(post):
 
     y -= 15
     drawSubtitle(x + 180, y, colors.black, "Banco: ", c, 10)
-    drawData(x + 200, y, str(post.billing_bank), c)
+    drawData(x + 200, y, post.billing_bank.name, c)
 
     y -= 15
     drawSubtitle(x + 180, y, colors.black, "Nro de cuenta: ", c, 10)
-    drawData(x + 240, y, "XXXXXXXXXXXXXX", c)
+    drawData(x + 240, y, post.billing_bank.account, c)
 
+    y -= 15
+    drawSubtitle(x + 180, y, colors.black, "Código SWIFT: ", c, 10)
+    drawData(x + 240, y, post.billing_bank.swift_code, c)
 
     c.showPage()
     c.save()
@@ -710,9 +713,9 @@ def provideCreatePDF(post):
     drawRectangle(x + 170 , y -20, 150, 20, c, "Datos de la cuenta seleccionada", 8)
 
     y -= 70
-    drawRectangle(x + 170 , y, 230, height, c, str(post.billing_bank), 8)
+    drawRectangle(x + 170 , y, 230, height, c, post.billing_bank.name, 8)
     c.setStrokeColor(colors.HexColor('#FFC000'))
-    c.rect(x + 170, y - 100, 230, 100, fill=False, stroke=True)
+    c.rect(x + 170, y - 150, 230, 150, fill=False, stroke=True)
 
     y -= 15
     drawSubtitle(x + 180, y, colors.red,"Formas de pago", c, 12)
@@ -728,11 +731,15 @@ def provideCreatePDF(post):
 
     y -= 15
     drawSubtitle(x + 180, y, colors.black, "Banco: ", c, 10)
-    drawData(x + 200, y, str(post.billing_bank), c)
+    drawData(x + 200, y, post.billing_bank.name, c)
 
     y -= 15
     drawSubtitle(x + 180, y, colors.black, "Nro de cuenta: ", c, 10)
-    drawData(x + 240, y, "XXXXXXXXXXXXXX", c)
+    drawData(x + 240, y, post.billing_bank.account, c)
+
+    y -= 15
+    drawSubtitle(x + 180, y, colors.black, "Código SWIFT ", c, 10)
+    drawData(x + 240, y, post.billing_bank.swift_code, c)
 
 
     c.showPage()
@@ -748,6 +755,7 @@ def sendEmail(post):
     billing_country = post.billing_country
     billing_bank = post.billing_bank.name
     nro_cuenta = post.billing_bank.account
+    swift_code = post.billing_bank.swift_code
 
     # Create PDF 
     if post.mode == 'REQUEST':
@@ -791,6 +799,9 @@ def sendEmail(post):
             </tr>
             <tr>
                 <td> <b> Nro de Cuenta: </b> { nro_cuenta }</td>
+            </tr>
+            <tr>
+                <td> <b> Código SWIFT </b> { swift_code }</td>
             </tr>
         </table>
 
