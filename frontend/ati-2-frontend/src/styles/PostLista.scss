@@ -2,12 +2,22 @@
 
 .post-lista{
     display: grid;
-    grid-template-columns: 1fr 2fr 12fr 1fr;
+    grid-template-columns: 1fr 12fr 1fr;
 
     section{
         border-style: solid;
         border-color: $dorado;
         border-width: 1px;
+    }
+
+    .button-group{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+
+        button{
+            margin-bottom: 1rem;
+        }
     }
 
     .detalles{

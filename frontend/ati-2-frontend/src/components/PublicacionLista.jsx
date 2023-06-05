@@ -1,6 +1,18 @@
+// ver
+// https://www.flaticon.com/free-icon/hide_2767146?related_id=2767146
+// https://www.flaticon.com/free-icon/view_709612?related_id=709612
+
+// editar
+// https://www.flaticon.com/free-icon/pen_1250615?term=edit&page=1&position=13&origin=search&related_id=1250615
+
+// eliminar
+// https://www.flaticon.com/free-icon/bin_484662?term=delete&page=1&position=8&origin=search&related_id=484662
+
+
 import axios from 'axios'
 import { useState, useEffect } from "react"
 import { useTranslation } from 'react-i18next'
+// import "../assets/eliminar.png"
 
 import "../styles/PostLista.scss"
 
@@ -53,9 +65,9 @@ export const PublicacionLista = ({post}) => {
 
     return(<>
         <div key={`post ${post.id}`} className="post-lista">
-            <section key={`post ${post.id} buttons 1`}>
+            {/* <section key={`post ${post.id} buttons 1`}>
                 x
-            </section>
+            </section> */}
             
             <section key={`post ${post.id} foto`}>
                 foto
@@ -192,7 +204,11 @@ export const PublicacionLista = ({post}) => {
                     </div>
                 </div>
             </section>
-            <section key={`post ${post.id} ${self.crypto.randomUUID()}`}>x</section>
+            <section className='button-group' key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                <button>hab</button>
+                <button>edit</button>
+                <button>elim</button>
+            </section>
         </div>
     </>);
 }
