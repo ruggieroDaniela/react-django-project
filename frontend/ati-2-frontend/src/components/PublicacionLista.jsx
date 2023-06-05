@@ -37,6 +37,7 @@ const FieldViewDetails = ({label, detalles_texto, value=""}) => {
             className="item-link"
             onMouseEnter={ () => setHover(true) }
             onMouseLeave={ () => setHover(false) }
+            onClick={ e => { e.preventDefault() } }
         >
             {t(`publicaciones_vista_lista.ver_detalles`)}
         </a>
