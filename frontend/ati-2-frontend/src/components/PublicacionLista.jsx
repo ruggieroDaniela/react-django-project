@@ -12,7 +12,11 @@
 import axios from 'axios'
 import { useState, useEffect } from "react"
 import { useTranslation } from 'react-i18next'
-// import "../assets/eliminar.png"
+
+import eliminar_img from "../assets/eliminar.png"
+import editar_img from "../assets/editar.png"
+import habilitar_img from "../assets/habilitar.png"
+import deshabilitar_img from "../assets/deshabilitar.png"
 
 import "../styles/PostLista.scss"
 
@@ -205,9 +209,15 @@ export const PublicacionLista = ({post}) => {
                 </div>
             </section>
             <section className='button-group' key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                <button>hab</button>
-                <button>edit</button>
-                <button>elim</button>
+                <button>
+                    <img className='button-img' src={post.enable? deshabilitar_img : habilitar_img} alt="" />
+                </button>
+                <button>
+                    <img className='button-img' src={editar_img} alt="" />
+                </button>
+                <button>
+                    <img className='button-img' src={eliminar_img} alt="" />
+                </button>
             </section>
         </div>
     </>);

@@ -11,12 +11,17 @@
     }
 
     .button-group{
-        display: flex;
+        display: flex;  
         flex-direction: column;
         padding: 1rem;
 
         button{
             margin-bottom: 1rem;
+
+            .button-img{
+                aspect-ratio: 1;
+                width: 1rem;
+            }
         }
     }
 
