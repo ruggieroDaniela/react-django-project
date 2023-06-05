@@ -51,6 +51,7 @@ export const PublicacionLista = ({post}) => {
     const {t} = useTranslation();
     const [username, setUsername] = useState("  ");
     const {authState, setAuthState} = useContext(AuthContext);
+    const canEdit = authState.logged_in && post.user == authState.user_id;
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -71,7 +72,13 @@ export const PublicacionLista = ({post}) => {
     }, []);
 
     return(<>
-        <div key={`post ${post.id}`} className="post-lista">
+        <div
+            key={`post ${post.id}`}
+            className="post-lista"
+            style={{
+                gridTemplateColumns: canEdit? '1fr 12fr 1fr': "1fr 13fr"
+            }}
+        >
             {/* <section key={`post ${post.id} buttons 1`}>
                 x
             </section> */}
@@ -211,23 +218,25 @@ export const PublicacionLista = ({post}) => {
                     </div>
                 </div>
             </section>
-            <section className='button-group' key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                <button
-                    disabled={ !(authState.logged_in && post.user == authState.user_id) }
-                >
-                    <img className='button-img' src={post.enable? deshabilitar_img : habilitar_img} alt="" />
-                </button>
-                <button
-                    disabled={ !(authState.logged_in && post.user == authState.user_id) }
-                >
-                    <img className='button-img' src={editar_img} alt="" />
-                </button>
-                <button
-                    disabled={ !(authState.logged_in && post.user == authState.user_id) }
-                >
-                    <img className='button-img' src={eliminar_img} alt="" />
-                </button>
-            </section>
+            {canEdit?
+                <section className='button-group' key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                    <button
+                        disabled={ !(authState.logged_in && post.user == authState.user_id) }
+                    >
+                        <img className='button-img' src={post.enable? deshabilitar_img : habilitar_img} alt="" />
+                    </button>
+                    <button
+                        disabled={ !(authState.logged_in && post.user == authState.user_id) }
+                    >
+                        <img className='button-img' src={editar_img} alt="" />
+                    </button>
+                    <button
+                        disabled={ !(authState.logged_in && post.user == authState.user_id) }
+                    >
+                        <img className='button-img' src={eliminar_img} alt="" />
+                    </button>
+                </section>
+            :""}
         </div>
     </>);
 }
