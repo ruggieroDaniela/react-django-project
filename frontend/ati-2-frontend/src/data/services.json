@@ -44,12 +44,12 @@
         "range"
     ],
     "ordenar_por": [
-        "payment-asc",
-        "payment-desc",
-        "available date-asc",
-        "available date-desc",
-        "post date-asc",
-        "post date-desc"
+        "payment_amount",
+        "-payment_amount",
+        "availability_date",
+        "-availability_date",
+        "post_date",
+        "-post_date"
     ],
     "beneficios": [
         "yes",

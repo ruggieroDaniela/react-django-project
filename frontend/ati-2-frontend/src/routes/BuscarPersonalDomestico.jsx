@@ -49,7 +49,7 @@ export const BuscarPersonalDomestico = () => {
     const [selectedStates, setSelectedStates] = useState("");
     const [selectedCities, setSelectedCities] = useState("");
     const [selectedServices, setSelectedServices] = useState("");
-    const [selectedShedules, setSelectedShedules] = useState("");
+    const [selectedSchedules, setSelectedShedules] = useState("");
     const [selectedCheckout, setSelectedCheckout] = useState("");
     const [selectedPaymentFreq, setSelectedPaymentFreq] = useState("");
     const [selectedCurrency, setSelectedCurrency] = useState("");
@@ -286,7 +286,7 @@ export const BuscarPersonalDomestico = () => {
                             placeholder="placeholder 1"
                             items={dias}
                             values={schedules}
-                            state={selectedShedules}
+                            state={selectedSchedules}
                             setState={setSelectedShedules}
                         />
 
@@ -381,9 +381,33 @@ export const BuscarPersonalDomestico = () => {
                                 if(selectedStates != "")
                                     query += `state__in=${selectedStates.substring(1)}&`
                                 
-                                if(selectedServices != "")
-                                    query += `service__in=${selectedServices.substring(1)}`
+                                if(selectedCities != "")
+                                    query += `city__in=${selectedCities.substring(1)}&`
                                 
+                                if(selectedServices != "")
+                                    query += `service__in=${selectedServices.substring(1)}&`
+                                
+                                if(selectedCheckout != "")
+                                    query += `workday__in=${selectedCheckout.substring(1)}&`
+                                
+                                if(selectedSchedules != "")
+                                    query += `schedule__in=${selectedSchedules.substring(1)}&`
+                                
+                                if(selectedPaymentFreq != "")
+                                    query += `salary_offered=${selectedPaymentFreq}&`
+                                
+                                if(selectedCurrency != "")
+                                    query += `currency=${selectedCurrency}&`
+                                
+                                if(selectedBeneficio != "")
+                                    query += `benefits=${selectedBeneficio}&`
+                                
+                                if(selectedAvailability != "")
+                                    query += `availability=${selectedAvailability}&`
+
+                                if(selectedSortBy != "")
+                                    query += `ordering=${selectedSortBy} `
+
                                 query = query.substring(0, query.length-1)
 
                                 navigate(`/show-posts${query}`);
