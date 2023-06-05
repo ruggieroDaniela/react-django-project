@@ -160,7 +160,12 @@ export const BuscarPersonalDomestico = () => {
                         />
                         <FieldDropdownCheckbox
                             title={t('search.pais')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedCountries.split(",").length == 1?
+                                    t('search.selecciona_pais')
+                                    :
+                                    `${(selectedCountries.split(",").length-1)} ${(selectedCountries.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={countries[0]}
                             values={countries[1]}
                             state={selectedCountries}
@@ -168,7 +173,12 @@ export const BuscarPersonalDomestico = () => {
                         />
                         <FieldDropdownCheckbox
                             title={t('search.estado')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedStates.split(",").length == 1?
+                                    t('search.selecciona_estado')
+                                    :
+                                    `${(selectedStates.split(",").length-1)} ${(selectedStates.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={states[0]}
                             values={states[1]}
                             state={selectedStates}
@@ -176,7 +186,12 @@ export const BuscarPersonalDomestico = () => {
                         />
                         <FieldDropdownCheckbox
                             title={t('search.personal_solicitado')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedServices.split(",").length == 1?
+                                    t('search.selecciona_personal')
+                                    :
+                                    `${(selectedServices.split(",").length-1)} ${(selectedServices.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={tipos_personal}
                             values={services}
                             state={selectedServices}
@@ -243,7 +258,12 @@ export const BuscarPersonalDomestico = () => {
 
                         <FieldDropdownCheckbox
                             title={t('search.pais')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedCountries.split(",").length == 1?
+                                    t('search.selecciona_pais')
+                                    :
+                                    `${(selectedCountries.split(",").length-1)} ${(selectedCountries.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={countries[0]}
                             values={countries[1]}
                             state={selectedCountries}
@@ -251,7 +271,12 @@ export const BuscarPersonalDomestico = () => {
                         />
                         <FieldDropdownCheckbox
                             title={t('search.estado')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedStates.split(",").length == 1?
+                                    t('search.selecciona_estado')
+                                    :
+                                    `${(selectedStates.split(",").length-1)} ${(selectedStates.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={states[0]}
                             values={states[1]}
                             state={selectedStates}
@@ -259,7 +284,12 @@ export const BuscarPersonalDomestico = () => {
                         />
                         <FieldDropdownCheckbox
                             title={t('search.ciudad')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedCities.split(",").length == 1?
+                                    t('search.selecciona_ciudad')
+                                    :
+                                    `${(selectedCities.split(",").length-1)} ${(selectedCities.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={cities[0]}
                             values={cities[1]}
                             state={selectedCities}
@@ -267,7 +297,12 @@ export const BuscarPersonalDomestico = () => {
                         />
                         <FieldDropdownCheckbox
                             title={t('search.salida_personal')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedServices.split(",").length == 1?
+                                    t('search.selecciona_personal')
+                                    :
+                                    `${(selectedServices.split(",").length-1)} ${(selectedServices.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={salida_personal}
                             values={checkout}
                             state={selectedCheckout}
