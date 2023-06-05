@@ -132,7 +132,7 @@
             {
                 "mail_invalido": "This email is invalid",
                 "mail_exists": "This email already exists",
-                "clave_invalida": "The password must have al least 6 characters"
+                "clave_invalida": "The password must have at least 6 characters"
             }
         ]
     }

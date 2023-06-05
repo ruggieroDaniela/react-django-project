@@ -932,6 +932,7 @@ const Fase3 = () => {
 
         return(
             <div id="fase3">
+                
                 <div className="field">
                     <span className="label">
                         {t('registrar.fases.3.correo')+": "}
@@ -948,9 +949,14 @@ const Fase3 = () => {
                             } );
                         }} 
                     />
+                    <div>
                     { invalidEmail && <ErrorMessage message={t('registrar.errores.3.mail_invalido')}/>  }
                     { emailExists && <ErrorMessage message={t('registrar.errores.3.mail_exists')}/>  }
+                    </div>
                 </div>
+                    
+                
+
                 <div className="field">
                     <span className="label">
                         {t('registrar.fases.3.clave')+": "}
@@ -966,6 +972,8 @@ const Fase3 = () => {
                             } );
                         }} 
                     />
+
+                    { invalidPassword && <ErrorMessage message={t('registrar.errores.3.clave_invalida')}/>  }
                 </div>
                 <div className="field" id="newsletter">
                     <label>

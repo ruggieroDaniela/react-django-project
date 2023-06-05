@@ -46,12 +46,12 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames }) => 
 
     const stageIsValid = async () => {
         const uniqueEmail = async (email) => {
-            const data = await axios.post(
-                'http://127.0.0.1:8000/users/unique_email/',
-                {"email": email }
-            ); 
-            console.log(data)
-            return true
+            try {
+                await axios.post('http://127.0.0.1:8000/users/unique_email/', {"email": email })
+                return true
+            } catch(error) {
+                return false
+            } 
         }
 
         const stringIsValid = (string) => {
@@ -255,16 +255,20 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames }) => 
                     return false
             }
 
+            // Validar correo
             if(validator.isEmail(email)){
                 try{
                     const unique = await uniqueEmail(email)
                     if(!unique){
-                        registerFormState.errors[3].invalid_mail = true
+                        registerFormState.errors[3].invalid_mail = false
+                        registerFormState.errors[3].mail_exists = true
                         valid = false
                     } else{
                         registerFormState.errors[3].invalid_mail = false
+                        registerFormState.errors[3].mail_exists = false
                     }
                 } catch (error) {
+                    registerFormState.errors[3].mail_exists = false
                     registerFormState.errors[3].invalid_mail = true
                     valid = false
                 }
@@ -273,12 +277,14 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames }) => 
                 valid = false
             }
 
+            // Validar contraseña
             if(!validPassword(password)){
                 registerFormState.errors[3].invalid_password = true
                 valid = false
             } else {
                 registerFormState.errors[3].invalid_password = false
             }
+
             return valid
         }
     }
