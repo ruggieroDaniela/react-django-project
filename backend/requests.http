@@ -53,7 +53,7 @@ POST http://localhost:8000/token-auth/
 content-type: application/json
 
 {
-    "username": "admin22@gmail.com",
+    "username": "ati2.proyecto+carlos99@gmail.com",
     "password": "12345"
 }
 
@@ -98,7 +98,7 @@ content-type: application/json
 
 ### A - Ofrecer mis servicios como personal domestico
 POST http://127.0.0.1:8000/api-services/provideService/post_ad/
-Authorization: Token 6bd60149a92e5fb71324d41f4ad9a101ff0497f5
+Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
 content-type: application/json
 
 {
@@ -146,11 +146,11 @@ content-type: application/json
 
 ### B - Solicitar personal domestico
 POST http://127.0.0.1:8000/api-services/requestService/post_ad/
-Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
+Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
 content-type: application/json
 
 {
-    "user": 6, 
+    "user": 11, 
     "service": "CUI",
     "gender": "IDC",
     "age_required_from": 18,
@@ -245,11 +245,11 @@ Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
 ### Update
 ### Ofrecer/Provide
 PUT http://localhost:8000/api-services/provide/update_post/dd14ae5c-fdc5-46a9-a826-df7f9a4f8f72/
-Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
+Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
 content-type: application/json
 
 {
-    "user": 7, 
+    "user": 11, 
     "service": "CUI", 
     "age": 30,
     "have_children": false,
@@ -293,11 +293,11 @@ content-type: application/json
 
 ### Solicitar/Request
 PUT http://localhost:8000/api-services/request/update_post/bc09db74-2809-4051-896a-96ab7ed8b7a8/
-Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
+Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
 content-type: application/json
 
 {
-    "user": 6, 
+    "user": 11, 
     "service": "CUI",
     "gender": "IDC",
     "age_required_from": 13,

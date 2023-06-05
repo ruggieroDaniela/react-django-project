@@ -857,8 +857,8 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'delete', 'put'] 
 
     # Authorization
-    #authentication_classes = (TokenAuthentication,)
-    #permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     # Filters. Option C - "Buscar personal doméstico"
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -959,8 +959,8 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
     serializer_class = RequestServiceSerializer    
 
     # Authorization
-    #authentication_classes = (TokenAuthentication,)
-    #permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     # Filters. Option D - Buscar Clientes
     filter_backends = [DjangoFilterBackend, OrderingFilter]
