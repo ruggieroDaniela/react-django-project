@@ -743,7 +743,7 @@ def provideCreatePDF(post):
    
 
 def sendEmail(post):
-    post_id = str(post.id).upper()      # Código de la publicación
+    post_id = str(post.id).upper()              # Código de la publicación
     status = post.get_status_display().upper()  # Status
     billing_country = post.billing_country
     billing_bank = post.billing_bank
@@ -756,7 +756,7 @@ def sendEmail(post):
        pdf = provideCreatePDF(post)    
 
 
-    receiver = "ati2.proyecto@gmail.com"                      # cambiar a -> post.user.email
+    receiver = post.user.email
     message = f"""
         <p>Le notificamos que su publicación ha sido creada en nuestro sitio Web 3.137.150.119:5173 con el código número 
         <span style="color: blue;"> <b>{post_id} </b></span>.</p>

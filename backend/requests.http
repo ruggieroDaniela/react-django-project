@@ -102,7 +102,7 @@ Authorization: Token 6bd60149a92e5fb71324d41f4ad9a101ff0497f5
 content-type: application/json
 
 {
-    "user": 6, 
+    "user": 11, 
     "service": "NIN", 
     "age": 29,
     "have_children": false,
