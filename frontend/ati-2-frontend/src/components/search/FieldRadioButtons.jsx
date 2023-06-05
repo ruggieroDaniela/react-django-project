@@ -20,7 +20,7 @@ export const FieldRadioButtons = ({title, items, values, state, setState}) => {
                             >
                                     <input
                                         type="radio"
-                                        checked={ state.includes(values[index]) }
+                                        checked={ state == values[index] }
                                         onChange={ () => setState( () => values[index] ) }
                                     />
                                     <span>{x}</span>
