@@ -367,7 +367,7 @@ def requestCreatePDF(post):
     drawRectangle(x + 170 , y -20, 150, 20, c, "Datos de la cuenta seleccionada", 8)
 
     y -= 70
-    drawRectangle(x + 170 , y, 230, height, c, post.billing_bank, 8)
+    drawRectangle(x + 170 , y, 230, height, c, str(post.billing_bank), 8)
     c.setStrokeColor(colors.HexColor('#FFC000'))
     c.rect(x + 170, y - 100, 230, 100, fill=False, stroke=True)
 
@@ -385,7 +385,7 @@ def requestCreatePDF(post):
 
     y -= 15
     drawSubtitle(x + 180, y, colors.black, "Banco: ", c, 10)
-    drawData(x + 200, y, post.billing_bank, c)
+    drawData(x + 200, y, str(post.billing_bank), c)
 
     y -= 15
     drawSubtitle(x + 180, y, colors.black, "Nro de cuenta: ", c, 10)
@@ -710,7 +710,7 @@ def provideCreatePDF(post):
     drawRectangle(x + 170 , y -20, 150, 20, c, "Datos de la cuenta seleccionada", 8)
 
     y -= 70
-    drawRectangle(x + 170 , y, 230, height, c, post.billing_bank, 8)
+    drawRectangle(x + 170 , y, 230, height, c, str(post.billing_bank), 8)
     c.setStrokeColor(colors.HexColor('#FFC000'))
     c.rect(x + 170, y - 100, 230, 100, fill=False, stroke=True)
 
@@ -728,7 +728,7 @@ def provideCreatePDF(post):
 
     y -= 15
     drawSubtitle(x + 180, y, colors.black, "Banco: ", c, 10)
-    drawData(x + 200, y, post.billing_bank, c)
+    drawData(x + 200, y, str(post.billing_bank), c)
 
     y -= 15
     drawSubtitle(x + 180, y, colors.black, "Nro de cuenta: ", c, 10)
@@ -746,8 +746,8 @@ def sendEmail(post):
     post_id = str(post.id).upper()              # Código de la publicación
     status = post.get_status_display().upper()  # Status
     billing_country = post.billing_country
-    billing_bank = post.billing_bank
-    nro_cuenta = "XXXXXXXXXXXXX"
+    billing_bank = post.billing_bank.name
+    nro_cuenta = post.billing_bank.account
 
     # Create PDF 
     if post.mode == 'REQUEST':
@@ -857,8 +857,8 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'delete', 'put'] 
 
     # Authorization
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    #authentication_classes = (TokenAuthentication,)
+    #permission_classes = (IsAuthenticated,)
 
     # Filters. Option C - "Buscar personal doméstico"
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -959,8 +959,8 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
     serializer_class = RequestServiceSerializer    
 
     # Authorization
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    #authentication_classes = (TokenAuthentication,)
+    #permission_classes = (IsAuthenticated,)
 
     # Filters. Option D - Buscar Clientes
     filter_backends = [DjangoFilterBackend, OrderingFilter]
