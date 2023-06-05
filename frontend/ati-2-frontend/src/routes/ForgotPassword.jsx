@@ -11,6 +11,7 @@ export const ForgotPassword = () => {
     const [info, setInfo] = useState('');
     const [formIdDoc, setformIdDoc] = useState(false);
     const [formEmail, setFormEmail] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmitRadio = (e) => {
 
@@ -82,7 +83,7 @@ export const ForgotPassword = () => {
 
                         <div id="buttons">
                             <button type="submit">{t('forgotPassword.botonAceptar')}</button>
-                            <button type="button">{t('forgotPassword.botonAceptar')}</button>
+                            <button type="button" onClick={ () => {navigate("/")} }>{t('forgotPassword.botonCancelar')}</button>
                         </div>
 
                     </form>
