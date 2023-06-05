@@ -10,8 +10,10 @@
 
 
 import axios from 'axios'
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { useTranslation } from 'react-i18next'
+
+import AuthContext from "../context/AuthContext";
 
 import eliminar_img from "../assets/eliminar.png"
 import editar_img from "../assets/editar.png"
@@ -47,7 +49,8 @@ const FieldViewDetails = ({label, detalles_texto, value=""}) => {
 export const PublicacionLista = ({post}) => {
 
     const {t} = useTranslation();
-    const [username, setUsername] = useState("  ")
+    const [username, setUsername] = useState("  ");
+    const {authState, setAuthState} = useContext(AuthContext);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -209,13 +212,19 @@ export const PublicacionLista = ({post}) => {
                 </div>
             </section>
             <section className='button-group' key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                <button>
+                <button
+                    disabled={ !(authState.logged_in && post.user == authState.user_id) }
+                >
                     <img className='button-img' src={post.enable? deshabilitar_img : habilitar_img} alt="" />
                 </button>
-                <button>
+                <button
+                    disabled={ !(authState.logged_in && post.user == authState.user_id) }
+                >
                     <img className='button-img' src={editar_img} alt="" />
                 </button>
-                <button>
+                <button
+                    disabled={ !(authState.logged_in && post.user == authState.user_id) }
+                >
                     <img className='button-img' src={eliminar_img} alt="" />
                 </button>
             </section>
