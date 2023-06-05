@@ -53,6 +53,7 @@ export const BuscarPersonalDomestico = () => {
     const [selectedCheckout, setSelectedCheckout] = useState("");
     const [selectedPaymentFreq, setSelectedPaymentFreq] = useState("");
     const [selectedCurrency, setSelectedCurrency] = useState("");
+    const [selectedOtherCurrency, setSelectedOtherCurrency] = useState("");
     const [selectedBeneficio, setSelectedBeneficio] = useState("");
     const [selectedPayment, setSelectedPayment] = useState("");
     const [selectedPaymentRange, setSelectedPaymentRange] = useState(["", ""]);
@@ -401,7 +402,7 @@ export const BuscarPersonalDomestico = () => {
                             {selectedCurrency == 2?
                                 <div className="field-spec">
                                     {t('search.especificar')+": "}
-                                    <input type="text"/>
+                                    <input type="text" onChange={ e => setSelectedOtherCurrency( () => e.target.value ) }/>
                                 </div>
                                 :
                                 ""
@@ -471,8 +472,11 @@ export const BuscarPersonalDomestico = () => {
                                 if(selectedPaymentFreq != "")
                                     query += `salary_offered=${selectedPaymentFreq}&`
                                 
-                                if(selectedCurrency != "")
+                                if(selectedCurrency != ""){
                                     query += `currency=${selectedCurrency}&`
+                                    if(selectedCurrency == "OTRA")
+                                        query += `currency_other=${selectedOtherCurrency}&`
+                                }
                                 
                                 if(selectedBeneficio != "")
                                     query += `benefits=${selectedBeneficio}&`
