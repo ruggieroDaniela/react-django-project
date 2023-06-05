@@ -13,6 +13,7 @@ export const ListarPublicaciones = () => {
     const {t} = useTranslation();
     const location = useLocation();
     let searchParams = location.search;
+    const postType = searchParams.includes('provide')? 'provide':'request';
 
     const [postList, setPostList] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
@@ -70,7 +71,7 @@ export const ListarPublicaciones = () => {
                     console.log(searchParams);
                 }
 
-                const response = await axios.get(`http://127.0.0.1:8000/api-services/provideService/${searchParams}`, {
+                const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}Service/${searchParams}`, {
                     headers: {}
                 });
 
@@ -185,7 +186,7 @@ export const ListarPublicaciones = () => {
                     /* eslint-disable-next-line */
                     postList
                         .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
-                        .map( (post) => <PublicacionLista key={post.id} post={post}/> )
+                        .map( (post) => <PublicacionLista key={post.id} post={post} postType={postType}/> )
                 }
             </div>
 

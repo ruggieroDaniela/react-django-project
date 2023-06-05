@@ -47,12 +47,13 @@ const FieldViewDetails = ({label, detalles_texto, value=""}) => {
     </>)
 }
 
-export const PublicacionLista = ({post}) => {
+export const PublicacionLista = ({post, postType}) => {
 
     const {t} = useTranslation();
     const [username, setUsername] = useState("  ");
     const {authState, setAuthState} = useContext(AuthContext);
-    const canEdit = authState.logged_in && post.user == authState.user_id;
+    // const canEdit = authState.logged_in && post.user == authState.user_id;
+    const canEdit = true;
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -222,17 +223,23 @@ export const PublicacionLista = ({post}) => {
             {canEdit?
                 <section className='button-group' key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                     <button
-                        disabled={ !(authState.logged_in && post.user == authState.user_id) }
+                        disabled={ !(canEdit) }
+                        onClick={ () => {
+                            axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${post.id}/`)
+                        } }
                     >
                         <img className='button-img' src={post.enable? deshabilitar_img : habilitar_img} alt="" />
                     </button>
                     <button
-                        disabled={ !(authState.logged_in && post.user == authState.user_id) }
+                        disabled={ !(canEdit) }
                     >
                         <img className='button-img' src={editar_img} alt="" />
                     </button>
                     <button
-                        disabled={ !(authState.logged_in && post.user == authState.user_id) }
+                        disabled={ !(canEdit) }
+                        onClick={ () => {
+                            axios.delete(`http://127.0.0.1:8000/api-services/${postType}/delete_post/${post.id}/`)
+                        } }
                     >
                         <img className='button-img' src={eliminar_img} alt="" />
                     </button>

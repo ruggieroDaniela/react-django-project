@@ -185,7 +185,7 @@ export const BuscarPersonalDomestico = () => {
                         <div></div>
                         <button
                             onClick={ () => {
-                                let query = "?";
+                                let query = "?type=provide&";
 
                                 if(selectedContinent != -1)
                                     query += `continent=${regions[selectedContinent]}&`
@@ -370,7 +370,7 @@ export const BuscarPersonalDomestico = () => {
                         <div></div>
                         <button
                             onClick={ () => {
-                                let query = "?";
+                                let query = "?type=provide&";
 
                                 if(selectedContinent != -1)
                                     query += `continent=${regions[selectedContinent]}&`
