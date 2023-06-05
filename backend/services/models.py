@@ -1,4 +1,5 @@
 from django.db import models
+from multiselectfield import MultiSelectField
 from django.core.exceptions import ValidationError
 from users.models import User
 from banks.models import Bank
@@ -102,7 +103,6 @@ class Services(models.Model):
     # Fields 
     id = models.UUIDField(default=uuid.uuid4, unique=True, editable=False, primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    #bank = models.ForeignKey(Bank, on_delete=models.CASCADE)
     status = models.CharField(max_length=3, choices=STATUS_CHOICES, default='PEN')
     enable = models.BooleanField(default=False)
     mode = models.CharField(max_length=7)
@@ -130,7 +130,7 @@ class Services(models.Model):
     workday = models.CharField(blank=False, max_length=15, choices=WORKDAY_CHOICES)
     workday_other = models.TextField(blank=True)
 
-    schedule = models.CharField(blank=False, max_length=7, choices=SCHEDULE_CHOICES)
+    schedule = MultiSelectField(choices=SCHEDULE_CHOICES, max_length=100)
     schedule_other = models.TextField(blank=True)
     
     # Salary
