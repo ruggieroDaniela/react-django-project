@@ -55,6 +55,7 @@ export const BuscarPersonalDomestico = () => {
     const [selectedCurrency, setSelectedCurrency] = useState("");
     const [selectedBeneficio, setSelectedBeneficio] = useState("");
     const [selectedPayment, setSelectedPayment] = useState("");
+    const [selectedPaymentRange, setSelectedPaymentRange] = useState(["", ""]);
     const [selectedAvailability, setSelectedAvailability] = useState("");
     const [selectedSortBy, setSelectedSortBy] = useState("");
 
@@ -299,11 +300,29 @@ export const BuscarPersonalDomestico = () => {
                                 state={selectedPayment}
                                 setState={setSelectedPayment}
                             />
-                            {selectedPayment.includes("range")?
+                            {selectedPayment.includes("MONTO")?
                                 <div className="field-range-input">
-                                    <input type="text"/>
+                                    <input
+                                        type="text"
+                                        onChange={ (e) => {
+                                            setSelectedPaymentRange( prev => { 
+                                                let newState = [...prev];
+                                                newState[0] = e.target.value;
+                                                return newState;
+                                            } )
+                                        } }
+                                    />
                                     <span> - </span>
-                                    <input type="text"/>
+                                    <input
+                                        type="text"
+                                        onChange={ (e) => {
+                                            setSelectedPaymentRange( prev => { 
+                                                let newState = [...prev];
+                                                newState[1] = e.target.value;
+                                                return newState;
+                                            } )
+                                        } }
+                                    />
                                 </div>
                                 :""
                             }
@@ -393,6 +412,12 @@ export const BuscarPersonalDomestico = () => {
                                 if(selectedSchedules != "")
                                     query += `schedule__in=${selectedSchedules.substring(1)}&`
                                 
+                                if(selectedPayment != ""){
+                                    query += `payment=${selectedPayment}&`
+                                    if(selectedPayment == "MONTO" && selectedPaymentRange[0].length != 0 && selectedPaymentRange[1].length != 0)
+                                        query += `payment_amount__range=${selectedPaymentRange.join(",")}&`
+                                }
+
                                 if(selectedPaymentFreq != "")
                                     query += `salary_offered=${selectedPaymentFreq}&`
                                 
