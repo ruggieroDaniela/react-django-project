@@ -298,10 +298,10 @@ export const BuscarPersonalDomestico = () => {
                         <FieldDropdownCheckbox
                             title={t('search.salida_personal')}
                             placeholder={
-                                selectedServices.split(",").length == 1?
-                                    t('search.selecciona_personal')
+                                selectedCheckout.split(",").length == 1?
+                                    t('search.selecciona_salida')
                                     :
-                                    `${(selectedServices.split(",").length-1)} ${(selectedServices.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                                    `${(selectedCheckout.split(",").length-1)} ${(selectedCheckout.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
                             }
                             items={salida_personal}
                             values={checkout}
@@ -310,7 +310,12 @@ export const BuscarPersonalDomestico = () => {
                         />
                         <FieldDropdownCheckbox
                             title={t('search.personal_solicitado')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedServices.split(",").length == 1?
+                                    t('search.selecciona_personal')
+                                    :
+                                    `${(selectedServices.split(",").length-1)} ${(selectedServices.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={tipos_personal}
                             values={services}
                             state={selectedServices}
@@ -319,7 +324,12 @@ export const BuscarPersonalDomestico = () => {
 
                         <FieldDropdownCheckbox
                             title={t('search.horario')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedSchedules.split(",").length == 1?
+                                    t('search.selecciona_horario')
+                                    :
+                                    `${(selectedSchedules.split(",").length-1)} ${(selectedSchedules.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={dias}
                             values={schedules}
                             state={selectedSchedules}
@@ -366,7 +376,12 @@ export const BuscarPersonalDomestico = () => {
 
                         <FieldDropdownCheckbox
                             title={t('search.remuneracion_frecuencia')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedPaymentFreq.split(",").length == 1?
+                                    t('search.selecciona_remuneracion_frecuencia')
+                                    :
+                                    `${(selectedPaymentFreq.split(",").length-1)} ${(selectedPaymentFreq.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={remuneracion_frecuencia}
                             values={paymentFreq}
                             state={selectedPaymentFreq}
@@ -378,7 +393,7 @@ export const BuscarPersonalDomestico = () => {
                                 title={t('search.moneda')}
                                 placeholder={
                                     selectedCurrency !== ""?
-                                        monedas[selectedCurrency]:"ph"
+                                        monedas[selectedCurrency]:t('search.selecciona_moneda')
                                 }
                                 items={monedas}
                                 setSelectedState={setSelectedCurrency}
