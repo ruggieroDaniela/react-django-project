@@ -42,7 +42,10 @@
               "pais":"Pais de procedencia",
               "estado":"Estado/Provincia",
               "ciudad":"Ciudad",
-              "zona":"Zona"
+              "zona":"Zona",
+              "select-country":"Selecciona un país",
+              "select-state":"Selecciona un estado",
+              "select-city":"Selecciona una ciudad"
 
             },
             {

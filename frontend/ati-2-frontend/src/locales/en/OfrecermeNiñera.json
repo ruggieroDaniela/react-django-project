@@ -42,7 +42,10 @@
               "pais": "Country of origin",
               "estado": "State/Province",
               "ciudad": "City",
-              "zona": "Zone"
+              "zona": "Zone",
+              "select-country":"Select a country",
+              "select-state":"Select a state",
+              "select-city":"Select a city"
             },
             {
               "nombre": "General description of my work profile",

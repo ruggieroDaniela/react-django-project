@@ -77,6 +77,7 @@ export const BuscarPersonalDomestico = () => {
     useEffect(() => {
         const fetchStates = async () => {
             try {
+                
                 let [names, values] = await ( selectedCountries.length > 0? getStatesInCountry(selectedCountries): [[], []])
                 setStates( [names, values] );
             } catch (error) {
@@ -91,6 +92,7 @@ export const BuscarPersonalDomestico = () => {
     useEffect(() => {
         const fetchCities = async () => {
             try {
+                console.log(selectedStates);
                 let [names, values] = await ( selectedStates.length > 0? getCitiesInStates(selectedStates): [[], []])
                 setCities( [names, values] );
             } catch (error) {
