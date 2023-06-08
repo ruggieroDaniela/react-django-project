@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "users",
     "banks",
     "services", 
-    "django_filters"
+    "django_filters",
+    "multiselectfield"
 ]
 
 MIDDLEWARE = [

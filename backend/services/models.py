@@ -1,6 +1,8 @@
 from django.db import models
+from multiselectfield import MultiSelectField
 from django.core.exceptions import ValidationError
 from users.models import User
+from banks.models import Bank
 import uuid
 
 # Models
@@ -128,7 +130,7 @@ class Services(models.Model):
     workday = models.CharField(blank=False, max_length=15, choices=WORKDAY_CHOICES)
     workday_other = models.TextField(blank=True)
 
-    schedule = models.CharField(blank=False, max_length=7, choices=SCHEDULE_CHOICES)
+    schedule = MultiSelectField(choices=SCHEDULE_CHOICES, max_length=100)
     schedule_other = models.TextField(blank=True)
     
     # Salary
@@ -154,7 +156,7 @@ class Services(models.Model):
     publication_time = models.CharField(blank=False, max_length=2, choices=PUBLICATION_CHOICES)
     publication_plan = models.CharField(blank=False, max_length=2, choices=PUBLICATION_CHOICES)
     billing_country = models.TextField(blank=False)
-    billing_bank = models.TextField(blank=False)
+    billing_bank = models.ForeignKey(Bank, on_delete=models.CASCADE)
     
     class Meta:
         abstract = True
