@@ -69,6 +69,7 @@ function RegisterFormContextProvider({children}){
                 usar_facebook: false,
                 facebook_spec: ""
             },{
+                client_code: "",
                 banco_origen: "",
                 pais: "",
                 banco_destino: ""
@@ -116,7 +117,8 @@ function RegisterFormContextProvider({children}){
                 invalid_stage: false
             },
             {
-                invalid_stage: false
+                banco_requerido: false,
+                banco_minimo: false
             }
         ]
     });

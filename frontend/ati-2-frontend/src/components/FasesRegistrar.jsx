@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RegisterFormContext } from "../context/RegisterFormContext";
 import { useTranslation } from 'react-i18next';
-import { getCitiesInCountry} from "../components/dataFetchers/PaisDataFetcher";
+import { getAllCountries, getCitiesInCountry} from "../components/dataFetchers/PaisDataFetcher";
 import ErrorMessage from "./ErrorMessage";
+import axios from 'axios';
+import validator from "validator";
 
 import "../styles/Registrar.scss"
 
@@ -651,8 +653,6 @@ const Fase1 = () => {
                                             return newState;
                                         } )
                                     }}>
-                                    
-                                    <option value="" disabled> {t('registrar.fases.1.seleccionar_pais')} </option>
 
                                     {countries?.map( country => {
                                         return (<option key={country.code} value={country.name} data-country={JSON.stringify(country)}> {country.name}</option>);
@@ -1319,13 +1319,17 @@ const Fase5 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
         const banks = registerFormState.banks;
+        const code = registerFormState.phase[5].client_code
+        const countries = registerFormState.countries;
+        const bankNameRequired = registerFormState.errors[5].banco_requerido
+        const bankNameInvalid = registerFormState.errors[5].banco_minimo
 
         return(
             <div id="fase5">
                 
                 <div className="container">
                     <div id="codigo_cliente">
-                        {t('registrar.fases.5.codigo')}:  <span className="codigo">XXX</span>
+                        {t('registrar.fases.5.codigo')}:  <span className="codigo"> {code} </span>
                     </div>
 
                     <div className="nota">
@@ -1343,7 +1347,9 @@ const Fase5 = () => {
 
                 <div className="container" id="bancos">
                     <div id="banco_origen" className="container_banco">
+                        
                         <label className="field">
+                            <div>
                             <div className="etiqueta">
                                 {t('registrar.fases.5.banco_origen')}
                             </div>
@@ -1359,14 +1365,24 @@ const Fase5 = () => {
                                     } );   
                                 }}
                             />
-                        </label>
+                            </div>
+                           
 
+                        { bankNameRequired && <ErrorMessage message={t('registrar.errores.5.requerido')}/> }
+                        { bankNameInvalid && <ErrorMessage message={t('registrar.errores.5.minimo')}/> }
+
+
+                        </label>
+                        
+                        
                         <label className="field">
                             <div className="etiqueta">
                                 {t('registrar.fases.5.pais')}
                             </div>
-                            <input
-                                type="text"
+
+                            <select 
+                                style={{width: '100%' , boxSizing: 'border-box'}}
+                                name="select" 
                                 value={registerFormState.phase[5].pais}
                                 onChange={ e => {
                                     setRegisterFormState( prev => {
@@ -1374,9 +1390,15 @@ const Fase5 = () => {
                                         newState.phase[5] = {... prev.phase[5]};
                                         newState.phase[5].pais = e.target.value;
                                         return newState;
-                                    } );   
-                                }}
-                            />
+                                    } )
+                                }}>
+
+                                {countries?.map( country => {
+                                    return (<option key={country.name} value={country.name}>{country.name}</option>);
+                                })}
+
+                            </select>
+
                         </label>
                     </div>
 
@@ -1575,10 +1597,10 @@ const registrarUsuario = () => {
 const botonRegistrar = () => {
     const { t, i18n } = useTranslation();
     const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
-    
+
     const userData = {...registerFormState};
     let postBody = {};
-
+    
     // De donde nos conoce?
     let found_app_by = {
         website: userData.phase[0].website,
@@ -1693,6 +1715,41 @@ const botonRegistrar = () => {
             onClick={
                 async () => {
 
+                    // Validar la última fase
+                    let valid = true
+                    const selection = registerFormState.phase[5]
+                    
+                    const stringIsValid = (string) => {
+                        if(string.length < 2){
+                            return false
+                        }
+                        const regex = new RegExp('^[a-zA-Z]')    
+                        return regex.test(string);
+                    }
+
+                    // Validar nombre del banco
+                    if(!selection.banco_origen){
+                        registerFormState.errors[5].banco_requerido = true
+                        registerFormState.errors[5].banco_minimo = false
+                        valid = false
+                    } else if(!stringIsValid(selection.banco_origen)){
+                        registerFormState.errors[5].banco_requerido = false
+                        registerFormState.errors[5].banco_minimo = true
+                        valid = false
+                    } else {
+                        registerFormState.errors[5].banco_requerido = false
+                        registerFormState.errors[5].banco_minimo = false
+                    }
+
+                    if(!valid){
+                        setRegisterFormState( prev => {
+                            const newState = {... prev};
+                            return newState;
+                        } );
+                        return;
+                    }
+
+                    // Enviar datos
                     const url = 'http://127.0.0.1:8000/users/'
                     try {
                         
@@ -1727,6 +1784,288 @@ const botonRegistrar = () => {
     );
 }
 
+const useValidarRegistrar = () => {
+    const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
+
+    useEffect(() => {
+        const fetchCountries = async () => {
+            const [names, codes] = await getAllCountries();
+            const pairs = names.map((name, index) => {
+                return {
+                    "name": name, 
+                    "code": codes[index]
+                }
+            })
+            registerFormState.countries = pairs;
+        };
+
+        const fetchBanks= async () => {
+            const { data } = await axios.get('http://127.0.0.1:8000/banks/'); 
+            registerFormState.banks = data; 
+        }
+
+        fetchCountries()
+        
+        fetchBanks()
+    }, [])
+
+    console.log(registerFormState.phase[1])
+    const uniqueEmail = async (email) => {
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/users/unique_email/', {"email": email })
+            registerFormState.phase[5].client_code = response.data.client_code
+            return true
+        } catch(error) {
+            return false
+        } 
+    }
+
+    const stringIsValid = (string) => {
+        if(string.length < 2){
+            return false
+        }
+        const regex = new RegExp('^[a-zA-Z]')    
+        return regex.test(string);
+    }
+
+    const idIsValid = (string) => {
+        if(string.length < 5){
+            return false
+        }
+        const regex = new RegExp('^[0-9a-zA-Z]')    
+        return regex.test(string);
+    }
+
+    const validPassword = (password) =>{
+        if(password.length > 5)
+            return true
+        else 
+            return false
+    }
+
+    const validate = async (currentStage) => {
+
+        let valid = true;
+        if(currentStage == 0){
+            const selection = registerFormState.phase[0]
+    
+            if(!selection.website && !selection.social_network && !selection.friends && !selection.other){
+                // No se seleccionó nada
+                registerFormState.errors[0] = Object.values(registerFormState.errors[0]).map(() => false)
+                registerFormState.errors[0].option_required = true;
+                valid = false;
+            } else if((selection.social_network_other && ! selection.social_network_other_spec) 
+                    || (selection.other_other && !selection.other_other_spec) || (selection.radio && !selection.radio_spec) || (selection.press && !selection.press_spec)){
+                // Se seleccionó un campo a especificar, pero no se escribió nada
+                registerFormState.errors[0] = Object.values(registerFormState.errors[0]).map(() => false)
+                registerFormState.errors[0].other_empty = true
+                valid = false;
+            } else if (selection.social_network && !selection.facebook 
+                && !selection.twitter && !selection.instagram && !selection.social_network_other ){
+                // Se seleccionó "Redes sociales", pero no se selecciono una red social
+                registerFormState.errors[0] = Object.values(registerFormState.errors[0]).map(() => false)
+                registerFormState.errors[0].social_required = true 
+                valid = false;
+            } else if (selection.other && !selection.radio && !selection.press && !selection.other_other){
+                // Se seleccionó un "Otro", pero no se selecciono una opcion
+                registerFormState.errors[0] = Object.values(registerFormState.errors[0]).map(() => false)
+                registerFormState.errors[0].other_required = true 
+                valid = false;
+            }
+             else {
+                registerFormState.errors[0] = Object.values(registerFormState.errors[0]).map(() => false)
+                valid = true;
+            }
+        } else if(currentStage == 1){
+            const selection = registerFormState.phase[1]
+            const type = selection.tipo_usuario
+            
+            if(type === "natural"){
+                const user = selection.natural
+    
+                // Validar nombre
+                if(!user.nombre){
+                    registerFormState.errors[1].name_required = true
+                    registerFormState.errors[1].name_invalid = false
+                    valid = false
+                } else if (!stringIsValid(user.nombre)) {
+                    registerFormState.errors[1].name_required = false
+                    registerFormState.errors[1].name_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].name_required = false
+                    registerFormState.errors[1].name_invalid = false               
+                }
+    
+                // Validar apellido
+                if(!user.apellido){
+                    registerFormState.errors[1].last_name_required = true
+                    registerFormState.errors[1].last_name_invalid = false
+                    valid = false
+                } else if (!stringIsValid(user.apellido)) {
+                    registerFormState.errors[1].last_name_required = false
+                    registerFormState.errors[1].last_name_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].last_name_required = false
+                    registerFormState.errors[1].last_name_invalid = false
+                }
+                
+                //Validar id
+                if(!user.identificacion){
+                    registerFormState.errors[1].id_required = true
+                    registerFormState.errors[1].id_invalid = false
+                    valid = false
+                } else if (!idIsValid(user.identificacion)) {
+                    registerFormState.errors[1].id_required = false
+                    registerFormState.errors[1].id_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].id_required = false
+                    registerFormState.errors[1].id_invalid = false
+                }
+    
+                // Validar email
+                if(!user.correo){
+                    registerFormState.errors[1].email_required = true
+                    registerFormState.errors[1].email_invalid = false
+                    valid = false
+                } else if(!validator.isEmail(user.correo)){
+                    registerFormState.errors[1].email_required = false
+                    registerFormState.errors[1].email_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].email_required = false
+                    registerFormState.errors[1].email_invalid = false
+                }
+            } else if(type === "enterprise"){
+                const user = selection.empresa
+    
+                // Validar nombre de empresa
+                if(!user.nombre_empresa){
+                    registerFormState.errors[1].business_required = true
+                    registerFormState.errors[1].business_invalid = false
+                    valid = false
+                } else if (!stringIsValid(user.nombre_empresa)) {
+                    registerFormState.errors[1].business_required = false
+                    registerFormState.errors[1].business_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].business_required = false
+                    registerFormState.errors[1].business_invalid = false
+                }
+    
+                // Validar rif
+                if(!user.razon_rif){
+                    registerFormState.errors[1].rif_required = true
+                    registerFormState.errors[1].rif_invalid = false
+                    valid = false
+                } else if (!stringIsValid(user.razon_rif)) {
+                    registerFormState.errors[1].rif_required= false
+                    registerFormState.errors[1].rif_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].rif_required = false
+                    registerFormState.errors[1].rif_invalid = false
+                }
+                
+                //Validar address
+                if(!user.direccion){
+                    registerFormState.errors[1].address_required = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].address_required = false
+                }
+    
+                // Validar nombre representante
+                if(!user.nombre_representante){
+                    registerFormState.errors[1].rep_name_required = true
+                    registerFormState.errors[1].rep_name_invalid= false
+                    valid = false
+                } else if(!stringIsValid(user.nombre_representante)){
+                    registerFormState.errors[1].rep_name_required = false
+                    registerFormState.errors[1].rep_name_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].rep_name_required = false
+                    registerFormState.errors[1].rep_name_invalid = false
+                }
+    
+                // Validar email representante
+                if(!user.correo){
+                    registerFormState.errors[1].rep_email_required = true
+                    registerFormState.errors[1].rep_email_invalid= false
+                    valid = false
+                } else if(!validator.isEmail(user.correo)){
+                    registerFormState.errors[1].rep_email_required = false
+                    registerFormState.errors[1].rep_email_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].rep_email_required = false
+                    registerFormState.errors[1].rep_email_invalid = false
+                }
+            }
+
+        } else if(currentStage == 2){
+            const selection = registerFormState.phase[2]
+            if(!selection.idioma){
+                registerFormState.errors[2].option_required = true
+                valid = false
+            } else {
+                registerFormState.errors[2].option_required = false
+            }
+        }
+        else if(currentStage == 3){
+            const email = registerFormState.phase[3].correo
+            const password = registerFormState.phase[3].clave
+
+            // Validar correo
+            if(validator.isEmail(email)){
+                try{
+                    const unique = await uniqueEmail(email)
+                    console.log(registerFormState.phase[3])
+                    if(!unique){
+                        registerFormState.errors[3].invalid_mail = false
+                        registerFormState.errors[3].mail_exists = true
+                        valid = false
+                    } else{
+                        registerFormState.errors[3].invalid_mail = false
+                        registerFormState.errors[3].mail_exists = false
+                    }
+                } catch (error) {
+                    registerFormState.errors[3].mail_exists = false
+                    registerFormState.errors[3].invalid_mail = true
+                    valid = false
+                }
+            } else {
+                registerFormState.errors[3].invalid_mail = true
+                valid = false
+            }
+    
+            // Validar contraseña
+            if(!validPassword(password)){
+                registerFormState.errors[3].invalid_password = true
+                valid = false
+            } else {
+                registerFormState.errors[3].invalid_password = false
+            }
+
+        }
+
+        if(!valid){
+            setRegisterFormState( prev => {
+                const newState = {... prev};
+                return newState;
+            } );
+        }
+        
+        return valid
+    }
+
+    return { validate }
+}
+
+
 const FasesRegistrar = [Fase0, Fase1, Fase2, Fase3, Fase4, Fase5];
 
-export {FasesRegistrar, registrarUsuario, botonRegistrar};
+export {FasesRegistrar, registrarUsuario, botonRegistrar, useValidarRegistrar};

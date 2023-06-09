@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
 import { Multiform } from "../components/Multiform";
-import { FasesRegistrar, botonRegistrar, registrarUsuario } from "../components/FasesRegistrar";
+import { FasesRegistrar, botonRegistrar, registrarUsuario, useValidarRegistrar } from "../components/FasesRegistrar";
 
 import "../styles/Registrar.scss"
 
@@ -45,6 +45,7 @@ export const Registrar = () => {
                 stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
                 cancelEvent={goHome}            // onClick event del botón de cancelar
                 SubmitButton={botonRegistrar}   // componente con el botón de submit
+                validateStages={useValidarRegistrar}
             />
 
         </div>
