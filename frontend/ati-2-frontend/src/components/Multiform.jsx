@@ -73,7 +73,6 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames, valid
                     onClick={async () => {
                         const valid = await validate(currentStage)
                         if(valid){
-                            if(stages[0] === )
                             if(currentStage+1 < stages.length){
                                 setCurrentStage((prev) => prev+1);
                                 if( currentStage >= stagesDone )

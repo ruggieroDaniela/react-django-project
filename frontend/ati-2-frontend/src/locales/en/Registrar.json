@@ -122,12 +122,12 @@
             },
             {
                 "requerido": "This field is required",
-                "minimo": "Must be at least 2 letters",
+                "minimo": "Must be at least 2 characters",
                 "id": "Invalid identification",
                 "email": "Invalid email"
             },
             {
-                "requerido": "You must select at least one option"
+                "requerido": "You must select the language of your preference"
             },
             {
                 "mail_invalido": "This email is invalid",
@@ -135,11 +135,13 @@
                 "clave_invalida": "The password must have at least 6 characters"
             },
             {
-                "requerido": "You must select at least one option"
+                "requerido": "You must select at least one option",
+                "especificar_vacio": "The fields to be specified cannot be empty"
             },
             {
-                "requerido": "This field is required",
-                "minimo": "Must be at least 2 letters"
+                "requerido": "The source bank is required",
+                "minimo": "The source bank must be at least 2 characters",
+                "seleccion_requerida": "You must select one bank from the list"
             }
         ]
     }

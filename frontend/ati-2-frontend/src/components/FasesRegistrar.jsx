@@ -1001,6 +1001,16 @@ const Fase4 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
+        const frecuencia_required = registerFormState.errors[4].frecuencia_required
+        const servicio_required = registerFormState.errors[4].servicio_required
+        const email_required = registerFormState.errors[4].email_required
+        const social_required = registerFormState.errors[4].social_required
+        const sms_required = registerFormState.errors[4].sms_required
+        const other_required = registerFormState.errors[4].other_required
+        const facebook_required = registerFormState.errors[4].facebook_require
+
+        const empty_field = email_required || social_required  || sms_required || other_required || facebook_required
+
         return(
             <div id="fase4">
                 <div className="container title">
@@ -1084,7 +1094,7 @@ const Fase4 = () => {
                             {t('registrar.fases.4.frecuencias.3')}
                         </div>
                     </label>
-
+                    { frecuencia_required && <ErrorMessage message={t('registrar.errores.4.requerido')}/> }
                 </div>
 
                 <div id="servicios" className="container">
@@ -1124,6 +1134,8 @@ const Fase4 = () => {
                         />
                         {t('registrar.fases.4.servicios.1')}
                     </label>
+                    
+                    { servicio_required && <ErrorMessage message={t('registrar.errores.4.requerido')}/> }
 
                 </div>
 
@@ -1308,6 +1320,8 @@ const Fase4 = () => {
                             }}
                         />
                     </div>
+                
+                { empty_field  && <ErrorMessage message={t('registrar.errores.4.especificar_vacio')}/> }
 
                 </div>
             </div>
@@ -1323,6 +1337,7 @@ const Fase5 = () => {
         const countries = registerFormState.countries;
         const bankNameRequired = registerFormState.errors[5].banco_requerido
         const bankNameInvalid = registerFormState.errors[5].banco_minimo
+        const bankDestinyInvalid = registerFormState.errors[5].destino_requerido
 
         return(
             <div id="fase5">
@@ -1366,12 +1381,7 @@ const Fase5 = () => {
                                 }}
                             />
                             </div>
-                           
-
-                        { bankNameRequired && <ErrorMessage message={t('registrar.errores.5.requerido')}/> }
-                        { bankNameInvalid && <ErrorMessage message={t('registrar.errores.5.minimo')}/> }
-
-
+                        
                         </label>
                         
                         
@@ -1398,7 +1408,7 @@ const Fase5 = () => {
                                 })}
 
                             </select>
-
+                             
                         </label>
                     </div>
 
@@ -1428,6 +1438,8 @@ const Fase5 = () => {
                                 })}
 
                             </select>
+
+                           
                         </label>
 
                         {/* <label className="field">
@@ -1437,7 +1449,13 @@ const Fase5 = () => {
                             <input type="text"/>
                         </label> */}
                     </div>
+
+                    
                 </div>
+                
+                { bankNameRequired && <ErrorMessage message={t('registrar.errores.5.requerido')}/> }
+                { bankNameInvalid && <ErrorMessage message={t('registrar.errores.5.minimo')}/> }
+                { bankDestinyInvalid && <ErrorMessage message={t('registrar.errores.5.seleccion_requerida')}/> } 
 
                 <div className="container" id="info_container">
                     <div id="sugerencias">
@@ -1739,6 +1757,13 @@ const botonRegistrar = () => {
                     } else {
                         registerFormState.errors[5].banco_requerido = false
                         registerFormState.errors[5].banco_minimo = false
+                    }
+
+                    if(!selection.banco_destino){
+                        registerFormState.errors[5].destino_requerido = true
+                        valid = false
+                    } else {
+                        registerFormState.errors[5].destino_requerido = false
                     }
 
                     if(!valid){
@@ -2050,6 +2075,64 @@ const useValidarRegistrar = () => {
                 registerFormState.errors[3].invalid_password = false
             }
 
+        } else if (currentStage == 4){
+            const selection = registerFormState.phase[4]
+    
+            if(!selection.frecuencia){
+                // No se seleccionó una frecuencia
+                registerFormState.errors[4].frecuencia_required = true;
+                valid = false;
+            } else {
+                registerFormState.errors[4].frecuencia_required = false;
+            }
+            
+            if(!selection.servicio_personal && !selection.servicio_profesional){
+                // No se selecciono un servicio de interes
+                registerFormState.errors[4].servicio_required = true
+                valid = false;
+            } else {
+                registerFormState.errors[4].servicio_required = false
+            }
+            
+            if (selection.usar_correo && !selection.correo ){
+                // Se seleccionó "Email", pero no se esepecificó
+                registerFormState.errors[4].email_required = true 
+                valid = false;
+            } else{
+                registerFormState.errors[4].email_required = false
+            } 
+            
+            if (selection.redes && !selection.facebook && !selection.twitter){
+                // Se seleccionó un "Social Networks", pero no se especificó
+                registerFormState.errors[4].social_required = true 
+                valid = false;
+            } else { 
+                registerFormState.errors[4].social_required = false
+            }
+            
+            if (selection.usar_sms && !selection.sms){
+                // Se seleccionó un "SMS", pero no se especificó
+                registerFormState.errors[4].sms_required = true 
+                valid = false;
+            } else {
+                registerFormState.errors[4].sms_required = false
+            }
+            
+            if (selection.usar_otros && !selection.otros){
+                // Se seleccionó un "Other", pero no se especificó
+                registerFormState.errors[4].other_required = true 
+                valid = false;
+            } else {
+                registerFormState.errors[4].other_required = false
+            }
+            
+            if (selection.usar_facebook && !selection.facebook_spec){
+                // Se seleccionó un "Facebook", pero no se especificó
+                registerFormState.errors[4].facebook_required = true 
+                valid = false;
+            } else {
+                registerFormState.errors[4].facebook_required = false
+            }
         }
 
         if(!valid){

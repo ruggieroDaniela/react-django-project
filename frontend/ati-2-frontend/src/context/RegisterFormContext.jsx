@@ -114,11 +114,18 @@ function RegisterFormContextProvider({children}){
                 invalid_password: false
             },
             {
-                invalid_stage: false
+                frecuencia_required: false,
+                servicio_required: false,
+                email_required: false,
+                social_required: false,
+                sms_required: false,
+                other_required: false,
+                facebook_required: false
             },
             {
                 banco_requerido: false,
-                banco_minimo: false
+                banco_minimo: false,
+                destino_requerido: false, 
             }
         ]
     });
