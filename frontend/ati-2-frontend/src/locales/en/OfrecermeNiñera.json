@@ -58,8 +58,8 @@
               "mensaje": "Please indicate if you have availability to travel or not.",
               "mensaje2": "If you have availability, please specify additional details about the travel.",
               "pregunta": "Are you willing to travel to accompany the person(s) to be taken care of?",
-              "si": "yes",
-              "no": "no",
+              "si": "Yes",
+              "no": "No",
               "especifique": "Please specify"            
             },
             {
@@ -126,7 +126,19 @@
               ],
               "especifique": "Please specify",
               "no": "No",
-              "si": "Yes"
+              "si": "Yes",
+              "otro": "Other",
+              "moneda": "Currency",
+              "selecciona-moneda": "Select the currency",
+              "salario-ofrecido": "The offered salary is",
+              "seleccione-salario": "Select the salary",
+              "salario-opciones": [
+                "Per hour",
+                "Per day",
+                "Weekly",
+                "Bi-weekly",
+                "Monthly"
+              ]
             },
             {
               "nombre": "Availability to start working",
@@ -149,7 +161,23 @@
                 "Individual",
                 "Company",
                 "I am indifferent"
-              ]
+              ],
+              "continente": "Continent",
+              "select-continente": "Select the continent",
+              "pais": "Country",
+              "select-pais": "Select the country",
+              "estado": "State",
+              "select-estado": "Select the state",
+              "ciudad": "City",
+              "select-ciudad": "Select the city",
+              "continentes":[
+                "North America",
+                "South America",
+                "Europe",
+                "Asia",
+                "Oceania"
+            ]
+
             },
             {
               "nombre": "Documents I can provide to clients",

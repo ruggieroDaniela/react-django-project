@@ -6,8 +6,8 @@ import { useState } from "react";
 import { OfferDomesticFormContext } from "../context/OfferDomesticFormContext";
 import { getAllCountries, getCountriesInRegion, getStatesInCountry, getCitiesInStates, getContinents } from "../components/dataFetchers/PaisDataFetcher";
 import { useEffect } from 'react';
-
-
+import { FieldDropdown } from "../components/search/FieldDropdown";
+import axios from 'axios';
 
 
 import "../styles/BuscarPersonalDomestico.scss"
@@ -43,6 +43,7 @@ const Fase0 = () => {
                                 return newState;
                             });
                         }}
+                        value={offerDomesticFormState.age}
                         /> {t('OfrecermeNiñera.fases.0.años')}
             <div>
                 <span className="red" >*  </span><h3 className="blue">{t('OfrecermeNiñera.fases.0.situacion-familiar')}</h3> <br />
@@ -55,15 +56,15 @@ const Fase0 = () => {
                                 setOfferDomesticFormState (prev =>{
                                     const newState = {... prev};
                                     
-                                    newState.have_children = e.target.checked;
-                                    console.log(e.target.checked);
+                                    newState.have_children = false;
+                                    
                                     return newState;
-                                });
-                            
-                            {!offerDomesticFormState.have_children && "Checked"}
+                                });  
                             }}
-
+                            checked={!offerDomesticFormState.have_children}
                     />
+                    
+                    
                     <label htmlFor="o1">{t('OfrecermeNiñera.fases.0.sin-hijos')}</label>
 
                     <input  type="radio"
@@ -74,12 +75,13 @@ const Fase0 = () => {
                             onChange={ e =>{
                                 setOfferDomesticFormState ( prev => {
                                     const newState = {... prev};
-                                    newState.have_children = e.target.checked;
-                                    console.log(e.target.checked);
+                                    newState.have_children = true;
+                                    
                                     return newState;
                                 });
-
-                            }} />
+                            }} 
+                            checked={offerDomesticFormState.have_children}
+                            />
                     <label htmlFor="o2">{t('OfrecermeNiñera.fases.0.con-hijos')}</label>
                 </div>
             </div>
@@ -94,13 +96,16 @@ const Fase0 = () => {
                             onChange={ e => {
                                 setOfferDomesticFormState ( prev => {
                                     const newState = {... prev};
-                                    newState.education_level = e.value;
-                                    console.log(e.target.checked);
+                                    newState.education_level = e.target.value;
+                                    
                                     return newState;
                                 });
                             }}
-
+                            checked={offerDomesticFormState.education_level === 'PRI'}
                             />
+
+                    
+                            
                     <label htmlFor="o3">{t('OfrecermeNiñera.fases.0.grado.0')}</label>
 
                     <input  type="radio"
@@ -111,11 +116,12 @@ const Fase0 = () => {
                             onChange={ e => {
                                 setOfferDomesticFormState ( prev => {
                                     const newState = {... prev};
-                                    newState.education_level = e.value;
-                                    console.log(e.target.checked);
+                                    newState.education_level = e.target.value;
+                                    
                                     return newState;
                                 });
                             }}
+                            checked={offerDomesticFormState.education_level === 'TEC'}
                               />
                     <label htmlFor="o4">{t('OfrecermeNiñera.fases.0.grado.1')}</label>
 
@@ -127,11 +133,12 @@ const Fase0 = () => {
                             onChange={ e => {
                                 setOfferDomesticFormState ( prev => {
                                     const newState = {... prev};
-                                    newState.education_level = e.value;
-                                    console.log(e.target.checked);
+                                    newState.education_level = e.target.value;
+                                    
                                     return newState;
                                 });
                             }}
+                            checked={offerDomesticFormState.education_level === 'BAC'}
                             />
                     <label htmlFor="o5">{t('OfrecermeNiñera.fases.0.grado.2')}</label>
 
@@ -143,11 +150,12 @@ const Fase0 = () => {
                             onChange={ e => {
                                 setOfferDomesticFormState ( prev => {
                                     const newState = {... prev};
-                                    newState.education_level = e.value;
-                                    console.log(e.target.checked);
+                                    newState.education_level = e.target.value;
+                                    
                                     return newState;
                                 });
                             }}
+                            checked={offerDomesticFormState.education_level == 'UNI'}
                             />
                     <label htmlFor="o6">{t('OfrecermeNiñera.fases.0.grado.3')}</label>
                 </div>
@@ -164,11 +172,12 @@ const Fase0 = () => {
 
 const Fase1 = () => {
     const { t, i18n } = useTranslation();
-    
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+
     //selected
-    const [selectedCountry, setSelectedCountry] = useState(-1);
-    const [selectedState, setSelectedState] = useState(-1);
-    const [selectedCity, setSelectedCity] = useState(-1);
+    const [selectedCountry, setSelectedCountry] = useState(offerDomesticFormState.country);
+    const [selectedState, setSelectedState] = useState(offerDomesticFormState.state);
+    const [selectedCity, setSelectedCity] = useState(offerDomesticFormState.city);
     
     //Countries,states and cities
     const [countries, setCountries] = useState([[],[]]);
@@ -226,9 +235,10 @@ const Fase1 = () => {
     useEffect(() => {
         const fetchStates = async () => {
             try {
-                let [names, values] = await ( selectedCountry!=-1? getStatesInCountry(","+selectedCountry): ["Select a Country","loading"])
+                                    
+                let [names, values] = await ( selectedCountry!="" ? getStatesInCountry(","+selectedCountry): ["Select a Country","loading"])
                 setStates( [names, values] );
-                if (selectedCountry !=-1)
+                if (selectedCountry !="")
                     setReadyStates(true);
             } catch (error) {
                 console.error(error);
@@ -260,11 +270,11 @@ const Fase1 = () => {
     useEffect(() => {
         const fetchCities = async () => {
             try {
-                let [names, values] = await ( selectedState !=-1? getCitiesInStates(","+selectedState): ["Select a State","loading"])
-                console.log(names);
+                let [names, values] = await ( selectedState != "" ? getCitiesInStates(","+selectedState): ["Select a State","loading"])
+                
                 setCities( [names, values] );
                 
-                if (selectedState !=-1)
+                if (selectedState !="")
                     setReadyCities(true);
             } catch (error) {
                 console.error(error);
@@ -292,12 +302,17 @@ const Fase1 = () => {
         renderCitiesOptions();
     }, [states]);
 
-    const renderOptions = (objects) => {
+    const renderOptions = (objects,object_name) => {
         const options = [];
+        let aux = "";
+
+
+
         for (let i = 0; i < objects[0].length; i++) {
           options.push(
             <option key={objects[1][i]} 
                     value={objects[1][i]}
+                    selected={objects[1][i] == aux}
             >
               {objects[0][i]}
             </option>
@@ -336,9 +351,13 @@ const Fase1 = () => {
                                         newState.country = e.target.value;
                                         return newState;
                                     });
+
                                 }
-                            }>
-                    {readyCountries && renderOptions(countries)}
+                            }
+                            value={offerDomesticFormState.country}
+                    >
+                    
+                    {readyCountries && renderOptions(countries,"countries")}
                     {!readyCountries && (
                         <option>Loading ...</option>
                     )}
@@ -352,7 +371,7 @@ const Fase1 = () => {
                 <div>
                     <select name="estados" 
                             id="estados" 
-                            disabled={ selectedCountry == -1}
+                            disabled={ selectedCountry == ""}
                             onChange={ 
                                 e =>{
                                     setSelectedState(e.target.value);
@@ -363,7 +382,7 @@ const Fase1 = () => {
                                     });
                                 }
                             }> 
-                        {readyStates && renderOptions(states)}
+                        {readyStates && renderOptions(states,"states")}
                         {!readyStates && (
                         <option>{t('OfrecermeNiñera.fases.1.select-country')}</option>
                         )}
@@ -375,7 +394,7 @@ const Fase1 = () => {
                 <div>
                     <select name="ciudad"
                             id="ciudad" 
-                            disabled={ selectedState == -1}
+                            disabled={ selectedState == ""}
                             onChange={ 
                                 e => {
                                     setSelectedCity(e.target.value);
@@ -387,7 +406,7 @@ const Fase1 = () => {
                                 }
                             }
                             > 
-                        {readyCities && renderOptions(cities)}
+                        {readyCities && renderOptions(cities,"cities")}
                         {!readyCities && (
                         <option>{t('OfrecermeNiñera.fases.1.select-state')}</option>
                         )}
@@ -401,16 +420,17 @@ const Fase1 = () => {
                     <input  type="text"
                             name="zona"
                             id="zona" 
-                            disabled={ selectedCity == -1}
+                            disabled={ selectedCity == ""}
                             onChange={
                                 e => {
                                     setOfferDomesticFormState ( prev => {
                                         const newState = {... prev};
-                                        newState.zone = e.value;
+                                        newState.zone = e.target.value;
                                         return newState;
                                     });
                                 } 
                             }
+                            value={offerDomesticFormState.zone}
                             />
                 </div>
 
@@ -422,7 +442,7 @@ const Fase1 = () => {
 
 const Fase2 = () => {
     const { t, i18n } = useTranslation();
-    
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);    
 
     return ( 
     <div id="fase2">
@@ -437,7 +457,18 @@ const Fase2 = () => {
             </div>
             
             <div id="form">
-                <textarea></textarea>
+                <textarea 
+                        onChange={
+                            e => {
+                                setOfferDomesticFormState ( prev => {
+                                    const newState = {... prev};
+                                    newState.description = e.target.value;
+                                    return newState;
+                                });
+                            } 
+                        }
+                        value={offerDomesticFormState.description}
+                ></textarea>
             </div>
     </div> 
     );
@@ -445,7 +476,7 @@ const Fase2 = () => {
 
 const Fase3 = () => {
     const { t, i18n } = useTranslation();
-    
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
     return (     
     <div id="fase3">
@@ -458,23 +489,65 @@ const Fase3 = () => {
             <span className="red">* </span><h2 >{t('OfrecermeNiñera.fases.3.pregunta')}</h2>
             <div id="form">
                     <div>
-                        <input type="checkbox" id="situacion-familiar" name="interest" value="coding" checked />
-                        <label for="situacion-familiar">{t('OfrecermeNiñera.fases.3.si')}</label>
+                        <input  type="radio"
+                                
+                                name="interest"
+                                id="c1"
+                                onChange={
+                                    e => {
+                                        setOfferDomesticFormState ( prev => {
+                                            const newState = {... prev};
+                                            newState.travel = true;
+                                            return newState;
+                                        });
+                                    } 
+                                }
+                                checked={offerDomesticFormState.travel}
+                        />
+                        <label for="c1">{t('OfrecermeNiñera.fases.3.si')}</label>
                     </div>
 
                     <div>
-                        <input type="checkbox" id="situacion-familiar" className="segundo" name="interest" value="coding" checked />
-                        <label for="situacion-familiar">{t('OfrecermeNiñera.fases.3.no')}</label>
+                        <input  type="radio"
+                                
+                                className="segundo" 
+                                name="interest" 
+                                id="c2"
+                                onChange={
+                                    e => {
+                                        setOfferDomesticFormState ( prev => {
+                                            const newState = {... prev};
+                                            newState.travel = false;
+                                            return newState;
+                                        });
+                                    } 
+                                }
+                                checked={!offerDomesticFormState.travel}        
+                        />
+                        <label for="c2">{t('OfrecermeNiñera.fases.3.no')}</label>
                     </div>
             </div>
         </div>
+        
+        { !offerDomesticFormState.travel && (
+        <div id="form" >
         <div >
             <div id="peq">{t('OfrecermeNiñera.fases.3.especifique')}</div>
         </div>
-
-        <div id="form">
-            <textarea></textarea>
+            <textarea 
+                    onChange={
+                        e => {
+                            setOfferDomesticFormState ( prev => {
+                                const newState = {... prev};
+                                newState.travel_description = e.target.value;
+                                return newState;
+                            });
+                        } 
+                    }
+                    value={offerDomesticFormState.travel_description}
+            ></textarea>
         </div>
+        )}
 
     </div>
   );
@@ -482,7 +555,7 @@ const Fase3 = () => {
 
 const Fase4 = () => {
     const { t, i18n } = useTranslation();
-    
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
     return ( 
     <div id="fase4">
@@ -513,7 +586,18 @@ const Fase4 = () => {
             </div>
 
             <div id="form">
-                <textarea></textarea>
+                <textarea
+                        onChange={
+                            e => {
+                                setOfferDomesticFormState ( prev => {
+                                    const newState = {... prev};
+                                    newState.activities = e.target.value;
+                                    return newState;
+                                });
+                            } 
+                        }
+                        value={offerDomesticFormState.activities}                        
+                ></textarea>
             </div>
         </div>
     </div>
@@ -523,7 +607,146 @@ const Fase4 = () => {
 
 const Fase5 = () => {
     const { t, i18n } = useTranslation();
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+
+    // variables to make the checkboxes behave like radiobuttons
+    const [workdays, setWorkdays] =useState(offerDomesticFormState.workday);
+    const [schedule, setSchedule] =useState(offerDomesticFormState.schedule);
+
+    const [salaryType, setSalaryType] = useState("");
+
+    //dropdown currency
+    let currency = ["USD","EUR",t('OfrecermeNiñera.fases.5.otro')];
+    const [selectedCurrency,setSelectedCurrency] = useState(switchCurrency());
     
+
+    //dropdown salary
+    let salary = [t('OfrecermeNiñera.fases.5.salario-opciones.0'), t('OfrecermeNiñera.fases.5.salario-opciones.1'), t('OfrecermeNiñera.fases.5.salario-opciones.2'), t('OfrecermeNiñera.fases.5.salario-opciones.3'), t('OfrecermeNiñera.fases.5.salario-opciones.4')];
+    const [selectedSalary, setSelectedSalary] = useState(switchSalary());
+
+    const [selectedServices, setSelectedServices] = useState("");
+
+ 
+
+
+    function setTheWorkdays (e){
+
+        setOfferDomesticFormState ( prev => {
+
+            const newState = {... prev}
+
+            let pos = (newState.workday).indexOf( e.target.id );
+            
+            if(e.target.checked){
+                if( pos == -1 ) (newState.workday).push(e.target.id);
+            }else{
+                if( pos != -1 ) (newState.workday).splice(pos,1) 
+            }
+            return newState;
+        })
+        
+    } 
+
+    
+    function setTheSchedule (e){
+
+        setOfferDomesticFormState ( prev => {
+
+            const newState = {... prev}
+
+            let pos = (newState.schedule).indexOf( e.target.id );
+            
+            if(e.target.checked){
+                if( pos == -1 ) (newState.schedule).push(e.target.id);
+            }else{
+                if( pos != -1 ) (newState.schedule).splice(pos,1) 
+            }
+            return newState;
+        })
+        
+    } 
+
+
+
+    useEffect(() => {
+        setOfferDomesticFormState ( prev => {
+            const newState = {... prev}
+            selectedCurrency ==2 ? newState.currency =  "OTRA" : newState.currency =  currency[selectedCurrency]
+            
+            return newState;
+        });
+    }, [selectedCurrency]);
+
+    useEffect(() => {
+        setOfferDomesticFormState ( prev => {
+            const newState = {... prev}
+            let aux=""
+            
+            switch(selectedSalary){
+                case 0:
+                    aux="HORA";
+                    break;
+                case 1:
+                    aux="DIA";
+                    break;
+                case 2:
+                    aux="SEMANAL";
+                    break;
+                case 3:
+                    aux="QUINCENAL";
+                    break;
+                case 4:   
+                    aux="MENSUAL";
+                    break;                         
+            }
+            
+            
+            newState.salary_offered = aux;
+            return newState;
+        });
+    }, [selectedSalary]);
+
+
+    //just for the switches
+    function switchCurrency (){
+        let aux = -1
+        switch(offerDomesticFormState.currency){
+            case "USD":
+                aux = 0;
+                break;
+            case "EUR":
+                aux = 1;
+                break;
+            case "OTRA":
+                aux = 2;
+                break;
+        }
+
+        return aux;
+    }
+
+    function switchSalary (){
+        let aux = -1
+        switch(offerDomesticFormState.salary_offered){
+            case "HORA":
+                aux = 0;
+                break;
+            case "DIA":
+                aux = 1;
+                break;
+            case "SEMANAL":
+                aux = 2;
+                break;
+            case "QUINCENAL":
+                aux = 3;
+                break;
+            case "MENSUAL":   
+                aux = 4;
+                break;      
+        }
+
+        return aux;
+    }
 
     return ( 
         <div id="fase5">
@@ -540,64 +763,122 @@ const Fase5 = () => {
                     <div className="titulos">
                         <span className="red">* </span><h2>{t('OfrecermeNiñera.fases.5.salidas-jornada')}</h2>
                     </div>
-                    <div className="form">
+                    <div className="form" >
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.0')}</label>
+                            <input  type="checkbox"
+                                    id="SEMANAL"
+                                    className="workdays"
+                                    checked={(offerDomesticFormState.workday).includes('SEMANAL')}
+                                    onChange={e => setTheWorkdays(e)}
+                            />
+                            <label htmlFor="SEMANAL">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.0')}</label>
+                        </div>    
+                        
+                        <div>
+                            <input  type="checkbox"
+                                    id="QUINCENAL"
+                                    className="workdays"
+                                    checked={offerDomesticFormState.workday.includes('QUINCENAL')}
+                                    onChange={e => {setTheWorkdays(e)}}
+                            />
+                            <label htmlFor="QUINCENAL">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.1')}</label>
                         </div>    
 
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.1')}</label>
-                        </div>    
-
-                        <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.2')}</label>
+                            <input  type="checkbox"
+                                    id="MENSUAL"
+                                    className="workdays"
+                                    checked={offerDomesticFormState.workday.includes('MENSUAL')}
+                                    onChange={e => {setTheWorkdays(e)}}
+                            />
+                            <label htmlFor="MENSUAL">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.2')}</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.3')}</label>
+                            <input  type="checkbox"
+                                    id="INTERDIARIO"
+                                    className="workdays"
+                                    checked={offerDomesticFormState.workday.includes('INTERDIARIO')}
+                                    onChange={e => {setTheWorkdays(e)}}
+                            />
+                            <label htmlFor="INTERDIARIO">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.3')}</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.4')}</label><br/>
+                            <input  type="checkbox"
+                                    id="MEDIO_TIEMPO"
+                                    className="workdays"
+                                    checked={offerDomesticFormState.workday.includes('MEDIO_TIEMPO')}
+                                    onChange={e => {setTheWorkdays(e)}}
+                            />
+                            <label htmlFor="MEDIO_TIEMPO">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.4')}</label><br/>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.5')}</label>
+                            <input  type="checkbox"
+                                    id="FIN_SEMANA"
+                                    className="workdays"
+                                    checked={offerDomesticFormState.workday.includes('FIN_SEMANA')}
+                                    onChange={e => {setTheWorkdays(e)}}
+                            />
+                            <label for="FIN_SEMANA">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.5')}</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.6')}</label>
+                            <input  type="checkbox"
+                                    id="NOCHE"
+                                    className="workdays"
+                                    checked={offerDomesticFormState.workday.includes('NOCHE')}
+                                    onChange={e => {setTheWorkdays(e)}}
+                            />
+                            <label for="NOCHE">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.6')}</label>
+                        </div>
+
+                        {/* <div>
+                            <input  type="checkbox"
+                                    id="HORAS"
+                                    className="workdays"
+                                    
+                                    onChange={e => {setTheWorkdays(e)}}
+                            />
+                            <label for="HORAS">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.7')}</label>
+                        </div> 
+                        */}
+                        <div>
+                            <input  type="checkbox"
+                                    id="HORAS"
+                                    className="workdays"
+                                    checked={offerDomesticFormState.workday.includes('HORAS')}
+                                    onChange={e => {setTheWorkdays(e)}}
+                            />
+                            <label for="HORAS">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.8')}</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.7')}</label>
-                        </div>
-
-                        <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.8')}</label>
-                        </div>
-
-                        <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.9')}</label>                    
+                            <input  type="checkbox"
+                                    id="OTRO"
+                                    className="workdays"
+                                    checked={offerDomesticFormState.workday.includes('OTRO')}
+                                    onChange={e => {setTheWorkdays(e)}}
+                            />
+                            <label for="OTRO">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.9')}</label>                    
                         </div>
                         <br />
                         
-                        <div>
-                        {t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.10')}: <input type="text" />
+                        <div hidden={!(offerDomesticFormState.workday).includes('OTRO')}>
+                        {t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.10')}: <input type="text" value={offerDomesticFormState.workday_other} 
+                            onChange={ e =>{
+                                setOfferDomesticFormState( prev =>{
+                                    const newState = {...prev};
+                                    newState.workday_other = e.target.value;
+                                    return newState;
+                                });
+                            }}/>
                         </div>
+                        
                     </div>
                 </div>
-
+                
                 <div>
                     <div className="titulos">
                         <span className="red">* </span><h2>{t('OfrecermeNiñera.fases.5.horario')}</h2>
@@ -606,57 +887,105 @@ const Fase5 = () => {
 
                     <div className="form">
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.5.horario-opciones.0')}</label>
+                            <input  type="checkbox"
+                                    id="LUN"
+                                    checked={offerDomesticFormState.schedule.includes('LUN')}
+                                    onChange={e => {setTheSchedule(e)}}
+
+                                    />
+                            <label for="cd1">{t('OfrecermeNiñera.fases.5.horario-opciones.0')}</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="c2"/>
-                            <label for="c2">{t('OfrecermeNiñera.fases.5.horario-opciones.1')}</label>
+                            <input  type="checkbox"
+                                    id="MAR"
+                                    checked={offerDomesticFormState.schedule.includes('MAR')}
+                                    onChange={e => {setTheSchedule(e)}}
+                                    />
+                            <label for="cd2">{t('OfrecermeNiñera.fases.5.horario-opciones.1')}</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="c3"/>
-                            <label for="c3">{t('OfrecermeNiñera.fases.5.horario-opciones.2')}</label>
+                            <input  type="checkbox"
+                                    id="MIE"
+                                    checked={offerDomesticFormState.schedule.includes('MIE')}
+                                    onChange={e => {setTheSchedule(e)}}
+                                    />
+                            <label for="MIE">{t('OfrecermeNiñera.fases.5.horario-opciones.2')}</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="c4"/>
-                            <label for="c4">{t('OfrecermeNiñera.fases.5.horario-opciones.3')}</label>
+                            <input  type="checkbox"
+                                    id="JUE"
+                                    checked={offerDomesticFormState.schedule.includes('JUE')}
+                                    onChange={e => {setTheSchedule(e)}}
+                                    />
+                            <label for="JUE">{t('OfrecermeNiñera.fases.5.horario-opciones.3')}</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="c5"/>
-                            <label for="c5">{t('OfrecermeNiñera.fases.5.horario-opciones.4')}</label>
+                            <input  type="checkbox"
+                                    id="VIE"
+                                    checked={offerDomesticFormState.schedule.includes('VIE')}
+                                    onChange={e => {setTheSchedule(e)}}
+                                    />
+                            <label for="VIE">{t('OfrecermeNiñera.fases.5.horario-opciones.4')}</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="c6"/>
-                            <label for="c6">{t('OfrecermeNiñera.fases.5.horario-opciones.5')}</label>
+                            <input  type="checkbox"
+                                    id="SAB"
+                                    checked={offerDomesticFormState.schedule.includes('SAB')}
+                                    onChange={e => {setTheSchedule(e)}}
+                                    />
+                            <label for="SAB">{t('OfrecermeNiñera.fases.5.horario-opciones.5')}</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="c7"/>
-                            <label for="c7">{t('OfrecermeNiñera.fases.5.horario-opciones.6')}</label>
+                            <input  type="checkbox"
+                                    id="DOM"
+                                    checked={offerDomesticFormState.schedule.includes('DOM')}
+                                    onChange={e => {setTheSchedule(e)}}
+                                    />
+                            <label for="cd7">{t('OfrecermeNiñera.fases.5.horario-opciones.6')}</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="c8"/>
-                            <label for="c8">{t('OfrecermeNiñera.fases.5.horario-opciones.7')}</label>
+                            <input  type="checkbox"
+                                    id="LUN_VIE"
+                                    checked={offerDomesticFormState.schedule.includes('LUN_VIE')}
+                                    onChange={e => {setTheSchedule(e)}}
+                                    />
+                            <label for="LUN_VIE">{t('OfrecermeNiñera.fases.5.horario-opciones.7')}</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="c9"/>
-                            <label for="c9">{t('OfrecermeNiñera.fases.5.horario-opciones.8')}</label>
+                            <input  type="checkbox"
+                                    id="FIN"
+                                    checked={offerDomesticFormState.schedule.includes('FIN')}
+                                    onChange={e => {setTheSchedule(e)}}
+                                    />
+                            <label for="FIN">{t('OfrecermeNiñera.fases.5.horario-opciones.8')}</label>
                         </div>
 
                         <div>
-                            <input type="checkbox" id="c10"/>
-                            <label for="c10">{t('OfrecermeNiñera.fases.5.horario-opciones.9')}</label>
+                            <input  type="checkbox"
+                                    id="OTRO"
+                                    checked={offerDomesticFormState.schedule.includes('OTRO')}
+                                    onChange={e => {setTheSchedule(e)}}
+                                    />
+                            <label for="cd10">{t('OfrecermeNiñera.fases.5.horario-opciones.9')}</label>
                         </div>
 
-                        <div>
-                        {t('OfrecermeNiñera.fases.5.horario-opciones.10')}: <input type="text" />
+                        <div hidden={!(offerDomesticFormState.schedule).includes('OTRO')}>
+                        {t('OfrecermeNiñera.fases.5.horario-opciones.10')}: <input type="text" value={offerDomesticFormState.schedule_other} 
+                            onChange={ e =>{
+                                setOfferDomesticFormState( prev =>{
+                                    const newState = {...prev};
+                                    newState.schedule_other = e.target.value;
+                                    return newState;
+                                });
+                            }} />
                         </div>
                     </div>
 
@@ -666,17 +995,103 @@ const Fase5 = () => {
                     <div className="titulos">
                         <span className="red">* </span><h2>{t('OfrecermeNiñera.fases.5.salario-deseado')}</h2>
                     </div>
+                    
+                    <div id="column">
+                        <div id="form-vertical">
+                            <div>
+                                <input  type="radio"
+                                        name="salary"
+                                        id="d1"
+                                        checked={offerDomesticFormState.payment == "MONTO"}
+                                        onChange={
+                                            e => {
+                                                setOfferDomesticFormState( prev => {
+                                                    const newState = {...prev}
+                                                    newState.payment = "MONTO";
+                                                    return newState
+                                                });
+                                            } 
+                                        }
+                                        />
+                                <label for="d1">{t('OfrecermeNiñera.fases.5.salario-deseado-opciones.0')}</label> 
+                            </div>
 
-                    <div id="form-vertical">
-                        <div>
-                            <input type="radio" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.5.salario-deseado-opciones.0')}</label> 
+                            <div>
+                                <input  type="radio"
+                                        name="salary" 
+                                        id="d2"
+                                        checked={offerDomesticFormState.payment == "CONVENIR"}
+                                        onChange={
+                                            e => {
+                                                setOfferDomesticFormState( prev => {
+                                                    const newState = {...prev}
+                                                    newState.payment = "CONVENIR";
+                                                    return newState
+                                                });
+                                            } 
+                                        }
+
+                                        />
+                                <label for="d2">{t('OfrecermeNiñera.fases.5.salario-deseado-opciones.1')}</label> 
+                            </div>
+                        </div>
+                        
+                        
+                        <div id="texto" style={{ visibility: offerDomesticFormState.payment == "MONTO" ? 'visible' : 'hidden' }} >
+                            <input type="text" onChange={ e =>{
+                                setOfferDomesticFormState( prev =>{
+                                    const newState = {...prev};
+                                    newState.payment_amount = e.target.value;
+                                    return newState;
+                                });
+                            }} value={offerDomesticFormState.payment_amount} />
                         </div>
 
-                        <div>
-                            <input type="radio" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.5.salario-deseado-opciones.1')}</label> 
+                        <div className="dropdown-content" style={{ visibility: offerDomesticFormState.payment == "MONTO" ? 'visible' : 'hidden' }}>
+                            <FieldDropdown
+                                title={t('OfrecermeNiñera.fases.5.moneda')}
+                                placeholder={
+                                    selectedCurrency != -1?
+                                        currency[selectedCurrency]:t('OfrecermeNiñera.fases.5.selecciona-moneda')
+                                }
+                                items={currency}
+                                setSelectedState={setSelectedCurrency}
+                            />
+                            
+                            {selectedCurrency==2 && 
+                                <div>
+                                    <label htmlFor="especifique">{t('OfrecermeNiñera.fases.5.especifique')}</label>    
+                                    <input  id="especifique"
+                                            type="text"
+                                            value={offerDomesticFormState.currency_other} 
+                                            onChange={ e => {
+                                                setOfferDomesticFormState( prev => {
+                                                    const newState = {...prev}
+                                                    newState.currency_other = e.target.value;
+                                                    return newState;
+                                                });
+                                            }}
+                                            />
+                                </div>    
+                            }
+                            
                         </div>
+                        
+
+                        <div className="dropdown-content" style={{ visibility: offerDomesticFormState.payment == "MONTO" ? 'visible' : 'hidden' }}>
+                            <FieldDropdown
+                                    title={t('OfrecermeNiñera.fases.5.salario-ofrecido')}
+                                    placeholder={
+                                        selectedSalary != -1?
+                                            salary[selectedSalary]:t('OfrecermeNiñera.fases.5.seleccione-salario')
+                                    }
+                                    items={salary}
+                                    setSelectedState={setSelectedSalary}
+                            />
+                        </div>
+
+                        
+
                     </div>
                 </div>
 
@@ -692,14 +1107,62 @@ const Fase5 = () => {
                                 {t('OfrecermeNiñera.fases.5.ejemplos.2')}<br/>
                                 {t('OfrecermeNiñera.fases.5.ejemplos.3')}</p>
                         </div>
+                        
+                        <div id="form-horizontal">
+                                <div>
+                                    <input  type="radio"
+                                            name="salary"
+                                            id="e1"
+                                            checked={!offerDomesticFormState.benefits}
+                                            onChange={
+                                                e => {
+                                                    setOfferDomesticFormState( prev => {
+                                                        const newState = {...prev}
+                                                        newState.benefits = false;
+                                                        return newState
+                                                    });
+                                                } 
+                                            }
+                                            />
+                                    <label for="e1">{t('OfrecermeNiñera.fases.5.no')}</label> 
+                                </div>
 
-                        <div>
+                                <div>
+                                    <input  type="radio"
+                                            name="salary" 
+                                            id="e2"
+                                            checked={offerDomesticFormState.benefits}
+                                            onChange={
+                                                e => {
+                                                    setOfferDomesticFormState( prev => {
+                                                        const newState = {...prev}
+                                                        newState.benefits = true;
+                                                        return newState
+                                                    });
+                                                } 
+                                            }
+
+                                            />
+                                    <label for="e2">{t('OfrecermeNiñera.fases.5.si')}</label> 
+                                </div>
+                        </div>
+
+                        <div style={{ visibility: offerDomesticFormState.benefits ? 'visible' : 'hidden' }}>
                             <div id="der">
                                 <div id="peq">{t('OfrecermeNiñera.fases.3.especifique')}</div>
                             </div>
 
-                            <div id="der">
-                                <textarea></textarea>
+                            <div id="der" >
+                                <textarea 
+                                value={offerDomesticFormState.benefits_description}
+                                onChange={ e =>{
+                                    setOfferDomesticFormState( prev => {
+                                        const newState = {...prev}
+                                        newState.benefits_description = e.target.value;
+                                        return newState
+                                    });    
+                                }}>
+                                </textarea>
                             </div>
                         </div>
                     </div>
@@ -710,7 +1173,7 @@ const Fase5 = () => {
  
 const  Fase6= () => {
     const { t, i18n } = useTranslation();
-    
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
     return(
         <div id="fase6">
@@ -728,18 +1191,54 @@ const  Fase6= () => {
                 <div id="form">
                     <div id="form-vertical">
                         <div>
-                            <input type="radio" id="c1"/>
+                            <input  type="radio" 
+                                    id="c1"
+                                    checked={offerDomesticFormState.availability == "FECHA"}
+                                    onChange={ e=>{
+                                        setOfferDomesticFormState( prev => {
+                                            const newState = {...prev};
+                                            newState.availability = "FECHA";
+                                            return newState;
+                                        });
+
+                                    }}
+
+                            />
                             <label for="c1">{t('OfrecermeNiñera.fases.6.fecha-inicio')}</label> 
                         </div>
 
                         <div>
-                            <input type="radio" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.6.fecha-convenir')}</label> 
+                            <input  type="radio" 
+                                    id="c2"
+                                    checked={offerDomesticFormState.availability == "CONVENIR"}
+                                    onChange={ e=>{
+                                        setOfferDomesticFormState( prev => {
+                                            const newState = {...prev};
+                                            newState.availability = "CONVENIR";
+                                            return newState;
+                                        });
+
+                                    }}
+                            />
+                            <label for="c2">{t('OfrecermeNiñera.fases.6.fecha-convenir')}</label> 
                         </div>
                     </div>
+                    {offerDomesticFormState.availability == "FECHA" &&
                     <div>
-                        <input type="date" />   
+                        <input  type="date" 
+                                value={offerDomesticFormState.availability_date}
+                                onChange={
+                                    e=>{
+                                        setOfferDomesticFormState( prev => {
+                                            const newState = {...prev};
+                                            newState.availability_date = e.target.value;
+                                            return newState;
+                                        });
+                                    }
+                                }
+                        />   
                     </div>
+                    }
                 </div>
             
 
@@ -750,10 +1249,111 @@ const  Fase6= () => {
 
 const Fase7 = () => {
     const { t, i18n } = useTranslation();
-    
-    var arr=[1,2,3];
-    var val=[1,2,3];
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+
+    var arr=[1,2,3,4,5];
+    var val=[0,1,2,3,4];
     const [selectedServices, setSelectedServices] = useState("");
+
+
+    const [selectedContinente,setSelectedContinente] = useState(offerDomesticFormState.origin_continent);
+    const [selectedPais,setSelectedPais] = useState(offerDomesticFormState.origin_country);
+    const [selectedEstado,setSelectedEstado] = useState(offerDomesticFormState.origin_state);
+    const [selectedCiudad,setSelectedCiudad] = useState(offerDomesticFormState.origin_city);
+
+    // names and values that need backend fetching
+    const [countries, setCountries] = useState([]);
+    const [states, setStates] = useState([]);
+    const [cities, setCities] = useState([]);
+
+    // variables that dont need a fetch
+    const regions = getContinents();
+    const continentes = [];
+    for (let index = 0; index < 5; index++) 
+    continentes.push( t('continentes.'+index) )
+
+    //Countries
+    useEffect(() => {
+        setOfferDomesticFormState ( prev => {
+            const newState = {...prev};
+            newState.origin_continent = selectedContinente ;
+            return newState;
+        });
+        
+        console.log(offerDomesticFormState.origin_continent );
+        const fetchCountries = async () => {
+            try {
+                let aux_names=[];
+                let aux_values=[];
+                let index = selectedContinente.split(",");
+                
+                for( let i=1 ; i < index.length; i++) {
+                    let [names, values] = await ( selectedContinente[i] == -1? getAllCountries(): getCountriesInRegion( regions[index[i]])  );
+                    aux_names = aux_names.concat(names);
+                    aux_values = aux_values.concat(values);
+                }
+                
+                setCountries( [aux_names, aux_values] );
+
+            } catch (error) {
+                console.error(error);
+            } 
+        };
+
+        fetchCountries();
+    }, [selectedContinente]);
+    
+    //States
+    useEffect(() => {
+        setOfferDomesticFormState ( prev => {
+            const newState = {...prev};
+            newState.origin_country = selectedPais ;
+            return newState;
+        });
+        const fetchStates = async () => {
+            try {
+                
+                let [names, values] = await ( selectedPais.length > 0? getStatesInCountry(selectedPais): [[], []])
+                setStates( [names, values] );
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchStates();
+    }, [selectedPais]);
+
+    // Cities
+    useEffect(() => {
+
+        setOfferDomesticFormState ( prev => {
+            const newState = {...prev};
+            newState.origin_state = selectedEstado ;
+            return newState;
+        });
+        const fetchCities = async () => {
+            try {
+                
+                let [names, values] = await ( selectedEstado.length > 0? getCitiesInStates(selectedEstado): [[], []])
+                setCities( [names, values] );
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchCities();
+    }, [selectedEstado]);
+
+    //
+    useEffect( () => {
+
+        setOfferDomesticFormState ( prev => {
+            const newState = {...prev};
+            newState.origin_city = selectedCiudad ;
+            return newState;
+        });
+        
+    },[selectedCiudad]);
 
     return ( <div id="fase7">
         <div className="small blue">
@@ -770,13 +1370,37 @@ const Fase7 = () => {
                 </div>
                 <div className="form-vertical">
                         <div>
-                            <input type="radio" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.7.lugar-procedencia-opciones.0')}</label> 
+                            <input  type="radio"
+                                    id="d1"
+                                    checked={offerDomesticFormState.origin == "SI"}
+                                    onChange={
+                                        e => {
+                                            setOfferDomesticFormState( prev => {
+                                                const newState = {...prev};
+                                                newState.origin = "SI";
+                                                return newState;
+                                            });
+                                        }
+                                    }
+                            />
+                            <label for="d1">{t('OfrecermeNiñera.fases.7.lugar-procedencia-opciones.0')}</label> 
                         </div>
 
                         <div>
-                            <input type="radio" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.7.lugar-procedencia-opciones.1')}</label> 
+                            <input  type="radio"
+                                    id="d2"
+                                    checked={offerDomesticFormState.origin == "NO"}
+                                    onChange={
+                                        e => {
+                                            setOfferDomesticFormState( prev => {
+                                                const newState = {...prev};
+                                                newState.origin = "NO";
+                                                return newState;
+                                            });
+                                        }
+                                    }
+                            />
+                            <label for="d2">{t('OfrecermeNiñera.fases.7.lugar-procedencia-opciones.1')}</label> 
                         </div>
                 </div>
             </div>
@@ -784,16 +1408,52 @@ const Fase7 = () => {
                 <h2 >{t('OfrecermeNiñera.fases.7.tipo-cliente')}</h2>
                 <div className="form-vertical">
                         <div>
-                            <input type="radio" id="c1"/>
+                            <input  type="radio"
+                                    id="c1"
+                                    checked={offerDomesticFormState.client_type == "NAT"}
+                                    onChange={
+                                        e => {
+                                            setOfferDomesticFormState( prev => {
+                                                const newState = {...prev};
+                                                newState.client_type = "NAT";
+                                                return newState
+                                            });
+                                        }
+                                    }
+                            />
                             <label for="c1">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.0')}</label> 
                         </div>
                         <div>
-                            <input type="radio" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.1')}</label> 
+                            <input  type="radio"
+                                    id="c2"
+                                    checked={offerDomesticFormState.client_type == "EMP"}
+                                    onChange={
+                                        e => {
+                                            setOfferDomesticFormState( prev => {
+                                                const newState = {...prev};
+                                                newState.client_type = "EMP";
+                                                return newState
+                                            });
+                                        }
+                                    }
+                                    />
+                            <label for="c2">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.1')}</label> 
                         </div>
                         <div>
-                            <input type="radio" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.2')}</label> 
+                            <input  type="radio"
+                                    id="c3"
+                                    checked={offerDomesticFormState.client_type == "NO"}
+                                    onChange={
+                                        e => {
+                                            setOfferDomesticFormState( prev => {
+                                                const newState = {...prev};
+                                                newState.client_type = "NO";
+                                                return newState;
+                                            });
+                                        }
+                                    }
+                            />
+                            <label for="c3">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.2')}</label> 
                         </div>
 
                 </div>
@@ -804,40 +1464,41 @@ const Fase7 = () => {
         <div className="dropdown">
             <div className="dropdown-content">
                 <FieldDropdownCheckbox 
-                    title="prueba"
-                    placeholder="placeholder 1"
-                    items={arr}
+                    title={t('OfrecermeNiñera.fases.7.continente')}
+                    placeholder={t('OfrecermeNiñera.fases.7.select-continente')}
+                    items={continentes}
                     values={val}
-                    state={selectedServices}
-                    setState={setSelectedServices}
+                    state={selectedContinente}
+                    setState={setSelectedContinente}
                 />
-
+                
                 <FieldDropdownCheckbox 
-                    title="prueba"
-                    placeholder="placeholder 1"
-                    items={arr}
-                    values={val}
-                    state={selectedServices}
-                    setState={setSelectedServices}
+                    title={t('OfrecermeNiñera.fases.7.pais')}
+                    placeholder={t('OfrecermeNiñera.fases.7.select-pais')}
+                    items={countries[0]}
+                    values={countries[1]}
+                    state={selectedPais}
+                    setState={setSelectedPais}
                 />
-
+                
                 <FieldDropdownCheckbox 
-                    title="prueba"
-                    placeholder="placeholder 1"
-                    items={arr}
-                    values={val}
-                    state={selectedServices}
-                    setState={setSelectedServices}
+                    title={t('OfrecermeNiñera.fases.7.estado')}
+                    placeholder={t('OfrecermeNiñera.fases.7.select-estado')}
+                    items={states[0]}
+                    values={states[1]}
+                    state={selectedEstado}
+                    setState={setSelectedEstado}
                 />
-
+                
                 <FieldDropdownCheckbox 
-                    title="prueba"
-                    placeholder="placeholder 1"
-                    items={arr}
-                    values={val}
-                    state={selectedServices}
-                    setState={setSelectedServices}
+                    title={t('OfrecermeNiñera.fases.7.ciudad')}
+                    placeholder={t('OfrecermeNiñera.fases.7.select-ciudad')}
+                    items={cities[0]}
+                    values={cities[1]}
+                    state={selectedCiudad}
+                    setState={setSelectedCiudad}
                 />
+                
             </div>
         </div>
         
@@ -849,7 +1510,16 @@ const Fase7 = () => {
 
 const Fase8 = () => {
     const { t, i18n } = useTranslation();
-    
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+
+    function selectDocuments (e){
+        setOfferDomesticFormState ( prev => {
+            const newState = {...prev};
+            newState.documents = e.target.value;
+            return newState;
+        });
+
+    }
 
     return ( 
         <div id="fase8">
@@ -867,60 +1537,93 @@ const Fase8 = () => {
             <div id="form">
                 <div id="form-horizontal">
                     <div>
-                        <input type="radio" id="c1"/>
+                        <input  type="radio"
+                                id="c1"
+                                checked={offerDomesticFormState.have_documentation}
+                                onChange={ e =>{
+                                    setOfferDomesticFormState( prev => {
+                                        const newState = {...prev};
+                                        newState.have_documentation = true;
+                                        return newState;
+                                    })
+                                }}
+                                />
                         <label for="c1">{t('OfrecermeNiñera.fases.8.si')}</label> 
                     </div>
 
                     <div id="segundo">
-                        <input type="radio" id="c1"/>
-                        <label for="c1">{t('OfrecermeNiñera.fases.8.no')}</label> 
+                        <input  type="radio"
+                                id="c2"
+                                checked={!offerDomesticFormState.have_documentation}
+                                onChange={ e =>{
+                                    setOfferDomesticFormState( prev => {
+                                        const newState = {...prev};
+                                        newState.have_documentation = false;
+                                        return newState;
+                                    })
+                                }}
+                        />
+                        <label for="c2">{t('OfrecermeNiñera.fases.8.no')}</label> 
                     </div>
                 </div>
+                { offerDomesticFormState.have_documentation &&
                 <div >
                     <h2>{t('OfrecermeNiñera.fases.8.documentos')}</h2>
                     <div id="selects">
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.8.documentos-opciones.0')}</label>
+                            <input type="checkbox" id="d1" value="PASAPORTE" checked={offerDomesticFormState.documents == "PASAPORTE"} onChange={ e => selectDocuments(e)}/>
+                            <label for="d1">{t('OfrecermeNiñera.fases.8.documentos-opciones.0')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.8.documentos-opciones.1')}</label>
+                            <input type="checkbox" id="d2" value="CURRICULUM" checked={offerDomesticFormState.documents == "CURRICULUM"}  onChange={ e => selectDocuments(e)}/>
+                            <label for="d2">{t('OfrecermeNiñera.fases.8.documentos-opciones.1')}</label>
                         </div>    
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.8.documentos-opciones.2')}</label>
+                            <input type="checkbox" id="d3" value="TITULOS" checked={offerDomesticFormState.documents == "TITULOS"} onChange={ e => selectDocuments(e)}/>
+                            <label for="d3">{t('OfrecermeNiñera.fases.8.documentos-opciones.2')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.8.documentos-opciones.3')}</label>
+                            <input type="checkbox" id="d4" value="REF_TRABAJO" checked={offerDomesticFormState.documents == "REF_TRABAJO"}  onChange={ e => selectDocuments(e)}/>
+                            <label for="d4">{t('OfrecermeNiñera.fases.8.documentos-opciones.3')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.8.documentos-opciones.4')}</label>
+                            <input type="checkbox" id="d5" value="REF_FAMILIAR" checked={offerDomesticFormState.documents == "REF_FAMILIAR"}  onChange={ e => selectDocuments(e)}/>
+                            <label for="d5">{t('OfrecermeNiñera.fases.8.documentos-opciones.4')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.8.documentos-opciones.5')}</label>
+                            <input type="checkbox" id="d6" value="CONST_RESIDENCIA" checked={offerDomesticFormState.documents == "CONST_RESIDENCIA"}  onChange={ e => selectDocuments(e)}/>
+                            <label for="d6">{t('OfrecermeNiñera.fases.8.documentos-opciones.5')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.8.documentos-opciones.6')}</label>
+                            <input type="checkbox" id="d7" value="CONST_ANTECEDENTES" checked={offerDomesticFormState.documents == "CONST_ANTECEDENTES"} onChange={ e => selectDocuments(e)}/>
+                            <label for="d7">{t('OfrecermeNiñera.fases.8.documentos-opciones.6')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.8.documentos-opciones.7')}</label>
+                            <input type="checkbox" id="d8" value="SALUD" checked={offerDomesticFormState.documents == "SALUD"}  onChange={ e => selectDocuments(e)}/>
+                            <label for="d8">{t('OfrecermeNiñera.fases.8.documentos-opciones.7')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="c1"/>
-                            <label for="c1">{t('OfrecermeNiñera.fases.8.documentos-opciones.8')}</label>
+                            <input type="checkbox" id="d9" value="OTRO" checked={offerDomesticFormState.documents == "OTRO"}  onChange={ e => selectDocuments(e)}/>
+                            <label for="d9">{t('OfrecermeNiñera.fases.8.documentos-opciones.8')}</label>
                         </div>
+                        
+                        { offerDomesticFormState.documents == "OTRO" &&
                         <div>
-                            <p> Especifique</p> <input type="text" />
-                        </div>
+                            <p> Especifique</p> <input  type="text" 
+                                                        onChange={ e => {
+                                                            setOfferDomesticFormState( prev => {
+                                                                const newState = {...prev};
+                                                                newState.documents_other = e.target.value;
+                                                                return newState;
+                                                            });  
+                                                        }} 
+                                                        value={offerDomesticFormState.documents_other}
+                                                />
+                        </div>}
 
                     </div>
                 </div>
+                }
             </div>
             
 
@@ -931,7 +1634,7 @@ const Fase8 = () => {
 
 const Fase9 = () => {
     const { t, i18n } = useTranslation();
-    
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
     return ( 
         <div id="fase9">
@@ -953,7 +1656,7 @@ const Fase9 = () => {
 
 const Fase10 = () => {
     const { t, i18n } = useTranslation();
-    
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
     return ( 
         <div id="fase10">
@@ -973,7 +1676,7 @@ const Fase10 = () => {
 
 const Fase11 = () => {
     const { t, i18n } = useTranslation();
-    
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
     return ( 
         <div id="fase11">
@@ -1021,7 +1724,7 @@ const Fase11 = () => {
 
 const Fase12 = () => {
     const { t, i18n } = useTranslation();
-    
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
     return ( 
         <div id="fase12">
@@ -1041,11 +1744,24 @@ const Fase12 = () => {
 const Fase13 = () => {
     
     const { t, i18n } = useTranslation();
-    
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+
     var arr=[1,2,3];
     var val=[1,2,3];
     const [selectedServices, setSelectedServices] = useState("");
 
+
+    const getBanks = async() =>{
+        try {
+            const response = await axios.get(`http://127.0.0.1:8000/banks/`);    
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    getBanks();
 
     return ( 
         <div id="fase13">

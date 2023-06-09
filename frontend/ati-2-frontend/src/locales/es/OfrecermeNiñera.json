@@ -59,8 +59,8 @@
               "mensaje":"Por favor, indique si posee disponibilidad para viajar, o no.",
               "mensaje2":"De poseer disponibilidad, se le sugiere especificar detalles adicionales acerca del viaje",
               "pregunta":"¿Esta dispuesta(o) a viajar, para acompañar a la(s) persona(s) a cuidar?",
-              "si":"si",
-              "no":"no",
+              "si":"Si",
+              "no":"No",
               "especifique":"Especifique"
             },
             {
@@ -127,7 +127,19 @@
               ],
               "especifique":"Especifique",
               "no":"No",
-              "si":"Si"
+              "si":"Si",
+              "otro":"Otro",
+              "moneda":"Moneda",
+              "selecciona-moneda":"Seleccione la moneda",
+              "salario-ofrecido":"El salario ofrecido es",
+              "seleccione-salario":"Seleccione el salario",
+              "salario-opciones":[
+                "Por hora",
+                "Por día",
+                "Semanal",
+                "Quincenal",
+                "Mensual"
+              ]
 
             },
             {
@@ -151,7 +163,22 @@
                 "Personal natural",
                 "Empresa",
                 "Me es indiferente"
-              ]
+              ],
+              "continente":"Continente",
+              "select-continente":"Seleccione el continente",
+              "pais":"País",
+              "select-pais":"Seleccione el país",
+              "estado":"Estado",
+              "select-estado":"Seleccione el estado",
+              "ciudad":"Ciudad",
+              "select-ciudad":"Seleccione la ciudad",
+              "continentes":[
+                "North America",
+                "South America",
+                "Europe",
+                "Asia",
+                "Oceania"
+            ]
 
             },
             {
