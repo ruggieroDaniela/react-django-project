@@ -1,0 +1,153 @@
+@import 'colors';
+
+.post-lista{
+    display: grid;
+    grid-template-columns: 1fr 12fr 1fr;
+
+    section{
+        border-style: solid;
+        border-color: $dorado;
+        border-width: 1px;
+    }
+
+    .button-group{
+        display: flex;  
+        flex-direction: column;
+        padding: 1rem;
+
+        button{
+            margin-bottom: 1rem;
+
+            .button-img{
+                aspect-ratio: 1;
+                width: 1rem;
+            }
+        }
+    }
+
+    .img-user{
+        height: 5rem;
+        margin-left: 4rem;
+    }
+
+    .detalles{
+        padding: 0.5rem;
+        display: grid;
+        grid-template-columns: 10fr 7fr;
+        font-size: small;
+
+        .header-grid{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .sub-header{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .detalles-title{
+            font-weight: bold;
+            color: red;
+            text-decoration: underline;
+        }
+
+        .desc-body{
+            color: $verde-oscuro;
+            padding-right: 0.5rem;
+        }
+
+        .subtitle{
+            text-decoration: underline;
+        }
+        .bold-subtitle{
+            font-weight: bold;
+            margin-left: 3rem;
+        }
+
+        .bold-state{
+            font-weight: bold;
+        }
+
+        .space{
+            margin-left: 3rem;
+        }
+        .blue-body{
+            font-weight: normal;
+            color: $azul-oscuro;
+        }
+
+        .info-and-contact{
+            display: grid;
+            grid-template-columns: 8fr 4fr;
+
+            button{
+                height: 2rem;
+                background-color: $dorado;
+                border-radius: 0.25rem;
+                box-shadow: none;
+                border-style: none;
+                color: white;
+                font-weight: bold;
+                place-self: center;
+                font-size: normal;
+                padding: 0.5rem 1rem 0.5rem 1rem;
+            }
+
+        }
+
+        .info-container{
+            border-style: solid;
+            border-color: $dorado;
+            border-width: 6px;
+        }
+
+        .container-title{
+            color: $rojo;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .item-title{
+            color: $azul-oscuro;
+            font-weight: bold;
+        }
+
+        .item-link{
+            color: $rojo;
+        }
+
+        .info-list{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            padding-left: 0.5rem;
+            padding-bottom: 0.5rem;
+            li::before{
+                color: $azul-oscuro;
+                content: "•";
+                margin-right: 0.5em;
+            }
+        }
+
+        .column{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .more-info{
+            // background-color: green;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .title{
+            width: 100%;
+        }
+
+    }
+
+}
