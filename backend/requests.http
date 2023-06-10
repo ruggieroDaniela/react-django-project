@@ -109,7 +109,7 @@ content-type: application/json
     "have_children": false,
     "education_level": "PRI",
     "continent": "Suramerica", 
-    "country": "Colombia",
+    "country": "CO",
     "state": "Barranquilla",
     "city": "Santa Rosa",
     "zone": "La Pastora",
@@ -142,7 +142,7 @@ content-type: application/json
     "publication_time": "1",
     "publication_plan": "1",
     "billing_country": "Venezuela",
-    "billing_bank": 1
+    "billing_bank": 2
 }
 
 ### B - Solicitar personal domestico
@@ -159,7 +159,7 @@ content-type: application/json
     "children": "IDC",
     "education_level": "PRI",
     "continent": "Suramerica", 
-    "country": "Venezuela",
+    "country": "VE",
     "state": "Carabobo",
     "city": "San Diego",
     "zone": "El Calabozo",
@@ -191,7 +191,7 @@ content-type: application/json
     "publication_time": "1",
     "publication_plan": "3",
     "billing_country": "Venezuela",
-    "billing_bank": 1
+    "billing_bank": 2
 }
 
 ### C - Buscar personal doméstico 
@@ -256,7 +256,7 @@ content-type: application/json
     "have_children": false,
     "education_level": "PRI",
     "continent": "Suramerica", 
-    "country": "Colombia",
+    "country": "CO",
     "state": "Barranquilla",
     "city": "Santa Rosa",
     "zone": "",
@@ -306,7 +306,7 @@ content-type: application/json
     "children": "IDC",
     "education_level": "PRI",
     "continent": "Suramerica", 
-    "country": "Venezuela",
+    "country": "VE",
     "state": "Carabobo",
     "city": "San Diego de La Vega",
     "zone": "",
