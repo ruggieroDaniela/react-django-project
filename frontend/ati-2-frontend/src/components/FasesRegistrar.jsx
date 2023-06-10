@@ -318,13 +318,14 @@ const Fase1 = () => {
         useEffect(() => {
             const fetchCountryDetails = async () => {
                 if(countryCode){
+                    let resp = {};
+                    [resp.phonecode, resp.flag] = await getCountryDetails(countryCode);
+                    setCountryDetails(() => resp);
+                    
                     let [names, values] = await getCitiesInCountry(countryCode);
                     names  = [...new Set(names)];
                     setCities(names);
 
-                    let resp = {};
-                    [resp.phonecode, resp.flag] = await getCountryDetails(countryCode);
-                    setCountryDetails(() => resp);
 
                     setRegisterFormState( prev => {
                         const newState = {... prev};
