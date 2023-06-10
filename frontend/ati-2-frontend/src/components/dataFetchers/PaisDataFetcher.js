@@ -56,7 +56,7 @@ export const getStatesInCountry = async (countries) => {
 
             for (let j = 0; j < response.data.length; j++) {
                 names.push( response.data[j].name );
-                values.push( `${codes[i]}/${response.data[j].iso2}` );
+                values.push( `${codes[i]}-${response.data[j].iso2}` );
             }
 
         }
@@ -111,8 +111,8 @@ export const getCitiesInStates = async (stateCodes) => {
         const codes = stateCodes.split(",");
         for (let i = 1; i < codes.length; i++) {
 
-            country = codes[i].split("/")[0];
-            state = codes[i].split("/")[1];
+            country = codes[i].split("-")[0];
+            state = codes[i].split("-")[1];
 
             response = await axios.get(`https://api.countrystatecity.in/v1/countries/${country}/states/${state}/cities`, {
                 headers: {
@@ -122,7 +122,7 @@ export const getCitiesInStates = async (stateCodes) => {
 
             for (let j = 0; j < response.data.length; j++) {
                 names.push( response.data[j].name );
-                values.push( `${stateCodes[i]}/${response.data[j].name}` );
+                values.push( `${stateCodes[i]}-${response.data[j].name}` );
             }
 
         }
@@ -133,3 +133,31 @@ export const getCitiesInStates = async (stateCodes) => {
         console.error(error);
     }
 };
+
+
+export const getCitiesInCountry = async (countryCode) => {
+    try {
+
+        let response;
+        const names = [];
+        const values = [];
+
+        response = await axios.get(`https://api.countrystatecity.in/v1/countries/${countryCode}/cities`, {
+            headers: {
+                'X-CSCAPI-KEY': API_KEY
+            }
+        });
+
+
+        for (let j = 0; j < response.data.length; j++) {
+            names.push( response.data[j].name );
+            values.push( `${countryCode}-${response.data[j].name}` );
+        }
+
+        return [names, values];
+        
+    } catch (error) {
+        console.error(error);
+    }
+};
+

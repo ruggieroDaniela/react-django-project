@@ -30,12 +30,14 @@ function RegisterFormContextProvider({children}){
                     apellido: "",
                     identificacion: "",
                     correo: "",
-                    pais: ""
+                    pais: "",
+                    codigo_pais: "AF",
                 },
                 empresa:{
                     nombre_empresa: "",
                     razon_rif: "",
                     pais: "",
+                    codigo_pais: "AF",
                     ciudad: "",
                     direccion: "",
                     nombre_representante: "",
@@ -69,9 +71,67 @@ function RegisterFormContextProvider({children}){
                 usar_facebook: false,
                 facebook_spec: ""
             },{
+                client_code: "",
                 banco_origen: "",
+                codigo_pais_banco: "AF",
                 pais: "",
                 banco_destino: ""
+            }
+        ],
+        countries:[],
+        cities:[],
+        errors:[
+            {
+                option_required: false,
+                other_empty: false,
+                social_required: false,
+                other_required: false,
+            },
+            {
+                name_required: false,
+                name_invalid: false,
+                last_name_required: false,
+                last_name_invalid: false,
+                id_required: false,
+                id_invalid: false,
+                email_required: false,
+                email_invalid: false,
+
+                business_required: false,
+                business_invalid: false,
+                rif_required: false,
+                rif_invalid: false,
+                address_required: false,
+                rep_name_required: false,
+                rep_name_invalid: false,
+                rep_email_required: false,
+                rep_email_invalid: false,
+
+                telefono_required: false,
+                telefono_invalid: false
+            },
+            {
+                option_required: false,
+            },
+            {
+                invalid_mail: false,
+                mail_exists: false,
+                invalid_password: false
+            },
+            {
+                frecuencia_required: false,
+                servicio_required: false,
+                means_required: false,
+                email_required: false,
+                social_required: false,
+                sms_required: false,
+                other_required: false,
+                facebook_required: false
+            },
+            {
+                banco_requerido: false,
+                banco_minimo: false,
+                destino_requerido: false, 
             }
         ]
     });
