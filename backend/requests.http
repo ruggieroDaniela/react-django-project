@@ -53,7 +53,7 @@ POST http://localhost:8000/token-auth/
 content-type: application/json
 
 {
-    "username": "admin22@gmail.com",
+    "username": "ati2.proyecto+carlos99@gmail.com",
     "password": "12345"
 }
 
@@ -70,8 +70,22 @@ POST http://127.0.0.1:8000/users/get_name/
 content-type: application/json
 
 {
-    "id": 7
+    "id": 6
 }
+
+### BANKS
+POST http://127.0.0.1:8000/banks/
+content-type: application/json
+
+{
+    "name": "Banesco Panamá",
+    "account" : "201800948693",
+    "swift_code" : "BANSPAPA",
+    "country": "Panamá"
+}
+
+###
+GET http://127.0.0.1:8000/banks/
 
 ###
 
@@ -85,11 +99,11 @@ content-type: application/json
 
 ### A - Ofrecer mis servicios como personal domestico
 POST http://127.0.0.1:8000/api-services/provideService/post_ad/
-Authorization: Token 6bd60149a92e5fb71324d41f4ad9a101ff0497f5
+Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
 content-type: application/json
 
 {
-    "user": 6, 
+    "user": 11, 
     "service": "NIN", 
     "age": 29,
     "have_children": false,
@@ -105,7 +119,7 @@ content-type: application/json
     "activities": "Preparación de alimentos, Control de medicamentos, Baño e  higiene, Cambio de pañal, Jugar con los niños, Limpieza del hogar, Otros",
     "workday": "QUINCENAL",
     "workday_other": "",
-    "schedule": "LUN",
+    "schedule": ["LUN", "MAR"], 
     "schedule_other": "",
     "payment": "MONTO",
     "payment_amount": 70.00,
@@ -128,16 +142,16 @@ content-type: application/json
     "publication_time": "1",
     "publication_plan": "1",
     "billing_country": "Venezuela",
-    "billing_bank": "Banesco"
+    "billing_bank": 1
 }
 
 ### B - Solicitar personal domestico
 POST http://127.0.0.1:8000/api-services/requestService/post_ad/
-Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
+Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
 content-type: application/json
 
 {
-    "user": 6, 
+    "user": 11, 
     "service": "CUI",
     "gender": "IDC",
     "age_required_from": 18,
@@ -160,7 +174,7 @@ content-type: application/json
     "activities": "Limpiar",
     "workday": "SEMANAL",
     "workday_other": "",
-    "schedule": "LUN",
+    "schedule": ["LUN", "MIE"], 
     "schedule_other": "",
     "payment": "MONTO",
     "payment_amount": 30.00,
@@ -177,7 +191,7 @@ content-type: application/json
     "publication_time": "1",
     "publication_plan": "3",
     "billing_country": "Venezuela",
-    "billing_bank": "Banesco"
+    "billing_bank": 1
 }
 
 ### C - Buscar personal doméstico 
@@ -232,11 +246,11 @@ Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
 ### Update
 ### Ofrecer/Provide
 PUT http://localhost:8000/api-services/provide/update_post/dd14ae5c-fdc5-46a9-a826-df7f9a4f8f72/
-Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
+Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
 content-type: application/json
 
 {
-    "user": 7, 
+    "user": 11, 
     "service": "CUI", 
     "age": 30,
     "have_children": false,
@@ -275,16 +289,16 @@ content-type: application/json
     "publication_time": "1",
     "publication_plan": "1",
     "billing_country": "Venezuela",
-    "billing_bank": "Banesco"
+    "billing_bank": 1
 }
 
 ### Solicitar/Request
 PUT http://localhost:8000/api-services/request/update_post/bc09db74-2809-4051-896a-96ab7ed8b7a8/
-Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
+Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
 content-type: application/json
 
 {
-    "user": 6, 
+    "user": 11, 
     "service": "CUI",
     "gender": "IDC",
     "age_required_from": 13,
@@ -323,7 +337,7 @@ content-type: application/json
     "publication_time": "1",
     "publication_plan": "1",
     "billing_country": "Venezuela",
-    "billing_bank": "Banesco"
+    "billing_bank": 1
 }
 
 ### Delete {id}: 
@@ -336,3 +350,60 @@ DELETE http://127.0.0.1:8000/api-services/request/delete_post/b57e824d-190c-423b
 Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
 
 
+
+
+###
+POST http://127.0.0.1:8000/users/
+content-type: application/json
+
+{
+    "email": "diegochz98@gmail.com",
+    "password": "12345",
+    "found_app_by": "Twitter",
+    "type_user": "enterprise",
+    "country": "Venezuela",
+    "companty_name": "Compañia Admin",
+    "dni": "26343836",
+    "rif": "F123456",
+    "city": "Caracas",
+    "language": "es",
+    "bank_origin": "Banesco",
+    "bank_country": "Venezuela",
+    "want_inform": true, 
+    "social_media_to_inform": {
+        "Facebook": true,
+        "Twitter": false
+    }
+}
+
+###
+GET http://127.0.0.1:8000/users/14
+Authorization: Token 6ba4807aa91fa9f95a9c696e003f42b2473d8863
+
+###
+POST http://127.0.0.1:8000/forgot-password/
+content-type: application/json
+
+{
+    "email": "diegochz98@gmail.com",
+    "dni": "26343836"
+}
+
+###
+
+POST http://localhost:8000/token-auth/
+content-type: application/json
+
+{
+    "username": "diegochz98@gmail.com",
+    "password": "123456"
+}
+
+###
+POST http://127.0.0.1:8000/users/14/change_password/
+content-type: application/json
+
+{
+    "new_password": "123456",
+    "confirm_password": "123456"
+}

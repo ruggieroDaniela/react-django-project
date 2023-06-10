@@ -488,6 +488,35 @@
         }
     }
     
+    #fase6{
+        
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        
+        span{
+            margin-top: 2.5vh;
+            color:blue;
+        }
+
+        div{
+            width: 100%;
+
+            input{
+                margin-left: 2vh;
+            }
+        }
+
+        #beneficio-laboral{
+            p{
+                margin-top: 0vh;
+                margin-bottom: 0vh;
+            }
+        }
+    }
+
     .ghost{
         visibility: hidden;
     }

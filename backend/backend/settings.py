@@ -43,8 +43,10 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     "users",
+    "banks",
     "services", 
-    "django_filters"
+    "django_filters",
+    "multiselectfield"
 ]
 
 MIDDLEWARE = [
@@ -131,9 +133,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'diegochz98@gmail.com'
-EMAIL_HOST_PASSWORD = 'lwknltoxpcvmxeah'
-DEFAULT_FROM_EMAIL = 'diegochz98@gmail.com'
+EMAIL_HOST_USER = 'ati2.proyecto@gmail.com'
+EMAIL_HOST_PASSWORD = 'mjbvfnvhtutdcuzm'
+DEFAULT_FROM_EMAIL = 'ati2.proyecto@gmail.com'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True   

@@ -1310,6 +1310,9 @@ const Fase5 = () => {
         );
     }
 
+
+
+
 const registrarUsuario = () => {
     
     const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
