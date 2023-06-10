@@ -157,14 +157,22 @@ class CustomAuthToken(ObtainAuthToken):
 class ForgotPasswordView(APIView):
 
     def post(self, request):
-        dni = request.data.get('dni')
-        email = request.data.get('email')
-
-        try:
-            user = User.objects.get(email=email, dni=dni)
-
-            send_password_email(user)
-
-            return Response({'message': 'Acabamos de enviar tu usuario y un link para restablecer tu contraseña, al correo: {}'.format(user.email)}, status=status.HTTP_200_OK)
-        except User.DoesNotExist:
-            return Response({'error': 'No se encontró un usuario con la identificación y correo electrónico proporcionados.'}, status=status.HTTP_404_NOT_FOUND)
+        try: 
+            dni = request.data['dni']
+            try:
+                user = User.objects.get(dni=dni)
+                send_password_email(user)
+                return Response({'email': user.email}, status=status.HTTP_200_OK)
+            except User.DoesNotExist:
+                return Response({'error': 'No se encontró un usuario con la identificación proporcionada'}, status=status.HTTP_404_NOT_FOUND)
+        except:
+            try:
+                email = request.data['email']
+                try:
+                    user = User.objects.get(email=email)
+                    send_password_email(user)
+                    return Response({'email': user.email}, status=status.HTTP_200_OK)
+                except User.DoesNotExist:
+                    return Response({'error': 'No se encontró un usuario con el correo electrónico proporcionado'}, status=status.HTTP_404_NOT_FOUND)
+            except:
+                return Response({'error': 'No se dió credenciales.'}, status=status.HTTP_404_NOT_FOUND)

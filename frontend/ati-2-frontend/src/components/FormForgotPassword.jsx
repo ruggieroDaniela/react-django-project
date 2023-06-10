@@ -1,16 +1,43 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import ErrorMessage from "./ErrorMessage";
 
-export const FormForgotPassword = ({ message }) => {
+export const FormForgotPassword = ({ message, info }) => {
 
     const [correoEnviado, setCorreoEnviado] = useState(false)
+    const [userMail, setUserMail] = useState({});
+    const [input, setInput] = useState("");
+    const [invalidInput, setInvalidInput] = useState(false)
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
   
-    const handleSubmit = e => {
+    const handleSubmit  = async (e) =>  {
         e.preventDefault();
-        setCorreoEnviado(true);
+
+        if(info==="identification"){
+            try {
+                const response = await axios.post('http://127.0.0.1:8000/forgot-password/', {dni: input})
+                setUserMail(response.data.email) 
+                setInvalidInput(false)
+                setCorreoEnviado(true);
+            } catch(error) {
+                setInvalidInput(true)
+                console.log(invalidInput)
+            }
+        }
+            
+        else if(info==="email"){
+            try {
+                const response = await axios.post('http://127.0.0.1:8000/forgot-password/', {email: input})
+                setUserMail(response.data.email) 
+                setInvalidInput(false)
+                setCorreoEnviado(true);
+            } catch(error) {
+                setInvalidInput(true)
+            }
+        }
     }
 
     const handleSendEmail = e => {
@@ -18,40 +45,22 @@ export const FormForgotPassword = ({ message }) => {
 
     }
 
-    const data = {
-        email: "anotherone@gmail.com",
-        password: "12345",
-        found_app_by: "Twitter",
-        type_user: "natural",
-        country: "Alemania",
-        first_name: "Admin",
-        last_name: "Ati-2",
-        dni: "V-126125",
-        contact_email: "admin@gmail.com",
-        language: "es",
-        want_inform: false,
-        bank_origin: "Banesco",
-        bank_country: "Venezuela",
-        phone: "04141578632"
-    };
-
     return (
 
         <>
-
             { correoEnviado?
                 <div id='forgot'>
                     <h2 id='title'>{t('forgotPassword.titulo1')}</h2>
 
                     <form onSubmit={ handleSendEmail } className='form'>
                         <p id="message">{t('forgotPassword.descripcion2.1')} <br/>
-                            <a href="#">{ data.email }</a><br/>
-                            {t('forgotPassword.descripcion2.2')} {data.phone} <br/><br/>
+                            <a href="#">{ userMail }</a><br/>
+                            <br/>
                             <span id="text">{t('forgotPassword.descripcion2.3')}</span>
                         </p>
 
                         <div id="buttons">
-                            <button type="submit">{t('forgotPassword.botonAceptar')}</button>
+                            <button type="submit" onClick={() => navigate("/login")}>{t('forgotPassword.botonAceptar')}</button>
                             <button type="button" onClick={() => navigate("/login")}>{t('forgotPassword.botonCancelar')}</button>
                         </div>
                     </form>
@@ -60,11 +69,14 @@ export const FormForgotPassword = ({ message }) => {
                 <div id='forgot'>
                     <h2 id='title'>{t('forgotPassword.titulo1')}</h2>
 
-                    <form onSubmit={ handleSubmit } className='form'>
+                    <form onSubmit={ handleSubmit } onChange={(e) => setInput(e.target.value)} className='form'>
                         <p>{ message }</p>
                         <div id='input-forgot-password'>
                             <input type="text"  />
                         </div>
+
+                        {invalidInput && <ErrorMessage message={t('forgotPassword.inputInvalido') + info}/> }
+
                         <div id="buttons">
                             <button type="submit">{t('forgotPassword.botonAceptar')}</button>
                             <button type="button" onClick={() => navigate("/login")}>{t('forgotPassword.botonCancelar')}</button>

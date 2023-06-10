@@ -39,7 +39,8 @@ export const ForgotPassword = () => {
             formIdDoc === true
             ? 
                 <FormForgotPassword
-                    message = {t("forgotPassword.mensaje1")} 
+                    message = {t("forgotPassword.mensaje1")}
+                    info="identification" 
                 />
             : 
                 null
@@ -50,6 +51,7 @@ export const ForgotPassword = () => {
             ?
                 <FormForgotPassword
                     message = {t("forgotPassword.mensaje2")}
+                    info="email"
                 />
             : 
                 null
@@ -66,17 +68,17 @@ export const ForgotPassword = () => {
                         <div>
                             <div>
                                 <input type="radio" id="radio" className='radio-button' checked={ info === "cedula" } onChange={ onRadioChange } name="cedula" value="cedula"/>
-                                <label for="radio">{t("forgotPassword.radio1")}</label>
+                                <label htmlFor="radio">{t("forgotPassword.radio1")}</label>
                             </div>
 
                             <div>
                                 <input type="radio" id="radio2" className='radio-button' checked={ info === "correo" } onChange={ onRadioChange } name="correo" value="correo"/>
-                                <label for="radio2">{t("forgotPassword.radio2")}</label>
+                                <label htmlFor="radio2">{t("forgotPassword.radio2")}</label>
                             </div>
 
                             <div>
-                                <input type="radio" id="radio3" className='radio-button' checked={ info === "telefono" } onChange={ onRadioChange } name="telefono" value="telefono"/>
-                                <label for="radio3">{t("forgotPassword.radio3")}</label>
+                                <input disabled  type="radio" id="radio3" className='radio-button' checked={ info === "telefono" } onChange={ onRadioChange } name="telefono" value="telefono"/>
+                                <label htmlFor="radio3">{t("forgotPassword.radio3")}</label>
                             </div>
                         </div>
 
