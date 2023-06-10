@@ -141,7 +141,7 @@
             {
                 "requerido": "The source bank is required",
                 "minimo": "The source bank must be at least 2 characters",
-                "seleccion_requerida": "You must select one bank from the list"
+                "seleccion_requerida": "You must select one destiny bank from the list"
             }
         ]
     }

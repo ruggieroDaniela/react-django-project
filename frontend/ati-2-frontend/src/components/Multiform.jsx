@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 
 import "../styles/Multiform.scss"
 
-
 export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames, validateStages}) => {
     
     // hook para la internacionalizacion
