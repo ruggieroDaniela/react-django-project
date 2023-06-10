@@ -22,6 +22,10 @@ export const ListarPublicaciones = () => {
     const [selectedOrdering, setSelectedOrdering] = useState("");
     const [pageLinks, setPageLinks] = useState([]);
 
+    // Tipo de Vista
+    const [listView, setListView] = useState(true);
+    const [thumbnailView, setThumbnailView] = useState(false);
+
     const tipoPersona = ["1", "2", "3", "4", "5"];
     const ordenes = ["payment_amount", "availability_date", "education_level", "travel"];
 
@@ -104,13 +108,19 @@ export const ListarPublicaciones = () => {
                 <ul className="input-group">
                     <li className="radio">
                         <label>
-                            <input type="radio" checked={true} onChange={() => {}}/>
+                            <input type="radio" checked={listView} onChange={(e) => {                
+                                setListView(true);
+                                setThumbnailView(false);                                 
+                            }}/>
                             {t(`lista_publicaciones.tipo_lista`)}
                         </label>
                     </li>
-                    <li className="radio" checked={false} onChange={(e) => { e.target.checked = false }}>
+                    <li className="radio">
                         <label>
-                            <input type="radio"/>
+                            <input type="radio" checked={thumbnailView} onChange={(e) => { 
+                                setListView(false);
+                                setThumbnailView(true);
+                            }}/>
                             {t(`lista_publicaciones.tipo_foto`)}
                         </label>
                     </li>
