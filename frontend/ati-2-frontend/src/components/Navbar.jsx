@@ -139,7 +139,7 @@ const Navbar = () => {
                                     {label: t("navbar.ofrecerme.cuidador"), link:"#"}
                                 ]
                             },
-                            {label: t("navbar.operaciones.ver_publicaciones"), link:"#"},
+                            {label: t("navbar.operaciones.ver_publicaciones"), link:"/show-posts"},
                             {label: t("navbar.operaciones.buscar"), link:"#"},
                             {label: t("navbar.operaciones.modificar"), link:"#"},
                             {label: t("navbar.operaciones.eliminar"), link:"#"},
