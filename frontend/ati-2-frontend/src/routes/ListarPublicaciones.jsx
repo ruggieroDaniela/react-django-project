@@ -24,7 +24,6 @@ export const ListarPublicaciones = () => {
 
     // Tipo de Vista
     const [listView, setListView] = useState(true);
-    const [thumbnailView, setThumbnailView] = useState(false);
 
     const tipoPersona = ["1", "2", "3", "4", "5"];
     const ordenes = ["payment_amount", "availability_date", "education_level", "travel"];
@@ -109,17 +108,15 @@ export const ListarPublicaciones = () => {
                     <li className="radio">
                         <label>
                             <input type="radio" checked={listView} onChange={(e) => {                
-                                setListView(true);
-                                setThumbnailView(false);                                 
+                                setListView(true);                             
                             }}/>
                             {t(`lista_publicaciones.tipo_lista`)}
                         </label>
                     </li>
                     <li className="radio">
                         <label>
-                            <input type="radio" checked={thumbnailView} onChange={(e) => { 
+                            <input type="radio" checked={!listView} onChange={(e) => { 
                                 setListView(false);
-                                setThumbnailView(true);
                             }}/>
                             {t(`lista_publicaciones.tipo_foto`)}
                         </label>
@@ -191,14 +188,18 @@ export const ListarPublicaciones = () => {
                 </ul>
             </div>
 
-            <div className="row" id='post-group'>
-                {   
-                    /* eslint-disable-next-line */
-                    postList
-                        .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
-                        .map( (post) => <PublicacionLista key={post.id} post={post} postType={postType}/> )
-                }
-            </div>
+            { listView?
+                <div className="row" id='post-group'>
+                    {   
+                        /* eslint-disable-next-line */
+                        postList
+                            .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
+                            .map( (post) => <PublicacionLista key={post.id} post={post} postType={postType}/> )
+                    }
+                </div>
+                :
+                <div>fotos</div>
+            }
 
         </div>
     </>);
