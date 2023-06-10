@@ -47,7 +47,7 @@ export const getStatesInCountry = async (countries) => {
         const values = [];
 
         const codes = countries.split(",");
-        for (let i = 0; i < codes.length; i++) {
+        for (let i = 1; i < codes.length; i++) {
             response = await axios.get(`https://api.countrystatecity.in/v1/countries/${codes[i]}/states`, {
                 headers: {
                     'X-CSCAPI-KEY': API_KEY
@@ -79,7 +79,7 @@ export const getCitiesInStates = async (stateCodes) => {
         const values = [];
 
         const codes = stateCodes.split(",");
-        for (let i = 0; i < codes.length; i++) {
+        for (let i = 1; i < codes.length; i++) {
 
             country = codes[i].split("-")[0];
             state = codes[i].split("-")[1];
