@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import "../styles/Multiform.scss"
 
-export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames }) => {
+export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames, validateStages}) => {
     
     // hook para la internacionalizacion
     const { t } = useTranslation();
@@ -17,6 +17,8 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames }) => 
 
     // pointer al stage que se muestra actualmente
     const RenderStage = stages[currentStage];
+
+    const { validate } = validateStages();
 
     return (
         <div className="multiform">
@@ -67,11 +69,14 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames }) => 
                 {/* ir al siguiente stage */}
                 <button 
                     className={`${currentStage === stages.length-1?"ghost":""}`}
-                    onClick={() => {
-                        if( currentStage+1 < stages.length ){
-                            setCurrentStage((prev) => prev+1);
-                            if( currentStage >= stagesDone )
-                                setStagesDone((prev) => prev+1);
+                    onClick={async () => {
+                        const valid = await validate(currentStage)
+                        if(valid){
+                            if(currentStage+1 < stages.length){
+                                setCurrentStage((prev) => prev+1);
+                                if( currentStage >= stagesDone )
+                                    setStagesDone((prev) => prev+1);
+                            }
                         }
                     }}
                 >

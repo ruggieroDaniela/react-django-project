@@ -22,7 +22,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=128, null=True)
         
     #Step 1
-    found_app_by = models.CharField(max_length=256)
+    found_app_by = models.JSONField(null=True)
     
     #Step 2
     type_user = models.CharField(max_length=10, choices=USER_CHOICES)
@@ -33,31 +33,21 @@ class User(AbstractUser):
     #--Natural
     first_name = models.CharField(max_length=128, null=True)
     last_name = models.CharField(max_length=128, null=True)
-    dni = models.CharField(
-        max_length=128, 
-        null=True, 
-        validators=[
-            RegexValidator(
-                regex=dni_regex, 
-                message='El campo debe ser una cédula de identidad o número de pasaporte',
-                code='dni_invalido'
-            )
-        ]
-    ) 
+    dni = models.CharField(max_length=128, null=True) 
     
     contact_email = models.EmailField(null=True)
-    cellphone = models.CharField(max_length=128, null=True)
-    telephone = models.CharField(max_length=128, null=True)
+    cellphone = models.CharField(max_length=128, blank=True, null=True)
+    telephone = models.CharField(max_length=128, blank=True, null=True)
     
     #--Enterprise
     company_name = models.CharField(max_length=128, null=True)
     rif = models.CharField(max_length=128, null=True) 
     city = models.CharField(max_length=128, null=True)
     address = models.CharField(max_length=128, null=True)
-    representant_name = models.CharField(max_length=128, null=True)
+    representant_name = models.CharField(max_length=128,  null=True)
     representant_email = models.EmailField(null=True)
-    representant_cellphone = models.CharField(max_length=128, null=True)
-    representant_telephone = models.CharField(max_length=128, null=True)
+    representant_cellphone = models.CharField(max_length=128, blank=True, null=True)
+    representant_telephone = models.CharField(max_length=128, blank=True, null=True)
     
     #Step 3
     language = models.CharField(max_length=2, choices=LENGUAGE_CHOICES)
@@ -68,13 +58,13 @@ class User(AbstractUser):
     
     #Step 5
     want_inform = models.BooleanField()
-    frecuency_to_inform = models.CharField(max_length=128, null=True)
-    services_interest = models.JSONField(null=True)
-    email_to_inform = models.CharField(max_length=256, null=True)
-    social_media_to_inform = models.JSONField(null=True)
-    phone_to_inform = models.CharField(max_length=24, null=True)
-    other_to_inform = models.CharField(max_length=256, null=True)
-    facebook_to_inform = models.CharField(max_length=256, null=True)
+    frecuency_to_inform = models.CharField(max_length=128, blank=True, null=True)
+    services_interest = models.JSONField(blank=True, null=True)
+    email_to_inform = models.CharField(max_length=256, blank=True, null=True)
+    social_media_to_inform = models.JSONField(blank=True, null=True)
+    phone_to_inform = models.CharField(max_length=24, blank=True, null=True)
+    other_to_inform = models.CharField(max_length=256, blank=True, null=True)
+    facebook_to_inform = models.CharField(max_length=256, blank=True, null=True)
     
     #Step 6
     bank_origin = models.CharField(max_length=128)

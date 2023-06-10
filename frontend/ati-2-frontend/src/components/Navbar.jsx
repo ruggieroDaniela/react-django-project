@@ -135,11 +135,11 @@ const Navbar = () => {
                                     arrow: "▸"
                                 },
                                 items:[
-                                    {label: t("navbar.ofrecerme.babysitter"), link:"#"},
+                                    {label: t("navbar.ofrecerme.babysitter"), link:"/offer-my-services/post-add/offer-me-as-babysitter"},
                                     {label: t("navbar.ofrecerme.cuidador"), link:"#"}
                                 ]
                             },
-                            {label: t("navbar.operaciones.ver_publicaciones"), link:"#"},
+                            {label: t("navbar.operaciones.ver_publicaciones"), link:"/show-posts?type=provide"},
                             {label: t("navbar.operaciones.buscar"), link:"#"},
                             {label: t("navbar.operaciones.modificar"), link:"#"},
                             {label: t("navbar.operaciones.eliminar"), link:"#"},
