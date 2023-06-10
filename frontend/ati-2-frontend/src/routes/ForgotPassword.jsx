@@ -56,8 +56,7 @@ export const ForgotPassword = () => {
         }
 
         { 
-            formEmail === false && formIdDoc === false
-            ?
+            formEmail === false && formIdDoc === false?
                 <div id='forgot'>
                     <h2 id='title'>{t('forgotPassword.titulo1')}</h2>
 

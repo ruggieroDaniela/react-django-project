@@ -39,9 +39,7 @@ export const FormForgotPassword = ({ message }) => {
 
         <>
 
-            { correoEnviado
-
-            ?
+            { correoEnviado?
                 <div id='forgot'>
                     <h2 id='title'>{t('forgotPassword.titulo1')}</h2>
 
