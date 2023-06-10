@@ -30,12 +30,14 @@ function RegisterFormContextProvider({children}){
                     apellido: "",
                     identificacion: "",
                     correo: "",
-                    pais: ""
+                    pais: "",
+                    codigo_pais: "",
                 },
                 empresa:{
                     nombre_empresa: "",
                     razon_rif: "",
                     pais: "",
+                    codigo_pais: "",
                     ciudad: "",
                     direccion: "",
                     nombre_representante: "",
@@ -71,11 +73,13 @@ function RegisterFormContextProvider({children}){
             },{
                 client_code: "",
                 banco_origen: "",
+                codigo_pais_banco: "",
                 pais: "",
                 banco_destino: ""
             }
         ],
         countries:[],
+        cities:[],
         banks:[],
         errors:[
             {
@@ -104,6 +108,8 @@ function RegisterFormContextProvider({children}){
                 rep_email_required: false,
                 rep_email_invalid: false,
 
+                telefono_required: false,
+                telefono_invalid: false
             },
             {
                 option_required: false,

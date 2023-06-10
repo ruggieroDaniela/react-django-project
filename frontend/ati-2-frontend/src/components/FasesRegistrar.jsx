@@ -286,8 +286,8 @@ const Fase1 = () => {
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
         const countries = registerFormState.countries;
-        const [cities, setCities] = useState([]);
-        const [countryCode, setCountryCode] = useState("");
+        const [cities, setCities] = useState(registerFormState.cities);
+        const [countryCode, setCountryCode] = useState("AF");
 
         const nameRequired = registerFormState.errors[1].name_required 
         const nameInvalid = registerFormState.errors[1].name_invalid
@@ -307,6 +307,9 @@ const Fase1 = () => {
         const rep_name_invalid = registerFormState.errors[1].rep_name_invalid
         const rep_email_required = registerFormState.errors[1].rep_email_required
         const rep_email_invalid = registerFormState.errors[1].rep_email_invalid
+
+        const telefonoRequired = registerFormState.errors[1].telefono_required
+        const telefonoInvalid = registerFormState.errors[1].telefono_invalid
 
         useEffect(() => {
             const fetchCities = async () => {
@@ -463,16 +466,19 @@ const Fase1 = () => {
                                 name="select" 
                                 value={registerFormState.phase[1].natural.pais}
                                 onChange={ e => {
+                                    const country =  JSON.parse(e.target.options[e.target.selectedIndex].getAttribute('data-country'))
+                                    setCountryCode(country.code)
                                     setRegisterFormState( prev => {
                                         const newState = {... prev};
                                         newState.phase[1] = {... prev.phase[1]};
                                         newState.phase[1].natural.pais = e.target.value;
+                                        newState.phase[1].natural.codigo_pais = countryCode;
                                         return newState;
                                     } )
                                 }}>
 
                                 {countries?.map( country => {
-                                    return (<option key={country.name} value={country.name}>{country.name}</option>);
+                                      return (<option key={country.code} value={country.name} data-country={JSON.stringify(country)}> {country.name}</option>);
                                 })}
 
                             </select>
@@ -578,8 +584,11 @@ const Fase1 = () => {
                                         />
                                     </label>
                                 </div>
+
+                            { telefonoRequired && <ErrorMessage message={t('registrar.errores.1.telefono_requerido')}/> }
+                            { telefonoInvalid && <ErrorMessage message={t('registrar.errores.1.telefono_invalido')}/>}
                             </div>   
-                            
+
                         </div>
 
                     </div>
@@ -650,6 +659,7 @@ const Fase1 = () => {
                                             const newState = {... prev};
                                             newState.phase[1] = {... prev.phase[1]};
                                             newState.phase[1].empresa.pais = e.target.value;
+                                            newState.phase[1].empresa.codigo_pais = countryCode;
                                             return newState;
                                         } )
                                     }}>
@@ -677,8 +687,6 @@ const Fase1 = () => {
                                             return newState;
                                         } );
                                     }}>
-                                    
-                                    <option value="" disabled> {t('registrar.fases.1.seleccionar_ciudad')} </option>
 
                                     {cities?.map( city => {
                                         return (<option key={city} value={city}>{city}</option>);
@@ -856,6 +864,9 @@ const Fase1 = () => {
                                     </div>
                                 </div>   
                                 
+                                { telefonoRequired && <ErrorMessage message={t('registrar.errores.1.telefono_requerido')}/> }
+                                { telefonoInvalid && <ErrorMessage message={t('registrar.errores.1.telefono_invalido')}/>}
+
                             </div>
 
                         </div>
@@ -1339,6 +1350,8 @@ const Fase5 = () => {
         const bankNameInvalid = registerFormState.errors[5].banco_minimo
         const bankDestinyInvalid = registerFormState.errors[5].destino_requerido
 
+        let countryCode = "AF"
+
         return(
             <div id="fase5">
                 
@@ -1391,24 +1404,25 @@ const Fase5 = () => {
                             </div>
 
                             <select 
-                                style={{width: '100%' , boxSizing: 'border-box'}}
-                                name="select" 
-                                value={registerFormState.phase[5].pais}
-                                onChange={ e => {
-                                    setRegisterFormState( prev => {
-                                        const newState = {... prev};
-                                        newState.phase[5] = {... prev.phase[5]};
-                                        newState.phase[5].pais = e.target.value;
-                                        return newState;
-                                    } )
-                                }}>
+                                    style={{width: '100%' , boxSizing: 'border-box'}}
+                                    name="select" 
+                                    value={registerFormState.phase[5].pais}
+                                    onChange={ e => {
+                                        const country =  JSON.parse(e.target.options[e.target.selectedIndex].getAttribute('data-country'))
+                                        countryCode = country.code
+                                        setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[5] = {... prev.phase[5]};
+                                            newState.phase[5].pais = e.target.value;
+                                            newState.phase[5].codigo_pais_banco = countryCode;
+                                            return newState;
+                                        } )
+                                    }}>
 
-                                {countries?.map( country => {
-                                    return (<option key={country.name} value={country.name}>{country.name}</option>);
-                                })}
-
-                            </select>
-                             
+                                    {countries?.map( country => {
+                                        return (<option key={country.code} value={country.name} data-country={JSON.stringify(country)}> {country.name}</option>);
+                                    })}
+                                </select>
                         </label>
                     </div>
 
@@ -1641,17 +1655,17 @@ const botonRegistrar = () => {
         }
     };
 
-    postBody.found_app_by = JSON.stringify(found_app_by);
+    postBody.found_app_by = found_app_by;
 
+    console.log(registerFormState)
     // Registrar Usuario
     postBody.type_user = userData.phase[1].tipo_usuario;
 
     if( postBody.type_user == "natural" ){
-    
-        postBody.country = userData.phase[1].natural.pais;
+        postBody.country = userData.phase[1].natural.codigo_pais;
         postBody.first_name = userData.phase[1].natural.nombre;
         postBody.last_name = userData.phase[1].natural.apellido;
-        postBody.dni = userData.phase[1].natural.identification;
+        postBody.dni = userData.phase[1].natural.identificacion;
         postBody.contact_email = userData.phase[1].natural.correo;
 
         if(userData.phase[1].telefono.tipo == "movil"){
@@ -1680,6 +1694,10 @@ const botonRegistrar = () => {
 
     // Idioma
     postBody.language = userData.phase[2].idioma;
+    if(postBody.language === "español")
+        postBody.language = "es"
+    else if(postBody.language === "english")
+        postBody.language = "en"
 
     // Datos de Login
     postBody.email = userData.phase[3].correo;
@@ -1707,24 +1725,10 @@ const botonRegistrar = () => {
 
     // Billing
     postBody.bank_origin = userData.phase[5].banco_origen;
-    postBody.bank_country = userData.phase[5].pais;
+    postBody.bank_country = userData.phase[5].codigo_pais_banco;
+    postBody.client_code= userData.phase[5].client_code.toString();
 
-
-    const data = {
-        email: "anotherone@gmail.com",
-        password: "12345",
-        found_app_by: "Twitter",
-        type_user: "natural",
-        country: "Alemania",
-        first_name: "Admin",
-        last_name: "Ati-2",
-        dni: "V-126125",
-        contact_email: "admin@gmail.com",
-        language: "es",
-        want_inform: false,
-        bank_origin: "Banesco",
-        bank_country: "Venezuela"
-    };
+    console.log(postBody)
 
     return(
         <button
@@ -1783,11 +1787,10 @@ const botonRegistrar = () => {
                                 headers: {
                                     'Content-Type': 'application/json',
                                 },
-                                body: JSON.stringify(data),
-                                // body: JSON.stringify(postBody),
+                                body: JSON.stringify(postBody),
                             }
                         );
-                
+
                         if (response.ok) {
                             // Request was successful
                             console.log('POST request successful');
@@ -1822,6 +1825,10 @@ const useValidarRegistrar = () => {
                 }
             })
             registerFormState.countries = pairs;
+
+            let cities = await getCitiesInCountry(pairs[0].code)
+            cities  = [...new Set(cities)];
+            registerFormState.cities = cities
         };
 
         const fetchBanks= async () => {
@@ -1834,7 +1841,6 @@ const useValidarRegistrar = () => {
         fetchBanks()
     }, [])
 
-    console.log(registerFormState.phase[1])
     const uniqueEmail = async (email) => {
         try {
             const response = await axios.post('http://127.0.0.1:8000/users/unique_email/', {"email": email })
@@ -1862,10 +1868,18 @@ const useValidarRegistrar = () => {
     }
 
     const validPassword = (password) =>{
-        if(password.length > 5)
+        if(password.length >= 8)
             return true
         else 
             return false
+    }
+
+    const phoneIsValid = (number) => {
+        if(number.length < 4)
+            return false
+        
+        const regex = new RegExp('[0-9]+')    
+        return regex.test(number);
     }
 
     const validate = async (currentStage) => {
@@ -1963,6 +1977,20 @@ const useValidarRegistrar = () => {
                     registerFormState.errors[1].email_required = false
                     registerFormState.errors[1].email_invalid = false
                 }
+
+                // Validar telefono
+                if(!selection.telefono.numero){
+                    registerFormState.errors[1].telefono_required = true
+                    registerFormState.errors[1].telefono_invalid = false
+                    valid = false
+                } else if(!phoneIsValid(selection.telefono.numero)){
+                    registerFormState.errors[1].telefono_required= false
+                    registerFormState.errors[1].telefono_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].telefono_required = false
+                    registerFormState.errors[1].telefono_invalid = false
+                }
             } else if(type === "enterprise"){
                 const user = selection.empresa
     
@@ -2029,6 +2057,20 @@ const useValidarRegistrar = () => {
                     registerFormState.errors[1].rep_email_required = false
                     registerFormState.errors[1].rep_email_invalid = false
                 }
+
+                // Validar telefono
+                if(!selection.telefono.numero){
+                    registerFormState.errors[1].telefono_required = true
+                    registerFormState.errors[1].telefono_invalid = false
+                    valid = false
+                } else if(!phoneIsValid(selection.telefono.numero)){
+                    registerFormState.errors[1].telefono_required= false
+                    registerFormState.errors[1].telefono_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].telefono_required = false
+                    registerFormState.errors[1].telefono_invalid = false
+                }
             }
 
         } else if(currentStage == 2){
@@ -2048,7 +2090,6 @@ const useValidarRegistrar = () => {
             if(validator.isEmail(email)){
                 try{
                     const unique = await uniqueEmail(email)
-                    console.log(registerFormState.phase[3])
                     if(!unique){
                         registerFormState.errors[3].invalid_mail = false
                         registerFormState.errors[3].mail_exists = true

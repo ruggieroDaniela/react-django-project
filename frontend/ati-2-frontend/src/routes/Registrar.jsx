@@ -35,7 +35,6 @@ export const Registrar = () => {
         }
     }
 
-    
     return (
         <div id="registrar">
             
