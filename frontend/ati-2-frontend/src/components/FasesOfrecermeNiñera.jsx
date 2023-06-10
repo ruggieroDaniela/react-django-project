@@ -504,7 +504,7 @@ const Fase3 = () => {
                                 }
                                 checked={offerDomesticFormState.travel}
                         />
-                        <label for="c1">{t('OfrecermeNiñera.fases.3.si')}</label>
+                        <label htmlFor="c1">{t('OfrecermeNiñera.fases.3.si')}</label>
                     </div>
 
                     <div>
@@ -524,7 +524,7 @@ const Fase3 = () => {
                                 }
                                 checked={!offerDomesticFormState.travel}        
                         />
-                        <label for="c2">{t('OfrecermeNiñera.fases.3.no')}</label>
+                        <label htmlFor="c2">{t('OfrecermeNiñera.fases.3.no')}</label>
                     </div>
             </div>
         </div>
@@ -821,7 +821,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.workday.includes('FIN_SEMANA')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
-                            <label for="FIN_SEMANA">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.5')}</label>
+                            <label htmlFor="FIN_SEMANA">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.5')}</label>
                         </div>
 
                         <div>
@@ -831,7 +831,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.workday.includes('NOCHE')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
-                            <label for="NOCHE">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.6')}</label>
+                            <label htmlFor="NOCHE">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.6')}</label>
                         </div>
 
                         {/* <div>
@@ -851,7 +851,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.workday.includes('HORAS')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
-                            <label for="HORAS">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.8')}</label>
+                            <label htmlFor="HORAS">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.8')}</label>
                         </div>
 
                         <div>
@@ -861,7 +861,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.workday.includes('OTRO')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
-                            <label for="OTRO">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.9')}</label>                    
+                            <label htmlFor="OTRO">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.9')}</label>                    
                         </div>
                         <br />
                         
@@ -893,7 +893,7 @@ const Fase5 = () => {
                                     onChange={e => {setTheSchedule(e)}}
 
                                     />
-                            <label for="cd1">{t('OfrecermeNiñera.fases.5.horario-opciones.0')}</label>
+                            <label htmlFor="cd1">{t('OfrecermeNiñera.fases.5.horario-opciones.0')}</label>
                         </div>
 
                         <div>
@@ -902,7 +902,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('MAR')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label for="cd2">{t('OfrecermeNiñera.fases.5.horario-opciones.1')}</label>
+                            <label htmlFor="cd2">{t('OfrecermeNiñera.fases.5.horario-opciones.1')}</label>
                         </div>
 
                         <div>
@@ -911,7 +911,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('MIE')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label for="MIE">{t('OfrecermeNiñera.fases.5.horario-opciones.2')}</label>
+                            <label htmlFor="MIE">{t('OfrecermeNiñera.fases.5.horario-opciones.2')}</label>
                         </div>
 
                         <div>
@@ -920,7 +920,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('JUE')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label for="JUE">{t('OfrecermeNiñera.fases.5.horario-opciones.3')}</label>
+                            <label htmlFor="JUE">{t('OfrecermeNiñera.fases.5.horario-opciones.3')}</label>
                         </div>
 
                         <div>
@@ -929,7 +929,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('VIE')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label for="VIE">{t('OfrecermeNiñera.fases.5.horario-opciones.4')}</label>
+                            <label htmlFor="VIE">{t('OfrecermeNiñera.fases.5.horario-opciones.4')}</label>
                         </div>
 
                         <div>
@@ -938,7 +938,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('SAB')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label for="SAB">{t('OfrecermeNiñera.fases.5.horario-opciones.5')}</label>
+                            <label htmlFor="SAB">{t('OfrecermeNiñera.fases.5.horario-opciones.5')}</label>
                         </div>
 
                         <div>
@@ -947,7 +947,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('DOM')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label for="cd7">{t('OfrecermeNiñera.fases.5.horario-opciones.6')}</label>
+                            <label htmlFor="cd7">{t('OfrecermeNiñera.fases.5.horario-opciones.6')}</label>
                         </div>
 
                         <div>
@@ -956,7 +956,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('LUN_VIE')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label for="LUN_VIE">{t('OfrecermeNiñera.fases.5.horario-opciones.7')}</label>
+                            <label htmlFor="LUN_VIE">{t('OfrecermeNiñera.fases.5.horario-opciones.7')}</label>
                         </div>
 
                         <div>
@@ -965,7 +965,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('FIN')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label for="FIN">{t('OfrecermeNiñera.fases.5.horario-opciones.8')}</label>
+                            <label htmlFor="FIN">{t('OfrecermeNiñera.fases.5.horario-opciones.8')}</label>
                         </div>
 
                         <div>
@@ -974,7 +974,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('OTRO')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label for="cd10">{t('OfrecermeNiñera.fases.5.horario-opciones.9')}</label>
+                            <label htmlFor="cd10">{t('OfrecermeNiñera.fases.5.horario-opciones.9')}</label>
                         </div>
 
                         <div hidden={!(offerDomesticFormState.schedule).includes('OTRO')}>
@@ -1013,7 +1013,7 @@ const Fase5 = () => {
                                             } 
                                         }
                                         />
-                                <label for="d1">{t('OfrecermeNiñera.fases.5.salario-deseado-opciones.0')}</label> 
+                                <label htmlFor="d1">{t('OfrecermeNiñera.fases.5.salario-deseado-opciones.0')}</label> 
                             </div>
 
                             <div>
@@ -1032,7 +1032,7 @@ const Fase5 = () => {
                                         }
 
                                         />
-                                <label for="d2">{t('OfrecermeNiñera.fases.5.salario-deseado-opciones.1')}</label> 
+                                <label htmlFor="d2">{t('OfrecermeNiñera.fases.5.salario-deseado-opciones.1')}</label> 
                             </div>
                         </div>
                         
@@ -1124,7 +1124,7 @@ const Fase5 = () => {
                                                 } 
                                             }
                                             />
-                                    <label for="e1">{t('OfrecermeNiñera.fases.5.no')}</label> 
+                                    <label htmlFor="e1">{t('OfrecermeNiñera.fases.5.no')}</label> 
                                 </div>
 
                                 <div>
@@ -1143,7 +1143,7 @@ const Fase5 = () => {
                                             }
 
                                             />
-                                    <label for="e2">{t('OfrecermeNiñera.fases.5.si')}</label> 
+                                    <label htmlFor="e2">{t('OfrecermeNiñera.fases.5.si')}</label> 
                                 </div>
                         </div>
 
@@ -1204,7 +1204,7 @@ const  Fase6= () => {
                                     }}
 
                             />
-                            <label for="c1">{t('OfrecermeNiñera.fases.6.fecha-inicio')}</label> 
+                            <label htmlFor="c1">{t('OfrecermeNiñera.fases.6.fecha-inicio')}</label> 
                         </div>
 
                         <div>
@@ -1220,7 +1220,7 @@ const  Fase6= () => {
 
                                     }}
                             />
-                            <label for="c2">{t('OfrecermeNiñera.fases.6.fecha-convenir')}</label> 
+                            <label htmlFor="c2">{t('OfrecermeNiñera.fases.6.fecha-convenir')}</label> 
                         </div>
                     </div>
                     {offerDomesticFormState.availability == "FECHA" &&
@@ -1383,7 +1383,7 @@ const Fase7 = () => {
                                         }
                                     }
                             />
-                            <label for="d1">{t('OfrecermeNiñera.fases.7.lugar-procedencia-opciones.0')}</label> 
+                            <label htmlFor="d1">{t('OfrecermeNiñera.fases.7.lugar-procedencia-opciones.0')}</label> 
                         </div>
 
                         <div>
@@ -1400,7 +1400,7 @@ const Fase7 = () => {
                                         }
                                     }
                             />
-                            <label for="d2">{t('OfrecermeNiñera.fases.7.lugar-procedencia-opciones.1')}</label> 
+                            <label htmlFor="d2">{t('OfrecermeNiñera.fases.7.lugar-procedencia-opciones.1')}</label> 
                         </div>
                 </div>
             </div>
@@ -1421,7 +1421,7 @@ const Fase7 = () => {
                                         }
                                     }
                             />
-                            <label for="c1">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.0')}</label> 
+                            <label htmlFor="c1">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.0')}</label> 
                         </div>
                         <div>
                             <input  type="radio"
@@ -1437,7 +1437,7 @@ const Fase7 = () => {
                                         }
                                     }
                                     />
-                            <label for="c2">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.1')}</label> 
+                            <label htmlFor="c2">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.1')}</label> 
                         </div>
                         <div>
                             <input  type="radio"
@@ -1453,7 +1453,7 @@ const Fase7 = () => {
                                         }
                                     }
                             />
-                            <label for="c3">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.2')}</label> 
+                            <label htmlFor="c3">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.2')}</label> 
                         </div>
 
                 </div>
@@ -1548,7 +1548,7 @@ const Fase8 = () => {
                                     })
                                 }}
                                 />
-                        <label for="c1">{t('OfrecermeNiñera.fases.8.si')}</label> 
+                        <label htmlFor="c1">{t('OfrecermeNiñera.fases.8.si')}</label> 
                     </div>
 
                     <div id="segundo">
@@ -1563,7 +1563,7 @@ const Fase8 = () => {
                                     })
                                 }}
                         />
-                        <label for="c2">{t('OfrecermeNiñera.fases.8.no')}</label> 
+                        <label htmlFor="c2">{t('OfrecermeNiñera.fases.8.no')}</label> 
                     </div>
                 </div>
                 { offerDomesticFormState.have_documentation &&
@@ -1572,39 +1572,39 @@ const Fase8 = () => {
                     <div id="selects">
                         <div>
                             <input type="checkbox" id="d1" value="PASAPORTE" checked={offerDomesticFormState.documents == "PASAPORTE"} onChange={ e => selectDocuments(e)}/>
-                            <label for="d1">{t('OfrecermeNiñera.fases.8.documentos-opciones.0')}</label>
+                            <label htmlFor="d1">{t('OfrecermeNiñera.fases.8.documentos-opciones.0')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d2" value="CURRICULUM" checked={offerDomesticFormState.documents == "CURRICULUM"}  onChange={ e => selectDocuments(e)}/>
-                            <label for="d2">{t('OfrecermeNiñera.fases.8.documentos-opciones.1')}</label>
+                            <label htmlFor="d2">{t('OfrecermeNiñera.fases.8.documentos-opciones.1')}</label>
                         </div>    
                         <div>
                             <input type="checkbox" id="d3" value="TITULOS" checked={offerDomesticFormState.documents == "TITULOS"} onChange={ e => selectDocuments(e)}/>
-                            <label for="d3">{t('OfrecermeNiñera.fases.8.documentos-opciones.2')}</label>
+                            <label htmlFor="d3">{t('OfrecermeNiñera.fases.8.documentos-opciones.2')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d4" value="REF_TRABAJO" checked={offerDomesticFormState.documents == "REF_TRABAJO"}  onChange={ e => selectDocuments(e)}/>
-                            <label for="d4">{t('OfrecermeNiñera.fases.8.documentos-opciones.3')}</label>
+                            <label htmlFor="d4">{t('OfrecermeNiñera.fases.8.documentos-opciones.3')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d5" value="REF_FAMILIAR" checked={offerDomesticFormState.documents == "REF_FAMILIAR"}  onChange={ e => selectDocuments(e)}/>
-                            <label for="d5">{t('OfrecermeNiñera.fases.8.documentos-opciones.4')}</label>
+                            <label htmlFor="d5">{t('OfrecermeNiñera.fases.8.documentos-opciones.4')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d6" value="CONST_RESIDENCIA" checked={offerDomesticFormState.documents == "CONST_RESIDENCIA"}  onChange={ e => selectDocuments(e)}/>
-                            <label for="d6">{t('OfrecermeNiñera.fases.8.documentos-opciones.5')}</label>
+                            <label htmlFor="d6">{t('OfrecermeNiñera.fases.8.documentos-opciones.5')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d7" value="CONST_ANTECEDENTES" checked={offerDomesticFormState.documents == "CONST_ANTECEDENTES"} onChange={ e => selectDocuments(e)}/>
-                            <label for="d7">{t('OfrecermeNiñera.fases.8.documentos-opciones.6')}</label>
+                            <label htmlFor="d7">{t('OfrecermeNiñera.fases.8.documentos-opciones.6')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d8" value="SALUD" checked={offerDomesticFormState.documents == "SALUD"}  onChange={ e => selectDocuments(e)}/>
-                            <label for="d8">{t('OfrecermeNiñera.fases.8.documentos-opciones.7')}</label>
+                            <label htmlFor="d8">{t('OfrecermeNiñera.fases.8.documentos-opciones.7')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d9" value="OTRO" checked={offerDomesticFormState.documents == "OTRO"}  onChange={ e => selectDocuments(e)}/>
-                            <label for="d9">{t('OfrecermeNiñera.fases.8.documentos-opciones.8')}</label>
+                            <label htmlFor="d9">{t('OfrecermeNiñera.fases.8.documentos-opciones.8')}</label>
                         </div>
                         
                         { offerDomesticFormState.documents == "OTRO" &&
@@ -1749,22 +1749,40 @@ const Fase13 = () => {
     var arr=[1,2,3];
     var val=[1,2,3];
     const [selectedServices, setSelectedServices] = useState("");
-
-
-    const getBanks = async() =>{
-        try {
-            const response = await axios.get(`http://127.0.0.1:8000/banks/`);    
-            console.log(response);
-            return response;
-        } catch (error) {
+    
+    const [banks, setBanks] = useState([]);
+    useEffect(() => {
+        const getBanks = async () => {
+          try {
+            const response = await axios.get(`http://127.0.0.1:8000/banks/`);
+            return response.data; // Return the response data instead of the entire response
+          } catch (error) {
             console.error(error);
+          }
+        };
+      
+        const fetchBanks = async () => {
+          const banksData = await getBanks(); // Await the getBanks() function to resolve the Promise
+          setBanks(banksData); // Update the banks state with the fetched data
+        };
+      
+        fetchBanks();
+      }, []);
+    let aux=[]
+    
+    useEffect(() =>{
+        for (let i=0; i<banks.length; i++){
+            aux.push(banks[i].name+ " - "+ banks[i].account +" - "+ banks[i].swift_code);
         }
-    }
+        
+    },[banks]);
 
-    getBanks();
+    console.log(banks);
 
     return ( 
         <div id="fase13">
+            
+            
             <div id="small">
                 <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.13.mensaje')}</span><br />
             </div>
@@ -1776,14 +1794,14 @@ const Fase13 = () => {
                     
                         <div>
                             <input type="radio" id="c1"/>
-                            <label for="c1">1 {t('OfrecermeNiñera.fases.13.mes')}</label>
+                            <label htmlFor="c1">1 {t('OfrecermeNiñera.fases.13.mes')}</label>
                         </div>
                         <div>
                             <h3 className="red">10 USD</h3>
                         </div>
                         <div>
                             <input type="radio" id="c1"/>
-                            <label for="c1">3 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                            <label htmlFor="c1">3 {t('OfrecermeNiñera.fases.13.meses')}</label>
                         </div>
                         
                         <div>
@@ -1792,7 +1810,7 @@ const Fase13 = () => {
 
                         <div>
                             <input type="radio" id="c1"/>
-                            <label for="c1">6 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                            <label htmlFor="c1">6 {t('OfrecermeNiñera.fases.13.meses')}</label>
                         </div>    
 
                         <div>
@@ -1801,7 +1819,7 @@ const Fase13 = () => {
 
                         <div>
                             <input type="radio" id="c1"/>
-                            <label for="c1">9 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                            <label htmlFor="c1">9 {t('OfrecermeNiñera.fases.13.meses')}</label>
                         </div>    
 
                         <div>
@@ -1810,7 +1828,7 @@ const Fase13 = () => {
 
                         <div>
                             <input type="radio" id="c1"/>
-                            <label for="c1">12 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                            <label htmlFor="c1">12 {t('OfrecermeNiñera.fases.13.meses')}</label>
                         </div>    
 
                         <div>
@@ -1832,12 +1850,10 @@ const Fase13 = () => {
 
                     
                         <div className="dropdown-content">
-                            <FieldDropdownCheckbox 
+                            <FieldDropdown 
                                 title="prueba"
                                 placeholder="placeholder 1"
                                 items={arr}
-                                values={val}
-                                state={selectedServices}
                                 setState={setSelectedServices}
                             />
                         </div>
@@ -1850,7 +1866,7 @@ const Fase13 = () => {
                             <FieldDropdownCheckbox 
                                 title="prueba"
                                 placeholder="placeholder 1"
-                                items={arr}
+                                items={aux}
                                 values={val}
                                 state={selectedServices}
                                 setState={setSelectedServices}
