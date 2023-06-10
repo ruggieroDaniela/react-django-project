@@ -56,7 +56,7 @@ export const getStatesInCountry = async (countries) => {
 
             for (let j = 0; j < response.data.length; j++) {
                 names.push( response.data[j].name );
-                values.push( `${codes[i]}/${response.data[j].iso2}` );
+                values.push( `${codes[i]}-${response.data[j].iso2}` );
             }
 
         }
@@ -81,8 +81,8 @@ export const getCitiesInStates = async (stateCodes) => {
         const codes = stateCodes.split(",");
         for (let i = 0; i < codes.length; i++) {
 
-            country = codes[i].split("/")[0];
-            state = codes[i].split("/")[1];
+            country = codes[i].split("-")[0];
+            state = codes[i].split("-")[1];
 
             response = await axios.get(`https://api.countrystatecity.in/v1/countries/${country}/states/${state}/cities`, {
                 headers: {
