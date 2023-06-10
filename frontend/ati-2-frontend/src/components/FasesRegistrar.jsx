@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { RegisterFormContext } from "../context/RegisterFormContext";
 import AuthContext from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
-import { getAllCountries, getCitiesInCountry} from "../components/dataFetchers/PaisDataFetcher";
+import { getAllCountries, getCitiesInCountry, getCountryDetails} from "../components/dataFetchers/PaisDataFetcher";
 import ErrorMessage from "./ErrorMessage";
 import axios from 'axios';
 import validator from "validator";
@@ -313,16 +313,25 @@ const Fase1 = () => {
         const telefonoRequired = registerFormState.errors[1].telefono_required
         const telefonoInvalid = registerFormState.errors[1].telefono_invalid
 
+        const [countryDetails, setCountryDetails] = useState({phonecode: "", flag: ""});
+
         useEffect(() => {
-            const fetchCities = async () => {
+            const fetchCountryDetails = async () => {
                 if(countryCode){
                     let [names, values] = await getCitiesInCountry(countryCode);
                     names  = [...new Set(names)];
                     setCities(names);
+
+                    let resp = {};
+                    [resp.phonecode, resp.flag] = await getCountryDetails(countryCode);
+                    setCountryDetails(() => resp);
+                    // console.log(countryDetails);
+                    // console.log(resp);
+
                 }
             };
 
-            fetchCities();
+            fetchCountryDetails();
         }, [countryCode])
 
         return(
