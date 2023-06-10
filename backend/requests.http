@@ -3,20 +3,28 @@ POST http://127.0.0.1:8000/users/
 content-type: application/json
 
 {
-    "email": "carlos99@gmail.com",
-    "password": "12345",
-    "found_app_by": "Twitter",
-    "type_user": "natural",
-    "country": "Venezuela",
-    "first_name": "Carlos",
-    "last_name": "Peréz",
-    "dni": "V-126125",
-    "contact_email": "carlos99@gmail.com",
-    "language": "es",
-    "want_inform": false,
-    "bank_origin": "Banesco",
-    "bank_country": "Venezuela"
-
+    "bank_country" : "",
+    "bank_origin" : "xxxxxx",
+    "cellphone" : "11111",
+    "client_code" : "388455139",
+    "contact_email" : "xxxx@gmail.com",
+    "country" : "",
+    "dni" : "xxxxxxxx",
+    "email" : "ati3@gmail.com",
+    "email_to_inform" : "x",
+    "facebook_to_inform" : "",
+    "first_name" : "xxxxxxx",
+    "found_app_by" : {"website": true, "friends": false},
+    "frecuency_to_inform" : "mensual",
+    "language" : "es",
+    "last_name" : "xxxx",
+    "other_to_inform" : "",
+    "password" : "xxxxxxxxxxx",
+    "phone_to_inform" : "",
+    "services_interest" : {"available_personal": true, "professional_advice": false},
+    "social_media_to_inform" : {"Facebook": false, "Twitter": false},
+    "type_user" : "natural",
+    "want_inform" : true
 }
 ###
 POST http://127.0.0.1:8000/users/

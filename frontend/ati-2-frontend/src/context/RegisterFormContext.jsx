@@ -31,13 +31,13 @@ function RegisterFormContextProvider({children}){
                     identificacion: "",
                     correo: "",
                     pais: "",
-                    codigo_pais: "",
+                    codigo_pais: "AF",
                 },
                 empresa:{
                     nombre_empresa: "",
                     razon_rif: "",
                     pais: "",
-                    codigo_pais: "",
+                    codigo_pais: "AF",
                     ciudad: "",
                     direccion: "",
                     nombre_representante: "",
@@ -73,14 +73,13 @@ function RegisterFormContextProvider({children}){
             },{
                 client_code: "",
                 banco_origen: "",
-                codigo_pais_banco: "",
+                codigo_pais_banco: "AF",
                 pais: "",
                 banco_destino: ""
             }
         ],
         countries:[],
         cities:[],
-        banks:[],
         errors:[
             {
                 option_required: false,
@@ -122,6 +121,7 @@ function RegisterFormContextProvider({children}){
             {
                 frecuencia_required: false,
                 servicio_required: false,
+                means_required: false,
                 email_required: false,
                 social_required: false,
                 sms_required: false,

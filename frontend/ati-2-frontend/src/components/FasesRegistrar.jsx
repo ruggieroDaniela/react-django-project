@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RegisterFormContext } from "../context/RegisterFormContext";
+import AuthContext from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
 import { getAllCountries, getCitiesInCountry} from "../components/dataFetchers/PaisDataFetcher";
 import ErrorMessage from "./ErrorMessage";
 import axios from 'axios';
 import validator from "validator";
+import { useNavigate } from 'react-router-dom';
 
 import "../styles/Registrar.scss"
 
@@ -287,7 +289,7 @@ const Fase1 = () => {
 
         const countries = registerFormState.countries;
         const [cities, setCities] = useState(registerFormState.cities);
-        const [countryCode, setCountryCode] = useState("AF");
+        const [countryCode, setCountryCode] = useState(registerFormState.phase[1].empresa.codigo_pais);
 
         const nameRequired = registerFormState.errors[1].name_required 
         const nameInvalid = registerFormState.errors[1].name_invalid
@@ -313,7 +315,7 @@ const Fase1 = () => {
 
         useEffect(() => {
             const fetchCities = async () => {
-                if(countryCode != ""){
+                if(countryCode){
                     let names = await getCitiesInCountry(countryCode);
                     names  = [...new Set(names)];
                     setCities(names);
@@ -472,7 +474,7 @@ const Fase1 = () => {
                                         const newState = {... prev};
                                         newState.phase[1] = {... prev.phase[1]};
                                         newState.phase[1].natural.pais = e.target.value;
-                                        newState.phase[1].natural.codigo_pais = countryCode;
+                                        newState.phase[1].natural.codigo_pais = country.code;
                                         return newState;
                                     } )
                                 }}>
@@ -1018,7 +1020,8 @@ const Fase4 = () => {
         const social_required = registerFormState.errors[4].social_required
         const sms_required = registerFormState.errors[4].sms_required
         const other_required = registerFormState.errors[4].other_required
-        const facebook_required = registerFormState.errors[4].facebook_require
+        const facebook_required = registerFormState.errors[4].facebook_required
+        const means_required = registerFormState.errors[4].means_required
 
         const empty_field = email_required || social_required  || sms_required || other_required || facebook_required
 
@@ -1332,6 +1335,7 @@ const Fase4 = () => {
                         />
                     </div>
                 
+                { means_required && <ErrorMessage message={t('registrar.errores.4.requerido')}/> }
                 { empty_field  && <ErrorMessage message={t('registrar.errores.4.especificar_vacio')}/> }
 
                 </div>
@@ -1343,14 +1347,26 @@ const Fase4 = () => {
 const Fase5 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
-        const banks = registerFormState.banks;
+        const [banks, setBanks] = useState([]);
         const code = registerFormState.phase[5].client_code
         const countries = registerFormState.countries;
         const bankNameRequired = registerFormState.errors[5].banco_requerido
         const bankNameInvalid = registerFormState.errors[5].banco_minimo
         const bankDestinyInvalid = registerFormState.errors[5].destino_requerido
 
-        let countryCode = "AF"
+        let countryCode = registerFormState.phase[5].codigo_pais_banco
+
+        useEffect(() => {
+            const fetchBanks = async () => {
+                await axios.get('http://127.0.0.1:8000/banks/')
+                    .then(({data}) => {
+                        setBanks(data); 
+                    }); 
+            }
+
+            fetchBanks()
+        }, [])
+
 
         return(
             <div id="fase5">
@@ -1452,19 +1468,8 @@ const Fase5 = () => {
                                 })}
 
                             </select>
-
-                           
                         </label>
-
-                        {/* <label className="field">
-                            <div className="etiqueta">
-                                banco destino
-                            </div>
-                            <input type="text"/>
-                        </label> */}
-                    </div>
-
-                    
+                    </div>       
                 </div>
                 
                 { bankNameRequired && <ErrorMessage message={t('registrar.errores.5.requerido')}/> }
@@ -1629,6 +1634,8 @@ const registrarUsuario = () => {
 const botonRegistrar = () => {
     const { t, i18n } = useTranslation();
     const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
+    const {authState, setAuthState} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const userData = {...registerFormState};
     let postBody = {};
@@ -1657,7 +1664,6 @@ const botonRegistrar = () => {
 
     postBody.found_app_by = found_app_by;
 
-    console.log(registerFormState)
     // Registrar Usuario
     postBody.type_user = userData.phase[1].tipo_usuario;
 
@@ -1728,8 +1734,6 @@ const botonRegistrar = () => {
     postBody.bank_country = userData.phase[5].codigo_pais_banco;
     postBody.client_code= userData.phase[5].client_code.toString();
 
-    console.log(postBody)
-
     return(
         <button
             id="boton_registrar"
@@ -1781,27 +1785,29 @@ const botonRegistrar = () => {
                     // Enviar datos
                     const url = 'http://127.0.0.1:8000/users/'
                     try {
-                        
-                        const response = await fetch( url,{
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(postBody),
+                        const response = await axios.post(url, postBody)
+
+                        const token = response.data.token 
+                        const id = response.data.id
+    
+                        setAuthState(
+                            () => {
+                                return {
+                                    token: token,
+                                    id: id,
+                                    logged_in: true,
+                                    email: postBody.contact_email,
+                                    name: postBody.first_name + " " + postBody.last_name,
+                                    lang: postBody.language
+                                }
                             }
                         );
+    
+                        i18n.changeLanguage(authState.lang);
+        
+                        navigate('/');
 
-                        if (response.ok) {
-                            // Request was successful
-                            console.log('POST request successful');
-                            console.log(response);
-                        } else {
-                            // Request failed
-                            console.log('POST request failed');
-                        }
-                
                     } catch (error) {
-                        console.log("error registrando");
                         console.log(error);
                     }
                 }
@@ -1831,14 +1837,8 @@ const useValidarRegistrar = () => {
             registerFormState.cities = cities
         };
 
-        const fetchBanks= async () => {
-            const { data } = await axios.get('http://127.0.0.1:8000/banks/'); 
-            registerFormState.banks = data; 
-        }
 
         fetchCountries()
-        
-        fetchBanks()
     }, [])
 
     const uniqueEmail = async (email) => {
@@ -1878,7 +1878,7 @@ const useValidarRegistrar = () => {
         if(number.length < 4)
             return false
         
-        const regex = new RegExp('[0-9]+')    
+        const regex = new RegExp('^[0-9]*$')    
         return regex.test(number);
     }
 
@@ -2135,6 +2135,16 @@ const useValidarRegistrar = () => {
                 registerFormState.errors[4].servicio_required = false
             }
             
+
+            if(!selection.usar_correo && !selection.redes && !selection.usar_sms 
+                && !selection.usar_otros && !selection.usar_facebook){
+                    registerFormState.errors[4].means_required = true
+                    valid = false;
+            } else {
+                registerFormState.errors[4].means_required = false
+            }
+
+
             if (selection.usar_correo && !selection.correo ){
                 // Se seleccionó "Email", pero no se esepecificó
                 registerFormState.errors[4].email_required = true 
