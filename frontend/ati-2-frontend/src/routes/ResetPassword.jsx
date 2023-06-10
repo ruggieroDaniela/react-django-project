@@ -15,6 +15,7 @@ export const ResetPassword = () => {
 
     e.preventDefault();
 
+    
     if ( action === 'cedula' ){
         setformIdDoc(true);
         setFormEmail(false);
