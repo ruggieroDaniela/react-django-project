@@ -9,7 +9,7 @@ export const ResetPassword = () => {
   const [submitPassword, setSubmitPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [action, setAcction] = useState('');
+  const [action, setAction] = useState('');
 
   const handleSubmitRadio = (e) => {
 
@@ -27,8 +27,8 @@ export const ResetPassword = () => {
 }
 
 const onRadioChange = e => {
-    setAcction(e.target.value);
-    setAcction("../" + e.target.value)
+    setAction(e.target.value);
+    setAction("../" + e.target.value)
 }
 
   const dataGET = {

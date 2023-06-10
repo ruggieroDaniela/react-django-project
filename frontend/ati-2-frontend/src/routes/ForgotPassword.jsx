@@ -83,7 +83,7 @@ export const ForgotPassword = () => {
 
                         <div id="buttons">
                             <button type="submit">{t('forgotPassword.botonAceptar')}</button>
-                            <button type="button" onClick={ () => {navigate("/")} }>{t('forgotPassword.botonCancelar')}</button>
+                            <button type="button" onClick={ () => {navigate("/login")} }>{t('forgotPassword.botonCancelar')}</button>
                         </div>
 
                     </form>

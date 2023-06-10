@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 export const FormForgotPassword = ({ message }) => {
 
     const [correoEnviado, setCorreoEnviado] = useState(false)
     const { t, i18n } = useTranslation();
+    const navigate = useNavigate();
   
     const handleSubmit = e => {
         e.preventDefault();
@@ -52,7 +54,7 @@ export const FormForgotPassword = ({ message }) => {
 
                         <div id="buttons">
                             <button type="submit">{t('forgotPassword.botonAceptar')}</button>
-                            <button type="button">{t('forgotPassword.botonCancelar')}</button>
+                            <button type="button" onClick={() => navigate("/login")}>{t('forgotPassword.botonCancelar')}</button>
                         </div>
                     </form>
                 </div>
@@ -67,7 +69,7 @@ export const FormForgotPassword = ({ message }) => {
                         </div>
                         <div id="buttons">
                             <button type="submit">{t('forgotPassword.botonAceptar')}</button>
-                            <button type="button">{t('forgotPassword.botonCancelar')}</button>
+                            <button type="button" onClick={() => navigate("/login")}>{t('forgotPassword.botonCancelar')}</button>
                         </div>
                     </form>
                 </div>
