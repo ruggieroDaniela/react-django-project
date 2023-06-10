@@ -780,7 +780,7 @@ const Fase1 = () => {
                                     <div id="telefono_container">
                                         <label>
                                             <input
-                                                type="radio"
+                                                type="checkbox"
                                                 value="movil"
                                                 checked={ registerFormState.phase[1].telefono.tipo === 'movil' }
                                                 onChange={ e => {
@@ -798,7 +798,7 @@ const Fase1 = () => {
                                         </label>
                                         <label>
                                             <input
-                                                type="radio"
+                                                type="checkbox"
                                                 value="local"
                                                 checked={ registerFormState.phase[1].telefono.tipo === 'local' }
                                                 onChange={ e => {
@@ -819,7 +819,7 @@ const Fase1 = () => {
                                     <div
                                         className="field"
                                         id="telefono_field"
-                                        style={{ visibility: registerFormState.phase[1].telefono.tipo === ""? "hidden":"visible" }}
+                                        style={{ visibility: registerFormState.phase[1].telefono.select_movil? "visible":"hidden" }}
                                     >
                                         <input
                                             id="telefono_codigo"
@@ -847,7 +847,40 @@ const Fase1 = () => {
                                                 } );
                                             }} 
                                         />
-                                        <label style={{ visibility: registerFormState.phase[1].telefono.tipo === "local"? "visible":"hidden" }}>
+                                    </div>
+
+                                    <div
+                                        className="field"
+                                        id="telefono_field"
+                                        style={{ visibility: registerFormState.phase[1].telefono.select_local? "visible":"hidden" }}
+                                    >
+                                        <input
+                                            id="telefono_codigo"
+                                            type="text"
+                                            value={registerFormState.phase[1].telefono.codigo}
+                                            onChange={ e => {
+                                            setRegisterFormState( prev => {
+                                                    const newState = {... prev};
+                                                    newState.phase[1] = {... prev.phase[1]};
+                                                    newState.phase[1].telefono.codigo = e.target.value;
+                                                    return newState;
+                                                } );
+                                            }} 
+                                        />
+                                        <input
+                                            id="telefono_numero"
+                                            type="text"
+                                            value={registerFormState.phase[1].telefono.numero}
+                                            onChange={ e => {
+                                            setRegisterFormState( prev => {
+                                                    const newState = {... prev};
+                                                    newState.phase[1] = {... prev.phase[1]};
+                                                    newState.phase[1].telefono.numero = e.target.value;
+                                                    return newState;
+                                                } );
+                                            }} 
+                                        />
+                                        <label>
                                             Ext
                                             <input
                                                 id="telefono_ext"
@@ -864,6 +897,7 @@ const Fase1 = () => {
                                             />
                                         </label>
                                     </div>
+
                                 </div>   
                                 
                                 { telefonoRequired && <ErrorMessage message={t('registrar.errores.1.telefono_requerido')}/> }

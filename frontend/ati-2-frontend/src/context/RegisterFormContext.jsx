@@ -44,10 +44,17 @@ function RegisterFormContextProvider({children}){
                     correo: ""
                 },
                 telefono:{
-                    tipo: "",
-                    codigo: "",
-                    numero: "",
-                    ext: ""
+                    select_movil: false,
+                    select_local: false,
+                    movil: {
+                        codigo: "",
+                        numero: ""
+                    },
+                    local: {
+                        codigo: "",
+                        numero: "",
+                        ext: ""
+                    }
                 }
             },{
                 idioma: ""
