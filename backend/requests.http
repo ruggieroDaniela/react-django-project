@@ -136,12 +136,12 @@ content-type: application/json
     "origin_city": "San Jose",
     "client_type": "NO",
     "have_documentation": true,
-    "documents": "CONST_RESIDENCIA",
+    "documents": ["CONST_RESIDENCIA", "TITULOS"],
     "documents_other": "",
     "publication_time": "1",
     "publication_plan": "1",
     "billing_country": "Venezuela",
-    "billing_bank": 1
+    "billing_bank": 2
 }
 
 ### B - Solicitar personal domestico
@@ -185,12 +185,12 @@ content-type: application/json
     "availability": "FECHA",
     "availability_date": "2023-05-27",
     "have_documentation": true,
-    "documents": "REF_FAMILIAR",
+    "documents": ["REF_FAMILIAR", "PASAPORTE"],
     "documents_other": "",
     "publication_time": "1",
     "publication_plan": "3",
     "billing_country": "Venezuela",
-    "billing_bank": 1
+    "billing_bank": 2
 }
 
 ### C - Buscar personal doméstico 

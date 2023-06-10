@@ -149,7 +149,7 @@ class Services(models.Model):
 
     # Documents 
     have_documentation = models.BooleanField(blank=False)
-    documents = models.CharField(blank=True, max_length=18, choices=DOCUMENTS_CHOICES)
+    documents = MultiSelectField(blank=True, max_length=18, choices=DOCUMENTS_CHOICES)
     documents_other = models.TextField(blank=True)
 
     # Billing information
