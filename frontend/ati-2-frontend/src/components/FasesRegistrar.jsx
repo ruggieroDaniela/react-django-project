@@ -1939,7 +1939,7 @@ const useValidarRegistrar = () => {
         if(number.length < 4)
             return false
         
-        const regex = new RegExp('^[0-9]*$')    
+        const regex = new RegExp('^[0-9](-?[0-9]{2,4}){2,4}|[0-9]{4,15}$')    
         return regex.test(number);
     }
 
@@ -2040,11 +2040,15 @@ const useValidarRegistrar = () => {
                 }
 
                 // Validar telefono
-                if(!selection.telefono.numero){
+                if(!selection.telefono.select_movil && !selection.telefono.select_local){
                     registerFormState.errors[1].telefono_required = true
                     registerFormState.errors[1].telefono_invalid = false
                     valid = false
-                } else if(!phoneIsValid(selection.telefono.numero)){
+                } else if(selection.telefono.select_movil && !phoneIsValid(selection.telefono.movil.numero)){
+                    registerFormState.errors[1].telefono_required= false
+                    registerFormState.errors[1].telefono_invalid = true
+                    valid = false
+                } else if(selection.telefono.select_local && !phoneIsValid(selection.telefono.local.numero)){
                     registerFormState.errors[1].telefono_required= false
                     registerFormState.errors[1].telefono_invalid = true
                     valid = false
@@ -2120,11 +2124,15 @@ const useValidarRegistrar = () => {
                 }
 
                 // Validar telefono
-                if(!selection.telefono.numero){
+                if(!selection.telefono.select_movil && !selection.telefono.select_local){
                     registerFormState.errors[1].telefono_required = true
                     registerFormState.errors[1].telefono_invalid = false
                     valid = false
-                } else if(!phoneIsValid(selection.telefono.numero)){
+                } else if(selection.telefono.select_movil && !phoneIsValid(selection.telefono.movil.numero)){
+                    registerFormState.errors[1].telefono_required= false
+                    registerFormState.errors[1].telefono_invalid = true
+                    valid = false
+                } else if(selection.telefono.select_local && !phoneIsValid(selection.telefono.local.numero)){
                     registerFormState.errors[1].telefono_required= false
                     registerFormState.errors[1].telefono_invalid = true
                     valid = false
