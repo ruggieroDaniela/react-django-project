@@ -140,7 +140,7 @@ const Navbar = () => {
                                 ]
                             },
                             {label: t("navbar.operaciones.ver_publicaciones"), link:"/show-posts"},
-                            {label: t("navbar.operaciones.buscar"), link:"#"},
+                            {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
                             {label: t("navbar.operaciones.modificar"), link:"#"},
                             {label: t("navbar.operaciones.eliminar"), link:"#"},
                             {label: t("navbar.operaciones.habilitar"), link:"#"},
