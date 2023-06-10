@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { RegisterFormContext } from "../context/RegisterFormContext";
 
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
@@ -21,10 +22,17 @@ export const Registrar = () => {
         navigate(`/`);
     };
 
+    const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
+
+    const stayInformed = registerFormState.phase[3].newsletter
+    const stages2render = []
     // nombres de los stages en el idioma actual
     let stagesNames = [];
     for (let i = 0; i < FasesRegistrar.length; i++) {
-        stagesNames.push(t('registrar.fases.'+i+'.nombre'));
+        if(!(!stayInformed && i === 4)){
+            stagesNames.push(t('registrar.fases.'+i+'.nombre'));
+            stages2render.push(FasesRegistrar[i])
+        }
     }
 
     return (
@@ -41,7 +49,7 @@ export const Registrar = () => {
             </div>
 
             <Multiform
-                stages={FasesRegistrar}         // array de componentes que serán usados como stages
+                stages={stages2render}         // array de componentes que serán usados como stages
                 stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
                 cancelEvent={goHome}            // onClick event del botón de cancelar
                 SubmitButton={botonRegistrar}   // componente con el botón de submit
