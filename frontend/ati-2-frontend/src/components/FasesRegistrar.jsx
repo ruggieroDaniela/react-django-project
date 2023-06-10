@@ -1730,10 +1730,12 @@ const botonRegistrar = () => {
         postBody.dni = userData.phase[1].natural.identificacion;
         postBody.contact_email = userData.phase[1].natural.correo;
 
-        if(userData.phase[1].telefono.tipo == "movil"){
-            postBody.cellphone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero;
-        }else{
-            postBody.telephone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero + userData.phase[1].telefono.ext;
+        if(userData.phase[1].telefono.movil.numero != ""){
+            postBody.cellphone = userData.phase[1].telefono.movil.codigo + userData.phase[1].telefono.movil.numero;
+        }
+
+        if(userData.phase[1].telefono.local.numero != ""){
+            postBody.telephone = userData.phase[1].telefono.local.codigo + userData.phase[1].telefono.local.numero + userData.phase[1].telefono.local.ext;
         }
     
     }else if( postBody.type_user == "enterprise" ){
@@ -1746,10 +1748,12 @@ const botonRegistrar = () => {
         postBody.representant_email = userData.phase[1].empresa.correo;
         postBody.representant_name = userData.phase[1].empresa.nombre_representante;
 
-        if(userData.phase[1].telefono.tipo == "movil"){
-            postBody.representant_cellphone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero;
-        }else{
-            postBody.representant_telephone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero + userData.phase[1].telefono.ext;
+        if(userData.phase[1].telefono.movil.numero == ""){
+            postBody.representant_cellphone = userData.phase[1].telefono.movil.codigo + userData.phase[1].telefono.movil.numero;
+        }
+
+        if(userData.phase[1].telefono.local.numero == ""){
+            postBody.representant_telephone = userData.phase[1].telefono.local.codigo + userData.phase[1].telefono.local.numero + userData.phase[1].telefono.local.ext;
         }
 
     }
