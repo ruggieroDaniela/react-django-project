@@ -80,7 +80,8 @@ content-type: application/json
 {
     "name": "Banesco Panamá",
     "account" : "201800948693",
-    "swift_code" : "BANSPAPA"
+    "swift_code" : "BANSPAPA",
+    "country": "Panamá"
 }
 
 ###
