@@ -24,7 +24,7 @@ export const ResetPassword = () => {
         setformIdDoc(false);
         setFormEmail(true);
     }
-}
+  }
 
 const onRadioChange = e => {
     setAction(e.target.value);
