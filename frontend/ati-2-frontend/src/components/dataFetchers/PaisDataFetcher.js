@@ -48,15 +48,17 @@ export const getStatesInCountry = async (countries) => {
 
         const codes = countries.split(",");
         for (let i = 0; i < codes.length; i++) {
-            response = await axios.get(`https://api.countrystatecity.in/v1/countries/${codes[i]}/states`, {
-                headers: {
-                    'X-CSCAPI-KEY': API_KEY
-                }
-            });
+            if(codes[i].length > 0 ){
+                response = await axios.get(`https://api.countrystatecity.in/v1/countries/${codes[i]}/states`, {
+                    headers: {
+                        'X-CSCAPI-KEY': API_KEY
+                    }
+                });
 
-            for (let j = 0; j < response.data.length; j++) {
-                names.push( response.data[j].name );
-                values.push( `${codes[i]}/${response.data[j].iso2}` );
+                for (let j = 0; j < response.data.length; j++) {
+                    names.push( response.data[j].name );
+                    values.push( `${codes[i]}-${response.data[j].iso2}` );
+                }
             }
 
         }
@@ -81,18 +83,20 @@ export const getCitiesInStates = async (stateCodes) => {
         const codes = stateCodes.split(",");
         for (let i = 0; i < codes.length; i++) {
 
-            country = codes[i].split("/")[0];
-            state = codes[i].split("/")[1];
+            if(codes[i].length > 0 ){
+                country = codes[i].split("-")[0];
+                state = codes[i].split("-")[1];
 
-            response = await axios.get(`https://api.countrystatecity.in/v1/countries/${country}/states/${state}/cities`, {
-                headers: {
-                    'X-CSCAPI-KEY': API_KEY
+                response = await axios.get(`https://api.countrystatecity.in/v1/countries/${country}/states/${state}/cities`, {
+                    headers: {
+                        'X-CSCAPI-KEY': API_KEY
+                    }
+                });
+
+                for (let j = 0; j < response.data.length; j++) {
+                    names.push( response.data[j].name );
+                    values.push( `${stateCodes[i]}-${response.data[j].name}` );
                 }
-            });
-
-            for (let j = 0; j < response.data.length; j++) {
-                names.push( response.data[j].name );
-                values.push( `${stateCodes[i]}-${response.data[j].name}` );
             }
 
         }
