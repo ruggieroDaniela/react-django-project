@@ -316,7 +316,7 @@ const Fase1 = () => {
         useEffect(() => {
             const fetchCities = async () => {
                 if(countryCode){
-                    let names = await getCitiesInCountry(countryCode);
+                    let [names, values] = await getCitiesInCountry(countryCode);
                     names  = [...new Set(names)];
                     setCities(names);
                 }
