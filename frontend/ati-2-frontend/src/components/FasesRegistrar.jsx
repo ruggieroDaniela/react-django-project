@@ -325,6 +325,14 @@ const Fase1 = () => {
                     let resp = {};
                     [resp.phonecode, resp.flag] = await getCountryDetails(countryCode);
                     setCountryDetails(() => resp);
+
+                    setRegisterFormState( prev => {
+                        const newState = {... prev};
+                        newState.phase[1] = {... prev.phase[1]};
+                        newState.phase[1].telefono.movil.codigo = resp.phonecode;
+                        newState.phase[1].telefono.local.codigo = resp.phonecode;
+                        return newState;
+                    } );
                     // console.log(countryDetails);
                     // console.log(resp);
 
@@ -553,15 +561,8 @@ const Fase1 = () => {
                                         <input
                                             id="telefono_codigo"
                                             type="text"
-                                            checked={registerFormState.phase[1].telefono.codigo}
-                                            onChange={ e => {
-                                            setRegisterFormState( prev => {
-                                                    const newState = {... prev};
-                                                    newState.phase[1] = {... prev.phase[1]};
-                                                    newState.phase[1].telefono.movil.codigo = e.target.value;
-                                                    return newState;
-                                                } );
-                                            }} 
+                                            value={countryDetails.flag +" +"+countryDetails.phonecode}
+                                            disabled={true}
                                         />
                                         <input
                                             id="telefono_numero"
@@ -586,15 +587,8 @@ const Fase1 = () => {
                                         <input
                                             id="telefono_codigo"
                                             type="text"
-                                            value={registerFormState.phase[1].telefono.codigo}
-                                            onChange={ e => {
-                                            setRegisterFormState( prev => {
-                                                    const newState = {... prev};
-                                                    newState.phase[1] = {... prev.phase[1]};
-                                                    newState.phase[1].telefono.local.codigo = e.target.value;
-                                                    return newState;
-                                                } );
-                                            }} 
+                                            value={countryDetails.flag +" +"+countryDetails.phonecode}
+                                            disabled={true}
                                         />
                                         <input
                                             id="telefono_numero"
@@ -863,15 +857,8 @@ const Fase1 = () => {
                                         <input
                                             id="telefono_codigo"
                                             type="text"
-                                            checked={registerFormState.phase[1].telefono.codigo}
-                                            onChange={ e => {
-                                            setRegisterFormState( prev => {
-                                                    const newState = {... prev};
-                                                    newState.phase[1] = {... prev.phase[1]};
-                                                    newState.phase[1].telefono.movil.codigo = e.target.value;
-                                                    return newState;
-                                                } );
-                                            }} 
+                                            value={countryDetails.flag +" +"+countryDetails.phonecode}
+                                            disabled={true}
                                         />
                                         <input
                                             id="telefono_numero"
@@ -896,15 +883,8 @@ const Fase1 = () => {
                                         <input
                                             id="telefono_codigo"
                                             type="text"
-                                            value={registerFormState.phase[1].telefono.codigo}
-                                            onChange={ e => {
-                                            setRegisterFormState( prev => {
-                                                    const newState = {... prev};
-                                                    newState.phase[1] = {... prev.phase[1]};
-                                                    newState.phase[1].telefono.local.codigo = e.target.value;
-                                                    return newState;
-                                                } );
-                                            }} 
+                                            value={countryDetails.flag +" +"+countryDetails.phonecode}
+                                            disabled={true}
                                         />
                                         <input
                                             id="telefono_numero"
