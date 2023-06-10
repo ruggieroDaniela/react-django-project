@@ -1,22 +1,8 @@
-from rest_framework import serializers, fields
+from rest_framework import serializers
 from .models import Services, ProvideService, RequestService
-
-SCHEDULE_CHOICES = (
-    ('LUN', 'Lunes'), 
-    ('MAR', 'Martes'),
-    ('MIE', 'Miércoles'),
-    ('JUE', 'Jueves'),
-    ('VIE', 'Viernes'), 
-    ('SAB', 'Sábado'),
-    ('DOM', 'Domingo'),
-    ('LUN_VIE', 'De Lunes a Viernes'),
-    ('FIN', 'Fin de semana'),
-    ('OTRO', 'Otros a considerar')
-)
 
 
 class ServicesSerializer(serializers.ModelSerializer):
-    schedule = fields.MultipleChoiceField(choices=SCHEDULE_CHOICES)
 
     def validate(self, data):
         if data['travel'] == True and not data.get('travel_decription'):
@@ -25,7 +11,7 @@ class ServicesSerializer(serializers.ModelSerializer):
         if data['workday'] == 'OTRO' and not data.get('workday_other'):
             raise serializers.ValidationError("Por favor, especifique otra salida de su jornada laboral")
         
-        if 'OTRO' in data['schedule'] and not data.get('schedule_other'):
+        if data['schedule'] == 'OTRO' and not data.get('schedule_other'):
             raise serializers.ValidationError("Por favor, especifique otros horarios a considerar")
 
         if data['payment'] == 'MONTO' and not data.get('payment_amount'):

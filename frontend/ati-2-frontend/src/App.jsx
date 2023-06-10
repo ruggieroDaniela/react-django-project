@@ -20,7 +20,6 @@ import { Empleo } from './routes/Empleo';
 import { Registrar } from './routes/Registrar';
 import { IniciarSesion } from './routes/IniciarSesion';
 import { BuscarPersonalDomestico } from './routes/BuscarPersonalDomestico';
-import { OfrecermeNiñera } from './routes/OfrecermeNiñera';
 import { ListarPublicaciones } from './routes/ListarPublicaciones';
 
 
@@ -63,6 +62,7 @@ function App() {
             <Route exact path="/sign-up" element={<Registrar/>} />
             <Route exact path="/login" element={<IniciarSesion />} />
             <Route exact path='/search-domestic-staff' element={<BuscarPersonalDomestico/>}/>
+            <Route path='/show-posts' element={<ListarPublicaciones/>}/>
           </Routes>
           <Footer/>
         </Router>

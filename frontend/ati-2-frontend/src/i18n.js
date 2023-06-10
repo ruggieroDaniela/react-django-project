@@ -9,7 +9,6 @@ import general_en from "./locales/en/General.json";
 import login_en from "./locales/en/IniciarSesion.json"
 import servicios_en from "./locales/en/NuestrosServicios.json"
 import buscar_personal_domestico_en from "./locales/en/BuscarPersonalDomestico.json"
-import OfrecermeNiñera_en from "./locales/en/OfrecermeNiñera.json"
 import listar_publicaciones_en from "./locales/en/ListarPublicaciones.json"
 
 import navbar_es from './locales/es/Navbar.json';
@@ -19,6 +18,7 @@ import general_es from "./locales/es/General.json";
 import login_es from "./locales/es/IniciarSesion.json"
 import servicios_es from "./locales/es/NuestrosServicios.json"
 import buscar_personal_domestico_es from "./locales/es/BuscarPersonalDomestico.json"
+import listar_publicaciones_es from "./locales/es/ListarPublicaciones.json"
 
 const en = Object.assign(
   {},
@@ -28,7 +28,8 @@ const en = Object.assign(
   general_en,
   login_en,
   servicios_en,
-  buscar_personal_domestico_en
+  buscar_personal_domestico_en,
+  listar_publicaciones_en
 );
 
 const es = Object.assign(
@@ -39,7 +40,8 @@ const es = Object.assign(
   general_es,
   login_es,
   servicios_es,
-  buscar_personal_domestico_es
+  buscar_personal_domestico_es,
+  listar_publicaciones_es
 );
 
 i18n

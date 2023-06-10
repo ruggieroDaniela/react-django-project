@@ -135,7 +135,7 @@ const Navbar = () => {
                                     arrow: "▸"
                                 },
                                 items:[
-                                    {label: t("navbar.ofrecerme.babysitter"), link:"/offer-my-services/post-add/offer-me-as-babysitter"},
+                                    {label: t("navbar.ofrecerme.babysitter"), link:"#"},
                                     {label: t("navbar.ofrecerme.cuidador"), link:"#"}
                                 ]
                             },

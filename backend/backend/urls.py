@@ -17,17 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from users.views import ForgotPasswordView, UserViewSet, CustomAuthToken
-from banks.views import BankViewSet
+from users.views import UserViewSet, CustomAuthToken
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
-router.register(r'banks', BankViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
     path('token-auth/', CustomAuthToken.as_view()),
-    path('api-services/', include('services.urls')),
-    path('forgot-password/', ForgotPasswordView.as_view())
+    path('api-services/', include('services.urls'))
 ]
