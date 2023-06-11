@@ -40,7 +40,7 @@ export const ForgotPassword = () => {
             ? 
                 <FormForgotPassword
                     message = {t("forgotPassword.mensaje1")}
-                    info="identification" 
+                    info="id" 
                 />
             : 
                 null
