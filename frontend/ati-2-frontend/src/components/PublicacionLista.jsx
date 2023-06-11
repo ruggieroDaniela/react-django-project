@@ -257,7 +257,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                                             post.payment_amount + " " + post.currency + " " + t(`publicaciones_vista_lista.${post.salary_offered}`)
                                             :
                                             t("sin_especificar")
-                                        }
+                                    }
                                 />
                             </li>
                             {post.client_type != undefined &&
