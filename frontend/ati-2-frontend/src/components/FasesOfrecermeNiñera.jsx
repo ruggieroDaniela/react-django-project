@@ -1831,6 +1831,9 @@ const Fase13 = () => {
     //bank selected
     const [foundBank,setFoundBank] = useState(-1);
     
+    
+    const billing_required = offerDomesticFormState.errors.billing_required 
+
     useEffect(() => {
         const getBanks = async () => {
           try {
@@ -2037,8 +2040,11 @@ const Fase13 = () => {
                             </div>
                         </div>
                         }
-
+                        
+                    { billing_required && <ErrorMessage message={t('OfrecermeNiñera.errores.banco')}/>  }
                 </div>
+
+                
             </div>
         </div>
      );
@@ -2329,9 +2335,21 @@ const botonEnviar = () => {
             onClick={
                 async () => {
                     
-
                     //Autenticar última fase
-
+                    if(!offerDomesticFormState.billing_country || !offerDomesticFormState.billing_bank){
+                        setOfferDomesticFormState((prev) => {
+                            const newState = { ...prev };
+                            newState.errors.billing_required = true
+                            return newState;
+                          })
+                          return
+                    } else {
+                        setOfferDomesticFormState((prev) => {
+                            const newState = { ...prev };
+                            newState.errors.billing_required = false
+                            return newState;
+                          })
+                    }
 
                     const url = 'http://127.0.0.1:8000/api-services/provideService/post_ad/'
                     try {

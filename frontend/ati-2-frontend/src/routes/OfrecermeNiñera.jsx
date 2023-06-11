@@ -123,7 +123,8 @@ export const OfrecermeNiñera = () => {
                 benefits_required: false,
                 date_opt_required: false,
                 date_required: false,
-                other_doc_required: false
+                other_doc_required: false,
+                billing_required: false
             }
         });
     },[]);
