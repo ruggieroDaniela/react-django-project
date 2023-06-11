@@ -53,7 +53,7 @@ export const OfrecermeNiñera = () => {
 
     useEffect(()=>{
         setOfferDomesticFormState({
-            user: -1, 
+            user: authState.id, 
             service: "NIN",
             gender: "IDC",
             age_required_from: 13,

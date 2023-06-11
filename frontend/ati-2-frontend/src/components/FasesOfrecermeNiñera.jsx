@@ -170,14 +170,6 @@ const Fase1 = () => {
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
     //ID of the Nannie that is making the post
-    useEffect(() => {
-        setOfferDomesticFormState(prev => {
-            return {
-                ...prev,
-                user: 11
-            };
-        });
-    }, []);
         
 
     //selected
@@ -1372,12 +1364,12 @@ const Fase7 = () => {
                         <div>
                             <input  type="radio"
                                     id="d1"
-                                    checked={offerDomesticFormState.origin == "SI"}
+                                    checked={offerDomesticFormState.origin == "NO"}
                                     onChange={
                                         e => {
                                             setOfferDomesticFormState( prev => {
                                                 const newState = {...prev};
-                                                newState.origin = "SI";
+                                                newState.origin = "NO";
                                                 return newState;
                                             });
                                         }
@@ -1389,12 +1381,12 @@ const Fase7 = () => {
                         <div>
                             <input  type="radio"
                                     id="d2"
-                                    checked={offerDomesticFormState.origin == "NO"}
+                                    checked={offerDomesticFormState.origin == "SI"}
                                     onChange={
                                         e => {
                                             setOfferDomesticFormState( prev => {
                                                 const newState = {...prev};
-                                                newState.origin = "NO";
+                                                newState.origin = "SI";
                                                 return newState;
                                             });
                                         }
