@@ -74,7 +74,7 @@ POST http://localhost:8000/token-auth/
 content-type: application/json
 
 {
-    "username": "ati2.proyecto+carlos99@gmail.com",
+    "username": "ati2.proyecto+andrea65@gmail.com",
     "password": "12345"
 }
 
@@ -118,80 +118,32 @@ content-type: application/json
 GET http://127.0.0.1:8000/banks/
 
 
-### ----  A) Ofrecer mis servicios como personal domestico ---- 
-POST http://127.0.0.1:8000/api-services/provideService/post_ad/
-Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
-content-type: application/json
-
-{
-    "user": 11, 
-    "service": "NIN", 
-    "age": 29,
-    "have_children": false,
-    "education_level": "PRI",
-    "continent": "Suramerica", 
-    "country": "CO",
-    "state": "Barranquilla",
-    "city": "Santa Rosa",
-    "zone": "La Pastora",
-    "description": "Persona con 8 años en experiencia en el cuidado de adultos mayores",
-    "travel": false,
-    "travel_decription": "",
-    "activities": "Preparación de alimentos, Jugar con los niños, Limpieza del hogar",
-    "workday": "INTERDIARIO",
-    "workday_other": "",
-    "schedule": ["LUN", "MAR"], 
-    "schedule_other": "",
-    "payment": "MONTO",
-    "payment_amount": 85.00,
-    "currency": "USD",
-    "currency_other": "",
-    "salary_offered": "HORA",
-    "benefits": 1,
-    "benefits_description": "Seguro social obligatorio, Póliza de HCM y cobertura a mis familiares, Ayuda para útiles escolares, Otros",
-    "availability": "FECHA",
-    "availability_date": "2023-06-12",
-    "origin": "SI",
-    "origin_continent": "Norteamerica",
-    "origin_country": "Estados Unidos",
-    "origin_state": "California",
-    "origin_city": "San Jose",
-    "client_type": "NO",
-    "have_documentation": true,
-    "documents": "CONST_RESIDENCIA",
-    "documents_other": "",
-    "publication_time": "1",
-    "publication_plan": "1",
-    "billing_country": "Venezuela",
-    "billing_bank": "Banesco"
-}
-
-### 
+### ----  A) Ofrecer mis servicios como personal domestico ----
 POST http://127.0.0.1:8000/api-services/provideService/post_ad/
 Authorization: Token 4e6ba7f9907e31bd1a0fdd3d209150b6c9cac595
 content-type: application/json
 
 {
-    "user": 11, 
-    "service": "CUI", 
-    "age": 31,
+    "user": 12, 
+    "service": "NIN", 
+    "age": 42,
     "have_children": false,
     "education_level": "PRI",
     "continent": "Suramerica", 
-    "country": "Colombia",
-    "state": "Barranquilla",
-    "city": "Santa Rosa",
+    "country": "Venezuela",
+    "state": "Distrito Capital",
+    "city": "Caracas",
     "zone": "La Pastora",
-    "description": "Persona con 3 años en experiencia en el cuidado de niños",
+    "description": "Persona con 5 años de experiencia en el cuidado de niños entre 0 y 11 años, en la ayuda de sus tareas, prepararles la comida, jugar con ellos. Tengo referencias laborales comprobables",
     "travel": false,
     "travel_decription": "",
-    "activities": "Preparación de alimentos, Control de medicamentos, Baño e higiene, Cambio de pañal",
-    "workday": "INTERDIARIO",
+    "activities": "Preparación de alimentos, Cambio de pañal, Jugar con los niños, Limpieza del hogar, Otros",
+    "workday": "QUINCENAL",
     "workday_other": "",
-    "schedule": "LUN",
+    "schedule": ["LUN"],
     "schedule_other": "",
     "payment": "MONTO",
-    "payment_amount": 115.00,
+    "payment_amount": 70.00,
     "currency": "USD",
     "currency_other": "",
     "salary_offered": "HORA",
@@ -206,7 +158,7 @@ content-type: application/json
     "origin_city": "San Jose",
     "client_type": "NO",
     "have_documentation": true,
-    "documents": "CONST_RESIDENCIA",
+    "documents": ["CONST_RESIDENCIA", "TITULOS"],
     "documents_other": "",
     "publication_time": "1",
     "publication_plan": "1",
