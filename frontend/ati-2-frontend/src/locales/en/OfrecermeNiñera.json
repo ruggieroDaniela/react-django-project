@@ -1,5 +1,6 @@
 {
     "OfrecermeNiñera":{
+        "no-tiene":"No tiene",
         "niñera": "Niñera(o)",
         "pais":"Country",
         "estado":"State, province or canton",

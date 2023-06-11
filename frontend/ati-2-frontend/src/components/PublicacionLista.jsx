@@ -24,7 +24,7 @@ import deshabilitar_img from "../assets/deshabilitar.png"
 import "../styles/PostLista.scss"
 
 import { Tooltip } from "./Tooltip"
-import { getCountryName } from './dataFetchers/PaisDataFetcher';
+import { getCountryName, getStateName } from './dataFetchers/PaisDataFetcher';
 
 const FieldViewDetails = ({label, detalles_texto, value=""}) => {
     const {t} = useTranslation();
@@ -49,13 +49,18 @@ const FieldViewDetails = ({label, detalles_texto, value=""}) => {
     </>)
 }
 
-export const PublicacionLista = ({post, postType}) => {
+export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPosts}) => {
 
     const {t} = useTranslation();
     const [username, setUsername] = useState("  ");
     const {authState, setAuthState} = useContext(AuthContext);
     const [countryName, setCountryName] = useState("");
-    const canEdit = authState.logged_in && post.user == authState.user_id;
+    const [stateName, setStateName] = useState("");
+    const canEdit = authState.logged_in && post.user == authState.id;
+    const [postEnabled, setPostEnabled] = useState(post.enable);
+    const [forceRefresh, setForceRefresh] = useState(true);
+    // console.log(authState.user_id);
+
     // const canEdit = true;
 
     useEffect(() => {
@@ -67,8 +72,13 @@ export const PublicacionLista = ({post, postType}) => {
                 // console.log(response.data);
                 setUsername( () => response.data.name + " " + response.data.last_name );
                 
-                const country = await getCountryName(post.country);
-                setCountryName(() => country);
+                if(post.country.length == 2){
+                    const country = await getCountryName(post.country);
+                    setCountryName(() => country);
+                }
+
+                const state = await getStateName(post.state);
+                setStateName(() => state);
 
                 return response.data;
 
@@ -85,10 +95,24 @@ export const PublicacionLista = ({post, postType}) => {
             key={`post ${post.id}`}
             className="post-lista"
             style={{
-                gridTemplateColumns: canEdit? '1fr 12fr 1fr': "1fr 13fr"
+                gridTemplateColumns: canEdit? '0.5fr 1fr 12fr 1fr': "0.5fr 1fr 13fr"
             }}
         >
             
+            <section className='checkbox-container'>
+                <input
+                    type="checkbox"
+                    checked={selectedPosts.includes(post.id)}
+                    onChange={ e => {
+                        if(selectedPosts.includes(post.id))
+                            setSelectedPosts( prev => prev.filter( x => x!=post.id ) );
+                        else
+                            setSelectedPosts( prev => [... prev, post.id] );
+                    } }
+                    disabled={!canEdit}
+                />
+            </section>
+
             <section key={`post ${post.id} foto`} >
                 <div className='foto-container'>
                     <img className='img-user' src={user_img} alt="Profile photo" />
@@ -121,7 +145,7 @@ export const PublicacionLista = ({post, postType}) => {
                         </div>
                         <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                             <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                                {t(`publicaciones_vista_lista.estado`)}: <span className="blue-body">{post.state}</span>
+                                {t(`publicaciones_vista_lista.estado`)}: <span className="blue-body">{stateName!=""? stateName : post.state}</span>
                             </div>
                             <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                                 {t(`publicaciones_vista_lista.ciudad`)}: <span className="blue-body">{post.city}</span>
@@ -161,7 +185,9 @@ export const PublicacionLista = ({post, postType}) => {
                                         :
                                             t(`publicaciones_vista_lista.documentacion_requerida`)
                                     }
-                                    detalles_texto={t(`publicaciones_vista_lista.${post.documents}`)}
+                                    detalles_texto={
+                                        post.documents.map(x => t(`publicaciones_vista_lista.${x}`)).join(", ")
+                                    }
                                 />
                             </li>
                         </ul>
@@ -213,20 +239,25 @@ export const PublicacionLista = ({post, postType}) => {
                             <li key={`post ${post.id} horario`}>
                                 <FieldViewDetails
                                     label={t(`publicaciones_vista_lista.horario`)}
-                                    detalles_texto={t(`${post.schedule}`)}
+                                    detalles_texto={t(`${post.schedule.map(x => t(`publicaciones_vista_lista.${x}`)).join(", ") }`)}
                                 />
                             </li>
                             <li key={`post ${post.id} salidas`}>
                                 <FieldViewDetails
                                     label={t(`publicaciones_vista_lista.salidas`)}
-                                    detalles_texto={t(`${post.workday}`)}
+                                    detalles_texto={t(`publicaciones_vista_lista.${post.workday}`)}
                                 />
                             </li>
                             <li key={`post ${post.id} condiciones`}>
                                 {/* <span className="item-title">{t(`publicaciones_vista_lista.condiciones`)}: </span> <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a> */}
                                 <FieldViewDetails
                                     label={t(`publicaciones_vista_lista.salario_deseado`)}
-                                    detalles_texto={ post.payment_amount + " " + post.currency + " " + t(`${post.salary_offered}`)}
+                                    detalles_texto={
+                                        post.payment_amount != null?
+                                            post.payment_amount + " " + post.currency + " " + t(`publicaciones_vista_lista.${post.salary_offered}`)
+                                            :
+                                            t("sin_especificar")
+                                    }
                                 />
                             </li>
                             {post.client_type != undefined &&
@@ -249,10 +280,12 @@ export const PublicacionLista = ({post, postType}) => {
                     <button
                         disabled={ !(canEdit) }
                         onClick={ () => {
+                            setPostEnabled(prev=>!prev);
                             axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${post.id}/`)
+                            setForceRefresh(prev => !prev);
                         } }
                     >
-                        <img className='button-img' src={post.enable? deshabilitar_img : habilitar_img} alt="" />
+                        <img className='button-img' src={postEnabled? deshabilitar_img : habilitar_img} alt="" />
                     </button>
                     <button
                         disabled={ !(canEdit) }
@@ -261,8 +294,9 @@ export const PublicacionLista = ({post, postType}) => {
                     </button>
                     <button
                         disabled={ !(canEdit) }
-                        onClick={ () => {
-                            axios.delete(`http://127.0.0.1:8000/api-services/${postType}/delete_post/${post.id}/`)
+                        onClick={ async () => {
+                            await axios.delete(`http://127.0.0.1:8000/api-services/${postType}/delete_post/${post.id}/`)
+                            window.location.reload();
                         } }
                     >
                         <img className='button-img' src={eliminar_img} alt="" />

@@ -5,6 +5,7 @@ import { useState } from "react";
 import AuthContext from "../context/AuthContext";
 
 import NavbarDropdown from "./NavbarDropdown";
+import { redirect } from "react-router-dom";
 
 import '../styles/Navbar.scss';
 
@@ -87,12 +88,12 @@ const Navbar = () => {
                                         {label: t("navbar.solicitar.cuidador"), link:"#"}
                                     ]
                                 },
-                                {label: t("navbar.operaciones.ver_publicaciones"), link:"/show-posts?type=request"},
+                                {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=request&user=${authState.id}`},
                                 {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
-                                {label: t("navbar.operaciones.modificar"), link:"#"},
-                                {label: t("navbar.operaciones.eliminar"), link:"#"},
-                                {label: t("navbar.operaciones.habilitar"), link:"#"},
-                                {label: t("navbar.operaciones.deshabilitar"), link:"#"}
+                                {label: t("navbar.operaciones.modificar"), link:`/show-posts?type=request&user=${authState.id}`},
+                                {label: t("navbar.operaciones.eliminar"), link:`/show-posts?type=request&user=${authState.id}`},
+                                {label: t("navbar.operaciones.habilitar"), link:`/show-posts?type=request&user=${authState.id}`},
+                                {label: t("navbar.operaciones.deshabilitar"), link:`/show-posts?type=request&user=${authState.id}`}
                             ]}
                         />
                     
@@ -161,19 +162,19 @@ const Navbar = () => {
                                     arrow: "▸"
                                 },
                                 items:[
-                                    {label: t("navbar.ofrecerme.babysitter"), link:"/offer-my-services/post-add/offer-me-as-babysitter"},
+                                    {label: t("navbar.ofrecerme.babysitter"), link: isAuth == true ? "./offer-my-services/post-add/offer-me-as-babysitter" : "#"},
                                     {label: t("navbar.ofrecerme.cuidador"), link:"#"}
                                 ]
                             },
-                            {label: t("navbar.operaciones.ver_publicaciones"), link:"/show-posts?type=provide"},
+                            {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=provide&user=${authState.id}`},
                             {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
-                            {label: t("navbar.operaciones.modificar"), link:"#"},
-                            {label: t("navbar.operaciones.eliminar"), link:"#"},
-                            {label: t("navbar.operaciones.habilitar"), link:"#"},
-                            {label: t("navbar.operaciones.deshabilitar"), link:"#"}
+                            {label: t("navbar.operaciones.modificar"),  link:`/show-posts?type=provide&user=${authState.id}`},
+                            {label: t("navbar.operaciones.eliminar"), link:`/show-posts?type=provide&user=${authState.id}`},
+                            {label: t("navbar.operaciones.habilitar"), link:`/show-posts?type=provide&user=${authState.id}`},
+                            {label: t("navbar.operaciones.deshabilitar"), link:`/show-posts?type=provide&user=${authState.id}`}
                         ]}
                     />
-
+                    
                     <li className="item">
                         <a href="/employment" className="link">{t("navbar.empleo")}</a>
                     </li>

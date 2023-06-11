@@ -879,10 +879,11 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
         'country': ['exact', 'in'], 
         'state': ['exact', 'in'], 
         'service': ['exact', 'in'], 
+        'user': ['exact'], 
 
         # Búsqueda personalizada 
         'workday' : ['exact'], 
-        'schedule': ['exact'], 
+        'schedule': ['exact', 'in'], 
         'payment': ['exact'],        
         'payment_amount': ['range'], 
         'salary_offered': ['exact'], 
@@ -983,6 +984,7 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
         'city': ['exact'], 
     #    'client_type': ['exact'], 
         'service': ['exact', 'in'], 
+        'user': ['exact'], 
 
         # Búsqueda personalizada 
         'workday' : ['exact', 'in'], 

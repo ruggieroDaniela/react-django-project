@@ -8,6 +8,7 @@ import { getAllCountries, getCountriesInRegion, getStatesInCountry, getCitiesInS
 import { useEffect } from 'react';
 import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownSearch } from "../components/search/FieldDropdownSearch";
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ErrorMessage from "./ErrorMessage";
 
@@ -177,14 +178,7 @@ const Fase1 = () => {
     const city_required = offerDomesticFormState.errors.city_required
 
     //ID of the Nannie that is making the post
-    useEffect(() => {
-        setOfferDomesticFormState(prev => {
-            return {
-                ...prev,
-                user: 11
-            };
-        });
-    }, []);
+        
 
     //selected
     const [selectedCountry, setSelectedCountry] = useState(offerDomesticFormState.country);
@@ -359,7 +353,7 @@ const Fase1 = () => {
                 <div>
                     <select name="pais" 
                             id="pais" 
-                            onChange={ 
+                            onClick={ 
                                 e => {
                                     setSelectedCountry(e.target.value);
                                     setOfferDomesticFormState ( prev => {
@@ -520,14 +514,14 @@ const Fase3 = () => {
                                     e => {
                                         setOfferDomesticFormState ( prev => {
                                             const newState = {... prev};
-                                            newState.travel = true;
+                                            newState.travel = false;
                                             return newState;
                                         });
                                     } 
                                 }
-                                checked={offerDomesticFormState.travel}
+                                checked={!offerDomesticFormState.travel}
                         />
-                        <label htmlFor="c1">{t('OfrecermeNiñera.fases.3.si')}</label>
+                        <label htmlFor="c1">{t('OfrecermeNiñera.fases.3.no')}</label>
                     </div>
 
                     <div>
@@ -540,19 +534,19 @@ const Fase3 = () => {
                                     e => {
                                         setOfferDomesticFormState ( prev => {
                                             const newState = {... prev};
-                                            newState.travel = false;
+                                            newState.travel = true;
                                             return newState;
                                         });
                                     } 
                                 }
-                                checked={!offerDomesticFormState.travel}        
+                                checked={offerDomesticFormState.travel}        
                         />
-                        <label htmlFor="c2">{t('OfrecermeNiñera.fases.3.no')}</label>
+                        <label htmlFor="c2">{t('OfrecermeNiñera.fases.3.si')}</label>
                     </div>
             </div>
         </div>
         
-        { !offerDomesticFormState.travel && (
+        { offerDomesticFormState.travel && (
         <div id="form" >
         <div >
             <div id="peq">{t('OfrecermeNiñera.fases.3.especifique')}</div>
@@ -691,8 +685,12 @@ const Fase5 = () => {
     useEffect(() => {
         setOfferDomesticFormState ( prev => {
             const newState = {... prev}
-            selectedCurrency ==2 ? newState.currency =  "OTRA" : newState.currency =  currency[selectedCurrency]
-            
+            if(selectedCurrency ==2 )
+                 newState.currency =  "OTRA" 
+            else{
+                newState.currency =  currency[selectedCurrency]
+                newState.currency_other =  null; 
+            }
             return newState;
         });
     }, [selectedCurrency]);
@@ -1046,6 +1044,10 @@ const Fase5 = () => {
                                                 setOfferDomesticFormState( prev => {
                                                     const newState = {...prev}
                                                     newState.payment = "CONVENIR";
+                                                    newState.payment_amount = null;
+                                                    newState.currency = null;
+                                                    newState.currency_other = null;
+                                                    newState.salary_offered = null;
                                                     return newState
                                                 });
                                             } 
@@ -1131,9 +1133,9 @@ const Fase5 = () => {
                         <div id="form-horizontal">
                                 <div>
                                     <input  type="radio"
-                                            name="salary"
-                                            id="e1"
-                                            checked={!offerDomesticFormState.benefits}
+                                            name="benefits"
+                                            id="x1"
+                                            checked={offerDomesticFormState.benefits == 0}
                                             onChange={
                                                 e => {
                                                     setOfferDomesticFormState( prev => {
@@ -1144,14 +1146,14 @@ const Fase5 = () => {
                                                 } 
                                             }
                                             />
-                                    <label htmlFor="e1">{t('OfrecermeNiñera.fases.5.no')}</label> 
+                                    <label htmlFor="x1">{t('OfrecermeNiñera.fases.5.no')}</label> 
                                 </div>
 
                                 <div>
                                     <input  type="radio"
-                                            name="salary" 
-                                            id="e2"
-                                            checked={offerDomesticFormState.benefits}
+                                            name="benefits" 
+                                            id="x2"
+                                            checked={offerDomesticFormState.benefits == 1}
                                             onChange={
                                                 e => {
                                                     setOfferDomesticFormState( prev => {
@@ -1163,7 +1165,7 @@ const Fase5 = () => {
                                             }
 
                                             />
-                                    <label htmlFor="e2">{t('OfrecermeNiñera.fases.5.si')}</label> 
+                                    <label htmlFor="x2">{t('OfrecermeNiñera.fases.5.si')}</label> 
                                 </div>
                         </div>
 
@@ -1235,6 +1237,7 @@ const  Fase6= () => {
                                         setOfferDomesticFormState( prev => {
                                             const newState = {...prev};
                                             newState.availability = "CONVENIR";
+                                            newState.availability_date = null;
                                             return newState;
                                         });
 
@@ -1392,12 +1395,12 @@ const Fase7 = () => {
                         <div>
                             <input  type="radio"
                                     id="d1"
-                                    checked={offerDomesticFormState.origin == "SI"}
+                                    checked={offerDomesticFormState.origin == "NO"}
                                     onChange={
                                         e => {
                                             setOfferDomesticFormState( prev => {
                                                 const newState = {...prev};
-                                                newState.origin = "SI";
+                                                newState.origin = "NO";
                                                 return newState;
                                             });
                                         }
@@ -1409,12 +1412,12 @@ const Fase7 = () => {
                         <div>
                             <input  type="radio"
                                     id="d2"
-                                    checked={offerDomesticFormState.origin == "NO"}
+                                    checked={offerDomesticFormState.origin == "SI"}
                                     onChange={
                                         e => {
                                             setOfferDomesticFormState( prev => {
                                                 const newState = {...prev};
-                                                newState.origin = "NO";
+                                                newState.origin = "SI";
                                                 return newState;
                                             });
                                         }
@@ -2135,13 +2138,16 @@ const useValidar = () => {
 const botonEnviar = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
-    
-    const {errors, ...postData} = offerDomesticFormState;
+    const navigate = useNavigate();
+ 
+
+    const postData = {...offerDomesticFormState};
     //console.log(JSON.stringify(postData));
     return(
         <button
             id="boton_registrar"
             
+
             onClick={
                 async () => {
                     
@@ -2162,6 +2168,7 @@ const botonEnviar = () => {
                             // Request was successful
                             console.log('POST request successful');
                             console.log(response);
+                            navigate('/');
                         } else {
                             // Request failed
                             console.log('POST request failed');
