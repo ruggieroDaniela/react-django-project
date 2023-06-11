@@ -49,7 +49,7 @@ const FieldViewDetails = ({label, detalles_texto, value=""}) => {
     </>)
 }
 
-export const PublicacionLista = ({post, postType}) => {
+export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPosts}) => {
 
     const {t} = useTranslation();
     const [username, setUsername] = useState("  ");
@@ -90,7 +90,16 @@ export const PublicacionLista = ({post, postType}) => {
         >
             
             <section className='checkbox-container'>
-                <input type="checkbox" />
+                <input
+                    type="checkbox"
+                    checked={selectedPosts.includes(post.id)}
+                    onChange={ e => {
+                        if(selectedPosts.includes(post.id))
+                            setSelectedPosts( prev => prev.filter( x => x!=post.id ) );
+                        else
+                            setSelectedPosts( prev => [... prev, post.id] );
+                    } }
+                />
             </section>
 
             <section key={`post ${post.id} foto`} >

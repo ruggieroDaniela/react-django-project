@@ -17,6 +17,7 @@ export const ListarPublicaciones = () => {
     const postType = searchParams.includes('provide')? 'provide':'request';
 
     const [postList, setPostList] = useState([]);
+    const [selectedPosts, setSelectedPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
 
     const [selectedTipoPersona, setSelectedTipoPersona] = useState("");
@@ -196,7 +197,7 @@ export const ListarPublicaciones = () => {
                     listView
                         ? postList
                         .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
-                        .map( (post) => <PublicacionLista key={post.id} post={post} postType={postType}/> )
+                        .map( (post) => <PublicacionLista key={post.id} post={post} postType={postType} selectedPosts={selectedPosts} setSelectedPosts={setSelectedPosts}/> )
                         : postList
                         .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
                         .map( (post) => <PublicacionFoto key={post.id} post={post} postType={postType}/> )               
