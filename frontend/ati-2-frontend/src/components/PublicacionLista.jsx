@@ -23,6 +23,7 @@ import deshabilitar_img from "../assets/deshabilitar.png"
 import "../styles/PostLista.scss"
 
 import { Tooltip } from "./Tooltip"
+import { getCountryName } from './dataFetchers/PaisDataFetcher';
 
 const FieldViewDetails = ({label, detalles_texto, value=""}) => {
     const {t} = useTranslation();
@@ -52,17 +53,22 @@ export const PublicacionLista = ({post, postType}) => {
     const {t} = useTranslation();
     const [username, setUsername] = useState("  ");
     const {authState, setAuthState} = useContext(AuthContext);
+    const [countryName, setCountryName] = useState("");
     const canEdit = authState.logged_in && post.user == authState.user_id;
     // const canEdit = true;
 
     useEffect(() => {
-        const fetchUser = async () => {
+        const fetchUserData = async () => {
             try {
 
                 const response = await axios.post(`http://127.0.0.1:8000/users/get_name/`, {id: post.user});
 
-                console.log(response.data);
+                // console.log(response.data);
                 setUsername( () => response.data.name + " " + response.data.last_name );
+                
+                const country = await getCountryName(post.country);
+                setCountryName(() => country);
+
                 return response.data;
 
             } catch (error) {
@@ -70,7 +76,7 @@ export const PublicacionLista = ({post, postType}) => {
             } 
         };
         // if( post.client_type != "NO" )
-        fetchUser();
+        fetchUserData();
     }, []);
 
     return(<>
@@ -108,7 +114,7 @@ export const PublicacionLista = ({post, postType}) => {
                             }
                         </div>
                         <div className="subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                            {post.country}
+                            {post.country.length == 2? countryName:post.country}
                         </div>
                         <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                             <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
