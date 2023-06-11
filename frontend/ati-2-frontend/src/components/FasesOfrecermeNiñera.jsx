@@ -1103,9 +1103,9 @@ const Fase5 = () => {
                         <div id="form-horizontal">
                                 <div>
                                     <input  type="radio"
-                                            name="salary"
-                                            id="e1"
-                                            checked={!offerDomesticFormState.benefits}
+                                            name="benefits"
+                                            id="x1"
+                                            checked={offerDomesticFormState.benefits == 0}
                                             onChange={
                                                 e => {
                                                     setOfferDomesticFormState( prev => {
@@ -1116,14 +1116,14 @@ const Fase5 = () => {
                                                 } 
                                             }
                                             />
-                                    <label htmlFor="e1">{t('OfrecermeNiñera.fases.5.no')}</label> 
+                                    <label htmlFor="x1">{t('OfrecermeNiñera.fases.5.no')}</label> 
                                 </div>
 
                                 <div>
                                     <input  type="radio"
-                                            name="salary" 
-                                            id="e2"
-                                            checked={offerDomesticFormState.benefits}
+                                            name="benefits" 
+                                            id="x2"
+                                            checked={offerDomesticFormState.benefits == 1}
                                             onChange={
                                                 e => {
                                                     setOfferDomesticFormState( prev => {
@@ -1135,7 +1135,7 @@ const Fase5 = () => {
                                             }
 
                                             />
-                                    <label htmlFor="e2">{t('OfrecermeNiñera.fases.5.si')}</label> 
+                                    <label htmlFor="x2">{t('OfrecermeNiñera.fases.5.si')}</label> 
                                 </div>
                         </div>
 
