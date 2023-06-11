@@ -24,7 +24,6 @@ export const FormForgotPassword = ({ message, info }) => {
                 setCorreoEnviado(true);
             } catch(error) {
                 setInvalidInput(true)
-                console.log(invalidInput)
             }
         }
             

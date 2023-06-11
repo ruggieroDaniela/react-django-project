@@ -37,7 +37,7 @@ def get_user_data(data):
     return user
 
 def send_password_email(user):
-    redirectUrl="http://3.137.150.119:5173/reset-password"
+    redirectUrl="http://3.137.150.119:5173/reset-password/{}".format(user.id)
     receiver = user.email
     message ='<b>Su usuario es:</b> {}.'.format(user.email) + \
             '<br>' + \
