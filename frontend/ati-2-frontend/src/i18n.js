@@ -38,7 +38,9 @@ const en = Object.assign(
   reset_password_en,
   forgot_password_en,
   OfrecermeNiñera_en,
+  OfrecermeCuidador_en,
   listar_publicaciones_en
+
 );
 
 const es = Object.assign(
@@ -53,6 +55,7 @@ const es = Object.assign(
   reset_password_es,
   forgot_password_en,
   OfrecermeNiñera_es,
+  OfrecermeCuidador_es,
   listar_publicaciones_es
 );
 
