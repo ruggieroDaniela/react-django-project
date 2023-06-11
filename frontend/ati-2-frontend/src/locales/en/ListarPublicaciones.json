@@ -75,6 +75,15 @@
         "NOCHE": "Per night",
         "HORAS": "Per hour",
 
+        "PASAPORTE": "Identification document or passport",
+        "CURRICULUM": "Updated curriculum vitae",
+        "TITULOS": "Degrees or certificates",
+        "REF_TRABAJO": "Verifiable work references",
+        "REF_FAMILIAR": "Family references indicating full name, local phone number, mobile phone number, email (optional), and address",
+        "CONST_ANTECEDENTES": "Certificate of no criminal record",
+        "SALUD": "Health certificate",
+        "CONST_RESIDENCIA": "Proof of Residence",
+
         "ver_informacion": "See full info",
         "grado_instruccion": "Degree of Instruction",
         "perfil_laboral": "Work Profile Description",
@@ -91,7 +100,6 @@
         "horario": "Work Schedule",
         "salidas": "Preferred Checkout",
         "clientes": "Clients I want to work with",
-        "CONST_RESIDENCIA": "Proof of Residence",
         "Cocinar": "Cook",
         "edad_requerida": "years old required"
 

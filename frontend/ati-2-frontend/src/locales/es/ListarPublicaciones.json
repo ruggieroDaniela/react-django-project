@@ -46,6 +46,14 @@
         "NOCHE": "En la noche",
         "HORAS": "Por horas",
 
+        "PASAPORTE": "Documento de identidad o pasaporte",
+        "CURRICULUM": "Currículum actualizado",
+        "TITULOS": "Títulos o certificados", 
+        "REF_TRABAJO": "Referencias comprobables de trabajo", 
+        "REF_FAMILIAR": "Referencias familiares indicando nombre y apellido, teléfono local, Teléfono móvil, correo electrónico (opcional), y dirección", 
+        "CONST_ANTECEDENTES": "Constancia de no poseer antecedentes penales", 
+        "SALUD": "Certificado de salud", 
+
         "CUI": "Cuidador(a) ocupacional",
         "NIN": "Niñera(o)",
         "ENF": "Enfermera(o)",
