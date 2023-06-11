@@ -280,6 +280,7 @@
                 "Transferencia bancaria"
               ],
               "pais":"País",
+              "seleccione-pais":"Seleccione un país",
               "banco":"Banco",
               "nro-cuenta":"Nro de cuenta",
               "codigo-swift":"Código SWIFT",
