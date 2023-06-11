@@ -85,10 +85,14 @@ export const PublicacionLista = ({post, postType}) => {
             key={`post ${post.id}`}
             className="post-lista"
             style={{
-                gridTemplateColumns: canEdit? '1fr 12fr 1fr': "1fr 13fr"
+                gridTemplateColumns: canEdit? '0.5fr 1fr 12fr 1fr': "0.5fr 1fr 13fr"
             }}
         >
             
+            <section className='checkbox-container'>
+                <input type="checkbox" />
+            </section>
+
             <section key={`post ${post.id} foto`} >
                 <div className='foto-container'>
                     <img className='img-user' src={user_img} alt="Profile photo" />
