@@ -134,14 +134,24 @@ export const PublicacionLista = ({post, postType}) => {
                             </li> */}
                             <li key={`post ${post.id} funciones`}>
                                 <FieldViewDetails
-                                    label={t(`publicaciones_vista_lista.funciones_previas`)}
+                                    label={
+                                        postType == "provide"?
+                                            t(`publicaciones_vista_lista.funciones_previas`)
+                                        :
+                                            t(`publicaciones_vista_lista.funciones_requeridas`)
+                                    }
                                     detalles_texto={post.activities}
                                     // detalles_texto={t(`publicaciones_vista_lista.${post.activities}`)}
                                 />
                             </li>
                             <li key={`post ${post.id} documentacion`}>
                                 <FieldViewDetails
-                                    label={t(`publicaciones_vista_lista.documentacion`)}
+                                    label={
+                                        postType == "provide"?
+                                            t(`publicaciones_vista_lista.documentacion`)
+                                        :
+                                            t(`publicaciones_vista_lista.documentacion_requerida`)
+                                    }
                                     detalles_texto={t(`publicaciones_vista_lista.${post.documents}`)}
                                 />
                             </li>
