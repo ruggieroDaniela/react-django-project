@@ -71,6 +71,7 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames, valid
                     className={`${currentStage === stages.length-1?"ghost":""}`}
                     onClick={async () => {
                         const valid = await validate(currentStage)
+                        
                         if(valid){
                             if(currentStage+1 < stages.length){
                                 setCurrentStage((prev) => prev+1);

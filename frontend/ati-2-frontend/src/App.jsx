@@ -24,6 +24,7 @@ import { ForgotPassword } from './routes/ForgotPassword';
 import { ResetPassword } from './routes/ResetPassword';
 import { OfrecermeNiñera } from './routes/OfrecermeNiñera';
 import { ListarPublicaciones } from './routes/ListarPublicaciones';
+import { ChangeLanguage } from './routes/Language';
 import { BuscarCliente } from './routes/BuscarCliente';
 
 
@@ -68,6 +69,7 @@ function App() {
             <Route exact path='/search-clients' element={<BuscarCliente/>}/>
             <Route exact path='/search-domestic-staff' element={<BuscarPersonalDomestico/>}/>
             <Route exact path="/forgot-password" element={<ForgotPassword />} />
+            <Route exact path="/lang" element={<ChangeLanguage/>} />
             <Route exact path="/reset-password/:id" element={<ResetPassword/>}/>
             <Route exact path='/offer-my-services/post-add/offer-me-as-babysitter' element={<OfrecermeNiñera/>}/>
             <Route path='/show-posts' element={<ListarPublicaciones/>}/>

@@ -1,6 +1,7 @@
 import { AuthContextProvider } from "./AuthContext";
 import { RegisterFormContextProvider } from "./RegisterFormContext";
 import { RequestDomesticFormContextProvider } from "./RequestDomesticFormContext";
+import { OfferDomesticFormContextProvider } from "./OfferDomesticFormContext";
 
 export const AppContextProvider = ({children}) => {
 
@@ -8,7 +9,9 @@ export const AppContextProvider = ({children}) => {
         <AuthContextProvider>
             <RegisterFormContextProvider>
                 <RequestDomesticFormContextProvider>
+                    <OfferDomesticFormContextProvider>
                     {children}
+                    </OfferDomesticFormContextProvider>
                 </RequestDomesticFormContextProvider>
             </RegisterFormContextProvider>
         </AuthContextProvider>

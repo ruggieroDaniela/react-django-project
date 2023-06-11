@@ -50,7 +50,9 @@
 
         "contactanos": "Contáctanos",
 
-        "idiomas": "Lenguaje"
+        "idiomas": "Lenguaje", 
+        "espagnol": "Español",
+        "ingles": "Inglés"
 
     }
 }
