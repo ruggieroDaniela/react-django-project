@@ -14,7 +14,7 @@ export const OfrecermeNiñera = () => {
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
     useEffect(()=>{
         setOfferDomesticFormState({
-            user: 11, 
+            user: -1, 
             service: "CUI",
             gender: "IDC",
             age_required_from: 13,

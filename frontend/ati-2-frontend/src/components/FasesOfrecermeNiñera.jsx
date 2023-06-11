@@ -19,7 +19,9 @@ const Fase0 = () => {
     
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
-    
+
+
+ 
 
     return ( 
         <div id="fase0">
@@ -169,6 +171,17 @@ const Fase1 = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
+    //ID of the Nannie that is making the post
+    useEffect(() => {
+        setOfferDomesticFormState(prev => {
+            return {
+                ...prev,
+                user: 11
+            };
+        });
+    }, []);
+        
+
     //selected
     const [selectedCountry, setSelectedCountry] = useState(offerDomesticFormState.country);
     const [selectedState, setSelectedState] = useState(offerDomesticFormState.state);
@@ -189,6 +202,8 @@ const Fase1 = () => {
     const [statesList, setStatesList] =useState([]);
     const [citiesList, setCitiesList] =useState([]);
 
+
+    
 
     //Countries
     useEffect(() => {
@@ -628,16 +643,8 @@ const Fase5 = () => {
     function setTheWorkdays (e){
 
         setOfferDomesticFormState ( prev => {
-
-            const newState = {... prev}
-
-            let pos = (newState.workday).indexOf( e.target.id );
-            
-            if(e.target.checked){
-                if( pos == -1 ) (newState.workday).push(e.target.id);
-            }else{
-                if( pos != -1 ) (newState.workday).splice(pos,1) 
-            }
+            const newState = {... prev};
+            newState.workday = e.target.id;
             return newState;
         })
         
@@ -761,70 +768,70 @@ const Fase5 = () => {
                     </div>
                     <div className="form" >
                         <div>
-                            <input  type="checkbox"
+                            <input  type="radio"
                                     id="SEMANAL"
                                     className="workdays"
-                                    checked={(offerDomesticFormState.workday).includes('SEMANAL')}
+                                    checked={(offerDomesticFormState.workday) == ('SEMANAL')}
                                     onChange={e => setTheWorkdays(e)}
                             />
                             <label htmlFor="SEMANAL">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.0')}</label>
                         </div>    
                         
                         <div>
-                            <input  type="checkbox"
+                            <input  type="radio"
                                     id="QUINCENAL"
                                     className="workdays"
-                                    checked={offerDomesticFormState.workday.includes('QUINCENAL')}
+                                    checked={offerDomesticFormState.workday == ('QUINCENAL')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
                             <label htmlFor="QUINCENAL">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.1')}</label>
                         </div>    
 
                         <div>
-                            <input  type="checkbox"
+                            <input  type="radio"
                                     id="MENSUAL"
                                     className="workdays"
-                                    checked={offerDomesticFormState.workday.includes('MENSUAL')}
+                                    checked={offerDomesticFormState.workday == ('MENSUAL')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
                             <label htmlFor="MENSUAL">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.2')}</label>
                         </div>
 
                         <div>
-                            <input  type="checkbox"
+                            <input  type="radio"
                                     id="INTERDIARIO"
                                     className="workdays"
-                                    checked={offerDomesticFormState.workday.includes('INTERDIARIO')}
+                                    checked={offerDomesticFormState.workday == ('INTERDIARIO')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
                             <label htmlFor="INTERDIARIO">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.3')}</label>
                         </div>
 
                         <div>
-                            <input  type="checkbox"
+                            <input  type="radio"
                                     id="MEDIO_TIEMPO"
                                     className="workdays"
-                                    checked={offerDomesticFormState.workday.includes('MEDIO_TIEMPO')}
+                                    checked={offerDomesticFormState.workday == ('MEDIO_TIEMPO')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
                             <label htmlFor="MEDIO_TIEMPO">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.4')}</label><br/>
                         </div>
 
                         <div>
-                            <input  type="checkbox"
+                            <input  type="radio"
                                     id="FIN_SEMANA"
                                     className="workdays"
-                                    checked={offerDomesticFormState.workday.includes('FIN_SEMANA')}
+                                    checked={offerDomesticFormState.workday == ('FIN_SEMANA')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
                             <label htmlFor="FIN_SEMANA">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.5')}</label>
                         </div>
 
                         <div>
-                            <input  type="checkbox"
+                            <input  type="radio"
                                     id="NOCHE"
                                     className="workdays"
-                                    checked={offerDomesticFormState.workday.includes('NOCHE')}
+                                    checked={offerDomesticFormState.workday == ('NOCHE')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
                             <label htmlFor="NOCHE">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.6')}</label>
@@ -841,20 +848,20 @@ const Fase5 = () => {
                         </div> 
                         */}
                         <div>
-                            <input  type="checkbox"
+                            <input  type="radio"
                                     id="HORAS"
                                     className="workdays"
-                                    checked={offerDomesticFormState.workday.includes('HORAS')}
+                                    checked={offerDomesticFormState.workday == ('HORAS')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
                             <label htmlFor="HORAS">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.8')}</label>
                         </div>
 
                         <div>
-                            <input  type="checkbox"
+                            <input  type="radio"
                                     id="OTRO"
                                     className="workdays"
-                                    checked={offerDomesticFormState.workday.includes('OTRO')}
+                                    checked={offerDomesticFormState.workday == ('OTRO')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
                             <label htmlFor="OTRO">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.9')}</label>                    
@@ -1767,6 +1774,9 @@ const Fase13 = () => {
     // aux haves the values for each bank of the selectedCountry
     const [aux,setaux] = useState([]);
     const [aux2,setaux2] = useState([]);
+
+    //bank selected
+    const [foundBank,setFoundBank] = useState(-1);
     
     useEffect(() => {
         const getBanks = async () => {
@@ -1832,11 +1842,13 @@ const Fase13 = () => {
     useEffect(() => {
         if (aux2 !== undefined && aux2.length > 0 && aux !== undefined) {
             
-            const foundBank = aux2.indexOf(aux[selectedBanks]);
-          if (foundBank !== undefined) {
+        const foundBank1 = aux2.indexOf(aux[selectedBanks]);
+            
+          if (foundBank1 !== undefined && selectedBanks != -1) {
+            setFoundBank(foundBank1);
             setOfferDomesticFormState((prev) => {
               const newState = { ...prev };
-              newState.billing_bank = foundBank;
+              newState.billing_bank = banks[foundBank1].id;
               return newState;
             });
           }
@@ -1948,11 +1960,12 @@ const Fase13 = () => {
                                 />
                             }
                         </div>
-
-                        { offerDomesticFormState.billing_bank != -1 && banks.length>0 && selectedBanks != -1 && selectedCountry != -1 &&    
+                        
+                        { offerDomesticFormState.billing_bank != -1 && banks != undefined &&banks.length>0 && selectedBanks != -1 && selectedCountry != -1 && foundBank != -1 &&   
                         <div id="bank-info">
                             <div id="azul">
-                                {banks[0].name}
+                                {console.log(foundBank)}
+                                {banks[foundBank].name}
                             </div>
                             <div id="columns">
                                 <div>
@@ -1993,7 +2006,7 @@ const botonEnviar = () => {
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
     
     const postData = {...offerDomesticFormState};
-    console.log(JSON.stringify(postData));
+    //console.log(JSON.stringify(postData));
     return(
         <button
             id="boton_registrar"
