@@ -104,7 +104,7 @@ export const getStatesInOneCountry = async (countries) => {
 
             for (let j = 0; j < response.data.length; j++) {
                 names.push( response.data[j].name );
-                values.push( `${codes[i]}/${response.data[j].iso2}` );
+                values.push( `${codes[i]}-${response.data[j].iso2}` );
             }
 
         }
