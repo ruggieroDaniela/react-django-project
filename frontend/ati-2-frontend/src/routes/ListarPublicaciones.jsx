@@ -198,6 +198,8 @@ export const ListarPublicaciones = () => {
                                 key={`${self.crypto.randomUUID()}`}
                                 onClick={ () => {
                                     // habilitar 
+                                    
+                                    setSelectedTipoPersona(prev => prev);
                                 } }
                             >
                                 {t(`lista_publicaciones.accion.${0}`)}
@@ -208,6 +210,7 @@ export const ListarPublicaciones = () => {
                                 key={`${self.crypto.randomUUID()}`}
                                 onClick={ () => {
                                     // deshabilitar
+                                    setSelectedTipoPersona(prev => prev);
                                 } }
                             >
                                 {t(`lista_publicaciones.accion.${1}`)}
@@ -219,6 +222,7 @@ export const ListarPublicaciones = () => {
                                 key={`${self.crypto.randomUUID()}`}
                                 onClick={ () => {
                                     // eliminar
+                                    setSelectedTipoPersona(prev => prev);
                                 } }
                             >
                                 {t(`lista_publicaciones.accion.${3}`)}

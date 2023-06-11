@@ -57,6 +57,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
     const [countryName, setCountryName] = useState("");
     const canEdit = authState.logged_in && post.user == authState.id;
     const [postEnabled, setPostEnabled] = useState(post.enable);
+    const [forceRefresh, setForceRefresh] = useState(true);
     // console.log(authState.user_id);
 
     // const canEdit = true;
@@ -70,8 +71,10 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                 // console.log(response.data);
                 setUsername( () => response.data.name + " " + response.data.last_name );
                 
-                const country = await getCountryName(post.country);
-                setCountryName(() => country);
+                if(post.country.length == 2){
+                    const country = await getCountryName(post.country);
+                    setCountryName(() => country);
+                }
 
                 return response.data;
 
@@ -268,6 +271,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                         onClick={ () => {
                             setPostEnabled(prev=>!prev);
                             axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${post.id}/`)
+                            setForceRefresh(prev => !prev);
                         } }
                     >
                         <img className='button-img' src={postEnabled? deshabilitar_img : habilitar_img} alt="" />
@@ -279,8 +283,9 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                     </button>
                     <button
                         disabled={ !(canEdit) }
-                        onClick={ () => {
-                            axios.delete(`http://127.0.0.1:8000/api-services/${postType}/delete_post/${post.id}/`)
+                        onClick={ async () => {
+                            await axios.delete(`http://127.0.0.1:8000/api-services/${postType}/delete_post/${post.id}/`)
+                            window.location.reload();
                         } }
                     >
                         <img className='button-img' src={eliminar_img} alt="" />
