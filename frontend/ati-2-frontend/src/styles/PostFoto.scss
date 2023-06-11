@@ -1,6 +1,6 @@
 @import 'colors';
 
-.post-lista{
+.post-foto{
     display: grid;
     grid-template-columns: 1fr 12fr 1fr;
 
@@ -8,16 +8,6 @@
         border-style: solid;
         border-color: $dorado;
         border-width: 1px;
-
-        .foto-container{
-            display: flex;
-            justify-content: center;
-            padding-top: 15%;
-            .img-user{
-                width: 5vw;
-            }
-        }
-
     }
 
     .button-group{
@@ -35,6 +25,11 @@
         }
     }
 
+    .img-user{
+        height: 5rem;
+        margin-left: 4rem;
+    }
+
     .detalles{
         padding: 0.5rem;
         display: grid;
@@ -43,12 +38,18 @@
 
         .header-grid{
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .sub-header{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
         }
 
         .detalles-title{
             font-weight: bold;
             color: red;
+            text-decoration: underline;
         }
 
         .desc-body{
@@ -56,10 +57,21 @@
             padding-right: 0.5rem;
         }
 
+        .subtitle{
+            text-decoration: underline;
+        }
         .bold-subtitle{
+            font-weight: bold;
+            margin-left: 3rem;
+        }
+
+        .bold-state{
             font-weight: bold;
         }
 
+        .space{
+            margin-left: 3rem;
+        }
         .blue-body{
             font-weight: normal;
             color: $azul-oscuro;

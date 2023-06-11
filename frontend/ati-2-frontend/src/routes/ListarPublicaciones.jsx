@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import { PublicacionLista } from '../components/PublicacionLista';
+import { PublicacionFoto } from '../components/PublicacionFoto'; 
 import { getServices } from '../components/dataFetchers/ServicesDataFetcher';
 
 import "../styles/ListarPublicaciones.scss"
@@ -21,6 +22,9 @@ export const ListarPublicaciones = () => {
     const [selectedTipoPersona, setSelectedTipoPersona] = useState("");
     const [selectedOrdering, setSelectedOrdering] = useState("");
     const [pageLinks, setPageLinks] = useState([]);
+
+    // Tipo de Vista
+    const [listView, setListView] = useState(true);
 
     const tipoPersona = ["1", "2", "3", "4", "5"];
     const ordenes = ["payment_amount", "availability_date", "education_level", "travel"];
@@ -82,6 +86,7 @@ export const ListarPublicaciones = () => {
 
                 setPostList(response.data)
                 console.log(response.data);
+                console.log(postType);
                 return response.data;
 
             } catch (error) {
@@ -104,13 +109,17 @@ export const ListarPublicaciones = () => {
                 <ul className="input-group">
                     <li className="radio">
                         <label>
-                            <input type="radio" checked={true} onChange={() => {}}/>
+                            <input type="radio" checked={listView} onChange={(e) => {                
+                                setListView(true);                             
+                            }}/>
                             {t(`lista_publicaciones.tipo_lista`)}
                         </label>
                     </li>
-                    <li className="radio" checked={false} onChange={(e) => { e.target.checked = false }}>
+                    <li className="radio">
                         <label>
-                            <input type="radio"/>
+                            <input type="radio" checked={!listView} onChange={(e) => { 
+                                setListView(false);
+                            }}/>
                             {t(`lista_publicaciones.tipo_foto`)}
                         </label>
                     </li>
@@ -184,9 +193,13 @@ export const ListarPublicaciones = () => {
             <div className="row" id='post-group'>
                 {   
                     /* eslint-disable-next-line */
-                    postList
+                    listView
+                        ? postList
                         .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
                         .map( (post) => <PublicacionLista key={post.id} post={post} postType={postType}/> )
+                        : postList
+                        .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
+                        .map( (post) => <PublicacionFoto key={post.id} post={post} postType={postType}/> )               
                 }
             </div>
 
