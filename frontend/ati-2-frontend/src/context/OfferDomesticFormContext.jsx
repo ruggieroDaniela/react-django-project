@@ -53,7 +53,11 @@ function OfferDomesticFormContextProvider({children}){
             origin_country: "",
             origin_state: "",
             origin_city: "",
-            client_type: ""
+            client_type: "",
+            err: true,
+            errors: {
+                invalid_age: false
+            }
         }
         );
 

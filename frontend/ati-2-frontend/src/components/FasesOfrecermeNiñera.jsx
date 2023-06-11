@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownSearch } from "../components/search/FieldDropdownSearch";
 import axios from 'axios';
-
+import ErrorMessage from "./ErrorMessage";
 
 import "../styles/BuscarPersonalDomestico.scss"
  
@@ -1991,9 +1991,25 @@ const Fase13 = () => {
 }
  
 const useValidar = () => {
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+
+    const validateNumber = (number) => {
+        return /^\+?(0|[1-9]\d*)$/.test(number);
+    }
+    
     const validate = (currentStage) => {
         // Empty implementation
         let valid =true;
+
+        console.log(offerDomesticFormState)
+        if(currentStage == 0){
+            if(!validateNumber(offerDomesticFormState.age)){
+                valid = false
+                offerDomesticFormState.errors['invalid_age'] = false
+            } else {
+                offerDomesticFormState.errors['invalid_age'] = true
+            }
+        }
         return valid
     };
 
@@ -2004,7 +2020,7 @@ const botonEnviar = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
     
-    const postData = {...offerDomesticFormState};
+    const {errors, ...postData} = offerDomesticFormState;
     //console.log(JSON.stringify(postData));
     return(
         <button

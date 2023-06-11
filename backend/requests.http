@@ -74,8 +74,8 @@ POST http://localhost:8000/token-auth/
 content-type: application/json
 
 {
-    "username": "ati2.proyecto+carlos99@gmail.com",
-    "password": "12345"
+    "username": "ati2.proyecto+carlos95@gmail.com",
+    "password": "12345678"
 }
 
 ### ---- FORMATO PARA LAS REQUEST A UNIQUE_EMAIL ---- 
@@ -124,7 +124,7 @@ Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
 content-type: application/json
 
 {
-    "user": 11, 
+    "user": 36, 
     "service": "NIN", 
     "age": 29,
     "have_children": false,
@@ -168,11 +168,11 @@ content-type: application/json
 
 ### 
 POST http://127.0.0.1:8000/api-services/provideService/post_ad/
-Authorization: Token 4e6ba7f9907e31bd1a0fdd3d209150b6c9cac595
+Authorization: Token 840c5d2b1393d0ac78010861ff7473fac4fdc7eb
 content-type: application/json
 
 {
-    "user": 11, 
+    "user": 37, 
     "service": "CUI", 
     "age": 31,
     "have_children": false,
@@ -216,11 +216,11 @@ content-type: application/json
 
 ### B - Solicitar personal domestico
 POST http://127.0.0.1:8000/api-services/requestService/post_ad/
-Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
+Authorization: Token 840c5d2b1393d0ac78010861ff7473fac4fdc7eb
 content-type: application/json
 
 {
-    "user": 11, 
+    "user": 37, 
     "service": "CUI",
     "gender": "IDC",
     "age_required_from": 18,
@@ -266,11 +266,11 @@ content-type: application/json
 ###
 
 POST http://127.0.0.1:8000/api-services/requestService/post_ad/
-Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
+Authorization: Token 840c5d2b1393d0ac78010861ff7473fac4fdc7eb
 content-type: application/json
 
 {
-    "user": 11, 
+    "user": 37, 
     "service": "NIN",
     "gender": "IDC",
     "age_required_from": 10,
