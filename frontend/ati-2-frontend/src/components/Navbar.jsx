@@ -177,15 +177,10 @@ const Navbar = () => {
                             arrow: "▾"
                         }}
                         items={[
-                            {label: t("navbar.espagnol"), link:"#"},
-                            {label: t("navbar.ingles"), link:"#"}
+                            {label: t("navbar.espagnol"), link:"#", lan:"es"},
+                            {label: t("navbar.ingles"), link:"#", lan:"en"}
                         ]}
-                    />
-                    {/*
-                    <li className="item">
-                        <a href="/lang" className="link">{t("navbar.idiomas")}</a>
-                    </li>*/
-                    }   
+                    /> 
                 </ul>
             </nav>
         </>
