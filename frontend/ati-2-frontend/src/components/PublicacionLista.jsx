@@ -56,6 +56,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
     const {authState, setAuthState} = useContext(AuthContext);
     const [countryName, setCountryName] = useState("");
     const canEdit = authState.logged_in && post.user == authState.id;
+    const [postEnabled, setPostEnabled] = useState(post.enable);
     // console.log(authState.user_id);
 
     // const canEdit = true;
@@ -265,10 +266,11 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                     <button
                         disabled={ !(canEdit) }
                         onClick={ () => {
+                            setPostEnabled(prev=>!prev);
                             axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${post.id}/`)
                         } }
                     >
-                        <img className='button-img' src={post.enable? deshabilitar_img : habilitar_img} alt="" />
+                        <img className='button-img' src={postEnabled? deshabilitar_img : habilitar_img} alt="" />
                     </button>
                     <button
                         disabled={ !(canEdit) }
