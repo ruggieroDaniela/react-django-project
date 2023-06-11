@@ -1,10 +1,10 @@
 {
     "login": {
-        "titulo": "Sign in",
-        "boton": "Sign in",
-        "descripcion": "Select the account you want to access",
-        "correo": "Email",
-        "contrasena": "Password",
-        "olvide_contrasena": "I forgot my password, or my data"
+        "titulo": "Iniciar Sesión",
+        "boton": "Iniciar Sesión",
+        "descripcion": "Selecciona la cuenta en la que desea acceder",
+        "correo": "Correo",
+        "contrasena": "Contraseña",
+        "olvide_contrasena": "Olvidé mi contraseña, o mis datos"
     }
 }

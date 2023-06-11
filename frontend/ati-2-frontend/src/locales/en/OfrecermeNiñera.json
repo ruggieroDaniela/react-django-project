@@ -42,7 +42,10 @@
               "pais": "Country of origin",
               "estado": "State/Province",
               "ciudad": "City",
-              "zona": "Zone"
+              "zona": "Zone",
+              "select-country":"Select a country",
+              "select-state":"Select a state",
+              "select-city":"Select a city"
             },
             {
               "nombre": "General description of my work profile",
@@ -55,8 +58,8 @@
               "mensaje": "Please indicate if you have availability to travel or not.",
               "mensaje2": "If you have availability, please specify additional details about the travel.",
               "pregunta": "Are you willing to travel to accompany the person(s) to be taken care of?",
-              "si": "yes",
-              "no": "no",
+              "si": "Yes",
+              "no": "No",
               "especifique": "Please specify"            
             },
             {
@@ -123,7 +126,19 @@
               ],
               "especifique": "Please specify",
               "no": "No",
-              "si": "Yes"
+              "si": "Yes",
+              "otro": "Other",
+              "moneda": "Currency",
+              "selecciona-moneda": "Select the currency",
+              "salario-ofrecido": "The offered salary is",
+              "seleccione-salario": "Select the salary",
+              "salario-opciones": [
+                "Per hour",
+                "Per day",
+                "Weekly",
+                "Bi-weekly",
+                "Monthly"
+              ]
             },
             {
               "nombre": "Availability to start working",
@@ -146,7 +161,23 @@
                 "Individual",
                 "Company",
                 "I am indifferent"
-              ]
+              ],
+              "continente": "Continent",
+              "select-continente": "Select the continent",
+              "pais": "Country",
+              "select-pais": "Select the country",
+              "estado": "State",
+              "select-estado": "Select the state",
+              "ciudad": "City",
+              "select-ciudad": "Select the city",
+              "continentes":[
+                "North America",
+                "South America",
+                "Europe",
+                "Asia",
+                "Oceania"
+            ]
+
             },
             {
               "nombre": "Documents I can provide to clients",
@@ -241,12 +272,18 @@
                 "Bank transfer"
               ],
               "pais": "Country",
+              "seleccione-pais":"Select a country",
               "banco": "Bank",
+              "seleccione-banco": "Select your preferred bank",
               "nro-cuenta": "Account number",
               "codigo-swift": "SWIFT code",
               "a-nombre-de": "In the name of",
               "correo": "Email",
-              "tipo-cuenta": "Account type"
+              "tipo-cuenta": "Account type",
+              "formadepago":"Payment method",
+              "deposito":"Deposit",
+              "transferencia-bancaria":"Bank transfer",
+              "numero-cuenta":"Account number"
             }
         ],
         "continuar": "Continue",

@@ -1,121 +1,121 @@
 {
     "registrar":{
-        "titulo": "SIGN UP PANEL",
+        "titulo": "PANEL DE REGISTRO",
         "indicaciones": [
-            "These are the steps to follow to complete your registration.",
-            "If at any time you need to access a section of the registry, click on the green panel, which is your preference"
+            "Estos son los pasos a seguir para completar su registro.",
+            "Si en algún momento necesita acceder a una sección del registro, haga clic en el panel de color verde, que sea de su preferencia"
         ],
         "botones":{
-            "registrar": "Register",
-            "cancelar": "Cancel"
+            "registrar": "Registrar",
+            "cancelar": "Cancelar"
         },
         "fases":[
             {
-                "nombre":"How did you hear about us?",
-                "descripcion":"Please tell us how you found out about the company's services\nIt is important to us, because it helps us to improve the service we offer you.",
+                "nombre":"Cómo supo de nosotros",
+                "descripcion":"Por favor, coméntenos, como se entero de los servicios de la empresa\nEs importante para nosotros, porque nos ayuda a mejorar el servicio que le ofrecemos",
                 "metodos": [
-                    "Website",
-                    "Social Network",
-                    "Friends",
-                    "Other"
+                    "Portal de la empresa",
+                    "Redes Sociales",
+                    "Amigos",
+                    "Otro"
                 ],
                 "otros_metodos":[
                     "Radio",
-                    "Press",
-                    "Other"
+                    "Prensa",
+                    "Otros"
                 ]
             },
             {
-                "nombre":"Register user",
-                "tipo_usuario": "Select user type",
-                "tipo_natural": "Natural person",
-                "tipo_empresa": "Business",
+                "nombre":"Registrar Usuario",
+                "tipo_usuario": "Seleccione el tipo de usuario",
+                "tipo_natural": "Persona natural",
+                "tipo_empresa": "Empresa",
                 "natural":{
-                    "nota_inicial": "Insert the solicited data",
-                    "nombre": "First Name",
-                    "apellido": "Last Name",
-                    "id": "Passport/ID Card/DNI",
-                    "correo": "Email",
-                    "pais": "Country"
+                    "nota_inicial": "Ingrese los datos solicitados a continuación",
+                    "nombre": "Nombre",
+                    "apellido": "Apellido",
+                    "id": "Cédula/pasaporte/DNI",
+                    "correo": "Correo electrónico",
+                    "pais": "País de procedencia"
                 },
                 "empresa":{
                     "empresa":{
-                        "titulo": "Business Data",
-                        "nombre": "Business Name",
-                        "rif": "Social Reason/RIF",
-                        "pais": "Country",
-                        "ciudad": "City",
-                        "direccion": "Address"
+                        "titulo": "Data de la empresa",
+                        "nombre": "Nombre de la empresa",
+                        "rif": "Razón social /RIF",
+                        "pais": "País de procedencia",
+                        "ciudad": "Ciudad",
+                        "direccion": "Dirección"
                     },
                     "representante":{
-                        "titulo": "Business Representative Data",
-                        "nombre": "Full Name",
-                        "correo": "Email",
-                        "telefono": "Phone"
+                        "titulo": "Datos del representante de la empresa",
+                        "nombre": "Nombre y apellido",
+                        "correo": "Correo electrónico",
+                        "telefono": "Teléfono"
                     }
                 },
                 "telefono": {
-                    "titulo": "Phone",
-                    "nota": "Select the phone of your preference",
-                    "movil": "Cellphone",
-                    "local": "Local"
+                    "titulo": "Teléfono",
+                    "nota": "Seleccione, el o los teléfonos de su preferencia",
+                    "movil": "Móvil",
+                    "local": "Fijo"
                 },
-                "nota_final": "Please verify that your data is correct, as it will be used to generate your publication, send you your access data, or generate your invoice",
+                "nota_final": "Por favor verifique que sus datos sean los correctos, ya que serán utilizados para generar su publicación, enviarle sus datos de acceso, o generarle su factura",
                 "seleccionar_pais": "Seleccione un pais",
                 "seleccionar_ciudad": "Seleccione una ciudad"
             },
-            {"nombre":"Website language" },
+            {"nombre":"IDIOMA EN QUE DESEA VISUALIZAR EL PORTAL AL INICIAR SESIÓN" },
             {
-                "nombre":"Login data",
-                "correo": "Login Email",
-                "clave": "Password",
-                "newsletter": "I want to stay informed about the services offered by the company, and other aspects of interest"
+                "nombre": "DATOS DE INICIO DE SESIÓN",
+                "correo": "Correo para acceder al portal",
+                "clave": "Contraseña",
+                "newsletter": "Quiero mantenerme informado acerca de los servicios que ofrece la empresa, y otros aspectos de interés"
             },
             {
-                "nombre":"Frequency and information to receive",
-                "nota_frecuencia": "How often would you like to be informed about the services offered by the company?",
+                "nombre":"FRECUENCIA E INFORMACIÓN A RECIBIR",
+                "nota_frecuencia": "¿Con que frecuencia le gustaría mantenerse informado acerca de los servicios que ofrece la empresa?",
                 "frecuencias":[
-                    "Once a week",
-                    "Once every 2 weeks",
-                    "Once a month",
-                    "Other"
+                    "1 vez a la semana",
+                    "Cada 2 semanas",
+                    "1 vez al mes",
+                    "Otra"
                 ],
-                "etiqueta_servicios": "Services of interest",
+                "etiqueta_servicios": "Servicios de interés",
                 "servicios": [
-                    "Available personal",
-                    "Professional advice"
+                    "Personal Disponible",
+                    "Asesoría profesional"
                 ],
-                "etiqueta_medio": "Means by which you would like to be informed",
-                "correo_personalizado": "Email according to your preferences",
-                "redes": "Company social networks",
+                "etiqueta_medio": "Medio(s) por los que le gustaría mantenerse informado",
+                "correo_personalizado": "Correo electrónico según sus preferencias",
+                "redes": "Redes sociales de la empresa",
                 "sms": "SMS",
-                "otros": "Other",
-                "facebook": "Direct message on my Facebook account"
+                "otros": "Otros",
+                "facebook": "Mensaje directo en mi cuenta de Facebook"
             },
             {
-                "nombre":"Billing information",
-                "codigo": "Your client code is",
-                "nota": ["It is important that you", "FORMALIZE your payment to be able to publish your request for various profiles of home assistants,", "through your PAYMENT."],
-                "titulo": "Data to be used to facilitate payment notifications",
-                "descripcion": "We want to help you, facilitating the payment of the publication of your home assistant, and for which, we ask you to provide the data that you consider using, to make your transfers or deposits, specified below",
-                "banco_origen": "Source Bank",
-                "pais": "Bank's Country",
-                "banco_destino": "Destiny Bank",
-                "sugerencia_titulo": "Suggestion to make your payments",
-                "sugerencia_cuerpo": "It is recommended that you log in to the company's Web portal, so that the data you have provided can be used to facilitate the payment notification process for your publication. Otherwise, you must fill out the requested information on the company's Web portal and on the payment notification portal.",
-                "horario_titulo": "Public service hours",
-                "dias": "Monday to Friday",
-                "horas": "From 8:00 a.m. to 12:00 p.m. and from 1:00 p.m. to 5:00 p.m.",
-                "telefono": "Phones",
-                "correo": "Email",
+                "nombre":"DATOS DE FACTURACIÓN",
+                "codigo": "Su código de cliente es",
+                "nota": ["Es importante que usted ", "FORMALICE su pago para poder publicar su vivienda,", "mediante su PAGO."],
+                "titulo": "Datos a utilizar, para facilitar las notificaciones de pago",
+                "descripcion": "Queremos ayudarte, facilitando el pago de la publicación de tu apartamento o casa , y para lo cual, te pedimos que proporciones los datos que consideras utilizar, para realizar tus transferencias o depósitos, especificados a continuación",
+                "banco_origen": "Banco origen",
+                "pais": "País donde reside la cuenta del banco origen",
+                "banco_destino": "Banco destino",
+                "sugerencia_titulo": "Sugerencia para realizar sus pagos",
+                "sugerencia_cuerpo": "Se recomienda que inicie sesión en el portal Web de la empresa, para que los datos que ha proporcionado, puedan ser utilizados, para facilitarle, el proceso de notificación de pago de su publicación. \n De lo contrario, deberá llenar la información solicitada, en el portal Web de la empresa, y en el portal de notificación de pagos.",
+                "horario_titulo": "Horario de atención al público",
+                "dias": "Lunes a Viernes ",
+                "horas": "De 8.00am a 12.00m y de 1:00pm a 5:00pm",
+                "telefono": "Teléfonos",
+                "correo": "Correo",
                 "seleccionar_destino": "Seleccione le banco donde depositó o transfirió los fondos"
             }
         ],
-        "continuar": "Continue",
-        "atras": "Back",
+        "continuar": "Continuar",
+        "atras": "Atrás",
         "errores":[
             {
-                "requerido": "You must select at least one option"
+                "requerido": "Debe seleccionar al menos una opción"
             }
         ]
     }
