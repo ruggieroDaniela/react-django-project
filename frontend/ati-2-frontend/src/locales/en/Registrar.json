@@ -126,7 +126,7 @@
                 "id": "Must start with a letter or a number, and have a minimum of 5 characters",
                 "email": "Invalid email",
                 "telefono_requerido": "At least one phone number is required",
-                "telefono_invalido": "Must contain only numbers, and have a minimum of 4 numbers"
+                "telefono_invalido": "Inavalid format. Must contain only numbers and dashes"
             },
             {
                 "requerido": "You must select the language of your preference"
