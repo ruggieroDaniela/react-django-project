@@ -202,7 +202,7 @@ export const BuscarCliente = () => {
                         <div></div>
                         <button
                             onClick={ () => {
-                                let query = "?type=provide&";
+                                let query = "?type=request&";
 
                                 if(selectedContinent != -1)
                                     query += `continent=${regions[selectedContinent]}&`
@@ -440,7 +440,7 @@ export const BuscarCliente = () => {
                         <div></div>
                         <button
                             onClick={ () => {
-                                let query = "?type=provide&";
+                                let query = "?type=request&";
 
                                 if(selectedContinent != -1)
                                     query += `continent=${regions[selectedContinent]}&`
