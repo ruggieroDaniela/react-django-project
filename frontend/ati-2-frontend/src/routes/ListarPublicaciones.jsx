@@ -193,20 +193,46 @@ export const ListarPublicaciones = () => {
                         {t(`lista_publicaciones.acciones`)}:
                     </span>
                     <ul className="input-group">
-                        {
-                            acciones.map( (item, i) => 
-                                <li className="button" key={`${self.crypto.randomUUID()}`}>
-                                    <button
-                                        key={`${self.crypto.randomUUID()}`}
-                                        onClick={ () => {
-                                            // fuck me in the ass 
-                                        } }
-                                    >
-                                        {t(`lista_publicaciones.accion.${i}`)}
-                                    </button>
-                                </li>
-                            )
-                        }
+                        <li className="button" key={`${self.crypto.randomUUID()}`}>
+                            <button
+                                key={`${self.crypto.randomUUID()}`}
+                                onClick={ () => {
+                                    // fuck me in the ass 
+                                } }
+                            >
+                                {t(`lista_publicaciones.accion.${0}`)}
+                            </button>
+                        </li>
+                        <li className="button" key={`${self.crypto.randomUUID()}`}>
+                            <button
+                                key={`${self.crypto.randomUUID()}`}
+                                onClick={ () => {
+                                    // fuck me in the ass 
+                                } }
+                            >
+                                {t(`lista_publicaciones.accion.${1}`)}
+                            </button>
+                        </li>
+                        <li className="button" key={`${self.crypto.randomUUID()}`}>
+                            <button
+                                key={`${self.crypto.randomUUID()}`}
+                                onClick={ () => {
+                                    // fuck me in the ass 
+                                } }
+                            >
+                                {t(`lista_publicaciones.accion.${2}`)}
+                            </button>
+                        </li>
+                        <li className="button" key={`${self.crypto.randomUUID()}`}>
+                            <button
+                                key={`${self.crypto.randomUUID()}`}
+                                onClick={ () => {
+                                    // fuck me in the ass 
+                                } }
+                            >
+                                {t(`lista_publicaciones.accion.${3}`)}
+                            </button>
+                        </li>
                     </ul>
                 </div>
             }
