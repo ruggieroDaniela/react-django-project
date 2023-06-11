@@ -1800,7 +1800,7 @@ const Fase13 = () => {
         let auxC = []
 
         for (let i=0; i<banks.length; i++)
-            if(!bank_countries.includes(banks[i].country)) auxC.push(banks[i].country);
+            if(!auxC.includes(banks[i].country)) auxC.push(banks[i].country);
 
         setbank_countries(auxC);
         
