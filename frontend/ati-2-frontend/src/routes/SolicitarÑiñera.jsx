@@ -92,6 +92,7 @@ export const SolicitarÑiñera = () => {
                 stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
                 cancelEvent={goHome}            // onClick event del botón de cancelar
                 SubmitButton={botonEnviar}   // componente con el botón de submit
+                validateStages={useValidar}
             />
 
         </div>

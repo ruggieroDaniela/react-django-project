@@ -84,7 +84,7 @@ const Navbar = () => {
                                         arrow: "▸"
                                     },
                                     items:[
-                                        {label: t("navbar.solicitar.babysitter"), link:"#"},
+                                        {label: t("navbar.solicitar.babysitter"), link: isAuth == true ? "/request-babysitter" : "#"},
                                         {label: t("navbar.solicitar.cuidador"), link:"#"}
                                     ]
                                 },

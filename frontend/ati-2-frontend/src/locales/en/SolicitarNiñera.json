@@ -73,7 +73,7 @@
               "enfermedades": "Indicate the illness(es), if they have treatment and other details of interest"
           },
           {
-              "nombre":"About the person to be cared for",
+              "nombre":"Nanny's availability to travel",
               "mensaje": "Please indicate the availability for the babysitter to travel",
               "pregunta": "Should the babysitter be willing to travel to accompany the person being cared for?",
               "si": "Yes",

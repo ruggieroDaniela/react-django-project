@@ -693,7 +693,8 @@ const Fase3 = () => {
           <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.3.mensaje')}</span><br />
       </div>
       <div id="titulos">
-          <span className="red">* </span><h2 >{t('SolicitarNiñera.fases.3.pregunta')}</h2>
+          <span className="red">* </span>
+          <h4 style={{display: "inline"}} >{t('SolicitarNiñera.fases.3.pregunta')}</h4>
           <div id="form">
                   <div>
                         <input  type="radio"
@@ -710,7 +711,7 @@ const Fase3 = () => {
                                 }
                                 checked={requestDomesticFormState.travel}
                         />
-                      <label for="c1">{t('SolicitarNiñera.fases.3.si')}</label>
+                      <label for="c1">{t('SolicitarNiñera.fases.3.no')}</label>
                   </div>
 
                   <div>
@@ -729,7 +730,7 @@ const Fase3 = () => {
                                 }
                                 checked={!requestDomesticFormState.travel}        
                         />
-                      <label for="c2">{t('SolicitarNiñera.fases.3.no')}</label>
+                      <label for="c2">{t('SolicitarNiñera.fases.3.si')}</label>
                   </div>
           </div>
       </div>
@@ -1308,7 +1309,7 @@ const Fase5 = () => {
                         <div id="form-horizontal">
                                 <div>
                                     <input  type="radio"
-                                            name="salary"
+                                            name="beneficio"
                                             id="e1"
                                             checked={!requestDomesticFormState.benefits}
                                             onChange={
@@ -1326,7 +1327,7 @@ const Fase5 = () => {
 
                                 <div>
                                     <input  type="radio"
-                                            name="salary" 
+                                            name="beneficio" 
                                             id="e2"
                                             checked={requestDomesticFormState.benefits}
                                             onChange={
@@ -1652,11 +1653,11 @@ const Fase10 = () => {
    );
 }
 
-const Fase111 = () => {
+const Fase11 = () => {
     
     const { t, i18n } = useTranslation();
-  const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
-  
+    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+
     var val=[1,2,3];
     
     //radio buttons form
@@ -1672,6 +1673,9 @@ const Fase111 = () => {
     // aux haves the values for each bank of the selectedCountry
     const [aux,setaux] = useState([]);
     const [aux2,setaux2] = useState([]);
+
+    //bank selected
+    const [foundBank,setFoundBank] = useState(-1);
     
     useEffect(() => {
         const getBanks = async () => {
@@ -1699,6 +1703,7 @@ const Fase111 = () => {
             if(!bank_countries.includes(banks[i].country)) auxC.push(banks[i].country);
 
         setbank_countries(auxC);
+        console.log("***", banks)
         
         
         if (requestDomesticFormState.billing_country !== "" && bank_countries.length > 0) {
@@ -1737,11 +1742,13 @@ const Fase111 = () => {
     useEffect(() => {
         if (aux2 !== undefined && aux2.length > 0 && aux !== undefined) {
             
-            const foundBank = aux2.indexOf(aux[selectedBanks]);
-          if (foundBank !== undefined) {
+        const foundBank1 = aux2.indexOf(aux[selectedBanks]);
+            
+          if (foundBank1 !== undefined && selectedBanks != -1) {
+            setFoundBank(foundBank1);
             setRequestDomesticFormState((prev) => {
               const newState = { ...prev };
-              newState.billing_bank = foundBank;
+              newState.billing_bank = banks[foundBank1].id;
               return newState;
             });
           }
@@ -1831,10 +1838,11 @@ const Fase111 = () => {
                         <div className="dropdown-content">
                             <FieldDropdown 
                                 title={t('OfrecermeNiñera.fases.13.pais')}
-                                placeholder={t('SolicitarNiñera.fases.13.seleccione-pais')}
+                                placeholder={t('OfrecermeNiñera.fases.13.seleccione-pais')}
                                 items={bank_countries}
                                 setSelectedState={setSelectedCountry}
                             />
+                            {console.log(bank_countries)}
                         </div>
                     
                     
@@ -1853,11 +1861,12 @@ const Fase111 = () => {
                                 />
                             }
                         </div>
-
-                        { requestDomesticFormState.billing_bank != -1 && banks.length>0 && selectedBanks != -1 && selectedCountry != -1 &&    
+                        
+                        { requestDomesticFormState.billing_bank != -1 && banks != undefined &&banks.length>0 && selectedBanks != -1 && selectedCountry != -1 && foundBank != -1 &&   
                         <div id="bank-info">
                             <div id="azul">
-                                {banks[0].name}
+                                {console.log(foundBank)}
+                                {banks[foundBank].name}
                             </div>
                             <div id="columns">
                                 <div>
@@ -1872,243 +1881,6 @@ const Fase111 = () => {
                                     <p><span>{t('OfrecermeNiñera.fases.13.banco')}</span>: {banks[0].name}</p>
                                     <p><span>{t('OfrecermeNiñera.fases.13.numero-cuenta')}</span>: {banks[0].account}</p>
                                     <p><span>{t('OfrecermeNiñera.fases.13.codigo-swift')}</span>: {banks[0].swift_code}</p>
-                                </div>
-                            </div>
-                        </div>
-                        }
-
-                </div>
-            </div>
-        </div>
-     );
-}
-
-const Fase11 = () => {
-    
-    const { t, i18n } = useTranslation();
-    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
-
-    var val=[1,2,3];
-    
-    //radio buttons form
-    const [publication_time, setpublication_time] = useState(requestDomesticFormState.publication_time);
-
-
-    //this is for the dropdowns
-    const [banks, setBanks] = useState([]);
-    const [bank_countries,setbank_countries] = useState([]);
-    
-    const [selectedBanks, setSelectedBanks] = useState(-1);
-    const [selectedCountry, setSelectedCountry] = useState(-1) 
-    // aux haves the values for each bank of the selectedCountry
-    const [aux,setaux] = useState([]);
-    const [aux2,setaux2] = useState([]);
-
-    //bank selected
-    const [foundBank,setFoundBank] = useState(-1);
-    
-    useEffect(() => {
-        const getBanks = async () => {
-          try {
-            const response = await axios.get(`http://127.0.0.1:8000/banks/`);
-            return response.data; // Return the response data instead of the entire response
-          } catch (error) {
-            console.error(error);
-          }
-        };
-      
-        const fetchBanks = async () => {
-          const banksData = await getBanks(); // Await the getBanks() function to resolve the Promise
-          setBanks(banksData); // Update the banks state with the fetched data
-        };
-      
-        fetchBanks();
-      }, []);
-    
-    
-    useEffect(() =>{
-        let auxC = []
-
-        for (let i=0; i<banks.length; i++)
-            if(!bank_countries.includes(banks[i].country)) auxC.push(banks[i].country);
-
-        setbank_countries(auxC);
-        
-        
-        if (requestDomesticFormState.billing_country !== "" && bank_countries.length > 0) {
-            const foundCountry = bank_countries.find(
-              (country) => country === requestDomesticFormState.billing_country
-            );
-            if (foundCountry) {
-                setSelectedCountry(foundCountry);
-            }
-          }
-
-    },[banks]);
-
-    useEffect(()=>{
-        let aux1 = [];
-        let aux12 = [];
-        if (selectedCountry != -1){
-            for (let i=0; i<banks.length; i++){
-                if ( banks[i].country == bank_countries[selectedCountry] ) aux1.push(banks[i].name+ " - "+ banks[i].account +" - "+ banks[i].swift_code);
-                aux12.push(banks[i].name+ " - "+ banks[i].account +" - "+ banks[i].swift_code);
-            }
-            setaux(aux1);
-            setaux2(aux12);
-        }
-        
-
-        if( bank_countries != undefined && bank_countries.length > 0 ) 
-            setRequestDomesticFormState ( prev => {
-                const newState = {...prev};
-                newState.billing_country = bank_countries[selectedCountry];
-                return newState
-            });
-
-    },[selectedCountry]);
-
-    useEffect(() => {
-        if (aux2 !== undefined && aux2.length > 0 && aux !== undefined) {
-            
-        const foundBank1 = aux2.indexOf(aux[selectedBanks]);
-            
-          if (foundBank1 !== undefined && selectedBanks != -1) {
-            setFoundBank(foundBank1);
-            setRequestDomesticFormState((prev) => {
-              const newState = { ...prev };
-              newState.billing_bank = banks[foundBank1].id;
-              return newState;
-            });
-          }
-        }
-      }, [selectedBanks, aux2, aux]);
-
-    function changePlan(e){
-        
-        setRequestDomesticFormState( prev =>{
-            const newState = {...prev};
-            newState.publication_time = e.target.value;
-            newState.publication_plan = e.target.value;
-            return newState;
-        });
-    }
-
-    return ( 
-        <div id="fase13">
-            
-            
-            <div id="small">
-                <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.13.mensaje')}</span><br />
-            </div>
-
-            <div id="two-columns">
-                <div id="first-column">
-                    <h2 className="blue">{t('SolicitarNiñera.fases.13.plan-seleccionado')}</h2>
-                    <div id="form-vertical">
-                    
-                        <div>
-                            <input type="radio" value="1" id="c1" checked={requestDomesticFormState.publication_time == "1"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c1">1 {t('SolicitarNiñera.fases.13.mes')}</label>
-                        </div>
-                        <div>
-                            <h3 className="red">10 USD</h3>
-                        </div>
-                        <div>
-                            <input type="radio" value="3" id="c2" checked={requestDomesticFormState.publication_time == "3"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c2">3 {t('SolicitarNiñera.fases.13.meses')}</label>
-                        </div>
-                        
-                        <div>
-                            <h3 className="red">25 USD</h3>
-                        </div>    
-
-                        <div>
-                            <input type="radio" value="6" id="c3" checked={requestDomesticFormState.publication_time == "6"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c3">6 {t('SolicitarNiñera.fases.13.meses')}</label>
-                        </div>    
-
-                        <div>
-                            <h3 className="red">50 USD</h3>
-                        </div>
-
-                        <div>
-                            <input type="radio" value="9" id="c4" checked={requestDomesticFormState.publication_time == "9"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c4">9 {t('SolicitarNiñera.fases.13.meses')}</label>
-                        </div>    
-
-                        <div>
-                            <h3 className="red">70 USD</h3>
-                        </div>
-
-                        <div>
-                            <input type="radio" value="12" id="c5" checked={requestDomesticFormState.publication_time == "12"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c5">12 {t('SolicitarNiñera.fases.13.meses')}</label>
-                        </div>    
-
-                        <div>
-                            <h3 className="red">90 USD</h3>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div id="second-column">
-                    <div className="blue-box">
-                        <p>{t('SolicitarNiñera.fases.13.forma-pago')}</p>
-                    </div>
-                    <p>{t('SolicitarNiñera.fases.13.forma-pago-descripcion')}</p>
-
-                    <div className="blue-box">
-                        <p>{t('SolicitarNiñera.fases.13.pais-titulo')}</p>
-                    </div>
-                    <p id="less-margin">{t('SolicitarNiñera.fases.13.pais-titulo-descripcion')}</p>
-
-                    
-                        <div className="dropdown-content">
-                            <FieldDropdown 
-                                title={t('SolicitarNiñera.fases.13.pais')}
-                                placeholder={t('SolicitarNiñera.fases.13.seleccione-pais')}
-                                items={bank_countries}
-                                setSelectedState={setSelectedCountry}
-                            />
-                        </div>
-                    
-                    
-                    <div className="blue-box">
-                        <p>{t('SolicitarNiñera.fases.13.cuentas')}</p>
-                    </div>
-                        <div className="dropdown-content" id="bancos">
-                        
-                            {selectedCountry != -1 &&
-                            
-                                <FieldDropdown    
-                                    title={t('SolicitarNiñera.fases.13.banco')}
-                                    placeholder={t('SolicitarNiñera.fases.13.seleccione-banco')}
-                                    items= {aux}
-                                    setSelectedState={setSelectedBanks}
-                                />
-                            }
-                        </div>
-                        
-                        { requestDomesticFormState.billing_bank != -1 && banks != undefined &&banks.length>0 && selectedBanks != -1 && selectedCountry != -1 && foundBank != -1 &&   
-                        <div id="bank-info">
-                            <div id="azul">
-                                {console.log(foundBank)}
-                                {banks[foundBank].name}
-                            </div>
-                            <div id="columns">
-                                <div>
-                                    <span className="red">{t('SolicitarNiñera.fases.13.formadepago')}</span>
-                                        <ul>
-                                            <li>{t('SolicitarNiñera.fases.13.deposito')}</li>
-                                            <li>{t('SolicitarNiñera.fases.13.transferencia-bancaria')}</li>
-                                        </ul>
-                                </div>
-                                <div>
-                                    <p><span>{t('SolicitarNiñera.fases.13.pais')}</span>: {banks[0].country}</p>
-                                    <p><span>{t('SolicitarNiñera.fases.13.banco')}</span>: {banks[0].name}</p>
-                                    <p><span>{t('SolicitarNiñera.fases.13.numero-cuenta')}</span>: {banks[0].account}</p>
-                                    <p><span>{t('SolicitarNiñera.fases.13.codigo-swift')}</span>: {banks[0].swift_code}</p>
                                 </div>
                             </div>
                         </div>
