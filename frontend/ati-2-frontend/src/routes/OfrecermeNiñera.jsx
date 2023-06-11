@@ -54,7 +54,7 @@ export const OfrecermeNiñera = () => {
     useEffect(()=>{
         setOfferDomesticFormState({
             user: -1, 
-            service: "CUI",
+            service: "NIN",
             gender: "IDC",
             age_required_from: 13,
             age_required_to: 13,
