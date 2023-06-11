@@ -9,6 +9,7 @@ from rest_framework.filters import OrderingFilter
 from .models import ProvideService, RequestService
 from .serializers import ProvideServiceSerializer, RequestServiceSerializer
 from django.db.utils import DatabaseError
+import requests
 
 from email.message import EmailMessage
 import smtplib
@@ -20,6 +21,41 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import SimpleDocTemplate, Paragraph, FrameBreak
 from reportlab.lib import colors
 
+API_KEY = "M3F5RW5Hb1dkWFpNN2kwN1k1eEhNYlRYZUJuQW5Wb3NETlF6YTd5cg=="
+
+def get_country_name(country_code):
+    url = f"https://api.countrystatecity.in/v1/countries/{country_code}"
+    headers = {
+        'X-CSCAPI-KEY': API_KEY
+    }
+    
+    try:
+        response = requests.get(url, headers=headers)
+        data = response.json()
+        
+        return data['name']
+        
+    except requests.exceptions.RequestException as e:
+        print(e)
+
+def get_state_name(state_code):
+    country, state = state_code.split("-")
+
+    url = f"https://api.countrystatecity.in/v1/countries/{country}/states/{state}"
+    headers = {
+        'X-CSCAPI-KEY': API_KEY
+    }
+
+    try:
+        response = requests.get(url, headers=headers)
+        data = response.json()
+
+        return data['name']
+
+    except requests.exceptions.RequestException as e:
+        print(e)
+        return ""
+    
 def setCost(plan): 
     cost = 0 
 
@@ -152,11 +188,11 @@ def requestCreatePDF(post):
 
     # País de procedencia
     y -= 10
-    drawTag(x, y, c, "País de procedencia", post.country)
+    drawTag(x, y, c, "País de procedencia", get_country_name(post.country))
 
     # Estado / Provincia
     y -= 30
-    drawTag(x, y, c, "Estado / Provincia ", post.state)
+    drawTag(x, y, c, "Estado / Provincia ", get_state_name(post.state))
 
     # Ciudad 
     y -= 30
@@ -473,11 +509,12 @@ def provideCreatePDF(post):
 
     # País de procedencia
     y -= 10
-    drawTag(x, y, c, "País de procedencia", post.country)
+    drawTag(x, y, c, "País de procedencia", get_country_name(post.country))
+    
 
     # Estado / Provincia
     y -= 30
-    drawTag(x, y, c, "Estado / Provincia ", post.state)
+    drawTag(x, y, c, "Estado / Provincia ", get_state_name(post.state))
 
     # Ciudad 
     y -= 30
