@@ -133,7 +133,7 @@ export const PublicacionFoto = ({post, postType}) => {
                     <div className="sub-header" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                         { /* Edad  */ }  
                         {postType == "provide"?
-                            <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                            <div className="space" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                                 {post.age} {t(`publicaciones_vista_lista.años`)}
                             </div>
                         :

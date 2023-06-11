@@ -2,29 +2,29 @@
     "nuestros_servicios": {
         "notas":[
             {
-                "titulo": "For people who request domestic staff",
+                "titulo": "Para personas que solicitan personal domestico",
                 "items": [
-                    "Post domestic staff search ads",
-                    "The search for domestic staff according to your preferences"
+                    "Publicar anuncios de búsqueda de personal doméstico",
+                    "La búsqueda de personal doméstico según sus preferencias"
                 ]
             },
             {
-                "titulo": "For domestic staff",
+                "titulo": "Para el personal doméstico",
                 "items": [
-                    "Post ads where various people offer domestic services",
-                    "The search for clients according to their preferences"
+                    "Publicar de anuncios donde diversas personas ofrecen servicios domésticos",
+                    "La búsqueda de clientes según sus preferencias"
                 ]
             }
         ],
-        "seleccionar_servicio": "Select the service of your preference",
-        "publicar_anuncio": "Post Ad",
-        "seleccionar_opcion": "Select an Option",
-        "buscar_personas": "Find clients or domestic staff",
+        "seleccionar_servicio": "Selecciona el servicio de tu preferencia"       ,
+        "publicar_anuncio": "Publicar Anuncios",
+        "seleccionar_opcion": "Seleccione su opción",
+        "buscar_personas": "Buscar clientes o personal doméstico",
         "opciones": [
-            "Offer my services as domestic staff",
-            "Request domestic staff",
-            "Find domestic staff",
-            "Find clients"
+            "Ofrecer mis servicios como personal doméstico",
+            "Solicitar personal doméstico",
+            "Buscar personal doméstico",
+            "Buscar clientes"
         ] 
     }
 }
