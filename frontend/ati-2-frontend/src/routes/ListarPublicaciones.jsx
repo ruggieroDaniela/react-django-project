@@ -29,6 +29,7 @@ export const ListarPublicaciones = () => {
 
     const tipoPersona = ["1", "2", "3", "4", "5"];
     const ordenes = ["payment_amount", "availability_date", "education_level", "travel"];
+    const acciones = ["Habilitar", "Deshabilitar", "Modificar", "Eliminar"];
 
     const services = getServices();
 
@@ -175,6 +176,28 @@ export const ListarPublicaciones = () => {
                                     } }
                                 >
                                     {t(`lista_publicaciones.ordenar_por.${i}`)}
+                                </button>
+                            </li>
+                        )
+                    }
+                </ul>
+            </div>
+
+            <div className="row">
+                <span className="title">
+                    {t(`lista_publicaciones.acciones`)}:
+                </span>
+                <ul className="input-group">
+                    {
+                        acciones.map( (item, i) => 
+                            <li className="button" key={`${self.crypto.randomUUID()}`}>
+                                <button
+                                    key={`${self.crypto.randomUUID()}`}
+                                    onClick={ () => {
+                                        // fuck me in the ass 
+                                    } }
+                                >
+                                    {t(`lista_publicaciones.accion.${i}`)}
                                 </button>
                             </li>
                         )

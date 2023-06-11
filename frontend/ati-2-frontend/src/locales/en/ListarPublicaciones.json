@@ -20,7 +20,14 @@
             "Degree of Instruction",
             "Travel Availability"
         ],
-        "pagina": "Page"
+        "pagina": "Page",
+        "accion":[
+            "Enable",
+            "Disable",
+            "Update",
+            "Remove"
+        ],
+        "acciones": "Actions"
     },
     "publicaciones_vista_lista": {
         "CUI": "Occupational Caretaker",
