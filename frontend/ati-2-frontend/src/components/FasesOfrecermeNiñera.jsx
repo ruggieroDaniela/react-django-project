@@ -312,9 +312,9 @@ const Fase1 = () => {
         renderCitiesOptions();
     }, [states]);
 
-    const renderOptions = (objects,object_name) => {
+    const renderOptions = (objects,object_name,aux) => {
         const options = [];
-        let aux = "";
+        
 
 
 
@@ -353,7 +353,7 @@ const Fase1 = () => {
                 <div>
                     <select name="pais" 
                             id="pais" 
-                            onClick={ 
+                            onChange={ 
                                 e => {
                                     setSelectedCountry(e.target.value);
                                     setOfferDomesticFormState ( prev => {
@@ -364,10 +364,9 @@ const Fase1 = () => {
 
                                 }
                             }
-                            value={offerDomesticFormState.country}
                     >
-                    
-                    {readyCountries && renderOptions(countries,"countries")}
+                    {console.log(offerDomesticFormState.country)}
+                    {readyCountries && renderOptions(countries,"countries",offerDomesticFormState.country)}
                     {!readyCountries && (
                         <option>Loading ...</option>
                     )}
