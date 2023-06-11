@@ -883,7 +883,7 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
 
         # Búsqueda personalizada 
         'workday' : ['exact'], 
-        'schedule': ['exact'], 
+        'schedule': ['exact', 'in'], 
         'payment': ['exact'],        
         'payment_amount': ['range'], 
         'salary_offered': ['exact'], 
