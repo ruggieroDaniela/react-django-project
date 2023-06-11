@@ -185,7 +185,9 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                                         :
                                             t(`publicaciones_vista_lista.documentacion_requerida`)
                                     }
-                                    detalles_texto={t(`publicaciones_vista_lista.${post.documents}`)}
+                                    detalles_texto={
+                                        post.documents.map(x => t(`publicaciones_vista_lista.${x}`)).join(", ")
+                                    }
                                 />
                             </li>
                         </ul>
