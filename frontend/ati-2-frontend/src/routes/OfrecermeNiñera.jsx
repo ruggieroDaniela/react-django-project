@@ -69,7 +69,8 @@ export const OfrecermeNiñera = () => {
                 state_required: false,
                 city_required: false,
                 description_required: false,
-                travel_desc_required: false
+                travel_desc_required: false,
+                activities_required: false
             }
         });
     },[]);

@@ -581,6 +581,7 @@ const Fase3 = () => {
 const Fase4 = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+    const activities_required = offerDomesticFormState.errors.activities_required
 
     return ( 
     <div id="fase4">
@@ -623,6 +624,8 @@ const Fase4 = () => {
                         }
                         value={offerDomesticFormState.activities}                        
                 ></textarea>
+
+                { activities_required && <ErrorMessage message={t('OfrecermeNiñera.errores.requerido')}/>  }
             </div>
         </div>
     </div>
@@ -2107,7 +2110,22 @@ const useValidar = () => {
                     return newState;
                   })
             }
-        } 
+        } else if (currentStage === 4){
+            if(!offerDomesticFormState.activities){
+                valid = false
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.activities_required = true
+                    return newState;
+                  })
+            } else {
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.activities_required = false
+                    return newState;
+                  })
+            }
+        }
         return valid
     };
 
