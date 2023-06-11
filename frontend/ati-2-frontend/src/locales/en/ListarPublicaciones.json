@@ -33,14 +33,36 @@
         "CUI": "Occupational Caretaker",
         "NIN": "Babysitter",
         "ENF": "Nursery",
+        
+        "PRI": "Primary",
+        "UNI": "University",
+        "TEC": "Community College",
+        "BAC": "Highschool",
+        
         "estado": "State",
         "ciudad": "City",
         "años": "years old",
         "publicado": "Posted on ",
         "ver_detalles": "View details",
         "contactar": "Contact",
-        "PRI": "Primary",
-        "UNI": "University",
+
+        "tipo_cliente":{
+            "NO": "It makes no difference to me if it is a natural person or a company",
+            "EMP": "Business",
+            "NAT": "Natural"
+        },
+
+        "LUN": "Monday",
+        "MAR": "Tuesday",
+        "MIE": "Wednesday",
+        "JUE": "Thursday",
+        "VIE": "Friday",
+        "SAB": "Saturday",
+        "DOM": "Sunday",
+        "LUN_VIE": "Monday to Friday",
+        "FIN": "Weekend",
+        "OTRO": "Other to consider",
+
         "ver_informacion": "See full info",
         "grado_instruccion": "Degree of Instruction",
         "perfil_laboral": "Work Profile Description",
@@ -59,11 +81,6 @@
         "clientes": "Clients I want to work with",
         "CONST_RESIDENCIA": "Proof of Residence",
         "Cocinar": "Cook",
-        "tipo_cliente":{
-            "NO": "It makes no difference to me if it is a natural person or a company",
-            "EMP": "Business",
-            "NAT": "Natural"
-        },
         "edad_requerida": "years old required"
 
     }

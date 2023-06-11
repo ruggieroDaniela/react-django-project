@@ -23,6 +23,17 @@
         "pagina": "Página"
     },
     "publicaciones_vista_lista": {
+        "LUN": "Lunes", 
+        "MAR": "Martes",
+        "MIE": "Miércoles",
+        "JUE": "Jueves",
+        "VIE": "Viernes", 
+        "SAB": "Sábado",
+        "DOM": "Domingo",
+        "LUN_VIE": "De Lunes a Viernes",
+        "FIN": "Fin de semana",
+        "OTRO": "Otros a considerar",
+        
         "CUI": "Cuidador(a) ocupacional",
         "NIN": "Niñera(o)",
         "ENF": "Enfermera(o)",
