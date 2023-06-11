@@ -59,18 +59,19 @@ export const IniciarSesion = () => {
                 if(response.ok){
                   
                     const responseDataUser = await response.json();
-                    setAuthState(
-                        () => {
-                            return {
-                                token: responseDataAuth.token,
-                                id: responseDataAuth.user_id,
-                                logged_in: true,
-                                email: responseDataUser.contact_email,
-                                name: responseDataUser.first_name + " " + responseDataUser.last_name,
-                                lang: responseDataUser.language
-                            }
-                        }
-                    );
+
+                    const sessionData = {
+                        token: responseDataAuth.token,
+                        id: responseDataAuth.user_id,
+                        logged_in: true,
+                        email: responseDataUser.contact_email,
+                        name: responseDataUser.first_name + " " + responseDataUser.last_name,
+                        lang: responseDataUser.language
+                    }
+
+                    setAuthState( () => sessionData );
+
+                    localStorage.setItem('sessionData', JSON.stringify(sessionData))
 
                     i18n.changeLanguage(authState.lang);
                     navigate('/');
