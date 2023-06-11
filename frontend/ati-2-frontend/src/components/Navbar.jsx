@@ -170,10 +170,17 @@ const Navbar = () => {
                     <li className="item">
                         <a href="/contact" className="link">{t("navbar.contactanos")}</a>
                     </li>
-
-                    <li className="item">
-                        <a href="#" className="link">{t("navbar.idiomas")}</a>
-                    </li>
+                    
+                    <NavbarDropdown
+                        label={{
+                            text: t("navbar.idiomas"),
+                            arrow: "▾"
+                        }}
+                        items={[
+                            {label: t("navbar.espagnol"), link:"#", lan:"es"},
+                            {label: t("navbar.ingles"), link:"#", lan:"en"}
+                        ]}
+                    /> 
                 </ul>
             </nav>
         </>
