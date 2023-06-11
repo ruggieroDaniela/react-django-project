@@ -266,6 +266,12 @@ export const ListarPublicaciones = () => {
                 </ul>
             </div>
 
+            { postList.length == 0 &&
+                <div id='no-post-msg'>
+                    <h3>{t('lista_publicaciones.no_posts')}...</h3>
+                </div>
+            }
+
             <div className="row" id='post-group'>
                 {   
                     /* eslint-disable-next-line */

@@ -20,7 +20,8 @@
             "Grado de Instrucción",
             "Disponibilidad para viajar"
         ],
-        "pagina": "Página"
+        "pagina": "Página",
+        "no_posts": "Todavía no hay publicaciones disponibles"
     },
     "publicaciones_vista_lista": {
         "LUN": "Lunes", 

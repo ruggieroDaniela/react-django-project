@@ -27,7 +27,8 @@
             "Update",
             "Remove"
         ],
-        "acciones": "Actions"
+        "acciones": "Actions",
+        "no_posts": "There's no posts available yet"
     },
     "publicaciones_vista_lista": {
         "CUI": "Occupational Caretaker",
