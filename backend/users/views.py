@@ -121,6 +121,16 @@ class UserViewSet(viewsets.ModelViewSet):
                 return Response({'name': user.first_name, 'last_name': user.last_name }, status=status.HTTP_200_OK)
         except:
              return Response({'error': 'This id does not match any user' }, status=status.HTTP_400_BAD_REQUEST)
+         
+    @action(detail=False, methods=['post'])
+    def get_email(self, request):
+        id = request.data['id']
+        try: 
+            user = User.objects.get(id=id)
+            return Response({'email': user.email }, status=status.HTTP_200_OK)
+        except:
+             return Response({'error': 'This id does not match any user' }, status=status.HTTP_400_BAD_REQUEST)
+         
         
     @action(detail=True, methods=['post'])
     def change_password(self, request, pk=None):
