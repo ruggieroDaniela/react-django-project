@@ -1,12 +1,103 @@
 {
     "continentes":[
-        "North America",
-        "South America",
-        "Europe",
+        "Norteamérica",
+        "Suramérica",
+        "Europa",
         "Asia",
         "Oceania"
     ],
     "search":{
-        "continente": "Continent"
+        "busqueda_rapida": "Búsqueda rápida",
+        "continente": "Continente",
+        "pais": "País",
+        "estado": "Estado",
+        "ciudad": "Ciudad",
+        "personal_solicitado": "Tipo de Cliente",
+        "selecciona_continente": "Seleccione el continente",
+        "selecciona_pais": "Seleccione el país",
+        "selecciona_estado": "Seleccione el estado",
+        "selecciona_ciudad": "Seleccione la ciudad",
+        "selecciona_personal": "Seleccione el personal",
+        "selecciona_salida": "Seleccione las opciones de salida",
+        "selecciona_horario": "Seleccione el horario",
+        "selecciona_remuneracion_frecuencia": "Seleccione la frecuencia de remuneración",
+        "selecciona_moneda": "Seleccione la moneda",
+        "seleccionado": "Seleccionado",
+        "seleccionados": "Seleccionados",
+        "buscar": "Buscar",
+        "cancelar": "Cancelar",
+        "busqueda_detallada": "Búsqueda Detallada",
+        "salida_personal": "Salidas del personal",
+        "horario": "Horario",
+        "remuneracion": "Remuneracion",
+        "remuneracion_frecuencia": "Frecuencia de la remuneración",
+        "moneda": "Moneda",
+        "beneficio": "¿Espera algún otro beneficio laboral?",
+        "disponibilidad": "Disponibilidad para empezar a laborar",
+        "disponibilidad_opciones":[
+            "Fecha de inicio",
+            "A convenir"
+        ],
+        "listar": "Ordenar por",
+        "tipos_personal": [
+            "Niñero(a)",
+            "Cuidador(a) ocupacional",
+            "Enfermero(a)",
+            "Personal doméstico",
+            "Limpiar",
+            "Lavar",
+            "Planchar",
+            "Cocinar",
+            "Cuidador de inmuebles",
+            "Para limpieza",
+            "Para pintar",
+            "Para mantenimiento o reparaciones",
+            "Para mantener servicios del inmueble al día"
+        ],
+        "monedas": [
+            "USD",
+            "EUR",
+            "Otra"
+        ],
+        "dias_semana": [
+            "Lunes",
+            "Martes",
+            "Miércoles",
+            "Jueves",
+            "Viernes",
+            "Sábado",
+            "Domingo"
+        ],
+        "salida_personal_opciones": [
+            "Semanal",
+            "Quincenal",
+            "Mnesual",
+            "Interdiario",
+            "Medio tiempo",
+            "Fin de semana",
+            "En la noche",
+            "Por temporada",
+            "Por hora",
+            "A convenir"
+        ],
+        "si": "Si",
+        "no": "No",
+        "especificar": "Especifique",
+        "remuneracion_frecuencia_opciones": [
+            "Por hora",
+            "Por día",
+            "Semanal",
+            "Quincenal",
+            "Mensual"
+        ],
+        "listar_opciones": [
+            "Por pago",
+            "Por disponibilidad",
+            "Por fecha de publicación"
+        ],
+        "ascendente": "Ascendente",
+        "descendente": "Descendente",
+        "a_convenir": "A convenir",
+        "rango": "Rango"
     }
 }
