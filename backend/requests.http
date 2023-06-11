@@ -132,7 +132,7 @@ content-type: application/json
     "continent": "Suramerica", 
     "country": "US",
     "state": "US-CA",
-    "city": "Caracas",
+    "city": "V-Caracas",
     "zone": "La Pastora",
     "description": "Persona con 5 años de experiencia en el cuidado de niños entre 0 y 11 años, en la ayuda de sus tareas, prepararles la comida, jugar con ellos. Tengo referencias laborales comprobables",
     "travel": false,

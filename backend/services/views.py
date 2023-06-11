@@ -56,6 +56,10 @@ def get_state_name(state_code):
         print(e)
         return ""
     
+def get_city_name(city_code):
+    country, city = city_code.split("-")
+    return city
+ 
 def setCost(plan): 
     cost = 0 
 
@@ -196,7 +200,7 @@ def requestCreatePDF(post):
 
     # Ciudad 
     y -= 30
-    drawTag(x, y, c, "Ciudad ", post.city)
+    drawTag(x, y, c, "Ciudad ", get_city_name(post.city))
 
     # Zona 
     y -= 30
@@ -518,7 +522,7 @@ def provideCreatePDF(post):
 
     # Ciudad 
     y -= 30
-    drawTag(x, y, c, "Ciudad ", post.city)
+    drawTag(x, y, c, "Ciudad ", get_city_name(post.city))
 
     # Zona 
     y -= 30
