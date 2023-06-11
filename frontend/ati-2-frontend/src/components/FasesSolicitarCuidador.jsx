@@ -710,7 +710,7 @@ const Fase3 = () => {
                                 }
                                 checked={requestDomesticFormState.travel}
                         />
-                      <label for="c1">{t('SolicitarCuidador.fases.3.si')}</label>
+                      <label for="c1">{t('SolicitarCuidador.fases.3.no')}</label>
                   </div>
 
                   <div>
@@ -729,7 +729,7 @@ const Fase3 = () => {
                                 }
                                 checked={!requestDomesticFormState.travel}        
                         />
-                      <label for="c2">{t('SolicitarCuidador.fases.3.no')}</label>
+                      <label for="c2">{t('SolicitarCuidador.fases.3.si')}</label>
                   </div>
           </div>
       </div>
@@ -1308,7 +1308,7 @@ const Fase5 = () => {
                         <div id="form-horizontal">
                                 <div>
                                     <input  type="radio"
-                                            name="salary"
+                                            name="beneficio"
                                             id="e1"
                                             checked={!requestDomesticFormState.benefits}
                                             onChange={
@@ -1326,7 +1326,7 @@ const Fase5 = () => {
 
                                 <div>
                                     <input  type="radio"
-                                            name="salary" 
+                                            name="beneficio" 
                                             id="e2"
                                             checked={requestDomesticFormState.benefits}
                                             onChange={
@@ -1999,24 +1999,24 @@ const Fase11 = () => {
             
             
             <div id="small">
-                <span className="red">*  </span><span className="blue">{t('SolicitarCuidador.fases.13.mensaje')}</span><br />
+                <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.13.mensaje')}</span><br />
             </div>
 
             <div id="two-columns">
                 <div id="first-column">
-                    <h2 className="blue">{t('SolicitarCuidador.fases.13.plan-seleccionado')}</h2>
+                    <h2 className="blue">{t('OfrecermeNiñera.fases.13.plan-seleccionado')}</h2>
                     <div id="form-vertical">
                     
                         <div>
                             <input type="radio" value="1" id="c1" checked={requestDomesticFormState.publication_time == "1"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c1">1 {t('SolicitarCuidador.fases.13.mes')}</label>
+                            <label htmlFor="c1">1 {t('OfrecermeNiñera.fases.13.mes')}</label>
                         </div>
                         <div>
                             <h3 className="red">10 USD</h3>
                         </div>
                         <div>
                             <input type="radio" value="3" id="c2" checked={requestDomesticFormState.publication_time == "3"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c2">3 {t('SolicitarCuidador.fases.13.meses')}</label>
+                            <label htmlFor="c2">3 {t('OfrecermeNiñera.fases.13.meses')}</label>
                         </div>
                         
                         <div>
@@ -2025,7 +2025,7 @@ const Fase11 = () => {
 
                         <div>
                             <input type="radio" value="6" id="c3" checked={requestDomesticFormState.publication_time == "6"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c3">6 {t('SolicitarCuidador.fases.13.meses')}</label>
+                            <label htmlFor="c3">6 {t('OfrecermeNiñera.fases.13.meses')}</label>
                         </div>    
 
                         <div>
@@ -2034,7 +2034,7 @@ const Fase11 = () => {
 
                         <div>
                             <input type="radio" value="9" id="c4" checked={requestDomesticFormState.publication_time == "9"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c4">9 {t('SolicitarCuidador.fases.13.meses')}</label>
+                            <label htmlFor="c4">9 {t('OfrecermeNiñera.fases.13.meses')}</label>
                         </div>    
 
                         <div>
@@ -2043,7 +2043,7 @@ const Fase11 = () => {
 
                         <div>
                             <input type="radio" value="12" id="c5" checked={requestDomesticFormState.publication_time == "12"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c5">12 {t('SolicitarCuidador.fases.13.meses')}</label>
+                            <label htmlFor="c5">12 {t('OfrecermeNiñera.fases.13.meses')}</label>
                         </div>    
 
                         <div>
@@ -2054,20 +2054,20 @@ const Fase11 = () => {
                 </div>
                 <div id="second-column">
                     <div className="blue-box">
-                        <p>{t('SolicitarCuidador.fases.13.forma-pago')}</p>
+                        <p>{t('OfrecermeNiñera.fases.13.forma-pago')}</p>
                     </div>
-                    <p>{t('SolicitarCuidador.fases.13.forma-pago-descripcion')}</p>
+                    <p>{t('OfrecermeNiñera.fases.13.forma-pago-descripcion')}</p>
 
                     <div className="blue-box">
-                        <p>{t('SolicitarCuidador.fases.13.pais-titulo')}</p>
+                        <p>{t('OfrecermeNiñera.fases.13.pais-titulo')}</p>
                     </div>
-                    <p id="less-margin">{t('SolicitarCuidador.fases.13.pais-titulo-descripcion')}</p>
+                    <p id="less-margin">{t('OfrecermeNiñera.fases.13.pais-titulo-descripcion')}</p>
 
                     
                         <div className="dropdown-content">
                             <FieldDropdown 
-                                title={t('SolicitarCuidador.fases.13.pais')}
-                                placeholder={t('SolicitarCuidador.fases.13.seleccione-pais')}
+                                title={t('OfrecermeNiñera.fases.13.pais')}
+                                placeholder={t('OfrecermeNiñera.fases.13.seleccione-pais')}
                                 items={bank_countries}
                                 setSelectedState={setSelectedCountry}
                             />
@@ -2075,15 +2075,15 @@ const Fase11 = () => {
                     
                     
                     <div className="blue-box">
-                        <p>{t('SolicitarCuidador.fases.13.cuentas')}</p>
+                        <p>{t('OfrecermeNiñera.fases.13.cuentas')}</p>
                     </div>
                         <div className="dropdown-content" id="bancos">
                         
                             {selectedCountry != -1 &&
                             
                                 <FieldDropdown    
-                                    title={t('SolicitarCuidador.fases.13.banco')}
-                                    placeholder={t('SolicitarCuidador.fases.13.seleccione-banco')}
+                                    title={t('OfrecermeNiñera.fases.13.banco')}
+                                    placeholder={t('OfrecermeNiñera.fases.13.seleccione-banco')}
                                     items= {aux}
                                     setSelectedState={setSelectedBanks}
                                 />
@@ -2098,17 +2098,17 @@ const Fase11 = () => {
                             </div>
                             <div id="columns">
                                 <div>
-                                    <span className="red">{t('SolicitarCuidador.fases.13.formadepago')}</span>
+                                    <span className="red">{t('OfrecermeNiñera.fases.13.formadepago')}</span>
                                         <ul>
-                                            <li>{t('SolicitarCuidador.fases.13.deposito')}</li>
-                                            <li>{t('SolicitarCuidador.fases.13.transferencia-bancaria')}</li>
+                                            <li>{t('OfrecermeNiñera.fases.13.deposito')}</li>
+                                            <li>{t('OfrecermeNiñera.fases.13.transferencia-bancaria')}</li>
                                         </ul>
                                 </div>
                                 <div>
-                                    <p><span>{t('SolicitarCuidador.fases.13.pais')}</span>: {banks[0].country}</p>
-                                    <p><span>{t('SolicitarCuidador.fases.13.banco')}</span>: {banks[0].name}</p>
-                                    <p><span>{t('SolicitarCuidador.fases.13.numero-cuenta')}</span>: {banks[0].account}</p>
-                                    <p><span>{t('SolicitarCuidador.fases.13.codigo-swift')}</span>: {banks[0].swift_code}</p>
+                                    <p><span>{t('OfrecermeNiñera.fases.13.pais')}</span>: {banks[0].country}</p>
+                                    <p><span>{t('OfrecermeNiñera.fases.13.banco')}</span>: {banks[0].name}</p>
+                                    <p><span>{t('OfrecermeNiñera.fases.13.numero-cuenta')}</span>: {banks[0].account}</p>
+                                    <p><span>{t('OfrecermeNiñera.fases.13.codigo-swift')}</span>: {banks[0].swift_code}</p>
                                 </div>
                             </div>
                         </div>

@@ -85,7 +85,7 @@ const Navbar = () => {
                                     },
                                     items:[
                                         {label: t("navbar.solicitar.babysitter"), link: isAuth == true ? "/request-babysitter" : "#"},
-                                        {label: t("navbar.solicitar.cuidador"), link:"#"}
+                                        {label: t("navbar.solicitar.cuidador"), link: isAuth == true ? "/request-carer" : "#"}
                                     ]
                                 },
                                 {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=provide&user=${authState.id}`},
