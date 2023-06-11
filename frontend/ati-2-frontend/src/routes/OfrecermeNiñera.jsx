@@ -88,7 +88,7 @@ export const OfrecermeNiñera = () => {
             benefits: 0,
             benefits_description: "",
             availability: "",
-            availability_date: "",
+            availability_date: null,
             have_documentation: false,
             documents: [],
             documents_other: "",

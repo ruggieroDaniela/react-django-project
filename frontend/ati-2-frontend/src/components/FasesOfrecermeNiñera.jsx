@@ -1994,12 +1994,23 @@ const botonEnviar = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
     
+    setOfferDomesticFormState( prev => {
+        const newState = {...prev};
+        if (offerDomesticFormState.availability == "") newState.availability = null;
+        if (offerDomesticFormState.payment == "CONVENIR"){ 
+            newState.currency = null
+            newState.salary = null
+        }
+        return newState;
+    });
+
     const postData = {...offerDomesticFormState};
     //console.log(JSON.stringify(postData));
     return(
         <button
             id="boton_registrar"
             
+
             onClick={
                 async () => {
                     
