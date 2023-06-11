@@ -288,6 +288,20 @@
             }
         ],
         "continuar": "Continue",
-        "atras": "Back"
+        "atras": "Back",
+        "errores": {
+          "edad": "Age must be a number greater or equal to 0",
+          "pais": "Must select a country",
+          "estado": "Must select an state/province",
+          "ciudad": "Must select a city",
+          "requerido": "This field is required",
+          "option_required": "Must select one option",
+          "option": "Must select at least one option",
+          "especificar": "Fields to be specified must be filled",
+          "salario": "Must select a currency, a payment frecuency and a payment amount bigger than 0.0",
+          "fecha": "Must select a date",
+          "banco": "Must select a country and a bank",
+          "origen": "Must select a continent, a country, a state and a city"
+        }
     }
 }

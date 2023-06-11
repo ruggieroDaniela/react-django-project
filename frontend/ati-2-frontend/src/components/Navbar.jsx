@@ -49,15 +49,18 @@ const Navbar = () => {
                     <ul className={`list ${userDropdownVisible? "show" : ""}`}>
                         <li className="item">
                             <a className="link" href="#">
-                                Datos de usuario
+                                {t("navbar.datos_usuario")}
                             </a>
                         </li>
                         <li 
                             className="item"
-                            onClick={ () => { setAuthState( () => { return {logged_in:false} } ) }}
+                            onClick={ () => {
+                                setAuthState( () => { return {logged_in:false} } )
+                                localStorage.removeItem('sessionData');
+                            }}
                         >
                             <a className="link" href="#">
-                                Cerrar sesión
+                                {t("navbar.cerrar_sesion")}
                             </a>
                         </li>
                     </ul>
@@ -88,12 +91,12 @@ const Navbar = () => {
                                         {label: t("navbar.solicitar.cuidador"), link:"#"}
                                     ]
                                 },
-                                {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=provide&user=${authState.id}`},
+                                {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=request&user=${authState.id}`},
                                 {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
-                                {label: t("navbar.operaciones.modificar"), link:"#"},
-                                {label: t("navbar.operaciones.eliminar"), link:"#"},
-                                {label: t("navbar.operaciones.habilitar"), link:"#"},
-                                {label: t("navbar.operaciones.deshabilitar"), link:"#"}
+                                {label: t("navbar.operaciones.modificar"), link:`/show-posts?type=request&user=${authState.id}`},
+                                {label: t("navbar.operaciones.eliminar"), link:`/show-posts?type=request&user=${authState.id}`},
+                                {label: t("navbar.operaciones.habilitar"), link:`/show-posts?type=request&user=${authState.id}`},
+                                {label: t("navbar.operaciones.deshabilitar"), link:`/show-posts?type=request&user=${authState.id}`}
                             ]}
                         />
                     
@@ -168,10 +171,10 @@ const Navbar = () => {
                             },
                             {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=provide&user=${authState.id}`},
                             {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
-                            {label: t("navbar.operaciones.modificar"), link:"#"},
-                            {label: t("navbar.operaciones.eliminar"), link:"#"},
-                            {label: t("navbar.operaciones.habilitar"), link:"#"},
-                            {label: t("navbar.operaciones.deshabilitar"), link:"#"}
+                            {label: t("navbar.operaciones.modificar"),  link:`/show-posts?type=provide&user=${authState.id}`},
+                            {label: t("navbar.operaciones.eliminar"), link:`/show-posts?type=provide&user=${authState.id}`},
+                            {label: t("navbar.operaciones.habilitar"), link:`/show-posts?type=provide&user=${authState.id}`},
+                            {label: t("navbar.operaciones.deshabilitar"), link:`/show-posts?type=provide&user=${authState.id}`}
                         ]}
                     />
                     

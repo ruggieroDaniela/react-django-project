@@ -27,20 +27,64 @@
             "Update",
             "Remove"
         ],
-        "acciones": "Actions"
+        "acciones": "Actions",
+        "no_posts": "There's no posts available yet"
     },
     "publicaciones_vista_lista": {
         "CUI": "Occupational Caretaker",
         "NIN": "Babysitter",
         "ENF": "Nursery",
+        
+        "PRI": "Primary",
+        "UNI": "University",
+        "TEC": "Community College",
+        "BAC": "Highschool",
+        
         "estado": "State",
         "ciudad": "City",
         "años": "years old",
         "publicado": "Posted on ",
         "ver_detalles": "View details",
         "contactar": "Contact",
-        "PRI": "Primary",
-        "UNI": "University",
+
+        "tipo_cliente":{
+            "NO": "It makes no difference to me if it is a natural person or a company",
+            "EMP": "Business",
+            "NAT": "Natural"
+        },
+
+        "LUN": "Monday",
+        "MAR": "Tuesday",
+        "MIE": "Wednesday",
+        "JUE": "Thursday",
+        "VIE": "Friday",
+        "SAB": "Saturday",
+        "DOM": "Sunday",
+        "LUN_VIE": "Monday to Friday",
+        "FIN": "Weekend",
+        "OTRO": "Other",
+
+        "HORA": "Per hour",
+        "DIA": "Per day",
+        "SEMANAL": "Weekly",
+        "QUINCENAL": "Bi-weekly",
+        "MENSUAL": "Monthly",
+
+        "INTERDIARIO": "Every other day",
+        "MEDIO_TIEMPO": "Part-time",
+        "FIN_SEMANA": "Per Weekend",
+        "NOCHE": "Per night",
+        "HORAS": "Per hour",
+
+        "PASAPORTE": "Identification document or passport",
+        "CURRICULUM": "Updated curriculum vitae",
+        "TITULOS": "Degrees or certificates",
+        "REF_TRABAJO": "Verifiable work references",
+        "REF_FAMILIAR": "Family references indicating full name, local phone number, mobile phone number, email (optional), and address",
+        "CONST_ANTECEDENTES": "Certificate of no criminal record",
+        "SALUD": "Health certificate",
+        "CONST_RESIDENCIA": "Proof of Residence",
+
         "ver_informacion": "See full info",
         "grado_instruccion": "Degree of Instruction",
         "perfil_laboral": "Work Profile Description",
@@ -57,13 +101,7 @@
         "horario": "Work Schedule",
         "salidas": "Preferred Checkout",
         "clientes": "Clients I want to work with",
-        "CONST_RESIDENCIA": "Proof of Residence",
         "Cocinar": "Cook",
-        "tipo_cliente":{
-            "NO": "It makes no difference to me if it is a natural person or a company",
-            "EMP": "Business",
-            "NAT": "Natural"
-        },
         "edad_requerida": "years old required"
 
     }

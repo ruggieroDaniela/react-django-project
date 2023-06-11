@@ -31,29 +31,6 @@ import { BuscarCliente } from './routes/BuscarCliente';
 
 function App() {
 
-  
-  // init internationalization module
-  // const {t, i18n} = useTranslation();
-  // useEffect(
-  //   () => {
-  //     const lng = navigator.language;
-  //     i18n.changeLanguage(lng);
-  //   }
-  // );
-  // const lng = navigator.language;
-  
-  const [users, setUsers] = useState([]);
-
-  // useEffect(() => {
-  //   fetch('http://localhost:8000/users')
-  //     .then(response => {
-  //       return response.json()
-  //     })
-  //     .then(data => {
-  //       setUsers(data)
-  //     })
-  // }, []);
-
   return (
     <>
       <AppContextProvider>
@@ -80,15 +57,6 @@ function App() {
         </Router>
       </AppContextProvider>
       
-      {/* <h1>Vite + React</h1>
-      <div className="card">
-        <p> Los usuarios actuales son: </p>
-        <ul>
-          {users.map(user => 
-            <User key={user.id} user={user} />
-          )}
-        </ul>
-      </div> */}
     </>
   )
 }

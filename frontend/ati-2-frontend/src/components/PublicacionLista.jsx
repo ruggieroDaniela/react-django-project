@@ -24,7 +24,7 @@ import deshabilitar_img from "../assets/deshabilitar.png"
 import "../styles/PostLista.scss"
 
 import { Tooltip } from "./Tooltip"
-import { getCountryName } from './dataFetchers/PaisDataFetcher';
+import { getCountryName, getStateName } from './dataFetchers/PaisDataFetcher';
 
 const FieldViewDetails = ({label, detalles_texto, value=""}) => {
     const {t} = useTranslation();
@@ -55,6 +55,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
     const [username, setUsername] = useState("  ");
     const {authState, setAuthState} = useContext(AuthContext);
     const [countryName, setCountryName] = useState("");
+    const [stateName, setStateName] = useState("");
     const canEdit = authState.logged_in && post.user == authState.id;
     const [postEnabled, setPostEnabled] = useState(post.enable);
     const [forceRefresh, setForceRefresh] = useState(true);
@@ -75,6 +76,9 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                     const country = await getCountryName(post.country);
                     setCountryName(() => country);
                 }
+
+                const state = await getStateName(post.state);
+                setStateName(() => state);
 
                 return response.data;
 
@@ -141,7 +145,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                         </div>
                         <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                             <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                                {t(`publicaciones_vista_lista.estado`)}: <span className="blue-body">{post.state}</span>
+                                {t(`publicaciones_vista_lista.estado`)}: <span className="blue-body">{stateName!=""? stateName : post.state}</span>
                             </div>
                             <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                                 {t(`publicaciones_vista_lista.ciudad`)}: <span className="blue-body">{post.city}</span>
@@ -181,7 +185,9 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                                         :
                                             t(`publicaciones_vista_lista.documentacion_requerida`)
                                     }
-                                    detalles_texto={t(`publicaciones_vista_lista.${post.documents}`)}
+                                    detalles_texto={
+                                        post.documents.map(x => t(`publicaciones_vista_lista.${x}`)).join(", ")
+                                    }
                                 />
                             </li>
                         </ul>
@@ -233,20 +239,25 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                             <li key={`post ${post.id} horario`}>
                                 <FieldViewDetails
                                     label={t(`publicaciones_vista_lista.horario`)}
-                                    detalles_texto={t(`${post.schedule}`)}
+                                    detalles_texto={t(`${post.schedule.map(x => t(`publicaciones_vista_lista.${x}`)).join(", ") }`)}
                                 />
                             </li>
                             <li key={`post ${post.id} salidas`}>
                                 <FieldViewDetails
                                     label={t(`publicaciones_vista_lista.salidas`)}
-                                    detalles_texto={t(`${post.workday}`)}
+                                    detalles_texto={t(`publicaciones_vista_lista.${post.workday}`)}
                                 />
                             </li>
                             <li key={`post ${post.id} condiciones`}>
                                 {/* <span className="item-title">{t(`publicaciones_vista_lista.condiciones`)}: </span> <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a> */}
                                 <FieldViewDetails
                                     label={t(`publicaciones_vista_lista.salario_deseado`)}
-                                    detalles_texto={ post.payment_amount + " " + post.currency + " " + t(`${post.salary_offered}`)}
+                                    detalles_texto={
+                                        post.payment_amount != null?
+                                            post.payment_amount + " " + post.currency + " " + t(`publicaciones_vista_lista.${post.salary_offered}`)
+                                            :
+                                            t("sin_especificar")
+                                    }
                                 />
                             </li>
                             {post.client_type != undefined &&
