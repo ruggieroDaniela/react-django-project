@@ -8,6 +8,7 @@ import { getAllCountries, getCountriesInRegion, getStatesInCountry, getCitiesInS
 import { useEffect } from 'react';
 import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownSearch } from "../components/search/FieldDropdownSearch";
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -2002,7 +2003,7 @@ const useValidar = () => {
 const botonEnviar = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
-    
+    const navigate = useNavigate();
  
 
     const postData = {...offerDomesticFormState};
@@ -2032,6 +2033,7 @@ const botonEnviar = () => {
                             // Request was successful
                             console.log('POST request successful');
                             console.log(response);
+                            navigate('/');
                         } else {
                             // Request failed
                             console.log('POST request failed');
