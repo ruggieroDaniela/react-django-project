@@ -1,0 +1,294 @@
+{
+    "SolicitarNiñera":{
+        "niñera": "Babysitter",
+        "pais":"Country",
+        "estado":"Estado, provincia o cantón  ",
+        "titulo": "OFRECER MIS SERVICIOS COMO NIÑERA(O)",
+        "telefono_movil":"Télefono Móvil",
+        "telefono_fijo":"Télefono Fijo",
+        "correo":"Correo electrónico",
+        "panel-opciones":"PANEL DE OPCIONES",
+        "indicaciones": [
+            "These are the steps to follow to complete your registration.",
+            "If at any time you need to access a section of the registry, click on the green panel, which is your preference"
+        ],
+        "botones":{
+            "registrar": "Register",
+            "cancelar": "Cancel"
+        },
+        "fases":[
+            {
+              "nombre": "Datos básicos de niñera(o)",
+              "campos": "Campos obligatorios",
+              "solicito": "Solicito",
+              "mensaje":"Por favor, proporcione los datos especificados a continuación",
+              "niñera": "Niñera",
+              "niñero": "Niñero",
+              "indiferente-sexo": "Me es indiferente su sexo",
+              "indiferente-edad": "Me es indiferente su edad",
+              "indiferente-hijos": "Me es indiferente si tiene hijos o no",
+              "presencia": "Con buena presencia, responsable, honesta, buen carácter, que le gusten los niños",
+              "entre": "Entre",
+              "y": "y",
+              "años":"años",
+              "edad-solicita": "Edad que se solicita",
+              "edad":"Edad",
+              "situacion-familiar":"Situación familiar",
+              "grado-instruccion":"Grado de instrucción",
+              
+              "con-hijos":"Con hijos",
+              "sin-hijos":"Sin hijos",
+              "grado":[
+                "Primaria",
+                "Bachillerato",
+                "Técnico Universitario",
+                "Universitario"
+              ],
+              "campos-obligatorios":"Campos Obligatorios"
+            },
+            {
+              "nombre": "Lugar de procedencia",
+              "mensaje": "Por favor, indique su lugar de procedencia",
+              "prefiero":"La prefiero de",
+              "pais":"Pais de procedencia",
+              "estado":"Estado/Provincia",
+              "ciudad":"Ciudad",
+              "zona":"Zona",
+              "select-country":"Selecciona un país",
+              "select-state":"Selecciona un estado",
+              "select-city":"Selecciona una ciudad"
+
+            },
+            {
+              "nombre": "Sobre la persona a cuidar",
+              "mensaje": "Por favor, indique los datos de la persona a cuidar",
+              "titulo": "Sobre la(s) persona(s) a cuidar",
+              "cantidad":"Cantidad de personas a cuidar",
+              "edad":"Edad(es)",
+              "sexo":"Sexo(s)",
+              "posee-discapacidad":"¿Posee(n) alguna discapacidad o enfermedad?",
+              "si":"Sí",
+              "no":"No",
+              "indique-discapacidad":"Indique la(s) discapacidad(es)",
+              "enfermedades-que-presenta":"Enfermedad(es) que presenta(n)",
+              "enfermedades":"Indique la(s) enfermedad(es), si tienen tratamiento, y otros detalles de su interés"
+            },
+            {
+              "mensaje":"Por favor, indique la disponibilidad para viajar de la niñera(o)",
+              "pregunta":"¿La niñera o niñero debe estar dispuesta a viajar, para acompañar a la persona a cuidar?",
+              "si":"si",
+              "no":"no",
+              "especifique":"Especifique"
+            },
+            {
+              "nombre": "Funciones desempeñadas como niñera(o)",
+              "mensaje":"Por favor, indique las actividades que ha desempeñado como niñera(o)",
+              "titulo":"Funciones que ha desempeñado como niñera o niñero",
+              "indique":"Indique las actividades que ha realizado en esta vacante",
+              "ejemplos":[
+                "Preparación de alimentos",
+                "Control de medicamentos",
+                "Baño e  higiene",
+                "Cambio de pañal",
+                "Jugar con los niños",
+                "Limpieza del hogar",
+                "Otros"
+              ],
+              "especifique":"Especifique",
+              "ejemplo":"Ejemplo"
+            },
+            {
+              "nombre": "Condiciones de trabajo",
+              "mensaje":"Por favor, indique las condiciones de trabajo que desea recibir del cliente o empleador",
+              "salidas-jornada":"¿Cómo desea que sean las salidas de su jornada laboral?",
+              "salidas-jornada-opciones":[
+                "Semanal",
+                "Quincenal",
+                "Mensual",
+                "Interdiario",
+                "Medio tiempo",
+                "Fin de semana",
+                "En la noche",
+                "Por temporadas",
+                "Por horas",
+                "Otro",
+                "Especifique"
+              ],
+              "horario":"Horario",
+              "horario-mensaje":"Seleccione los días que esta dispuesta(o) a trabajar",
+              "horario-opciones":[
+                "Lunes",
+                "Martes",
+                "Miércoles",
+                "Jueves",
+                "Viernes",
+                "Sábado",
+                "Domingo",
+                "De Lunes a Viernes",
+                "Fin de semana",
+                "Otros a considerar",
+                "Especifique"
+              ],
+              "salario-deseado":"Salario deseado",
+              "salario-deseado-opciones":[
+                "Monto",
+                "A convenir"
+              ],
+              "beneficio-laboral":"¿Ofrece otros beneficios?",
+              "ejemplo":"Ejemplo",
+              "ejemplos":[
+                  "Derecho a las comidas diarias",
+                  "Seguro social obligatorio",
+                  "Cobertura de seguro",
+                  "Bonos de fin de año"
+              ],
+              "especifique":"Especifique",
+              "no":"No",
+              "si":"Si",
+              "otro":"Otro",
+              "moneda":"Moneda",
+              "selecciona-moneda":"Seleccione la moneda",
+              "salario-ofrecido":"El salario ofrecido es",
+              "seleccione-salario":"Seleccione el salario",
+              "salario-opciones":[
+                "Por hora",
+                "Por día",
+                "Semanal",
+                "Quincenal",
+                "Mensual"
+              ]
+
+            },
+            {
+              "nombre": "Disponibilidad para comenzar a trabajar",
+              "mensaje":"Por favor, indique su disponibilidad para comenzar a trabajar con el cliente",
+              "titulo":"¿ Qué disponibilidad tiene para comenzar a trabajar luego de ser seleccionada(o)?",
+              "fecha-inicio":"Fecha de inicio",
+              "fecha-convenir":"A convenir"
+            },
+            {
+              "nombre": "Clientes con los que quiero trabajar",
+              "mensaje":"Por favor, indique el lugar de procedencia de los clientes con los que desea trabajar",
+              "mensaje1":"Puede seleccionar más de un país o ciudad",
+              "lugar-procedencia":"Lugar de procedencia",
+              "lugar-procedencia-opciones":[
+                "Me es indiferente",
+                "Quiero especificar la procedencia del cliente"
+              ],
+              "tipo-cliente":"Tipo de cliente",
+              "tipo-cliente-opciones":[
+                "Personal natural",
+                "Empresa",
+                "Me es indiferente"
+              ]
+
+            },
+            {
+              "nombre": "Documentos que puedo presentar a los clientes",
+              "mensaje":"Por favor, indique que documentos puede presentar a los clientes",
+              "titulo":"Documentos que puedo presentar a los clientes  (Opcional)",
+              "posee-documentacion":"¿Desea solicitar alguna documentación a los candidatos?",
+              "si":"Si",
+              "no":"No",
+              "documentos":"Seleccione uno o más documentos de su preferencia",
+              "documentos-opciones":[
+                "Documento de identidad o pasaporte",
+                "Currículum actualizado",
+                "Títulos o certificados",
+                "Referencias comprobables de trabajo",
+                "Referencias familiares indicando nombre y apellido, teléfono local Teléfono móvil, correo electrónico (opcional), y dirección",
+                "Constancia de residencia",
+                "Constancia de no poseer antecedentes penales",
+                "Certificado de salud",
+                "Otro documento"
+              ],
+              "especifique":"Especifique",
+              "agregar": "Agregar"
+
+            },
+            {
+              "nombre": "Sugerencias antes de realizar una entrevista de trabajo",
+              "mensaje":"Por favor, lea estas sugerencias. Pueden ser de utilidad",
+              "titulo":"Sugerencias antes de realizar una entrevista de trabajo",
+              "sugerencias":[
+                "Elije que ropa vas a utilizar en caso de una entrevista en vivo, o vía internet con tu empleador",
+                "Descarta la ropa sexy. No es profesional",
+                "Lee varias veces el anuncio que coloca un cliente, y elabora una lista de preguntas que quieras realizarle al potencial empleador",
+                "Ten a la mano la documentación que se te sugirió en puntos anteriores, en caso de que algún cliente te la solicite. Así puedes incrementar tus probabilidades de éxito de ser contratado más rápidamente"
+              ]
+              
+            },
+            {
+              "nombre": "Sugerencias al momento de realizar una entrevista de trabajo",
+              "mensaje":"Por favor, lea estas sugerencias. Pueden ser de utilidad",
+              "titulo":"Sugerencias al momento de realizar la entrevista",
+              "sugerencias":[
+                "Obtenga toda la información posible de sus empleados.",
+                "Averigüe dónde viven, datos de los familiares para avisar en caso de alguna emergencia (eso también le servirá a usted en caso de robo o si alguna de las personas bajo la responsabilidad del cuidador sufre algún daño que sea imputable a la persona)."
+              ]
+            },
+            {
+              "nombre": "Sugerencias de trabajo para el día a día con el cliente",
+              "mensaje":"Por favor, lea estas sugerencias. Pueden ser de utilidad",
+              "titulo":"Sugerencias de trabajo para el día a día con el personal seleccionado",
+              "titulos":[
+                "Antes de iniciar sus labores",
+                "En el día a día",
+                "Si consideras que estas recibiendo un trato inadecuado por parte de tu empleador",
+                "Cuando recibas tu pago",
+                "Cuando el personal finalice sus labores",
+                "Si usted decide no seguir trabajando con el cliente",
+                "Sugerencias adicionales"
+              ],
+              "parrafos":[
+                "Solicita tu contrato de trabajo por escrito, ya que este es el documento que certifica que estas laborando para el cliente.", 
+                "Indicarle a la persona contratada que debe mantener una buena higiene personal, y abstenerse de fumar, ingerir bebidas alcohólicas o tener conductas que atenten contrala moral y las buenas costumbres, principalmente delante de los niños",
+                "Indíquele al personal recomendaciones o procedimientos de seguridad para abrir la puerta, contestar el teléfono, personas a recibir en el inmueble, y cualquier otro asunto relacionado con las personas a su cuidado, o con el inmueble donde se realizarán las labores",
+                "Proporcione información de contacto a su niñera(o) en caso de emergencia, como: Médico tratante, teléfono de empresas donde la(s) persona(s) bajo su cuidado están aseguradas, listado de clínicas cercanas a las que se pueda llevar a la persona en caso de emergencia, datos de contacto directo con usted en caso de cualquier emergencia, o consulta que pueda tener la persona contratada",
+                "Si puede, registre las huellas dactilares del personal a su servicio para que tenga una base para deslindar responsabilidades en caso de robo o cualquier incidente que podría haber originado dicha persona en el inmueble, o hacia las personas bajo su cuidado",
+                "Conversar con las personas que el cuidador(a) tendrá bajo su cargo, para verificar que la persona contratada le proporciona un buen trato a la persona",
+                "Se le recomienda instalar cámaras de seguridad para supervisar las labores del personal, y verificar el trato que se le proporciona a las personas a cuidar",
+                "Convérsalo con el y determina si las cosas pueden mejorar. Si las cosas no mejoran, puedes irte si lo deseas. Y en este caso ningún empleador puede retenerte por la fuerza, porque esto es un delito. Además también existen otros organismos que defienden los derechos de los trabajadores en caso de explotación laboral, o de condiciones no aptas para trabajar, y en los cuales debes presentar tu contrato y recibos de pago.",
+                "Solicita tu recibo de pago al cliente, para tener constancias de los pagos recibidos, ya que este documento, junto con el contrato de trabajo son tus pruebas ante las autoridades competentes de que tienes una relación laboral con el cliente, y para que ellos puedan ayudarte si tienes algún problema de explotación laboral, o falta de pago por parte de tu empleador",
+                "Solicitarles que muestren el bolso antes de salir",
+                "Avise con anticipación para que el cliente pueda buscar otra persona. Esto también ayuda a que deje una buena referencia con el cliente",
+                "Guardar joyas u objetos de valor que considere en lugares seguros",
+                "Monitorear el desempeño de la persona contratada en sus labores"
+              ]
+            },
+            {
+              "nombre": "Consideraciones del servicio",
+              "mensaje":"Por favor, lea las consideraciones del servicio",
+              "parrafos":[
+                "Los datos proporcionados son bajo la responsabilidad del anunciante, y la empresa queda exonerada de verificar su veracidad",
+                " Las sugerencias proporcionadas son para orientar al cliente o al personal, y al aceptar la publicación de dicho anuncio la empresa queda exonerada de cualquier incidente que pudiera ocurrir entre el cliente y el personal contratado"
+                ]
+            },
+            {
+              "nombre": "Datos de facturación",
+              "mensaje":"Seleccione la cuenta donde va a realizar el pago de su publicación",
+              "plan-seleccionado":"Plan seleccionado",
+              "mes":"mes",
+              "meses":"meses",
+              "forma-pago":"Formas de pago",
+              "forma-pago-descripcion":"A continuación, se proporciona(n) las formas de pago asociadas a su publicación",
+              "pais-titulo":"País a donde va a enviar el pago de la publicación",
+              "pais-titulo-descripcion":"Seleccione uno de los países donde la empresa posee cuenta para realizar su pago",
+              "cuentas":"Cuenta(s) donde puede realizar su pago",
+              "formas-pago":[
+                "Depósito",
+                "Transferencia bancaria"
+              ],
+              "pais":"País",
+              "banco":"Banco",
+              "nro-cuenta":"Nro de cuenta",
+              "codigo-swift":"Código SWIFT",
+              "a-nombre-de":"A nombre de",
+              "correo":"Correo",
+              "tipo-cuenta":"Tipo de cuenta"
+            }
+          ],
+        "continuar": "",
+        "atras": "Back"
+    }
+}

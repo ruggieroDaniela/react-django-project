@@ -10,6 +10,7 @@ import login_en from "./locales/en/IniciarSesion.json"
 import servicios_en from "./locales/en/NuestrosServicios.json"
 import buscar_personal_domestico_en from "./locales/en/BuscarPersonalDomestico.json"
 import OfrecermeNiñera_en from "./locales/en/OfrecermeNiñera.json"
+import SolicitarNiñera_en  from './locales/en/SolicitarNiñera.json';
 
 import navbar_es from './locales/es/Navbar.json';
 import registrar_es from "./locales/es/Registrar.json";
@@ -19,6 +20,7 @@ import login_es from "./locales/es/IniciarSesion.json"
 import servicios_es from "./locales/es/NuestrosServicios.json"
 import buscar_personal_domestico_es from "./locales/es/BuscarPersonalDomestico.json"
 import OfrecermeNiñera_es from "./locales/es/OfrecermeNiñera.json"
+import SolicitarNiñera_es  from './locales/es/SolicitarNiñera.json';
 
 const en = Object.assign(
   {},
@@ -29,7 +31,8 @@ const en = Object.assign(
   login_en,
   servicios_en,
   buscar_personal_domestico_en,
-  OfrecermeNiñera_en
+  OfrecermeNiñera_en,
+  SolicitarNiñera_en
 );
 
 const es = Object.assign(
@@ -41,7 +44,8 @@ const es = Object.assign(
   login_es,
   servicios_es,
   buscar_personal_domestico_es,
-  OfrecermeNiñera_es
+  OfrecermeNiñera_es,
+  SolicitarNiñera_es
 );
 
 i18n
