@@ -43,8 +43,19 @@ class ServicesSerializer(serializers.ModelSerializer):
         if data['payment'] == 'MONTO' and not data.get('payment_amount'):
             raise serializers.ValidationError("Por favor, especifique el monto deseado")
         
-        if data['currency'] == 'OTRA' and not data.get('currency_other'):
+        if data['payment'] == 'MONTO' and not data.get('currency'):
             raise serializers.ValidationError("Por favor, especifique la moneda")
+        
+        if data['payment'] == 'MONTO' and not data.get('salary_offered'):
+            raise serializers.ValidationError("Por favor, especifique el salario")
+        
+        if data['payment'] == 'CONVENIR' and ( data.get('currency') or data.get('currency_other') or data.get('salary_offered') or data.get('payment_amount') ) : 
+            raise serializers.ValidationError("Error, no debe especificar el salario deseado")
+
+ 
+
+        if data['currency'] == 'OTRA' and not data.get('currency_other'):
+            raise serializers.ValidationError("Por favor, especifique otra moneda")
         
         if data['benefits'] == 1 and not data.get('benefits_description'):
             raise serializers.ValidationError("Por favor, especifique otro beneficio laboral")
