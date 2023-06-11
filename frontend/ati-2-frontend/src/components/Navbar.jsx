@@ -5,6 +5,7 @@ import { useState } from "react";
 import AuthContext from "../context/AuthContext";
 
 import NavbarDropdown from "./NavbarDropdown";
+import { redirect } from "react-router-dom";
 
 import '../styles/Navbar.scss';
 
@@ -70,30 +71,56 @@ const Navbar = () => {
                         <a href="/" className="link">{t('navbar.nuestros_servicios')}</a>
                     </li>
                     
-                    <NavbarDropdown
-                        label={{
-                            text: t('navbar.solicitar_personal'),
-                            arrow: "▾"
-                        }}
-                        items={[
-                            {
-                                label: {
-                                    text: t("navbar.publicar_anuncio"),
-                                    arrow: "▸"
+                    {isAuth ? 
+                            <NavbarDropdown
+                            label={{
+                                text: t('navbar.solicitar_personal'),
+                                arrow: "▾"
+                            }}
+                            items={[
+                                {
+                                    label: {
+                                        text: t("navbar.publicar_anuncio"),
+                                        arrow: "▸"
+                                    },
+                                    items:[
+                                        {label: t("navbar.solicitar.babysitter"), link: isAuth == true ? "/request-babysitter" : "#"},
+                                        {label: t("navbar.solicitar.cuidador"), link:"#"}
+                                    ]
                                 },
-                                items:[
-                                    {label: t("navbar.solicitar.babysitter"), link:"#"},
-                                    {label: t("navbar.solicitar.cuidador"), link:"#"}
-                                ]
-                            },
-                            {label: t("navbar.operaciones.ver_publicaciones"), link:"#"},
-                            {label: t("navbar.operaciones.buscar"), link:"#"},
-                            {label: t("navbar.operaciones.modificar"), link:"#"},
-                            {label: t("navbar.operaciones.eliminar"), link:"#"},
-                            {label: t("navbar.operaciones.habilitar"), link:"#"},
-                            {label: t("navbar.operaciones.deshabilitar"), link:"#"}
-                        ]}
-                    />
+                                {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=provide&user=${authState.id}`},
+                                {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
+                                {label: t("navbar.operaciones.modificar"), link:"#"},
+                                {label: t("navbar.operaciones.eliminar"), link:"#"},
+                                {label: t("navbar.operaciones.habilitar"), link:"#"},
+                                {label: t("navbar.operaciones.deshabilitar"), link:"#"}
+                            ]}
+                        />
+                    
+                        : 
+
+                        <NavbarDropdown
+                            label={{
+                                text: t('navbar.solicitar_personal'),
+                                arrow: "▾"
+                            }}
+                            items={[
+                                {
+                                    label: {
+                                        text: t("navbar.publicar_anuncio"),
+                                        arrow: "▸"
+                                    },
+                                    items:[
+                                        {label: t("navbar.solicitar.babysitter"), link:"#"},
+                                        {label: t("navbar.solicitar.cuidador"), link:"#"}
+                                    ]
+                                },
+                                {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
+                            ]}
+                        />
+                    }
+
+                    
 
                     <NavbarDropdown
                         label={{
@@ -135,19 +162,19 @@ const Navbar = () => {
                                     arrow: "▸"
                                 },
                                 items:[
-                                    {label: t("navbar.ofrecerme.babysitter"), link:"/offer-my-services/post-add/offer-me-as-babysitter"},
+                                    {label: t("navbar.ofrecerme.babysitter"), link: isAuth == true ? "./offer-my-services/post-add/offer-me-as-babysitter" : "#"},
                                     {label: t("navbar.ofrecerme.cuidador"), link:"#"}
                                 ]
                             },
-                            {label: t("navbar.operaciones.ver_publicaciones"), link:"#"},
-                            {label: t("navbar.operaciones.buscar"), link:"#"},
+                            {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=provide&user=${authState.id}`},
+                            {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
                             {label: t("navbar.operaciones.modificar"), link:"#"},
                             {label: t("navbar.operaciones.eliminar"), link:"#"},
                             {label: t("navbar.operaciones.habilitar"), link:"#"},
                             {label: t("navbar.operaciones.deshabilitar"), link:"#"}
                         ]}
                     />
-
+                    
                     <li className="item">
                         <a href="/employment" className="link">{t("navbar.empleo")}</a>
                     </li>
@@ -170,10 +197,17 @@ const Navbar = () => {
                     <li className="item">
                         <a href="/contact" className="link">{t("navbar.contactanos")}</a>
                     </li>
-
-                    <li className="item">
-                        <a href="#" className="link">{t("navbar.idiomas")}</a>
-                    </li>
+                    
+                    <NavbarDropdown
+                        label={{
+                            text: t("navbar.idiomas"),
+                            arrow: "▾"
+                        }}
+                        items={[
+                            {label: t("navbar.espagnol"), link:"#", lan:"es"},
+                            {label: t("navbar.ingles"), link:"#", lan:"en"}
+                        ]}
+                    /> 
                 </ul>
             </nav>
         </>

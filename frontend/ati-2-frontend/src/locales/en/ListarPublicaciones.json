@@ -1,0 +1,70 @@
+{
+    "lista_publicaciones": {
+        "titulo": "Public Posts",
+        "ver_como": "View Type",
+        "tipo_lista": "List View",
+        "tipo_foto": "Thumbnail View",
+        "seleccione": "Select the filters specified below, if you want to filter the results obtained",
+        "tipo_persona": "Domestic Staff Type",
+        "tipos_personal": [
+            "Babysitter",
+            "Caretaker",
+            "Nurse",
+            "Domestic Staff",
+            "Real Estate Caretaker"
+        ],
+        "ordenar": "Sort By",
+        "ordenar_por": [
+            "Payment",
+            "Availability",
+            "Degree of Instruction",
+            "Travel Availability"
+        ],
+        "pagina": "Page",
+        "accion":[
+            "Enable",
+            "Disable",
+            "Update",
+            "Remove"
+        ],
+        "acciones": "Actions"
+    },
+    "publicaciones_vista_lista": {
+        "CUI": "Occupational Caretaker",
+        "NIN": "Babysitter",
+        "ENF": "Nursery",
+        "estado": "State",
+        "ciudad": "City",
+        "años": "years old",
+        "publicado": "Posted on ",
+        "ver_detalles": "View details",
+        "contactar": "Contact",
+        "PRI": "Primary",
+        "UNI": "University",
+        "ver_informacion": "See full info",
+        "grado_instruccion": "Degree of Instruction",
+        "perfil_laboral": "Work Profile Description",
+        "funciones_previas": "Functions that I have performed",
+        "funciones_requeridas": "Functions to do",
+        "documentacion": "Documentation that I can send",
+        "documentacion_requerida": "Documentation needed",
+        "condiciones": "Work Terms",
+        "salario_deseado": "Desired Salary",
+        "salario": "Payment",
+        "beneficios": "Other benefits?",
+        "disponibilidad": "Availability date",
+        "viajar": "Travel Availability",
+        "horario": "Work Schedule",
+        "salidas": "Preferred Checkout",
+        "clientes": "Clients I want to work with",
+        "CONST_RESIDENCIA": "Proof of Residence",
+        "Cocinar": "Cook",
+        "tipo_cliente":{
+            "NO": "It makes no difference to me if it is a natural person or a company",
+            "EMP": "Business",
+            "NAT": "Natural"
+        },
+        "edad_requerida": "years old required"
+
+    }
+}

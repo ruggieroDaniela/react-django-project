@@ -122,7 +122,11 @@ export const NuestrosServicios = () => {
                                 >
                                     C- {t('nuestros_servicios.opciones.2')}
                                 </button>
-                                <button>
+                                <button
+                                    onClick={ () => {
+                                        navigate("/search-clients");
+                                    } }
+                                >
                                     D- {t('nuestros_servicios.opciones.3')}
                                 </button>
                             </div>

@@ -1,5 +1,6 @@
 {
     "OfrecermeNiñera":{
+        "no-tiene":"does not have",
         "niñera": "Babysitter",
         "pais":"Country",
         "estado":"Estado, provincia o cantón  ",
@@ -42,7 +43,10 @@
               "pais":"Pais de procedencia",
               "estado":"Estado/Provincia",
               "ciudad":"Ciudad",
-              "zona":"Zona"
+              "zona":"Zona",
+              "select-country":"Selecciona un país",
+              "select-state":"Selecciona un estado",
+              "select-city":"Selecciona una ciudad"
 
             },
             {
@@ -56,8 +60,8 @@
               "mensaje":"Por favor, indique si posee disponibilidad para viajar, o no.",
               "mensaje2":"De poseer disponibilidad, se le sugiere especificar detalles adicionales acerca del viaje",
               "pregunta":"¿Esta dispuesta(o) a viajar, para acompañar a la(s) persona(s) a cuidar?",
-              "si":"si",
-              "no":"no",
+              "si":"Si",
+              "no":"No",
               "especifique":"Especifique"
             },
             {
@@ -124,7 +128,19 @@
               ],
               "especifique":"Especifique",
               "no":"No",
-              "si":"Si"
+              "si":"Si",
+              "otro":"Otro",
+              "moneda":"Moneda",
+              "selecciona-moneda":"Seleccione la moneda",
+              "salario-ofrecido":"El salario ofrecido es",
+              "seleccione-salario":"Seleccione el salario",
+              "salario-opciones":[
+                "Por hora",
+                "Por día",
+                "Semanal",
+                "Quincenal",
+                "Mensual"
+              ]
 
             },
             {
@@ -148,7 +164,22 @@
                 "Personal natural",
                 "Empresa",
                 "Me es indiferente"
-              ]
+              ],
+              "continente":"Continente",
+              "select-continente":"Seleccione el continente",
+              "pais":"País",
+              "select-pais":"Seleccione el país",
+              "estado":"Estado",
+              "select-estado":"Seleccione el estado",
+              "ciudad":"Ciudad",
+              "select-ciudad":"Seleccione la ciudad",
+              "continentes":[
+                "North America",
+                "South America",
+                "Europe",
+                "Asia",
+                "Oceania"
+            ]
 
             },
             {
@@ -246,12 +277,18 @@
                 "Transferencia bancaria"
               ],
               "pais":"País",
+              "seleccione-pais":"Seleccione un país",
               "banco":"Banco",
+              "seleccione-banco":"Seleccione el banco de su preferencia",
               "nro-cuenta":"Nro de cuenta",
               "codigo-swift":"Código SWIFT",
               "a-nombre-de":"A nombre de",
               "correo":"Correo",
-              "tipo-cuenta":"Tipo de cuenta"
+              "tipo-cuenta":"Tipo de cuenta",
+              "formadepago":"Método de pago",
+              "deposito":"Depósito",
+              "transferencia-bancaria":"Transferencia bancaria",
+              "numero-cuenta":"Número de cuenta"
             }
           ],
         "continuar": "",

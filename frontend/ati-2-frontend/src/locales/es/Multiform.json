@@ -1,8 +1,8 @@
 {
     "multiform":{
-        "atras": "Back",
-        "continuar": "Continue",
-        "cancelar": "Cancel",
-        "registrar": "Register"
+        "atras": "Atrás",
+        "continuar": "Continuar",
+        "cancelar": "Cancelar",
+        "registrar": "Registrar"
     }
 }

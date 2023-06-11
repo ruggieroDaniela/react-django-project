@@ -60,7 +60,9 @@
                     "movil": "Cellphone",
                     "local": "Local"
                 },
-                "nota_final": "Please verify that your data is correct, as it will be used to generate your publication, send you your access data, or generate your invoice"
+                "nota_final": "Please verify that your data is correct, as it will be used to generate your publication, send you your access data, or generate your invoice",
+                "seleccionar_pais": "Select a country",
+                "seleccionar_ciudad": "Select a city"
             },
             {"nombre":"Website language" },
             {
@@ -91,7 +93,7 @@
                 "facebook": "Direct message on my Facebook account"
             },
             {
-                "nombre":"Billing information",
+                "nombre":"Billing Information",
                 "codigo": "Your client code is",
                 "nota": ["It is important that you", "FORMALIZE your payment to be able to publish your request for various profiles of home assistants,", "through your PAYMENT."],
                 "titulo": "Data to be used to facilitate payment notifications",
@@ -105,10 +107,45 @@
                 "dias": "Monday to Friday",
                 "horas": "From 8:00 a.m. to 12:00 p.m. and from 1:00 p.m. to 5:00 p.m.",
                 "telefono": "Phones",
-                "correo": "Email"
+                "correo": "Email",
+                "seleccionar_destino": "Select the bank where you deposited or transferred the funds"
             }
         ],
         "continuar": "Continue",
-        "atras": "Back"
+        "atras": "Back",
+        "errores":[
+            {
+                "requerido": "You must select at least one option",
+                "especificar_vacio": "The fields to be specified cannot be empty",
+                "social_requerida": "Select a social network",
+                "otro_requerido": "Select an option"
+            },
+            {
+                "requerido": "This field is required",
+                "minimo": "Must start with at least 2 letters",
+                "id": "Must start with a letter or a number, and have a minimum of 5 characters",
+                "business_name": "Must start with a letter or a number, and have a minimum of 2 characters",
+                "email": "Invalid email",
+                "telefono_requerido": "At least one phone number is required",
+                "telefono_invalido": "Inavalid format. Must contain only numbers and dashes"
+            },
+            {
+                "requerido": "You must select the language of your preference"
+            },
+            {
+                "mail_invalido": "This email is invalid",
+                "mail_exists": "This email already exists",
+                "clave_invalida": "The password must have at least 8 characters"
+            },
+            {
+                "requerido": "You must select at least one option",
+                "especificar_vacio": "The fields to be specified cannot be empty"
+            },
+            {
+                "requerido": "The source bank is required",
+                "minimo": "The source bank must be at least 2 characters",
+                "seleccion_requerida": "You must select one destiny bank from the list"
+            }
+        ]
     }
 }

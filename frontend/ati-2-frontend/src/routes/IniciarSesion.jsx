@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import AuthContext from '../context/AuthContext';
+import ErrorMessage from "../components/ErrorMessage";
 
 export const IniciarSesion = () => {
     
@@ -15,6 +16,8 @@ export const IniciarSesion = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [invalidPassword, setInvalidPassword] = useState(false)
+    const [inexistentEmail, setInexistentEmail] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,15 +36,16 @@ export const IniciarSesion = () => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(data),
-                    // body: JSON.stringify(postBody),
                 }
             );
     
             if (response.ok) {
+                setInvalidPassword(false)
+                setInexistentEmail(false)
+
                 // Request was successful
                 console.log('POST request successful');
                 const responseDataAuth = await response.json();
-                console.log(responseDataAuth);
 
                 response = await fetch( `http://127.0.0.1:8000/users/${responseDataAuth.user_id}`,{
                         method: 'GET',
@@ -53,10 +57,8 @@ export const IniciarSesion = () => {
                 );
 
                 if(response.ok){
-                    console.log(response);
+                  
                     const responseDataUser = await response.json();
-                    console.log(responseDataUser);
-
                     setAuthState(
                         () => {
                             return {
@@ -71,8 +73,6 @@ export const IniciarSesion = () => {
                     );
 
                     i18n.changeLanguage(authState.lang);
-    
-                    console.log(responseDataAuth);
                     navigate('/');
                 }else{
                     console.log("GET request failed: error fetching user data");
@@ -81,8 +81,17 @@ export const IniciarSesion = () => {
 
             } else {
                 // Request failed
-                console.log('POST request failed');
-                console.log(response.json());
+                const error = await response.json()
+
+                if(error.error === "Wrong password"){
+                    setInvalidPassword(true)
+                    setInexistentEmail(false)
+                }
+
+                else if(error.error === "Email does not exist"){
+                    setInvalidPassword(false)
+                    setInexistentEmail(true)
+                }
             }
     
         } catch (error) {
@@ -112,10 +121,12 @@ export const IniciarSesion = () => {
                     </div>
                 </div>
 
-                
+                {invalidPassword && <ErrorMessage message={t('login.claveInvalida')}/> }
+                {inexistentEmail && <ErrorMessage message={t('login.correoInexistente')}/> }
+
                 <button type="submit">{t('login.boton')}</button>
                 
-                <a href="#">{t('login.olvide_contrasena')}</a>
+                <a href="/forgot-password">{t('login.olvide_contrasena')}</a>
 
             </form>
             

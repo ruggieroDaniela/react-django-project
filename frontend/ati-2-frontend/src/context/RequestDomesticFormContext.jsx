@@ -45,8 +45,8 @@ function RequestDomesticFormContextProvider({children}){
         documents_other: "",
         publication_time: "1",
         publication_plan: "1",
-        billing_country: "Venezuela",
-        billing_bank: 2,
+        billing_country: "",
+        billing_bank: "",
     }
     );
 

@@ -49,12 +49,14 @@ export const BuscarPersonalDomestico = () => {
     const [selectedStates, setSelectedStates] = useState("");
     const [selectedCities, setSelectedCities] = useState("");
     const [selectedServices, setSelectedServices] = useState("");
-    const [selectedShedules, setSelectedShedules] = useState("");
+    const [selectedSchedules, setSelectedShedules] = useState("");
     const [selectedCheckout, setSelectedCheckout] = useState("");
     const [selectedPaymentFreq, setSelectedPaymentFreq] = useState("");
     const [selectedCurrency, setSelectedCurrency] = useState("");
+    const [selectedOtherCurrency, setSelectedOtherCurrency] = useState("");
     const [selectedBeneficio, setSelectedBeneficio] = useState("");
     const [selectedPayment, setSelectedPayment] = useState("");
+    const [selectedPaymentRange, setSelectedPaymentRange] = useState(["", ""]);
     const [selectedAvailability, setSelectedAvailability] = useState("");
     const [selectedSortBy, setSelectedSortBy] = useState("");
 
@@ -63,6 +65,7 @@ export const BuscarPersonalDomestico = () => {
     useEffect(() => {
         const fetchCountries = async () => {
             try {
+                {console.log(regions[selectedContinent])}
                 let [names, values] = await ( selectedContinent == -1? getAllCountries(): getCountriesInRegion( regions[selectedContinent])  );
                 setCountries( [names, values] );
             } catch (error) {
@@ -77,6 +80,7 @@ export const BuscarPersonalDomestico = () => {
     useEffect(() => {
         const fetchStates = async () => {
             try {
+                
                 let [names, values] = await ( selectedCountries.length > 0? getStatesInCountry(selectedCountries): [[], []])
                 setStates( [names, values] );
             } catch (error) {
@@ -91,6 +95,7 @@ export const BuscarPersonalDomestico = () => {
     useEffect(() => {
         const fetchCities = async () => {
             try {
+                console.log(selectedStates);
                 let [names, values] = await ( selectedStates.length > 0? getCitiesInStates(selectedStates): [[], []])
                 setCities( [names, values] );
             } catch (error) {
@@ -157,9 +162,15 @@ export const BuscarPersonalDomestico = () => {
                             items={continentes}
                             setSelectedState={setSelectedContinent}
                         />
+                        
                         <FieldDropdownCheckbox
                             title={t('search.pais')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedCountries.split(",").length == 1?
+                                    t('search.selecciona_pais')
+                                    :
+                                    `${(selectedCountries.split(",").length-1)} ${(selectedCountries.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={countries[0]}
                             values={countries[1]}
                             state={selectedCountries}
@@ -167,7 +178,12 @@ export const BuscarPersonalDomestico = () => {
                         />
                         <FieldDropdownCheckbox
                             title={t('search.estado')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedStates.split(",").length == 1?
+                                    t('search.selecciona_estado')
+                                    :
+                                    `${(selectedStates.split(",").length-1)} ${(selectedStates.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={states[0]}
                             values={states[1]}
                             state={selectedStates}
@@ -175,7 +191,12 @@ export const BuscarPersonalDomestico = () => {
                         />
                         <FieldDropdownCheckbox
                             title={t('search.personal_solicitado')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedServices.split(",").length == 1?
+                                    t('search.selecciona_personal')
+                                    :
+                                    `${(selectedServices.split(",").length-1)} ${(selectedServices.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={tipos_personal}
                             values={services}
                             state={selectedServices}
@@ -184,35 +205,25 @@ export const BuscarPersonalDomestico = () => {
                         
                         <div></div>
                         <button
-                            onClick={ async () => {
-                                try {
-                                    let query = "?";
+                            onClick={ () => {
+                                let query = "?type=provide&";
 
-                                    if(selectedContinent != -1)
-                                        query += `continent=${regions[selectedContinent]}&`
-                                    
-                                    if(selectedCountries != "")
-                                        query += `country__in=${selectedCountries.substring(1)}&`
-                                    
-                                    if(selectedStates != "")
-                                        query += `state__in=${selectedStates.substring(1)}&`
-                                    
-                                    if(selectedServices != "")
-                                        query += `service__in=${selectedServices.substring(1)}`
-                                    
-                                    query = query.substring(0, query.length-1)
-                                    console.log(query);
+                                // if(selectedContinent != -1)
+                                //     query += `continent=${regions[selectedContinent]}&`
+                                
+                                if(selectedCountries != "")
+                                    query += `country__in=${selectedCountries.substring(1)}&`
+                                
+                                if(selectedStates != "")
+                                    query += `state__in=${selectedStates.substring(1)}&`
+                                
+                                if(selectedServices != "")
+                                    query += `service__in=${selectedServices.substring(1)}`
+                                
+                                query = query.substring(0, query.length-1)
 
-                                    const response = await axios.get(`http://127.0.0.1:8000/api-services/provideService/${query}`,{
-                                        headers: {
-                                            "Authorization": authState.token
-                                        }
-                                    })
-                                    console.log(response.data);
-                                } catch (error) {
-                                    console.log(error);
-                                }
-                            }}
+                                navigate(`/show-posts${query}`);
+                            } }
                         >
                             {t('search.buscar')}
                         </button>
@@ -252,7 +263,12 @@ export const BuscarPersonalDomestico = () => {
 
                         <FieldDropdownCheckbox
                             title={t('search.pais')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedCountries.split(",").length == 1?
+                                    t('search.selecciona_pais')
+                                    :
+                                    `${(selectedCountries.split(",").length-1)} ${(selectedCountries.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={countries[0]}
                             values={countries[1]}
                             state={selectedCountries}
@@ -260,7 +276,12 @@ export const BuscarPersonalDomestico = () => {
                         />
                         <FieldDropdownCheckbox
                             title={t('search.estado')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedStates.split(",").length == 1?
+                                    t('search.selecciona_estado')
+                                    :
+                                    `${(selectedStates.split(",").length-1)} ${(selectedStates.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={states[0]}
                             values={states[1]}
                             state={selectedStates}
@@ -268,7 +289,12 @@ export const BuscarPersonalDomestico = () => {
                         />
                         <FieldDropdownCheckbox
                             title={t('search.ciudad')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedCities.split(",").length == 1?
+                                    t('search.selecciona_ciudad')
+                                    :
+                                    `${(selectedCities.split(",").length-1)} ${(selectedCities.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={cities[0]}
                             values={cities[1]}
                             state={selectedCities}
@@ -276,7 +302,12 @@ export const BuscarPersonalDomestico = () => {
                         />
                         <FieldDropdownCheckbox
                             title={t('search.salida_personal')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedCheckout.split(",").length == 1?
+                                    t('search.selecciona_salida')
+                                    :
+                                    `${(selectedCheckout.split(",").length-1)} ${(selectedCheckout.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={salida_personal}
                             values={checkout}
                             state={selectedCheckout}
@@ -284,7 +315,12 @@ export const BuscarPersonalDomestico = () => {
                         />
                         <FieldDropdownCheckbox
                             title={t('search.personal_solicitado')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedServices.split(",").length == 1?
+                                    t('search.selecciona_personal')
+                                    :
+                                    `${(selectedServices.split(",").length-1)} ${(selectedServices.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={tipos_personal}
                             values={services}
                             state={selectedServices}
@@ -293,10 +329,15 @@ export const BuscarPersonalDomestico = () => {
 
                         <FieldDropdownCheckbox
                             title={t('search.horario')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedSchedules.split(",").length == 1?
+                                    t('search.selecciona_horario')
+                                    :
+                                    `${(selectedSchedules.split(",").length-1)} ${(selectedSchedules.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={dias}
                             values={schedules}
-                            state={selectedShedules}
+                            state={selectedSchedules}
                             setState={setSelectedShedules}
                         />
 
@@ -309,11 +350,29 @@ export const BuscarPersonalDomestico = () => {
                                 state={selectedPayment}
                                 setState={setSelectedPayment}
                             />
-                            {selectedPayment.includes("range")?
+                            {selectedPayment.includes("MONTO")?
                                 <div className="field-range-input">
-                                    <input type="text"/>
+                                    <input
+                                        type="text"
+                                        onChange={ (e) => {
+                                            setSelectedPaymentRange( prev => { 
+                                                let newState = [...prev];
+                                                newState[0] = e.target.value;
+                                                return newState;
+                                            } )
+                                        } }
+                                    />
                                     <span> - </span>
-                                    <input type="text"/>
+                                    <input
+                                        type="text"
+                                        onChange={ (e) => {
+                                            setSelectedPaymentRange( prev => { 
+                                                let newState = [...prev];
+                                                newState[1] = e.target.value;
+                                                return newState;
+                                            } )
+                                        } }
+                                    />
                                 </div>
                                 :""
                             }
@@ -322,7 +381,12 @@ export const BuscarPersonalDomestico = () => {
 
                         <FieldDropdownCheckbox
                             title={t('search.remuneracion_frecuencia')}
-                            placeholder="placeholder 1"
+                            placeholder={
+                                selectedPaymentFreq.split(",").length == 1?
+                                    t('search.selecciona_remuneracion_frecuencia')
+                                    :
+                                    `${(selectedPaymentFreq.split(",").length-1)} ${(selectedPaymentFreq.split(",").length-1) > 1?t('search.seleccionados'):t('search.seleccionado')}`
+                            }
                             items={remuneracion_frecuencia}
                             values={paymentFreq}
                             state={selectedPaymentFreq}
@@ -334,7 +398,7 @@ export const BuscarPersonalDomestico = () => {
                                 title={t('search.moneda')}
                                 placeholder={
                                     selectedCurrency !== ""?
-                                        monedas[selectedCurrency]:"ph"
+                                        monedas[selectedCurrency]:t('search.selecciona_moneda')
                                 }
                                 items={monedas}
                                 setSelectedState={setSelectedCurrency}
@@ -342,7 +406,7 @@ export const BuscarPersonalDomestico = () => {
                             {selectedCurrency == 2?
                                 <div className="field-spec">
                                     {t('search.especificar')+": "}
-                                    <input type="text"/>
+                                    <input type="text" onChange={ e => setSelectedOtherCurrency( () => e.target.value ) }/>
                                 </div>
                                 :
                                 ""
@@ -379,18 +443,58 @@ export const BuscarPersonalDomestico = () => {
                         <div></div>
                         <div></div>
                         <button
-                            onClick={ async () => {
-                                try {
-                                    const response = await axios.get(`http://127.0.0.1:8000/api-services/provideService/`,{
-                                        headers: {
-                                            "Authorization": authState.token
-                                        }
-                                    })
-                                    console.log(response.data);
-                                } catch (error) {
-                                    console.log(error);
+                            onClick={ () => {
+                                let query = "?type=provide&";
+
+                                // if(selectedContinent != -1)
+                                //     query += `continent=${regions[selectedContinent]}&`
+                                
+                                if(selectedCountries != "")
+                                    query += `country__in=${selectedCountries.substring(1)}&`
+                                
+                                if(selectedStates != "")
+                                    query += `state__in=${selectedStates.substring(1)}&`
+                                
+                                if(selectedCities != "")
+                                    query += `city__in=${selectedCities.substring(1)}&`
+                                
+                                if(selectedServices != "")
+                                    query += `service__in=${selectedServices.substring(1)}&`
+                                
+                                if(selectedCheckout != "")
+                                    query += `workday__in=${selectedCheckout.substring(1)}&`
+                                
+                                if(selectedSchedules != "")
+                                    query += `schedule__in=${selectedSchedules.substring(1)}&`
+                                
+                                if(selectedPayment != ""){
+                                    query += `payment=${selectedPayment}&`
+                                    if(selectedPayment == "MONTO" && selectedPaymentRange[0].length != 0 && selectedPaymentRange[1].length != 0)
+                                        query += `payment_amount__range=${selectedPaymentRange.join(",")}&`
                                 }
-                            }}
+
+                                if(selectedPaymentFreq != "")
+                                    query += `salary_offered=${selectedPaymentFreq}&`
+                                
+                                if(selectedCurrency != ""){
+                                    query += `currency=${selectedCurrency}&`
+                                    if(selectedCurrency == "OTRA")
+                                        query += `currency_other=${selectedOtherCurrency}&`
+                                }
+                                
+                                if(selectedBeneficio != "")
+                                    query += `benefits=${selectedBeneficio}&`
+                                
+                                if(selectedAvailability != "")
+                                    query += `availability=${selectedAvailability}&`
+
+                                if(selectedSortBy != "")
+                                    query += `ordering=${selectedSortBy} `
+
+                                query = query.substring(0, query.length-1)
+
+                                navigate(`/show-posts${query}`);
+                            } }
                         >
                             {t('search.buscar')}
                         </button>
