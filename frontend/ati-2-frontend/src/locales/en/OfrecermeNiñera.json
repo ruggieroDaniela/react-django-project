@@ -299,7 +299,8 @@
           "option": "Must select at least one option",
           "especificar": "Fields to be specified must be filled",
           "salario": "Must select a currency and a payment frecuency",
-          "fecha": "Must select a date"
+          "fecha": "Must select a date",
+          "banco": "Must select a country and a bank"
         }
     }
 }

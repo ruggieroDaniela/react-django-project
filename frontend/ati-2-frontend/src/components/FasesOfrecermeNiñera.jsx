@@ -1564,6 +1564,8 @@ const Fase8 = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
+    const other_doc_required = offerDomesticFormState.errors.other_doc_required
+
     function selectDocuments (e){
          
         setOfferDomesticFormState ( prev => {
@@ -1680,7 +1682,10 @@ const Fase8 = () => {
                                                         }} 
                                                         value={offerDomesticFormState.documents_other}
                                                 />
-                        </div>}
+                        </div>
+                        }
+
+                        { other_doc_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
 
                     </div>
                 </div>
@@ -2286,6 +2291,21 @@ const useValidar = () => {
                     return newState;
                   })
             }
+        } else if(currentStage === 8){
+            if(offerDomesticFormState.documents.includes('OTRO') && !offerDomesticFormState.documents_other){
+                valid = false
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.other_doc_required = true
+                    return newState;
+                  })
+            } else {
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.other_doc_required = false
+                    return newState;
+                  })
+            }
         }
         return valid
     };
@@ -2309,6 +2329,10 @@ const botonEnviar = () => {
             onClick={
                 async () => {
                     
+
+                    //Autenticar última fase
+
+
                     const url = 'http://127.0.0.1:8000/api-services/provideService/post_ad/'
                     try {
                         
