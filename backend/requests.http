@@ -74,8 +74,8 @@ POST http://localhost:8000/token-auth/
 content-type: application/json
 
 {
-    "username": "ati2.proyecto+andrea65@gmail.com",
-    "password": "12345"
+    "username": "ati2.proyecto+carlos95@gmail.com",
+    "password": "12345678"
 }
 
 ### ---- FORMATO PARA LAS REQUEST A UNIQUE_EMAIL ---- 
@@ -120,17 +120,17 @@ GET http://127.0.0.1:8000/banks/
 
 ### ----  A) Ofrecer mis servicios como personal domestico ----
 POST http://127.0.0.1:8000/api-services/provideService/post_ad/
-Authorization: Token 4e6ba7f9907e31bd1a0fdd3d209150b6c9cac595
+Authorization: "Token 840c5d2b1393d0ac78010861ff7473fac4fdc7eb"
 content-type: application/json
 
 {
-    "user": 12, 
+    "user": 37, 
     "service": "NIN", 
     "age": 42,
     "have_children": false,
     "education_level": "PRI",
     "continent": "Suramerica", 
-    "country": "Venezuela",
+    "country": "VE",
     "state": "Distrito Capital",
     "city": "Caracas",
     "zone": "La Pastora",
@@ -142,15 +142,15 @@ content-type: application/json
     "workday_other": "",
     "schedule": ["LUN"],
     "schedule_other": "",
-    "payment": "MONTO",
-    "payment_amount": 70.00,
-    "currency": "USD",
-    "currency_other": "",
-    "salary_offered": "HORA",
+    "payment": "CONVENIR",
+    "payment_amount": null,
+    "currency": null,
+    "currency_other": null,
+    "salary_offered": null,
     "benefits": 1,
     "benefits_description": "Seguro social obligatorio, Póliza de HCM y cobertura a mis familiares, Ayuda para útiles escolares, Otros",
-    "availability": "FECHA",
-    "availability_date": "2023-06-22",
+    "availability": "CONVENIR",
+    "availability_date": null,
     "origin": "SI",
     "origin_continent": "Norteamerica",
     "origin_country": "Estados Unidos",
