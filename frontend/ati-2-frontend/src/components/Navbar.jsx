@@ -172,7 +172,7 @@ const Navbar = () => {
                     </li>
 
                     <li className="item">
-                        <a href="#" className="link">{t("navbar.idiomas")}</a>
+                        <a href="/lang" className="link">{t("navbar.idiomas")}</a>
                     </li>
                 </ul>
             </nav>
