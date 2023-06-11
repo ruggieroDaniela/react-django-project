@@ -77,7 +77,7 @@ export const PublicacionFoto = ({post, postType}) => {
     return(<>
         <div
             key={`post ${post.id}`}
-            className="post-lista"
+            className="post-foto"
             style={{
                 gridTemplateColumns: canEdit? '1fr 12fr 1fr': "14fr"
             }}
