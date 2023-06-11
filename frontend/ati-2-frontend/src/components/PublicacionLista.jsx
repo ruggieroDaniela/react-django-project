@@ -14,6 +14,7 @@ import { useState, useEffect, useContext } from "react"
 import { useTranslation } from 'react-i18next'
 
 import AuthContext from "../context/AuthContext";
+import user_img from "../assets/default-user-icon.jpg"
 
 import eliminar_img from "../assets/eliminar.png"
 import editar_img from "../assets/editar.png"
