@@ -24,7 +24,7 @@ import deshabilitar_img from "../assets/deshabilitar.png"
 import "../styles/PostLista.scss"
 
 import { Tooltip } from "./Tooltip"
-import { getCountryName } from './dataFetchers/PaisDataFetcher';
+import { getCountryName, getStateName } from './dataFetchers/PaisDataFetcher';
 
 const FieldViewDetails = ({label, detalles_texto, value=""}) => {
     const {t} = useTranslation();
@@ -55,6 +55,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
     const [username, setUsername] = useState("  ");
     const {authState, setAuthState} = useContext(AuthContext);
     const [countryName, setCountryName] = useState("");
+    const [stateName, setStateName] = useState("");
     const canEdit = authState.logged_in && post.user == authState.id;
     const [postEnabled, setPostEnabled] = useState(post.enable);
     const [forceRefresh, setForceRefresh] = useState(true);
@@ -75,6 +76,9 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                     const country = await getCountryName(post.country);
                     setCountryName(() => country);
                 }
+
+                const state = await getStateName(post.state);
+                setStateName(() => state);
 
                 return response.data;
 
@@ -141,7 +145,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                         </div>
                         <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                             <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                                {t(`publicaciones_vista_lista.estado`)}: <span className="blue-body">{post.state}</span>
+                                {t(`publicaciones_vista_lista.estado`)}: <span className="blue-body">{stateName!=""? stateName : post.state}</span>
                             </div>
                             <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                                 {t(`publicaciones_vista_lista.ciudad`)}: <span className="blue-body">{post.city}</span>
