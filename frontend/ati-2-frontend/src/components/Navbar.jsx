@@ -165,7 +165,7 @@ const Navbar = () => {
                                     {label: t("navbar.ofrecerme.cuidador"), link:"#"}
                                 ]
                             },
-                            {label: t("navbar.operaciones.ver_publicaciones"), link:"/show-posts?type=provide"},
+                            {label: t("navbar.operaciones.ver_publicaciones"), link:"/show-posts?type=provide&user=${authState.id}"},
                             {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
                             {label: t("navbar.operaciones.modificar"), link:"#"},
                             {label: t("navbar.operaciones.eliminar"), link:"#"},
@@ -173,7 +173,7 @@ const Navbar = () => {
                             {label: t("navbar.operaciones.deshabilitar"), link:"#"}
                         ]}
                     />
-
+                    <p>ID {authState.id}</p>
                     <li className="item">
                         <a href="/employment" className="link">{t("navbar.empleo")}</a>
                     </li>
