@@ -4,6 +4,22 @@ const API_KEY = "M3F5RW5Hb1dkWFpNN2kwN1k1eEhNYlRYZUJuQW5Wb3NETlF6YTd5cg=="
 
 export const getContinents = () => ["north america", "south america", "europe", "asia", "oceania"]
 
+export const getCountryName = async countryCode => {
+    try {
+        const response = await axios.get(`https://api.countrystatecity.in/v1/countries/${countryCode}`, {
+            headers: {
+                'X-CSCAPI-KEY': API_KEY
+            }
+        });
+
+        // console.log(response.data);
+        return response.data.name;
+        
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export const getAllCountries = async () => {
     
     try {

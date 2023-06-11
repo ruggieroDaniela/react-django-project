@@ -14,17 +14,16 @@ import { useState, useEffect, useContext } from "react"
 import { useTranslation } from 'react-i18next'
 
 import AuthContext from "../context/AuthContext";
-import user_img from "../assets/default-user-icon.jpg"
 
 import eliminar_img from "../assets/eliminar.png"
 import editar_img from "../assets/editar.png"
 import habilitar_img from "../assets/habilitar.png"
 import deshabilitar_img from "../assets/deshabilitar.png"
+import user_img from "../assets/default-user-icon.jpg"
 
-import "../styles/PostLista.scss"
+import "../styles/PostFoto.scss"
 
 import { Tooltip } from "./Tooltip"
-import { getCountryName } from './dataFetchers/PaisDataFetcher';
 
 const FieldViewDetails = ({label, detalles_texto, value=""}) => {
     const {t} = useTranslation();
@@ -49,12 +48,12 @@ const FieldViewDetails = ({label, detalles_texto, value=""}) => {
     </>)
 }
 
-export const PublicacionLista = ({post, postType}) => {
+export const PublicacionFoto = ({post, postType}) => {
 
     const {t} = useTranslation();
     const [username, setUsername] = useState("  ");
-    const {authState, setAuthState} = useContext(AuthContext);
     const [countryName, setCountryName] = useState("");
+    const {authState, setAuthState} = useContext(AuthContext);
     const canEdit = authState.logged_in && post.user == authState.user_id;
     // const canEdit = true;
 
@@ -83,52 +82,74 @@ export const PublicacionLista = ({post, postType}) => {
     return(<>
         <div
             key={`post ${post.id}`}
-            className="post-lista"
+            className="post-foto"
             style={{
-                gridTemplateColumns: canEdit? '1fr 12fr 1fr': "1fr 13fr"
+                gridTemplateColumns: canEdit? '1fr 12fr 1fr': "14fr"
             }}
         >
             
-            <section key={`post ${post.id} foto`} >
-                <div className='foto-container'>
-                    <img className='img-user' src={user_img} alt="Profile photo" />
-                </div>
-            </section>
-
+        
             <section key={`post ${post.id} details`} className="detalles">
 
                 <div className="column" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+
+                    { /* First row  */ }  
                     <div className="header-grid" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                        
+                        { /* Foto  */ }    
                         <div>
+                            <img className='img-user' src={user_img} alt="Profile photo" />
+                        </div>
+
+                        <div>   
+                            { /* Pais  */ }  
+                            <div className="subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                                {post.country.length == 2? countryName:post.country}
+                            </div>
+
+                            { /* Servicio  */ }  
                             <div className="detalles-title" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                                 {t(`publicaciones_vista_lista.${post.service}`)}
                             </div>
-                            <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                                {username}
-                            </div>
-                            {postType == "provide"?
-                                <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                                    {post.age} {t(`publicaciones_vista_lista.años`)}
-                                </div>
-                            :
-                                <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                                    {post.age_required_from} - {post.age_required_to} {t(`publicaciones_vista_lista.edad_requerida`)}
-                                </div>
-                            }
                         </div>
-                        <div className="subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                            {post.country.length == 2? countryName:post.country}
-                        </div>
-                        <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                            <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                                {t(`publicaciones_vista_lista.estado`)}: <span className="blue-body">{post.state}</span>
-                            </div>
-                            <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                                {t(`publicaciones_vista_lista.ciudad`)}: <span className="blue-body">{post.city}</span>
-                            </div>
-                        </div>
-                    
+                        
                     </div>
+
+                    { /* Second Row */ }    
+                    <div className="sub-header" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+
+                        { /* Usuario  */ }  
+                        <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                            {username}
+                        </div>
+
+                        { /* Estado  */ }  
+                        <div className="bold-state" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                            {t(`publicaciones_vista_lista.estado`)}: <span className="blue-body">{post.state}</span>
+                        </div>
+                    </div>
+
+                    { /* Third Row  */ }  
+                    <div className="sub-header" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                        { /* Edad  */ }  
+                        {postType == "provide"?
+                            <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                                {post.age} {t(`publicaciones_vista_lista.años`)}
+                            </div>
+                        :
+                            <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                                {post.age_required_from} - {post.age_required_to} {t(`publicaciones_vista_lista.edad_requerida`)}
+                            </div>
+                        }
+                        
+                        { /* Ciudad  */ }  
+                        <div className="bold-state" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                            {t(`publicaciones_vista_lista.ciudad`)}: <span className="blue-body">{post.city}</span>
+                        </div>
+                    </div>
+
+                    <br></br>
+
                     <div className="title" style={ {width: "100%"} } key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                         {t(`publicaciones_vista_lista.publicado`)}{post.created_at.split("T")[0]}
                     </div>
@@ -229,14 +250,12 @@ export const PublicacionLista = ({post, postType}) => {
                                     detalles_texto={ post.payment_amount + " " + post.currency + " " + t(`${post.salary_offered}`)}
                                 />
                             </li>
-                            {post.client_type != undefined &&
-                                <li key={`post ${post.id} clientes`}>
-                                    <FieldViewDetails
-                                        label={t(`publicaciones_vista_lista.clientes`)}
-                                        detalles_texto={t(`publicaciones_vista_lista.tipo_cliente.${post.client_type}`)}
-                                    />
-                                </li>
-                            }
+                            <li key={`post ${post.id} clientes`}>
+                                <FieldViewDetails
+                                    label={t(`publicaciones_vista_lista.clientes`)}
+                                    detalles_texto={t(`publicaciones_vista_lista.tipo_cliente.${post.client_type}`)}
+                                />
+                            </li>
                         </ul>
                     </div>
                     <div className="more-info" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
