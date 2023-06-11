@@ -53,7 +53,7 @@
     border-style: solid;
     border-width: 2px;
     border-color: $azul-oscuro;
-    width: 80vw;
+    width: 100vw;
 
     .indicacion{
         color: black;
@@ -90,6 +90,7 @@
         flex-wrap: wrap;
         width: auto;
         margin-left: 0px;
+        font-size: 90%;
 
         div{
             margin-left: 0px;

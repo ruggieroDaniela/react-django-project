@@ -6,12 +6,14 @@ import { useTranslation } from 'react-i18next';
 import { Multiform } from "../components/Multiform";
 import { FasesOfrecermeNiñera, botonEnviar, useValidar } from "../components/FasesOfrecermeNiñera";
 import { OfferDomesticFormContext } from "../context/OfferDomesticFormContext";
+import AuthContext from '../context/AuthContext';
 
 import "../styles/OfrecermeNiñera.scss"
 
 export const OfrecermeNiñera = () => {
     
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+    const {authState, setAuthState} = useContext(AuthContext);
     useEffect(()=>{
         setOfferDomesticFormState({
             user: -1, 
