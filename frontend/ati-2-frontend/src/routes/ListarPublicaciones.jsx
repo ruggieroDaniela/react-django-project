@@ -196,9 +196,11 @@ export const ListarPublicaciones = () => {
                         <li className="button" key={`${self.crypto.randomUUID()}`}>
                             <button
                                 key={`${self.crypto.randomUUID()}`}
-                                onClick={ () => {
+                                onClick={ async () => {
                                     // habilitar 
-                                    
+                                    for (let i = 0; i < selectedPosts.length; i++) {
+                                        await axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${selectedPosts[i]}/`)
+                                    }
                                     setSelectedTipoPersona(prev => prev);
                                 } }
                             >
@@ -208,8 +210,13 @@ export const ListarPublicaciones = () => {
                         <li className="button" key={`${self.crypto.randomUUID()}`}>
                             <button
                                 key={`${self.crypto.randomUUID()}`}
-                                onClick={ () => {
-                                    // deshabilitar
+                                onClick={ async () => {
+                                    // deshabilitar 
+                                    for (let i = 0; i < selectedPosts.length; i++) {
+                                        console.log(i);
+                                        const response = await axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${selectedPosts[i]}/`)
+                                        console.log(response);
+                                    }
                                     setSelectedTipoPersona(prev => prev);
                                 } }
                             >
@@ -220,8 +227,11 @@ export const ListarPublicaciones = () => {
                         <li className="button" key={`${self.crypto.randomUUID()}`}>
                             <button
                                 key={`${self.crypto.randomUUID()}`}
-                                onClick={ () => {
-                                    // eliminar
+                                onClick={ async () => {
+                                    // eliminar 
+                                    for (let i = 0; i < selectedPosts.length; i++) {
+                                        await axios.put(`http://localhost:8000/api-services/${postType}/delete_post/${selectedPosts[i]}/`)
+                                    }
                                     setSelectedTipoPersona(prev => prev);
                                 } }
                             >
