@@ -52,18 +52,23 @@ export const PublicacionFoto = ({post, postType}) => {
 
     const {t} = useTranslation();
     const [username, setUsername] = useState("  ");
+    const [countryName, setCountryName] = useState("");
     const {authState, setAuthState} = useContext(AuthContext);
     const canEdit = authState.logged_in && post.user == authState.user_id;
     // const canEdit = true;
 
     useEffect(() => {
-        const fetchUser = async () => {
+        const fetchUserData = async () => {
             try {
 
                 const response = await axios.post(`http://127.0.0.1:8000/users/get_name/`, {id: post.user});
 
-                console.log(response.data);
+                // console.log(response.data);
                 setUsername( () => response.data.name + " " + response.data.last_name );
+                
+                const country = await getCountryName(post.country);
+                setCountryName(() => country);
+
                 return response.data;
 
             } catch (error) {
@@ -71,7 +76,7 @@ export const PublicacionFoto = ({post, postType}) => {
             } 
         };
         // if( post.client_type != "NO" )
-        fetchUser();
+        fetchUserData();
     }, []);
 
     return(<>
@@ -99,7 +104,7 @@ export const PublicacionFoto = ({post, postType}) => {
                         <div>   
                             { /* Pais  */ }  
                             <div className="subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                                {post.country}
+                                {post.country.length == 2? countryName:post.country}
                             </div>
 
                             { /* Servicio  */ }  
@@ -127,9 +132,15 @@ export const PublicacionFoto = ({post, postType}) => {
                     { /* Third Row  */ }  
                     <div className="sub-header" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                         { /* Edad  */ }  
-                        <div className="space" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                            {post.age} {t(`publicaciones_vista_lista.años`)}
-                        </div>
+                        {postType == "provide"?
+                            <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                                {post.age} {t(`publicaciones_vista_lista.años`)}
+                            </div>
+                        :
+                            <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                                {post.age_required_from} - {post.age_required_to} {t(`publicaciones_vista_lista.edad_requerida`)}
+                            </div>
+                        }
                         
                         { /* Ciudad  */ }  
                         <div className="bold-state" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
@@ -153,14 +164,24 @@ export const PublicacionFoto = ({post, postType}) => {
                             </li> */}
                             <li key={`post ${post.id} funciones`}>
                                 <FieldViewDetails
-                                    label={t(`publicaciones_vista_lista.funciones_previas`)}
+                                    label={
+                                        postType == "provide"?
+                                            t(`publicaciones_vista_lista.funciones_previas`)
+                                        :
+                                            t(`publicaciones_vista_lista.funciones_requeridas`)
+                                    }
                                     detalles_texto={post.activities}
                                     // detalles_texto={t(`publicaciones_vista_lista.${post.activities}`)}
                                 />
                             </li>
                             <li key={`post ${post.id} documentacion`}>
                                 <FieldViewDetails
-                                    label={t(`publicaciones_vista_lista.documentacion`)}
+                                    label={
+                                        postType == "provide"?
+                                            t(`publicaciones_vista_lista.documentacion`)
+                                        :
+                                            t(`publicaciones_vista_lista.documentacion_requerida`)
+                                    }
                                     detalles_texto={t(`publicaciones_vista_lista.${post.documents}`)}
                                 />
                             </li>
