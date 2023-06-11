@@ -93,6 +93,15 @@ content-type: application/json
 {
     "id": 6
 }
+###
+
+POST http://127.0.0.1:8000/users/get_email/
+content-type: application/json
+
+{
+    "id": 11
+}
+
 
 ### ---- BANKS ----
 POST http://127.0.0.1:8000/banks/
