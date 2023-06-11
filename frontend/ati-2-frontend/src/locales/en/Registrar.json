@@ -93,7 +93,7 @@
                 "facebook": "Direct message on my Facebook account"
             },
             {
-                "nombre":"Billing information",
+                "nombre":"Billing Information",
                 "codigo": "Your client code is",
                 "nota": ["It is important that you", "FORMALIZE your payment to be able to publish your request for various profiles of home assistants,", "through your PAYMENT."],
                 "titulo": "Data to be used to facilitate payment notifications",

@@ -10,9 +10,10 @@ const NavbarDropdown = ({label, items}) =>{
     const navigate = useNavigate();
     let keyIndex = 0;
 
-    const manageClick = (link) => {
+    const manageClick = (link, lan) => {
         setDropdownVisible(false)
         navigate(link)
+        i18n.changeLanguage(lan)
     }
 
     return (
@@ -29,7 +30,7 @@ const NavbarDropdown = ({label, items}) =>{
                         keyIndex++;
                         
                         return 'link' in item?
-                            <li key={Math.random().toString(36)} href={item.link} className="item"> <a className="link"  onClick={() => {manageClick(item.link)} } >{item.label}</a> </li>
+                            <li key={Math.random().toString(36)} href={item.link} className="item"> <a className="link"  onClick={() => {manageClick(item.link, item.lan)} } >{item.label}</a> </li>
                             :
                             <NavbarDropdown
                                 key={Math.random().toString(36)}
