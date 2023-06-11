@@ -984,6 +984,7 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
         'city': ['exact'], 
     #    'client_type': ['exact'], 
         'service': ['exact', 'in'], 
+        'user': ['exact'], 
 
         # Búsqueda personalizada 
         'workday' : ['exact', 'in'], 
