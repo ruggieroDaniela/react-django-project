@@ -243,14 +243,19 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                             <li key={`post ${post.id} salidas`}>
                                 <FieldViewDetails
                                     label={t(`publicaciones_vista_lista.salidas`)}
-                                    detalles_texto={t(`${post.workday}`)}
+                                    detalles_texto={t(`publicaciones_vista_lista.${post.workday}`)}
                                 />
                             </li>
                             <li key={`post ${post.id} condiciones`}>
                                 {/* <span className="item-title">{t(`publicaciones_vista_lista.condiciones`)}: </span> <a href="" className="item-link">{t(`publicaciones_vista_lista.ver_detalles`)}</a> */}
                                 <FieldViewDetails
                                     label={t(`publicaciones_vista_lista.salario_deseado`)}
-                                    detalles_texto={ post.payment_amount + " " + post.currency + " " + t(`${post.salary_offered}`)}
+                                    detalles_texto={
+                                        post.payment_amount != null?
+                                            post.payment_amount + " " + post.currency + " " + t(`publicaciones_vista_lista.${post.salary_offered}`)
+                                            :
+                                            t("sin_especificar")
+                                        }
                                 />
                             </li>
                             {post.client_type != undefined &&

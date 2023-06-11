@@ -40,6 +40,12 @@
         "QUINCENAL": "Quincenal",
         "MENSUAL": "Mensual",
 
+        "INTERDIARIO": "Interdiario",
+        "MEDIO_TIEMPO": "Medio tiempo",
+        "FIN_SEMANA": "Fin de Semana",
+        "NOCHE": "En la noche",
+        "HORAS": "Por horas",
+
         "CUI": "Cuidador(a) ocupacional",
         "NIN": "Niñera(o)",
         "ENF": "Enfermera(o)",
