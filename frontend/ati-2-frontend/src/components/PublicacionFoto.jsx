@@ -57,7 +57,7 @@ export const PublicacionFoto = ({post, postType}) => {
     const [countryName, setCountryName] = useState("");
     const [stateName, setStateName] = useState("");
     const {authState, setAuthState} = useContext(AuthContext);
-    const canEdit = authState.logged_in && post.user == authState.user_id;
+    const canEdit = authState.logged_in && post.user == authState.id;
     // const canEdit = true;
 
     useEffect(() => {
@@ -90,7 +90,7 @@ export const PublicacionFoto = ({post, postType}) => {
             key={`post ${post.id}`}
             className="post-foto"
             style={{
-                gridTemplateColumns: canEdit? '1fr 12fr 1fr': "14fr"
+                gridTemplateColumns: canEdit? '12fr 1fr': "14fr"
             }}
         >
             
