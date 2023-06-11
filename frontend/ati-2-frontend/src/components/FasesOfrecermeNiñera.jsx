@@ -7,6 +7,7 @@ import { OfferDomesticFormContext } from "../context/OfferDomesticFormContext";
 import { getAllCountries, getCountriesInRegion, getStatesInCountry, getCitiesInStates, getContinents } from "../components/dataFetchers/PaisDataFetcher";
 import { useEffect } from 'react';
 import { FieldDropdown } from "../components/search/FieldDropdown";
+import { FieldDropdownSearch } from "../components/search/FieldDropdownSearch";
 import axios from 'axios';
 
 
@@ -236,7 +237,7 @@ const Fase1 = () => {
         const fetchStates = async () => {
             try {
                                     
-                let [names, values] = await ( selectedCountry!="" ? getStatesInCountry(","+selectedCountry): ["Select a Country","loading"])
+                let [names, values] = await ( selectedCountry!="" ? getStatesInCountry(selectedCountry): ["Select a Country","loading"])
                 setStates( [names, values] );
                 if (selectedCountry !="")
                     setReadyStates(true);
@@ -270,7 +271,7 @@ const Fase1 = () => {
     useEffect(() => {
         const fetchCities = async () => {
             try {
-                let [names, values] = await ( selectedState != "" ? getCitiesInStates(","+selectedState): ["Select a State","loading"])
+                let [names, values] = await ( selectedState != "" ? getCitiesInStates(selectedState): ["Select a State","loading"])
                 
                 setCities( [names, values] );
                 
@@ -1462,6 +1463,7 @@ const Fase7 = () => {
         </div>
 
         <div className="dropdown">
+            {console.log(continentes)}
             <div className="dropdown-content">
                 <FieldDropdownCheckbox 
                     title={t('OfrecermeNiñera.fases.7.continente')}
@@ -1513,9 +1515,18 @@ const Fase8 = () => {
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
     function selectDocuments (e){
+         
         setOfferDomesticFormState ( prev => {
             const newState = {...prev};
-            newState.documents = e.target.value;
+
+            let pos = offerDomesticFormState.documents.indexOf(e.target.value);
+
+            if(e.target.checked){
+                if( pos == -1 ) newState.documents.push( e.target.value )
+            }else{
+                if( pos != -1 ) newState.documents.splice(pos,1) 
+            }
+
             return newState;
         });
 
@@ -1571,43 +1582,43 @@ const Fase8 = () => {
                     <h2>{t('OfrecermeNiñera.fases.8.documentos')}</h2>
                     <div id="selects">
                         <div>
-                            <input type="checkbox" id="d1" value="PASAPORTE" checked={offerDomesticFormState.documents == "PASAPORTE"} onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d1" value="PASAPORTE" checked={offerDomesticFormState.documents.includes("PASAPORTE")} onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d1">{t('OfrecermeNiñera.fases.8.documentos-opciones.0')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="d2" value="CURRICULUM" checked={offerDomesticFormState.documents == "CURRICULUM"}  onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d2" value="CURRICULUM" checked={offerDomesticFormState.documents.includes("CURRICULUM")}  onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d2">{t('OfrecermeNiñera.fases.8.documentos-opciones.1')}</label>
                         </div>    
                         <div>
-                            <input type="checkbox" id="d3" value="TITULOS" checked={offerDomesticFormState.documents == "TITULOS"} onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d3" value="TITULOS" checked={offerDomesticFormState.documents.includes("TITULOS")} onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d3">{t('OfrecermeNiñera.fases.8.documentos-opciones.2')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="d4" value="REF_TRABAJO" checked={offerDomesticFormState.documents == "REF_TRABAJO"}  onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d4" value="REF_TRABAJO" checked={offerDomesticFormState.documents.includes("REF_TRABAJO")}  onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d4">{t('OfrecermeNiñera.fases.8.documentos-opciones.3')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="d5" value="REF_FAMILIAR" checked={offerDomesticFormState.documents == "REF_FAMILIAR"}  onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d5" value="REF_FAMILIAR" checked={offerDomesticFormState.documents.includes("REF_FAMILIAR")}  onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d5">{t('OfrecermeNiñera.fases.8.documentos-opciones.4')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="d6" value="CONST_RESIDENCIA" checked={offerDomesticFormState.documents == "CONST_RESIDENCIA"}  onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d6" value="CONST_RESIDENCIA" checked={offerDomesticFormState.documents.includes("CONST_RESIDENCIA")}  onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d6">{t('OfrecermeNiñera.fases.8.documentos-opciones.5')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="d7" value="CONST_ANTECEDENTES" checked={offerDomesticFormState.documents == "CONST_ANTECEDENTES"} onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d7" value="CONST_ANTECEDENTES" checked={offerDomesticFormState.documents.includes("CONST_ANTECEDENTES")} onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d7">{t('OfrecermeNiñera.fases.8.documentos-opciones.6')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="d8" value="SALUD" checked={offerDomesticFormState.documents == "SALUD"}  onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d8" value="SALUD" checked={offerDomesticFormState.documents.includes("SALUD")}  onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d8">{t('OfrecermeNiñera.fases.8.documentos-opciones.7')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="d9" value="OTRO" checked={offerDomesticFormState.documents == "OTRO"}  onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d9" value="OTRO" checked={offerDomesticFormState.documents.includes("OTRO")}  onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d9">{t('OfrecermeNiñera.fases.8.documentos-opciones.8')}</label>
                         </div>
                         
-                        { offerDomesticFormState.documents == "OTRO" &&
+                        { offerDomesticFormState.documents.includes("OTRO") &&
                         <div>
                             <p> Especifique</p> <input  type="text" 
                                                         onChange={ e => {
@@ -1746,11 +1757,22 @@ const Fase13 = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
-    var arr=[1,2,3];
     var val=[1,2,3];
-    const [selectedServices, setSelectedServices] = useState("");
     
+    //radio buttons form
+    const [publication_time, setpublication_time] = useState(offerDomesticFormState.publication_time);
+
+
+    //this is for the dropdowns
     const [banks, setBanks] = useState([]);
+    const [bank_countries,setbank_countries] = useState([]);
+    
+    const [selectedBanks, setSelectedBanks] = useState(-1);
+    const [selectedCountry, setSelectedCountry] = useState(-1) 
+    // aux haves the values for each bank of the selectedCountry
+    const [aux,setaux] = useState([]);
+    const [aux2,setaux2] = useState([]);
+    
     useEffect(() => {
         const getBanks = async () => {
           try {
@@ -1768,16 +1790,73 @@ const Fase13 = () => {
       
         fetchBanks();
       }, []);
-    let aux=[]
+    
     
     useEffect(() =>{
-        for (let i=0; i<banks.length; i++){
-            aux.push(banks[i].name+ " - "+ banks[i].account +" - "+ banks[i].swift_code);
-        }
+        let auxC = []
+
+        for (let i=0; i<banks.length; i++)
+            if(!bank_countries.includes(banks[i].country)) auxC.push(banks[i].country);
+
+        setbank_countries(auxC);
         
+        
+        if (offerDomesticFormState.billing_country !== "" && bank_countries.length > 0) {
+            const foundCountry = bank_countries.find(
+              (country) => country === offerDomesticFormState.billing_country
+            );
+            if (foundCountry) {
+                setSelectedCountry(foundCountry);
+            }
+          }
+
     },[banks]);
 
-    console.log(banks);
+    useEffect(()=>{
+        let aux1 = [];
+        let aux12 = [];
+        if (selectedCountry != -1){
+            for (let i=0; i<banks.length; i++){
+                if ( banks[i].country == bank_countries[selectedCountry] ) aux1.push(banks[i].name+ " - "+ banks[i].account +" - "+ banks[i].swift_code);
+                aux12.push(banks[i].name+ " - "+ banks[i].account +" - "+ banks[i].swift_code);
+            }
+            setaux(aux1);
+            setaux2(aux12);
+        }
+        
+
+        if( bank_countries != undefined && bank_countries.length > 0 ) 
+            setOfferDomesticFormState ( prev => {
+                const newState = {...prev};
+                newState.billing_country = bank_countries[selectedCountry];
+                return newState
+            });
+
+    },[selectedCountry]);
+
+    useEffect(() => {
+        if (aux2 !== undefined && aux2.length > 0 && aux !== undefined) {
+            
+            const foundBank = aux2.indexOf(aux[selectedBanks]);
+          if (foundBank !== undefined) {
+            setOfferDomesticFormState((prev) => {
+              const newState = { ...prev };
+              newState.billing_bank = foundBank;
+              return newState;
+            });
+          }
+        }
+      }, [selectedBanks, aux2, aux]);
+
+    function changePlan(e){
+        
+        setOfferDomesticFormState( prev =>{
+            const newState = {...prev};
+            newState.publication_time = e.target.value;
+            newState.publication_plan = e.target.value;
+            return newState;
+        });
+    }
 
     return ( 
         <div id="fase13">
@@ -1793,15 +1872,15 @@ const Fase13 = () => {
                     <div id="form-vertical">
                     
                         <div>
-                            <input type="radio" id="c1"/>
+                            <input type="radio" value="1" id="c1" checked={offerDomesticFormState.publication_time == "1"} onChange={(e)=>{changePlan(e)}}/>
                             <label htmlFor="c1">1 {t('OfrecermeNiñera.fases.13.mes')}</label>
                         </div>
                         <div>
                             <h3 className="red">10 USD</h3>
                         </div>
                         <div>
-                            <input type="radio" id="c1"/>
-                            <label htmlFor="c1">3 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                            <input type="radio" value="3" id="c2" checked={offerDomesticFormState.publication_time == "3"} onChange={(e)=>{changePlan(e)}}/>
+                            <label htmlFor="c2">3 {t('OfrecermeNiñera.fases.13.meses')}</label>
                         </div>
                         
                         <div>
@@ -1809,8 +1888,8 @@ const Fase13 = () => {
                         </div>    
 
                         <div>
-                            <input type="radio" id="c1"/>
-                            <label htmlFor="c1">6 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                            <input type="radio" value="6" id="c3" checked={offerDomesticFormState.publication_time == "6"} onChange={(e)=>{changePlan(e)}}/>
+                            <label htmlFor="c3">6 {t('OfrecermeNiñera.fases.13.meses')}</label>
                         </div>    
 
                         <div>
@@ -1818,8 +1897,8 @@ const Fase13 = () => {
                         </div>
 
                         <div>
-                            <input type="radio" id="c1"/>
-                            <label htmlFor="c1">9 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                            <input type="radio" value="9" id="c4" checked={offerDomesticFormState.publication_time == "9"} onChange={(e)=>{changePlan(e)}}/>
+                            <label htmlFor="c4">9 {t('OfrecermeNiñera.fases.13.meses')}</label>
                         </div>    
 
                         <div>
@@ -1827,8 +1906,8 @@ const Fase13 = () => {
                         </div>
 
                         <div>
-                            <input type="radio" id="c1"/>
-                            <label htmlFor="c1">12 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                            <input type="radio" value="12" id="c5" checked={offerDomesticFormState.publication_time == "12"} onChange={(e)=>{changePlan(e)}}/>
+                            <label htmlFor="c5">12 {t('OfrecermeNiñera.fases.13.meses')}</label>
                         </div>    
 
                         <div>
@@ -1851,34 +1930,71 @@ const Fase13 = () => {
                     
                         <div className="dropdown-content">
                             <FieldDropdown 
-                                title="prueba"
-                                placeholder="placeholder 1"
-                                items={arr}
-                                setState={setSelectedServices}
+                                title={t('OfrecermeNiñera.fases.13.pais')}
+                                placeholder={t('OfrecermeNiñera.fases.13.seleccione-pais')}
+                                items={bank_countries}
+                                setSelectedState={setSelectedCountry}
                             />
                         </div>
                     
-
+                    
                     <div className="blue-box">
                         <p>{t('OfrecermeNiñera.fases.13.cuentas')}</p>
                     </div>
                         <div className="dropdown-content" id="bancos">
-                            <FieldDropdownCheckbox 
-                                title="prueba"
-                                placeholder="placeholder 1"
-                                items={aux}
-                                values={val}
-                                state={selectedServices}
-                                setState={setSelectedServices}
-                            />
+                        
+                            {selectedCountry != -1 &&
+                            
+                                <FieldDropdown    
+                                    title={t('OfrecermeNiñera.fases.13.banco')}
+                                    placeholder={t('OfrecermeNiñera.fases.13.seleccione-banco')}
+                                    items= {aux}
+                                    setSelectedState={setSelectedBanks}
+                                />
+                            }
                         </div>
+
+                        { offerDomesticFormState.billing_bank != -1 && banks.length>0 && selectedBanks != -1 && selectedCountry != -1 &&    
+                        <div id="bank-info">
+                            <div id="azul">
+                                {banks[0].name}
+                            </div>
+                            <div id="columns">
+                                <div>
+                                    <span className="red">{t('OfrecermeNiñera.fases.13.formadepago')}</span>
+                                        <ul>
+                                            <li>{t('OfrecermeNiñera.fases.13.deposito')}</li>
+                                            <li>{t('OfrecermeNiñera.fases.13.transferencia-bancaria')}</li>
+                                        </ul>
+                                </div>
+                                <div>
+                                    <p><span>{t('OfrecermeNiñera.fases.13.pais')}</span>: {banks[0].country}</p>
+                                    <p><span>{t('OfrecermeNiñera.fases.13.banco')}</span>: {banks[0].name}</p>
+                                    <p><span>{t('OfrecermeNiñera.fases.13.numero-cuenta')}</span>: {banks[0].account}</p>
+                                    <p><span>{t('OfrecermeNiñera.fases.13.codigo-swift')}</span>: {banks[0].swift_code}</p>
+                                </div>
+                            </div>
+                        </div>
+                        }
+
                 </div>
             </div>
         </div>
      );
 }
  
+const useValidar = () => {
+    const validate = (currentStage) => {
+        // Empty implementation
+        let valid =true;
+        return valid
+    };
+
+    return { validate };
+};
+
+
 
 const FasesOfrecermeNiñera = [Fase0, Fase1, Fase2, Fase3, Fase4, Fase5, Fase6,Fase7,Fase8,Fase9,Fase10,Fase11,Fase12,Fase13];
 
-export {FasesOfrecermeNiñera,botonEnviar};
+export {FasesOfrecermeNiñera,botonEnviar, useValidar};

@@ -276,12 +276,18 @@
                 "Transferencia bancaria"
               ],
               "pais":"País",
+              "seleccione-pais":"Seleccione un país",
               "banco":"Banco",
+              "seleccione-banco":"Seleccione el banco de su preferencia",
               "nro-cuenta":"Nro de cuenta",
               "codigo-swift":"Código SWIFT",
               "a-nombre-de":"A nombre de",
               "correo":"Correo",
-              "tipo-cuenta":"Tipo de cuenta"
+              "tipo-cuenta":"Tipo de cuenta",
+              "formadepago":"Método de pago",
+              "deposito":"Depósito",
+              "transferencia-bancaria":"Transferencia bancaria",
+              "numero-cuenta":"Número de cuenta"
             }
           ],
         "continuar": "",

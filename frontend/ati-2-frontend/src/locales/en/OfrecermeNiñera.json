@@ -272,12 +272,18 @@
                 "Bank transfer"
               ],
               "pais": "Country",
+              "seleccione-pais":"Select a country",
               "banco": "Bank",
+              "seleccione-banco": "Select your preferred bank",
               "nro-cuenta": "Account number",
               "codigo-swift": "SWIFT code",
               "a-nombre-de": "In the name of",
               "correo": "Email",
-              "tipo-cuenta": "Account type"
+              "tipo-cuenta": "Account type",
+              "formadepago":"Payment method",
+              "deposito":"Deposit",
+              "transferencia-bancaria":"Bank transfer",
+              "numero-cuenta":"Account number"
             }
         ],
         "continuar": "Continue",

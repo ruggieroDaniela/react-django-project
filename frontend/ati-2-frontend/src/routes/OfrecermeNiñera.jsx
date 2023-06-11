@@ -1,15 +1,70 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
 import { Multiform } from "../components/Multiform";
-import { FasesOfrecermeNiñera, botonEnviar } from "../components/FasesOfrecermeNiñera";
+import { FasesOfrecermeNiñera, botonEnviar, useValidar } from "../components/FasesOfrecermeNiñera";
+import { OfferDomesticFormContext } from "../context/OfferDomesticFormContext";
 
 import "../styles/OfrecermeNiñera.scss"
 
 export const OfrecermeNiñera = () => {
     
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+    useEffect(()=>{
+        setOfferDomesticFormState({
+            user: 2, 
+            service: "CUI",
+            gender: "IDC",
+            age_required_from: 13,
+            age_required_to: 13,
+            children: "IDC",
+            education_level: "PRI",
+            country: "",
+            state: "",
+            city: "",
+            zone: "",
+            number_tco: 2,
+            age_tco: 11,
+            gender_tco: "asdasdasd",
+            disabilities_tco: true,
+            disabilities_tco_decrip: "sssssssssssss",
+            travel: true,
+            travel_decription: "asdasd",
+            activities: "",
+            workday: [],
+            workday_other: "",
+            schedule: [],
+            schedule_other: "",
+            payment: "",
+            payment_amount: "0.0",
+            currency: -1,
+            currency_other: "",
+            salary_offered: -1,
+            benefits: false,
+            benefits_description: "",
+            availability: "",
+            availability_date: "",
+            have_documentation: false,
+            documents: [],
+            documents_other: "",
+            publication_time: "1",
+            publication_plan: "1",
+            billing_country: "",
+            billing_bank: "",
+            age: "0",
+            have_children: false,
+            description: "",
+            origin: "",
+            origin_continent: "",
+            origin_country: "",
+            origin_state: "",
+            origin_city: "",
+            client_type: ""
+        });
+    },[]);
+
     // hook para la internacionalizacion
     const { t } = useTranslation();
 
@@ -96,6 +151,7 @@ export const OfrecermeNiñera = () => {
                 stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
                 cancelEvent={goHome}            // onClick event del botón de cancelar
                 SubmitButton={botonEnviar}   // componente con el botón de submit
+                validateStages={useValidar}
             />
 
         </div>

@@ -621,6 +621,10 @@
         {display: inline;}
     }
 
+    .field-dropdown-content{
+        width: 12vw;
+    }
+
 }
 
 
@@ -699,6 +703,7 @@
     width: 50vw;
     margin-top: 2vh;
 
+
     #first-column{
         width:30%;
     }
@@ -719,6 +724,30 @@
 
             h3{
                 margin-top: 0;
+            }
+        }
+    }
+    
+    #bank-info{
+        margin-top: 5vh;
+        border: solid;
+        border-color: $azul-oscuro;
+        #azul{
+            background-color: $azul-oscuro;
+            color: white;
+            font-weight: bold;
+        }
+        #columns{
+            display: flex;
+            flex-flow: row;
+            div:nth-child(1){
+                width: 35%;
+            }
+            div:nth-child(2){
+                width: auto;
+                p span{
+                    font-weight: bold;
+                }
             }
         }
     }
@@ -808,7 +837,7 @@
                 .field-dropdown-content{
                     margin-top: 0;
                     position: absolute;
-                    width: 19vw;
+                    width: 27vw;
                     max-height: 30vh;
                     color: $gris-oscuro;
                     border-color: $gris;
@@ -932,7 +961,7 @@
                 .field-dropdown-content{
                     margin-top: 0;
                     position: absolute;
-                    width: 2vw;
+                    width: 12vw;
                     max-height: 30vh;
                     color: $gris-oscuro;
                     border-color: $gris;
