@@ -49,13 +49,17 @@ const FieldViewDetails = ({label, detalles_texto, value=""}) => {
     </>)
 }
 
-export const PublicacionLista = ({post, postType}) => {
+export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPosts}) => {
 
     const {t} = useTranslation();
     const [username, setUsername] = useState("  ");
     const {authState, setAuthState} = useContext(AuthContext);
     const [countryName, setCountryName] = useState("");
-    const canEdit = authState.logged_in && post.user == authState.user_id;
+    const canEdit = authState.logged_in && post.user == authState.id;
+    const [postEnabled, setPostEnabled] = useState(post.enable);
+    const [forceRefresh, setForceRefresh] = useState(true);
+    // console.log(authState.user_id);
+
     // const canEdit = true;
 
     useEffect(() => {
@@ -67,8 +71,10 @@ export const PublicacionLista = ({post, postType}) => {
                 // console.log(response.data);
                 setUsername( () => response.data.name + " " + response.data.last_name );
                 
-                const country = await getCountryName(post.country);
-                setCountryName(() => country);
+                if(post.country.length == 2){
+                    const country = await getCountryName(post.country);
+                    setCountryName(() => country);
+                }
 
                 return response.data;
 
@@ -85,10 +91,24 @@ export const PublicacionLista = ({post, postType}) => {
             key={`post ${post.id}`}
             className="post-lista"
             style={{
-                gridTemplateColumns: canEdit? '1fr 12fr 1fr': "1fr 13fr"
+                gridTemplateColumns: canEdit? '0.5fr 1fr 12fr 1fr': "0.5fr 1fr 13fr"
             }}
         >
             
+            <section className='checkbox-container'>
+                <input
+                    type="checkbox"
+                    checked={selectedPosts.includes(post.id)}
+                    onChange={ e => {
+                        if(selectedPosts.includes(post.id))
+                            setSelectedPosts( prev => prev.filter( x => x!=post.id ) );
+                        else
+                            setSelectedPosts( prev => [... prev, post.id] );
+                    } }
+                    disabled={!canEdit}
+                />
+            </section>
+
             <section key={`post ${post.id} foto`} >
                 <div className='foto-container'>
                     <img className='img-user' src={user_img} alt="Profile photo" />
@@ -249,10 +269,12 @@ export const PublicacionLista = ({post, postType}) => {
                     <button
                         disabled={ !(canEdit) }
                         onClick={ () => {
+                            setPostEnabled(prev=>!prev);
                             axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${post.id}/`)
+                            setForceRefresh(prev => !prev);
                         } }
                     >
-                        <img className='button-img' src={post.enable? deshabilitar_img : habilitar_img} alt="" />
+                        <img className='button-img' src={postEnabled? deshabilitar_img : habilitar_img} alt="" />
                     </button>
                     <button
                         disabled={ !(canEdit) }
@@ -261,8 +283,9 @@ export const PublicacionLista = ({post, postType}) => {
                     </button>
                     <button
                         disabled={ !(canEdit) }
-                        onClick={ () => {
-                            axios.delete(`http://127.0.0.1:8000/api-services/${postType}/delete_post/${post.id}/`)
+                        onClick={ async () => {
+                            await axios.delete(`http://127.0.0.1:8000/api-services/${postType}/delete_post/${post.id}/`)
+                            window.location.reload();
                         } }
                     >
                         <img className='button-img' src={eliminar_img} alt="" />
