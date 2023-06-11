@@ -69,7 +69,9 @@ function OfferDomesticFormContextProvider({children}){
                 salary_option_required: false,
                 salary_required: false,
                 salary_other_required: false,
-                benefits_required: false
+                benefits_required: false,
+                date_opt_required: false,
+                date_required: false
             }
         }
         );

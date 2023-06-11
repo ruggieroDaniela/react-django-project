@@ -298,7 +298,8 @@
           "option_required": "Must select one option",
           "option": "Must select at least one option",
           "especificar": "Fields to be specified must be filled",
-          "salario": "Must select a currency and a payment frecuency"
+          "salario": "Must select a currency and a payment frecuency",
+          "fecha": "Must select a date"
         }
     }
 }

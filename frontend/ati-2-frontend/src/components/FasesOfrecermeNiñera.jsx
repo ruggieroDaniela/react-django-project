@@ -1218,6 +1218,9 @@ const  Fase6= () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
+    const date_required = offerDomesticFormState.errors.date_required
+    const date_opt_required = offerDomesticFormState.errors.date_opt_required 
+
     return(
         <div id="fase6">
 
@@ -1283,8 +1286,12 @@ const  Fase6= () => {
                         />   
                     </div>
                     }
+
+                    
                 </div>
-            
+
+                { date_opt_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option_required')}/>  }
+                { date_required && <ErrorMessage message={t('OfrecermeNiñera.errores.fecha')}/>  }
 
         </div>
     </div>
@@ -2200,9 +2207,6 @@ const useValidar = () => {
                     return newState;
                   })
             }
-            console.log(offerDomesticFormState.payment)
-            console.log(offerDomesticFormState.currency)
-            console.log(offerDomesticFormState.salary_offered)
 
             if(!offerDomesticFormState.payment){
                 valid = false
@@ -2253,6 +2257,32 @@ const useValidar = () => {
                 setOfferDomesticFormState((prev) => {
                     const newState = { ...prev };
                     newState.errors.benefits_required = false
+                    return newState;
+                  })
+            }
+        } else if(currentStage === 6){
+            if(!offerDomesticFormState.availability){
+                valid = false
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.date_opt_required = true
+                    newState.errors.date_required = false
+                    return newState;
+                  })
+            }
+            else if(offerDomesticFormState.availability === "FECHA" && !offerDomesticFormState.availability_date){
+                valid = false
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.date_opt_required = false
+                    newState.errors.date_required = true
+                    return newState;
+                  })
+            } else{
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.date_opt_required = false
+                    newState.errors.date_required = false
                     return newState;
                   })
             }
