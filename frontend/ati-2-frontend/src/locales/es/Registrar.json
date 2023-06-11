@@ -11,7 +11,7 @@
         },
         "fases":[
             {
-                "nombre":"Cómo supo de nosotros",
+                "nombre":"¿Cómo supo de nosotros?",
                 "descripcion":"Por favor, coméntenos, como se entero de los servicios de la empresa\nEs importante para nosotros, porque nos ayuda a mejorar el servicio que le ofrecemos",
                 "metodos": [
                     "Portal de la empresa",
@@ -26,7 +26,7 @@
                 ]
             },
             {
-                "nombre":"Registrar Usuario",
+                "nombre":"Registrar usuario",
                 "tipo_usuario": "Seleccione el tipo de usuario",
                 "tipo_natural": "Persona natural",
                 "tipo_empresa": "Empresa",
@@ -64,15 +64,15 @@
                 "seleccionar_pais": "Seleccione un pais",
                 "seleccionar_ciudad": "Seleccione una ciudad"
             },
-            {"nombre":"IDIOMA EN QUE DESEA VISUALIZAR EL PORTAL AL INICIAR SESIÓN" },
+            {"nombre":"Idioma del portal Web" },
             {
-                "nombre": "DATOS DE INICIO DE SESIÓN",
+                "nombre": "Datos de inicio de sesión",
                 "correo": "Correo para acceder al portal",
                 "clave": "Contraseña",
                 "newsletter": "Quiero mantenerme informado acerca de los servicios que ofrece la empresa, y otros aspectos de interés"
             },
             {
-                "nombre":"FRECUENCIA E INFORMACIÓN A RECIBIR",
+                "nombre":"Frecuencia e información a recibir",
                 "nota_frecuencia": "¿Con que frecuencia le gustaría mantenerse informado acerca de los servicios que ofrece la empresa?",
                 "frecuencias":[
                     "1 vez a la semana",
@@ -93,7 +93,7 @@
                 "facebook": "Mensaje directo en mi cuenta de Facebook"
             },
             {
-                "nombre":"DATOS DE FACTURACIÓN",
+                "nombre":"Datos de facturación",
                 "codigo": "Su código de cliente es",
                 "nota": ["Es importante que usted ", "FORMALICE su pago para poder publicar su vivienda,", "mediante su PAGO."],
                 "titulo": "Datos a utilizar, para facilitar las notificaciones de pago",
@@ -113,9 +113,38 @@
         ],
         "continuar": "Continuar",
         "atras": "Atrás",
-        "errores":[
+        "errores": [
             {
-                "requerido": "Debe seleccionar al menos una opción"
+                "requerido": "Debes seleccionar al menos una opción",
+                "especificar_vacio": "Los campos a especificar no pueden estar vacíos",
+                "social_requerida": "Seleccione al menos una red social",
+                "otro_requerido": "Seleccione una opción"
+            },
+            {
+                "requerido": "Este campo es obligatorio",
+                "minimo": "Debe comenzar con al menos 2 letras",
+                "id": "Debe comenzar con una letra o un número y tener un mínimo de 5 caracteres",
+                "business_name": "Debe comenzar con una letra o un número y tener un mínimo de 2 caracteres",
+                "email": "Correo electrónico inválido",
+                "telefono_requerido": "Se requiere al menos un número de teléfono",
+                "telefono_invalido": "Formato inválido. Debe contener solo números y guiones"
+            },
+            {
+                "requerido": "Debe seleccionar el idioma de tu preferencia"
+            },
+            {
+                "mail_invalido": "Este correo electrónico es inválido",
+                "mail_exists": "Este correo electrónico ya existe",
+                "clave_invalida": "La contraseña debe tener al menos 8 caracteres"
+            },
+            {
+                "requerido": "Debes seleccionar al menos una opción",
+                "especificar_vacio": "Los campos a especificar no pueden estar vacíos"
+            },
+            {
+                "requerido": "Se requiere que especifique el banco origen",
+                "minimo": "El banco origen debe contener al menos 2 caracteres",
+                "seleccion_requerida": "Debes seleccionar un banco de destino de la lista"
             }
         ]
     }

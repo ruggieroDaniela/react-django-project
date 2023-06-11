@@ -1014,10 +1014,8 @@ const Fase3 = () => {
                             } );
                         }} 
                     />
-                    <div>
                     { invalidEmail && <ErrorMessage message={t('registrar.errores.3.mail_invalido')}/>  }
                     { emailExists && <ErrorMessage message={t('registrar.errores.3.mail_exists')}/>  }
-                    </div>
                 </div>
                     
                 
