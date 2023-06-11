@@ -88,12 +88,12 @@ const Navbar = () => {
                                         {label: t("navbar.solicitar.cuidador"), link:"#"}
                                     ]
                                 },
-                                {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=provide&user=${authState.id}`},
+                                {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=request&user=${authState.id}`},
                                 {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
-                                {label: t("navbar.operaciones.modificar"), link:"#"},
-                                {label: t("navbar.operaciones.eliminar"), link:"#"},
-                                {label: t("navbar.operaciones.habilitar"), link:"#"},
-                                {label: t("navbar.operaciones.deshabilitar"), link:"#"}
+                                {label: t("navbar.operaciones.modificar"), link:`/show-posts?type=request&user=${authState.id}`},
+                                {label: t("navbar.operaciones.eliminar"), link:`/show-posts?type=request&user=${authState.id}`},
+                                {label: t("navbar.operaciones.habilitar"), link:`/show-posts?type=request&user=${authState.id}`},
+                                {label: t("navbar.operaciones.deshabilitar"), link:`/show-posts?type=request&user=${authState.id}`}
                             ]}
                         />
                     
@@ -168,10 +168,10 @@ const Navbar = () => {
                             },
                             {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=provide&user=${authState.id}`},
                             {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
-                            {label: t("navbar.operaciones.modificar"), link:"#"},
-                            {label: t("navbar.operaciones.eliminar"), link:"#"},
-                            {label: t("navbar.operaciones.habilitar"), link:"#"},
-                            {label: t("navbar.operaciones.deshabilitar"), link:"#"}
+                            {label: t("navbar.operaciones.modificar"),  link:`/show-posts?type=provide&user=${authState.id}`},
+                            {label: t("navbar.operaciones.eliminar"), link:`/show-posts?type=provide&user=${authState.id}`},
+                            {label: t("navbar.operaciones.habilitar"), link:`/show-posts?type=provide&user=${authState.id}`},
+                            {label: t("navbar.operaciones.deshabilitar"), link:`/show-posts?type=provide&user=${authState.id}`}
                         ]}
                     />
                     
