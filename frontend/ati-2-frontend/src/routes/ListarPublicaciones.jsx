@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import { PublicacionLista } from '../components/PublicacionLista';
+import { PublicacionFoto } from '../components/PublicacionFoto'; 
 import { getServices } from '../components/dataFetchers/ServicesDataFetcher';
 
 import "../styles/ListarPublicaciones.scss"
@@ -189,18 +190,18 @@ export const ListarPublicaciones = () => {
                 </ul>
             </div>
 
-            { listView?
-                <div className="row" id='post-group'>
-                    {   
-                        /* eslint-disable-next-line */
-                        postList
-                            .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
-                            .map( (post) => <PublicacionLista key={post.id} post={post} postType={postType}/> )
-                    }
-                </div>
-                :
-                <div>fotos</div>
-            }
+            <div className="row" id='post-group'>
+                {   
+                    /* eslint-disable-next-line */
+                    listView
+                        ? postList
+                        .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
+                        .map( (post) => <PublicacionLista key={post.id} post={post} postType={postType}/> )
+                        : postList
+                        .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
+                        .map( (post) => <PublicacionFoto key={post.id} post={post} postType={postType}/> )               
+                }
+            </div>
 
         </div>
     </>);
