@@ -127,7 +127,7 @@ class Services(models.Model):
     activities = models.TextField(blank=False)
 
     # Working Conditions
-    workday = models.CharField(blank=False, max_length=15, choices=WORKDAY_CHOICES)
+    workday = MultiSelectField(choices=WORKDAY_CHOICES, max_length=15)
     workday_other = models.TextField(blank=True)
 
     schedule = MultiSelectField(choices=SCHEDULE_CHOICES, max_length=100)
