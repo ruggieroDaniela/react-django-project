@@ -291,7 +291,21 @@
               "numero-cuenta":"Número de cuenta"
             }
           ],
-        "continuar": "",
-        "atras": "Back"
+        "continuar": "Continuar",
+        "atras": "Atras",
+        "errores": {
+          "edad": "La edad debe ser un número mayor o igual a 0",
+          "pais": "Debe seleccionar un país",
+          "estado": "Debe seleccionar un estado/provincia",
+          "ciudad": "Debe seleccionar una ciudad",
+          "requerido": "Este campo es obligatorio",
+          "option_required": "Debe seleccionar una opción",
+          "option": "Debe seleccionar al menos una opción",
+          "especificar": "Los campos a especificar deben completarse",
+          "salario": "Debe seleccionar una moneda, una frecuencia de pago y un monto de pago mayor a 0.0",
+          "fecha": "Debe seleccionar una fecha",
+          "banco": "Debe seleccionar un país y un banco",
+          "origen": "Debe seleccionar un continente, un país, un estado y una ciudad"
+          }
     }
 }
