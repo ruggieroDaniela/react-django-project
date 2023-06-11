@@ -26,7 +26,7 @@ import { OfrecermeNiñera } from './routes/OfrecermeNiñera';
 import { ListarPublicaciones } from './routes/ListarPublicaciones';
 import { ChangeLanguage } from './routes/Language';
 import { BuscarCliente } from './routes/BuscarCliente';
-
+import { VisualizarPublicacionCreada } from './routes/VisualizarPublicacionCreada';
 
 function App() {
 
@@ -72,7 +72,8 @@ function App() {
             <Route exact path="/lang" element={<ChangeLanguage/>} />
             <Route exact path="/reset-password/:id" element={<ResetPassword/>}/>
             <Route exact path='/offer-my-services/post-add/offer-me-as-babysitter' element={<OfrecermeNiñera/>}/>
-            <Route path='/show-posts' element={<ListarPublicaciones/>}/>
+            <Route path='/show-posts' element={<ListarPublicaciones/>}/>            
+            <Route path='/visualizar-publicacion-creada' element={<VisualizarPublicacionCreada/>}/>
           </Routes>
           <Footer/>
         </Router>
