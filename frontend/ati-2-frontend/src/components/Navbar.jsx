@@ -49,7 +49,7 @@ const Navbar = () => {
                     <ul className={`list ${userDropdownVisible? "show" : ""}`}>
                         <li className="item">
                             <a className="link" href="#">
-                                Datos de usuario
+                                {t("navbar.datos_usuario")}
                             </a>
                         </li>
                         <li 
@@ -60,7 +60,7 @@ const Navbar = () => {
                             }}
                         >
                             <a className="link" href="#">
-                                Cerrar sesión
+                                {t("navbar.cerrar_sesion")}
                             </a>
                         </li>
                     </ul>
