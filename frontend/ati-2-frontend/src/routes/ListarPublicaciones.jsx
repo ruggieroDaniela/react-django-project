@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+
+import AuthContext from '../context/AuthContext';
 
 import { PublicacionLista } from '../components/PublicacionLista';
 import { PublicacionFoto } from '../components/PublicacionFoto'; 
@@ -99,6 +101,8 @@ export const ListarPublicaciones = () => {
         fetchPosts();
     }, [selectedTipoPersona, selectedOrdering]);
 
+    const {authState} = useContext(AuthContext);
+
     return(<>
         <div id="lista-posts">
             <div className="header">
@@ -183,27 +187,29 @@ export const ListarPublicaciones = () => {
                 </ul>
             </div>
 
-            <div className="row">
-                <span className="title">
-                    {t(`lista_publicaciones.acciones`)}:
-                </span>
-                <ul className="input-group">
-                    {
-                        acciones.map( (item, i) => 
-                            <li className="button" key={`${self.crypto.randomUUID()}`}>
-                                <button
-                                    key={`${self.crypto.randomUUID()}`}
-                                    onClick={ () => {
-                                        // fuck me in the ass 
-                                    } }
-                                >
-                                    {t(`lista_publicaciones.accion.${i}`)}
-                                </button>
-                            </li>
-                        )
-                    }
-                </ul>
-            </div>
+            {authState.logged_in && 
+                <div className="row">
+                    <span className="title">
+                        {t(`lista_publicaciones.acciones`)}:
+                    </span>
+                    <ul className="input-group">
+                        {
+                            acciones.map( (item, i) => 
+                                <li className="button" key={`${self.crypto.randomUUID()}`}>
+                                    <button
+                                        key={`${self.crypto.randomUUID()}`}
+                                        onClick={ () => {
+                                            // fuck me in the ass 
+                                        } }
+                                    >
+                                        {t(`lista_publicaciones.accion.${i}`)}
+                                    </button>
+                                </li>
+                            )
+                        }
+                    </ul>
+                </div>
+            }
 
             <div className="row center">
                 <span className="subtitle">
