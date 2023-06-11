@@ -283,10 +283,12 @@ export const PublicacionFoto = ({post, postType}) => {
                     <button
                         disabled={ !(canEdit) }
                         onClick={ () => {
+                            setPostEnabled(prev=>!prev);
                             axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${post.id}/`)
+                            setForceRefresh(prev => !prev);
                         } }
                     >
-                        <img className='button-img' src={post.enable? deshabilitar_img : habilitar_img} alt="" />
+                        <img className='button-img' src={postEnabled? deshabilitar_img : habilitar_img} alt="" />
                     </button>
                     <button
                         disabled={ !(canEdit) }
@@ -295,8 +297,9 @@ export const PublicacionFoto = ({post, postType}) => {
                     </button>
                     <button
                         disabled={ !(canEdit) }
-                        onClick={ () => {
-                            axios.delete(`http://127.0.0.1:8000/api-services/${postType}/delete_post/${post.id}/`)
+                        onClick={ async () => {
+                            await axios.delete(`http://127.0.0.1:8000/api-services/${postType}/delete_post/${post.id}/`)
+                            window.location.reload();
                         } }
                     >
                         <img className='button-img' src={eliminar_img} alt="" />
