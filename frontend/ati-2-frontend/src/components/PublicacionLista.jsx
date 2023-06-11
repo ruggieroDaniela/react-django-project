@@ -89,7 +89,9 @@ export const PublicacionLista = ({post, postType}) => {
         >
             
             <section key={`post ${post.id} foto`}>
-                foto
+                <div>
+                    {/* <img className='img-user' src={user_img} alt="Profile photo" /> */}
+                </div>
             </section>
 
             <section key={`post ${post.id} details`} className="detalles">
