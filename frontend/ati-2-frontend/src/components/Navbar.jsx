@@ -54,7 +54,10 @@ const Navbar = () => {
                         </li>
                         <li 
                             className="item"
-                            onClick={ () => { setAuthState( () => { return {logged_in:false} } ) }}
+                            onClick={ () => {
+                                setAuthState( () => { return {logged_in:false} } )
+                                localStorage.removeItem('sessionData');
+                            }}
                         >
                             <a className="link" href="#">
                                 Cerrar sesión
