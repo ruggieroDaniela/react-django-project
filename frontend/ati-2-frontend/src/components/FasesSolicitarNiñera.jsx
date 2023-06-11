@@ -8,32 +8,6 @@ import axios from 'axios';
 import "../styles/SolicitarNiñera.scss"
 
 
-const botonEnviar = () => {
-  return (  
-      <button id="enviar">Enviar</button>
-  );
-}
-
-const ventanaAgregarOtroDocumento = () => {
-    return (
-        <div>
-            <div>
-                <input type="radio" id="situacion-familiar1" name="interest" value="coding"/>
-                <label htmlFor="situacion-familiar1">{t('SolicitarNiñera.fases.3.si')}</label>
-            </div>
-
-            <div>
-                <input type="radio" id="situacion-familiar2" className="segundo" name="interest" value="coding" />
-                <label htmlFor="situacion-familiar2">{t('SolicitarNiñera.fases.3.no')}</label>
-            </div>
-
-            <div>
-                <button>Aceptar</button>
-                <button>Cancelar</button>
-            </div>
-        </div>
-    )
-}
 
 const Fase0 = () => {
   const { t, i18n } = useTranslation();
@@ -56,12 +30,12 @@ const Fase0 = () => {
                             type="radio" 
                             id="c1" 
                             name="solicito" 
-                            value="niñera"
-                            checked={ requestDomesticFormState.service === 'niñera' }
+                            value="FEM"
+                            checked={ requestDomesticFormState.gender === 'FEM' }
                             onChange={ e => {
                                 setRequestDomesticFormState( prev => {
                                         const newState = {...prev};
-                                        newState.service = e.target.value;
+                                        newState.gender = e.target.value;
                                         return newState;
                                     } );
                             }}
@@ -74,12 +48,12 @@ const Fase0 = () => {
                             type="radio" 
                             id="c2" 
                             name="solicito" 
-                            value="niñero"
-                            checked={ requestDomesticFormState.service === 'niñero' }
+                            value="MAS"
+                            checked={ requestDomesticFormState.gender === 'MAS' }
                             onChange={ e => {
                                 setRequestDomesticFormState( prev => {
                                         const newState = {...prev};
-                                        newState.service = e.target.value;
+                                        newState.gender = e.target.value;
                                         return newState;
                                     } );
                             }}
@@ -92,12 +66,12 @@ const Fase0 = () => {
                             type="radio" 
                             id="c3" 
                             name="solicito"
-                            value="sexo-indiferente"
-                            checked={ requestDomesticFormState.service === 'sexo-indiferente' }
+                            value="IDC"
+                            checked={ requestDomesticFormState.gender === 'IDC' }
                             onChange={ e => {
                                 setRequestDomesticFormState( prev => {
                                         const newState = {...prev};
-                                        newState.service = e.target.value;
+                                        newState.gender = e.target.value;
                                         return newState;
                                     } );
                             }}
@@ -117,6 +91,7 @@ const Fase0 = () => {
                             type="radio" 
                             id="c4" 
                             name="edad"/>
+                            
                           <label htmlFor="c4">{t('SolicitarNiñera.fases.0.entre')} 
                                 <input 
                                     type="text"
@@ -128,7 +103,7 @@ const Fase0 = () => {
                                             } );
                                     }}
                                 /> 
-                                {t('SolicitarNiñera.fases.0.y')} 
+                                &nbsp;&nbsp;&nbsp;&nbsp;{t('SolicitarNiñera.fases.0.y')} 
                                 <input 
                                     type="text"
                                     onChange={ e => {
@@ -174,8 +149,8 @@ const Fase0 = () => {
                             type="radio" 
                             id="c6" 
                             name="situacion"
-                            value="sin-hijos"
-                            checked={ requestDomesticFormState.children === 'sin-hijos' }
+                            value="NO"
+                            checked={ requestDomesticFormState.children === 'NO' }
                             onChange={ e => {
                                 setRequestDomesticFormState( prev => {
                                         const newState = {...prev};
@@ -192,8 +167,8 @@ const Fase0 = () => {
                             type="radio" 
                             id="c7" 
                             name="situacion"
-                            value="con-hijos"
-                            checked={ requestDomesticFormState.children === 'con-hijos' }
+                            value="SI"
+                            checked={ requestDomesticFormState.children === 'SI' }
                             onChange={ e => {
                                 setRequestDomesticFormState( prev => {
                                         const newState = {...prev};
@@ -210,8 +185,8 @@ const Fase0 = () => {
                             type="radio" 
                             id="c8" 
                             name="situacion"
-                            value="indiferente-hijos"
-                            checked={ requestDomesticFormState.children === 'indiferente-hijos' }
+                            value="IDC"
+                            checked={ requestDomesticFormState.children === 'IDC' }
                             onChange={ e => {
                                 setRequestDomesticFormState( prev => {
                                         const newState = {...prev};
@@ -694,7 +669,7 @@ const Fase2 = () => {
                             onChange={ e => {
                                 setRequestDomesticFormState( prev => {
                                         const newState = {...prev}
-                                        newState.diseases = e.target.value;
+                                        newState.diseases_tco_descrip = e.target.value;
                                         return newState;
                                     });
                                 }} 
@@ -1908,10 +1883,64 @@ const Fase11 = () => {
      );
 }
 
+const botonEnviar = () => {
+    const { t, i18n } = useTranslation();
+    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+    
+    const postData = {...requestDomesticFormState};
+    //console.log(JSON.stringify(postData));
+    return(
+        <button
+            id="boton_registrar"
+            
+            onClick={
+                async () => {
+                    
+                    const url = 'http://127.0.0.1:8000/api-services/requestService/post_ad/'
+                    try {
+                        
+                        const response = await fetch( url,{
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(postData),
+                                // body: JSON.stringify(postBody),
+                            }
+                        );
+                
+                        if (response.ok) {
+                            // Request was successful
+                            console.log('POST request successful');
+                            console.log(response);
+                        } else {
+                            // Request failed
+                            console.log('POST request failed');
+                            console.log(response);
+                        }
+                
+                    } catch (error) {
+                        console.log("error registrando");
+                        console.log(error);
+                    }
+                }
+            }
+            >
+            {t('multiform.registrar')}
+        </button>
+    );
+}
 
+const useValidar = () => {
+    const validate = (currentStage) => {
+        // Empty implementation
+        let valid =true;
+        return valid
+    };
 
-
+    return { validate };
+};
 
 const FasesSolicitarNiñera = [Fase0, Fase1, Fase2, Fase3, Fase4, Fase5, Fase6, Fase7, Fase8, Fase9, Fase10, Fase11];
 
-export {FasesSolicitarNiñera, botonEnviar};
+export {FasesSolicitarNiñera, botonEnviar, useValidar};

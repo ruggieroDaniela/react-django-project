@@ -7,9 +7,8 @@ function RequestDomesticFormContextProvider({children}){
     const [requestDomesticFormState, setRequestDomesticFormState] = useState(
     {
         user: 2, 
-        service: "",
-        gender: "",
-        age_required: "",
+        service: "CUI",
+        gender: "IDC",
         age_required_from: "",
         age_required_to: "",
         children: "",
@@ -23,7 +22,7 @@ function RequestDomesticFormContextProvider({children}){
         gender_tco: "",
         disabilities_tco: false,
         disabilities_tco_decrip: "",
-        diseases: "",
+        diseases_tco_descrip: "",
         travel: true,
         travel_decription: "",
         activities: "",
@@ -56,7 +55,6 @@ function RequestDomesticFormContextProvider({children}){
         origin_state: "",
         origin_city: "",
         client_type: "",
-
     }
     );
 
