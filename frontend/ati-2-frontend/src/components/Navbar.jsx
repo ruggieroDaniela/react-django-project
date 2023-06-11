@@ -173,7 +173,7 @@ const Navbar = () => {
                             {label: t("navbar.operaciones.deshabilitar"), link:"#"}
                         ]}
                     />
-                    <p>ID {authState.id}</p>
+                    
                     <li className="item">
                         <a href="/employment" className="link">{t("navbar.empleo")}</a>
                     </li>
