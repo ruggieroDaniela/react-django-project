@@ -124,7 +124,8 @@ export const OfrecermeNiñera = () => {
                 date_opt_required: false,
                 date_required: false,
                 other_doc_required: false,
-                billing_required: false
+                billing_required: false,
+                origin_required: false
             }
         });
     },[]);

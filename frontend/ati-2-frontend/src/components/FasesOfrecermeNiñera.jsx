@@ -1323,6 +1323,8 @@ const Fase7 = () => {
     for (let index = 0; index < 5; index++) 
     continentes.push( t('continentes.'+index) )
 
+    const origin_required = offerDomesticFormState.errors.origin_required 
+
     //Countries
     useEffect(() => {
         setOfferDomesticFormState ( prev => {
@@ -1506,9 +1508,11 @@ const Fase7 = () => {
                             />
                             <label htmlFor="c3">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.2')}</label> 
                         </div>
-
+                    
+                        
                 </div>
             </div>
+            
 
         </div>
 
@@ -1552,6 +1556,8 @@ const Fase7 = () => {
                 />
                 
             </div>
+
+            { origin_required&& <ErrorMessage message={t('OfrecermeNiñera.errores.origen')}/>  }
         </div>
         
 
@@ -2040,7 +2046,7 @@ const Fase13 = () => {
                             </div>
                         </div>
                         }
-                        
+
                     { billing_required && <ErrorMessage message={t('OfrecermeNiñera.errores.banco')}/>  }
                 </div>
 
@@ -2056,12 +2062,15 @@ const useValidar = () => {
     const validateNumber = (number) => {
         return /^\+?(0|[1-9]\d*)$/.test(number);
     }
+
+    const validFloat = (float) => {
+        return /^([1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/.test(float)
+    }
     
     const validate = (currentStage) => {
         // Empty implementation
         let valid =true;
 
-        console.log(offerDomesticFormState)
         if(currentStage === 0){
             if(!validateNumber(offerDomesticFormState.age)){
                 valid = false
@@ -2229,7 +2238,8 @@ const useValidar = () => {
                     return newState;
                   })
             }
-            else if(offerDomesticFormState.payment === "MONTO" && offerDomesticFormState.currency === -1 && offerDomesticFormState.salary_offered === -1){
+            else if(offerDomesticFormState.payment === "MONTO" && (offerDomesticFormState.currency === -1 || !offerDomesticFormState.currency) 
+                || (offerDomesticFormState.salary_offered === -1 || !offerDomesticFormState.salary_offered )  ||  !validFloat(offerDomesticFormState.payment_amount)){
                 valid = false
                 setOfferDomesticFormState((prev) => {
                     const newState = { ...prev };
@@ -2294,6 +2304,22 @@ const useValidar = () => {
                     const newState = { ...prev };
                     newState.errors.date_opt_required = false
                     newState.errors.date_required = false
+                    return newState;
+                  })
+            }
+        } else if(currentStage === 7){
+            if(offerDomesticFormState.origin === "SI" && (!offerDomesticFormState.origin_city 
+                || !offerDomesticFormState.origin_continent || !offerDomesticFormState.origin_country || !offerDomesticFormState.origin_state)){
+                valid = false
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.origin_required = true
+                    return newState;
+                  })
+            } else{
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.origin_required = false
                     return newState;
                   })
             }
