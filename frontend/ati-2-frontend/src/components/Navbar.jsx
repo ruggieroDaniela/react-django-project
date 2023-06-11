@@ -110,8 +110,8 @@ const Navbar = () => {
                                         arrow: "▸"
                                     },
                                     items:[
-                                        {label: t("navbar.solicitar.babysitter"), link:"#"},
-                                        {label: t("navbar.solicitar.cuidador"), link:"#"}
+                                        {label: t("navbar.solicitar.babysitter"), link:"/login"},
+                                        {label: t("navbar.solicitar.cuidador"), link:"/login"}
                                     ]
                                 },
                                 {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
