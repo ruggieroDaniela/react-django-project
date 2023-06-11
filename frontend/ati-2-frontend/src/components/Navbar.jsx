@@ -5,6 +5,7 @@ import { useState } from "react";
 import AuthContext from "../context/AuthContext";
 
 import NavbarDropdown from "./NavbarDropdown";
+import { redirect } from "react-router-dom";
 
 import '../styles/Navbar.scss';
 
@@ -161,7 +162,7 @@ const Navbar = () => {
                                     arrow: "▸"
                                 },
                                 items:[
-                                    {label: t("navbar.ofrecerme.babysitter"), link:"/offer-my-services/post-add/offer-me-as-babysitter"},
+                                    {label: t("navbar.ofrecerme.babysitter"), link: isAuth == true ? "./offer-my-services/post-add/offer-me-as-babysitter" : "#"},
                                     {label: t("navbar.ofrecerme.cuidador"), link:"#"}
                                 ]
                             },

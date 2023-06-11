@@ -46,14 +46,14 @@
 }
 #info-niñera{
     
-    height: 25vh;
+    height: 30%;
     width: auto;
     padding-left: 20%;
-    
+    padding-bottom: 4vh;
     border-style: solid;
     border-width: 2px;
     border-color: $azul-oscuro;
-    width: 80vw;
+    width: 100vw;
 
     .indicacion{
         color: black;
@@ -87,9 +87,11 @@
     #info-personal{
 
         display: flex;
-        flex-wrap: wrap;
+        flex-flow: wrap;
         width: auto;
+        height: 100%;
         margin-left: 0px;
+        font-size: 90%;
 
         div{
             margin-left: 0px;
@@ -129,11 +131,19 @@
     
         .first-row{
             margin-bottom: 0.5vh;
-            height: 5vh;
+            height: 7vh;
+            display: flex;
+            align-content: space-around;
+            align-items: center;
+            h1,h2{
+                margin: 0;
+                width: 100%;
+            }
+            
         }
 
         .second-row{
-            height: 20vh;
+            height: 100%;
            
         }
     }    

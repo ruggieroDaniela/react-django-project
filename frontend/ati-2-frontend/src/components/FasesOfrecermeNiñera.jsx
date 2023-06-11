@@ -19,9 +19,7 @@ const Fase0 = () => {
     
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
-
-
- 
+    
 
     return ( 
         <div id="fase0">
@@ -507,14 +505,14 @@ const Fase3 = () => {
                                     e => {
                                         setOfferDomesticFormState ( prev => {
                                             const newState = {... prev};
-                                            newState.travel = true;
+                                            newState.travel = false;
                                             return newState;
                                         });
                                     } 
                                 }
-                                checked={offerDomesticFormState.travel}
+                                checked={!offerDomesticFormState.travel}
                         />
-                        <label htmlFor="c1">{t('OfrecermeNiñera.fases.3.si')}</label>
+                        <label htmlFor="c1">{t('OfrecermeNiñera.fases.3.no')}</label>
                     </div>
 
                     <div>
@@ -527,19 +525,19 @@ const Fase3 = () => {
                                     e => {
                                         setOfferDomesticFormState ( prev => {
                                             const newState = {... prev};
-                                            newState.travel = false;
+                                            newState.travel = true;
                                             return newState;
                                         });
                                     } 
                                 }
-                                checked={!offerDomesticFormState.travel}        
+                                checked={offerDomesticFormState.travel}        
                         />
-                        <label htmlFor="c2">{t('OfrecermeNiñera.fases.3.no')}</label>
+                        <label htmlFor="c2">{t('OfrecermeNiñera.fases.3.si')}</label>
                     </div>
             </div>
         </div>
         
-        { !offerDomesticFormState.travel && (
+        { offerDomesticFormState.travel && (
         <div id="form" >
         <div >
             <div id="peq">{t('OfrecermeNiñera.fases.3.especifique')}</div>
