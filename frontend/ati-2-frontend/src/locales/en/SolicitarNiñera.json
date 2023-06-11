@@ -52,7 +52,11 @@
               "pais": "Country of origin",
               "estado": "State/Province",
               "ciudad": "City",
-              "zona": "Zone"
+              "zona": "Zone",
+              "select-country":"Select a country",
+              "select-state":"Selecciona a state",
+              "select-city":"Select a city"
+
           },
           {
               "nombre": "About the Person(s) to be Cared for",
@@ -139,7 +143,20 @@
               ],
               "especifique": "Specify",
               "no": "No",
-              "si": "Yes"
+              "si": "Yes",
+              "otro": "Other",
+              "moneda": "Currency",
+              "selecciona-moneda": "Select the currency",
+              "salario-ofrecido": "The offered salary is",
+              "seleccione-salario": "Select the salary",
+              "salario-opciones": [
+              "Per hour",
+              "Per day",
+              "Weekly",
+              "Biweekly",
+              "Monthly"
+              ]
+
           },
 
           {
@@ -263,6 +280,7 @@
           "Bank transfer"
           ],
           "pais":"Country",  
+          "seleccione-pais":"Select a country",
           "banco":"Bank",
           "nro-cuenta":"Account number",
           "codigo-swift":"SWIFT code",
