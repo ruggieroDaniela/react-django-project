@@ -197,7 +197,7 @@ export const ListarPublicaciones = () => {
                             <button
                                 key={`${self.crypto.randomUUID()}`}
                                 onClick={ () => {
-                                    // fuck me in the ass 
+                                    // habilitar 
                                 } }
                             >
                                 {t(`lista_publicaciones.accion.${0}`)}
@@ -207,7 +207,7 @@ export const ListarPublicaciones = () => {
                             <button
                                 key={`${self.crypto.randomUUID()}`}
                                 onClick={ () => {
-                                    // fuck me in the ass 
+                                    // deshabilitar
                                 } }
                             >
                                 {t(`lista_publicaciones.accion.${1}`)}
@@ -217,8 +217,9 @@ export const ListarPublicaciones = () => {
                             <button
                                 key={`${self.crypto.randomUUID()}`}
                                 onClick={ () => {
-                                    // fuck me in the ass 
+                                    // modificar
                                 } }
+                                disabled={selectedPosts.length>1}
                             >
                                 {t(`lista_publicaciones.accion.${2}`)}
                             </button>
@@ -227,7 +228,7 @@ export const ListarPublicaciones = () => {
                             <button
                                 key={`${self.crypto.randomUUID()}`}
                                 onClick={ () => {
-                                    // fuck me in the ass 
+                                    // eliminar
                                 } }
                             >
                                 {t(`lista_publicaciones.accion.${3}`)}
