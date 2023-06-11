@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
@@ -14,6 +14,43 @@ export const OfrecermeNiñera = () => {
     
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
     const {authState, setAuthState} = useContext(AuthContext);
+    const [userData, setUserData] = useState("");
+
+    useEffect(()=>{
+        const handleSubmit = async () => {
+            try {
+                    // Request was successful
+                    let response = await fetch( `http://127.0.0.1:8000/users/${authState.id}`,{
+                            method: 'GET',
+                            headers: {
+                                'Authorization': authState.token,
+                            }
+                            // body: JSON.stringify({Authorization: responseDataAuth.token})
+                        }
+                    );
+    
+                    if(response.ok){
+                      
+                        const responseDataUser = await response.json();
+
+                        setUserData(responseDataUser);
+                        console.log(responseDataUser)
+                    }else{
+                        console.log("GET request failed: error fetching user data");
+                        console.log(response);
+                    }
+    
+                } catch (error) {
+                    console.log("error");
+                    console.log(error);
+                }
+    
+        }
+        handleSubmit();
+    },[authState])
+
+
+
     useEffect(()=>{
         setOfferDomesticFormState({
             user: -1, 
@@ -97,11 +134,11 @@ export const OfrecermeNiñera = () => {
                 <div className="row">
                     <div className="first-row blue first-column" id="niñera"><h2>{t('OfrecermeNiñera.niñera')}</h2></div>
                     <div className="first-row" id="n-niñera" >
-                        <h1>Ana Silva</h1>
+                        <h1>{authState.name}</h1>
                     </div>
                     <div className="first-row" id="pais">
 
-                        <h2><span className="blue">{t('OfrecermeNiñera.pais')}</span> <span className="red" >Venezuela</span></h2>
+                        <h2><span className="blue">{t('OfrecermeNiñera.pais')}</span> <span className="red" >{userData.country}</span></h2>
 
                         
                     </div>
@@ -116,23 +153,24 @@ export const OfrecermeNiñera = () => {
                                 <h4>{t('OfrecermeNiñera.telefono_movil')}</h4>
                             </div>
                             <div className="second-column">
-                                <h4>+58-412-703-88-88</h4>
+                                
+                                <h4>{userData.cellphone != null  ? userData.cellphone :"+58-412-703-88-88"}</h4>
                             </div>
                             <div className="first-column">
                                 <h4>{t('OfrecermeNiñera.telefono_fijo')}</h4>
                             </div>
                             <div className="second-column">
-                                <h4>+58-212-235-78-88</h4>
+                                <h4>{userData.telephone != null  ? userData.telephone :"+58-212-235-78-88"}</h4>
                             </div>
                             <div className="first-column">
                                 <h4>{t('OfrecermeNiñera.correo')}</h4>
                             </div>
                             <div className="second-column">
-                                <h4>nirvana01@gmail.com</h4>
+                                <h4>{authState.email}</h4>
                             </div>
                         </div>
                     </div>
-                    <div className="second-row">
+                    <div className="second-row" style={{visibility:'hidden'}}>
                         <h2><span className="blue">{t('OfrecermeNiñera.estado')}</span> <span className="red" >Distrito Capital</span></h2>
                     </div>
                 </div>
