@@ -14,13 +14,14 @@ export const OfrecermeNiñera = () => {
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
     useEffect(()=>{
         setOfferDomesticFormState({
-            user: 2, 
+            user: 11, 
             service: "CUI",
             gender: "IDC",
             age_required_from: 13,
             age_required_to: 13,
             children: "IDC",
             education_level: "PRI",
+            continent:"North America",
             country: "",
             state: "",
             city: "",

@@ -12,12 +12,6 @@ import axios from 'axios';
 
 
 import "../styles/BuscarPersonalDomestico.scss"
-
-const botonEnviar = () => {
-    return (  
-        <button id="enviar">Enviar</button>
-    );
-}
  
 
 
@@ -1004,7 +998,7 @@ const Fase5 = () => {
                                 <input  type="radio"
                                         name="salary"
                                         id="d1"
-                                        checked={offerDomesticFormState.payment == "MONTO"}
+                                        checked={offerDomesticFormState.payment === "MONTO"}
                                         onChange={
                                             e => {
                                                 setOfferDomesticFormState( prev => {
@@ -1022,7 +1016,7 @@ const Fase5 = () => {
                                 <input  type="radio"
                                         name="salary" 
                                         id="d2"
-                                        checked={offerDomesticFormState.payment == "CONVENIR"}
+                                        checked={offerDomesticFormState.payment === "CONVENIR"}
                                         onChange={
                                             e => {
                                                 setOfferDomesticFormState( prev => {
@@ -1120,7 +1114,7 @@ const Fase5 = () => {
                                                 e => {
                                                     setOfferDomesticFormState( prev => {
                                                         const newState = {...prev}
-                                                        newState.benefits = false;
+                                                        newState.benefits = 0;
                                                         return newState
                                                     });
                                                 } 
@@ -1138,7 +1132,7 @@ const Fase5 = () => {
                                                 e => {
                                                     setOfferDomesticFormState( prev => {
                                                         const newState = {...prev}
-                                                        newState.benefits = true;
+                                                        newState.benefits = 1;
                                                         return newState
                                                     });
                                                 } 
@@ -1994,8 +1988,56 @@ const useValidar = () => {
     return { validate };
 };
 
+const botonEnviar = () => {
+    const { t, i18n } = useTranslation();
+    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+    
+    const postData = {...offerDomesticFormState};
+    console.log(JSON.stringify(postData));
+    return(
+        <button
+            id="boton_registrar"
+            
+            onClick={
+                async () => {
+                    
+                    const url = 'http://127.0.0.1:8000/api-services/provideService/post_ad/'
+                    try {
+                        
+                        const response = await fetch( url,{
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(postData),
+                                // body: JSON.stringify(postBody),
+                            }
+                        );
+                
+                        if (response.ok) {
+                            // Request was successful
+                            console.log('POST request successful');
+                            console.log(response);
+                        } else {
+                            // Request failed
+                            console.log('POST request failed');
+                            console.log(response);
+                        }
+                
+                    } catch (error) {
+                        console.log("error registrando");
+                        console.log(error);
+                    }
+                }
+            }
+            >
+            {t('multiform.registrar')}
+        </button>
+    );
+}
+
 
 
 const FasesOfrecermeNiñera = [Fase0, Fase1, Fase2, Fase3, Fase4, Fase5, Fase6,Fase7,Fase8,Fase9,Fase10,Fase11,Fase12,Fase13];
 
-export {FasesOfrecermeNiñera,botonEnviar, useValidar};
+export {FasesOfrecermeNiñera,botonEnviar, useValidar,};
