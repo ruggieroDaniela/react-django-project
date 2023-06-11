@@ -33,7 +33,13 @@
         "LUN_VIE": "De Lunes a Viernes",
         "FIN": "Fin de semana",
         "OTRO": "Otros a considerar",
-        
+
+        "HORA": "Por hora",
+        "DIA" : "Por dia",
+        "SEMANAL": "Semanal",
+        "QUINCENAL": "Quincenal",
+        "MENSUAL": "Mensual",
+
         "CUI": "Cuidador(a) ocupacional",
         "NIN": "Niñera(o)",
         "ENF": "Enfermera(o)",

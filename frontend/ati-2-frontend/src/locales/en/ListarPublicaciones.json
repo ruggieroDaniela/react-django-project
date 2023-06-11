@@ -63,6 +63,12 @@
         "FIN": "Weekend",
         "OTRO": "Other to consider",
 
+        "HORA": "Por hora",
+        "DIA" : "Por dia",
+        "SEMANAL": "Semanal",
+        "QUINCENAL": "Quincenal",
+        "MENSUAL": "Mensual",
+
         "ver_informacion": "See full info",
         "grado_instruccion": "Degree of Instruction",
         "perfil_laboral": "Work Profile Description",
