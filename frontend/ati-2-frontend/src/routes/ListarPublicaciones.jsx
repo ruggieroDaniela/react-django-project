@@ -213,17 +213,7 @@ export const ListarPublicaciones = () => {
                                 {t(`lista_publicaciones.accion.${1}`)}
                             </button>
                         </li>
-                        <li className="button" key={`${self.crypto.randomUUID()}`}>
-                            <button
-                                key={`${self.crypto.randomUUID()}`}
-                                onClick={ () => {
-                                    // modificar
-                                } }
-                                disabled={selectedPosts.length>1}
-                            >
-                                {t(`lista_publicaciones.accion.${2}`)}
-                            </button>
-                        </li>
+                        
                         <li className="button" key={`${self.crypto.randomUUID()}`}>
                             <button
                                 key={`${self.crypto.randomUUID()}`}
@@ -234,6 +224,21 @@ export const ListarPublicaciones = () => {
                                 {t(`lista_publicaciones.accion.${3}`)}
                             </button>
                         </li>
+
+                        {selectedPosts.length<=1 &&
+                            <li className="button" key={`${self.crypto.randomUUID()}`}>
+                                <button
+                                    key={`${self.crypto.randomUUID()}`}
+                                    onClick={ () => {
+                                        // modificar
+                                        console.log("update");
+                                    } }
+                                    disabled={selectedPosts.length>1}
+                                >
+                                    {t(`lista_publicaciones.accion.${2}`)}
+                                </button>
+                            </li>
+                        }
                     </ul>
                 </div>
             }
