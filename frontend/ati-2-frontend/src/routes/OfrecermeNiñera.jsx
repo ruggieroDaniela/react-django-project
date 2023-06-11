@@ -32,7 +32,7 @@ export const OfrecermeNiñera = () => {
             disabilities_tco: true,
             disabilities_tco_decrip: "sssssssssssss",
             travel: true,
-            travel_decription: "asdasd",
+            travel_decription: "",
             activities: "",
             workday: [],
             workday_other: "",
@@ -62,7 +62,15 @@ export const OfrecermeNiñera = () => {
             origin_country: "",
             origin_state: "",
             origin_city: "",
-            client_type: ""
+            client_type: "",
+            errors: {
+                invalid_age: false,
+                country_required: false,
+                state_required: false,
+                city_required: false,
+                description_required: false,
+                travel_desc_required: false
+            }
         });
     },[]);
 

@@ -287,6 +287,13 @@
             }
         ],
         "continuar": "Continue",
-        "atras": "Back"
+        "atras": "Back",
+        "errores": {
+          "edad": "Age must be a number greater or equal to 0",
+          "pais": "Must select a country",
+          "estado": "Must select an state/province",
+          "ciudad": "Must select a city",
+          "requerido": "This field is required"
+        }
     }
 }

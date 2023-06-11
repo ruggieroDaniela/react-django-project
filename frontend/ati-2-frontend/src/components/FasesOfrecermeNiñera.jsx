@@ -20,8 +20,7 @@ const Fase0 = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
-
- 
+    const age_invalid = offerDomesticFormState.errors.invalid_age
 
     return ( 
         <div id="fase0">
@@ -42,6 +41,8 @@ const Fase0 = () => {
                         }}
                         value={offerDomesticFormState.age}
                         /> {t('OfrecermeNiñera.fases.0.años')}
+
+                { age_invalid && <ErrorMessage message={t('OfrecermeNiñera.errores.edad')}/>  }
             <div>
                 <span className="red" >*  </span><h3 className="blue">{t('OfrecermeNiñera.fases.0.situacion-familiar')}</h3> <br />
                 <div>
@@ -171,6 +172,10 @@ const Fase1 = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
+    const country_required = offerDomesticFormState.errors.country_required
+    const state_required = offerDomesticFormState.errors.state_required
+    const city_required = offerDomesticFormState.errors.city_required
+
     //ID of the Nannie that is making the post
     useEffect(() => {
         setOfferDomesticFormState(prev => {
@@ -180,7 +185,6 @@ const Fase1 = () => {
             };
         });
     }, []);
-        
 
     //selected
     const [selectedCountry, setSelectedCountry] = useState(offerDomesticFormState.country);
@@ -332,7 +336,9 @@ const Fase1 = () => {
     };
 
       
+  
     
+    { city_required && <ErrorMessage message={t('OfrecermeNiñera.errores.ciudad')}/>  }
 
     return ( 
         <div id="fase1">
@@ -396,6 +402,7 @@ const Fase1 = () => {
                         <option>{t('OfrecermeNiñera.fases.1.select-country')}</option>
                         )}
                     </select>
+                    { state_required && <ErrorMessage message={t('OfrecermeNiñera.errores.estado')}/>  }
                 </div>
                 <div>
                     <label htmlFor="ciudad">{t('OfrecermeNiñera.fases.1.ciudad')}</label> 
@@ -421,6 +428,7 @@ const Fase1 = () => {
                         <option>{t('OfrecermeNiñera.fases.1.select-state')}</option>
                         )}
                     </select>
+                    { country_required && <ErrorMessage message={t('OfrecermeNiñera.errores.pais')}/>  }
                 </div>
 
                 <div>
@@ -453,6 +461,7 @@ const Fase1 = () => {
 const Fase2 = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);    
+    const description_required = offerDomesticFormState.errors.description_required
 
     return ( 
     <div id="fase2">
@@ -479,6 +488,8 @@ const Fase2 = () => {
                         }
                         value={offerDomesticFormState.description}
                 ></textarea>
+
+                { description_required && <ErrorMessage message={t('OfrecermeNiñera.errores.requerido')}/>  }
             </div>
     </div> 
     );
@@ -487,6 +498,8 @@ const Fase2 = () => {
 const Fase3 = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+
+    const travel_desc_required = offerDomesticFormState.errors.travel_desc_required
 
     return (     
     <div id="fase3">
@@ -549,13 +562,15 @@ const Fase3 = () => {
                         e => {
                             setOfferDomesticFormState ( prev => {
                                 const newState = {... prev};
-                                newState.travel_description = e.target.value;
+                                newState.travel_decription = e.target.value;
                                 return newState;
                             });
                         } 
                     }
-                    value={offerDomesticFormState.travel_description}
+                    value={offerDomesticFormState.travel_decription}
             ></textarea>
+
+            { travel_desc_required && <ErrorMessage message={t('OfrecermeNiñera.errores.requerido')}/>  }
         </div>
         )}
 
@@ -2002,14 +2017,97 @@ const useValidar = () => {
         let valid =true;
 
         console.log(offerDomesticFormState)
-        if(currentStage == 0){
+        if(currentStage === 0){
             if(!validateNumber(offerDomesticFormState.age)){
                 valid = false
-                offerDomesticFormState.errors['invalid_age'] = false
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.invalid_age = true
+                    return newState;
+                  })
             } else {
-                offerDomesticFormState.errors['invalid_age'] = true
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.invalid_age = false
+                    return newState;
+                  })
             }
-        }
+        } else if (currentStage === 1){
+            if(!offerDomesticFormState.country){
+                valid = false
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.country_required = true
+                    return newState;
+                  })
+            } else {
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.country_required = false
+                    return newState;
+                })
+            }
+
+            if(!offerDomesticFormState.state){
+                valid = false
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.state_required = true
+                    return newState;
+                  })
+            } else {
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.state_required = false
+                    return newState;
+                })
+            }
+
+            if(!offerDomesticFormState.city){
+                valid = false
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.city_required = true
+                    return newState;
+                  })
+            } else {
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.city_required = false
+                    return newState;
+                })
+            }
+        } else if(currentStage === 2){
+            if(!offerDomesticFormState.description){
+                valid = false
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.description_required = true
+                    return newState;
+                  })
+            } else {
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.description_required = false
+                    return newState;
+                })
+            }
+        } else if (currentStage === 3){
+            if(!offerDomesticFormState.travel && !offerDomesticFormState.travel_decription){
+                valid = false
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.travel_desc_required = true
+                    return newState;
+                  })
+            } else {
+                setOfferDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.travel_desc_required = false
+                    return newState;
+                  })
+            }
+        } 
         return valid
     };
 

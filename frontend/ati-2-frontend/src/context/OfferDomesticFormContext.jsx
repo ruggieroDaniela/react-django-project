@@ -23,7 +23,7 @@ function OfferDomesticFormContextProvider({children}){
             disabilities_tco: true,
             disabilities_tco_decrip: "sssssssssssss",
             travel: true,
-            travel_decription: "asdasd",
+            travel_decription: "",
             activities: "",
             workday: [],
             workday_other: "",
@@ -54,9 +54,13 @@ function OfferDomesticFormContextProvider({children}){
             origin_state: "",
             origin_city: "",
             client_type: "",
-            err: true,
             errors: {
-                invalid_age: false
+                invalid_age: false,
+                country_requered: false,
+                state_required: false,
+                city_required: false,
+                description_required: false,
+                travel_desc_required: false
             }
         }
         );

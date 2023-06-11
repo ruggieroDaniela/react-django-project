@@ -290,7 +290,7 @@
               "numero-cuenta":"Número de cuenta"
             }
           ],
-        "continuar": "",
-        "atras": "Back"
+        "continuar": "Continuar",
+        "atras": "Atras"
     }
 }
