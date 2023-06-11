@@ -294,7 +294,11 @@
           "pais": "Must select a country",
           "estado": "Must select an state/province",
           "ciudad": "Must select a city",
-          "requerido": "This field is required"
+          "requerido": "This field is required",
+          "option_required": "Must select one option",
+          "option": "Must select at least one option",
+          "especificar": "Fields to be specified must be filled",
+          "salario": "Must select a currency and a payment frecuency"
         }
     }
 }

@@ -112,7 +112,15 @@ export const OfrecermeNiñera = () => {
                 city_required: false,
                 description_required: false,
                 travel_desc_required: false,
-                activities_required: false
+                activities_required: false,
+                workday_required: false,
+                workday_other_required: false,
+                schedule_required: false,
+                schedule_other_required: false,
+                salary_option_required: false,
+                salary_required: false,
+                salary_other_required: false,
+                benefits_required: false
             }
         });
     },[]);
