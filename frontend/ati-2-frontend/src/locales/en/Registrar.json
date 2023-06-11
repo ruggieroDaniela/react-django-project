@@ -124,6 +124,7 @@
                 "requerido": "This field is required",
                 "minimo": "Must start with at least 2 letters",
                 "id": "Must start with a letter or a number, and have a minimum of 5 characters",
+                "business_name": "Must start with a letter or a number, and have a minimum of 2 characters",
                 "email": "Invalid email",
                 "telefono_requerido": "At least one phone number is required",
                 "telefono_invalido": "Inavalid format. Must contain only numbers and dashes"
