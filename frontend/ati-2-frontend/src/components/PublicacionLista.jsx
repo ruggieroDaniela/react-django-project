@@ -81,9 +81,6 @@ export const PublicacionLista = ({post, postType}) => {
                 gridTemplateColumns: canEdit? '1fr 12fr 1fr': "1fr 13fr"
             }}
         >
-            {/* <section key={`post ${post.id} buttons 1`}>
-                x
-            </section> */}
             
             <section key={`post ${post.id} foto`}>
                 foto
@@ -100,9 +97,15 @@ export const PublicacionLista = ({post, postType}) => {
                             <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                                 {username}
                             </div>
-                            <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                                {post.age} {t(`publicaciones_vista_lista.años`)}
-                            </div>
+                            {postType == "provide"?
+                                <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                                    {post.age} {t(`publicaciones_vista_lista.años`)}
+                                </div>
+                            :
+                                <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                                    {post.age_required_from} - {post.age_required_to} {t(`publicaciones_vista_lista.edad_requerida`)}
+                                </div>
+                            }
                         </div>
                         <div className="subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                             {post.country}
@@ -207,12 +210,14 @@ export const PublicacionLista = ({post, postType}) => {
                                     detalles_texto={ post.payment_amount + " " + post.currency + " " + t(`${post.salary_offered}`)}
                                 />
                             </li>
-                            <li key={`post ${post.id} clientes`}>
-                                <FieldViewDetails
-                                    label={t(`publicaciones_vista_lista.clientes`)}
-                                    detalles_texto={t(`publicaciones_vista_lista.tipo_cliente.${post.client_type}`)}
-                                />
-                            </li>
+                            {post.client_type != undefined &&
+                                <li key={`post ${post.id} clientes`}>
+                                    <FieldViewDetails
+                                        label={t(`publicaciones_vista_lista.clientes`)}
+                                        detalles_texto={t(`publicaciones_vista_lista.tipo_cliente.${post.client_type}`)}
+                                    />
+                                </li>
+                            }
                         </ul>
                     </div>
                     <div className="more-info" key={`post ${post.id} ${self.crypto.randomUUID()}`}>

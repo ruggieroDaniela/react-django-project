@@ -54,7 +54,8 @@
             "NO": "It makes no difference to me if it is a natural person or a company",
             "EMP": "Business",
             "NAT": "Natural"
-        }
+        },
+        "edad_requerida": "years old required"
 
     }
 }

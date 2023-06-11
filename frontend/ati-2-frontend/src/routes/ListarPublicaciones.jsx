@@ -85,6 +85,7 @@ export const ListarPublicaciones = () => {
 
                 setPostList(response.data)
                 console.log(response.data);
+                console.log(postType);
                 return response.data;
 
             } catch (error) {
