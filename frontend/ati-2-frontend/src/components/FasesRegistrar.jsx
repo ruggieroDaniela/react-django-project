@@ -334,9 +334,6 @@ const Fase1 = () => {
                         newState.phase[1].telefono.local.codigo = resp.phonecode;
                         return newState;
                     } );
-                    // console.log(countryDetails);
-                    // console.log(resp);
-
                 }
             };
 
@@ -568,7 +565,7 @@ const Fase1 = () => {
                                         <input
                                             id="telefono_numero"
                                             type="text"
-                                            checked={registerFormState.phase[1].telefono.numero}
+                                            value={registerFormState.phase[1].telefono.movil.numero}
                                             onChange={ e => {
                                             setRegisterFormState( prev => {
                                                     const newState = {... prev};
@@ -594,7 +591,7 @@ const Fase1 = () => {
                                         <input
                                             id="telefono_numero"
                                             type="text"
-                                            value={registerFormState.phase[1].telefono.numero}
+                                            value={registerFormState.phase[1].telefono.local.numero}
                                             onChange={ e => {
                                             setRegisterFormState( prev => {
                                                     const newState = {... prev};
@@ -609,7 +606,7 @@ const Fase1 = () => {
                                             <input
                                                 id="telefono_ext"
                                                 type="text"
-                                                value={registerFormState.phase[1].telefono.ext}
+                                                value={registerFormState.phase[1].telefono.local.ext}
                                                 onChange={ e => {
                                                 setRegisterFormState( prev => {
                                                         const newState = {... prev};
@@ -656,7 +653,7 @@ const Fase1 = () => {
                                     }} 
                                 />
                                 { business_required && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
-                                { business_invalid && <ErrorMessage message={t('registrar.errores.1.minimo')}/> }
+                                { business_invalid && <ErrorMessage message={t('registrar.errores.1.business_name')}/> }
               
 
                             </div>
@@ -693,11 +690,12 @@ const Fase1 = () => {
                                     onChange={ e => {
                                         const country =  JSON.parse(e.target.options[e.target.selectedIndex].getAttribute('data-country'))
                                         setCountryCode(country.code)
+
                                         setRegisterFormState( prev => {
                                             const newState = {... prev};
                                             newState.phase[1] = {... prev.phase[1]};
                                             newState.phase[1].empresa.pais = e.target.value;
-                                            newState.phase[1].empresa.codigo_pais = countryCode;
+                                            newState.phase[1].empresa.codigo_pais = country.code;
                                             return newState;
                                         } )
                                     }}>
@@ -1606,7 +1604,7 @@ const registrarUsuario = () => {
     
     }else if( postBody.type_user == "enterprise" ){
 
-        postBody.country = userData.phase[1].empresa.pais;
+        postBody.country = userData.phase[1].empresa.codigo_pais;
         postBody.company_name = userData.phase[1].empresa.nombre_empresa;
         postBody.rif = userData.phase[1].empresa.razon_rif;
         postBody.city = userData.phase[1].empresa.ciudad;
@@ -1622,6 +1620,7 @@ const registrarUsuario = () => {
 
     }
 
+    
     // Idioma
     postBody.language = userData.phase[2].idioma;
 
@@ -1652,6 +1651,8 @@ const registrarUsuario = () => {
     // Billing
     postBody.bank_origin = userData.phase[5].banco_origen;
     postBody.bank_country = userData.phase[5].pais;
+
+    
 
     // send request
     const fetchData = async () => {
@@ -1756,7 +1757,6 @@ const botonRegistrar = () => {
         if(userData.phase[1].telefono.local.numero == ""){
             postBody.representant_telephone = userData.phase[1].telefono.local.codigo + userData.phase[1].telefono.local.numero + userData.phase[1].telefono.local.ext;
         }
-
     }
 
     // Idioma
@@ -1920,8 +1920,8 @@ const useValidarRegistrar = () => {
         return regex.test(string);
     }
 
-    const idIsValid = (string) => {
-        if(string.length < 5){
+    const idIsValid = (string, min) => {
+        if(string.length < min){
             return false
         }
         const regex = new RegExp('^[0-9a-zA-Z]')    
@@ -2016,7 +2016,7 @@ const useValidarRegistrar = () => {
                     registerFormState.errors[1].id_required = true
                     registerFormState.errors[1].id_invalid = false
                     valid = false
-                } else if (!idIsValid(user.identificacion)) {
+                } else if (!idIsValid(user.identificacion, 5)) {
                     registerFormState.errors[1].id_required = false
                     registerFormState.errors[1].id_invalid = true
                     valid = false
@@ -2064,7 +2064,7 @@ const useValidarRegistrar = () => {
                     registerFormState.errors[1].business_required = true
                     registerFormState.errors[1].business_invalid = false
                     valid = false
-                } else if (!stringIsValid(user.nombre_empresa)) {
+                } else if (!idIsValid(user.nombre_empresa, 2)) {
                     registerFormState.errors[1].business_required = false
                     registerFormState.errors[1].business_invalid = true
                     valid = false
@@ -2078,7 +2078,7 @@ const useValidarRegistrar = () => {
                     registerFormState.errors[1].rif_required = true
                     registerFormState.errors[1].rif_invalid = false
                     valid = false
-                } else if (!stringIsValid(user.razon_rif)) {
+                } else if (!idIsValid(user.razon_rif, 5)) {
                     registerFormState.errors[1].rif_required= false
                     registerFormState.errors[1].rif_invalid = true
                     valid = false
