@@ -21,6 +21,8 @@ import habilitar_img from "../assets/habilitar.png"
 import deshabilitar_img from "../assets/deshabilitar.png"
 import user_img from "../assets/default-user-icon.jpg"
 
+import { getCountryName, getStateName } from './dataFetchers/PaisDataFetcher';
+
 import "../styles/PostFoto.scss"
 
 import { Tooltip } from "./Tooltip"
@@ -53,6 +55,7 @@ export const PublicacionFoto = ({post, postType}) => {
     const {t} = useTranslation();
     const [username, setUsername] = useState("  ");
     const [countryName, setCountryName] = useState("");
+    const [stateName, setStateName] = useState("");
     const {authState, setAuthState} = useContext(AuthContext);
     const canEdit = authState.logged_in && post.user == authState.user_id;
     // const canEdit = true;
@@ -68,6 +71,9 @@ export const PublicacionFoto = ({post, postType}) => {
                 
                 const country = await getCountryName(post.country);
                 setCountryName(() => country);
+
+                const state = await getStateName(post.state);
+                setStateName(() => state);
 
                 return response.data;
 
@@ -125,7 +131,7 @@ export const PublicacionFoto = ({post, postType}) => {
 
                         { /* Estado  */ }  
                         <div className="bold-state" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                            {t(`publicaciones_vista_lista.estado`)}: <span className="blue-body">{post.state}</span>
+                            {t(`publicaciones_vista_lista.estado`)}: <span className="blue-body">{stateName!=""? stateName : post.state}</span>
                         </div>
                     </div>
 

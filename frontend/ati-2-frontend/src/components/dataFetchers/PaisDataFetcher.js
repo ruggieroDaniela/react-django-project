@@ -199,3 +199,27 @@ export const getCountryDetails = async countryCode => {
         return null;
     }
 }
+
+export const getStateName = async (stateCode) => {
+    try {
+
+        let response;
+
+        const country = stateCode.split("-")[0];
+        const state = stateCode.split("-")[1];
+
+        response = await axios.get(`https://api.countrystatecity.in/v1/countries/${country}/states/${state}`, {
+            headers: {
+                'X-CSCAPI-KEY': API_KEY
+            }
+        });
+        
+
+        return response.data.name;
+        
+    } catch (error) {
+        
+        console.error(error);
+        return "";
+    }
+};
