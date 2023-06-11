@@ -22,6 +22,7 @@ import { IniciarSesion } from './routes/IniciarSesion';
 import { BuscarPersonalDomestico } from './routes/BuscarPersonalDomestico';
 import { OfrecermeNiñera } from './routes/OfrecermeNiñera';
 import { SolicitarÑiñera } from './routes/SolicitarÑiñera';
+import { SolicitarCuidador } from './routes/SolicitarCuidador';
 
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
             <Route exact path="/login" element={<IniciarSesion />} />
             <Route exact path='/search-domestic-staff' element={<BuscarPersonalDomestico/>}/>
             <Route exact path='/request-babysitter' element={<SolicitarÑiñera/>}/>
+            <Route exact path='/request-carer' element={<SolicitarCuidador/>}/>
             <Route exact path='/offer-my-services/post-add/offer-me-as-babysitter' element={<OfrecermeNiñera/>}/>
           </Routes>
           <Footer/>
