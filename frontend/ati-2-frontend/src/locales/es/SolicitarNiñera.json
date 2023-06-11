@@ -74,6 +74,7 @@
               "enfermedades":"Indique la(s) enfermedad(es), si tienen tratamiento, y otros detalles de su interés"
             },
             {
+              "nombre":"Sobre la persona a cuidar",
               "mensaje":"Por favor, indique la disponibilidad para viajar de la niñera(o)",
               "pregunta":"¿La niñera o niñero debe estar dispuesta a viajar, para acompañar a la persona a cuidar?",
               "si":"si",

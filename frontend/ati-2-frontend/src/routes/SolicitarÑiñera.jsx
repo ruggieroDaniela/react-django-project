@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
 import { Multiform } from "../components/Multiform";
-import { FasesSolicitarNiñera, botonEnviar } from "../components/FasesSolicitarNiñera";
+import { FasesSolicitarNiñera, botonEnviar, useValidar } from "../components/FasesSolicitarNiñera";
 import "../styles/SolicitarNiñera.scss"
 
 export const SolicitarÑiñera = () => {
@@ -17,10 +17,11 @@ export const SolicitarÑiñera = () => {
         navigate(`/`);
     };
 
-    let stagesNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-    /*for (let i = 0; i < FasesSolicitarNiñera.length; i++) {
+    //let stagesNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+    let stagesNames = [];
+    for (let i = 0; i < FasesSolicitarNiñera.length; i++) {
         stagesNames.push(t('SolicitarNiñera.fases.'+i+'.nombre'));
-    }*/
+    }
 
     return (
         <div id="SolicitarNiñera">
