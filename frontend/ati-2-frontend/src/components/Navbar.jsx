@@ -70,30 +70,56 @@ const Navbar = () => {
                         <a href="/" className="link">{t('navbar.nuestros_servicios')}</a>
                     </li>
                     
-                    <NavbarDropdown
-                        label={{
-                            text: t('navbar.solicitar_personal'),
-                            arrow: "▾"
-                        }}
-                        items={[
-                            {
-                                label: {
-                                    text: t("navbar.publicar_anuncio"),
-                                    arrow: "▸"
+                    {isAuth ? 
+                            <NavbarDropdown
+                            label={{
+                                text: t('navbar.solicitar_personal'),
+                                arrow: "▾"
+                            }}
+                            items={[
+                                {
+                                    label: {
+                                        text: t("navbar.publicar_anuncio"),
+                                        arrow: "▸"
+                                    },
+                                    items:[
+                                        {label: t("navbar.solicitar.babysitter"), link:"#"},
+                                        {label: t("navbar.solicitar.cuidador"), link:"#"}
+                                    ]
                                 },
-                                items:[
-                                    {label: t("navbar.solicitar.babysitter"), link:"#"},
-                                    {label: t("navbar.solicitar.cuidador"), link:"#"}
-                                ]
-                            },
-                            {label: t("navbar.operaciones.ver_publicaciones"), link:"#"},
-                            {label: t("navbar.operaciones.buscar"), link:"#"},
-                            {label: t("navbar.operaciones.modificar"), link:"#"},
-                            {label: t("navbar.operaciones.eliminar"), link:"#"},
-                            {label: t("navbar.operaciones.habilitar"), link:"#"},
-                            {label: t("navbar.operaciones.deshabilitar"), link:"#"}
-                        ]}
-                    />
+                                {label: t("navbar.operaciones.ver_publicaciones"), link:"/show-posts?type=request"},
+                                {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
+                                {label: t("navbar.operaciones.modificar"), link:"#"},
+                                {label: t("navbar.operaciones.eliminar"), link:"#"},
+                                {label: t("navbar.operaciones.habilitar"), link:"#"},
+                                {label: t("navbar.operaciones.deshabilitar"), link:"#"}
+                            ]}
+                        />
+                    
+                        : 
+
+                        <NavbarDropdown
+                            label={{
+                                text: t('navbar.solicitar_personal'),
+                                arrow: "▾"
+                            }}
+                            items={[
+                                {
+                                    label: {
+                                        text: t("navbar.publicar_anuncio"),
+                                        arrow: "▸"
+                                    },
+                                    items:[
+                                        {label: t("navbar.solicitar.babysitter"), link:"#"},
+                                        {label: t("navbar.solicitar.cuidador"), link:"#"}
+                                    ]
+                                },
+                                {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
+                            ]}
+                        />
+                    }
+
+                    
 
                     <NavbarDropdown
                         label={{
@@ -140,7 +166,7 @@ const Navbar = () => {
                                 ]
                             },
                             {label: t("navbar.operaciones.ver_publicaciones"), link:"/show-posts?type=provide"},
-                            {label: t("navbar.operaciones.buscar"), link:"#"},
+                            {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
                             {label: t("navbar.operaciones.modificar"), link:"#"},
                             {label: t("navbar.operaciones.eliminar"), link:"#"},
                             {label: t("navbar.operaciones.habilitar"), link:"#"},
@@ -170,10 +196,17 @@ const Navbar = () => {
                     <li className="item">
                         <a href="/contact" className="link">{t("navbar.contactanos")}</a>
                     </li>
-
-                    <li className="item">
-                        <a href="#" className="link">{t("navbar.idiomas")}</a>
-                    </li>
+                    
+                    <NavbarDropdown
+                        label={{
+                            text: t("navbar.idiomas"),
+                            arrow: "▾"
+                        }}
+                        items={[
+                            {label: t("navbar.espagnol"), link:"#", lan:"es"},
+                            {label: t("navbar.ingles"), link:"#", lan:"en"}
+                        ]}
+                    /> 
                 </ul>
             </nav>
         </>

@@ -14,9 +14,21 @@ SCHEDULE_CHOICES = (
     ('OTRO', 'Otros a considerar')
 )
 
+DOCUMENTS_CHOICES = (
+    ('PASAPORTE', 'Documento de identidad o pasaporte'),
+    ('CURRICULUM', 'Currículum actualizado'),
+    ('TITULOS', 'Títulos o certificados'), 
+    ('REF_TRABAJO', 'Referencias comprobables de trabajo'), 
+    ('REF_FAMILIAR', 'Referencias familiares indicando nombre y apellido, teléfono local, Teléfono móvil, correo electrónico (opcional), y dirección'), 
+    ('CONST_RESIDENCIA', 'Constancia de residencia'), 
+    ('CONST_ANTECEDENTES', 'Constancia de no poseer antecedentes penales'), 
+    ('SALUD', 'Certificado de salud'), 
+    ('OTRO', 'Otro documento')
+)
 
 class ServicesSerializer(serializers.ModelSerializer):
     schedule = fields.MultipleChoiceField(choices=SCHEDULE_CHOICES)
+    documents = fields.MultipleChoiceField(choices=DOCUMENTS_CHOICES)
 
     def validate(self, data):
         if data['travel'] == True and not data.get('travel_decription'):

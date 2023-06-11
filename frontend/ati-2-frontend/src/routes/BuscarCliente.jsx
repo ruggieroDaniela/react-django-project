@@ -16,7 +16,7 @@ import { getAvailability, getBenefits, getCheckout, getHorario, getPayment, getP
 
 import "../styles/BuscarPersonalDomestico.scss"
 
-export const BuscarPersonalDomestico = () => {
+export const BuscarCliente = () => {
 
     // some necessary hooks
     const { t, i18n } = useTranslation();
@@ -65,7 +65,6 @@ export const BuscarPersonalDomestico = () => {
     useEffect(() => {
         const fetchCountries = async () => {
             try {
-                {console.log(regions[selectedContinent])}
                 let [names, values] = await ( selectedContinent == -1? getAllCountries(): getCountriesInRegion( regions[selectedContinent])  );
                 setCountries( [names, values] );
             } catch (error) {
@@ -80,7 +79,6 @@ export const BuscarPersonalDomestico = () => {
     useEffect(() => {
         const fetchStates = async () => {
             try {
-                
                 let [names, values] = await ( selectedCountries.length > 0? getStatesInCountry(selectedCountries): [[], []])
                 setStates( [names, values] );
             } catch (error) {
@@ -95,7 +93,6 @@ export const BuscarPersonalDomestico = () => {
     useEffect(() => {
         const fetchCities = async () => {
             try {
-                console.log(selectedStates);
                 let [names, values] = await ( selectedStates.length > 0? getCitiesInStates(selectedStates): [[], []])
                 setCities( [names, values] );
             } catch (error) {
@@ -162,7 +159,6 @@ export const BuscarPersonalDomestico = () => {
                             items={continentes}
                             setSelectedState={setSelectedContinent}
                         />
-                        
                         <FieldDropdownCheckbox
                             title={t('search.pais')}
                             placeholder={
@@ -206,7 +202,7 @@ export const BuscarPersonalDomestico = () => {
                         <div></div>
                         <button
                             onClick={ () => {
-                                let query = "?type=provide&";
+                                let query = "?type=request&";
 
                                 // if(selectedContinent != -1)
                                 //     query += `continent=${regions[selectedContinent]}&`
@@ -444,7 +440,7 @@ export const BuscarPersonalDomestico = () => {
                         <div></div>
                         <button
                             onClick={ () => {
-                                let query = "?type=provide&";
+                                let query = "?type=request&";
 
                                 // if(selectedContinent != -1)
                                 //     query += `continent=${regions[selectedContinent]}&`

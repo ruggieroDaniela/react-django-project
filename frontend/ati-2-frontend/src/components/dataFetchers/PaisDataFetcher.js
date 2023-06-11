@@ -86,6 +86,36 @@ export const getStatesInCountry = async (countries) => {
     }
 };
 
+export const getStatesInOneCountry = async (countries) => {
+    try {
+
+        let response;
+
+        const names = [];
+        const values = [];
+
+        const codes = countries.split(",");
+        for (let i = 1; i < codes.length; i++) {
+            response = await axios.get(`https://api.countrystatecity.in/v1/countries/${codes[i]}/states`, {
+                headers: {
+                    'X-CSCAPI-KEY': API_KEY
+                }
+            });
+
+            for (let j = 0; j < response.data.length; j++) {
+                names.push( response.data[j].name );
+                values.push( `${codes[i]}/${response.data[j].iso2}` );
+            }
+
+        }
+
+        return [names, values];
+        
+    } catch (error) {
+        console.error(error);
+    }
+};
+
 export const getCitiesInStates = async (stateCodes) => {
     try {
 
