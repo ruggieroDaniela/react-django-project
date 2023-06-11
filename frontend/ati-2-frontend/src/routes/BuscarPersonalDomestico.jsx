@@ -65,6 +65,7 @@ export const BuscarPersonalDomestico = () => {
     useEffect(() => {
         const fetchCountries = async () => {
             try {
+                {console.log(regions[selectedContinent])}
                 let [names, values] = await ( selectedContinent == -1? getAllCountries(): getCountriesInRegion( regions[selectedContinent])  );
                 setCountries( [names, values] );
             } catch (error) {
@@ -79,6 +80,7 @@ export const BuscarPersonalDomestico = () => {
     useEffect(() => {
         const fetchStates = async () => {
             try {
+                
                 let [names, values] = await ( selectedCountries.length > 0? getStatesInCountry(selectedCountries): [[], []])
                 setStates( [names, values] );
             } catch (error) {
@@ -93,6 +95,7 @@ export const BuscarPersonalDomestico = () => {
     useEffect(() => {
         const fetchCities = async () => {
             try {
+                console.log(selectedStates);
                 let [names, values] = await ( selectedStates.length > 0? getCitiesInStates(selectedStates): [[], []])
                 setCities( [names, values] );
             } catch (error) {
@@ -159,6 +162,7 @@ export const BuscarPersonalDomestico = () => {
                             items={continentes}
                             setSelectedState={setSelectedContinent}
                         />
+                        
                         <FieldDropdownCheckbox
                             title={t('search.pais')}
                             placeholder={
