@@ -256,7 +256,7 @@ export const VisualizarPublicacionCreada = () => {
                     <section className='container-01'>
                         <section className='informacion-basica'>
                             <section className='titulo-02'>
-                                <h1 >{t('publicacionCreada.consideraciones_del_servicio')}</h1>
+                                <h1 >{t('publicacionCreada.sugenrencia_trabajo')}</h1>
                             </section>                        
                             <section>
                                 <section className='container-span'>
@@ -272,7 +272,7 @@ export const VisualizarPublicacionCreada = () => {
                         </section>
                         <section className='informacion-basica'>
                             <section className='titulo-02'>
-                                <h1 >{t('publicacionCreada.consideraciones_del_servicio')}</h1>
+                                <h1 >{t('publicacionCreada.sugenrencia_trabajo')}</h1>
                             </section>      
                             <section>
                                 <section className='container-span'>
