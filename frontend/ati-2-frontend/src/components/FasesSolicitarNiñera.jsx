@@ -1444,33 +1444,42 @@ const  Fase6= () => {
 }
 
 const Fase7 = () => {
-  const { t, i18n } = useTranslation();
-  const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+    const { t, i18n } = useTranslation();
+    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
 
-  function selectDocuments (e){
-    setRequestDomesticFormState ( prev => {
-        const newState = {...prev};
-        newState.documents = e.target.value;
-        return newState;
-    });
+    function selectDocuments (e){
+         
+        setRequestDomesticFormState ( prev => {
+            const newState = {...prev};
 
-}
+            let pos = requestDomesticFormState.documents.indexOf(e.target.value);
 
-  return ( 
-      <div id="fase8">
+            if(e.target.checked){
+                if( pos == -1 ) newState.documents.push( e.target.value )
+            }else{
+                if( pos != -1 ) newState.documents.splice(pos,1) 
+            }
 
-      <div id="small">
-          <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.8.mensaje')}</span><br />
-      </div>
+            return newState;
+        });
 
-      <div id="titulo">
-          <h2 className="blue" >{t('SolicitarNiñera.fases.8.titulo')}</h2><br />
-      </div>
-      <div id="contenido">
-          <h2>{t('SolicitarNiñera.fases.8.posee-documentacion')}</h2>
+    }
 
-          <div id="form">
-              <div id="form-horizontal">
+    return ( 
+        <div id="fase8">
+
+        <div id="small">
+            <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.8.mensaje')}</span><br />
+        </div>
+
+        <div id="titulo">
+            <h2 className="blue" >{t('SolicitarNiñera.fases.8.titulo')}</h2><br />
+        </div>
+        <div id="contenido">
+            <h2>{t('SolicitarNiñera.fases.8.posee-documentacion')}</h2>
+
+            <div id="form">
+                <div id="form-horizontal">
                     <div>
                         <input  type="radio"
                                 id="c1"
@@ -1483,7 +1492,7 @@ const Fase7 = () => {
                                     })
                                 }}
                                 />
-                        <label htmlFor="c1">{t('OfrecermeNiñera.fases.8.si')}</label> 
+                        <label htmlFor="c1">{t('SolicitarNiñera.fases.8.si')}</label> 
                     </div>
 
                     <div id="segundo">
@@ -1498,52 +1507,51 @@ const Fase7 = () => {
                                     })
                                 }}
                         />
-                        <label htmlFor="c2">{t('OfrecermeNiñera.fases.8.no')}</label> 
+                        <label htmlFor="c2">{t('SolicitarNiñera.fases.8.no')}</label> 
                     </div>
-              </div>
-
-              {requestDomesticFormState.have_documentation &&
-              <div >
+                </div>
+                { requestDomesticFormState.have_documentation &&
+                <div >
                     <h2>{t('SolicitarNiñera.fases.8.documentos')}</h2>
                     <div id="selects">
                         <div>
-                            <input type="checkbox" id="d1" value="PASAPORTE" checked={requestDomesticFormState.documents == "PASAPORTE"} onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d1" value="PASAPORTE" checked={requestDomesticFormState.documents.includes("PASAPORTE")} onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d1">{t('SolicitarNiñera.fases.8.documentos-opciones.0')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="d2" value="CURRICULUM" checked={requestDomesticFormState.documents == "CURRICULUM"}  onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d2" value="CURRICULUM" checked={requestDomesticFormState.documents.includes("CURRICULUM")}  onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d2">{t('SolicitarNiñera.fases.8.documentos-opciones.1')}</label>
                         </div>    
                         <div>
-                            <input type="checkbox" id="d3" value="TITULOS" checked={requestDomesticFormState.documents == "TITULOS"} onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d3" value="TITULOS" checked={requestDomesticFormState.documents.includes("TITULOS")} onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d3">{t('SolicitarNiñera.fases.8.documentos-opciones.2')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="d4" value="REF_TRABAJO" checked={requestDomesticFormState.documents == "REF_TRABAJO"}  onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d4" value="REF_TRABAJO" checked={requestDomesticFormState.documents.includes("REF_TRABAJO")}  onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d4">{t('SolicitarNiñera.fases.8.documentos-opciones.3')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="d5" value="REF_FAMILIAR" checked={requestDomesticFormState.documents == "REF_FAMILIAR"}  onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d5" value="REF_FAMILIAR" checked={requestDomesticFormState.documents.includes("REF_FAMILIAR")}  onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d5">{t('SolicitarNiñera.fases.8.documentos-opciones.4')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="d6" value="CONST_RESIDENCIA" checked={requestDomesticFormState.documents == "CONST_RESIDENCIA"}  onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d6" value="CONST_RESIDENCIA" checked={requestDomesticFormState.documents.includes("CONST_RESIDENCIA")}  onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d6">{t('SolicitarNiñera.fases.8.documentos-opciones.5')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="d7" value="CONST_ANTECEDENTES" checked={requestDomesticFormState.documents == "CONST_ANTECEDENTES"} onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d7" value="CONST_ANTECEDENTES" checked={requestDomesticFormState.documents.includes("CONST_ANTECEDENTES")} onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d7">{t('SolicitarNiñera.fases.8.documentos-opciones.6')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="d8" value="SALUD" checked={requestDomesticFormState.documents == "SALUD"}  onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d8" value="SALUD" checked={requestDomesticFormState.documents.includes("SALUD")}  onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d8">{t('SolicitarNiñera.fases.8.documentos-opciones.7')}</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="d9" value="OTRO" checked={requestDomesticFormState.documents == "OTRO"}  onChange={ e => selectDocuments(e)}/>
+                            <input type="checkbox" id="d9" value="OTRO" checked={requestDomesticFormState.documents.includes("OTRO")}  onChange={ e => selectDocuments(e)}/>
                             <label htmlFor="d9">{t('SolicitarNiñera.fases.8.documentos-opciones.8')}</label>
                         </div>
                         
-                        { requestDomesticFormState.documents == "OTRO" &&
+                        { requestDomesticFormState.documents.includes("OTRO") &&
                         <div>
                             <p> Especifique</p> <input  type="text" 
                                                         onChange={ e => {
@@ -1560,12 +1568,12 @@ const Fase7 = () => {
                     </div>
                 </div>
                 }
-          </div>
-          
+            </div>
+            
 
-      </div>
-  </div>
-   );
+        </div>
+    </div>
+     );
 }
 
 const Fase8 = () => {
@@ -1644,7 +1652,7 @@ const Fase10 = () => {
    );
 }
 
-const Fase11 = () => {
+const Fase111 = () => {
     
     const { t, i18n } = useTranslation();
   const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
@@ -1665,7 +1673,7 @@ const Fase11 = () => {
     const [aux,setaux] = useState([]);
     const [aux2,setaux2] = useState([]);
     
-    /*useEffect(() => {
+    useEffect(() => {
         const getBanks = async () => {
           try {
             const response = await axios.get(`http://127.0.0.1:8000/banks/`);
@@ -1681,7 +1689,7 @@ const Fase11 = () => {
         };
       
         fetchBanks();
-      }, []);*/
+      }, []);
     
     
     useEffect(() =>{
@@ -1864,6 +1872,243 @@ const Fase11 = () => {
                                     <p><span>{t('OfrecermeNiñera.fases.13.banco')}</span>: {banks[0].name}</p>
                                     <p><span>{t('OfrecermeNiñera.fases.13.numero-cuenta')}</span>: {banks[0].account}</p>
                                     <p><span>{t('OfrecermeNiñera.fases.13.codigo-swift')}</span>: {banks[0].swift_code}</p>
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                </div>
+            </div>
+        </div>
+     );
+}
+
+const Fase11 = () => {
+    
+    const { t, i18n } = useTranslation();
+    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+
+    var val=[1,2,3];
+    
+    //radio buttons form
+    const [publication_time, setpublication_time] = useState(requestDomesticFormState.publication_time);
+
+
+    //this is for the dropdowns
+    const [banks, setBanks] = useState([]);
+    const [bank_countries,setbank_countries] = useState([]);
+    
+    const [selectedBanks, setSelectedBanks] = useState(-1);
+    const [selectedCountry, setSelectedCountry] = useState(-1) 
+    // aux haves the values for each bank of the selectedCountry
+    const [aux,setaux] = useState([]);
+    const [aux2,setaux2] = useState([]);
+
+    //bank selected
+    const [foundBank,setFoundBank] = useState(-1);
+    
+    useEffect(() => {
+        const getBanks = async () => {
+          try {
+            const response = await axios.get(`http://127.0.0.1:8000/banks/`);
+            return response.data; // Return the response data instead of the entire response
+          } catch (error) {
+            console.error(error);
+          }
+        };
+      
+        const fetchBanks = async () => {
+          const banksData = await getBanks(); // Await the getBanks() function to resolve the Promise
+          setBanks(banksData); // Update the banks state with the fetched data
+        };
+      
+        fetchBanks();
+      }, []);
+    
+    
+    useEffect(() =>{
+        let auxC = []
+
+        for (let i=0; i<banks.length; i++)
+            if(!bank_countries.includes(banks[i].country)) auxC.push(banks[i].country);
+
+        setbank_countries(auxC);
+        
+        
+        if (requestDomesticFormState.billing_country !== "" && bank_countries.length > 0) {
+            const foundCountry = bank_countries.find(
+              (country) => country === requestDomesticFormState.billing_country
+            );
+            if (foundCountry) {
+                setSelectedCountry(foundCountry);
+            }
+          }
+
+    },[banks]);
+
+    useEffect(()=>{
+        let aux1 = [];
+        let aux12 = [];
+        if (selectedCountry != -1){
+            for (let i=0; i<banks.length; i++){
+                if ( banks[i].country == bank_countries[selectedCountry] ) aux1.push(banks[i].name+ " - "+ banks[i].account +" - "+ banks[i].swift_code);
+                aux12.push(banks[i].name+ " - "+ banks[i].account +" - "+ banks[i].swift_code);
+            }
+            setaux(aux1);
+            setaux2(aux12);
+        }
+        
+
+        if( bank_countries != undefined && bank_countries.length > 0 ) 
+            setRequestDomesticFormState ( prev => {
+                const newState = {...prev};
+                newState.billing_country = bank_countries[selectedCountry];
+                return newState
+            });
+
+    },[selectedCountry]);
+
+    useEffect(() => {
+        if (aux2 !== undefined && aux2.length > 0 && aux !== undefined) {
+            
+        const foundBank1 = aux2.indexOf(aux[selectedBanks]);
+            
+          if (foundBank1 !== undefined && selectedBanks != -1) {
+            setFoundBank(foundBank1);
+            setRequestDomesticFormState((prev) => {
+              const newState = { ...prev };
+              newState.billing_bank = banks[foundBank1].id;
+              return newState;
+            });
+          }
+        }
+      }, [selectedBanks, aux2, aux]);
+
+    function changePlan(e){
+        
+        setRequestDomesticFormState( prev =>{
+            const newState = {...prev};
+            newState.publication_time = e.target.value;
+            newState.publication_plan = e.target.value;
+            return newState;
+        });
+    }
+
+    return ( 
+        <div id="fase13">
+            
+            
+            <div id="small">
+                <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.13.mensaje')}</span><br />
+            </div>
+
+            <div id="two-columns">
+                <div id="first-column">
+                    <h2 className="blue">{t('SolicitarNiñera.fases.13.plan-seleccionado')}</h2>
+                    <div id="form-vertical">
+                    
+                        <div>
+                            <input type="radio" value="1" id="c1" checked={requestDomesticFormState.publication_time == "1"} onChange={(e)=>{changePlan(e)}}/>
+                            <label htmlFor="c1">1 {t('SolicitarNiñera.fases.13.mes')}</label>
+                        </div>
+                        <div>
+                            <h3 className="red">10 USD</h3>
+                        </div>
+                        <div>
+                            <input type="radio" value="3" id="c2" checked={requestDomesticFormState.publication_time == "3"} onChange={(e)=>{changePlan(e)}}/>
+                            <label htmlFor="c2">3 {t('SolicitarNiñera.fases.13.meses')}</label>
+                        </div>
+                        
+                        <div>
+                            <h3 className="red">25 USD</h3>
+                        </div>    
+
+                        <div>
+                            <input type="radio" value="6" id="c3" checked={requestDomesticFormState.publication_time == "6"} onChange={(e)=>{changePlan(e)}}/>
+                            <label htmlFor="c3">6 {t('SolicitarNiñera.fases.13.meses')}</label>
+                        </div>    
+
+                        <div>
+                            <h3 className="red">50 USD</h3>
+                        </div>
+
+                        <div>
+                            <input type="radio" value="9" id="c4" checked={requestDomesticFormState.publication_time == "9"} onChange={(e)=>{changePlan(e)}}/>
+                            <label htmlFor="c4">9 {t('SolicitarNiñera.fases.13.meses')}</label>
+                        </div>    
+
+                        <div>
+                            <h3 className="red">70 USD</h3>
+                        </div>
+
+                        <div>
+                            <input type="radio" value="12" id="c5" checked={requestDomesticFormState.publication_time == "12"} onChange={(e)=>{changePlan(e)}}/>
+                            <label htmlFor="c5">12 {t('SolicitarNiñera.fases.13.meses')}</label>
+                        </div>    
+
+                        <div>
+                            <h3 className="red">90 USD</h3>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div id="second-column">
+                    <div className="blue-box">
+                        <p>{t('SolicitarNiñera.fases.13.forma-pago')}</p>
+                    </div>
+                    <p>{t('SolicitarNiñera.fases.13.forma-pago-descripcion')}</p>
+
+                    <div className="blue-box">
+                        <p>{t('SolicitarNiñera.fases.13.pais-titulo')}</p>
+                    </div>
+                    <p id="less-margin">{t('SolicitarNiñera.fases.13.pais-titulo-descripcion')}</p>
+
+                    
+                        <div className="dropdown-content">
+                            <FieldDropdown 
+                                title={t('SolicitarNiñera.fases.13.pais')}
+                                placeholder={t('SolicitarNiñera.fases.13.seleccione-pais')}
+                                items={bank_countries}
+                                setSelectedState={setSelectedCountry}
+                            />
+                        </div>
+                    
+                    
+                    <div className="blue-box">
+                        <p>{t('SolicitarNiñera.fases.13.cuentas')}</p>
+                    </div>
+                        <div className="dropdown-content" id="bancos">
+                        
+                            {selectedCountry != -1 &&
+                            
+                                <FieldDropdown    
+                                    title={t('SolicitarNiñera.fases.13.banco')}
+                                    placeholder={t('SolicitarNiñera.fases.13.seleccione-banco')}
+                                    items= {aux}
+                                    setSelectedState={setSelectedBanks}
+                                />
+                            }
+                        </div>
+                        
+                        { requestDomesticFormState.billing_bank != -1 && banks != undefined &&banks.length>0 && selectedBanks != -1 && selectedCountry != -1 && foundBank != -1 &&   
+                        <div id="bank-info">
+                            <div id="azul">
+                                {console.log(foundBank)}
+                                {banks[foundBank].name}
+                            </div>
+                            <div id="columns">
+                                <div>
+                                    <span className="red">{t('SolicitarNiñera.fases.13.formadepago')}</span>
+                                        <ul>
+                                            <li>{t('SolicitarNiñera.fases.13.deposito')}</li>
+                                            <li>{t('SolicitarNiñera.fases.13.transferencia-bancaria')}</li>
+                                        </ul>
+                                </div>
+                                <div>
+                                    <p><span>{t('SolicitarNiñera.fases.13.pais')}</span>: {banks[0].country}</p>
+                                    <p><span>{t('SolicitarNiñera.fases.13.banco')}</span>: {banks[0].name}</p>
+                                    <p><span>{t('SolicitarNiñera.fases.13.numero-cuenta')}</span>: {banks[0].account}</p>
+                                    <p><span>{t('SolicitarNiñera.fases.13.codigo-swift')}</span>: {banks[0].swift_code}</p>
                                 </div>
                             </div>
                         </div>

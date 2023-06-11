@@ -6,7 +6,7 @@ function RequestDomesticFormContextProvider({children}){
 
     const [requestDomesticFormState, setRequestDomesticFormState] = useState(
     {
-        user: 2, 
+        user: 34, 
         service: "CUI",
         gender: "IDC",
         age_required_from: 18,
@@ -33,20 +33,20 @@ function RequestDomesticFormContextProvider({children}){
         schedule_other: "",
         payment: "",
         payment_amount: "30.00",
-        currency: "",
+        currency: "USD",
         currency_other: "",
-        salary_offered: "",
+        salary_offered: "30.00",
         benefits: 1,
         benefits_description: "",
         availability: "FECHA",
         availability_date: "2023-05-27",
         have_documentation: false,
-        documents: "",
+        documents: ["PASAPORTE"],
         documents_other: "",
         publication_time: "1",
         publication_plan: "1",
         billing_country: "Venezuela",
-        billing_bank: 1,
+        billing_bank: 2,
     }
     );
 
