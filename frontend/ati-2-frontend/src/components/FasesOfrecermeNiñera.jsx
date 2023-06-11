@@ -343,7 +343,7 @@ const Fase1 = () => {
                 <div>
                     <select name="pais" 
                             id="pais" 
-                            onChange={ 
+                            onClick={ 
                                 e => {
                                     setSelectedCountry(e.target.value);
                                     setOfferDomesticFormState ( prev => {
@@ -663,8 +663,12 @@ const Fase5 = () => {
     useEffect(() => {
         setOfferDomesticFormState ( prev => {
             const newState = {... prev}
-            selectedCurrency ==2 ? newState.currency =  "OTRA" : newState.currency =  currency[selectedCurrency]
-            
+            if(selectedCurrency ==2 )
+                 newState.currency =  "OTRA" 
+            else{
+                newState.currency =  currency[selectedCurrency]
+                newState.currency_other =  null; 
+            }
             return newState;
         });
     }, [selectedCurrency]);
@@ -1018,6 +1022,10 @@ const Fase5 = () => {
                                                 setOfferDomesticFormState( prev => {
                                                     const newState = {...prev}
                                                     newState.payment = "CONVENIR";
+                                                    newState.payment_amount = null;
+                                                    newState.currency = null;
+                                                    newState.currency_other = null;
+                                                    newState.salary_offered = null;
                                                     return newState
                                                 });
                                             } 
@@ -1207,6 +1215,7 @@ const  Fase6= () => {
                                         setOfferDomesticFormState( prev => {
                                             const newState = {...prev};
                                             newState.availability = "CONVENIR";
+                                            newState.availability_date = null;
                                             return newState;
                                         });
 
@@ -1994,15 +2003,7 @@ const botonEnviar = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
     
-    setOfferDomesticFormState( prev => {
-        const newState = {...prev};
-        if (offerDomesticFormState.availability == "") newState.availability = null;
-        if (offerDomesticFormState.payment == "CONVENIR"){ 
-            newState.currency = null
-            newState.salary = null
-        }
-        return newState;
-    });
+ 
 
     const postData = {...offerDomesticFormState};
     //console.log(JSON.stringify(postData));

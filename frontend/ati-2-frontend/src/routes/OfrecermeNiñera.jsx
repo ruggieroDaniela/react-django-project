@@ -83,7 +83,7 @@ export const OfrecermeNiñera = () => {
             payment: "",
             payment_amount: "0.0",
             currency: -1,
-            currency_other: "",
+            currency_other: null,
             salary_offered: -1,
             benefits: 0,
             benefits_description: "",
