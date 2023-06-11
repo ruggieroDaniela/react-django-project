@@ -879,6 +879,7 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
         'country': ['exact', 'in'], 
         'state': ['exact', 'in'], 
         'service': ['exact', 'in'], 
+        'user': ['exact'], 
 
         # Búsqueda personalizada 
         'workday' : ['exact'], 

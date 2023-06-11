@@ -74,7 +74,7 @@ POST http://localhost:8000/token-auth/
 content-type: application/json
 
 {
-    "username": "ati2.proyecto+carlos99@gmail.com",
+    "username": "ati2.proyecto+andrea65@gmail.com",
     "password": "12345"
 }
 
@@ -120,13 +120,13 @@ GET http://127.0.0.1:8000/banks/
 
 ### ----  A) Ofrecer mis servicios como personal domestico ----
 POST http://127.0.0.1:8000/api-services/provideService/post_ad/
-Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
+Authorization: Token 4e6ba7f9907e31bd1a0fdd3d209150b6c9cac595
 content-type: application/json
 
 {
-    "user": 11, 
+    "user": 12, 
     "service": "NIN", 
-    "age": 22,
+    "age": 42,
     "have_children": false,
     "education_level": "PRI",
     "continent": "Suramerica", 
@@ -140,7 +140,7 @@ content-type: application/json
     "activities": "Preparación de alimentos, Cambio de pañal, Jugar con los niños, Limpieza del hogar, Otros",
     "workday": "QUINCENAL",
     "workday_other": "",
-    "schedule": "LUN",
+    "schedule": ["LUN"],
     "schedule_other": "",
     "payment": "MONTO",
     "payment_amount": 70.00,
@@ -163,105 +163,6 @@ content-type: application/json
     "publication_time": "1",
     "publication_plan": "1",
     "billing_country": "Venezuela",
-<<<<<<< HEAD
-    "billing_bank": "Banesco"
-}
-
-### 
-POST http://127.0.0.1:8000/api-services/provideService/post_ad/
-Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
-content-type: application/json
-
-{
-    "user": 11, 
-    "service": "NIN", 
-    "age": 29,
-    "have_children": false,
-    "education_level": "PRI",
-    "continent": "Suramerica", 
-    "country": "CO",
-    "state": "Barranquilla",
-    "city": "Santa Rosa",
-    "zone": "La Pastora",
-    "description": "Persona con 8 años en experiencia en el cuidado de adultos mayores",
-    "travel": false,
-    "travel_decription": "",
-    "activities": "Preparación de alimentos, Jugar con los niños, Limpieza del hogar",
-    "workday": "INTERDIARIO",
-    "workday_other": "",
-    "schedule": ["LUN", "MAR"], 
-    "schedule_other": "",
-    "payment": "MONTO",
-    "payment_amount": 85.00,
-    "currency": "USD",
-    "currency_other": "",
-    "salary_offered": "HORA",
-    "benefits": 1,
-    "benefits_description": "Seguro social obligatorio, Póliza de HCM y cobertura a mis familiares, Ayuda para útiles escolares, Otros",
-    "availability": "FECHA",
-    "availability_date": "2023-06-12",
-    "origin": "SI",
-    "origin_continent": "Norteamerica",
-    "origin_country": "Estados Unidos",
-    "origin_state": "California",
-    "origin_city": "San Jose",
-    "client_type": "NO",
-    "have_documentation": true,
-    "documents": "CONST_RESIDENCIA",
-    "documents_other": "",
-    "publication_time": "1",
-    "publication_plan": "1",
-    "billing_country": "Venezuela",
-    "billing_bank": "Banesco"
-}
-
-### 
-POST http://127.0.0.1:8000/api-services/provideService/post_ad/
-Authorization: Token 4e6ba7f9907e31bd1a0fdd3d209150b6c9cac595
-content-type: application/json
-
-{
-    "user": 11, 
-    "service": "CUI", 
-    "age": 31,
-    "have_children": false,
-    "education_level": "PRI",
-    "continent": "Suramerica", 
-    "country": "Colombia",
-    "state": "Barranquilla",
-    "city": "Santa Rosa",
-    "zone": "La Pastora",
-    "description": "Persona con 3 años en experiencia en el cuidado de niños",
-    "travel": false,
-    "travel_decription": "",
-    "activities": "Preparación de alimentos, Control de medicamentos, Baño e higiene, Cambio de pañal",
-    "workday": "INTERDIARIO",
-    "workday_other": "",
-    "schedule": "LUN",
-    "schedule_other": "",
-    "payment": "MONTO",
-    "payment_amount": 115.00,
-    "currency": "USD",
-    "currency_other": "",
-    "salary_offered": "HORA",
-    "benefits": 1,
-    "benefits_description": "Seguro social obligatorio, Póliza de HCM y cobertura a mis familiares, Ayuda para útiles escolares, Otros",
-    "availability": "FECHA",
-    "availability_date": "2023-06-22",
-    "origin": "SI",
-    "origin_continent": "Norteamerica",
-    "origin_country": "Estados Unidos",
-    "origin_state": "California",
-    "origin_city": "San Jose",
-    "client_type": "NO",
-    "have_documentation": true,
-    "documents": "CONST_RESIDENCIA",
-    "documents_other": "",
-    "publication_time": "1",
-    "publication_plan": "1",
-    "billing_country": "Venezuela",
-=======
->>>>>>> f205f3553136d39bd4cbfc1c830a44c711f832bb
     "billing_bank": 2
 }
 
