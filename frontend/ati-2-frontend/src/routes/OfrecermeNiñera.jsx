@@ -154,13 +154,13 @@ export const OfrecermeNiñera = () => {
                             </div>
                             <div className="second-column">
                                 
-                                <h4>{userData.cellphone != null  ? userData.cellphone :"+58-412-703-88-88"}</h4>
+                                <h4>{userData.cellphone != null  ? userData.cellphone :t('OfrecermeNiñera.no-tiene')}</h4>
                             </div>
                             <div className="first-column">
                                 <h4>{t('OfrecermeNiñera.telefono_fijo')}</h4>
                             </div>
                             <div className="second-column">
-                                <h4>{userData.telephone != null  ? userData.telephone :"+58-212-235-78-88"}</h4>
+                                <h4>{userData.telephone != null  ? userData.telephone :t('OfrecermeNiñera.no-tiene')}</h4>
                             </div>
                             <div className="first-column">
                                 <h4>{t('OfrecermeNiñera.correo')}</h4>
