@@ -40,8 +40,8 @@
         "CONVENIR"
     ],
     "remuneracion":[
-        "agree",
-        "range"
+        "CONVENIR",
+        "MONTO"
     ],
     "ordenar_por": [
         "payment-asc",
