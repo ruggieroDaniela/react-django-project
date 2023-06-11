@@ -14,9 +14,21 @@ SCHEDULE_CHOICES = (
     ('OTRO', 'Otros a considerar')
 )
 
+DOCUMENTS_CHOICES = (
+    ('PASAPORTE', 'Documento de identidad o pasaporte'),
+    ('CURRICULUM', 'Currículum actualizado'),
+    ('TITULOS', 'Títulos o certificados'), 
+    ('REF_TRABAJO', 'Referencias comprobables de trabajo'), 
+    ('REF_FAMILIAR', 'Referencias familiares indicando nombre y apellido, teléfono local, Teléfono móvil, correo electrónico (opcional), y dirección'), 
+    ('CONST_RESIDENCIA', 'Constancia de residencia'), 
+    ('CONST_ANTECEDENTES', 'Constancia de no poseer antecedentes penales'), 
+    ('SALUD', 'Certificado de salud'), 
+    ('OTRO', 'Otro documento')
+)
 
 class ServicesSerializer(serializers.ModelSerializer):
     schedule = fields.MultipleChoiceField(choices=SCHEDULE_CHOICES)
+    documents = fields.MultipleChoiceField(choices=DOCUMENTS_CHOICES)
 
     def validate(self, data):
         if data['travel'] == True and not data.get('travel_decription'):
@@ -31,8 +43,19 @@ class ServicesSerializer(serializers.ModelSerializer):
         if data['payment'] == 'MONTO' and not data.get('payment_amount'):
             raise serializers.ValidationError("Por favor, especifique el monto deseado")
         
-        if data['currency'] == 'OTRA' and not data.get('currency_other'):
+        if data['payment'] == 'MONTO' and not data.get('currency'):
             raise serializers.ValidationError("Por favor, especifique la moneda")
+        
+        if data['payment'] == 'MONTO' and not data.get('salary_offered'):
+            raise serializers.ValidationError("Por favor, especifique el salario")
+        
+        if data['payment'] == 'CONVENIR' and ( data.get('currency') or data.get('currency_other') or data.get('salary_offered') or data.get('payment_amount') ) : 
+            raise serializers.ValidationError("Error, no debe especificar el salario deseado")
+
+ 
+
+        if data['currency'] == 'OTRA' and not data.get('currency_other'):
+            raise serializers.ValidationError("Por favor, especifique otra moneda")
         
         if data['benefits'] == 1 and not data.get('benefits_description'):
             raise serializers.ValidationError("Por favor, especifique otro beneficio laboral")

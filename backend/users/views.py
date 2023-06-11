@@ -37,7 +37,7 @@ def get_user_data(data):
     return user
 
 def send_password_email(user):
-    redirectUrl="http://3.137.150.119:5173/reset-password"
+    redirectUrl="http://3.137.150.119:5173/reset-password/{}".format(user.id)
     receiver = user.email
     message ='<b>Su usuario es:</b> {}.'.format(user.email) + \
             '<br>' + \
@@ -121,6 +121,16 @@ class UserViewSet(viewsets.ModelViewSet):
                 return Response({'name': user.first_name, 'last_name': user.last_name }, status=status.HTTP_200_OK)
         except:
              return Response({'error': 'This id does not match any user' }, status=status.HTTP_400_BAD_REQUEST)
+         
+    @action(detail=False, methods=['post'])
+    def get_email(self, request):
+        id = request.data['id']
+        try: 
+            user = User.objects.get(id=id)
+            return Response({'email': user.email }, status=status.HTTP_200_OK)
+        except:
+             return Response({'error': 'This id does not match any user' }, status=status.HTTP_400_BAD_REQUEST)
+         
         
     @action(detail=True, methods=['post'])
     def change_password(self, request, pk=None):
@@ -157,14 +167,22 @@ class CustomAuthToken(ObtainAuthToken):
 class ForgotPasswordView(APIView):
 
     def post(self, request):
-        dni = request.data.get('dni')
-        email = request.data.get('email')
-
-        try:
-            user = User.objects.get(email=email, dni=dni)
-
-            send_password_email(user)
-
-            return Response({'message': 'Acabamos de enviar tu usuario y un link para restablecer tu contraseña, al correo: {}'.format(user.email)}, status=status.HTTP_200_OK)
-        except User.DoesNotExist:
-            return Response({'error': 'No se encontró un usuario con la identificación y correo electrónico proporcionados.'}, status=status.HTTP_404_NOT_FOUND)
+        try: 
+            dni = request.data['dni']
+            try:
+                user = User.objects.get(dni=dni)
+                send_password_email(user)
+                return Response({'email': user.email}, status=status.HTTP_200_OK)
+            except User.DoesNotExist:
+                return Response({'error': 'No se encontró un usuario con la identificación proporcionada'}, status=status.HTTP_404_NOT_FOUND)
+        except:
+            try:
+                email = request.data['email']
+                try:
+                    user = User.objects.get(email=email)
+                    send_password_email(user)
+                    return Response({'email': user.email}, status=status.HTTP_200_OK)
+                except User.DoesNotExist:
+                    return Response({'error': 'No se encontró un usuario con el correo electrónico proporcionado'}, status=status.HTTP_404_NOT_FOUND)
+            except:
+                return Response({'error': 'No se dió credenciales.'}, status=status.HTTP_404_NOT_FOUND)

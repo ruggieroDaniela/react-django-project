@@ -1,0 +1,60 @@
+{
+    "lista_publicaciones": {
+        "titulo": "Publicaciones realizadas",
+        "ver_como": "Ver listado como",
+        "tipo_lista": "Tipo lista",
+        "tipo_foto": "Tipo foto",
+        "seleccione": "Haga clic en los filtros especificados a continuación, si desea filtrar los resultados obtenidos, o seleccione una o más casillas para ver más detalles acerca de cada filtro ",
+        "tipo_persona": "Tipo de personal doméstico",
+        "tipos_personal": [
+            "Niñera(o)",
+            "Cuidador(a) ocupacional",
+            "Enfermera(o)",
+            "Personal Doméstico",
+            "Cuidador de Inmuebles"
+        ],
+        "ordenar": "Ordenar por",
+        "ordenar_por": [
+            "Salario",
+            "Disponibilidad",
+            "Grado de Instrucción",
+            "Disponibilidad para viajar"
+        ],
+        "pagina": "Página"
+    },
+    "publicaciones_vista_lista": {
+        "CUI": "Cuidador(a) ocupacional",
+        "NIN": "Niñera(o)",
+        "ENF": "Enfermera(o)",
+        "estado": "Estado",
+        "ciudad": "Ciudad",
+        "años": "años",
+        "publicado": "Publicado el  ",
+        "ver_detalles": "Ver detalles",
+        "contactar": "Contactar",
+        "PRI": "Primaria",
+        "UNI": "Universitaria",
+        "ver_informacion": "Ver información completa",
+        "grado_instruccion": "Grado de Instrucción",
+        "perfil_laboral": "Descripción de mi perfil laboral",
+        "funciones_previas": "Funciones que he desempeñado",
+        "documentacion": "Documentación que puedo enviar",
+        "condiciones": "Condiciones de trabajo",
+        "salario_deseado": "Salario esperado",
+        "salario": "Salario",
+        "beneficios": " ¿Solicito otros beneficios? ",
+        "disponibilidad": "Disponibilidad para comenzar a trabajar",
+        "viajar": "Disponibilidad para viajar",
+        "horario": "Horario de trabajo",
+        "salidas": "Salidas que prefiero",
+        "clientes": "Clientes con los que quiero trabajar",
+        "CONST_RESIDENCIA": "Constancia de Residencia",
+        "Cocinar": "Cocinar",
+        "tipo_cliente":{
+            "NO": "Me es indiferente si es persona natural o empresa",
+            "EMP": "Empresa",
+            "NAT": "Natural"
+        }
+
+    }
+}

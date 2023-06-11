@@ -136,9 +136,9 @@ class Services(models.Model):
     # Salary
     payment = models.CharField(blank=False, max_length=8, choices=PAYMENT_CHOICES)
     payment_amount = models.FloatField(null=True, blank=True)
-    currency = models.CharField(blank=False, max_length=4, choices=CURRENCY_CHOICES)
-    currency_other = models.TextField(blank=True)
-    salary_offered = models.CharField(blank=False, max_length=9, choices=SALARY_OFFERED_CHOICES)
+    currency = models.CharField(blank=True, null=True, max_length=4, choices=CURRENCY_CHOICES)
+    currency_other = models.TextField(blank=True, null=True)
+    salary_offered = models.CharField(blank=True, null=True,  max_length=9, choices=SALARY_OFFERED_CHOICES)
 
     benefits = models.IntegerField(blank=False)
     benefits_description = models.TextField(blank=True)
@@ -149,7 +149,7 @@ class Services(models.Model):
 
     # Documents 
     have_documentation = models.BooleanField(blank=False)
-    documents = models.CharField(blank=True, max_length=18, choices=DOCUMENTS_CHOICES)
+    documents = MultiSelectField(blank=True, max_length=18, choices=DOCUMENTS_CHOICES)
     documents_other = models.TextField(blank=True)
 
     # Billing information

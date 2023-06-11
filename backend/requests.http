@@ -1,33 +1,62 @@
+### ---- USUARIOS ----
 POST http://127.0.0.1:8000/users/
 content-type: application/json
 
 {
-    "email": "admin@gmail.com",
-    "password": "12345",
-    "found_app_by": "Twitter",
-    "type_user": "natural",
-    "country": "Alemania",
-    "first_name": "Admin",
-    "last_name": "Ati-2",
-    "dni": "V-126125",
-    "contact_email": "admin@gmail.com",
-    "language": "es",
-    "want_inform": false,
-    "bank_origin": "Banesco",
-    "bank_country": "Venezuela"
-
+    "bank_country" : "",
+    "bank_origin" : "xxxxxx",
+    "cellphone" : "11111",
+    "client_code" : "388455139",
+    "contact_email" : "xxxx@gmail.com",
+    "country" : "",
+    "dni" : "xxxxxxxx",
+    "email" : "ati3@gmail.com",
+    "email_to_inform" : "x",
+    "facebook_to_inform" : "",
+    "first_name" : "xxxxxxx",
+    "found_app_by" : {"website": true, "friends": false},
+    "frecuency_to_inform" : "mensual",
+    "language" : "es",
+    "last_name" : "xxxx",
+    "other_to_inform" : "",
+    "password" : "xxxxxxxxxxx",
+    "phone_to_inform" : "",
+    "services_interest" : {"available_personal": true, "professional_advice": false},
+    "social_media_to_inform" : {"Facebook": false, "Twitter": false},
+    "type_user" : "natural",
+    "want_inform" : true
 }
 ###
 POST http://127.0.0.1:8000/users/
 content-type: application/json
 
 {
-    "email": "admin-company@gmail.com",
+    "email": "andrea65@gmail.com",
+    "password": "12345",
+    "found_app_by": "Facebook",
+    "type_user": "natural",
+    "country": "Polonia",
+    "first_name": "Andrea",
+    "last_name": "Lopez",
+    "dni": "FS4240062",
+    "contact_email": "andrea65@gmail.com",
+    "language": "en",
+    "want_inform": false,
+    "bank_origin": "Santander",
+    "bank_country": "Polonia"
+}
+
+###
+POST http://127.0.0.1:8000/users/
+content-type: application/json
+
+{
+    "email": "vargas@gmail.com",
     "password": "12345",
     "found_app_by": "Twitter",
     "type_user": "enterprise",
     "country": "Venezuela",
-    "companty_name": "Compañia Admin",
+    "companty_name": "Babysits",
     "rif": "F126125",
     "city": "Caracas",
     "language": "es",
@@ -40,95 +69,88 @@ content-type: application/json
     }
 }
 
-###
-GET http://127.0.0.1:8000/users/1
-Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
-
-###
-GET http://127.0.0.1:8000/users/2
-Authorization: Token c6590074c0cd1d6a141b2e59475968ee9ea5efab
-
-### Formato para las request a AUTH-TOKEN
+### ---- FORMATO PARA LAS REQUEST A AUTH-TOKEN ---- 
 POST http://localhost:8000/token-auth/
 content-type: application/json
 
 {
-    "username": "ati2.proyecto+carlos99@gmail.com",
-    "password": "12345"
+    "username": "ati2.proyecto+carlos95@gmail.com",
+    "password": "12345678"
 }
 
-###
+### ---- FORMATO PARA LAS REQUEST A UNIQUE_EMAIL ---- 
 POST http://127.0.0.1:8000/users/unique_email/
 content-type: application/json
 
 {
-    "email": "admin-company2@gmail.com"
+    "email": "carlos99@gmail.com"
 }
 
-###
+### ---- FORMATO PARA LAS REQUEST A GET_NAME ---- 
 POST http://127.0.0.1:8000/users/get_name/
 content-type: application/json
 
 {
     "id": 6
 }
+###
 
-### BANKS
+POST http://127.0.0.1:8000/users/get_email/
+content-type: application/json
+
+{
+    "id": 11
+}
+
+
+### ---- BANKS ----
 POST http://127.0.0.1:8000/banks/
 content-type: application/json
 
 {
     "name": "Banesco Panamá",
     "account" : "201800948693",
-    "swift_code" : "BANSPAPA"
+    "swift_code" : "BANSPAPA",
+    "country": "Panamá"
 }
 
 ###
 GET http://127.0.0.1:8000/banks/
 
-###
 
-POST http://localhost:8000/token-auth/
-content-type: application/json
-
-{
-    "username": "admin-company@gmail.com",
-    "password": "12345"
-}
-
-### A - Ofrecer mis servicios como personal domestico
+### ----  A) Ofrecer mis servicios como personal domestico ----
 POST http://127.0.0.1:8000/api-services/provideService/post_ad/
-Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
+Authorization: "Token 840c5d2b1393d0ac78010861ff7473fac4fdc7eb"
 content-type: application/json
 
 {
-    "user": 11, 
+    "user": 37, 
     "service": "NIN", 
-    "age": 29,
+    "age": 42,
     "have_children": false,
     "education_level": "PRI",
     "continent": "Suramerica", 
-    "country": "Colombia",
-    "state": "Barranquilla",
-    "city": "Santa Rosa",
+    "country": "VE",
+    "state": "Distrito Capital",
+    "city": "Caracas",
     "zone": "La Pastora",
     "description": "Persona con 5 años de experiencia en el cuidado de niños entre 0 y 11 años, en la ayuda de sus tareas, prepararles la comida, jugar con ellos. Tengo referencias laborales comprobables",
     "travel": false,
     "travel_decription": "",
-    "activities": "Preparación de alimentos, Control de medicamentos, Baño e  higiene, Cambio de pañal, Jugar con los niños, Limpieza del hogar, Otros",
+    "activities": "Preparación de alimentos, Cambio de pañal, Jugar con los niños, Limpieza del hogar, Otros",
     "workday": "QUINCENAL",
     "workday_other": "",
-    "schedule": ["LUN", "MAR"], 
+    "schedule": ["LUN"],
     "schedule_other": "",
-    "payment": "MONTO",
-    "payment_amount": 70.00,
-    "currency": "USD",
-    "currency_other": "",
-    "salary_offered": "HORA",
+    "payment": "CONVENIR",
+    "payment_amount": null,
+    "currency": null,
+    "currency_other": null,
+    "salary_offered": null,
     "benefits": 1,
     "benefits_description": "Seguro social obligatorio, Póliza de HCM y cobertura a mis familiares, Ayuda para útiles escolares, Otros",
-    "availability": "FECHA",
-    "availability_date": "2023-10-02",
+    "availability": "CONVENIR",
+    "availability_date": null,
     "origin": "SI",
     "origin_continent": "Norteamerica",
     "origin_country": "Estados Unidos",
@@ -136,12 +158,12 @@ content-type: application/json
     "origin_city": "San Jose",
     "client_type": "NO",
     "have_documentation": true,
-    "documents": "CONST_RESIDENCIA",
+    "documents": ["CONST_RESIDENCIA", "TITULOS"],
     "documents_other": "",
     "publication_time": "1",
     "publication_plan": "1",
     "billing_country": "Venezuela",
-    "billing_bank": 1
+    "billing_bank": 2
 }
 
 ### B - Solicitar personal domestico
@@ -158,7 +180,7 @@ content-type: application/json
     "children": "IDC",
     "education_level": "PRI",
     "continent": "Suramerica", 
-    "country": "Venezuela",
+    "country": "VE",
     "state": "Carabobo",
     "city": "San Diego",
     "zone": "El Calabozo",
@@ -185,12 +207,62 @@ content-type: application/json
     "availability": "FECHA",
     "availability_date": "2023-05-27",
     "have_documentation": true,
-    "documents": "REF_FAMILIAR",
+    "documents": ["REF_FAMILIAR", "PASAPORTE"],
     "documents_other": "",
     "publication_time": "1",
     "publication_plan": "3",
     "billing_country": "Venezuela",
-    "billing_bank": 1
+    "billing_bank": 2
+}
+
+###
+
+POST http://127.0.0.1:8000/api-services/requestService/post_ad/
+Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
+content-type: application/json
+
+{
+    "user": 11, 
+    "service": "NIN",
+    "gender": "IDC",
+    "age_required_from": 10,
+    "age_required_to": 12,
+    "children": "IDC",
+    "education_level": "PRI",
+    "continent": "Suramerica", 
+    "country": "VE",
+    "state": "Carabobo",
+    "city": "San Diego",
+    "zone": "El Calabozo",
+    "number_tco": 2,
+    "age_tco": "25 y 31",
+    "gender_tco": "Femenino",
+    "disabilities_tco": true,
+    "disabilities_tco_decrip": "Un niño no puede caminar",
+    "diseases_tco_descrip": "Todos los días una persona debe venir a realizarse sus terapias para que poco a poco vaya recuperando la movilidad", 
+    "travel": true,
+    "travel_decription": "La persona debe estar dispuesta a viajar 1 vez al mes al exterior",
+    "activities": "Limpiar",
+    "workday": "SEMANAL",
+    "workday_other": "",
+    "schedule": ["LUN", "MIE"], 
+    "schedule_other": "",
+    "payment": "MONTO",
+    "payment_amount": 50.00,
+    "currency": "USD",
+    "currency_other": "",
+    "salary_offered": "HORA",
+    "benefits": 1,
+    "benefits_description": "Seguro social obligatorio, Póliza de HCM y cobertura a mis familiares, Ayuda para útiles escolares,  Otros",
+    "availability": "FECHA",
+    "availability_date": "2023-08-02",
+    "have_documentation": true,
+    "documents": ["REF_FAMILIAR", "PASAPORTE"],
+    "documents_other": "",
+    "publication_time": "1",
+    "publication_plan": "3",
+    "billing_country": "Venezuela",
+    "billing_bank": 2
 }
 
 ### C - Buscar personal doméstico 
@@ -255,7 +327,7 @@ content-type: application/json
     "have_children": false,
     "education_level": "PRI",
     "continent": "Suramerica", 
-    "country": "Colombia",
+    "country": "CO",
     "state": "Barranquilla",
     "city": "Santa Rosa",
     "zone": "",
@@ -305,7 +377,7 @@ content-type: application/json
     "children": "IDC",
     "education_level": "PRI",
     "continent": "Suramerica", 
-    "country": "Venezuela",
+    "country": "VE",
     "state": "Carabobo",
     "city": "San Diego de La Vega",
     "zone": "",

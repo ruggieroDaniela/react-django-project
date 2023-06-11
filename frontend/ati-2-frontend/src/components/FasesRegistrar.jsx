@@ -1,16 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { RegisterFormContext } from "../context/RegisterFormContext";
-
+import AuthContext from '../context/AuthContext';
 import { useTranslation } from 'react-i18next';
+import { getAllCountries, getCitiesInCountry, getCountryDetails} from "../components/dataFetchers/PaisDataFetcher";
+import ErrorMessage from "./ErrorMessage";
+import axios from 'axios';
+import validator from "validator";
+import { useNavigate } from 'react-router-dom';
 
 import "../styles/Registrar.scss"
 
 // Fase 0: de donde nos conoces?
 const Fase0 = () =>
     {
-
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
+        const selectionEmpty = registerFormState.errors[0].option_required
+        const specifyEmpty = registerFormState.errors[0].other_empty
+        const socialRequired = registerFormState.errors[0].social_required  
+        const otherRequired = registerFormState.errors[0].other_required
 
         return(
         <>
@@ -18,6 +26,11 @@ const Fase0 = () =>
                 <div className="descripcion">
                     {t('registrar.fases.0.descripcion')}
                 </div>
+
+                {selectionEmpty && <ErrorMessage message={t('registrar.errores.0.requerido')}/> }
+                {specifyEmpty && <ErrorMessage message={t('registrar.errores.0.especificar_vacio')}/>  }
+                {socialRequired && <ErrorMessage message={t('registrar.errores.0.social_requerida')}/>  }
+                {otherRequired && <ErrorMessage message={t('registrar.errores.0.otro_requerido')}/> }
 
                 <div className="metodos-container">
 
@@ -120,7 +133,7 @@ const Fase0 = () =>
                                 {t('especifique')+": "}
                                 <input
                                     type="text"
-                                    value={registerFormState.phase[0].social_network_other}
+                                    value={registerFormState.phase[0].social_network_other_spec}
                                     onChange={ e => {
                                         setRegisterFormState( prev => {
                                             const newState = {... prev};
@@ -274,9 +287,61 @@ const Fase1 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
+        const countries = registerFormState.countries;
+        const [cities, setCities] = useState(registerFormState.cities);
+        const [countryCode, setCountryCode] = useState(registerFormState.phase[1].empresa.codigo_pais);
+
+        const nameRequired = registerFormState.errors[1].name_required 
+        const nameInvalid = registerFormState.errors[1].name_invalid
+        const lastNameRequired = registerFormState.errors[1].last_name_required
+        const lastNameInvalid = registerFormState.errors[1].last_name_invalid
+        const idRequired = registerFormState.errors[1].id_required
+        const idInvalid = registerFormState.errors[1].id_invalid
+        const emailRequired = registerFormState.errors[1].email_required
+        const emailInvalid = registerFormState.errors[1].email_invalid
+
+        const business_required = registerFormState.errors[1].business_required
+        const business_invalid = registerFormState.errors[1].business_invalid
+        const rif_required = registerFormState.errors[1].rif_required
+        const rif_invalid = registerFormState.errors[1].rif_invalid
+        const address_required = registerFormState.errors[1].address_required
+        const rep_name_required = registerFormState.errors[1].rep_name_required
+        const rep_name_invalid = registerFormState.errors[1].rep_name_invalid
+        const rep_email_required = registerFormState.errors[1].rep_email_required
+        const rep_email_invalid = registerFormState.errors[1].rep_email_invalid
+
+        const telefonoRequired = registerFormState.errors[1].telefono_required
+        const telefonoInvalid = registerFormState.errors[1].telefono_invalid
+
+        const [countryDetails, setCountryDetails] = useState({phonecode: "", flag: ""});
+
+        useEffect(() => {
+            const fetchCountryDetails = async () => {
+                if(countryCode){
+                    let resp = {};
+                    [resp.phonecode, resp.flag] = await getCountryDetails(countryCode);
+                    setCountryDetails(() => resp);
+                    
+                    let [names, values] = await getCitiesInCountry(countryCode);
+                    names  = [...new Set(names)];
+                    setCities(names);
+
+
+                    setRegisterFormState( prev => {
+                        const newState = {... prev};
+                        newState.phase[1] = {... prev.phase[1]};
+                        newState.phase[1].telefono.movil.codigo = resp.phonecode;
+                        newState.phase[1].telefono.local.codigo = resp.phonecode;
+                        return newState;
+                    } );
+                }
+            };
+
+            fetchCountryDetails();
+        }, [countryCode])
+
         return(
             <div id="fase1">
-                
                 <div id="tipo_usuario">
                     <label>{t('registrar.fases.1.tipo_usuario')+": "}</label>
                     <label>
@@ -334,6 +399,9 @@ const Fase1 = () => {
                                     } );
                                 }} 
                             />
+
+                            { nameRequired && <ErrorMessage message={t('registrar.errores.1.requerido')}/> }
+                            { nameInvalid && <ErrorMessage message={t('registrar.errores.1.minimo')}/>}
                         </div>
 
                         <div className="field">
@@ -352,7 +420,12 @@ const Fase1 = () => {
                                     } );
                                 }} 
                             />
+
+                            { lastNameRequired && <ErrorMessage message={t('registrar.errores.1.requerido')}/> }
+                            { lastNameInvalid && <ErrorMessage message={t('registrar.errores.1.minimo')}/> }    
                         </div>
+
+                        
 
                         <div className="field">
                             <span className="label">
@@ -370,7 +443,12 @@ const Fase1 = () => {
                                     } );
                                 }} 
                             />
+
+                            { idRequired && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
+                            { idInvalid && <ErrorMessage message={t('registrar.errores.1.id')}/> }
                         </div>
+                        
+                        
 
                         <div className="field">
                             <span className="label">
@@ -388,128 +466,165 @@ const Fase1 = () => {
                                     } );
                                 }} 
                             />
+
+                            { emailRequired && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
+                            { emailInvalid && <ErrorMessage message={t('registrar.errores.1.email')}/> }
                         </div>
+                        
+                        
 
                         <div className="field">
                             <span className="label">
                                 <span className="required">*</span> {t('registrar.fases.1.natural.pais')+": "}
                             </span>
-                            <input
-                                type="text"
+
+                            <select 
+                                style={{width: '100%' , boxSizing: 'border-box'}}
+                                name="select" 
                                 value={registerFormState.phase[1].natural.pais}
                                 onChange={ e => {
-                                setRegisterFormState( prev => {
+                                    const country =  JSON.parse(e.target.options[e.target.selectedIndex].getAttribute('data-country'))
+                                    setCountryCode(country.code)
+                                    setRegisterFormState( prev => {
                                         const newState = {... prev};
                                         newState.phase[1] = {... prev.phase[1]};
                                         newState.phase[1].natural.pais = e.target.value;
+                                        newState.phase[1].natural.codigo_pais = country.code;
                                         return newState;
-                                    } );
-                                }} 
-                            />
+                                    } )
+                                }}>
+
+                                {countries?.map( country => {
+                                      return (<option key={country.code} value={country.name} data-country={JSON.stringify(country)}> {country.name}</option>);
+                                })}
+
+                            </select>
+                            
                         </div>
 
 
                         <div className="field">
-                            
-                            <div>
-                                <span className="label">
-                                    <span className="required">*</span> {t('registrar.fases.1.telefono.titulo')+": "}
-                                </span>
-
-                                <div className="note">
-                                    {t('registrar.fases.1.telefono.nota')}
-                                </div>
                                 
-                                <div id="telefono_container">
-                                    <label>
-                                        <input
-                                            type="radio"
-                                            value="movil"
-                                            checked={ registerFormState.phase[1].telefono.tipo === 'movil' }
-                                            onChange={ e => {
-                                                setRegisterFormState( prev => {
-                                                        const newState = {... prev};
-                                                        newState.phase[1] = {... prev.phase[1]};
-                                                        newState.phase[1].telefono.tipo = 'movil';
-                                                        return newState;
-                                                    } );
-                                            }}
-                                        />
-                                        <div className="tipo_telefono">
-                                            {t('registrar.fases.1.telefono.movil')}
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input
-                                            type="radio"
-                                            value="local"
-                                            checked={ registerFormState.phase[1].telefono.tipo === 'local' }
-                                            onChange={ e => {
-                                                setRegisterFormState( prev => {
-                                                        const newState = {... prev};
-                                                        newState.phase[1] = {... prev.phase[1]};
-                                                        newState.phase[1].telefono.tipo = 'local';
-                                                        return newState;
-                                                    } );
-                                            }}
-                                        />
-                                        <div className="tipo_telefono">
-                                            {t('registrar.fases.1.telefono.local')}
-                                        </div>
-                                    </label>
-                                </div>
+                                <div>
+                                    <span className="label">
+                                        <span className="required">*</span> {t('registrar.fases.1.telefono.titulo')+": "}
+                                    </span>
 
-                                <div
-                                    className="field"
-                                    id="telefono_field"
-                                    style={{ visibility: registerFormState.phase[1].telefono.tipo === ""? "hidden":"visible" }}
-                                >
-                                    <input
-                                        id="telefono_codigo"
-                                        type="text"
-                                        value={registerFormState.phase[1].telefono.codigo}
-                                        onChange={ e => {
-                                        setRegisterFormState( prev => {
-                                                const newState = {... prev};
-                                                newState.phase[1] = {... prev.phase[1]};
-                                                newState.phase[1].telefono.codigo = e.target.value;
-                                                return newState;
-                                            } );
-                                        }} 
-                                    />
-                                    <input
-                                        id="telefono_numero"
-                                        type="text"
-                                        value={registerFormState.phase[1].telefono.numero}
-                                        onChange={ e => {
-                                        setRegisterFormState( prev => {
-                                                const newState = {... prev};
-                                                newState.phase[1] = {... prev.phase[1]};
-                                                newState.phase[1].telefono.numero = e.target.value;
-                                                return newState;
-                                            } );
-                                        }} 
-                                    />
-                                    <label style={{ visibility: registerFormState.phase[1].telefono.tipo === "local"? "visible":"hidden" }}>
-                                        Ext
+                                    <div className="note">
+                                        {t('registrar.fases.1.telefono.nota')}
+                                    </div>
+                                    
+                                    <div id="telefono_container">
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                checked={registerFormState.phase[1].telefono.select_movil}
+                                                onChange={ e => {
+                                                    setRegisterFormState( prev => {
+                                                            const newState = {... prev};
+                                                            newState.phase[1] = {... prev.phase[1]};
+                                                            newState.phase[1].telefono.select_movil = e.target.checked;
+                                                            return newState;
+                                                        } );
+                                                }}
+                                            />
+                                            <div className="tipo_telefono">
+                                                {t('registrar.fases.1.telefono.movil')}
+                                            </div>
+                                        </label>
+                                        <label>
+                                            <input
+                                                type="checkbox"
+                                                checked={registerFormState.phase[1].telefono.select_local}
+                                                onChange={ e => {
+                                                    setRegisterFormState( prev => {
+                                                            const newState = {... prev};
+                                                            newState.phase[1] = {... prev.phase[1]};
+                                                            newState.phase[1].telefono.select_local = e.target.checked;
+                                                            return newState;
+                                                        } );
+                                                }}
+                                            />
+                                            <div className="tipo_telefono">
+                                                {t('registrar.fases.1.telefono.local')}
+                                            </div>
+                                        </label>
+                                    </div>
+
+                                    <div
+                                        className="field"
+                                        id="telefono_field"
+                                        style={{ display: registerFormState.phase[1].telefono.select_movil? "block":"none" }}
+                                    >
                                         <input
-                                            id="telefono_ext"
+                                            id="telefono_codigo"
                                             type="text"
-                                            value={registerFormState.phase[1].telefono.ext}
+                                            value={countryDetails.flag +" +"+countryDetails.phonecode}
+                                            disabled={true}
+                                        />
+                                        <input
+                                            id="telefono_numero"
+                                            type="text"
+                                            value={registerFormState.phase[1].telefono.movil.numero}
                                             onChange={ e => {
                                             setRegisterFormState( prev => {
                                                     const newState = {... prev};
                                                     newState.phase[1] = {... prev.phase[1]};
-                                                    newState.phase[1].telefono.ext = e.target.value;
+                                                    newState.phase[1].telefono.movil.numero = e.target.value;
                                                     return newState;
                                                 } );
                                             }} 
                                         />
-                                    </label>
-                                </div>
-                            </div>   
-                            
-                        </div>
+                                    </div>
+
+                                    <div
+                                        className="field"
+                                        id="telefono_field"
+                                        style={{ visibility: registerFormState.phase[1].telefono.select_local? "visible":"hidden" }}
+                                    >
+                                        <input
+                                            id="telefono_codigo"
+                                            type="text"
+                                            value={countryDetails.flag +" +"+countryDetails.phonecode}
+                                            disabled={true}
+                                        />
+                                        <input
+                                            id="telefono_numero"
+                                            type="text"
+                                            value={registerFormState.phase[1].telefono.local.numero}
+                                            onChange={ e => {
+                                            setRegisterFormState( prev => {
+                                                    const newState = {... prev};
+                                                    newState.phase[1] = {... prev.phase[1]};
+                                                    newState.phase[1].telefono.local.numero = e.target.value;
+                                                    return newState;
+                                                } );
+                                            }} 
+                                        />
+                                        <label>
+                                            Ext
+                                            <input
+                                                id="telefono_ext"
+                                                type="text"
+                                                value={registerFormState.phase[1].telefono.local.ext}
+                                                onChange={ e => {
+                                                setRegisterFormState( prev => {
+                                                        const newState = {... prev};
+                                                        newState.phase[1] = {... prev.phase[1]};
+                                                        newState.phase[1].telefono.local.ext = e.target.value;
+                                                        return newState;
+                                                    } );
+                                                }} 
+                                            />
+                                        </label>
+                                    </div>
+
+                                </div>   
+                                
+                                { telefonoRequired && <ErrorMessage message={t('registrar.errores.1.telefono_requerido')}/> }
+                                { telefonoInvalid && <ErrorMessage message={t('registrar.errores.1.telefono_invalido')}/>}
+
+                            </div>
 
                     </div>
                     :
@@ -537,8 +652,12 @@ const Fase1 = () => {
                                         } );
                                     }} 
                                 />
-                            </div>
+                                { business_required && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
+                                { business_invalid && <ErrorMessage message={t('registrar.errores.1.business_name')}/> }
+              
 
+                            </div>
+                            
                             <div className="field">
                                 <span className="label">
                                     <span className="required">*</span> {t('registrar.fases.1.empresa.empresa.rif')+": "}
@@ -555,42 +674,60 @@ const Fase1 = () => {
                                         } );
                                     }} 
                                 />
+                                { rif_required && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
+                                { rif_invalid && <ErrorMessage message={t('registrar.errores.1.id')}/> }
                             </div>
 
                             <div className="field">
                                 <span className="label">
                                     <span className="required">*</span> {t('registrar.fases.1.empresa.empresa.pais')+": "}
                                 </span>
-                                <input
-                                    type="text"
+
+                                <select 
+                                    style={{width: '100%' , boxSizing: 'border-box'}}
+                                    name="select" 
                                     value={registerFormState.phase[1].empresa.pais}
                                     onChange={ e => {
-                                    setRegisterFormState( prev => {
+                                        const country =  JSON.parse(e.target.options[e.target.selectedIndex].getAttribute('data-country'))
+                                        setCountryCode(country.code)
+
+                                        setRegisterFormState( prev => {
                                             const newState = {... prev};
                                             newState.phase[1] = {... prev.phase[1]};
                                             newState.phase[1].empresa.pais = e.target.value;
+                                            newState.phase[1].empresa.codigo_pais = country.code;
                                             return newState;
-                                        } );
-                                    }} 
-                                />
+                                        } )
+                                    }}>
+
+                                    {countries?.map( country => {
+                                        return (<option key={country.code} value={country.name} data-country={JSON.stringify(country)}> {country.name}</option>);
+                                    })}
+                                </select>
                             </div>
 
                             <div className="field">
                                 <span className="label">
                                     <span className="required">*</span> {t('registrar.fases.1.empresa.empresa.ciudad')+": "}
                                 </span>
-                                <input
-                                    type="text"
+
+                                <select 
+                                    style={{width: '100%' , boxSizing: 'border-box'}}
+                                    name="select" 
                                     value={registerFormState.phase[1].empresa.ciudad}
                                     onChange={ e => {
-                                    setRegisterFormState( prev => {
+                                        setRegisterFormState( prev => {
                                             const newState = {... prev};
                                             newState.phase[1] = {... prev.phase[1]};
                                             newState.phase[1].empresa.ciudad = e.target.value;
                                             return newState;
                                         } );
-                                    }} 
-                                />
+                                    }}>
+
+                                    {cities?.map( city => {
+                                        return (<option key={city} value={city}>{city}</option>);
+                                    })}
+                                </select>
                             </div>
 
                             <div className="field">
@@ -608,6 +745,8 @@ const Fase1 = () => {
                                         } );
                                     }} 
                                 />
+
+                                { address_required && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
                             </div>
 
                         </div>
@@ -635,6 +774,9 @@ const Fase1 = () => {
                                         } );
                                     }} 
                                 />
+
+                                { rep_name_required && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
+                                { rep_name_invalid && <ErrorMessage message={t('registrar.errores.1.minimo')}/> }
                             </div>
 
                             <div className="field">
@@ -653,6 +795,9 @@ const Fase1 = () => {
                                         } );
                                     }} 
                                 />
+
+                                { rep_email_required && <ErrorMessage message={t('registrar.errores.1.requerido')}/>  }
+                                { rep_email_invalid && <ErrorMessage message={t('registrar.errores.1.email')}/> }
                             </div>
 
                             <div className="field">
@@ -669,14 +814,13 @@ const Fase1 = () => {
                                     <div id="telefono_container">
                                         <label>
                                             <input
-                                                type="radio"
-                                                value="movil"
-                                                checked={ registerFormState.phase[1].telefono.tipo === 'movil' }
+                                                type="checkbox"
+                                                checked={registerFormState.phase[1].telefono.select_movil}
                                                 onChange={ e => {
                                                     setRegisterFormState( prev => {
                                                             const newState = {... prev};
                                                             newState.phase[1] = {... prev.phase[1]};
-                                                            newState.phase[1].telefono.tipo = 'movil';
+                                                            newState.phase[1].telefono.select_movil = e.target.checked;
                                                             return newState;
                                                         } );
                                                 }}
@@ -687,14 +831,13 @@ const Fase1 = () => {
                                         </label>
                                         <label>
                                             <input
-                                                type="radio"
-                                                value="local"
-                                                checked={ registerFormState.phase[1].telefono.tipo === 'local' }
+                                                type="checkbox"
+                                                checked={registerFormState.phase[1].telefono.select_local}
                                                 onChange={ e => {
                                                     setRegisterFormState( prev => {
                                                             const newState = {... prev};
                                                             newState.phase[1] = {... prev.phase[1]};
-                                                            newState.phase[1].telefono.tipo = 'local';
+                                                            newState.phase[1].telefono.select_local = e.target.checked;
                                                             return newState;
                                                         } );
                                                 }}
@@ -708,20 +851,39 @@ const Fase1 = () => {
                                     <div
                                         className="field"
                                         id="telefono_field"
-                                        style={{ visibility: registerFormState.phase[1].telefono.tipo === ""? "hidden":"visible" }}
+                                        style={{ display: registerFormState.phase[1].telefono.select_movil? "block":"none" }}
                                     >
                                         <input
                                             id="telefono_codigo"
                                             type="text"
-                                            value={registerFormState.phase[1].telefono.codigo}
+                                            value={countryDetails.flag +" +"+countryDetails.phonecode}
+                                            disabled={true}
+                                        />
+                                        <input
+                                            id="telefono_numero"
+                                            type="text"
+                                            checked={registerFormState.phase[1].telefono.numero}
                                             onChange={ e => {
                                             setRegisterFormState( prev => {
                                                     const newState = {... prev};
                                                     newState.phase[1] = {... prev.phase[1]};
-                                                    newState.phase[1].telefono.codigo = e.target.value;
+                                                    newState.phase[1].telefono.movil.numero = e.target.value;
                                                     return newState;
                                                 } );
                                             }} 
+                                        />
+                                    </div>
+
+                                    <div
+                                        className="field"
+                                        id="telefono_field"
+                                        style={{ visibility: registerFormState.phase[1].telefono.select_local? "visible":"hidden" }}
+                                    >
+                                        <input
+                                            id="telefono_codigo"
+                                            type="text"
+                                            value={countryDetails.flag +" +"+countryDetails.phonecode}
+                                            disabled={true}
                                         />
                                         <input
                                             id="telefono_numero"
@@ -731,12 +893,12 @@ const Fase1 = () => {
                                             setRegisterFormState( prev => {
                                                     const newState = {... prev};
                                                     newState.phase[1] = {... prev.phase[1]};
-                                                    newState.phase[1].telefono.numero = e.target.value;
+                                                    newState.phase[1].telefono.local.numero = e.target.value;
                                                     return newState;
                                                 } );
                                             }} 
                                         />
-                                        <label style={{ visibility: registerFormState.phase[1].telefono.tipo === "local"? "visible":"hidden" }}>
+                                        <label>
                                             Ext
                                             <input
                                                 id="telefono_ext"
@@ -746,15 +908,19 @@ const Fase1 = () => {
                                                 setRegisterFormState( prev => {
                                                         const newState = {... prev};
                                                         newState.phase[1] = {... prev.phase[1]};
-                                                        newState.phase[1].telefono.ext = e.target.value;
+                                                        newState.phase[1].telefono.local.ext = e.target.value;
                                                         return newState;
                                                     } );
                                                 }} 
                                             />
                                         </label>
                                     </div>
+
                                 </div>   
                                 
+                                { telefonoRequired && <ErrorMessage message={t('registrar.errores.1.telefono_requerido')}/> }
+                                { telefonoInvalid && <ErrorMessage message={t('registrar.errores.1.telefono_invalido')}/>}
+
                             </div>
 
                         </div>
@@ -774,44 +940,49 @@ const Fase2 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
+        const required = registerFormState.errors[2].option_required
+
         return(
-            <div id="fase2">
-                <label>
-                    <input
-                        type="radio"
-                        value="english"
-                        checked={ registerFormState.phase[2].idioma === 'english' }
-                        onChange={ e => {
-                            setRegisterFormState( prev => {
-                                    const newState = {... prev};
-                                    newState.phase[2].idioma = 'english';
-                                    return newState;
-                                } );
-                        }}
-                    />
-                    <div>
-                        English
-                    </div>
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        value="español"
-                        checked={ registerFormState.phase[2].idioma === 'español' }
-                        onChange={ e => {
-                            setRegisterFormState( prev => {
-                                    const newState = {... prev};
-                                    newState.phase[2].idioma = 'español';
-                                    return newState;
-                                } );
-                        }}
-                    />
-                    <div>
-                        Español
-                    </div>
-                </label>
-                
-            </div>
+            <div>
+                <div id="fase2">
+                    <label>
+                        <input
+                            type="radio"
+                            value="english"
+                            checked={ registerFormState.phase[2].idioma === 'english' }
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[2].idioma = 'english';
+                                        return newState;
+                                    } );
+                            }}
+                        />
+                        <div>
+                            English
+                        </div>
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            value="español"
+                            checked={ registerFormState.phase[2].idioma === 'español' }
+                            onChange={ e => {
+                                setRegisterFormState( prev => {
+                                        const newState = {... prev};
+                                        newState.phase[2].idioma = 'español';
+                                        return newState;
+                                    } );
+                            }}
+                        />
+                        <div>
+                            Español
+                        </div>
+                    </label>
+                </div>
+
+                { required && <ErrorMessage message={t('registrar.errores.2.requerido')}/> }
+            </div> 
         );
     }
 
@@ -820,8 +991,13 @@ const Fase3 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
 
+        const invalidEmail = registerFormState.errors[3].invalid_mail
+        const emailExists = registerFormState.errors[3].mail_exists
+        const invalidPassword = registerFormState.errors[3].invalid_password
+
         return(
             <div id="fase3">
+                
                 <div className="field">
                     <span className="label">
                         {t('registrar.fases.3.correo')+": "}
@@ -838,7 +1014,12 @@ const Fase3 = () => {
                             } );
                         }} 
                     />
+                    { invalidEmail && <ErrorMessage message={t('registrar.errores.3.mail_invalido')}/>  }
+                    { emailExists && <ErrorMessage message={t('registrar.errores.3.mail_exists')}/>  }
                 </div>
+                    
+                
+
                 <div className="field">
                     <span className="label">
                         {t('registrar.fases.3.clave')+": "}
@@ -854,6 +1035,8 @@ const Fase3 = () => {
                             } );
                         }} 
                     />
+
+                    { invalidPassword && <ErrorMessage message={t('registrar.errores.3.clave_invalida')}/>  }
                 </div>
                 <div className="field" id="newsletter">
                     <label>
@@ -880,6 +1063,17 @@ const Fase3 = () => {
 const Fase4 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
+
+        const frecuencia_required = registerFormState.errors[4].frecuencia_required
+        const servicio_required = registerFormState.errors[4].servicio_required
+        const email_required = registerFormState.errors[4].email_required
+        const social_required = registerFormState.errors[4].social_required
+        const sms_required = registerFormState.errors[4].sms_required
+        const other_required = registerFormState.errors[4].other_required
+        const facebook_required = registerFormState.errors[4].facebook_required
+        const means_required = registerFormState.errors[4].means_required
+
+        const empty_field = email_required || social_required  || sms_required || other_required || facebook_required
 
         return(
             <div id="fase4">
@@ -964,7 +1158,7 @@ const Fase4 = () => {
                             {t('registrar.fases.4.frecuencias.3')}
                         </div>
                     </label>
-
+                    { frecuencia_required && <ErrorMessage message={t('registrar.errores.4.requerido')}/> }
                 </div>
 
                 <div id="servicios" className="container">
@@ -1004,6 +1198,8 @@ const Fase4 = () => {
                         />
                         {t('registrar.fases.4.servicios.1')}
                     </label>
+                    
+                    { servicio_required && <ErrorMessage message={t('registrar.errores.4.requerido')}/> }
 
                 </div>
 
@@ -1188,6 +1384,9 @@ const Fase4 = () => {
                             }}
                         />
                     </div>
+                
+                { means_required && <ErrorMessage message={t('registrar.errores.4.requerido')}/> }
+                { empty_field  && <ErrorMessage message={t('registrar.errores.4.especificar_vacio')}/> }
 
                 </div>
             </div>
@@ -1198,13 +1397,33 @@ const Fase4 = () => {
 const Fase5 = () => {
         const { t, i18n } = useTranslation();
         const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
+        const [banks, setBanks] = useState([]);
+        const code = registerFormState.phase[5].client_code
+        const countries = registerFormState.countries;
+        const bankNameRequired = registerFormState.errors[5].banco_requerido
+        const bankNameInvalid = registerFormState.errors[5].banco_minimo
+        const bankDestinyInvalid = registerFormState.errors[5].destino_requerido
+
+        let countryCode = registerFormState.phase[5].codigo_pais_banco
+
+        useEffect(() => {
+            const fetchBanks = async () => {
+                await axios.get('http://127.0.0.1:8000/banks/')
+                    .then(({data}) => {
+                        setBanks(data); 
+                    }); 
+            }
+
+            fetchBanks()
+        }, [])
+
 
         return(
             <div id="fase5">
                 
                 <div className="container">
                     <div id="codigo_cliente">
-                        {t('registrar.fases.5.codigo')}:  <span className="codigo">XXX</span>
+                        {t('registrar.fases.5.codigo')}:  <span className="codigo"> {code} </span>
                     </div>
 
                     <div className="nota">
@@ -1222,7 +1441,9 @@ const Fase5 = () => {
 
                 <div className="container" id="bancos">
                     <div id="banco_origen" className="container_banco">
+                        
                         <label className="field">
+                            <div>
                             <div className="etiqueta">
                                 {t('registrar.fases.5.banco_origen')}
                             </div>
@@ -1238,24 +1459,36 @@ const Fase5 = () => {
                                     } );   
                                 }}
                             />
+                            </div>
+                        
                         </label>
-
+                        
+                        
                         <label className="field">
                             <div className="etiqueta">
                                 {t('registrar.fases.5.pais')}
                             </div>
-                            <input
-                                type="text"
-                                value={registerFormState.phase[5].pais}
-                                onChange={ e => {
-                                    setRegisterFormState( prev => {
-                                        const newState = {... prev};
-                                        newState.phase[5] = {... prev.phase[5]};
-                                        newState.phase[5].pais = e.target.value;
-                                        return newState;
-                                    } );   
-                                }}
-                            />
+
+                            <select 
+                                    style={{width: '100%' , boxSizing: 'border-box'}}
+                                    name="select" 
+                                    value={registerFormState.phase[5].pais}
+                                    onChange={ e => {
+                                        const country =  JSON.parse(e.target.options[e.target.selectedIndex].getAttribute('data-country'))
+                                        countryCode = country.code
+                                        setRegisterFormState( prev => {
+                                            const newState = {... prev};
+                                            newState.phase[5] = {... prev.phase[5]};
+                                            newState.phase[5].pais = e.target.value;
+                                            newState.phase[5].codigo_pais_banco = countryCode;
+                                            return newState;
+                                        } )
+                                    }}>
+
+                                    {countries?.map( country => {
+                                        return (<option key={country.code} value={country.name} data-country={JSON.stringify(country)}> {country.name}</option>);
+                                    })}
+                                </select>
                         </label>
                     </div>
 
@@ -1264,8 +1497,9 @@ const Fase5 = () => {
                             <div className="etiqueta">
                                 {t('registrar.fases.5.banco_destino')}
                             </div>
-                            <input
-                                type="text"
+                            <select 
+                                style={{width: '20vw'}}
+                                name="select" 
                                 value={registerFormState.phase[5].banco_destino}
                                 onChange={ e => {
                                     setRegisterFormState( prev => {
@@ -1274,18 +1508,23 @@ const Fase5 = () => {
                                         newState.phase[5].banco_destino = e.target.value;
                                         return newState;
                                     } );   
-                                }}
-                            />
-                        </label>
+                                }}>
+                                
+                                <option value="" disabled> {t('registrar.fases.5.seleccionar_destino')} </option>
 
-                        {/* <label className="field">
-                            <div className="etiqueta">
-                                banco destino
-                            </div>
-                            <input type="text"/>
-                        </label> */}
-                    </div>
+                                {banks.map( bank => { 
+                                    const value = bank.name + " - " + "Cuenta nro: " + bank.account + " - " + "Código SWIFT: " + bank.swift_code
+                                    return (<option key={bank.account} value={value}>{value}</option>);
+                                })}
+
+                            </select>
+                        </label>
+                    </div>       
                 </div>
+                
+                { bankNameRequired && <ErrorMessage message={t('registrar.errores.5.requerido')}/> }
+                { bankNameInvalid && <ErrorMessage message={t('registrar.errores.5.minimo')}/> }
+                { bankDestinyInvalid && <ErrorMessage message={t('registrar.errores.5.seleccion_requerida')}/> } 
 
                 <div className="container" id="info_container">
                     <div id="sugerencias">
@@ -1363,7 +1602,7 @@ const registrarUsuario = () => {
     
     }else if( postBody.type_user == "enterprise" ){
 
-        postBody.country = userData.phase[1].empresa.pais;
+        postBody.country = userData.phase[1].empresa.codigo_pais;
         postBody.company_name = userData.phase[1].empresa.nombre_empresa;
         postBody.rif = userData.phase[1].empresa.razon_rif;
         postBody.city = userData.phase[1].empresa.ciudad;
@@ -1379,6 +1618,7 @@ const registrarUsuario = () => {
 
     }
 
+    
     // Idioma
     postBody.language = userData.phase[2].idioma;
 
@@ -1409,6 +1649,8 @@ const registrarUsuario = () => {
     // Billing
     postBody.bank_origin = userData.phase[5].banco_origen;
     postBody.bank_country = userData.phase[5].pais;
+
+    
 
     // send request
     const fetchData = async () => {
@@ -1448,10 +1690,12 @@ const registrarUsuario = () => {
 const botonRegistrar = () => {
     const { t, i18n } = useTranslation();
     const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
-    
+    const {authState, setAuthState} = useContext(AuthContext);
+    const navigate = useNavigate();
+
     const userData = {...registerFormState};
     let postBody = {};
-
+    
     // De donde nos conoce?
     let found_app_by = {
         website: userData.phase[0].website,
@@ -1474,23 +1718,24 @@ const botonRegistrar = () => {
         }
     };
 
-    postBody.found_app_by = JSON.stringify(found_app_by);
+    postBody.found_app_by = found_app_by;
 
     // Registrar Usuario
     postBody.type_user = userData.phase[1].tipo_usuario;
 
     if( postBody.type_user == "natural" ){
-    
-        postBody.country = userData.phase[1].natural.pais;
+        postBody.country = userData.phase[1].natural.codigo_pais;
         postBody.first_name = userData.phase[1].natural.nombre;
         postBody.last_name = userData.phase[1].natural.apellido;
-        postBody.dni = userData.phase[1].natural.identification;
+        postBody.dni = userData.phase[1].natural.identificacion;
         postBody.contact_email = userData.phase[1].natural.correo;
 
-        if(userData.phase[1].telefono.tipo == "movil"){
-            postBody.cellphone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero;
-        }else{
-            postBody.telephone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero + userData.phase[1].telefono.ext;
+        if(userData.phase[1].telefono.movil.numero != ""){
+            postBody.cellphone = userData.phase[1].telefono.movil.codigo + userData.phase[1].telefono.movil.numero;
+        }
+
+        if(userData.phase[1].telefono.local.numero != ""){
+            postBody.telephone = userData.phase[1].telefono.local.codigo + userData.phase[1].telefono.local.numero + userData.phase[1].telefono.local.ext;
         }
     
     }else if( postBody.type_user == "enterprise" ){
@@ -1503,16 +1748,21 @@ const botonRegistrar = () => {
         postBody.representant_email = userData.phase[1].empresa.correo;
         postBody.representant_name = userData.phase[1].empresa.nombre_representante;
 
-        if(userData.phase[1].telefono.tipo == "movil"){
-            postBody.representant_cellphone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero;
-        }else{
-            postBody.representant_telephone = userData.phase[1].telefono.codigo + userData.phase[1].telefono.numero + userData.phase[1].telefono.ext;
+        if(userData.phase[1].telefono.movil.numero == ""){
+            postBody.representant_cellphone = userData.phase[1].telefono.movil.codigo + userData.phase[1].telefono.movil.numero;
         }
 
+        if(userData.phase[1].telefono.local.numero == ""){
+            postBody.representant_telephone = userData.phase[1].telefono.local.codigo + userData.phase[1].telefono.local.numero + userData.phase[1].telefono.local.ext;
+        }
     }
 
     // Idioma
     postBody.language = userData.phase[2].idioma;
+    if(postBody.language === "español")
+        postBody.language = "es"
+    else if(postBody.language === "english")
+        postBody.language = "en"
 
     // Datos de Login
     postBody.email = userData.phase[3].correo;
@@ -1540,24 +1790,8 @@ const botonRegistrar = () => {
 
     // Billing
     postBody.bank_origin = userData.phase[5].banco_origen;
-    postBody.bank_country = userData.phase[5].pais;
-
-
-    const data = {
-        email: "anotherone@gmail.com",
-        password: "12345",
-        found_app_by: "Twitter",
-        type_user: "natural",
-        country: "Alemania",
-        first_name: "Admin",
-        last_name: "Ati-2",
-        dni: "V-126125",
-        contact_email: "admin@gmail.com",
-        language: "es",
-        want_inform: false,
-        bank_origin: "Banesco",
-        bank_country: "Venezuela"
-    };
+    postBody.bank_country = userData.phase[5].codigo_pais_banco;
+    postBody.client_code= userData.phase[5].client_code.toString();
 
     return(
         <button
@@ -1566,30 +1800,73 @@ const botonRegistrar = () => {
             onClick={
                 async () => {
 
+                    // Validar la última fase
+                    let valid = true
+                    const selection = registerFormState.phase[5]
+                    
+                    const stringIsValid = (string) => {
+                        if(string.length < 2){
+                            return false
+                        }
+                        const regex = new RegExp('^[a-zA-Z]')    
+                        return regex.test(string);
+                    }
+
+                    // Validar nombre del banco
+                    if(!selection.banco_origen){
+                        registerFormState.errors[5].banco_requerido = true
+                        registerFormState.errors[5].banco_minimo = false
+                        valid = false
+                    } else if(!stringIsValid(selection.banco_origen)){
+                        registerFormState.errors[5].banco_requerido = false
+                        registerFormState.errors[5].banco_minimo = true
+                        valid = false
+                    } else {
+                        registerFormState.errors[5].banco_requerido = false
+                        registerFormState.errors[5].banco_minimo = false
+                    }
+
+                    if(!selection.banco_destino){
+                        registerFormState.errors[5].destino_requerido = true
+                        valid = false
+                    } else {
+                        registerFormState.errors[5].destino_requerido = false
+                    }
+
+                    if(!valid){
+                        setRegisterFormState( prev => {
+                            const newState = {... prev};
+                            return newState;
+                        } );
+                        return;
+                    }
+
+                    // Enviar datos
                     const url = 'http://127.0.0.1:8000/users/'
                     try {
-                        
-                        const response = await fetch( url,{
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(data),
-                                // body: JSON.stringify(postBody),
+                        const response = await axios.post(url, postBody)
+
+                        const token = response.data.token 
+                        const id = response.data.id
+    
+                        setAuthState(
+                            () => {
+                                return {
+                                    token: token,
+                                    id: id,
+                                    logged_in: true,
+                                    email: postBody.contact_email,
+                                    name: postBody.first_name + " " + postBody.last_name,
+                                    lang: postBody.language
+                                }
                             }
                         );
-                
-                        if (response.ok) {
-                            // Request was successful
-                            console.log('POST request successful');
-                            console.log(response);
-                        } else {
-                            // Request failed
-                            console.log('POST request failed');
-                        }
-                
+    
+                        i18n.changeLanguage(authState.lang);
+        
+                        navigate('/');
+
                     } catch (error) {
-                        console.log("error registrando");
                         console.log(error);
                     }
                 }
@@ -1600,6 +1877,396 @@ const botonRegistrar = () => {
     );
 }
 
+const useValidarRegistrar = () => {
+    const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
+
+    useEffect(() => {
+        const fetchCountries = async () => {
+            const [names, codes] = await getAllCountries();
+            const pairs = names.map((name, index) => {
+                return {
+                    "name": name, 
+                    "code": codes[index]
+                }
+            })
+            registerFormState.countries = pairs;
+
+            let cities = await getCitiesInCountry(pairs[0].code)
+            cities  = [...new Set(cities)];
+            registerFormState.cities = cities
+        };
+
+
+        fetchCountries()
+    }, [])
+
+    const uniqueEmail = async (email) => {
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/users/unique_email/', {"email": email })
+            registerFormState.phase[5].client_code = response.data.client_code
+            return true
+        } catch(error) {
+            return false
+        } 
+    }
+
+    const stringIsValid = (string) => {
+        if(string.length < 2){
+            return false
+        }
+        const regex = new RegExp('^[a-zA-Z]')    
+        return regex.test(string);
+    }
+
+    const idIsValid = (string, min) => {
+        if(string.length < min){
+            return false
+        }
+        const regex = new RegExp('^[0-9a-zA-Z]')    
+        return regex.test(string);
+    }
+
+    const validPassword = (password) =>{
+        if(password.length >= 8)
+            return true
+        else 
+            return false
+    }
+
+    const phoneIsValid = (number) => {
+        if(number.length < 4)
+            return false
+        
+        const regex = new RegExp('^[0-9](-?[0-9]{2,4}){2,4}|[0-9]{4,15}$')    
+        return regex.test(number);
+    }
+
+    const validate = async (currentStage) => {
+
+        let valid = true;
+        if(currentStage == 0){
+            const selection = registerFormState.phase[0]
+    
+            if(!selection.website && !selection.social_network && !selection.friends && !selection.other){
+                // No se seleccionó nada
+                registerFormState.errors[0] = Object.values(registerFormState.errors[0]).map(() => false)
+                registerFormState.errors[0].option_required = true;
+                valid = false;
+            } else if((selection.social_network_other && ! selection.social_network_other_spec) 
+                    || (selection.other_other && !selection.other_other_spec) || (selection.radio && !selection.radio_spec) || (selection.press && !selection.press_spec)){
+                // Se seleccionó un campo a especificar, pero no se escribió nada
+                registerFormState.errors[0] = Object.values(registerFormState.errors[0]).map(() => false)
+                registerFormState.errors[0].other_empty = true
+                valid = false;
+            } else if (selection.social_network && !selection.facebook 
+                && !selection.twitter && !selection.instagram && !selection.social_network_other ){
+                // Se seleccionó "Redes sociales", pero no se selecciono una red social
+                registerFormState.errors[0] = Object.values(registerFormState.errors[0]).map(() => false)
+                registerFormState.errors[0].social_required = true 
+                valid = false;
+            } else if (selection.other && !selection.radio && !selection.press && !selection.other_other){
+                // Se seleccionó un "Otro", pero no se selecciono una opcion
+                registerFormState.errors[0] = Object.values(registerFormState.errors[0]).map(() => false)
+                registerFormState.errors[0].other_required = true 
+                valid = false;
+            }
+             else {
+                registerFormState.errors[0] = Object.values(registerFormState.errors[0]).map(() => false)
+                valid = true;
+            }
+        } else if(currentStage == 1){
+            const selection = registerFormState.phase[1]
+            const type = selection.tipo_usuario
+            
+            if(type === "natural"){
+                const user = selection.natural
+    
+                // Validar nombre
+                if(!user.nombre){
+                    registerFormState.errors[1].name_required = true
+                    registerFormState.errors[1].name_invalid = false
+                    valid = false
+                } else if (!stringIsValid(user.nombre)) {
+                    registerFormState.errors[1].name_required = false
+                    registerFormState.errors[1].name_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].name_required = false
+                    registerFormState.errors[1].name_invalid = false               
+                }
+    
+                // Validar apellido
+                if(!user.apellido){
+                    registerFormState.errors[1].last_name_required = true
+                    registerFormState.errors[1].last_name_invalid = false
+                    valid = false
+                } else if (!stringIsValid(user.apellido)) {
+                    registerFormState.errors[1].last_name_required = false
+                    registerFormState.errors[1].last_name_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].last_name_required = false
+                    registerFormState.errors[1].last_name_invalid = false
+                }
+                
+                //Validar id
+                if(!user.identificacion){
+                    registerFormState.errors[1].id_required = true
+                    registerFormState.errors[1].id_invalid = false
+                    valid = false
+                } else if (!idIsValid(user.identificacion, 5)) {
+                    registerFormState.errors[1].id_required = false
+                    registerFormState.errors[1].id_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].id_required = false
+                    registerFormState.errors[1].id_invalid = false
+                }
+    
+                // Validar email
+                if(!user.correo){
+                    registerFormState.errors[1].email_required = true
+                    registerFormState.errors[1].email_invalid = false
+                    valid = false
+                } else if(!validator.isEmail(user.correo)){
+                    registerFormState.errors[1].email_required = false
+                    registerFormState.errors[1].email_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].email_required = false
+                    registerFormState.errors[1].email_invalid = false
+                }
+
+                // Validar telefono
+                if(!selection.telefono.select_movil && !selection.telefono.select_local){
+                    registerFormState.errors[1].telefono_required = true
+                    registerFormState.errors[1].telefono_invalid = false
+                    valid = false
+                } else if(selection.telefono.select_movil && !phoneIsValid(selection.telefono.movil.numero)){
+                    registerFormState.errors[1].telefono_required= false
+                    registerFormState.errors[1].telefono_invalid = true
+                    valid = false
+                } else if(selection.telefono.select_local && !phoneIsValid(selection.telefono.local.numero)){
+                    registerFormState.errors[1].telefono_required= false
+                    registerFormState.errors[1].telefono_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].telefono_required = false
+                    registerFormState.errors[1].telefono_invalid = false
+                }
+            } else if(type === "enterprise"){
+                const user = selection.empresa
+    
+                // Validar nombre de empresa
+                if(!user.nombre_empresa){
+                    registerFormState.errors[1].business_required = true
+                    registerFormState.errors[1].business_invalid = false
+                    valid = false
+                } else if (!idIsValid(user.nombre_empresa, 2)) {
+                    registerFormState.errors[1].business_required = false
+                    registerFormState.errors[1].business_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].business_required = false
+                    registerFormState.errors[1].business_invalid = false
+                }
+    
+                // Validar rif
+                if(!user.razon_rif){
+                    registerFormState.errors[1].rif_required = true
+                    registerFormState.errors[1].rif_invalid = false
+                    valid = false
+                } else if (!idIsValid(user.razon_rif, 5)) {
+                    registerFormState.errors[1].rif_required= false
+                    registerFormState.errors[1].rif_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].rif_required = false
+                    registerFormState.errors[1].rif_invalid = false
+                }
+                
+                //Validar address
+                if(!user.direccion){
+                    registerFormState.errors[1].address_required = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].address_required = false
+                }
+    
+                // Validar nombre representante
+                if(!user.nombre_representante){
+                    registerFormState.errors[1].rep_name_required = true
+                    registerFormState.errors[1].rep_name_invalid= false
+                    valid = false
+                } else if(!stringIsValid(user.nombre_representante)){
+                    registerFormState.errors[1].rep_name_required = false
+                    registerFormState.errors[1].rep_name_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].rep_name_required = false
+                    registerFormState.errors[1].rep_name_invalid = false
+                }
+    
+                // Validar email representante
+                if(!user.correo){
+                    registerFormState.errors[1].rep_email_required = true
+                    registerFormState.errors[1].rep_email_invalid= false
+                    valid = false
+                } else if(!validator.isEmail(user.correo)){
+                    registerFormState.errors[1].rep_email_required = false
+                    registerFormState.errors[1].rep_email_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].rep_email_required = false
+                    registerFormState.errors[1].rep_email_invalid = false
+                }
+
+                // Validar telefono
+                if(!selection.telefono.select_movil && !selection.telefono.select_local){
+                    registerFormState.errors[1].telefono_required = true
+                    registerFormState.errors[1].telefono_invalid = false
+                    valid = false
+                } else if(selection.telefono.select_movil && !phoneIsValid(selection.telefono.movil.numero)){
+                    registerFormState.errors[1].telefono_required= false
+                    registerFormState.errors[1].telefono_invalid = true
+                    valid = false
+                } else if(selection.telefono.select_local && !phoneIsValid(selection.telefono.local.numero)){
+                    registerFormState.errors[1].telefono_required= false
+                    registerFormState.errors[1].telefono_invalid = true
+                    valid = false
+                } else {
+                    registerFormState.errors[1].telefono_required = false
+                    registerFormState.errors[1].telefono_invalid = false
+                }
+            }
+
+        } else if(currentStage == 2){
+            const selection = registerFormState.phase[2]
+            if(!selection.idioma){
+                registerFormState.errors[2].option_required = true
+                valid = false
+            } else {
+                registerFormState.errors[2].option_required = false
+            }
+        }
+        else if(currentStage == 3){
+            const email = registerFormState.phase[3].correo
+            const password = registerFormState.phase[3].clave
+
+            // Validar correo
+            if(validator.isEmail(email)){
+                try{
+                    const unique = await uniqueEmail(email)
+                    if(!unique){
+                        registerFormState.errors[3].invalid_mail = false
+                        registerFormState.errors[3].mail_exists = true
+                        valid = false
+                    } else{
+                        registerFormState.errors[3].invalid_mail = false
+                        registerFormState.errors[3].mail_exists = false
+                    }
+                } catch (error) {
+                    registerFormState.errors[3].mail_exists = false
+                    registerFormState.errors[3].invalid_mail = true
+                    valid = false
+                }
+            } else {
+                registerFormState.errors[3].invalid_mail = true
+                valid = false
+            }
+    
+            // Validar contraseña
+            if(!validPassword(password)){
+                registerFormState.errors[3].invalid_password = true
+                valid = false
+            } else {
+                registerFormState.errors[3].invalid_password = false
+            }
+
+        } else if (currentStage == 4){
+            const selection = registerFormState.phase[4]
+    
+            if(!selection.frecuencia){
+                // No se seleccionó una frecuencia
+                registerFormState.errors[4].frecuencia_required = true;
+                valid = false;
+            } else {
+                registerFormState.errors[4].frecuencia_required = false;
+            }
+            
+            if(!selection.servicio_personal && !selection.servicio_profesional){
+                // No se selecciono un servicio de interes
+                registerFormState.errors[4].servicio_required = true
+                valid = false;
+            } else {
+                registerFormState.errors[4].servicio_required = false
+            }
+            
+
+            if(!selection.usar_correo && !selection.redes && !selection.usar_sms 
+                && !selection.usar_otros && !selection.usar_facebook){
+                    registerFormState.errors[4].means_required = true
+                    valid = false;
+            } else {
+                registerFormState.errors[4].means_required = false
+            }
+
+
+            if (selection.usar_correo && !selection.correo ){
+                // Se seleccionó "Email", pero no se esepecificó
+                registerFormState.errors[4].email_required = true 
+                valid = false;
+            } else{
+                registerFormState.errors[4].email_required = false
+            } 
+            
+            if (selection.redes && !selection.facebook && !selection.twitter){
+                // Se seleccionó un "Social Networks", pero no se especificó
+                registerFormState.errors[4].social_required = true 
+                valid = false;
+            } else { 
+                registerFormState.errors[4].social_required = false
+            }
+            
+            if (selection.usar_sms && !selection.sms){
+                // Se seleccionó un "SMS", pero no se especificó
+                registerFormState.errors[4].sms_required = true 
+                valid = false;
+            } else {
+                registerFormState.errors[4].sms_required = false
+            }
+            
+            if (selection.usar_otros && !selection.otros){
+                // Se seleccionó un "Other", pero no se especificó
+                registerFormState.errors[4].other_required = true 
+                valid = false;
+            } else {
+                registerFormState.errors[4].other_required = false
+            }
+            
+            if (selection.usar_facebook && !selection.facebook_spec){
+                // Se seleccionó un "Facebook", pero no se especificó
+                registerFormState.errors[4].facebook_required = true 
+                valid = false;
+            } else {
+                registerFormState.errors[4].facebook_required = false
+            }
+        }
+
+        if(!valid){
+            setRegisterFormState( prev => {
+                const newState = {... prev};
+                return newState;
+            } );
+        }
+        
+        return valid
+    }
+
+    return { validate }
+}
+
+
 const FasesRegistrar = [Fase0, Fase1, Fase2, Fase3, Fase4, Fase5];
 
-export {FasesRegistrar, registrarUsuario, botonRegistrar};
+export {FasesRegistrar, registrarUsuario, botonRegistrar, useValidarRegistrar};
