@@ -87,7 +87,7 @@ const Navbar = () => {
                                         {label: t("navbar.solicitar.cuidador"), link:"#"}
                                     ]
                                 },
-                                {label: t("navbar.operaciones.ver_publicaciones"), link:"/show-posts?type=request"},
+                                {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=provide&user=${authState.id}`},
                                 {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
                                 {label: t("navbar.operaciones.modificar"), link:"#"},
                                 {label: t("navbar.operaciones.eliminar"), link:"#"},
