@@ -149,11 +149,12 @@ content-type: application/json
     "origin_city": "San Jose",
     "client_type": "NO",
     "have_documentation": true,
-    "documents": "CONST_RESIDENCIA",
+    "documents": ["CONST_RESIDENCIA", "TITULOS"],
     "documents_other": "",
     "publication_time": "1",
     "publication_plan": "1",
     "billing_country": "Venezuela",
+<<<<<<< HEAD
     "billing_bank": "Banesco"
 }
 
@@ -250,6 +251,8 @@ content-type: application/json
     "publication_time": "1",
     "publication_plan": "1",
     "billing_country": "Venezuela",
+=======
+>>>>>>> f205f3553136d39bd4cbfc1c830a44c711f832bb
     "billing_bank": 2
 }
 
@@ -294,7 +297,7 @@ content-type: application/json
     "availability": "FECHA",
     "availability_date": "2023-05-27",
     "have_documentation": true,
-    "documents": "REF_FAMILIAR",
+    "documents": ["REF_FAMILIAR", "PASAPORTE"],
     "documents_other": "",
     "publication_time": "1",
     "publication_plan": "3",

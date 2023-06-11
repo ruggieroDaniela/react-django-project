@@ -344,7 +344,7 @@ const Fase1 = () => {
                 <div>
                     <select name="pais" 
                             id="pais" 
-                            onChange={ 
+                            onClick={ 
                                 e => {
                                     setSelectedCountry(e.target.value);
                                     setOfferDomesticFormState ( prev => {
@@ -373,7 +373,7 @@ const Fase1 = () => {
                     <select name="estados" 
                             id="estados" 
                             disabled={ selectedCountry == ""}
-                            onChange={ 
+                            onClick={ 
                                 e =>{
                                     setSelectedState(e.target.value);
                                     setOfferDomesticFormState ( prev => {
@@ -396,8 +396,9 @@ const Fase1 = () => {
                     <select name="ciudad"
                             id="ciudad" 
                             disabled={ selectedState == ""}
-                            onChange={ 
+                            onClick={ 
                                 e => {
+                                    console.log(e.target.value);
                                     setSelectedCity(e.target.value);
                                     setOfferDomesticFormState ( prev => {
                                         const newState = {... prev};
