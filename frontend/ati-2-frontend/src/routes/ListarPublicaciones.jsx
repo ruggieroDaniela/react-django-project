@@ -101,7 +101,7 @@ export const ListarPublicaciones = () => {
         fetchPosts();
     }, [selectedTipoPersona, selectedOrdering]);
 
-    const {authState} = useContext(AuthContext);
+    const {authState, setAuthState} = useContext(AuthContext);
 
     return(<>
         <div id="lista-posts">

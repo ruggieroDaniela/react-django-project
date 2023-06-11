@@ -55,7 +55,9 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
     const [username, setUsername] = useState("  ");
     const {authState, setAuthState} = useContext(AuthContext);
     const [countryName, setCountryName] = useState("");
-    const canEdit = authState.logged_in && post.user == authState.user_id;
+    const canEdit = authState.logged_in && post.user == authState.id;
+    // console.log(authState.user_id);
+
     // const canEdit = true;
 
     useEffect(() => {
@@ -99,6 +101,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                         else
                             setSelectedPosts( prev => [... prev, post.id] );
                     } }
+                    disabled={!canEdit}
                 />
             </section>
 
