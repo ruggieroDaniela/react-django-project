@@ -8,6 +8,16 @@
         border-style: solid;
         border-color: $dorado;
         border-width: 1px;
+
+        .foto-container{
+            display: flex;
+            justify-content: center;
+            padding-top: 15%;
+            .img-user{
+                width: 5vw;
+            }
+        }
+
     }
 
     .button-group{
