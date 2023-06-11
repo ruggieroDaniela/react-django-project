@@ -20,6 +20,7 @@ export const OfrecermeNiñera = () => {
         const handleSubmit = async () => {
             try {
                     // Request was successful
+                if(authState.id != undefined){
                     let response = await fetch( `http://127.0.0.1:8000/users/${authState.id}`,{
                             method: 'GET',
                             headers: {
@@ -28,6 +29,7 @@ export const OfrecermeNiñera = () => {
                             // body: JSON.stringify({Authorization: responseDataAuth.token})
                         }
                     );
+                    
     
                     if(response.ok){
                       
@@ -39,6 +41,7 @@ export const OfrecermeNiñera = () => {
                         console.log("GET request failed: error fetching user data");
                         console.log(response);
                     }
+                }
     
                 } catch (error) {
                     console.log("error");
@@ -85,7 +88,7 @@ export const OfrecermeNiñera = () => {
             benefits: 0,
             benefits_description: "",
             availability: "",
-            availability_date: "",
+            availability_date: null,
             have_documentation: false,
             documents: [],
             documents_other: "",
