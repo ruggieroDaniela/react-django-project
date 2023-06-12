@@ -27,6 +27,8 @@
             "Find clients"
         ],
         "NIN_desc": "For the care of individuals between 0 and 12 years old",
-        "CUI_desc": "For the care of individuals 13 years old and above"
+        "CUI_desc": "For the care of individuals 13 years old and above",
+        "offer_desc": "Select the service you want to offer",
+        "request_desc": "You can publish your personal request by clicking on the preferred personnel"
     }
 }

@@ -60,6 +60,17 @@
         }
     }
 
+    #more-options-header{
+        width: 75%;
+        h4{
+            color: blue;
+        }
+        p{
+            margin-left: 3vw;
+            font-weight: bold;
+        }
+    }
+
     #more-options{
         margin-top: 1.5rem;
         display: grid;

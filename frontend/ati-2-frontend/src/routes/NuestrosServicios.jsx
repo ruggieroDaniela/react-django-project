@@ -18,8 +18,7 @@ export const NuestrosServicios = () => {
     const [clickPostAd, setClickPostAd] = useState(false);
     const [clickFind, setClickFind] = useState(false);
 
-    const [displayMoreOpt, setDisplayMoreOpt] = useState(false);
-    const [postAdSelected, setPostAdSelected] = useState(0);
+    const [postAdSelected, setPostAdSelected] = useState(-1);
 
     const postAdLinks = [
         "/post-ad/offer",
@@ -73,16 +72,14 @@ export const NuestrosServicios = () => {
                             <div className="button_dropdown_content">
                                 <button
                                     onClick={() => {
-                                        setDisplayMoreOpt(prev => !prev);
-                                        setPostAdSelected(() => 0);
+                                        setPostAdSelected(prev => prev == 0? -1:0);
                                     }}
                                 >
                                     A- {t('nuestros_servicios.opciones.0')}
                                 </button>
                                 <button
                                     onClick={() => {
-                                        setDisplayMoreOpt(prev => !prev);
-                                        setPostAdSelected(() => 1);
+                                        setPostAdSelected(prev => prev == 1? -1:1);
                                     }}
                                 >
                                     B- {t('nuestros_servicios.opciones.1')}
@@ -119,38 +116,55 @@ export const NuestrosServicios = () => {
                     </div>
                 </div>
             </div>
-            {displayMoreOpt && clickPostAd &&
-
-                <div id="more-options">
-                    
-                    <button 
-                        onClick={() => { 
-                            if(!isAuth)
-                                navigate(`/login`)
-
-                            navigate(`${postAdLinks[postAdSelected]}/babysitter`)
-                        }}
-                    >
-                        {t('NIN')}
-                    </button>
-                    <div className="desc">
-                        {t('nuestros_servicios.NIN_desc')}
+            {postAdSelected != -1 && clickPostAd &&
+                <>
+                    <div id="more-options-header">
+                        <h4>
+                            {postAdSelected == 0?
+                                `A- ${t('nuestros_servicios.opciones.0')}`
+                                :
+                                `B- ${t('nuestros_servicios.opciones.1')}`
+                            }
+                        </h4>
+                        <p>
+                            {postAdSelected == 0?
+                                `${t('nuestros_servicios.offer_desc')}`
+                                :
+                                `${t('nuestros_servicios.request_desc')}`
+                            }
+                        </p>
                     </div>
-                    <button 
-                        onClick={() => { 
-                            if(!isAuth)
-                                navigate(`/login`)
-                                
-                            navigate(`${postAdLinks[postAdSelected]}/caretaker`)
-                        }}
-                    >
-                        {t('CUI')}
-                    </button>
-                    <div className="desc">
-                        {t('nuestros_servicios.CUI_desc')}
+                    <div id="more-options">
+                        
+                        <button 
+                            onClick={() => { 
+                                if(!isAuth)
+                                    navigate(`/login`)
+
+                                navigate(`${postAdLinks[postAdSelected]}/babysitter`)
+                            }}
+                        >
+                            {t('NIN')}
+                        </button>
+                        <div className="desc">
+                            {t('nuestros_servicios.NIN_desc')}
+                        </div>
+                        <button 
+                            onClick={() => { 
+                                if(!isAuth)
+                                    navigate(`/login`)
+                                    
+                                navigate(`${postAdLinks[postAdSelected]}/caretaker`)
+                            }}
+                        >
+                            {t('CUI')}
+                        </button>
+                        <div className="desc">
+                            {t('nuestros_servicios.CUI_desc')}
+                        </div>
+                        
                     </div>
-                    
-                </div>
+                </>
             }
         </div>
     </>
