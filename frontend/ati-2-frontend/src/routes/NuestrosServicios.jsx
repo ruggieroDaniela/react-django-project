@@ -164,6 +164,22 @@ export const NuestrosServicios = () => {
                         </div>
                         
                     </div>
+                    <div id="how-to">
+                        <h4>
+                            {postAdSelected == 0?
+                                `${t('nuestros_servicios.como_ofrezco')}`
+                                :
+                                `${t('nuestros_servicios.como_solicito')}`
+                            }
+                        </h4>
+                        <ol id="steps">
+                            <li>{t('nuestros_servicios.pasos_solicitar.0')} <a href="/sign-up">{t('aquí')}</a></li>
+                            <li>{t('nuestros_servicios.pasos_solicitar.1')} <a href="/login">{t('aquí')}</a></li>
+                            {postAdSelected == 1 &&
+                                <li>{t('nuestros_servicios.pasos_solicitar.2')}</li>
+                            }
+                        </ol>
+                    </div>
                 </>
             }
         </div>
