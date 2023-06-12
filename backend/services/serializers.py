@@ -95,6 +95,9 @@ class RequestServiceSerializer(ServicesSerializer):
         
         if data['age_requirement'] == True and not ( data['age_required_from'] and data['age_required_to']):
             raise serializers.ValidationError("Por favor, indique el rango de edad")
+        
+        if data['age_requirement'] == False and ( data['age_required_from'] and data['age_required_to']):
+            raise serializers.ValidationError("Error, no debe especificar edad")
 
         if data['service'] == 'NIN' and not ( data['age_required_from'] >= 0 and data['age_required_to'] <=12 ):
             raise serializers.ValidationError("Edad no permitida, debe ser entre 0 y 12 años")
@@ -112,4 +115,4 @@ class RequestServiceSerializer(ServicesSerializer):
     
     class Meta: 
         model = RequestService
-        fields = ['id', 'user' , 'service', 'enable', 'created_at', 'gender', 'age_required_from', 'age_required_to', 'children', 'education_level', 'continent', 'country', 'state', 'city', 'zone', 'number_tco', 'age_tco', 'gender_tco', 'disabilities_tco', 'disabilities_tco_decrip', 'diseases_tco_descrip', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'have_documentation', 'documents', 'documents_other',  'publication_time', 'publication_plan', 'billing_country', 'billing_bank']
+        fields = ['id', 'user' , 'service', 'enable', 'created_at', 'gender', 'age_requirement', 'age_required_from', 'age_required_to', 'children', 'education_level', 'continent', 'country', 'state', 'city', 'zone', 'number_tco', 'age_tco', 'gender_tco', 'disabilities_tco', 'disabilities_tco_decrip', 'diseases_tco_descrip', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'have_documentation', 'documents', 'documents_other',  'publication_time', 'publication_plan', 'billing_country', 'billing_bank']
