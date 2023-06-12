@@ -27,6 +27,16 @@
             "Find clients"
         ],
         "NIN_desc": "For the care of individuals between 0 and 12 years old",
-        "CUI_desc": "For the care of individuals 13 years old and above"
+        "CUI_desc": "For the care of individuals 13 years old and above",
+        "offer_desc": "Select the service you want to offer",
+        "request_desc": "You can publish your personal request by clicking on the preferred personnel",
+        "como_ofrezco": "How do I offer my services with you?",
+        "como_solicito": "How do I request domestic personnel?",
+        "aquí": "here",
+        "pasos_solicitar": [
+            "You must register by clicking",
+            "Then you must log in by clicking",
+            "Select your preferred option in the Clients menu"
+        ]
     }
 }

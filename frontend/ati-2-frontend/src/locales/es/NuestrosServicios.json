@@ -27,6 +27,16 @@
             "Buscar clientes"
         ],
         "NIN_desc": "Para el cuidado de personas entre los 0 y los 12 años de edad",
-        "CUI_desc": "Para cuidar personas desde los 13 años en adelante"
+        "CUI_desc": "Para cuidar personas desde los 13 años en adelante",
+        "offer_desc": "Selecciona el servicio que quieres ofrecer",
+        "request_desc": "Puedes publicar tu solicitud de personal, haciendo clic en el personal de tu preferencia ",
+        "como_ofrezco": "¿Cómo ofrezco mis servicios con ustedes?",
+        "como_solicito": "¿Cómo solicito personal doméstico?",
+        "aquí": "aquí",
+        "pasos_solicitar": [
+            "Debes registrarte haciendo clic",
+            "Luego debes iniciar sesión, haciendo clic",
+            "Selecciona la opción de tu preferencia en el menú de Clientes"
+        ]
     }
 }
