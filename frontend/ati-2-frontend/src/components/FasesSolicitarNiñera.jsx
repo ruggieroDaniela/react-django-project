@@ -793,6 +793,7 @@ const Fase3 = () => {
 const Fase4 = () => {
   const { t, i18n } = useTranslation();
   const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+    const activities_required = requestDomesticFormState.errors.activities_required
 
   return ( 
   <div id="fase4">
@@ -835,7 +836,11 @@ const Fase4 = () => {
                         }
                         value={requestDomesticFormState.activities}                        
                 ></textarea>
+
+                { activities_required && <ErrorMessage message={t('SolicitarNiñera.errores.requerido')}/>  }
             </div>
+
+
       </div>
   </div>
 
@@ -2126,7 +2131,37 @@ const useValidar = () => {
                     return newState;
                 })
             }
-        }
+        } else if (currentStage === 3){
+            if(!requestDomesticFormState.country){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.country_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.country_required = false
+                    return newState;
+                })
+            }
+        } else if (currentStage === 4){
+            if(!requestDomesticFormState.activities){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.activities_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.activities_required = false
+                    return newState;
+                })
+            }
+        } 
 
         return valid
     };

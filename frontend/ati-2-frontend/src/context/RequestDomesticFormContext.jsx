@@ -57,7 +57,8 @@ function RequestDomesticFormContextProvider({children}){
             number_tco_required: false,
             age_tco_required: false,
             gender_tco_required: false,
-            diseases_required: false
+            diseases_required: false,
+            activities_required: false
         }
     }
     );
