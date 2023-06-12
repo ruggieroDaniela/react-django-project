@@ -168,21 +168,22 @@ content-type: application/json
 
 ### B - Solicitar personal domestico
 POST http://127.0.0.1:8000/api-services/requestService/post_ad/
-Authorization: Token 840c5d2b1393d0ac78010861ff7473fac4fdc7eb
+Authorization: Token 37a1d6f044b37b12f9fafac9d2e89953e111aafd
 content-type: application/json
 
 {
-    "user": 37, 
+    "user": 40, 
     "service": "CUI",
     "gender": "IDC",
-    "age_required_from": 18,
-    "age_required_to": 26,
+    "age_requirement": false, 
+    "age_required_from": null,
+    "age_required_to": 23,
     "children": "IDC",
     "education_level": "PRI",
     "continent": "Suramerica", 
-    "country": "VE",
-    "state": "Carabobo",
-    "city": "San Diego",
+    "country": "US",
+    "state": "US-CA",
+    "city": "U-San Diego",
     "zone": "El Calabozo",
     "number_tco": 2,
     "age_tco": "18 y 25",
@@ -218,11 +219,11 @@ content-type: application/json
 ###
 
 POST http://127.0.0.1:8000/api-services/requestService/post_ad/
-Authorization: Token 840c5d2b1393d0ac78010861ff7473fac4fdc7eb
+Authorization: Token 37a1d6f044b37b12f9fafac9d2e89953e111aafd
 content-type: application/json
 
 {
-    "user": 37, 
+    "user": 40, 
     "service": "NIN",
     "gender": "IDC",
     "age_required_from": 10,

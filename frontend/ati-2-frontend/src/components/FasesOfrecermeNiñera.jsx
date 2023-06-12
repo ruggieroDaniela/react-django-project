@@ -332,7 +332,7 @@ const Fase1 = () => {
       
   
     
-    { city_required && <ErrorMessage message={t('OfrecermeNiñera.errores.ciudad')}/>  }
+    
 
     return ( 
         <div id="fase1">
@@ -371,6 +371,8 @@ const Fase1 = () => {
                         <option>Loading ...</option>
                     )}
                     </select>
+
+                    { country_required && <ErrorMessage message={t('OfrecermeNiñera.errores.pais')}/>  }
                 </div>
                 
 
@@ -396,6 +398,7 @@ const Fase1 = () => {
                         <option>{t('OfrecermeNiñera.fases.1.select-country')}</option>
                         )}
                     </select>
+                    
                     { state_required && <ErrorMessage message={t('OfrecermeNiñera.errores.estado')}/>  }
                 </div>
                 <div>
@@ -422,7 +425,8 @@ const Fase1 = () => {
                         <option>{t('OfrecermeNiñera.fases.1.select-state')}</option>
                         )}
                     </select>
-                    { country_required && <ErrorMessage message={t('OfrecermeNiñera.errores.pais')}/>  }
+                    
+                    { city_required && <ErrorMessage message={t('OfrecermeNiñera.errores.ciudad')}/>  }
                 </div>
 
                 <div>

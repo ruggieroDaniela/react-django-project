@@ -104,7 +104,29 @@ export const OfrecermeCuidador = () => {
             origin_country: "",
             origin_state: "",
             origin_city: "",
-            client_type: ""
+            client_type: "",
+            errors: {
+                invalid_age: false,
+                country_required: false,
+                state_required: false,
+                city_required: false,
+                description_required: false,
+                travel_desc_required: false,
+                activities_required: false,
+                workday_required: false,
+                workday_other_required: false,
+                schedule_required: false,
+                schedule_other_required: false,
+                salary_option_required: false,
+                salary_required: false,
+                salary_other_required: false,
+                benefits_required: false,
+                date_opt_required: false,
+                date_required: false,
+                other_doc_required: false,
+                billing_required: false,
+                origin_required: false
+            }
         });
     },[]);
 

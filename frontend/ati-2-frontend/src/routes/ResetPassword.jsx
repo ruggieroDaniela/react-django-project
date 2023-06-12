@@ -57,10 +57,9 @@ export const ResetPassword = () => {
 
       if(password.length >= 8){
         try{
-          const url = `http://127.0.0.1:8000/users/${params.id}/change_password/`
-          const response = await axios.post(url, {'new_password': password, 'confirm_password': confirmPassword})
-          console.log(response)
-  
+          const url = `http://127.0.0.1:8000/users/change_password/`
+          await axios.post(url, {'id': params.id, 'new_password': password, 'confirm_password': confirmPassword})
+
           setInvalidPassword(false)
           setTooShortPassword(false)
           setSubmitPassword(true)
@@ -122,11 +121,11 @@ export const ResetPassword = () => {
                       <div>
                           <div className='field'>
                               <label>{t('resetPassword.contraseña')}</label>
-                              <input type="password" onChange={e => setPassword(e.target.value)} required />
+                              <input type="password" onChange={e => setPassword(e.target.value)} />
                           </div>
                           <div className='field'>
                               <label>{t('resetPassword.confirmarContraseña')}</label>
-                              <input type="password" onChange={e => setConfirmPassword(e.target.value)} required />
+                              <input type="password" onChange={e => setConfirmPassword(e.target.value)} />
                           </div>
                       </div>
                       
