@@ -60,6 +60,17 @@
         }
     }
 
+    #more-options-header{
+        width: 75%;
+        h4{
+            color: blue;
+        }
+        p{
+            margin-left: 3vw;
+            font-weight: bold;
+        }
+    }
+
     #more-options{
         margin-top: 1.5rem;
         display: grid;
@@ -70,6 +81,16 @@
         align-items: center;
         button{
             height: 3rem;
+        }
+    }
+
+    #how-to{
+        width: 60%;
+        h4{
+            color: red;
+        }
+        li{
+            padding-bottom: 0.5rem;
         }
     }
 
