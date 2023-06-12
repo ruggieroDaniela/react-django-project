@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { RequestDomesticFormContext, RequestDomesticFormContextProvider } from "../context/RequestDomesticFormContext";
+import AuthContext from "../context/AuthContext";
 
 import "../styles/NuestrosServicios.scss"
 
@@ -11,7 +11,8 @@ import "../styles/NuestrosServicios.scss"
 export const NuestrosServicios = () => {
 
     const { t } = useTranslation();
-    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+    const {authState, setAuthState} = useContext(AuthContext);
+    const isAuth = authState.logged_in;
     const navigate = useNavigate();
 
     const [clickPostAd, setClickPostAd] = useState(false);
@@ -122,14 +123,27 @@ export const NuestrosServicios = () => {
 
                 <div id="more-options">
                     
-                    <button onClick={() => { navigate(`${postAdLinks[postAdSelected]}/babysitter`) }}>
+                    <button 
+                        onClick={() => { 
+                            if(!isAuth)
+                                navigate(`/login`)
+
+                            navigate(`${postAdLinks[postAdSelected]}/babysitter`)
+                        }}
+                    >
                         {t('NIN')}
                     </button>
                     <div className="desc">
                         {t('nuestros_servicios.NIN_desc')}
                     </div>
-
-                    <button onClick={() => { navigate(`${postAdLinks[postAdSelected]}/caretaker`) }}>
+                    <button 
+                        onClick={() => { 
+                            if(!isAuth)
+                                navigate(`/login`)
+                                
+                            navigate(`${postAdLinks[postAdSelected]}/caretaker`)
+                        }}
+                    >
                         {t('CUI')}
                     </button>
                     <div className="desc">
