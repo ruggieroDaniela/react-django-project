@@ -118,7 +118,7 @@ export const NuestrosServicios = () => {
                     </div>
                 </div>
             </div>
-            {displayMoreOpt &&
+            {displayMoreOpt && clickPostAd &&
 
                 <div id="more-options">
                     
