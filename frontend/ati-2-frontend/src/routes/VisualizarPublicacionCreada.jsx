@@ -43,7 +43,47 @@ export const VisualizarPublicacionCreada = () => {
     // }, []);
 
         return (
-            <section id="publicacion-creada">            
+            <section id="publicacion-creada">     
+                <section className='encabezado-perfil'>
+
+                    {/* First Row */}
+                    <div className='subtitle blue margin'>
+                        <b>Niñero(a)</b>
+                    </div>
+                    <div className='user-name'>
+                        <b>Nombre Apellido </b>
+                    </div>
+                    <div>
+                        
+                    </div>
+                    <div className='subtitle blue space'>
+                        <b>{t('publicacionCreada.pais_cuidador')}</b>
+                    </div>
+                
+                </section>
+
+                <section className='encabezado-perfil'>
+                    <div>
+                        <img className='img-user' src={fotoPerfil} />
+                    </div>
+                    <div>
+                        <div className='rectangle'>{t('publicacionCreada.telefono_celular')}</div>
+                        <div className='rectangle'> {t('publicacionCreada.telefono_fijo')}</div>
+                        <div className='rectangle'> {t('publicacionCreada.correo_electronico')} </div>
+                    </div>
+                    <div>
+                        <div className='data'> { data?.phone || 'No disponible'} </div>
+                        <div className='data'> {data?.phone || 'No disponible'} </div>
+                        <div className='data'> {data?.email ||'No disponible'}</div>
+                    </div>
+                    <div>
+                        <div className='pais red'>Venezuela</div>                        
+                        <div className='pais blue'> {t('publicacionCreada.provincia__cuidador')} </div>
+                        <div className='pais red'>Distrito Capital</div>
+                    </div>
+
+                </section>
+                {/*        
                 <section className='encabezado-perfil'>
                 <section>
                         <section className='foto'>
@@ -425,7 +465,7 @@ export const VisualizarPublicacionCreada = () => {
                         </section>
                     </>
                 } 
-
+            */}
             </section>
 
         )
