@@ -165,8 +165,8 @@ const Navbar = () => {
                                     arrow: "▸"
                                 },
                                 items:[
-                                    {label: t("navbar.ofrecerme.babysitter"), link: isAuth == true ? "./offer-my-services/post-add/offer-me-as-babysitter" : "#"},
-                                    {label: t("navbar.ofrecerme.cuidador"), link:isAuth == true ? "./offer-my-services/post-add/offer-me-as-caretaker" : "#"}
+                                    {label: t("navbar.ofrecerme.babysitter"), link: isAuth == true ? "./post-ad/offer/babysitter" : "#"},
+                                    {label: t("navbar.ofrecerme.cuidador"), link:isAuth == true ? "./post-ad/offer/caretaker" : "#"}
                                 ]
                             },
                             {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=provide&user=${authState.id}`},
