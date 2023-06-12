@@ -1,17 +1,17 @@
 {
-    "OfrecermeNiñera":{
-        "no-tiene":"No tiene",
-        "niñera": "Niñera(o)",
+    "OfrecermeCuidador":{
+        "no-tiene":"does not have",
+        "niñera": "Babysitter",
         "pais":"Country",
         "estado":"Estado, provincia o cantón  ",
-        "titulo": "OFRECER MIS SERVICIOS COMO NIÑERA(O)",
+        "titulo": "OFRECER MIS SERVICIOS COMO CUIDADOR(A)",
         "telefono_movil":"Télefono Móvil",
         "telefono_fijo":"Télefono Fijo",
         "correo":"Correo electrónico",
         "panel-opciones":"PANEL DE OPCIONES",
         "indicaciones": [
-            "These are the steps to follow to complete your registration.",
-            "If at any time you need to access a section of the registry, click on the green panel, which is your preference"
+          "Estos son los pasos a seguir para completar tu registro.",
+          "Si en algún momento necesitas acceder a una sección del registro, haz clic en el panel verde, que es de tu preferencia."
         ],
         "botones":{
             "registrar": "Register",
@@ -19,9 +19,9 @@
         },
         "fases":[
             {
-              "nombre": "Datos básicos de niñera(o)",
+              "nombre": "Datos básicos de cuidador(a) ocupacional",
               "mensaje":"Por favor, proporcione los datos especificados a continuación",
-              "condiciones":"Soy persona responsable, honesta, de buen carácter, y me gustan los niños(as).",
+              "condiciones":"Soy persona de buena presencia, responsable, honesta, buen carácter, y que le gusta trabajar cuidando personas",
               "edad":"Edad",
               "situacion-familiar":"Situación familiar",
               "grado-instruccion":"Grado de instrucción",
@@ -56,17 +56,17 @@
               "indique":"Indique"
             },
             {
-              "nombre": "Disponibilidad para viajar de la niñera(o)",
+              "nombre": "Disponibilidad para viajar del cuidador(a) ocupacional ",
               "mensaje":"Por favor, indique si posee disponibilidad para viajar, o no.",
               "mensaje2":"De poseer disponibilidad, se le sugiere especificar detalles adicionales acerca del viaje",
-              "pregunta":"¿Esta dispuesta(o) a viajar, para acompañar a la(s) persona(s) a cuidar?",
+              "pregunta":"¿Estoy dispuesta(o) a viajar, para acompañar a la(s) persona(s) a cuidar?",
               "si":"Si",
               "no":"No",
               "especifique":"Especifique"
             },
             {
-              "nombre": "Funciones desempeñadas como niñera(o)",
-              "mensaje":"Por favor, indique las actividades que ha desempeñado como niñera(o)",
+              "nombre": " Funciones que de desempeñado como cuidador(a) ocupacional",
+              "mensaje":"Funciones que ha desempeñado como cuidador o cuidadora",
               "titulo":"Funciones que ha desempeñado como niñera o niñero",
               "indique":"Indique las actividades que ha realizado en esta vacante",
               "ejemplos":[
@@ -291,21 +291,7 @@
               "numero-cuenta":"Número de cuenta"
             }
           ],
-        "continuar": "Continuar",
-        "atras": "Atras",
-        "errores": {
-          "edad": "La edad debe ser un número mayor o igual a 0",
-          "pais": "Debe seleccionar un país",
-          "estado": "Debe seleccionar un estado/provincia",
-          "ciudad": "Debe seleccionar una ciudad",
-          "requerido": "Este campo es obligatorio",
-          "option_required": "Debe seleccionar una opción",
-          "option": "Debe seleccionar al menos una opción",
-          "especificar": "Los campos a especificar deben completarse",
-          "salario": "Debe seleccionar una moneda, una frecuencia de pago y un monto de pago mayor a 0.0",
-          "fecha": "Debe seleccionar una fecha",
-          "banco": "Debe seleccionar un país y un banco",
-          "origen": "Debe seleccionar un continente, un país, un estado y una ciudad"
-          }
+        "continuar": "",
+        "atras": "Back"
     }
 }

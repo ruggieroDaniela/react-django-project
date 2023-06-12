@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
 import { Multiform } from "../components/Multiform";
-import { FasesOfrecermeNiñera, botonEnviar, useValidar } from "../components/FasesOfrecermeNiñera";
+import { FasesOfrecermeCuidador, botonEnviar, useValidar } from "../components/FasesOfrecermeCuidador";
 import { OfferDomesticFormContext } from "../context/OfferDomesticFormContext";
 import AuthContext from '../context/AuthContext';
 
-import "../styles/OfrecermeNiñera.scss"
+import "../styles/OfrecermeCuidador.scss"
 
-export const OfrecermeNiñera = () => {
+export const OfrecermeCuidador = () => {
     
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
     const {authState, setAuthState} = useContext(AuthContext);
@@ -57,7 +57,7 @@ export const OfrecermeNiñera = () => {
     useEffect(()=>{
         setOfferDomesticFormState({
             user: authState.id, 
-            service: "NIN",
+            service: "CUI",
             gender: "IDC",
             age_required_from: 13,
             age_required_to: 13,
@@ -74,7 +74,7 @@ export const OfrecermeNiñera = () => {
             disabilities_tco: true,
             disabilities_tco_decrip: "sssssssssssss",
             travel: true,
-            travel_decription: "",
+            travel_decription: "asdasd",
             activities: "",
             workday: [],
             workday_other: "",
@@ -104,29 +104,7 @@ export const OfrecermeNiñera = () => {
             origin_country: "",
             origin_state: "",
             origin_city: "",
-            client_type: "",
-            errors: {
-                invalid_age: false,
-                country_required: false,
-                state_required: false,
-                city_required: false,
-                description_required: false,
-                travel_desc_required: false,
-                activities_required: false,
-                workday_required: false,
-                workday_other_required: false,
-                schedule_required: false,
-                schedule_other_required: false,
-                salary_option_required: false,
-                salary_required: false,
-                salary_other_required: false,
-                benefits_required: false,
-                date_opt_required: false,
-                date_required: false,
-                other_doc_required: false,
-                billing_required: false,
-                origin_required: false
-            }
+            client_type: ""
         });
     },[]);
 
@@ -143,27 +121,27 @@ export const OfrecermeNiñera = () => {
 
     // nombres de los stages en el idioma actual
     let stagesNames = [];
-    for (let i = 0; i < FasesOfrecermeNiñera.length; i++) {
-        stagesNames.push(t('OfrecermeNiñera.fases.'+i+'.nombre'));
+    for (let i = 0; i < FasesOfrecermeCuidador.length; i++) {
+        stagesNames.push(t('OfrecermeCuidador.fases.'+i+'.nombre'));
     }
 
     return (
         <div id="OfrecermeNiñera">
             
             <div id="titulo">
-                <h4>{t('OfrecermeNiñera.titulo')}</h4>
+                <h4>{t('OfrecermeCuidador.titulo')}</h4>
             </div>
 
             <div  id="info-niñera">
 
                 <div className="row">
-                    <div className="first-row blue first-column" id="niñera"><h2>{t('OfrecermeNiñera.niñera')}</h2></div>
+                    <div className="first-row blue first-column" id="niñera"><h2>{t('OfrecermeCuidador.niñera')}</h2></div>
                     <div className="first-row" id="n-niñera" >
                         <h1>{authState.name}</h1>
                     </div>
                     <div className="first-row" id="pais">
 
-                        <h2><span className="blue">{t('OfrecermeNiñera.pais')}</span> <span className="red" >{userData.country}</span></h2>
+                        <h2><span className="blue">{t('OfrecermeCuidador.pais')}</span> <span className="red" >{userData.country}</span></h2>
 
                         
                     </div>
@@ -175,20 +153,20 @@ export const OfrecermeNiñera = () => {
                     <div className="second-row">
                         <div id="info-personal">
                             <div className="first-column">
-                                <h4>{t('OfrecermeNiñera.telefono_movil')}</h4>
+                                <h4>{t('OfrecermeCuidador.telefono_movil')}</h4>
                             </div>
                             <div className="second-column">
                                 
-                                <h4>{userData.cellphone != null  ? userData.cellphone :t('OfrecermeNiñera.no-tiene')}</h4>
+                                <h4>{userData.cellphone != null  ? userData.cellphone :t('OfrecermeCuidador.no-tiene')}</h4>
                             </div>
                             <div className="first-column">
-                                <h4>{t('OfrecermeNiñera.telefono_fijo')}</h4>
+                                <h4>{t('OfrecermeCuidador.telefono_fijo')}</h4>
                             </div>
                             <div className="second-column">
-                                <h4>{userData.telephone != null  ? userData.telephone :t('OfrecermeNiñera.no-tiene')}</h4>
+                                <h4>{userData.telephone != null  ? userData.telephone :t('OfrecermeCuidador.no-tiene')}</h4>
                             </div>
                             <div className="first-column">
-                                <h4>{t('OfrecermeNiñera.correo')}</h4>
+                                <h4>{t('OfrecermeCuidador.correo')}</h4>
                             </div>
                             <div className="second-column">
                                 <h4>{authState.email}</h4>
@@ -196,14 +174,14 @@ export const OfrecermeNiñera = () => {
                         </div>
                     </div>
                     <div className="second-row" style={{visibility:'hidden'}}>
-                        <h2><span className="blue">{t('OfrecermeNiñera.estado')}</span> <span className="red" >Distrito Capital</span></h2>
+                        <h2><span className="blue">{t('OfrecermeCuidador.estado')}</span> <span className="red" >Distrito Capital</span></h2>
                     </div>
                 </div>
 
             </div>
 
             <div id="panel-opciones">
-                <span>{t('OfrecermeNiñera.panel-opciones')}</span>
+                <span>{t('OfrecermeCuidador.panel-opciones')}</span>
             </div>
 
             <div className="indicaciones">
@@ -213,7 +191,7 @@ export const OfrecermeNiñera = () => {
             </div>
    
             <Multiform
-                stages={FasesOfrecermeNiñera}         // array de componentes que serán usados como stages
+                stages={FasesOfrecermeCuidador}         // array de componentes que serán usados como stages
                 stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
                 cancelEvent={goHome}            // onClick event del botón de cancelar
                 SubmitButton={botonEnviar}   // componente con el botón de submit

@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { FieldDropdownCheckbox } from "./search/FieldDropdownCheckbox";
 import { useState } from "react";
 import { OfferDomesticFormContext } from "../context/OfferDomesticFormContext";
-import { getAllCountries, getCountriesInRegion, getStatesInCountry, getCitiesInStates, getContinents } from "../components/dataFetchers/PaisDataFetcher";
+import { getAllCountries, getCountriesInRegion, getStatesInCountry, getCitiesInStates, getContinents } from "./dataFetchers/PaisDataFetcher";
 import { useEffect } from 'react';
-import { FieldDropdown } from "../components/search/FieldDropdown";
-import { FieldDropdownSearch } from "../components/search/FieldDropdownSearch";
+import { FieldDropdown } from "./search/FieldDropdown";
+import { FieldDropdownSearch } from "./search/FieldDropdownSearch";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import ErrorMessage from "./ErrorMessage";
+
 
 import "../styles/BuscarPersonalDomestico.scss"
  
@@ -20,18 +20,17 @@ const Fase0 = () => {
     
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
-
-    const age_invalid = offerDomesticFormState.errors.invalid_age
+    
 
     return ( 
         <div id="fase0">
             <div id="small">
-                <p>{t('OfrecermeNiñera.fases.0.mensaje')}</p>                        
-                <span className="red">*  </span>= <span className="blue">{t('OfrecermeNiñera.fases.0.campos-obligatorios')}</span>
+                <p>{t('OfrecermeCuidador.fases.0.mensaje')}</p>                        
+                <span className="red">*  </span>= <span className="blue">{t('OfrecermeCuidador.fases.0.campos-obligatorios')}</span>
             </div>
             <div >
-                <p>{t('OfrecermeNiñera.fases.0.condiciones')}</p>
-                <span className="red" >*  </span><h3 className="blue"> {t('OfrecermeNiñera.fases.0.edad')}</h3>
+                <p>{t('OfrecermeCuidador.fases.0.condiciones')}</p>
+                <span className="red" >*  </span><h3 className="blue"> {t('OfrecermeCuidador.fases.0.edad')}</h3>
                 <input  type="text"
                         onChange={ e =>{
                             setOfferDomesticFormState ( prev => {
@@ -41,11 +40,9 @@ const Fase0 = () => {
                             });
                         }}
                         value={offerDomesticFormState.age}
-                        /> {t('OfrecermeNiñera.fases.0.años')}
-
-                { age_invalid && <ErrorMessage message={t('OfrecermeNiñera.errores.edad')}/>  }
+                        /> {t('OfrecermeCuidador.fases.0.años')}
             <div>
-                <span className="red" >*  </span><h3 className="blue">{t('OfrecermeNiñera.fases.0.situacion-familiar')}</h3> <br />
+                <span className="red" >*  </span><h3 className="blue">{t('OfrecermeCuidador.fases.0.situacion-familiar')}</h3> <br />
                 <div>
                     <input  type="radio"
                             id="o1" 
@@ -64,7 +61,7 @@ const Fase0 = () => {
                     />
                     
                     
-                    <label htmlFor="o1">{t('OfrecermeNiñera.fases.0.sin-hijos')}</label>
+                    <label htmlFor="o1">{t('OfrecermeCuidador.fases.0.sin-hijos')}</label>
 
                     <input  type="radio"
                             id="o2" 
@@ -81,12 +78,12 @@ const Fase0 = () => {
                             }} 
                             checked={offerDomesticFormState.have_children}
                             />
-                    <label htmlFor="o2">{t('OfrecermeNiñera.fases.0.con-hijos')}</label>
+                    <label htmlFor="o2">{t('OfrecermeCuidador.fases.0.con-hijos')}</label>
                 </div>
             </div>
 
             <div>
-                <span className="red" >*  </span><h3 className="blue">{t('OfrecermeNiñera.fases.0.grado-instruccion')}</h3><br />
+                <span className="red" >*  </span><h3 className="blue">{t('OfrecermeCuidador.fases.0.grado-instruccion')}</h3><br />
                 <div>
                     <input  type="radio"
                             id="o3" 
@@ -105,7 +102,7 @@ const Fase0 = () => {
 
                     
                             
-                    <label htmlFor="o3">{t('OfrecermeNiñera.fases.0.grado.0')}</label>
+                    <label htmlFor="o3">{t('OfrecermeCuidador.fases.0.grado.0')}</label>
 
                     <input  type="radio"
                             id="o4" 
@@ -122,7 +119,7 @@ const Fase0 = () => {
                             }}
                             checked={offerDomesticFormState.education_level === 'TEC'}
                               />
-                    <label htmlFor="o4">{t('OfrecermeNiñera.fases.0.grado.1')}</label>
+                    <label htmlFor="o4">{t('OfrecermeCuidador.fases.0.grado.1')}</label>
 
                     <input  type="radio"
                             id="o5"
@@ -139,7 +136,7 @@ const Fase0 = () => {
                             }}
                             checked={offerDomesticFormState.education_level === 'BAC'}
                             />
-                    <label htmlFor="o5">{t('OfrecermeNiñera.fases.0.grado.2')}</label>
+                    <label htmlFor="o5">{t('OfrecermeCuidador.fases.0.grado.2')}</label>
 
                     <input  type="radio"
                             id="o6"
@@ -156,7 +153,7 @@ const Fase0 = () => {
                             }}
                             checked={offerDomesticFormState.education_level == 'UNI'}
                             />
-                    <label htmlFor="o6">{t('OfrecermeNiñera.fases.0.grado.3')}</label>
+                    <label htmlFor="o6">{t('OfrecermeCuidador.fases.0.grado.3')}</label>
                 </div>
             </div>
 
@@ -172,10 +169,6 @@ const Fase0 = () => {
 const Fase1 = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
-
-    const country_required = offerDomesticFormState.errors.country_required
-    const state_required = offerDomesticFormState.errors.state_required
-    const city_required = offerDomesticFormState.errors.city_required
 
     //ID of the Nannie that is making the post
         
@@ -330,25 +323,23 @@ const Fase1 = () => {
     };
 
       
-  
     
-    { city_required && <ErrorMessage message={t('OfrecermeNiñera.errores.ciudad')}/>  }
 
     return ( 
         <div id="fase1">
             <div id="small">
-                <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.1.mensaje')}</span>
+                <span className="red">*  </span><span className="blue">{t('OfrecermeCuidador.fases.1.mensaje')}</span>
             </div>
 
             <div>
-                <h2 className="blue">{t('OfrecermeNiñera.fases.1.nombre')}</h2>
-                <p>{t('OfrecermeNiñera.fases.1.prefiero')}</p>
+                <h2 className="blue">{t('OfrecermeCuidador.fases.1.nombre')}</h2>
+                <p>{t('OfrecermeCuidador.fases.1.prefiero')}</p>
             </div>
             
             
             <div id="formulario">
                 <div>
-                    <label htmlFor="pais">{t('OfrecermeNiñera.fases.1.pais')}</label> 
+                    <label htmlFor="pais">{t('OfrecermeCuidador.fases.1.pais')}</label> 
                 </div>
                 <div>
                     <select name="pais" 
@@ -375,7 +366,7 @@ const Fase1 = () => {
                 
 
                 <div >
-                    <label htmlFor="estados">{t('OfrecermeNiñera.fases.1.estado')}</label> 
+                    <label htmlFor="estados">{t('OfrecermeCuidador.fases.1.estado')}</label> 
                 </div>
                 <div>
                     <select name="estados" 
@@ -393,13 +384,12 @@ const Fase1 = () => {
                             }> 
                         {readyStates && renderOptions(states,"states")}
                         {!readyStates && (
-                        <option>{t('OfrecermeNiñera.fases.1.select-country')}</option>
+                        <option>{t('OfrecermeCuidador.fases.1.select-country')}</option>
                         )}
                     </select>
-                    { state_required && <ErrorMessage message={t('OfrecermeNiñera.errores.estado')}/>  }
                 </div>
                 <div>
-                    <label htmlFor="ciudad">{t('OfrecermeNiñera.fases.1.ciudad')}</label> 
+                    <label htmlFor="ciudad">{t('OfrecermeCuidador.fases.1.ciudad')}</label> 
                 </div>
                 <div>
                     <select name="ciudad"
@@ -419,14 +409,13 @@ const Fase1 = () => {
                             > 
                         {readyCities && renderOptions(cities,"cities")}
                         {!readyCities && (
-                        <option>{t('OfrecermeNiñera.fases.1.select-state')}</option>
+                        <option>{t('OfrecermeCuidador.fases.1.select-state')}</option>
                         )}
                     </select>
-                    { country_required && <ErrorMessage message={t('OfrecermeNiñera.errores.pais')}/>  }
                 </div>
 
                 <div>
-                    <label htmlFor="zona">{t('OfrecermeNiñera.fases.1.zona')}</label> 
+                    <label htmlFor="zona">{t('OfrecermeCuidador.fases.1.zona')}</label> 
                 </div>
                 <div>
                     <input  type="text"
@@ -455,18 +444,17 @@ const Fase1 = () => {
 const Fase2 = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);    
-    const description_required = offerDomesticFormState.errors.description_required
 
     return ( 
     <div id="fase2">
             
             <div id="small">
-                <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.2.mensaje')}</span>
+                <span className="red">*  </span><span className="blue">{t('OfrecermeCuidador.fases.2.mensaje')}</span>
             </div>
             
             <div id="titulos">
-                <span className="red">* </span><h2 className="blue">{t('OfrecermeNiñera.fases.2.descripcion-perfil')}</h2>
-                <div id="peq">{t('OfrecermeNiñera.fases.2.indique')}</div>
+                <span className="red">* </span><h2 className="blue">{t('OfrecermeCuidador.fases.2.descripcion-perfil')}</h2>
+                <div id="peq">{t('OfrecermeCuidador.fases.2.indique')}</div>
             </div>
             
             <div id="form">
@@ -482,8 +470,6 @@ const Fase2 = () => {
                         }
                         value={offerDomesticFormState.description}
                 ></textarea>
-
-                { description_required && <ErrorMessage message={t('OfrecermeNiñera.errores.requerido')}/>  }
             </div>
     </div> 
     );
@@ -493,17 +479,15 @@ const Fase3 = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
-    const travel_desc_required = offerDomesticFormState.errors.travel_desc_required
-
     return (     
     <div id="fase3">
 
         <div id="small">
-            <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.3.mensaje')}</span><br />
-            <span className="blue" >{t('OfrecermeNiñera.fases.3.mensaje2')}</span>
+            <span className="red">*  </span><span className="blue">{t('OfrecermeCuidador.fases.3.mensaje')}</span><br />
+            <span className="blue" >{t('OfrecermeCuidador.fases.3.mensaje2')}</span>
         </div>
         <div id="titulos">
-            <span className="red">* </span><h2 >{t('OfrecermeNiñera.fases.3.pregunta')}</h2>
+            <span className="red">* </span><h2 >{t('OfrecermeCuidador.fases.3.pregunta')}</h2>
             <div id="form">
                     <div>
                         <input  type="radio"
@@ -521,7 +505,7 @@ const Fase3 = () => {
                                 }
                                 checked={!offerDomesticFormState.travel}
                         />
-                        <label htmlFor="c1">{t('OfrecermeNiñera.fases.3.no')}</label>
+                        <label htmlFor="c1">{t('OfrecermeCuidador.fases.3.no')}</label>
                     </div>
 
                     <div>
@@ -541,7 +525,7 @@ const Fase3 = () => {
                                 }
                                 checked={offerDomesticFormState.travel}        
                         />
-                        <label htmlFor="c2">{t('OfrecermeNiñera.fases.3.si')}</label>
+                        <label htmlFor="c2">{t('OfrecermeCuidador.fases.3.si')}</label>
                     </div>
             </div>
         </div>
@@ -549,22 +533,20 @@ const Fase3 = () => {
         { offerDomesticFormState.travel && (
         <div id="form" >
         <div >
-            <div id="peq">{t('OfrecermeNiñera.fases.3.especifique')}</div>
+            <div id="peq">{t('OfrecermeCuidador.fases.3.especifique')}</div>
         </div>
             <textarea 
                     onChange={
                         e => {
                             setOfferDomesticFormState ( prev => {
                                 const newState = {... prev};
-                                newState.travel_decription = e.target.value;
+                                newState.travel_description = e.target.value;
                                 return newState;
                             });
                         } 
                     }
-                    value={offerDomesticFormState.travel_decription}
+                    value={offerDomesticFormState.travel_description}
             ></textarea>
-
-            { travel_desc_required && <ErrorMessage message={t('OfrecermeNiñera.errores.requerido')}/>  }
         </div>
         )}
 
@@ -575,34 +557,33 @@ const Fase3 = () => {
 const Fase4 = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
-    const activities_required = offerDomesticFormState.errors.activities_required
 
     return ( 
     <div id="fase4">
 
         <div id="small">
-            <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.4.mensaje')}</span><br />
+            <span className="red">*  </span><span className="blue">{t('OfrecermeCuidador.fases.4.mensaje')}</span><br />
         </div>
 
         <div id="titulo">
-            <h2 className="blue" >{t('OfrecermeNiñera.fases.4.titulo')}</h2><br />
+            <h2 className="blue" >{t('OfrecermeCuidador.fases.4.titulo')}</h2><br />
         </div>
         <div id="contenido">
             <div id="titulos">
-                <p>{t('OfrecermeNiñera.fases.4.indique')} </p>
-                <h2>{t('OfrecermeNiñera.fases.4.ejemplo')}</h2>
+                <p>{t('OfrecermeCuidador.fases.4.indique')} </p>
+                <h2>{t('OfrecermeCuidador.fases.4.ejemplo')}</h2>
                 <ul>
-                    <li>{t('OfrecermeNiñera.fases.4.ejemplos.0')}</li>
-                    <li>{t('OfrecermeNiñera.fases.4.ejemplos.1')}</li>
-                    <li>{t('OfrecermeNiñera.fases.4.ejemplos.2')}</li>
-                    <li>{t('OfrecermeNiñera.fases.4.ejemplos.3')}</li>
-                    <li>{t('OfrecermeNiñera.fases.4.ejemplos.4')}</li>
-                    <li>{t('OfrecermeNiñera.fases.4.ejemplos.5')}</li>
-                    <li>{t('OfrecermeNiñera.fases.4.ejemplos.6')}</li>
+                    <li>{t('OfrecermeCuidador.fases.4.ejemplos.0')}</li>
+                    <li>{t('OfrecermeCuidador.fases.4.ejemplos.1')}</li>
+                    <li>{t('OfrecermeCuidador.fases.4.ejemplos.2')}</li>
+                    <li>{t('OfrecermeCuidador.fases.4.ejemplos.3')}</li>
+                    <li>{t('OfrecermeCuidador.fases.4.ejemplos.4')}</li>
+                    <li>{t('OfrecermeCuidador.fases.4.ejemplos.5')}</li>
+                    <li>{t('OfrecermeCuidador.fases.4.ejemplos.6')}</li>
                 </ul>
             </div>
             <div >
-                <div id="peq"><span className="red">* </span><h2>{t('OfrecermeNiñera.fases.4.especifique')}</h2></div>
+                <div id="peq"><span className="red">* </span><h2>{t('OfrecermeCuidador.fases.4.especifique')}</h2></div>
             </div>
 
             <div id="form">
@@ -618,8 +599,6 @@ const Fase4 = () => {
                         }
                         value={offerDomesticFormState.activities}                        
                 ></textarea>
-
-                { activities_required && <ErrorMessage message={t('OfrecermeNiñera.errores.requerido')}/>  }
             </div>
         </div>
     </div>
@@ -638,25 +617,18 @@ const Fase5 = () => {
     const [salaryType, setSalaryType] = useState("");
 
     //dropdown currency
-    let currency = ["USD","EUR",t('OfrecermeNiñera.fases.5.otro')];
+    let currency = ["USD","EUR",t('OfrecermeCuidador.fases.5.otro')];
     const [selectedCurrency,setSelectedCurrency] = useState(switchCurrency());
     
 
     //dropdown salary
-    let salary = [t('OfrecermeNiñera.fases.5.salario-opciones.0'), t('OfrecermeNiñera.fases.5.salario-opciones.1'), t('OfrecermeNiñera.fases.5.salario-opciones.2'), t('OfrecermeNiñera.fases.5.salario-opciones.3'), t('OfrecermeNiñera.fases.5.salario-opciones.4')];
+    let salary = [t('OfrecermeCuidador.fases.5.salario-opciones.0'), t('OfrecermeCuidador.fases.5.salario-opciones.1'), t('OfrecermeCuidador.fases.5.salario-opciones.2'), t('OfrecermeCuidador.fases.5.salario-opciones.3'), t('OfrecermeCuidador.fases.5.salario-opciones.4')];
     const [selectedSalary, setSelectedSalary] = useState(switchSalary());
 
     const [selectedServices, setSelectedServices] = useState("");
 
-    
-    const workday_required = offerDomesticFormState.errors.workday_required
-    const workday_other_required = offerDomesticFormState.errors.workday_other_required
-    const schedule_required = offerDomesticFormState.errors.schedule_required
-    const schedule_other_required = offerDomesticFormState.errors.schedule_other_required
-    const salary_option_required = offerDomesticFormState.errors.salary_option_required
-    const salary_required = offerDomesticFormState.errors.salary_required
-    const salary_other_required = offerDomesticFormState.errors.salary_other_required
-    const benefits_required = offerDomesticFormState.errors.benefits_required
+ 
+
 
     function setTheWorkdays (e){
 
@@ -776,17 +748,17 @@ const Fase5 = () => {
     return ( 
         <div id="fase5">
             <div className="small">
-                <span className="red">* </span><span className="blue">{t('OfrecermeNiñera.fases.5.mensaje')}</span>
+                <span className="red">* </span><span className="blue">{t('OfrecermeCuidador.fases.5.mensaje')}</span>
             </div>
 
             <div>
-                <h1 className="blue">{t('OfrecermeNiñera.fases.5.nombre')}</h1>
+                <h1 className="blue">{t('OfrecermeCuidador.fases.5.nombre')}</h1>
             </div>
 
             
                 <div>
                     <div className="titulos">
-                        <span className="red">* </span><h2>{t('OfrecermeNiñera.fases.5.salidas-jornada')}</h2>
+                        <span className="red">* </span><h2>{t('OfrecermeCuidador.fases.5.salidas-jornada')}</h2>
                     </div>
                     <div className="form" >
                         <div>
@@ -796,7 +768,7 @@ const Fase5 = () => {
                                     checked={(offerDomesticFormState.workday) == ('SEMANAL')}
                                     onChange={e => setTheWorkdays(e)}
                             />
-                            <label htmlFor="SEMANAL">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.0')}</label>
+                            <label htmlFor="SEMANAL">{t('OfrecermeCuidador.fases.5.salidas-jornada-opciones.0')}</label>
                         </div>    
                         
                         <div>
@@ -806,7 +778,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.workday == ('QUINCENAL')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
-                            <label htmlFor="QUINCENAL">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.1')}</label>
+                            <label htmlFor="QUINCENAL">{t('OfrecermeCuidador.fases.5.salidas-jornada-opciones.1')}</label>
                         </div>    
 
                         <div>
@@ -816,7 +788,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.workday == ('MENSUAL')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
-                            <label htmlFor="MENSUAL">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.2')}</label>
+                            <label htmlFor="MENSUAL">{t('OfrecermeCuidador.fases.5.salidas-jornada-opciones.2')}</label>
                         </div>
 
                         <div>
@@ -826,7 +798,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.workday == ('INTERDIARIO')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
-                            <label htmlFor="INTERDIARIO">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.3')}</label>
+                            <label htmlFor="INTERDIARIO">{t('OfrecermeCuidador.fases.5.salidas-jornada-opciones.3')}</label>
                         </div>
 
                         <div>
@@ -836,7 +808,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.workday == ('MEDIO_TIEMPO')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
-                            <label htmlFor="MEDIO_TIEMPO">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.4')}</label><br/>
+                            <label htmlFor="MEDIO_TIEMPO">{t('OfrecermeCuidador.fases.5.salidas-jornada-opciones.4')}</label><br/>
                         </div>
 
                         <div>
@@ -846,7 +818,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.workday == ('FIN_SEMANA')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
-                            <label htmlFor="FIN_SEMANA">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.5')}</label>
+                            <label htmlFor="FIN_SEMANA">{t('OfrecermeCuidador.fases.5.salidas-jornada-opciones.5')}</label>
                         </div>
 
                         <div>
@@ -856,7 +828,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.workday == ('NOCHE')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
-                            <label htmlFor="NOCHE">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.6')}</label>
+                            <label htmlFor="NOCHE">{t('OfrecermeCuidador.fases.5.salidas-jornada-opciones.6')}</label>
                         </div>
 
                         {/* <div>
@@ -866,7 +838,7 @@ const Fase5 = () => {
                                     
                                     onChange={e => {setTheWorkdays(e)}}
                             />
-                            <label for="HORAS">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.7')}</label>
+                            <label for="HORAS">{t('OfrecermeCuidador.fases.5.salidas-jornada-opciones.7')}</label>
                         </div> 
                         */}
                         <div>
@@ -876,7 +848,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.workday == ('HORAS')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
-                            <label htmlFor="HORAS">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.8')}</label>
+                            <label htmlFor="HORAS">{t('OfrecermeCuidador.fases.5.salidas-jornada-opciones.8')}</label>
                         </div>
 
                         <div>
@@ -886,12 +858,12 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.workday == ('OTRO')}
                                     onChange={e => {setTheWorkdays(e)}}
                             />
-                            <label htmlFor="OTRO">{t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.9')}</label>                    
+                            <label htmlFor="OTRO">{t('OfrecermeCuidador.fases.5.salidas-jornada-opciones.9')}</label>                    
                         </div>
                         <br />
                         
                         <div hidden={!(offerDomesticFormState.workday).includes('OTRO')}>
-                        {t('OfrecermeNiñera.fases.5.salidas-jornada-opciones.10')}: <input type="text" value={offerDomesticFormState.workday_other} 
+                        {t('OfrecermeCuidador.fases.5.salidas-jornada-opciones.10')}: <input type="text" value={offerDomesticFormState.workday_other} 
                             onChange={ e =>{
                                 setOfferDomesticFormState( prev =>{
                                     const newState = {...prev};
@@ -901,16 +873,14 @@ const Fase5 = () => {
                             }}/>
                         </div>
                         
-                        { workday_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option_required')}/>  }
-                        { workday_other_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
                     </div>
                 </div>
                 
                 <div>
                     <div className="titulos">
-                        <span className="red">* </span><h2>{t('OfrecermeNiñera.fases.5.horario')}</h2>
+                        <span className="red">* </span><h2>{t('OfrecermeCuidador.fases.5.horario')}</h2>
                     </div>
-                    <p>{t('OfrecermeNiñera.fases.5.horario-mensaje')}</p>
+                    <p>{t('OfrecermeCuidador.fases.5.horario-mensaje')}</p>
 
                     <div className="form">
                         <div>
@@ -920,7 +890,7 @@ const Fase5 = () => {
                                     onChange={e => {setTheSchedule(e)}}
 
                                     />
-                            <label htmlFor="cd1">{t('OfrecermeNiñera.fases.5.horario-opciones.0')}</label>
+                            <label htmlFor="cd1">{t('OfrecermeCuidador.fases.5.horario-opciones.0')}</label>
                         </div>
 
                         <div>
@@ -929,7 +899,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('MAR')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label htmlFor="cd2">{t('OfrecermeNiñera.fases.5.horario-opciones.1')}</label>
+                            <label htmlFor="cd2">{t('OfrecermeCuidador.fases.5.horario-opciones.1')}</label>
                         </div>
 
                         <div>
@@ -938,7 +908,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('MIE')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label htmlFor="MIE">{t('OfrecermeNiñera.fases.5.horario-opciones.2')}</label>
+                            <label htmlFor="MIE">{t('OfrecermeCuidador.fases.5.horario-opciones.2')}</label>
                         </div>
 
                         <div>
@@ -947,7 +917,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('JUE')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label htmlFor="JUE">{t('OfrecermeNiñera.fases.5.horario-opciones.3')}</label>
+                            <label htmlFor="JUE">{t('OfrecermeCuidador.fases.5.horario-opciones.3')}</label>
                         </div>
 
                         <div>
@@ -956,7 +926,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('VIE')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label htmlFor="VIE">{t('OfrecermeNiñera.fases.5.horario-opciones.4')}</label>
+                            <label htmlFor="VIE">{t('OfrecermeCuidador.fases.5.horario-opciones.4')}</label>
                         </div>
 
                         <div>
@@ -965,7 +935,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('SAB')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label htmlFor="SAB">{t('OfrecermeNiñera.fases.5.horario-opciones.5')}</label>
+                            <label htmlFor="SAB">{t('OfrecermeCuidador.fases.5.horario-opciones.5')}</label>
                         </div>
 
                         <div>
@@ -974,7 +944,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('DOM')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label htmlFor="cd7">{t('OfrecermeNiñera.fases.5.horario-opciones.6')}</label>
+                            <label htmlFor="cd7">{t('OfrecermeCuidador.fases.5.horario-opciones.6')}</label>
                         </div>
 
                         <div>
@@ -983,7 +953,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('LUN_VIE')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label htmlFor="LUN_VIE">{t('OfrecermeNiñera.fases.5.horario-opciones.7')}</label>
+                            <label htmlFor="LUN_VIE">{t('OfrecermeCuidador.fases.5.horario-opciones.7')}</label>
                         </div>
 
                         <div>
@@ -992,7 +962,7 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('FIN')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label htmlFor="FIN">{t('OfrecermeNiñera.fases.5.horario-opciones.8')}</label>
+                            <label htmlFor="FIN">{t('OfrecermeCuidador.fases.5.horario-opciones.8')}</label>
                         </div>
 
                         <div>
@@ -1001,11 +971,11 @@ const Fase5 = () => {
                                     checked={offerDomesticFormState.schedule.includes('OTRO')}
                                     onChange={e => {setTheSchedule(e)}}
                                     />
-                            <label htmlFor="cd10">{t('OfrecermeNiñera.fases.5.horario-opciones.9')}</label>
+                            <label htmlFor="cd10">{t('OfrecermeCuidador.fases.5.horario-opciones.9')}</label>
                         </div>
 
                         <div hidden={!(offerDomesticFormState.schedule).includes('OTRO')}>
-                        {t('OfrecermeNiñera.fases.5.horario-opciones.10')}: <input type="text" value={offerDomesticFormState.schedule_other} 
+                        {t('OfrecermeCuidador.fases.5.horario-opciones.10')}: <input type="text" value={offerDomesticFormState.schedule_other} 
                             onChange={ e =>{
                                 setOfferDomesticFormState( prev =>{
                                     const newState = {...prev};
@@ -1014,18 +984,13 @@ const Fase5 = () => {
                                 });
                             }} />
                         </div>
-
-                         
-                    { schedule_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option')}/>  }
-                    { schedule_other_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
                     </div>
-                   
 
                 </div>
 
                 <div>
                     <div className="titulos">
-                        <span className="red">* </span><h2>{t('OfrecermeNiñera.fases.5.salario-deseado')}</h2>
+                        <span className="red">* </span><h2>{t('OfrecermeCuidador.fases.5.salario-deseado')}</h2>
                     </div>
                     
                     <div id="column">
@@ -1045,7 +1010,7 @@ const Fase5 = () => {
                                             } 
                                         }
                                         />
-                                <label htmlFor="d1">{t('OfrecermeNiñera.fases.5.salario-deseado-opciones.0')}</label> 
+                                <label htmlFor="d1">{t('OfrecermeCuidador.fases.5.salario-deseado-opciones.0')}</label> 
                             </div>
 
                             <div>
@@ -1068,7 +1033,7 @@ const Fase5 = () => {
                                         }
 
                                         />
-                                <label htmlFor="d2">{t('OfrecermeNiñera.fases.5.salario-deseado-opciones.1')}</label> 
+                                <label htmlFor="d2">{t('OfrecermeCuidador.fases.5.salario-deseado-opciones.1')}</label> 
                             </div>
                         </div>
                         
@@ -1085,10 +1050,10 @@ const Fase5 = () => {
 
                         <div className="dropdown-content" style={{ visibility: offerDomesticFormState.payment == "MONTO" ? 'visible' : 'hidden' }}>
                             <FieldDropdown
-                                title={t('OfrecermeNiñera.fases.5.moneda')}
+                                title={t('OfrecermeCuidador.fases.5.moneda')}
                                 placeholder={
                                     selectedCurrency != -1?
-                                        currency[selectedCurrency]:t('OfrecermeNiñera.fases.5.selecciona-moneda')
+                                        currency[selectedCurrency]:t('OfrecermeCuidador.fases.5.selecciona-moneda')
                                 }
                                 items={currency}
                                 setSelectedState={setSelectedCurrency}
@@ -1096,7 +1061,7 @@ const Fase5 = () => {
                             
                             {selectedCurrency==2 && 
                                 <div>
-                                    <label htmlFor="especifique">{t('OfrecermeNiñera.fases.5.especifique')}</label>    
+                                    <label htmlFor="especifique">{t('OfrecermeCuidador.fases.5.especifique')}</label>    
                                     <input  id="especifique"
                                             type="text"
                                             value={offerDomesticFormState.currency_other} 
@@ -1116,34 +1081,32 @@ const Fase5 = () => {
 
                         <div className="dropdown-content" style={{ visibility: offerDomesticFormState.payment == "MONTO" ? 'visible' : 'hidden' }}>
                             <FieldDropdown
-                                    title={t('OfrecermeNiñera.fases.5.salario-ofrecido')}
+                                    title={t('OfrecermeCuidador.fases.5.salario-ofrecido')}
                                     placeholder={
                                         selectedSalary != -1?
-                                            salary[selectedSalary]:t('OfrecermeNiñera.fases.5.seleccione-salario')
+                                            salary[selectedSalary]:t('OfrecermeCuidador.fases.5.seleccione-salario')
                                     }
                                     items={salary}
                                     setSelectedState={setSelectedSalary}
                             />
                         </div>
-                        
-                    </div>
 
-                    { salary_option_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option_required')}/>  }
-                    { salary_required && <ErrorMessage message={t('OfrecermeNiñera.errores.salario')}/>  }
-                    { salary_other_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
+                        
+
+                    </div>
                 </div>
 
                 <div id="beneficio-laboral">
                     <div className="titulos">
-                        <span className="red">* </span><h2 className="blue">{t('OfrecermeNiñera.fases.5.beneficio-laboral')}</h2>
+                        <span className="red">* </span><h2 className="blue">{t('OfrecermeCuidador.fases.5.beneficio-laboral')}</h2>
                     </div>
                     <div id="row">
                         <div>
-                            <h2>{t('OfrecermeNiñera.fases.5.ejemplo')}</h2>
-                            <p> {t('OfrecermeNiñera.fases.5.ejemplos.0')}<br/>
-                                {t('OfrecermeNiñera.fases.5.ejemplos.1')}<br/>
-                                {t('OfrecermeNiñera.fases.5.ejemplos.2')}<br/>
-                                {t('OfrecermeNiñera.fases.5.ejemplos.3')}</p>
+                            <h2>{t('OfrecermeCuidador.fases.5.ejemplo')}</h2>
+                            <p> {t('OfrecermeCuidador.fases.5.ejemplos.0')}<br/>
+                                {t('OfrecermeCuidador.fases.5.ejemplos.1')}<br/>
+                                {t('OfrecermeCuidador.fases.5.ejemplos.2')}<br/>
+                                {t('OfrecermeCuidador.fases.5.ejemplos.3')}</p>
                         </div>
                         
                         <div id="form-horizontal">
@@ -1162,7 +1125,7 @@ const Fase5 = () => {
                                                 } 
                                             }
                                             />
-                                    <label htmlFor="x1">{t('OfrecermeNiñera.fases.5.no')}</label> 
+                                    <label htmlFor="x1">{t('OfrecermeCuidador.fases.5.no')}</label> 
                                 </div>
 
                                 <div>
@@ -1181,13 +1144,13 @@ const Fase5 = () => {
                                             }
 
                                             />
-                                    <label htmlFor="x2">{t('OfrecermeNiñera.fases.5.si')}</label> 
+                                    <label htmlFor="x2">{t('OfrecermeCuidador.fases.5.si')}</label> 
                                 </div>
                         </div>
 
                         <div style={{ visibility: offerDomesticFormState.benefits ? 'visible' : 'hidden' }}>
                             <div id="der">
-                                <div id="peq">{t('OfrecermeNiñera.fases.3.especifique')}</div>
+                                <div id="peq">{t('OfrecermeCuidador.fases.3.especifique')}</div>
                             </div>
 
                             <div id="der" >
@@ -1201,14 +1164,9 @@ const Fase5 = () => {
                                     });    
                                 }}>
                                 </textarea>
-
-                               
                             </div>
-
-                           
                         </div>
                     </div>
-                    { benefits_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
                 </div>
         </div>
      );
@@ -1218,18 +1176,15 @@ const  Fase6= () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
 
-    const date_required = offerDomesticFormState.errors.date_required
-    const date_opt_required = offerDomesticFormState.errors.date_opt_required 
-
     return(
         <div id="fase6">
 
         <div id="small">
-            <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.6.mensaje')}</span><br />
+            <span className="red">*  </span><span className="blue">{t('OfrecermeCuidador.fases.6.mensaje')}</span><br />
         </div>
 
         <div id="titulo">
-            <h2 className="blue" >{t('OfrecermeNiñera.fases.6.titulo')}</h2><br />
+            <h2 className="blue" >{t('OfrecermeCuidador.fases.6.titulo')}</h2><br />
         </div>
         <div id="contenido">
 
@@ -1250,7 +1205,7 @@ const  Fase6= () => {
                                     }}
 
                             />
-                            <label htmlFor="c1">{t('OfrecermeNiñera.fases.6.fecha-inicio')}</label> 
+                            <label htmlFor="c1">{t('OfrecermeCuidador.fases.6.fecha-inicio')}</label> 
                         </div>
 
                         <div>
@@ -1267,7 +1222,7 @@ const  Fase6= () => {
 
                                     }}
                             />
-                            <label htmlFor="c2">{t('OfrecermeNiñera.fases.6.fecha-convenir')}</label> 
+                            <label htmlFor="c2">{t('OfrecermeCuidador.fases.6.fecha-convenir')}</label> 
                         </div>
                     </div>
                     {offerDomesticFormState.availability == "FECHA" &&
@@ -1286,12 +1241,8 @@ const  Fase6= () => {
                         />   
                     </div>
                     }
-
-                    
                 </div>
-
-                { date_opt_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option_required')}/>  }
-                { date_required && <ErrorMessage message={t('OfrecermeNiñera.errores.fecha')}/>  }
+            
 
         </div>
     </div>
@@ -1322,8 +1273,6 @@ const Fase7 = () => {
     const continentes = [];
     for (let index = 0; index < 5; index++) 
     continentes.push( t('continentes.'+index) )
-
-    const origin_required = offerDomesticFormState.errors.origin_required 
 
     //Countries
     useEffect(() => {
@@ -1411,15 +1360,15 @@ const Fase7 = () => {
     return ( <div id="fase7">
         <div className="small blue">
             <ul>
-                <li>{t('OfrecermeNiñera.fases.7.mensaje')}</li>
-                <li>{t('OfrecermeNiñera.fases.7.mensaje1')}</li>
+                <li>{t('OfrecermeCuidador.fases.7.mensaje')}</li>
+                <li>{t('OfrecermeCuidador.fases.7.mensaje1')}</li>
             </ul>
         </div>
 
         <div id="form">
             <div className="col">
                 <div className="titulo">
-                    <span className="red">* </span><h2 className="blue">{t('OfrecermeNiñera.fases.7.lugar-procedencia')}</h2>
+                    <span className="red">* </span><h2 className="blue">{t('OfrecermeCuidador.fases.7.lugar-procedencia')}</h2>
                 </div>
                 <div className="form-vertical">
                         <div>
@@ -1436,7 +1385,7 @@ const Fase7 = () => {
                                         }
                                     }
                             />
-                            <label htmlFor="d1">{t('OfrecermeNiñera.fases.7.lugar-procedencia-opciones.0')}</label> 
+                            <label htmlFor="d1">{t('OfrecermeCuidador.fases.7.lugar-procedencia-opciones.0')}</label> 
                         </div>
 
                         <div>
@@ -1453,12 +1402,12 @@ const Fase7 = () => {
                                         }
                                     }
                             />
-                            <label htmlFor="d2">{t('OfrecermeNiñera.fases.7.lugar-procedencia-opciones.1')}</label> 
+                            <label htmlFor="d2">{t('OfrecermeCuidador.fases.7.lugar-procedencia-opciones.1')}</label> 
                         </div>
                 </div>
             </div>
             <div className="col">
-                <h2 >{t('OfrecermeNiñera.fases.7.tipo-cliente')}</h2>
+                <h2 >{t('OfrecermeCuidador.fases.7.tipo-cliente')}</h2>
                 <div className="form-vertical">
                         <div>
                             <input  type="radio"
@@ -1474,7 +1423,7 @@ const Fase7 = () => {
                                         }
                                     }
                             />
-                            <label htmlFor="c1">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.0')}</label> 
+                            <label htmlFor="c1">{t('OfrecermeCuidador.fases.7.tipo-cliente-opciones.0')}</label> 
                         </div>
                         <div>
                             <input  type="radio"
@@ -1490,7 +1439,7 @@ const Fase7 = () => {
                                         }
                                     }
                                     />
-                            <label htmlFor="c2">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.1')}</label> 
+                            <label htmlFor="c2">{t('OfrecermeCuidador.fases.7.tipo-cliente-opciones.1')}</label> 
                         </div>
                         <div>
                             <input  type="radio"
@@ -1506,13 +1455,11 @@ const Fase7 = () => {
                                         }
                                     }
                             />
-                            <label htmlFor="c3">{t('OfrecermeNiñera.fases.7.tipo-cliente-opciones.2')}</label> 
+                            <label htmlFor="c3">{t('OfrecermeCuidador.fases.7.tipo-cliente-opciones.2')}</label> 
                         </div>
-                    
-                        
+
                 </div>
             </div>
-            
 
         </div>
 
@@ -1520,8 +1467,8 @@ const Fase7 = () => {
             {console.log(continentes)}
             <div className="dropdown-content">
                 <FieldDropdownCheckbox 
-                    title={t('OfrecermeNiñera.fases.7.continente')}
-                    placeholder={t('OfrecermeNiñera.fases.7.select-continente')}
+                    title={t('OfrecermeCuidador.fases.7.continente')}
+                    placeholder={t('OfrecermeCuidador.fases.7.select-continente')}
                     items={continentes}
                     values={val}
                     state={selectedContinente}
@@ -1529,8 +1476,8 @@ const Fase7 = () => {
                 />
                 
                 <FieldDropdownCheckbox 
-                    title={t('OfrecermeNiñera.fases.7.pais')}
-                    placeholder={t('OfrecermeNiñera.fases.7.select-pais')}
+                    title={t('OfrecermeCuidador.fases.7.pais')}
+                    placeholder={t('OfrecermeCuidador.fases.7.select-pais')}
                     items={countries[0]}
                     values={countries[1]}
                     state={selectedPais}
@@ -1538,8 +1485,8 @@ const Fase7 = () => {
                 />
                 
                 <FieldDropdownCheckbox 
-                    title={t('OfrecermeNiñera.fases.7.estado')}
-                    placeholder={t('OfrecermeNiñera.fases.7.select-estado')}
+                    title={t('OfrecermeCuidador.fases.7.estado')}
+                    placeholder={t('OfrecermeCuidador.fases.7.select-estado')}
                     items={states[0]}
                     values={states[1]}
                     state={selectedEstado}
@@ -1547,8 +1494,8 @@ const Fase7 = () => {
                 />
                 
                 <FieldDropdownCheckbox 
-                    title={t('OfrecermeNiñera.fases.7.ciudad')}
-                    placeholder={t('OfrecermeNiñera.fases.7.select-ciudad')}
+                    title={t('OfrecermeCuidador.fases.7.ciudad')}
+                    placeholder={t('OfrecermeCuidador.fases.7.select-ciudad')}
                     items={cities[0]}
                     values={cities[1]}
                     state={selectedCiudad}
@@ -1556,8 +1503,6 @@ const Fase7 = () => {
                 />
                 
             </div>
-
-            { origin_required&& <ErrorMessage message={t('OfrecermeNiñera.errores.origen')}/>  }
         </div>
         
 
@@ -1569,8 +1514,6 @@ const Fase7 = () => {
 const Fase8 = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
-
-    const other_doc_required = offerDomesticFormState.errors.other_doc_required
 
     function selectDocuments (e){
          
@@ -1594,14 +1537,14 @@ const Fase8 = () => {
         <div id="fase8">
 
         <div id="small">
-            <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.8.mensaje')}</span><br />
+            <span className="red">*  </span><span className="blue">{t('OfrecermeCuidador.fases.8.mensaje')}</span><br />
         </div>
 
         <div id="titulo">
-            <h2 className="blue" >{t('OfrecermeNiñera.fases.8.titulo')}</h2><br />
+            <h2 className="blue" >{t('OfrecermeCuidador.fases.8.titulo')}</h2><br />
         </div>
         <div id="contenido">
-            <h2>{t('OfrecermeNiñera.fases.8.posee-documentacion')}</h2>
+            <h2>{t('OfrecermeCuidador.fases.8.posee-documentacion')}</h2>
 
             <div id="form">
                 <div id="form-horizontal">
@@ -1617,7 +1560,7 @@ const Fase8 = () => {
                                     })
                                 }}
                                 />
-                        <label htmlFor="c1">{t('OfrecermeNiñera.fases.8.si')}</label> 
+                        <label htmlFor="c1">{t('OfrecermeCuidador.fases.8.si')}</label> 
                     </div>
 
                     <div id="segundo">
@@ -1632,53 +1575,53 @@ const Fase8 = () => {
                                     })
                                 }}
                         />
-                        <label htmlFor="c2">{t('OfrecermeNiñera.fases.8.no')}</label> 
+                        <label htmlFor="c2">{t('OfrecermeCuidador.fases.8.no')}</label> 
                     </div>
                 </div>
                 { offerDomesticFormState.have_documentation &&
                 <div >
-                    <h2>{t('OfrecermeNiñera.fases.8.documentos')}</h2>
+                    <h2>{t('OfrecermeCuidador.fases.8.documentos')}</h2>
                     <div id="selects">
                         <div>
                             <input type="checkbox" id="d1" value="PASAPORTE" checked={offerDomesticFormState.documents.includes("PASAPORTE")} onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d1">{t('OfrecermeNiñera.fases.8.documentos-opciones.0')}</label>
+                            <label htmlFor="d1">{t('OfrecermeCuidador.fases.8.documentos-opciones.0')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d2" value="CURRICULUM" checked={offerDomesticFormState.documents.includes("CURRICULUM")}  onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d2">{t('OfrecermeNiñera.fases.8.documentos-opciones.1')}</label>
+                            <label htmlFor="d2">{t('OfrecermeCuidador.fases.8.documentos-opciones.1')}</label>
                         </div>    
                         <div>
                             <input type="checkbox" id="d3" value="TITULOS" checked={offerDomesticFormState.documents.includes("TITULOS")} onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d3">{t('OfrecermeNiñera.fases.8.documentos-opciones.2')}</label>
+                            <label htmlFor="d3">{t('OfrecermeCuidador.fases.8.documentos-opciones.2')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d4" value="REF_TRABAJO" checked={offerDomesticFormState.documents.includes("REF_TRABAJO")}  onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d4">{t('OfrecermeNiñera.fases.8.documentos-opciones.3')}</label>
+                            <label htmlFor="d4">{t('OfrecermeCuidador.fases.8.documentos-opciones.3')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d5" value="REF_FAMILIAR" checked={offerDomesticFormState.documents.includes("REF_FAMILIAR")}  onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d5">{t('OfrecermeNiñera.fases.8.documentos-opciones.4')}</label>
+                            <label htmlFor="d5">{t('OfrecermeCuidador.fases.8.documentos-opciones.4')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d6" value="CONST_RESIDENCIA" checked={offerDomesticFormState.documents.includes("CONST_RESIDENCIA")}  onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d6">{t('OfrecermeNiñera.fases.8.documentos-opciones.5')}</label>
+                            <label htmlFor="d6">{t('OfrecermeCuidador.fases.8.documentos-opciones.5')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d7" value="CONST_ANTECEDENTES" checked={offerDomesticFormState.documents.includes("CONST_ANTECEDENTES")} onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d7">{t('OfrecermeNiñera.fases.8.documentos-opciones.6')}</label>
+                            <label htmlFor="d7">{t('OfrecermeCuidador.fases.8.documentos-opciones.6')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d8" value="SALUD" checked={offerDomesticFormState.documents.includes("SALUD")}  onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d8">{t('OfrecermeNiñera.fases.8.documentos-opciones.7')}</label>
+                            <label htmlFor="d8">{t('OfrecermeCuidador.fases.8.documentos-opciones.7')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d9" value="OTRO" checked={offerDomesticFormState.documents.includes("OTRO")}  onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d9">{t('OfrecermeNiñera.fases.8.documentos-opciones.8')}</label>
+                            <label htmlFor="d9">{t('OfrecermeCuidador.fases.8.documentos-opciones.8')}</label>
                         </div>
                         
                         { offerDomesticFormState.documents.includes("OTRO") &&
                         <div>
-                            <p> {t('OfrecermeNiñera.fases.3.especifique')} </p> <input  type="text" 
+                            <p> Especifique</p> <input  type="text" 
                                                         onChange={ e => {
                                                             setOfferDomesticFormState( prev => {
                                                                 const newState = {...prev};
@@ -1688,10 +1631,7 @@ const Fase8 = () => {
                                                         }} 
                                                         value={offerDomesticFormState.documents_other}
                                                 />
-                        </div>
-                        }
-
-                        { other_doc_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
+                        </div>}
 
                     </div>
                 </div>
@@ -1711,15 +1651,15 @@ const Fase9 = () => {
     return ( 
         <div id="fase9">
             <div id="small">
-                <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.9.mensaje')}</span><br />
+                <span className="red">*  </span><span className="blue">{t('OfrecermeCuidador.fases.9.mensaje')}</span><br />
             </div>
             <div>
-                <h2>{t("OfrecermeNiñera.fases.9.titulo")}</h2>
+                <h2>{t("OfrecermeCuidador.fases.9.titulo")}</h2>
                 <ul>
-                    <li>{t("OfrecermeNiñera.fases.9.sugerencias.0")}</li>
-                    <li>{t("OfrecermeNiñera.fases.9.sugerencias.1")}</li>
-                    <li>{t("OfrecermeNiñera.fases.9.sugerencias.2")}</li>
-                    <li>{t("OfrecermeNiñera.fases.9.sugerencias.3")}</li>
+                    <li>{t("OfrecermeCuidador.fases.9.sugerencias.0")}</li>
+                    <li>{t("OfrecermeCuidador.fases.9.sugerencias.1")}</li>
+                    <li>{t("OfrecermeCuidador.fases.9.sugerencias.2")}</li>
+                    <li>{t("OfrecermeCuidador.fases.9.sugerencias.3")}</li>
                 </ul>
             </div>
         </div>
@@ -1733,13 +1673,13 @@ const Fase10 = () => {
     return ( 
         <div id="fase10">
             <div id="small">
-                <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.10.mensaje')}</span><br />
+                <span className="red">*  </span><span className="blue">{t('OfrecermeCuidador.fases.10.mensaje')}</span><br />
             </div>
             <div>
-                <h2>{t("OfrecermeNiñera.fases.10.titulo")}</h2>
+                <h2>{t("OfrecermeCuidador.fases.10.titulo")}</h2>
                 <ul>
-                    <li>{t("OfrecermeNiñera.fases.10.sugerencias.0")}</li>
-                    <li>{t("OfrecermeNiñera.fases.10.sugerencias.1")}</li>
+                    <li>{t("OfrecermeCuidador.fases.10.sugerencias.0")}</li>
+                    <li>{t("OfrecermeCuidador.fases.10.sugerencias.1")}</li>
                 </ul>
             </div>
         </div>
@@ -1753,41 +1693,41 @@ const Fase11 = () => {
     return ( 
         <div id="fase11">
             <div id="small">
-                <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.11.mensaje')}</span><br />
+                <span className="red">*  </span><span className="blue">{t('OfrecermeCuidador.fases.11.mensaje')}</span><br />
             </div>
-            <h2 className="blue">{t("OfrecermeNiñera.fases.11.titulo")}</h2>
+            <h2 className="blue">{t("OfrecermeCuidador.fases.11.titulo")}</h2>
             <div>
-                <h2>{t("OfrecermeNiñera.fases.11.titulos.0")}</h2>
-                <p>{t("OfrecermeNiñera.fases.11.parrafos.1")}</p>
-                <p>{t("OfrecermeNiñera.fases.11.parrafos.2")}</p>
-                <p>{t("OfrecermeNiñera.fases.11.parrafos.3")}</p>
-                <p>{t("OfrecermeNiñera.fases.11.parrafos.4")}</p>
+                <h2>{t("OfrecermeCuidador.fases.11.titulos.0")}</h2>
+                <p>{t("OfrecermeCuidador.fases.11.parrafos.1")}</p>
+                <p>{t("OfrecermeCuidador.fases.11.parrafos.2")}</p>
+                <p>{t("OfrecermeCuidador.fases.11.parrafos.3")}</p>
+                <p>{t("OfrecermeCuidador.fases.11.parrafos.4")}</p>
             </div>
             <div>
-                <h2>{t("OfrecermeNiñera.fases.11.titulos.1")}</h2>
-                <p>{t("OfrecermeNiñera.fases.11.parrafos.5")}</p>
-                <p>{t("OfrecermeNiñera.fases.11.parrafos.6")}</p>
+                <h2>{t("OfrecermeCuidador.fases.11.titulos.1")}</h2>
+                <p>{t("OfrecermeCuidador.fases.11.parrafos.5")}</p>
+                <p>{t("OfrecermeCuidador.fases.11.parrafos.6")}</p>
             </div>
             
             <div>
-                <h2>{t("OfrecermeNiñera.fases.11.titulos.2")}</h2>
-                <p>{t("OfrecermeNiñera.fases.11.parrafos.7")}</p>
+                <h2>{t("OfrecermeCuidador.fases.11.titulos.2")}</h2>
+                <p>{t("OfrecermeCuidador.fases.11.parrafos.7")}</p>
             </div>
             <div>
-                <h2>{t("OfrecermeNiñera.fases.11.titulos.3")}</h2>
-                <p>{t("OfrecermeNiñera.fases.11.parrafos.8")}</p>
+                <h2>{t("OfrecermeCuidador.fases.11.titulos.3")}</h2>
+                <p>{t("OfrecermeCuidador.fases.11.parrafos.8")}</p>
             </div>
             <div>
-                <h2>{t("OfrecermeNiñera.fases.11.titulos.4")}</h2>
-                <p>{t("OfrecermeNiñera.fases.11.parrafos.9")}</p>
+                <h2>{t("OfrecermeCuidador.fases.11.titulos.4")}</h2>
+                <p>{t("OfrecermeCuidador.fases.11.parrafos.9")}</p>
             </div>
             <div>
-                <h2>{t("OfrecermeNiñera.fases.11.titulos.5")}</h2>
-                <p>{t("OfrecermeNiñera.fases.11.parrafos.10")}</p>
+                <h2>{t("OfrecermeCuidador.fases.11.titulos.5")}</h2>
+                <p>{t("OfrecermeCuidador.fases.11.parrafos.10")}</p>
             </div>
             <div>
-                <h2>{t("OfrecermeNiñera.fases.11.titulos.6")}</h2>
-                <p>{t("OfrecermeNiñera.fases.11.parrafos.11")}</p>
+                <h2>{t("OfrecermeCuidador.fases.11.titulos.6")}</h2>
+                <p>{t("OfrecermeCuidador.fases.11.parrafos.11")}</p>
             </div>
 
         </div>
@@ -1801,12 +1741,12 @@ const Fase12 = () => {
     return ( 
         <div id="fase12">
             <div id="small">
-                <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.12.mensaje')}</span><br />
+                <span className="red">*  </span><span className="blue">{t('OfrecermeCuidador.fases.12.mensaje')}</span><br />
             </div>
             
             <div className="red">
-                <p>{t("OfrecermeNiñera.fases.12.parrafos.0")}</p>
-                <p>{t("OfrecermeNiñera.fases.12.parrafos.1")}</p>
+                <p>{t("OfrecermeCuidador.fases.12.parrafos.0")}</p>
+                <p>{t("OfrecermeCuidador.fases.12.parrafos.1")}</p>
 
             </div>
         </div>
@@ -1837,9 +1777,6 @@ const Fase13 = () => {
     //bank selected
     const [foundBank,setFoundBank] = useState(-1);
     
-    
-    const billing_required = offerDomesticFormState.errors.billing_required 
-
     useEffect(() => {
         const getBanks = async () => {
           try {
@@ -1932,24 +1869,24 @@ const Fase13 = () => {
             
             
             <div id="small">
-                <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.13.mensaje')}</span><br />
+                <span className="red">*  </span><span className="blue">{t('OfrecermeCuidador.fases.13.mensaje')}</span><br />
             </div>
 
             <div id="two-columns">
                 <div id="first-column">
-                    <h2 className="blue">{t('OfrecermeNiñera.fases.13.plan-seleccionado')}</h2>
+                    <h2 className="blue">{t('OfrecermeCuidador.fases.13.plan-seleccionado')}</h2>
                     <div id="form-vertical">
                     
                         <div>
                             <input type="radio" value="1" id="c1" checked={offerDomesticFormState.publication_time == "1"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c1">1 {t('OfrecermeNiñera.fases.13.mes')}</label>
+                            <label htmlFor="c1">1 {t('OfrecermeCuidador.fases.13.mes')}</label>
                         </div>
                         <div>
                             <h3 className="red">10 USD</h3>
                         </div>
                         <div>
                             <input type="radio" value="3" id="c2" checked={offerDomesticFormState.publication_time == "3"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c2">3 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                            <label htmlFor="c2">3 {t('OfrecermeCuidador.fases.13.meses')}</label>
                         </div>
                         
                         <div>
@@ -1958,7 +1895,7 @@ const Fase13 = () => {
 
                         <div>
                             <input type="radio" value="6" id="c3" checked={offerDomesticFormState.publication_time == "6"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c3">6 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                            <label htmlFor="c3">6 {t('OfrecermeCuidador.fases.13.meses')}</label>
                         </div>    
 
                         <div>
@@ -1967,7 +1904,7 @@ const Fase13 = () => {
 
                         <div>
                             <input type="radio" value="9" id="c4" checked={offerDomesticFormState.publication_time == "9"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c4">9 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                            <label htmlFor="c4">9 {t('OfrecermeCuidador.fases.13.meses')}</label>
                         </div>    
 
                         <div>
@@ -1976,7 +1913,7 @@ const Fase13 = () => {
 
                         <div>
                             <input type="radio" value="12" id="c5" checked={offerDomesticFormState.publication_time == "12"} onChange={(e)=>{changePlan(e)}}/>
-                            <label htmlFor="c5">12 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                            <label htmlFor="c5">12 {t('OfrecermeCuidador.fases.13.meses')}</label>
                         </div>    
 
                         <div>
@@ -1987,20 +1924,20 @@ const Fase13 = () => {
                 </div>
                 <div id="second-column">
                     <div className="blue-box">
-                        <p>{t('OfrecermeNiñera.fases.13.forma-pago')}</p>
+                        <p>{t('OfrecermeCuidador.fases.13.forma-pago')}</p>
                     </div>
-                    <p>{t('OfrecermeNiñera.fases.13.forma-pago-descripcion')}</p>
+                    <p>{t('OfrecermeCuidador.fases.13.forma-pago-descripcion')}</p>
 
                     <div className="blue-box">
-                        <p>{t('OfrecermeNiñera.fases.13.pais-titulo')}</p>
+                        <p>{t('OfrecermeCuidador.fases.13.pais-titulo')}</p>
                     </div>
-                    <p id="less-margin">{t('OfrecermeNiñera.fases.13.pais-titulo-descripcion')}</p>
+                    <p id="less-margin">{t('OfrecermeCuidador.fases.13.pais-titulo-descripcion')}</p>
 
                     
                         <div className="dropdown-content">
                             <FieldDropdown 
-                                title={t('OfrecermeNiñera.fases.13.pais')}
-                                placeholder={t('OfrecermeNiñera.fases.13.seleccione-pais')}
+                                title={t('OfrecermeCuidador.fases.13.pais')}
+                                placeholder={t('OfrecermeCuidador.fases.13.seleccione-pais')}
                                 items={bank_countries}
                                 setSelectedState={setSelectedCountry}
                             />
@@ -2008,15 +1945,15 @@ const Fase13 = () => {
                     
                     
                     <div className="blue-box">
-                        <p>{t('OfrecermeNiñera.fases.13.cuentas')}</p>
+                        <p>{t('OfrecermeCuidador.fases.13.cuentas')}</p>
                     </div>
                         <div className="dropdown-content" id="bancos">
                         
                             {selectedCountry != -1 &&
                             
                                 <FieldDropdown    
-                                    title={t('OfrecermeNiñera.fases.13.banco')}
-                                    placeholder={t('OfrecermeNiñera.fases.13.seleccione-banco')}
+                                    title={t('OfrecermeCuidador.fases.13.banco')}
+                                    placeholder={t('OfrecermeCuidador.fases.13.seleccione-banco')}
                                     items= {aux}
                                     setSelectedState={setSelectedBanks}
                                 />
@@ -2031,314 +1968,32 @@ const Fase13 = () => {
                             </div>
                             <div id="columns">
                                 <div>
-                                    <span className="red">{t('OfrecermeNiñera.fases.13.formadepago')}</span>
+                                    <span className="red">{t('OfrecermeCuidador.fases.13.formadepago')}</span>
                                         <ul>
-                                            <li>{t('OfrecermeNiñera.fases.13.deposito')}</li>
-                                            <li>{t('OfrecermeNiñera.fases.13.transferencia-bancaria')}</li>
+                                            <li>{t('OfrecermeCuidador.fases.13.deposito')}</li>
+                                            <li>{t('OfrecermeCuidador.fases.13.transferencia-bancaria')}</li>
                                         </ul>
                                 </div>
                                 <div>
-                                    <p><span>{t('OfrecermeNiñera.fases.13.pais')}</span>: {banks[0].country}</p>
-                                    <p><span>{t('OfrecermeNiñera.fases.13.banco')}</span>: {banks[0].name}</p>
-                                    <p><span>{t('OfrecermeNiñera.fases.13.numero-cuenta')}</span>: {banks[0].account}</p>
-                                    <p><span>{t('OfrecermeNiñera.fases.13.codigo-swift')}</span>: {banks[0].swift_code}</p>
+                                    <p><span>{t('OfrecermeCuidador.fases.13.pais')}</span>: {banks[0].country}</p>
+                                    <p><span>{t('OfrecermeCuidador.fases.13.banco')}</span>: {banks[0].name}</p>
+                                    <p><span>{t('OfrecermeCuidador.fases.13.numero-cuenta')}</span>: {banks[0].account}</p>
+                                    <p><span>{t('OfrecermeCuidador.fases.13.codigo-swift')}</span>: {banks[0].swift_code}</p>
                                 </div>
                             </div>
                         </div>
                         }
 
-                    { billing_required && <ErrorMessage message={t('OfrecermeNiñera.errores.banco')}/>  }
                 </div>
-
-                
             </div>
         </div>
      );
 }
  
 const useValidar = () => {
-    const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
-
-    const validateNumber = (number) => {
-        return /^\+?(0|[1-9]\d*)$/.test(number);
-    }
-
-    const validFloat = (float) => {
-        return /^([1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/.test(float)
-    }
-    
     const validate = (currentStage) => {
         // Empty implementation
         let valid =true;
-
-        if(currentStage === 0){
-            if(!validateNumber(offerDomesticFormState.age)){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.invalid_age = true
-                    return newState;
-                  })
-            } else {
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.invalid_age = false
-                    return newState;
-                  })
-            }
-        } else if (currentStage === 1){
-            if(!offerDomesticFormState.country){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.country_required = true
-                    return newState;
-                  })
-            } else {
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.country_required = false
-                    return newState;
-                })
-            }
-
-            if(!offerDomesticFormState.state){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.state_required = true
-                    return newState;
-                  })
-            } else {
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.state_required = false
-                    return newState;
-                })
-            }
-
-            if(!offerDomesticFormState.city){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.city_required = true
-                    return newState;
-                  })
-            } else {
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.city_required = false
-                    return newState;
-                })
-            }
-        } else if(currentStage === 2){
-            if(!offerDomesticFormState.description){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.description_required = true
-                    return newState;
-                  })
-            } else {
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.description_required = false
-                    return newState;
-                })
-            }
-        } else if (currentStage === 3){
-            if(offerDomesticFormState.travel && !offerDomesticFormState.travel_decription){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.travel_desc_required = true
-                    return newState;
-                  })
-            } else {
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.travel_desc_required = false
-                    return newState;
-                  })
-            }
-        } else if (currentStage === 4){
-            if(!offerDomesticFormState.activities){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.activities_required = true
-                    return newState;
-                  })
-            } else {
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.activities_required = false
-                    return newState;
-                  })
-            }
-        } else if(currentStage === 5){
-
-            if(offerDomesticFormState.workday.length === 0){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.workday_required = true
-                    newState.errors.workday_other_required = false
-                    return newState;
-                  })
-            } else if(offerDomesticFormState.workday.includes('OTRO') && !offerDomesticFormState.workday_other){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.workday_required = false
-                    newState.errors.workday_other_required = true
-                    return newState;
-                  })
-            } else {
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.workday_required = false
-                    newState.errors.workday_other_required = false
-                    return newState;
-                  })
-            }
-
-            if(offerDomesticFormState.schedule.length === 0){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.schedule_required = true
-                    newState.errors.schedule_other_required = false
-                    return newState;
-                  })
-            } else if(offerDomesticFormState.schedule.includes('OTRO') && !offerDomesticFormState.schedule_other){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.schedule_required = false
-                    newState.errors.schedule_other_required = true
-                    return newState;
-                  })
-            } else {
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.schedule_required = false
-                    newState.errors.schedule_other_required = false
-                    return newState;
-                  })
-            }
-
-            if(!offerDomesticFormState.payment){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.salary_option_required = true
-                    newState.errors.salary_required = false
-                    newState.errors.salary_other_required = false
-                    return newState;
-                  })
-            }
-            else if(offerDomesticFormState.payment === "MONTO" && (offerDomesticFormState.currency === -1 || !offerDomesticFormState.currency) 
-                || (offerDomesticFormState.salary_offered === -1 || !offerDomesticFormState.salary_offered )  ||  !validFloat(offerDomesticFormState.payment_amount)){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.salary_option_required = false
-                    newState.errors.salary_required = true
-                    newState.errors.salary_other_required = false
-                    return newState;
-                  })
-            } else if(offerDomesticFormState.payment === "MONTO" && offerDomesticFormState.currency === "OTRA" && !offerDomesticFormState.currency_other){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.salary_option_required = false
-                    newState.errors.salary_required = false
-                    newState.errors.salary_other_required = true
-                    return newState;
-                  })
-            } else {
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.salary_option_required = false
-                    newState.errors.salary_required = false
-                    newState.errors.salary_other_required = false
-                    return newState;
-                  })
-            }
-
-            if(offerDomesticFormState.benefits && !offerDomesticFormState.benefits_description){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.benefits_required = true
-                    return newState;
-                  })
-            } else{
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.benefits_required = false
-                    return newState;
-                  })
-            }
-        } else if(currentStage === 6){
-            if(!offerDomesticFormState.availability){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.date_opt_required = true
-                    newState.errors.date_required = false
-                    return newState;
-                  })
-            }
-            else if(offerDomesticFormState.availability === "FECHA" && !offerDomesticFormState.availability_date){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.date_opt_required = false
-                    newState.errors.date_required = true
-                    return newState;
-                  })
-            } else{
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.date_opt_required = false
-                    newState.errors.date_required = false
-                    return newState;
-                  })
-            }
-        } else if(currentStage === 7){
-            if(offerDomesticFormState.origin === "SI" && (!offerDomesticFormState.origin_city 
-                || !offerDomesticFormState.origin_continent || !offerDomesticFormState.origin_country || !offerDomesticFormState.origin_state)){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.origin_required = true
-                    return newState;
-                  })
-            } else{
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.origin_required = false
-                    return newState;
-                  })
-            }
-        } else if(currentStage === 8){
-            if(offerDomesticFormState.documents.includes('OTRO') && !offerDomesticFormState.documents_other){
-                valid = false
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.other_doc_required = true
-                    return newState;
-                  })
-            } else {
-                setOfferDomesticFormState((prev) => {
-                    const newState = { ...prev };
-                    newState.errors.other_doc_required = false
-                    return newState;
-                  })
-            }
-        }
         return valid
     };
 
@@ -2361,22 +2016,6 @@ const botonEnviar = () => {
             onClick={
                 async () => {
                     
-                    //Autenticar última fase
-                    if(!offerDomesticFormState.billing_country || !offerDomesticFormState.billing_bank){
-                        setOfferDomesticFormState((prev) => {
-                            const newState = { ...prev };
-                            newState.errors.billing_required = true
-                            return newState;
-                          })
-                          return
-                    } else {
-                        setOfferDomesticFormState((prev) => {
-                            const newState = { ...prev };
-                            newState.errors.billing_required = false
-                            return newState;
-                          })
-                    }
-
                     const url = 'http://127.0.0.1:8000/api-services/provideService/post_ad/'
                     try {
                         
@@ -2415,6 +2054,6 @@ const botonEnviar = () => {
 
 
 
-const FasesOfrecermeNiñera = [Fase0, Fase1, Fase2, Fase3, Fase4, Fase5, Fase6,Fase7,Fase8,Fase9,Fase10,Fase11,Fase12,Fase13];
+const FasesOfrecermeCuidador = [Fase0, Fase1, Fase2, Fase3, Fase4, Fase5, Fase6,Fase7,Fase8,Fase9,Fase10,Fase11,Fase12,Fase13];
 
-export {FasesOfrecermeNiñera,botonEnviar, useValidar,};
+export {FasesOfrecermeCuidador,botonEnviar, useValidar,};

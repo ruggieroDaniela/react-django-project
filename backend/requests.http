@@ -168,11 +168,11 @@ content-type: application/json
 
 ### B - Solicitar personal domestico
 POST http://127.0.0.1:8000/api-services/requestService/post_ad/
-Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
+Authorization: Token 840c5d2b1393d0ac78010861ff7473fac4fdc7eb
 content-type: application/json
 
 {
-    "user": 11, 
+    "user": 37, 
     "service": "CUI",
     "gender": "IDC",
     "age_required_from": 18,
@@ -218,11 +218,11 @@ content-type: application/json
 ###
 
 POST http://127.0.0.1:8000/api-services/requestService/post_ad/
-Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
+Authorization: Token 840c5d2b1393d0ac78010861ff7473fac4fdc7eb
 content-type: application/json
 
 {
-    "user": 11, 
+    "user": 37, 
     "service": "NIN",
     "gender": "IDC",
     "age_required_from": 10,
