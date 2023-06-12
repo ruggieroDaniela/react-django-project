@@ -161,7 +161,35 @@ const Navbar = () => {
                         ]}
                     />
 
-                    <NavbarDropdown
+                    {isAuth ? 
+                           <NavbarDropdown
+                           label={{
+                               text: t("navbar.ofrecer_mis_servicios"),
+                               arrow: "▾"
+                           }}
+                           items={[
+                               {
+                                   label: {
+                                       text: t("navbar.publicar_anuncio"),
+                                       arrow: "▸"
+                                   },
+                                   items:[
+                                       {label: t("navbar.ofrecerme.babysitter"), link: isAuth == true ? "./post-ad/offer/babysitter" : "#"},
+                                       {label: t("navbar.ofrecerme.cuidador"), link:isAuth == true ? "./post-ad/offer/caretaker" : "#"}
+                                   ]
+                               },
+                               {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=provide&user=${authState.id}`},
+                               {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
+                               {label: t("navbar.operaciones.modificar"),  link:`/show-posts?type=provide&user=${authState.id}`},
+                               {label: t("navbar.operaciones.eliminar"), link:`/show-posts?type=provide&user=${authState.id}`},
+                               {label: t("navbar.operaciones.habilitar"), link:`/show-posts?type=provide&user=${authState.id}`},
+                               {label: t("navbar.operaciones.deshabilitar"), link:`/show-posts?type=provide&user=${authState.id}`}
+                           ]}
+                       />
+                    
+                        : 
+
+                        <NavbarDropdown
                         label={{
                             text: t("navbar.ofrecer_mis_servicios"),
                             arrow: "▾"
@@ -177,14 +205,13 @@ const Navbar = () => {
                                     {label: t("navbar.ofrecerme.cuidador"), link:isAuth == true ? "./post-ad/offer/caretaker" : "#"}
                                 ]
                             },
-                            {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=provide&user=${authState.id}`},
                             {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
-                            {label: t("navbar.operaciones.modificar"),  link:`/show-posts?type=provide&user=${authState.id}`},
-                            {label: t("navbar.operaciones.eliminar"), link:`/show-posts?type=provide&user=${authState.id}`},
-                            {label: t("navbar.operaciones.habilitar"), link:`/show-posts?type=provide&user=${authState.id}`},
-                            {label: t("navbar.operaciones.deshabilitar"), link:`/show-posts?type=provide&user=${authState.id}`}
                         ]}
                     />
+                    }
+
+
+                    
                     
                     <li className="item">
                         <a href="/employment" className="link">{t("navbar.empleo")}</a>
