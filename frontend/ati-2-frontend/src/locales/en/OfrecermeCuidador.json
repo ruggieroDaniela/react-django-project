@@ -1,10 +1,10 @@
 {
     "OfrecermeCuidador":{
-        "no-tiene":"No tiene",
-        "niñera": "Niñera(o)",
+        "no-tiene":"Not available",
+        "niñera": "Caretaker",
         "pais":"Country",
         "estado":"State, province or canton",
-        "titulo": "OFFER MY SERVICES AS A BABYSITTER",
+        "titulo": "OFFER MY SERVICES AS A OCCUPATIONAL CARETAKER",
         "telefono_movil":"Mobile Phone",
         "telefono_fijo":"Landline",
         "correo":"Email",
@@ -19,7 +19,7 @@
         },
         "fases":[
             {
-              "nombre": "Basic nanny information",
+              "nombre": "Basic caretaker information",
               "mensaje":"Please, provide provide the specified data below",
               "condiciones":"I am a responsible, honest, good-natured person, and I like children.",
               "edad":"Age",
@@ -55,7 +55,7 @@
               "indique": "Please indicate"
             },
             {
-              "nombre": "Nanny's travel availability",
+              "nombre": "Caretaker's travel availability",
               "mensaje": "Please indicate if you have availability to travel or not.",
               "mensaje2": "If you have availability, please specify additional details about the travel.",
               "pregunta": "Are you willing to travel to accompany the person(s) to be taken care of?",
@@ -64,9 +64,9 @@
               "especifique": "Please specify"            
             },
             {
-              "nombre": "Functions performed as a nanny",
-              "mensaje": "Please indicate the activities you have performed as a nanny",
-              "titulo": "Functions you have performed as a nanny",
+              "nombre": "Functions performed as a caretaker",
+              "mensaje": "Please indicate the activities you have performed as a caretaker",
+              "titulo": "Functions you have performed as a caretaker",
               "indique": "Please indicate the activities you have performed in this position",
               "ejemplos": [
                 "Preparing meals",
@@ -254,7 +254,7 @@
               "mensaje": "Please read the service considerations",
               "parrafos": [
                 "The data provided is the responsibility of the advertiser, and the company is exempt from verifying its veracity.",
-                "The suggestions provided are to guide the nanny, and by accepting the publication of such announcement, the company is exempt from any incidents that may occur between the nanny and the client."
+                "The suggestions provided are to guide the caretaker, and by accepting the publication of such announcement, the company is exempt from any incidents that may occur between the caretaker and the client."
               ]
             },
             {
