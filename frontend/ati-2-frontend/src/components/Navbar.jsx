@@ -163,7 +163,7 @@ const Navbar = () => {
                                 },
                                 items:[
                                     {label: t("navbar.ofrecerme.babysitter"), link: isAuth == true ? "./offer-my-services/post-add/offer-me-as-babysitter" : "#"},
-                                    {label: t("navbar.ofrecerme.cuidador"), link:"#"}
+                                    {label: t("navbar.ofrecerme.cuidador"), link:isAuth == true ? "./offer-my-services/post-add/offer-me-as-caretaker" : "#"}
                                 ]
                             },
                             {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=provide&user=${authState.id}`},
