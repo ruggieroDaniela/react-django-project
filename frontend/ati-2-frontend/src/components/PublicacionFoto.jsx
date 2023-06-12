@@ -58,6 +58,7 @@ export const PublicacionFoto = ({post, postType}) => {
     const [stateName, setStateName] = useState("");
     const {authState, setAuthState} = useContext(AuthContext);
     const canEdit = authState.logged_in && post.user == authState.id;
+    const [postEnabled, setPostEnabled] = useState(post.enable);
     // const canEdit = true;
 
     useEffect(() => {
@@ -208,7 +209,7 @@ export const PublicacionFoto = ({post, postType}) => {
                         </div>
                         <ul className="info-list" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                             <li key={`post ${post.id} salario`}>
-                                <span className="item-title">{t(`publicaciones_vista_lista.salario`)}: </span> {post.payment_amount} {post.currency} 
+                                <span className="item-title">{t(`publicaciones_vista_lista.salario`)}: </span> {post.payment_amount? `${post.payment_amount} ${post.currency == "OTRA"? post.currency_other:post.currency}` : t('publicaciones_vista_lista.a_convenir')}
                             </li>
                             <li key={`post ${post.id} beneficios`}>
                                 { post.benefits > 0?
@@ -258,8 +259,8 @@ export const PublicacionFoto = ({post, postType}) => {
                                 <FieldViewDetails
                                     label={t(`publicaciones_vista_lista.salario_deseado`)}
                                     detalles_texto={
-                                        post.payment_amount != null?
-                                            post.payment_amount + " " + post.currency + " " + t(`publicaciones_vista_lista.${post.salary_offered}`)
+                                        post.salary_offered != null?
+                                            `${post.payment_amount} ${post.currency == "OTRA"? post.currency_other:post.currency} ${t(`publicaciones_vista_lista.${post.salary_offered}`)}`
                                             :
                                             t("sin_especificar")
                                     }

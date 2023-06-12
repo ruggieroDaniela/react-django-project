@@ -77,8 +77,10 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                     setCountryName(() => country);
                 }
 
-                const state = await getStateName(post.state);
-                setStateName(() => state);
+                if(post.state){
+                    const state = await getStateName(post.state);
+                    setStateName(() => state);
+                }
 
                 return response.data;
 
@@ -88,7 +90,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
         };
         // if( post.client_type != "NO" )
         fetchUserData();
-    }, []);
+    }, [forceRefresh]);
 
     return(<>
         <div
@@ -102,12 +104,12 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
             <section className='checkbox-container'>
                 <input
                     type="checkbox"
-                    checked={selectedPosts.includes(post.id)}
+                    checked={selectedPosts.includes(post)}
                     onChange={ e => {
-                        if(selectedPosts.includes(post.id))
-                            setSelectedPosts( prev => prev.filter( x => x!=post.id ) );
+                        if(selectedPosts.includes(post))
+                            setSelectedPosts( prev => prev.filter( x => x!=post ) );
                         else
-                            setSelectedPosts( prev => [... prev, post.id] );
+                            setSelectedPosts( prev => [... prev, post] );
                     } }
                     disabled={!canEdit}
                 />
@@ -205,7 +207,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                         </div>
                         <ul className="info-list" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                             <li key={`post ${post.id} salario`}>
-                                <span className="item-title">{t(`publicaciones_vista_lista.salario`)}: </span> {post.payment_amount} {post.currency} 
+                                <span className="item-title">{t(`publicaciones_vista_lista.salario`)}: </span> {post.payment_amount? `${post.payment_amount} ${post.currency == "OTRA"? post.currency_other:post.currency}` : t('publicaciones_vista_lista.a_convenir')}
                             </li>
                             <li key={`post ${post.id} beneficios`}>
                                 { post.benefits > 0?
@@ -253,8 +255,8 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                                 <FieldViewDetails
                                     label={t(`publicaciones_vista_lista.salario_deseado`)}
                                     detalles_texto={
-                                        post.payment_amount != null?
-                                            post.payment_amount + " " + post.currency + " " + t(`publicaciones_vista_lista.${post.salary_offered}`)
+                                        post.salary_offered != null?
+                                            `${post.payment_amount} ${post.currency == "OTRA"? post.currency_other:post.currency} ${t(`publicaciones_vista_lista.${post.salary_offered}`)}`
                                             :
                                             t("sin_especificar")
                                     }
@@ -279,10 +281,9 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                 <section className='button-group' key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                     <button
                         disabled={ !(canEdit) }
-                        onClick={ () => {
+                        onClick={ async () => {
                             setPostEnabled(prev=>!prev);
-                            axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${post.id}/`)
-                            setForceRefresh(prev => !prev);
+                            await axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${post.id}/`)
                         } }
                     >
                         <img className='button-img' src={postEnabled? deshabilitar_img : habilitar_img} alt="" />
