@@ -92,18 +92,6 @@ class ProvideServiceSerializer(ServicesSerializer):
 class RequestServiceSerializer(ServicesSerializer):
     def validate(self, data):
         data =  super().validate(data)
-        
-        if data['age_requirement'] == True and not ( data['age_required_from'] and data['age_required_to']):
-            raise serializers.ValidationError("Por favor, indique el rango de edad")
-        
-        if data['age_requirement'] == False and ( data['age_required_from'] or data['age_required_to']):
-            raise serializers.ValidationError("Error, no debe especificar edad")
-
-        if data['service'] == 'NIN' and not ( data['age_required_from'] >= 0 and data['age_required_to'] <=12 ):
-            raise serializers.ValidationError("Edad no permitida, debe ser entre 0 y 12 años")
-
-        if data['service'] == 'CUI' and not ( data['age_required_from'] >= 13 and data['age_required_to'] >= 13):
-            raise serializers.ValidationError("Edad no permitida, debe ser mayor de 13 años")
 
         if data['disabilities_tco'] == True and not data.get('disabilities_tco_decrip'):
             raise serializers.ValidationError("Por favor, indique las discapacidades que presentan")
