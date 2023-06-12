@@ -25,6 +25,8 @@
             "Solicitar personal doméstico",
             "Buscar personal doméstico",
             "Buscar clientes"
-        ] 
+        ],
+        "NIN_desc": "Para el cuidado de personas entre los 0 y los 12 años de edad",
+        "CUI_desc": "Para cuidar personas desde los 13 años en adelante"
     }
 }

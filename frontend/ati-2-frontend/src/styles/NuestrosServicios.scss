@@ -1,13 +1,20 @@
 @import 'colors';
+@import 'general';
 
 #nuestros-servicios{
     width: 100%;
-    padding: 5vw;
-    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // padding: 5vw;
+    // padding-top: 1rem;
 
     .info{
+        width: 90%;
+        margin-top: 2rem;
         .note-title{
-            color: $azul-oscuro;
+            color: blue;
             font-weight: bold;
         }
         ol{
@@ -22,7 +29,7 @@
     }
 
     #opciones{
-        width: 100%;
+        width: 90%;
         .label{
             font-weight: bold;
             margin-top: 0.5rem;
@@ -31,7 +38,7 @@
             }
         }
         #botones{
-            width: 90vw;
+            width: 100%;
             display: flex;
             justify-content: space-around;
             .button_dropdown{
@@ -50,6 +57,19 @@
                     width: 15vw;
                 }
             }
+        }
+    }
+
+    #more-options{
+        margin-top: 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        width: 70%;
+        row-gap: 1rem;
+        column-gap: 5vw;
+        align-items: center;
+        button{
+            height: 3rem;
         }
     }
 
