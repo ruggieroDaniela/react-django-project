@@ -18,7 +18,6 @@ export const SolicitarÑiñera = () => {
     const {authState, setAuthState} = useContext(AuthContext);
 
     useEffect(() => {
-        console.log(authState)
         setRequestDomesticFormState ( prev => {
             const newState = {... prev};
             newState.user = authState.id;
