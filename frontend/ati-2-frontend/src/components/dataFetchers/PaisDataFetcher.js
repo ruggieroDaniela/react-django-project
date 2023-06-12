@@ -1,43 +1,42 @@
+import countries from "../../data/countries.json"
 import axios from 'axios';
 
 const API_KEY = "M3F5RW5Hb1dkWFpNN2kwN1k1eEhNYlRYZUJuQW5Wb3NETlF6YTd5cg=="
 
+const continents = ["north america", "south america", "europe", "asia", "oceania"]
+
 export const getContinents = () => ["north america", "south america", "europe", "asia", "oceania"]
 
-export const getCountryName = async countryCode => {
-    try {
-        const response = await axios.get(`https://api.countrystatecity.in/v1/countries/${countryCode}`, {
-            headers: {
-                'X-CSCAPI-KEY': API_KEY
-            }
-        });
+export const getCountryName = (countryCode, lang = "en") => {
 
-        // console.log(response.data);
-        return response.data.name;
+    for (let i = 0; i < continents.length; i++) {
         
-    } catch (error) {
-        console.error(error);
+        if( countryCode in countries[ continents[i] ] ){
+            console.log(countries[ continents[i] ][countryCode][lang] );
+            return countries[ continents[i] ][countryCode][lang];
+        }
+        
     }
+
+    return null;
 }
 
-export const getAllCountries = async () => {
+export const getAllCountries = (lang = "en") => {
     
-    try {
-        const response = await axios.get("https://api.countrystatecity.in/v1/countries", {
-            headers: {
-                'X-CSCAPI-KEY': API_KEY
-            }
-        });
+    const names = []
+    const values = []
 
-        // console.log(response.data);
-
-        const names = response.data.map( x => x.name );
-        const values = response.data.map( x => x.iso2 );
-        return [names, values];
+    for (let i = 0; i < continents.length; i++) {
         
-    } catch (error) {
-        console.error(error);
+        Object.keys( countries[ continents[i] ] )
+            .forEach(code => {
+                names.push( countries[ continents[i] ][code][lang] );
+                values.push(code);
+            });
+        
     }
+
+    return [names, values]
 
 };
 
