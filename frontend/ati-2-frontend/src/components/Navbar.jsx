@@ -122,8 +122,8 @@ const Navbar = () => {
                                         arrow: "▸"
                                     },
                                     items:[
-                                        {label: t("navbar.solicitar.babysitter"), link:"./login/noAuth"},
-                                        {label: t("navbar.solicitar.cuidador"), link:"./login/noAuth"}
+                                        {label: t("navbar.solicitar.babysitter"), link:"/login/noAuth"},
+                                        {label: t("navbar.solicitar.cuidador"), link:"/login/noAuth"}
                                     ]
                                 },
                                 {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
@@ -174,8 +174,8 @@ const Navbar = () => {
                                        arrow: "▸"
                                    },
                                    items:[
-                                       {label: t("navbar.ofrecerme.babysitter"), link: isAuth == true ? "./post-ad/offer/babysitter" : "#"},
-                                       {label: t("navbar.ofrecerme.cuidador"), link:isAuth == true ? "./post-ad/offer/caretaker" : "#"}
+                                       {label: t("navbar.ofrecerme.babysitter"), link: isAuth == true ? "/post-ad/offer/babysitter" : "#"},
+                                       {label: t("navbar.ofrecerme.cuidador"), link:isAuth == true ? "/post-ad/offer/caretaker" : "#"}
                                    ]
                                },
                                {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=provide&user=${authState.id}`},
