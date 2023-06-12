@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react'
+import React, { useState, useContext } from 'react'
 import "../styles/IniciarSesion.scss"
 import { useTranslation } from 'react-i18next';
 
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import AuthContext from '../context/AuthContext';
 import ErrorMessage from "../components/ErrorMessage";
+import { useParams } from 'react-router';
 
 export const IniciarSesion = () => {
     
@@ -20,6 +21,9 @@ export const IniciarSesion = () => {
     const [password, setPassword] = useState('');
     const [invalidPassword, setInvalidPassword] = useState(false)
     const [inexistentEmail, setInexistentEmail] = useState(false)
+
+    const params = useParams()
+    const noAuth = params.noAuth
 
     const handleSubmit = async (e) => {
         setLoading(true);
@@ -109,7 +113,10 @@ export const IniciarSesion = () => {
 
   return (
     <div id='iniciar-sesion' className='container'>
+        {noAuth && <p> <ErrorMessage message={t('login.noAuth')}/> </p>}
         <div className='login'>
+
+          
             <h2 className='title'>{t('login.titulo')}</h2>
 
             <form onSubmit={handleSubmit} className='form'>
