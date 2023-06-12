@@ -10,9 +10,9 @@ function RequestDomesticFormContextProvider({children}){
         user: -1, 
         service: "CUI",
         gender: "IDC",
-        age_required: "IDC",
-        age_required_from: 0,
-        age_required_to: 0,
+        age_requirement: false,
+        age_required_from: "",
+        age_required_to: "",
         children: "IDC",
         education_level: "PRI",
         continent:"North America", 
@@ -49,6 +49,9 @@ function RequestDomesticFormContextProvider({children}){
         publication_plan: "1",
         billing_country: "",
         billing_bank: "",
+        errors: {
+            age_range_invalid: false
+        }
     }
     );
 

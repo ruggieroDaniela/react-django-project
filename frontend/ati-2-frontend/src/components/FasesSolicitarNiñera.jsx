@@ -7,12 +7,14 @@ import { FieldDropdownCheckbox } from "./search/FieldDropdownCheckbox";
 import axios from 'axios';
 import "../styles/SolicitarNiñera.scss"
 import AuthContext from '../context/AuthContext';
-
+import ErrorMessage from "./ErrorMessage";
 
 
 const Fase0 = () => {
   const { t, i18n } = useTranslation();
   const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+
+  const age_range_invalid = requestDomesticFormState.errors.age_range_invalid
 
   return (
     <div id="fase0">
@@ -91,7 +93,15 @@ const Fase0 = () => {
                           <input 
                             type="radio" 
                             id="c4" 
-                            name="edad"/>
+                            name="edad"     
+                            checked={ requestDomesticFormState.age_requirement }
+                            onChange={ e => {
+                                setRequestDomesticFormState( prev => {
+                                        const newState = {...prev};
+                                        newState.age_requirement = !newState.age_requirement;
+                                        return newState;
+                                    } );
+                            }}/>
 
                           <label htmlFor="c4">{t('SolicitarNiñera.fases.0.entre')} 
                                 <input 
@@ -124,12 +134,11 @@ const Fase0 = () => {
                                 type="radio" 
                                 id="c5" 
                                 name="edad"
-                                value="IDC"
-                                checked={ requestDomesticFormState.age_required === 'IDC' }
+                                checked={ !requestDomesticFormState.age_requirement }
                                 onChange={ e => {
                                     setRequestDomesticFormState( prev => {
                                             const newState = {...prev};
-                                            newState.age_required = e.target.value;
+                                            newState.age_requirement = !newState.age_requirement;
                                             return newState;
                                         } );
                                 }}
@@ -137,7 +146,7 @@ const Fase0 = () => {
                           <label htmlFor="c5">{t('SolicitarNiñera.fases.0.indiferente-edad')}</label>
                       </div>    
 
-                      
+                      { age_range_invalid && <ErrorMessage message={t('SolicitarNiñera.errores.rango_edad')}/>  }
               </div>
           </div>
 
@@ -1965,16 +1974,34 @@ const useValidar = () => {
 
     const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
 
+    const validateNumber = (number) => {
+        return /^\+?(0|[1-9]\d*)$/.test(number);
+    }
+
     const validate = (currentStage) => {
         // Empty implementation
         let valid =true;
 
+        
+        if(currentStage === 0){
+            
+            if(requestDomesticFormState.age_requirement && (!validateNumber(requestDomesticFormState.age_required_from) || validateNumber(requestDomesticFormState.age_required_to))){
+                valid = false
+                setRequestDomesticFormState( prev => {
+                    const newState = {...prev};
+                    requestDomesticFormState.errors.age_range_invalid = true
+                    return newState;
+                } );
+                
+            } else {
+                setRequestDomesticFormState( prev => {
+                    const newState = {...prev};
+                    requestDomesticFormState.errors.age_range_invalid = false
+                    return newState;
+                } );    
+            }
+        }
         console.log(requestDomesticFormState)
-
-
-
-       
-
         return valid
     };
 
