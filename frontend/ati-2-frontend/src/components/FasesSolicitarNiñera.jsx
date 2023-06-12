@@ -1962,9 +1962,19 @@ const botonEnviar = () => {
 }
 
 const useValidar = () => {
+
+    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+
     const validate = (currentStage) => {
         // Empty implementation
         let valid =true;
+
+        console.log(requestDomesticFormState)
+
+
+
+       
+
         return valid
     };
 
