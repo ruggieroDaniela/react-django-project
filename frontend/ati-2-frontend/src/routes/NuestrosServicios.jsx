@@ -140,8 +140,8 @@ export const NuestrosServicios = () => {
                             onClick={() => { 
                                 if(!isAuth)
                                     navigate(`/login`)
-
-                                navigate(`${postAdLinks[postAdSelected]}/babysitter`)
+                                else
+                                    navigate(`${postAdLinks[postAdSelected]}/babysitter`)
                             }}
                         >
                             {t('NIN')}
@@ -153,8 +153,8 @@ export const NuestrosServicios = () => {
                             onClick={() => { 
                                 if(!isAuth)
                                     navigate(`/login`)
-                                    
-                                navigate(`${postAdLinks[postAdSelected]}/caretaker`)
+                                else
+                                    navigate(`${postAdLinks[postAdSelected]}/caretaker`)
                             }}
                         >
                             {t('CUI')}
