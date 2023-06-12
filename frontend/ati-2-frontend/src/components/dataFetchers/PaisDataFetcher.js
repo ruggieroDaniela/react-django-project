@@ -40,17 +40,24 @@ export const getAllCountries = (lang = "en") => {
 
 };
 
-export const getCountriesInRegion = async (reg) => {
-    try {
-        const response = await axios.get(`https://restcountries.com/v3.1/region/${reg}`);
-        const names = response.data.map( x => x.name.common );
-        const values = response.data.map( x => x.cca2 );
+export const getCountriesInRegion = (reg, lang="en") => {
 
-        return [names, values];
+    if( !reg in continents )
+        return null
+
+    const names = []
+    const values = []
         
-    } catch (error) {
-        console.error(error);
-    }
+    Object.keys( countries[reg] )
+        .forEach(code => {
+            names.push( countries[reg][code][lang] );
+            values.push(code);
+        });
+        
+    
+
+    return [names, values]
+
 };
 
 export const getStatesInCountry = async (countries) => {
