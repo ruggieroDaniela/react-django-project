@@ -58,6 +58,7 @@ export const PublicacionFoto = ({post, postType}) => {
     const [stateName, setStateName] = useState("");
     const {authState, setAuthState} = useContext(AuthContext);
     const canEdit = authState.logged_in && post.user == authState.id;
+    const [postEnabled, setPostEnabled] = useState(post.enable);
     // const canEdit = true;
 
     useEffect(() => {

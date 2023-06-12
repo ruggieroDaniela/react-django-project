@@ -77,8 +77,10 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                     setCountryName(() => country);
                 }
 
-                const state = await getStateName(post.state);
-                setStateName(() => state);
+                if(post.state){
+                    const state = await getStateName(post.state);
+                    setStateName(() => state);
+                }
 
                 return response.data;
 
@@ -88,7 +90,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
         };
         // if( post.client_type != "NO" )
         fetchUserData();
-    }, []);
+    }, [forceRefresh]);
 
     return(<>
         <div
@@ -102,12 +104,12 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
             <section className='checkbox-container'>
                 <input
                     type="checkbox"
-                    checked={selectedPosts.includes(post.id)}
+                    checked={selectedPosts.includes(post)}
                     onChange={ e => {
-                        if(selectedPosts.includes(post.id))
-                            setSelectedPosts( prev => prev.filter( x => x!=post.id ) );
+                        if(selectedPosts.includes(post))
+                            setSelectedPosts( prev => prev.filter( x => x!=post ) );
                         else
-                            setSelectedPosts( prev => [... prev, post.id] );
+                            setSelectedPosts( prev => [... prev, post] );
                     } }
                     disabled={!canEdit}
                 />
@@ -279,10 +281,9 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                 <section className='button-group' key={`post ${post.id} ${self.crypto.randomUUID()}`}>
                     <button
                         disabled={ !(canEdit) }
-                        onClick={ () => {
+                        onClick={ async () => {
                             setPostEnabled(prev=>!prev);
-                            axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${post.id}/`)
-                            setForceRefresh(prev => !prev);
+                            await axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${post.id}/`)
                         } }
                     >
                         <img className='button-img' src={postEnabled? deshabilitar_img : habilitar_img} alt="" />
