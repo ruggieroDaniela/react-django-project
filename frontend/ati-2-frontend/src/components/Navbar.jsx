@@ -6,6 +6,7 @@ import AuthContext from "../context/AuthContext";
 
 import NavbarDropdown from "./NavbarDropdown";
 import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import '../styles/Navbar.scss';
 
@@ -15,10 +16,14 @@ const Navbar = () => {
     const {authState, setAuthState} = useContext(AuthContext);
     const isAuth = authState.logged_in;
 
+    const navigate = useNavigate();
+
     const { t, i18n } = useTranslation();
 
     return (
         <>  {!isAuth?
+
+            // Login/Signup (When NOT authenticated)
             <div className="user">
                 <div className="dropdown">
                     <div className="label">
@@ -32,6 +37,8 @@ const Navbar = () => {
                 </div>
             </div>
             :
+
+            // Login/info (when authenticated)
             <div className="user">
                 <div className="card">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="" />
@@ -57,6 +64,7 @@ const Navbar = () => {
                             onClick={ () => {
                                 setAuthState( () => { return {logged_in:false} } )
                                 localStorage.removeItem('sessionData');
+                                navigate("/");
                             }}
                         >
                             <a className="link" href="#">
