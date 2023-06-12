@@ -21,6 +21,12 @@
             "Disponibilidad para viajar"
         ],
         "pagina": "Página",
+        "accion":[
+            "Habilitar/Deshabilitar",
+            "Eliminar",
+            "Actualizar"
+        ],
+        "acciones": "Acciones",
         "no_posts": "Todavía no hay publicaciones disponibles"
     },
     "publicaciones_vista_lista": {
