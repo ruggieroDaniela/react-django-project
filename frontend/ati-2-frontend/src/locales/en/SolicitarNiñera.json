@@ -296,7 +296,12 @@
         "rango_edad": "Invalid age range. Must be two positive numbers",
         "pais": "Must select a country",
         "estado": "Must select an state/province",
-        "ciudad": "Must select a city"
+        "ciudad": "Must select a city",
+        "requerido": "This is a required field",
+        "numero": "Must enter a valid number",
+        "edad": "Must enter peoples ages",
+        "genero": "Must enter peoples genders",
+        "enfermedad": "Must indicate at least one disability or one illness"
       }
     }
 }

@@ -20,7 +20,7 @@ function RequestDomesticFormContextProvider({children}){
         state: "",
         city: "",
         zone: "",
-        number_tco: 0,
+        number_tco: "",
         age_tco: "",
         gender_tco: "",
         disabilities_tco: false,
@@ -54,6 +54,10 @@ function RequestDomesticFormContextProvider({children}){
             country_requered: false,
             state_required: false,
             city_required: false,
+            number_tco_required: false,
+            age_tco_required: false,
+            gender_tco_required: false,
+            diseases_required: false
         }
     }
     );

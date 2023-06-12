@@ -572,6 +572,11 @@ const Fase2 = () => {
     const { t, i18n } = useTranslation();
     const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
 
+    const number_tco_required = requestDomesticFormState.errors.number_tco_required
+    const age_tco_required = requestDomesticFormState.errors.age_tco_required
+    const gender_tco_required = requestDomesticFormState.errors.gender_tco_required
+    const diseases_required = requestDomesticFormState.errors.diseases_required
+
   return (
     <div id="fase2">
           <div id="small">
@@ -595,6 +600,8 @@ const Fase2 = () => {
                                     });
                                 }}
                         />
+                        { number_tco_required && <ErrorMessage message={t('SolicitarNiñera.errores.numero')}/>  }
+                        
                     </div>
 
                     <div>
@@ -611,9 +618,10 @@ const Fase2 = () => {
                                         });
                                     }}
                             />
+                            
                         </div>
                         <div>
-                            <label className="bold" htmlFor="sexo">{t('SolicitarNiñera.fases.2.sexo')}</label>
+                            <label className="bold" htmlFor="sexo"> <span className="red">* </span> {t('SolicitarNiñera.fases.2.sexo')}</label>
                             <input  id="sexo"
                                     type="text"
                                     value={requestDomesticFormState.gender_tco} 
@@ -625,8 +633,13 @@ const Fase2 = () => {
                                         });
                                     }}
                             />
+
                         </div>
+
+                        
                     </div>
+                    { age_tco_required && <ErrorMessage message={t('SolicitarNiñera.errores.edad')}/>  }
+                    { gender_tco_required && <ErrorMessage message={t('SolicitarNiñera.errores.genero')}/>  }
 
                     <div>
                         <span className="red">*  </span><label className="bold">{t('SolicitarNiñera.fases.2.posee-discapacidad')}</label>
@@ -665,9 +678,8 @@ const Fase2 = () => {
 
                     <div>
                         <label className="bold" htmlFor="discapacidades">{t('SolicitarNiñera.fases.2.indique-discapacidad')}</label>
-                        <input type="text" id="discapacidades" />
-                        <input  id="discapacidades"
-                                type="text"
+                        <textarea  id="discapacidades"
+                                type="textarea"
                                 value={requestDomesticFormState.disabilities_tco_decrip} 
                                 onChange={ e => {
                                     setRequestDomesticFormState( prev => {
@@ -684,6 +696,7 @@ const Fase2 = () => {
                         <p className="ml">{t('SolicitarNiñera.fases.2.enfermedades')}</p>
                         <textarea
                             type="textarea"
+                            value={requestDomesticFormState.diseases_tco_descrip}
                             onChange={ e => {
                                 setRequestDomesticFormState( prev => {
                                         const newState = {...prev}
@@ -694,6 +707,7 @@ const Fase2 = () => {
                         />
                     </div>
                     
+                    { diseases_required && <ErrorMessage message={t('SolicitarNiñera.errores.enfermedad')}/>  }
               </div>
           </div>
     </div>
@@ -1990,7 +2004,7 @@ const useValidar = () => {
         // Empty implementation
         let valid =true;
 
-        
+        console.log(requestDomesticFormState)
         if(currentStage === 0){
             if(requestDomesticFormState.age_requirement && (!validateNumber(requestDomesticFormState.age_required_from) || !validateNumber(requestDomesticFormState.age_required_to))){
                 valid = false
@@ -2052,7 +2066,67 @@ const useValidar = () => {
                     return newState;
                 })
             }
-        } 
+        } else if (currentStage === 2){
+            if(!requestDomesticFormState.number_tco || !validateNumber(requestDomesticFormState.number_tco)){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.number_tco_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.number_tco_required= false
+                    return newState;
+                })
+            }
+
+            if(!requestDomesticFormState.age_tco){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.age_tco_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.age_tco_required = false
+                    return newState;
+                })
+            }
+
+            if(!requestDomesticFormState.gender_tco){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.gender_tco_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.gender_tco_required = false
+                    return newState;
+                })
+            }
+
+            if(requestDomesticFormState.disabilities_tco && !requestDomesticFormState.disabilities_tco_decrip && !requestDomesticFormState.diseases_tco_descrip){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.diseases_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.diseases_required = false
+                    return newState;
+                })
+            }
+        }
 
         return valid
     };
