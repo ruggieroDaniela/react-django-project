@@ -96,7 +96,7 @@ class RequestServiceSerializer(ServicesSerializer):
         if data['age_requirement'] == True and not ( data['age_required_from'] and data['age_required_to']):
             raise serializers.ValidationError("Por favor, indique el rango de edad")
         
-        if data['age_requirement'] == False and ( data['age_required_from'] and data['age_required_to']):
+        if data['age_requirement'] == False and ( data['age_required_from'] or data['age_required_to']):
             raise serializers.ValidationError("Error, no debe especificar edad")
 
         if data['service'] == 'NIN' and not ( data['age_required_from'] >= 0 and data['age_required_to'] <=12 ):
