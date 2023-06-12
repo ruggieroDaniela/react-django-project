@@ -1618,7 +1618,7 @@ const Fase7 = () => {
                         
                         { requestDomesticFormState.documents.includes("OTRO") &&
                         <div>
-                            <p> Especifique</p> <input  type="text" 
+                            <p> {t('OfrecermeNiñera.fases.3.especifique')}</p> <input  type="text" 
                                                         onChange={ e => {
                                                             setRequestDomesticFormState( prev => {
                                                                 const newState = {...prev};
