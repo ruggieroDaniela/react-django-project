@@ -146,8 +146,10 @@ const Fase0 = () => {
                           <label htmlFor="c5">{t('SolicitarNiñera.fases.0.indiferente-edad')}</label>
                       </div>    
 
-                      { age_range_invalid && <ErrorMessage message={t('SolicitarNiñera.errores.rango_edad')}/>  }
+                      
               </div>
+
+              { age_range_invalid && <ErrorMessage message={t('SolicitarNiñera.errores.rango_edad')}/>  }
           </div>
 
           <div>
@@ -315,6 +317,9 @@ const Fase1 = () => {
   const [statesList, setStatesList] =useState([]);
   const [citiesList, setCitiesList] =useState([]);
 
+  const country_required = requestDomesticFormState.errors.country_required
+  const state_required = requestDomesticFormState.errors.state_required
+  const city_required = requestDomesticFormState.errors.city_required
 
   //Countries
   useEffect(() => {
@@ -483,6 +488,7 @@ const Fase1 = () => {
                     <option>Loading ...</option>
                 )}
                 </select>
+                { country_required && <ErrorMessage message={t('SolicitarNiñera.errores.pais')}/>  }
               </div>
 
               <div >
@@ -507,6 +513,7 @@ const Fase1 = () => {
                         <option>{t('SolicitarNiñera.fases.1.select-state')}</option>
                         )}
                     </select>
+                    { state_required && <ErrorMessage message={t('SolicitarNiñera.errores.estado')}/>  }
               </div>
               <div>
                   <label htmlFor="ciudad" className="bold">{t('SolicitarNiñera.fases.1.ciudad')}</label> 
@@ -531,6 +538,7 @@ const Fase1 = () => {
                         <option>{t('SolicitarNiñera.fases.1.select-city')}</option>
                         )}
                     </select>
+                    { city_required && <ErrorMessage message={t('SolicitarNiñera.errores.ciudad')}/>  }
               </div>
 
               <div>
@@ -1984,8 +1992,7 @@ const useValidar = () => {
 
         
         if(currentStage === 0){
-            
-            if(requestDomesticFormState.age_requirement && (!validateNumber(requestDomesticFormState.age_required_from) || validateNumber(requestDomesticFormState.age_required_to))){
+            if(requestDomesticFormState.age_requirement && (!validateNumber(requestDomesticFormState.age_required_from) || !validateNumber(requestDomesticFormState.age_required_to))){
                 valid = false
                 setRequestDomesticFormState( prev => {
                     const newState = {...prev};
@@ -2000,8 +2007,53 @@ const useValidar = () => {
                     return newState;
                 } );    
             }
-        }
-        console.log(requestDomesticFormState)
+        }else if (currentStage === 1){
+            if(!requestDomesticFormState.country){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.country_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.country_required = false
+                    return newState;
+                })
+            }
+
+            if(!requestDomesticFormState.state){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.state_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.state_required = false
+                    return newState;
+                })
+            }
+
+            if(!requestDomesticFormState.city){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.city_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.city_required = false
+                    return newState;
+                })
+            }
+        } 
+
         return valid
     };
 

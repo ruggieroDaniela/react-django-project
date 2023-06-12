@@ -39,7 +39,7 @@ function OfferDomesticFormContextProvider({children}){
             availability: "",
             availability_date: "",
             have_documentation: false,
-            documents: "",
+            documents: ["PASAPORTE"],
             documents_other: "",
             publication_time: "1",
             publication_plan: "1",

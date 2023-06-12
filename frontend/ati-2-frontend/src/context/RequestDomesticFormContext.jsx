@@ -50,7 +50,10 @@ function RequestDomesticFormContextProvider({children}){
         billing_country: "",
         billing_bank: "",
         errors: {
-            age_range_invalid: false
+            age_range_invalid: false,
+            country_requered: false,
+            state_required: false,
+            city_required: false,
         }
     }
     );

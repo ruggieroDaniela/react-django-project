@@ -293,7 +293,10 @@
       "continuar": "",
       "atras": "Back",
       "errores": {
-        "rango_edad": "Invalid age range. Must be two positive numbers"
+        "rango_edad": "Invalid age range. Must be two positive numbers",
+        "pais": "Must select a country",
+        "estado": "Must select an state/province",
+        "ciudad": "Must select a city"
       }
     }
 }
