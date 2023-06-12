@@ -1,8 +1,8 @@
 {
     "OfrecermeCuidador":{
-        "no-tiene":"does not have",
-        "niñera": "Babysitter",
-        "pais":"Country",
+        "no-tiene":"No tiene",
+        "niñera": "Niñera(o)",
+        "pais":"Pais",
         "estado":"Estado, provincia o cantón  ",
         "titulo": "OFRECER MIS SERVICIOS COMO CUIDADOR(A)",
         "telefono_movil":"Télefono Móvil",
