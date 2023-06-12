@@ -717,6 +717,7 @@ const Fase2 = () => {
 const Fase3 = () => {
   const { t, i18n } = useTranslation();
   const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+  const travel_desc_required = requestDomesticFormState.errors.travel_desc_required
 
   return (     
   <div id="fase3">
@@ -783,6 +784,8 @@ const Fase3 = () => {
                     }
                     value={requestDomesticFormState.travel_description}
             ></textarea>
+
+        { travel_desc_required && <ErrorMessage message={t('OfrecermeNiñera.errores.requerido')}/>  }
         </div>
         )}
 
@@ -2180,17 +2183,17 @@ const useValidar = () => {
                 })
             }
         } else if (currentStage === 3){
-            if(!requestDomesticFormState.country){
+            if(requestDomesticFormState.travel && !requestDomesticFormState.travel_description)                {
                 valid = false
                 setRequestDomesticFormState((prev) => {
                     const newState = { ...prev };
-                    newState.errors.country_required = true
+                    newState.errors.travel_desc_required = true
                     return newState;
                   })
             } else {
                 setRequestDomesticFormState((prev) => {
                     const newState = { ...prev };
-                    newState.errors.country_required = false
+                    newState.errors.travel_desc_required = false
                     return newState;
                 })
             }
