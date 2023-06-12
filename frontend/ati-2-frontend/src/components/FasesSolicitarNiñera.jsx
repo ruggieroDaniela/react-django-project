@@ -6,6 +6,7 @@ import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownCheckbox } from "./search/FieldDropdownCheckbox";
 import axios from 'axios';
 import "../styles/SolicitarNiñera.scss"
+import AuthContext from '../context/AuthContext';
 
 
 
@@ -1895,6 +1896,7 @@ const Fase11 = () => {
 const botonEnviar = () => {
     const { t, i18n } = useTranslation();
     const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+    const {authState, setAuthState} = useContext(AuthContext);
     
     const postData = {...requestDomesticFormState};
 
@@ -1903,7 +1905,20 @@ const botonEnviar = () => {
     postData.age_required_to = parseInt(postData.age_required_to)
     postData.payment_amount = parseFloat(postData.payment_amount)
 
-    console.log(JSON.stringify(postData));
+    if(!postData.currency){
+        postData.currency = ""
+    }
+
+    useEffect(() => {
+        setRequestDomesticFormState ( prev => {
+            const newState = {... prev};
+            newState.user = authState.id;
+            return newState;
+        });
+    }, [])
+
+    console.log(postData);
+
     return(
         <button
             id="boton_registrar"
