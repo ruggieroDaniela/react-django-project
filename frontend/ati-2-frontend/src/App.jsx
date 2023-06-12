@@ -23,6 +23,7 @@ import { BuscarPersonalDomestico } from './routes/BuscarPersonalDomestico';
 import { ForgotPassword } from './routes/ForgotPassword';
 import { ResetPassword } from './routes/ResetPassword';
 import { OfrecermeNiñera } from './routes/OfrecermeNiñera';
+import { SolicitarÑiñera } from './routes/SolicitarÑiñera';
 import { ListarPublicaciones } from './routes/ListarPublicaciones';
 import { ChangeLanguage } from './routes/Language';
 import { BuscarCliente } from './routes/BuscarCliente';
@@ -46,6 +47,7 @@ function App() {
             <Route exact path="/login" element={<IniciarSesion />} />
             <Route exact path='/search-clients' element={<BuscarCliente/>}/>
             <Route exact path='/search-domestic-staff' element={<BuscarPersonalDomestico/>}/>
+            <Route exact path='/request-babysitter' element={<SolicitarÑiñera/>}/>
             <Route exact path="/forgot-password" element={<ForgotPassword />} />
             <Route exact path="/lang" element={<ChangeLanguage/>} />
             <Route exact path="/reset-password/:id" element={<ResetPassword/>}/>
