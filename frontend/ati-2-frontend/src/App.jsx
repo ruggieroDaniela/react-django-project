@@ -44,7 +44,7 @@ function App() {
             <Route exact path="/help" element={<Ayuda/>} />
             <Route exact path="/employment" element={<Empleo/>} />
             <Route exact path="/sign-up" element={<Registrar/>} />
-            <Route exact path="/login" element={<IniciarSesion />} />
+            <Route exact path="/login/:noAuth?" element={<IniciarSesion />} />
             <Route exact path='/search-clients' element={<BuscarCliente/>}/>
             <Route exact path='/search-domestic-staff' element={<BuscarPersonalDomestico/>}/>
             <Route exact path='/request-babysitter' element={<SolicitarÑiñera/>}/>
