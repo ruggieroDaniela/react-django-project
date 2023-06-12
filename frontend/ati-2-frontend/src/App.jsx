@@ -28,6 +28,7 @@ import { ListarPublicaciones } from './routes/ListarPublicaciones';
 import { ChangeLanguage } from './routes/Language';
 import { BuscarCliente } from './routes/BuscarCliente';
 import { OfrecermeCuidador } from './routes/OfrecermeCuidador';
+import { ModificarPost } from './routes/ModificarPost';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
             <Route exact path="/forgot-password" element={<ForgotPassword />} />
             <Route exact path="/lang" element={<ChangeLanguage/>} />
             <Route exact path="/reset-password/:id" element={<ResetPassword/>}/>
+            <Route exact path='/modify-post/:id' element={<ModificarPost/>}/>
             <Route exact path='/post-ad/offer/babysitter' element={<OfrecermeNiñera/>}/>
             <Route exact path='/post-ad/offer/caretaker' element={<OfrecermeCuidador/>}/>
             <Route path='/show-posts' element={<ListarPublicaciones/>}/>
