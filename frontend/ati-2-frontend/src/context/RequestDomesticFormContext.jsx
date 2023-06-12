@@ -1,14 +1,12 @@
 import { useState, createContext } from "react";
-import AuthContext from '../context/AuthContext';
 
 const RequestDomesticFormContext = createContext();
-const {authState, setAuthState} = useContext(AuthContext);
 
 function RequestDomesticFormContextProvider({children}){
 
     const [requestDomesticFormState, setRequestDomesticFormState] = useState(
     {
-        user: authState.id, 
+        user: -1, 
         service: "CUI",
         gender: "",
         age_required_from: 0,

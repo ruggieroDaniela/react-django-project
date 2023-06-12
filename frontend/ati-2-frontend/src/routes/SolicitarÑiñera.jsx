@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-
+import AuthContext from '../context/AuthContext';
 import { Multiform } from "../components/Multiform";
+import { RequestDomesticFormContext } from "../context/RequestDomesticFormContext";
 import { FasesSolicitarNiñera, botonEnviar, useValidar } from "../components/FasesSolicitarNiñera";
 import "../styles/SolicitarNiñera.scss"
 
@@ -12,6 +13,19 @@ export const SolicitarÑiñera = () => {
     const { t } = useTranslation();
 
     let navigate = useNavigate(); 
+
+    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+    const {authState, setAuthState} = useContext(AuthContext);
+
+    useEffect(() => {
+        console.log(authState)
+        setRequestDomesticFormState ( prev => {
+            const newState = {... prev};
+            newState.user = authState.id;
+            return newState;
+        });
+    }, [])
+   
 
     const goHome = () => {
         navigate(`/`);
@@ -23,6 +37,7 @@ export const SolicitarÑiñera = () => {
         stagesNames.push(t('SolicitarNiñera.fases.'+i+'.nombre'));
     }
 
+    authState.id
     return (
         <div id="SolicitarNiñera">
             
