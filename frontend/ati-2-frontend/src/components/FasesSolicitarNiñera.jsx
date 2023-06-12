@@ -1980,6 +1980,7 @@ const botonEnviar = () => {
         setRequestDomesticFormState ( prev => {
             const newState = {... prev};
             newState.user = authState.id;
+            newState.service = "NIN";
             return newState;
         });
     }, [])

@@ -8,7 +8,7 @@ function RequestDomesticFormContextProvider({children}){
     const [requestDomesticFormState, setRequestDomesticFormState] = useState(
     {
         user: -1, 
-        service: "CUI",
+        service: "NIN",
         gender: "IDC",
         age_requirement: false,
         age_required_from: "",
