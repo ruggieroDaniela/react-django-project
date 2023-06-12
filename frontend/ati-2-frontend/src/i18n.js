@@ -61,7 +61,7 @@ const es = Object.assign(
   OfrecermeNiñera_es,
   SolicitarNiñera_es,
   reset_password_es,
-  forgot_password_en,
+  forgot_password_es,
   OfrecermeNiñera_es,
   OfrecermeCuidador_es,
   listar_publicaciones_es
