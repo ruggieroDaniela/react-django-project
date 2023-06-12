@@ -2057,13 +2057,18 @@ const useValidar = () => {
         return /^([1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/.test(float)
     }
 
+    const ageRange = (min, max) => {
+        return min >= 0 && max <= 12
+    }
+
     const validate = (currentStage) => {
         // Empty implementation
         let valid =true;
 
         console.log(requestDomesticFormState)
         if(currentStage === 0){
-            if(requestDomesticFormState.age_requirement && (!validateNumber(requestDomesticFormState.age_required_from) || !validateNumber(requestDomesticFormState.age_required_to))){
+            if(requestDomesticFormState.age_requirement && (!validateNumber(requestDomesticFormState.age_required_from) 
+            || !validateNumber(requestDomesticFormState.age_required_to ) || !ageRange(requestDomesticFormState.age_required_from, requestDomesticFormState.age_required_to))){
                 valid = false
                 setRequestDomesticFormState( prev => {
                     const newState = {...prev};
