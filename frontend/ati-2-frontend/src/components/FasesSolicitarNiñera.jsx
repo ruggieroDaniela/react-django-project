@@ -777,12 +777,12 @@ const Fase3 = () => {
                         e => {
                             setRequestDomesticFormState ( prev => {
                                 const newState = {... prev};
-                                newState.travel_description = e.target.value;
+                                newState.travel_decription = e.target.value;
                                 return newState;
                             });
                         } 
                     }
-                    value={requestDomesticFormState.travel_description}
+                    value={requestDomesticFormState.travel_decription}
             ></textarea>
 
         { travel_desc_required && <ErrorMessage message={t('OfrecermeNiñera.errores.requerido')}/>  }
@@ -2183,7 +2183,7 @@ const useValidar = () => {
                 })
             }
         } else if (currentStage === 3){
-            if(requestDomesticFormState.travel && !requestDomesticFormState.travel_description)                {
+            if(requestDomesticFormState.travel && !requestDomesticFormState.travel_decription)                {
                 valid = false
                 setRequestDomesticFormState((prev) => {
                     const newState = { ...prev };
