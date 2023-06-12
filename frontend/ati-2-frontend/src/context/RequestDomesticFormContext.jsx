@@ -58,7 +58,20 @@ function RequestDomesticFormContextProvider({children}){
             age_tco_required: false,
             gender_tco_required: false,
             diseases_required: false,
-            activities_required: false
+            activities_required: false,
+            workday_required: false,
+            workday_other_required: false,
+            schedule_required: false,
+            schedule_other_required: false,
+            salary_option_required: false,
+            salary_required: false,
+            salary_other_required: false,
+            benefits_required: false,
+            date_opt_required: false,
+            date_required: false,
+            other_doc_required: false,
+            billing_required: false,
+            origin_required: false
         }
     }
     );

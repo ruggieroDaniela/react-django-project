@@ -301,7 +301,8 @@
         "numero": "Must enter a valid number",
         "edad": "Must enter peoples ages",
         "genero": "Must enter peoples genders",
-        "enfermedad": "Must indicate at least one disability or one illness"
+        "enfermedad": "Must indicate at least one disability or one illness",
+        "fecha": "Must select a date"
       }
     }
 }

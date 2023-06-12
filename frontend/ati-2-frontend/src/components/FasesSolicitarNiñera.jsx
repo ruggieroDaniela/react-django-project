@@ -736,12 +736,12 @@ const Fase3 = () => {
                                     e => {
                                         setRequestDomesticFormState ( prev => {
                                             const newState = {... prev};
-                                            newState.travel = true;
+                                            newState.travel = false;
                                             return newState;
                                         });
                                     } 
                                 }
-                                checked={requestDomesticFormState.travel}
+                                checked={!requestDomesticFormState.travel}
                         />
                       <label for="c1">{t('SolicitarNiñera.fases.3.no')}</label>
                   </div>
@@ -755,18 +755,18 @@ const Fase3 = () => {
                                     e => {
                                         setRequestDomesticFormState ( prev => {
                                             const newState = {... prev};
-                                            newState.travel = false;
+                                            newState.travel = true;
                                             return newState;
                                         });
                                     } 
                                 }
-                                checked={!requestDomesticFormState.travel}        
+                                checked={requestDomesticFormState.travel}        
                         />
                       <label for="c2">{t('SolicitarNiñera.fases.3.si')}</label>
                   </div>
           </div>
       </div>
-      { !requestDomesticFormState.travel && (
+      { requestDomesticFormState.travel && (
         <div id="form" >
         <div >
             <div id="peq">{t('OfrecermeNiñera.fases.3.especifique')}</div>
@@ -870,7 +870,14 @@ const Fase5 = () => {
     const [selectedServices, setSelectedServices] = useState("");
 
  
-
+    const workday_required = requestDomesticFormState.errors.workday_required
+    const workday_other_required = requestDomesticFormState.errors.workday_other_required
+    const schedule_required = requestDomesticFormState.errors.schedule_required
+    const schedule_other_required = requestDomesticFormState.errors.schedule_other_required
+    const salary_option_required = requestDomesticFormState.errors.salary_option_required
+    const salary_required = requestDomesticFormState.errors.salary_required
+    const salary_other_required = requestDomesticFormState.errors.salary_other_required
+    const benefits_required = requestDomesticFormState.errors.benefits_required
 
     function setTheWorkdays (e){
 
@@ -1110,7 +1117,8 @@ const Fase5 = () => {
                                 });
                             }}/>
                         </div>
-                        
+                        { workday_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option_required')}/>  }
+                        { workday_other_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
                     </div>
                 </div>
                 
@@ -1222,6 +1230,10 @@ const Fase5 = () => {
                                 });
                             }} />
                         </div>
+
+                        { schedule_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option')}/>  }
+                    { schedule_other_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
+
                     </div>
 
                 </div>
@@ -1324,10 +1336,15 @@ const Fase5 = () => {
                                     setSelectedState={setSelectedSalary}
                             />
                         </div>
-
+                        
+                      
                         
 
                     </div>
+
+                    { salary_option_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option_required')}/>  }
+                        { salary_required && <ErrorMessage message={t('OfrecermeNiñera.errores.salario')}/>  }
+                        { salary_other_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
                 </div>
 
                 <div id="beneficio-laboral">
@@ -1400,7 +1417,9 @@ const Fase5 = () => {
                                 </textarea>
                             </div>
                         </div>
+                       
                     </div>
+                    { benefits_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
                 </div>
         </div>
      );
@@ -1409,6 +1428,9 @@ const Fase5 = () => {
 const  Fase6= () => {
   const { t, i18n } = useTranslation();
   const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+
+  const date_required = requestDomesticFormState.errors.date_required
+    const date_opt_required = requestDomesticFormState.errors.date_opt_required 
 
   return(
       <div id="fase6">
@@ -1475,7 +1497,8 @@ const  Fase6= () => {
                         </div>
                     }
               </div>
-
+              { date_opt_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option_required')}/>  }
+                { date_required && <ErrorMessage message={t('OfrecermeNiñera.errores.fecha')}/>  }
       </div>
   </div>
   );
@@ -1484,6 +1507,7 @@ const  Fase6= () => {
 const Fase7 = () => {
     const { t, i18n } = useTranslation();
     const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+    const other_doc_required = requestDomesticFormState.errors.other_doc_required
 
     function selectDocuments (e){
          
@@ -1602,6 +1626,8 @@ const Fase7 = () => {
                                                         value={requestDomesticFormState.documents_other}
                                                 />
                         </div>}
+                        
+                        { other_doc_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
 
                     </div>
                 </div>
@@ -1714,6 +1740,8 @@ const Fase11 = () => {
     //bank selected
     const [foundBank,setFoundBank] = useState(-1);
     
+    const billing_required = requestDomesticFormState.errors.billing_required 
+
     useEffect(() => {
         const getBanks = async () => {
           try {
@@ -1922,7 +1950,7 @@ const Fase11 = () => {
                             </div>
                         </div>
                         }
-
+                     { billing_required && <ErrorMessage message={t('OfrecermeNiñera.errores.banco')}/>  }
                 </div>
             </div>
         </div>
@@ -1961,7 +1989,23 @@ const botonEnviar = () => {
             
             onClick={
                 async () => {
-                    
+
+                    //Autenticar última fase
+                    if(!requestDomesticFormState.billing_country || !requestDomesticFormState.billing_bank){
+                        setRequestDomesticFormState((prev) => {
+                            const newState = { ...prev };
+                            newState.errors.billing_required = true
+                            return newState;
+                          })
+                          return
+                    } else {
+                        setRequestDomesticFormState((prev) => {
+                            const newState = { ...prev };
+                            newState.errors.billing_required = false
+                            return newState;
+                          })
+                    }
+
                     const url = 'http://127.0.0.1:8000/api-services/requestService/post_ad/'
                     try {
                         
@@ -2003,6 +2047,10 @@ const useValidar = () => {
 
     const validateNumber = (number) => {
         return /^\+?(0|[1-9]\d*)$/.test(number);
+    }
+
+    const validFloat = (float) => {
+        return /^([1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/.test(float)
     }
 
     const validate = (currentStage) => {
@@ -2161,7 +2209,152 @@ const useValidar = () => {
                     return newState;
                 })
             }
-        } 
+        } else if (currentStage === 5){
+            if(requestDomesticFormState.workday.length === 0){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.workday_required = true
+                    newState.errors.workday_other_required = false
+                    return newState;
+                  })
+            } else if(requestDomesticFormState.workday.includes('OTRO') && !requestDomesticFormState.workday_other){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.workday_required = false
+                    newState.errors.workday_other_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.workday_required = false
+                    newState.errors.workday_other_required = false
+                    return newState;
+                  })
+            }
+
+            if(requestDomesticFormState.schedule.length === 0){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.schedule_required = true
+                    newState.errors.schedule_other_required = false
+                    return newState;
+                  })
+            } else if(requestDomesticFormState.schedule.includes('OTRO') && !requestDomesticFormState.schedule_other){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.schedule_required = false
+                    newState.errors.schedule_other_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.schedule_required = false
+                    newState.errors.schedule_other_required = false
+                    return newState;
+                  })
+            }
+
+            if(!requestDomesticFormState.payment){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.salary_option_required = true
+                    newState.errors.salary_required = false
+                    newState.errors.salary_other_required = false
+                    return newState;
+                  })
+            }
+            else if(requestDomesticFormState.payment === "MONTO" && ((requestDomesticFormState.currency === -1 || !requestDomesticFormState.currency) 
+                || (requestDomesticFormState.salary_offered === -1 || !requestDomesticFormState.salary_offered )  ||  !validFloat(requestDomesticFormState.payment_amount))){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.salary_option_required = false
+                    newState.errors.salary_required = true
+                    newState.errors.salary_other_required = false
+                    return newState;
+                  })
+            } else if(requestDomesticFormState.payment === "MONTO" && requestDomesticFormState.currency === "OTRA" && !requestDomesticFormState.currency_other){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.salary_option_required = false
+                    newState.errors.salary_required = false
+                    newState.errors.salary_other_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.salary_option_required = false
+                    newState.errors.salary_required = false
+                    newState.errors.salary_other_required = false
+                    return newState;
+                  })
+            }
+
+            if(requestDomesticFormState.benefits && !requestDomesticFormState.benefits_description){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.benefits_required = true
+                    return newState;
+                  })
+            } else{
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.benefits_required = false
+                    return newState;
+                  })
+            }
+        }  else if(currentStage === 6){
+            if(!requestDomesticFormState.availability){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.date_opt_required = true
+                    newState.errors.date_required = false
+                    return newState;
+                  })
+            }
+            else if(requestDomesticFormState.availability === "FECHA" && !requestDomesticFormState.availability_date){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.date_opt_required = false
+                    newState.errors.date_required = true
+                    return newState;
+                  })
+            } else{
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.date_opt_required = false
+                    newState.errors.date_required = false
+                    return newState;
+                  })
+            }
+        } else if(currentStage === 7){
+            if(requestDomesticFormState.documents.includes('OTRO') && !requestDomesticFormState.documents_other){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.other_doc_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.other_doc_required = false
+                    return newState;
+                  })
+            }
+        }
 
         return valid
     };
