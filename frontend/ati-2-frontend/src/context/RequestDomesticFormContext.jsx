@@ -25,7 +25,7 @@ function RequestDomesticFormContextProvider({children}){
         disabilities_tco_decrip: "",
         diseases_tco_descrip: "",
         travel: true,
-        travel_decription: "",
+        travel_description: "",
         activities: "",
         workday: "",
         workday_other: "",
