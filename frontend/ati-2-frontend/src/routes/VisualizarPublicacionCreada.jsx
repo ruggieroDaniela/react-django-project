@@ -68,19 +68,19 @@ export const VisualizarPublicacionCreada = () => {
                             </section>
                             <section className='container-span'>
                                 <span className='span-01'> {t('publicacionCreada.edad_cuidador')}</span>
-                                <span>  26 anos</span>
+                                <span>  Entre 20 y 30 años / Con hijos </span>
                             </section>
                             <section className='container-span'>
                                 <span className='span-01'> {t('publicacionCreada.sexo_cuidador')}</span>
-                                <span>  Femenino</span>
+                                <span>  Masculino </span>
                             </section>
                             <section className='container-span'>
                                 <span className='span-01'> {t('publicacionCreada.situcion_familiar_cuidador')} </span>
-                                <span>  0412-123.32.23</span>
+                                <span> con hijos</span>
                             </section>
                             <section className='container-span'>
                                 <span className='span-01'> {t('publicacionCreada.grado_instrucción_cuidador')} </span>
-                                <span>  0412-123.32.23</span>
+                                <span>  Técnico Univeristario </span>
                             </section> 
                         </section>
 
@@ -93,19 +93,19 @@ export const VisualizarPublicacionCreada = () => {
                             </p>
                             <section className='container-span'>
                                 <span className='titulo'>{t('publicacionCreada.pais_cuidador')}</span>
-                                <span></span>
+                                <span> Venezuela </span>
                             </section>
                             <section className='container-span'>
                                 <span className='titulo'>{t('publicacionCreada.provincia_cuidador')} </span>
-                                <span></span>
+                                <span> Distrito Capital</span>
                             </section>
                             <section className='container-span'>
                                 <span className='titulo'>{t('publicacionCreada.ciudad_cuidador')}  </span>
-                                <span></span>
+                                <span> caracas </span>
                             </section>
                             <section className='container-span'>
                                 <span className='titulo'>{t('publicacionCreada.zona_cuidador')} </span>
-                                <span></span>
+                                <span> Candelaria</span>
                             </section>
                             
                         </section>
@@ -124,19 +124,19 @@ export const VisualizarPublicacionCreada = () => {
                                     </section>
                                     <section className='container-span'>
                                         <span className='titulo'>{t('publicacionCreada.edad_cuidar')}</span>
-                                        <span> 2 </span>
+                                        <span> 8 - 15 </span>
                                     </section>
                                     <section className='container-span'>
                                         <span className='titulo'>{t('publicacionCreada.sexo_cuidar')}</span>
-                                        <span> 2 </span>
+                                        <span> Femenino/ Femenino </span>
                                     </section>
                                     <section className='container-span'>
                                         <span className='titulo'>{t('publicacionCreada.indique_capacidad')}</span>
-                                        <span> 2 </span>
+                                        <span> Caminar</span>
                                     </section>
                                     <section className='container-span'>
                                         <span className='titulo'>{t('publicacionCreada.enfermedad_cuidar')}</span>
-                                        <span> 2 </span>
+                                        <span> no </span>
                                     </section>
 
                                 </section>
@@ -150,23 +150,22 @@ export const VisualizarPublicacionCreada = () => {
                                 <section>
                                     <section className='container-span'>
                                         <span className='titulo'>{t('publicacionCreada.salida_cuidador')} </span>
-                                        <span></span>
+                                        <span> fin de semana </span>
                                     </section>
                                     <section className='container-span'>
                                         <span className='titulo'>{t('publicacionCreada.horario_trabajo')} </span>
-                                        <span></span>
+                                        <span> Lunes-viernes</span>
                                     </section>
                                     <section className='container-span'>
                                         <span className='titulo'>{t('publicacionCreada.salario_ofrecido')} </span>
-                                        <span></span>
-                                    </section>
-                                    <section className='container-span'>
-                                        <span className='titulo'>{t('publicacionCreada.')} </span>
-                                        <span></span>
+                                        <span>300$</span>
                                     </section>
                                     <section className='container-span'>
                                         <span className='titulo'>{t('publicacionCreada.beneficios')} </span>
-                                        <span></span>
+                                        <span>Si, 
+                                            Especifique: Seguro social obligatorio, Póliza de HCM y cobertura a mis familiares, Ayuda
+                                            para útiles escolares, Otros
+                                        </span>
                                     </section>
                                 </section>
                                 
@@ -179,9 +178,8 @@ export const VisualizarPublicacionCreada = () => {
                             </section>                        
                             <section>
                                 <ul>
-                                    <li>Limpiar</li>
-                                    <li> Cocinar</li>
-                                    <li> Manaejar</li>
+                                    <li> Jugar</li>
+                                    <li> Dar Clases</li>
                                 </ul>
                             </section>
                     
@@ -227,7 +225,7 @@ export const VisualizarPublicacionCreada = () => {
                             <section>
                                 <section className='container-span'>
                                     <span className='titulo'>{t('publicacionCreada.fecha_inicio')} </span>
-                                    <span></span>
+                                    <span> 01-07-2023</span>
                                 </section>      
                             </section>
                     
@@ -239,33 +237,36 @@ export const VisualizarPublicacionCreada = () => {
                             <section className='titulo-02'>
                                 <h1 >{t('publicacionCreada.sugenrencia_trabajo')}</h1>
                             </section>                        
-                            
-                        </section>
-                        <section className='informacion-basica'>
-                            <section className='titulo-02'>
-                                <h1>{t('publicacionCreada.sugencia_entrevista')}</h1>                            
-                            </section>
                             <section>
-                                <p>
-                                    Si, La persona debe estar dispuesta a viajar 1 vez al mes al exterior
-                                </p>
-                            </section>
-                        </section>
-                    </section>
-
-                    <section className='container-01'>
-                        <section className='informacion-basica'>
-                            <section className='titulo-02'>
-                                <h1 >{t('publicacionCreada.sugenrencia_trabajo')}</h1>
-                            </section>                        
-                            <section>
-                                <section className='container-span'>
+                                <section className='container-span02'>
                                         <span className='titulo'>{t('publicacionCreada.iniciar_labores')} </span>
-                                        <span></span>
+                                        <p>
+                                        Indicarle a la persona contratada que debe mantener una buena higiene personal, y abstenerse de fumar, i
+                                        ngerir bebidas alcohólicas o tener conductas que atenten contra la moral y las 
+                                        buenas costumbres, principalmente delante de los niños. Indíquele al personal recomendaciones o procedimientos de seguridad para abrir la
+                                        puerta, contestar el teléfono, personas a recibir en el inmueble, y cualquier otro asunto
+                                        relacionado con las personas a su cuidado, o con el inmueble donde se realizarán las
+                                        labores
+                                        Proporcione información de contacto a su niñera(o) en caso de emergencia, como:
+                                        Médico tratante, teléfono de empresas donde la(s) persona(s) bajo su cuidado están
+                                        aseguradas, listado de clínicas cercanas a las que se pueda llevar a la persona en caso
+                                        de emergencia, datos de contacto directo con usted en caso de cualquier emergencia, o
+                                        consulta que pueda tener la persona contratada
+                                        Si puede, registre las huellas dactilares del personal a su servicio para que tenga una
+                                        base para deslindar responsabilidades en caso de robo o cualquier incidente que podría
+                                        haber originado dicha persona en el inmueble, o hacia las personas bajo su cuidado
+
+                                        </p>
                                 </section>      
-                                <section className='container-span'>
+                                <section className='container-span02'>
                                         <span className='titulo'>{t('publicacionCreada.finalizar_labores')} </span>
-                                        <span></span>
+                                        <span>
+                                        Conversar con las personas que el cuidador(a) tendrá bajo su cargo, para verificar que la
+                                        persona contratada le proporciona un buen trato a la persona
+                                        Monitorear el desempeño de la persona contratada en sus labores
+                                        Se le recomienda instalar cámaras de seguridad para supervisar las labores del personal,
+                                        y verificar el trato que se le proporciona a las personas a cuidar
+                                        </span>
                                 </section>      
                             </section>
                     
@@ -275,13 +276,21 @@ export const VisualizarPublicacionCreada = () => {
                                 <h1 >{t('publicacionCreada.sugenrencia_trabajo')}</h1>
                             </section>      
                             <section>
-                                <section className='container-span'>
+                                <section className='container-span02'>
                                         <span className='titulo'>{t('publicacionCreada.dia_dia')} </span>
-                                        <span></span>
+                                        <span>
+                                             Solicitarles que muestren el bolso antes de salir
+                                        </span>
                                 </section>      
-                                <section className='container-span'>
+                                <section className='container-span02'>
                                         <span className='titulo'>{t('publicacionCreada.sugerencia_adicionales')} </span>
-                                        <span></span>
+                                        <span>
+                                                Los datos proporcionados son bajo la responsabilidad del anunciante, y la empresa queda
+                                            exonerada de verificar su veracidad. Las sugerencias proporcionadas son para orientar al cliente o al personal, y al aceptar la
+                                            publicación de dicho anuncio la empresa queda exonerada de cualquier incidente que
+                                            pudiera ocurrir entre el cliente y el personal contratado
+                                            Guardar joyas u objetos de valor que considere en lugares seguros
+                                        </span>
                                 </section>      
                             </section>
 
@@ -333,7 +342,7 @@ export const VisualizarPublicacionCreada = () => {
                             <section>
                                 <section className='container-span'>
                                         <span className='titulo'>{t('publicacionCreada.plan_seleccionado')} </span>
-                                        <span></span>
+                                        <span> 3 meses 25 USD</span>
                                 </section>      
                   
                             </section>
@@ -347,12 +356,32 @@ export const VisualizarPublicacionCreada = () => {
                             <section>
                                 <section className='container-span'>
                                     <span className='titulo'>{t('publicacionCreada.pais_a_depositar')} </span>
-                                    <span></span>
+                                    <span> Venezuela </span>
                                 </section>      
-                                <section className='container-span'>
-                                    <span className='titulo'>{t('publicacionCreada.datos_cuenta')} </span>
-                                    <span></span>
-                                </section>      
+                                <section>
+
+                                    <section className='container-span'>
+                                        <span className='titulo'>{t('publicacionCreada.salida_cuidador')} </span>
+                                        <section>
+                                            <span> Depósito</span><br></br>
+                                            <span> Transferencia Bancaria </span>
+                                        </section>
+                                    </section>
+            
+                                    <section className='container-span'>
+                                        <span className='titulo'>{t('publicacionCreada.pais_banco')} </span>
+                                        <span> Venezuela </span>
+                                    </section>
+                                    <section className='container-span'>
+                                        <span className='titulo'>{t('publicacionCreada.banco')} </span>
+                                        <span>Banesco</span>
+                                    </section>
+                                    <section className='container-span'>
+                                        <span className='titulo'>{t('publicacionCreada.n_cuenta')} </span>
+                                        <span> 0000-0000-0000-0000
+                                        </span>
+                                    </section>
+                                </section>  
                   
                             </section>
                         </section>

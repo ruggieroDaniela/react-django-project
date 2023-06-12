@@ -43,7 +43,10 @@
         "sugerencia_servicio":"Consideraciones del Servicio", 
         "plan_seleccionado": "Plan seleccionado",
         "pais_a_depositar":"País donde va a realizar el depósito",
-        "datos_cuenta":"Datos de la cuenta seleccionada"
+        "datos_cuenta":"Datos de la cuenta seleccionada",
+        "n_cuenta":"Num de Cuenta",
+        "banco":"Banco",
+        "pais_banco":"Pais"
 
 
     }

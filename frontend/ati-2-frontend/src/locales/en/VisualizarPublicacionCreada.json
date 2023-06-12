@@ -42,6 +42,10 @@
         "sugerencia_servicio":"Service Considerations", 
         "plan_seleccionado": "Plan selected",
         "pais_a_depositar":"Country where you are going to make the deposit",
-        "datos_cuenta":"Data of the selected account"
+        "datos_cuenta":"Data of the selected account",
+        
+        "n_cuenta":"Account Number",
+        "banco":"Bank",
+        "pais_banco":"Country"
     }
 }
