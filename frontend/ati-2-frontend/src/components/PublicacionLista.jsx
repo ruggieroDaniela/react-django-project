@@ -12,6 +12,7 @@
 import axios from 'axios'
 import { useState, useEffect, useContext } from "react"
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom';
 
 import AuthContext from "../context/AuthContext";
 import user_img from "../assets/default-user-icon.jpg"
@@ -59,6 +60,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
     const canEdit = authState.logged_in && post.user == authState.id;
     const [postEnabled, setPostEnabled] = useState(post.enable);
     const [forceRefresh, setForceRefresh] = useState(true);
+    const navigate = useNavigate();
     // console.log(authState.user_id);
 
     // const canEdit = true;
@@ -284,12 +286,17 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                         onClick={ async () => {
                             setPostEnabled(prev=>!prev);
                             await axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${post.id}/`)
+                            console.log("wtf");
+                            
                         } }
                     >
                         <img className='button-img' src={postEnabled? deshabilitar_img : habilitar_img} alt="" />
                     </button>
                     <button
                         disabled={ !(canEdit) }
+                        onClick={ async() =>{
+                            navigate(`/modify-post/${post.id}`);
+                        }}
                     >
                         <img className='button-img' src={editar_img} alt="" />
                     </button>
