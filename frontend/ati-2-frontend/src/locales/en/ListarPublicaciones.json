@@ -101,7 +101,8 @@
         "salidas": "Preferred Checkout",
         "clientes": "Clients I want to work with",
         "Cocinar": "Cook",
-        "edad_requerida": "years old required"
+        "edad_requerida": "years old required",
+        "a_convenir": "To Agree"
 
     }
 }
