@@ -1,19 +1,21 @@
 import { useState, createContext } from "react";
+import AuthContext from '../context/AuthContext';
 
 const RequestDomesticFormContext = createContext();
+const {authState, setAuthState} = useContext(AuthContext);
 
 function RequestDomesticFormContextProvider({children}){
 
     const [requestDomesticFormState, setRequestDomesticFormState] = useState(
     {
-        user: 34, 
+        user: authState.id, 
         service: "CUI",
-        gender: "IDC",
-        age_required_from: 18,
-        age_required_to: 26,
+        gender: "",
+        age_required_from: 0,
+        age_required_to: 0,
         children: "",
         education_level: "",
-        continent: "Suramerica", 
+        continent: "", 
         country: "",
         state: "",
         city: "",
@@ -24,27 +26,27 @@ function RequestDomesticFormContextProvider({children}){
         disabilities_tco: false,
         disabilities_tco_decrip: "",
         diseases_tco_descrip: "",
-        travel: true,
+        travel: false,
         travel_description: "",
         activities: "",
-        workday: "",
+        workday: [],
         workday_other: "",
         schedule: [],
         schedule_other: "",
         payment: "",
-        payment_amount: "30.00",
-        currency: "USD",
-        currency_other: "",
-        salary_offered: "30.00",
-        benefits: 1,
+        payment_amount: null,
+        currency: null,
+        currency_other: null,
+        salary_offered: null,
+        benefits: 0,
         benefits_description: "",
-        availability: "FECHA",
-        availability_date: "2023-05-27",
+        availability: "",
+        availability_date: null,
         have_documentation: false,
-        documents: ["PASAPORTE"],
+        documents: [],
         documents_other: "",
-        publication_time: "1",
-        publication_plan: "1",
+        publication_time: "",
+        publication_plan: "",
         billing_country: "",
         billing_bank: "",
     }
