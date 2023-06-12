@@ -1,7 +1,7 @@
 {
     "OfrecermeNiñera":{
-        "no-tiene":"No tiene",
-        "niñera": "Niñera(o)",
+        "no-tiene":"Does not have",
+        "niñera": "Babysitter",
         "pais":"Country",
         "estado":"State, province or canton",
         "titulo": "OFFER MY SERVICES AS A BABYSITTER",

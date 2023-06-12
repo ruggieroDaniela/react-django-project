@@ -26,6 +26,8 @@ export const ListarPublicaciones = () => {
     const [selectedOrdering, setSelectedOrdering] = useState("");
     const [pageLinks, setPageLinks] = useState([]);
 
+    const [__refreshPostList, refreshPostList] = useState(true);
+
     // Tipo de Vista
     const [listView, setListView] = useState(true);
 
@@ -57,6 +59,9 @@ export const ListarPublicaciones = () => {
 
     useEffect(() => {
         const fetchPosts = async () => {
+            
+            setPostList([]);
+
             try {
                 if( selectedTipoPersona.length > 0 ){
                     if( searchParams.length > 0 )
@@ -90,7 +95,7 @@ export const ListarPublicaciones = () => {
 
                 setPostList(response.data)
                 console.log(response.data);
-                console.log(postType);
+                // console.log(postType);
                 return response.data;
 
             } catch (error) {
@@ -99,7 +104,7 @@ export const ListarPublicaciones = () => {
         };
 
         fetchPosts();
-    }, [selectedTipoPersona, selectedOrdering]);
+    }, [selectedTipoPersona, selectedOrdering, __refreshPostList, location.search]);
 
     const {authState, setAuthState} = useContext(AuthContext);
 
@@ -199,28 +204,12 @@ export const ListarPublicaciones = () => {
                                 onClick={ async () => {
                                     // habilitar 
                                     for (let i = 0; i < selectedPosts.length; i++) {
-                                        await axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${selectedPosts[i]}/`)
+                                        await axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${selectedPosts[i].id}/`)
                                     }
-                                    setSelectedTipoPersona(prev => prev);
+                                    refreshPostList(prev => !prev);
                                 } }
                             >
                                 {t(`lista_publicaciones.accion.${0}`)}
-                            </button>
-                        </li>
-                        <li className="button" key={`${self.crypto.randomUUID()}`}>
-                            <button
-                                key={`${self.crypto.randomUUID()}`}
-                                onClick={ async () => {
-                                    // deshabilitar 
-                                    for (let i = 0; i < selectedPosts.length; i++) {
-                                        console.log(i);
-                                        const response = await axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${selectedPosts[i]}/`)
-                                        console.log(response);
-                                    }
-                                    setSelectedTipoPersona(prev => prev);
-                                } }
-                            >
-                                {t(`lista_publicaciones.accion.${1}`)}
                             </button>
                         </li>
                         
@@ -230,12 +219,12 @@ export const ListarPublicaciones = () => {
                                 onClick={ async () => {
                                     // eliminar 
                                     for (let i = 0; i < selectedPosts.length; i++) {
-                                        await axios.put(`http://localhost:8000/api-services/${postType}/delete_post/${selectedPosts[i]}/`)
+                                        await axios.put(`http://localhost:8000/api-services/${postType}/delete_post/${selectedPosts[i].id}/`)
                                     }
-                                    setSelectedTipoPersona(prev => prev);
+                                    refreshPostList(prev => !prev);
                                 } }
                             >
-                                {t(`lista_publicaciones.accion.${3}`)}
+                                {t(`lista_publicaciones.accion.${1}`)}
                             </button>
                         </li>
 

@@ -17,6 +17,14 @@ export const NuestrosServicios = () => {
     const [clickPostAd, setClickPostAd] = useState(false);
     const [clickFind, setClickFind] = useState(false);
 
+    const [displayMoreOpt, setDisplayMoreOpt] = useState(false);
+    const [postAdSelected, setPostAdSelected] = useState(0);
+
+    const postAdLinks = [
+        "/post-ad/offer",
+        "/post-ad/request"
+    ]
+
     return <>
         <div id="nuestros-servicios">
             <div className="info" id="info-solicitantes">
@@ -63,43 +71,19 @@ export const NuestrosServicios = () => {
                             <span className="required">*</span> {t('nuestros_servicios.seleccionar_opcion')}
                             <div className="button_dropdown_content">
                                 <button
-                                    // onClick={
-                                    //     async () => {
-                                    //         const data = {...requestDomesticFormState};
-                                    //         console.log(data);
-
-                                    //         const url = 'http://127.0.0.1:8000/api-services/requestService/post_ad/'
-                                    //         try {
-                                                
-                                    //             const response = await fetch( url,{
-                                    //                     method: 'POST',
-                                    //                     headers: {
-                                    //                         'Content-Type': 'application/json',
-                                    //                     },
-                                    //                     body: JSON.stringify(data),
-                                    //                 }
-                                    //             );
-                                        
-                                    //             if (response.ok) {
-                                    //                 // Request was successful
-                                    //                 console.log('POST request successful');
-                                    //                 console.log(response);
-                                    //             } else {
-                                    //                 // Request failed
-                                    //                 console.log('POST request failed');
-                                    //             }
-                                        
-                                    //         } catch (error) {
-                                    //             console.log("error registrando");
-                                    //             console.log(error);
-                                    //         }
-
-                                    //     }
-                                    // }
+                                    onClick={() => {
+                                        setDisplayMoreOpt(prev => !prev);
+                                        setPostAdSelected(() => 0);
+                                    }}
                                 >
                                     A- {t('nuestros_servicios.opciones.0')}
                                 </button>
-                                <button>
+                                <button
+                                    onClick={() => {
+                                        setDisplayMoreOpt(prev => !prev);
+                                        setPostAdSelected(() => 1);
+                                    }}
+                                >
                                     B- {t('nuestros_servicios.opciones.1')}
                                 </button>
                             </div>
@@ -134,6 +118,26 @@ export const NuestrosServicios = () => {
                     </div>
                 </div>
             </div>
+            {displayMoreOpt && clickPostAd &&
+
+                <div id="more-options">
+                    
+                    <button onClick={() => { navigate(`${postAdLinks[postAdSelected]}/babysitter`) }}>
+                        {t('NIN')}
+                    </button>
+                    <div className="desc">
+                        {t('nuestros_servicios.NIN_desc')}
+                    </div>
+
+                    <button onClick={() => { navigate(`${postAdLinks[postAdSelected]}/caretaker`) }}>
+                        {t('CUI')}
+                    </button>
+                    <div className="desc">
+                        {t('nuestros_servicios.CUI_desc')}
+                    </div>
+                    
+                </div>
+            }
         </div>
     </>
 

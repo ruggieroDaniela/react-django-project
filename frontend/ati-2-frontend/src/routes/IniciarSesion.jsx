@@ -12,6 +12,8 @@ export const IniciarSesion = () => {
     const { t, i18n } = useTranslation();
     const {authState, setAuthState} = useContext(AuthContext);
 
+    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
@@ -20,6 +22,7 @@ export const IniciarSesion = () => {
     const [inexistentEmail, setInexistentEmail] = useState(false)
 
     const handleSubmit = async (e) => {
+        setLoading(true);
         e.preventDefault();
     
         const data = {
@@ -100,6 +103,7 @@ export const IniciarSesion = () => {
             console.log(error);
         }
 
+        setLoading(false);
     }
 
 
@@ -125,7 +129,14 @@ export const IniciarSesion = () => {
                 {invalidPassword && <ErrorMessage message={t('login.claveInvalida')}/> }
                 {inexistentEmail && <ErrorMessage message={t('login.correoInexistente')}/> }
 
-                <button type="submit">{t('login.boton')}</button>
+                <button
+                    type="submit"
+                    disabled={loading}
+                >
+                    <span className={loading? "loading":""}>
+                        {loading? "..." : t('login.boton')}
+                    </span>
+                </button>
                 
                 <a href="/forgot-password">{t('login.olvide_contrasena')}</a>
 

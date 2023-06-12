@@ -2242,8 +2242,8 @@ const useValidar = () => {
                     return newState;
                   })
             }
-            else if(offerDomesticFormState.payment === "MONTO" && (offerDomesticFormState.currency === -1 || !offerDomesticFormState.currency) 
-                || (offerDomesticFormState.salary_offered === -1 || !offerDomesticFormState.salary_offered )  ||  !validFloat(offerDomesticFormState.payment_amount)){
+            else if(offerDomesticFormState.payment === "MONTO" && ((offerDomesticFormState.currency === -1 || !offerDomesticFormState.currency) 
+                || (offerDomesticFormState.salary_offered === -1 || !offerDomesticFormState.salary_offered )  ||  !validFloat(offerDomesticFormState.payment_amount))){
                 valid = false
                 setOfferDomesticFormState((prev) => {
                     const newState = { ...prev };

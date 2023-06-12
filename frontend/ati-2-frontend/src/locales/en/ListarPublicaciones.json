@@ -22,10 +22,9 @@
         ],
         "pagina": "Page",
         "accion":[
-            "Enable",
-            "Disable",
-            "Update",
-            "Remove"
+            "Enable/Disable",
+            "Remove",
+            "Update"
         ],
         "acciones": "Actions",
         "no_posts": "There's no posts available yet"
@@ -102,7 +101,8 @@
         "salidas": "Preferred Checkout",
         "clientes": "Clients I want to work with",
         "Cocinar": "Cook",
-        "edad_requerida": "years old required"
+        "edad_requerida": "years old required",
+        "a_convenir": "To Agree"
 
     }
 }
