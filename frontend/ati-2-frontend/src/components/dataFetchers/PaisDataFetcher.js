@@ -134,7 +134,7 @@ export const getCitiesInCountry = (countryCode) => {
     return [names, values];
 };
 
-export const getCountryDetails = async countryCode => {
+export const getCountryDetails = countryCode => {
 
     for(const reg of continents){
         if( countryCode in data[reg] ){
@@ -146,25 +146,12 @@ export const getCountryDetails = async countryCode => {
 }
 
 export const getStateName = async (stateCode) => {
-    try {
 
-        let response;
-
-        const country = stateCode.split("-")[0];
-        const state = stateCode.split("-")[1];
-
-        response = await axios.get(`https://api.countrystatecity.in/v1/countries/${country}/states/${state}`, {
-            headers: {
-                'X-CSCAPI-KEY': API_KEY
-            }
-        });
-        
-
-        return response.data.name;
-        
-    } catch (error) {
-        
-        console.error(error);
-        return "";
+    for(const reg of continents){
+        if( stateCode.substring(0,2) in data[reg] ){
+            return data[reg][stateCode.substring(0,2)]["states"][stateCode.substring(3)]["name"]
+        }
     }
+
+    return null;
 };
