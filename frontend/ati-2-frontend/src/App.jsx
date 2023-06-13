@@ -27,13 +27,9 @@ import { SolicitarÑiñera } from './routes/SolicitarÑiñera';
 import { ListarPublicaciones } from './routes/ListarPublicaciones';
 import { ChangeLanguage } from './routes/Language';
 import { BuscarCliente } from './routes/BuscarCliente';
-<<<<<<< HEAD
 import { OfrecermeCuidador } from './routes/OfrecermeCuidador';
 import { ModificarPost } from './routes/ModificarPost';
-
-=======
 import { VisualizarPublicacionCreada } from './routes/VisualizarPublicacionCreada';
->>>>>>> e1dd81042bba643324f1abb4ff6bba340f7175c6
 
 function App() {
 
@@ -56,16 +52,11 @@ function App() {
             <Route exact path="/forgot-password" element={<ForgotPassword />} />
             <Route exact path="/lang" element={<ChangeLanguage/>} />
             <Route exact path="/reset-password/:id" element={<ResetPassword/>}/>
-<<<<<<< HEAD
             <Route exact path='/modify-post/:id' element={<ModificarPost/>}/>
             <Route exact path='/post-ad/offer/babysitter' element={<OfrecermeNiñera/>}/>
             <Route exact path='/post-ad/offer/caretaker' element={<OfrecermeCuidador/>}/>
-            <Route path='/show-posts' element={<ListarPublicaciones/>}/>
-=======
-            <Route exact path='/offer-my-services/post-add/offer-me-as-babysitter' element={<OfrecermeNiñera/>}/>
-            <Route path='/show-posts' element={<ListarPublicaciones/>}/>            
+            <Route path='/show-posts' element={<ListarPublicaciones/>}/>      
             <Route path='/visualizar-publicacion-creada' element={<VisualizarPublicacionCreada/>}/>
->>>>>>> e1dd81042bba643324f1abb4ff6bba340f7175c6
           </Routes>
           <Footer/>
         </Router>

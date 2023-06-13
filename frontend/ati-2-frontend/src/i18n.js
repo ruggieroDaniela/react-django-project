@@ -46,14 +46,9 @@ const en = Object.assign(
   reset_password_en,
   forgot_password_en,
   OfrecermeNiñera_en,
-<<<<<<< HEAD
   OfrecermeCuidador_en,
-  listar_publicaciones_en
-
-=======
   listar_publicaciones_en,
-  publicacionCreada_en,
->>>>>>> e1dd81042bba643324f1abb4ff6bba340f7175c6
+  publicacionCreada_en
 );
 
 const es = Object.assign(
@@ -66,17 +61,13 @@ const es = Object.assign(
   servicios_es,
   buscar_personal_domestico_es,
   OfrecermeNiñera_es,
-<<<<<<< HEAD
   SolicitarNiñera_es,
   reset_password_es,
   forgot_password_es,
   OfrecermeNiñera_es,
   OfrecermeCuidador_es,
-  listar_publicaciones_es
-=======
   listar_publicaciones_es,
-  publicacionCreada_es,
->>>>>>> e1dd81042bba643324f1abb4ff6bba340f7175c6
+  publicacionCreada_es
 );
 
 i18n
