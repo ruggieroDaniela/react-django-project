@@ -132,9 +132,11 @@ class UserViewSet(viewsets.ModelViewSet):
              return Response({'error': 'This id does not match any user' }, status=status.HTTP_400_BAD_REQUEST)
          
         
-    @action(detail=True, methods=['post'])
-    def change_password(self, request, pk=None):
-        user = self.get_object()
+    @action(detail=False, methods=['post'])
+    def change_password(self, request):
+        id = request.data['id']
+        user = User.objects.get(id=id)
+        
         serializer = ChangePasswordSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 

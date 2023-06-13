@@ -6,12 +6,15 @@
         "botonCancelar": "Cancelar",
         "descripcion": "Seleccione la información que va a proporcionar",
         "descripcion2": "Cambiando la contraseña de correo de la persona",
+        "descripcion3": "Tu contraseña ha sido modificada exitosamente",
         "pregunta": "¿Qué desea hacer?",
         "radio1": "Iniciar sesión",
         "radio2": "Seguir navegando en el portal",
         "radio3": "Salir",
         "contraseña": "Contraseña",
         "confirmarContraseña": "Confirmar contraseña",
-        "cambiarContraseña": "Cambiar contraseña"
+        "cambiarContraseña": "Cambiar contraseña",
+        "passwordInvalido": "Las contraseñas no coinciden",
+        "passwordCorto": "La nueva contraseña debe contener al menos 8 caracteres"
     }
 }

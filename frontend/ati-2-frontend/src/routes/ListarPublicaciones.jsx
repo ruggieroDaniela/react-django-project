@@ -18,6 +18,8 @@ export const ListarPublicaciones = () => {
     let searchParams = location.search;
     const postType = searchParams.includes('provide')? 'provide':'request';
 
+    
+
     const [postList, setPostList] = useState([]);
     const [selectedPosts, setSelectedPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);

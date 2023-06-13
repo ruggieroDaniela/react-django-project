@@ -74,8 +74,8 @@ POST http://localhost:8000/token-auth/
 content-type: application/json
 
 {
-    "username": "gabrielbelisariof@gmail.com",
-    "password": "g12345678"
+    "username": "chachy.drs@gmail.com",
+    "password": "d12345678"
 }
 
 ### ---- FORMATO PARA LAS REQUEST A UNIQUE_EMAIL ---- 
