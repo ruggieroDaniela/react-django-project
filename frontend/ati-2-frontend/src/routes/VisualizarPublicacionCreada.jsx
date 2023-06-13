@@ -262,6 +262,44 @@ export const VisualizarPublicacionCreada = () => {
                     </div>
                 </div>
 
+                { /* CLIENTES CON LOS QUE QUIERO TRABAJAR  */ }
+                <div className='basico'>
+                    <div className='rectangle blue tag'>CLIENTES CON LOS QUE QUIERO TRABAJAR </div>                    
+                </div>
+                
+                { /* Lugar de Procedencia  */ }
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='rectangle yellow tag'>Lugar de Procedencia </div>
+                        <div className='data'>  Quiero especificar   </div>
+                    </div>
+                </div>
+                
+                { /* Pais de Procedencia  */ }
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='rectangle yellow tag'>Pais de Procedencia </div>
+                        <div className='data'>  Estados Unidos  </div>
+                    </div>
+                </div>
+
+                { /* Estado / Provincia  */ }
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='rectangle yellow tag'> Estado / Provincia </div>
+                        <div className='data'>  California  </div>
+                    </div>
+                </div>
+                
+                { /* Ciudad  */ }
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='rectangle yellow tag'> Ciudad </div>
+                        <div className='data'>  San Jose  </div>
+                    </div>
+                </div>
+
+                
                 {/*        
 
 
@@ -327,23 +365,7 @@ export const VisualizarPublicacionCreada = () => {
 
                 {
                     <>
-                        <section className='container-01'>
-                           
-                            <section className='informacion-basica'>
-                                <section className='titulo-02'>
-                                        <h1 >{t('publicacionCreada.disponibilidad_trabajar')} </h1>
-                                </section>
-                                
-                            
-                                <section>
-                                    <section className='container-span'>
-                                        <span className='titulo'>{t('publicacionCreada.fecha_inicio')} </span>
-                                        <span> 01-07-2023</span>
-                                    </section>      
-                                </section>
                         
-                            </section>
-                        </section>
 
                         <section className='container-01'>
                             <section className='informacion-basica'>
