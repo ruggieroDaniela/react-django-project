@@ -104,7 +104,9 @@
         "no_hijos": "Sin hijos", 
         "PEN": "PENDIENTE POR ACTIVAR", 
         "si": "Si", 
-        "no": "No"
+        "no": "No",
+        "mes":"Mes",
+        "meses":"Meses"
 
     }
 }

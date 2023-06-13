@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 //import { RegisterFormContext } from "../context/RegisterFormContext";
 
@@ -8,10 +8,13 @@ import { useTranslation } from 'react-i18next';
 
 import "../styles/VisualizarPublicacionCreada.scss"
 import fotoPerfil from '../assets/default-user-icon.jpg';
+import AuthContext from '../context/AuthContext';
 
 export const VisualizarPublicacionCreada = () => {
     const { t } = useTranslation();
-
+    const [userData, setUserData] = useState("");
+    const {authState, setAuthState} = useContext(AuthContext);
+    const [banks, setBanks] = useState("");
     // post data
     const [data, setData] = useState({schedule: []});
     
@@ -28,6 +31,49 @@ export const VisualizarPublicacionCreada = () => {
     
     const [servicio, setServicio] = useState('');
     const [documents, setDocuments] = useState(''); 
+    const [paymentBank, setPaymentBank] = useState('');
+
+    let publication_choices = [
+        { plan: "1", value: "10 USD" },
+        { plan: "2", value: "25 USD" },
+        { plan: "3", value: "50 USD" },
+        { plan: "4", value: "70 USD" },
+        { plan: "5", value: "90 USD" }
+      ];
+    
+      function searchBankID(){
+        for( let i=0 ; i< banks.length ; i++){
+            if (data.billing_bank == banks[i].id ){
+                console.log(banks[i].id);
+                return banks[i];
+            }
+        }
+
+      }
+      //fetch banks data
+      useEffect(() => {
+        const getBanks = async () => {
+          try {
+            const response = await axios.get(`http://localhost:8000/banks/`);
+            return response.data; // Return the response data instead of the entire response
+          } catch (error) {
+            console.error(error);
+          }
+        };
+      
+        const fetchBanks = async () => {
+          const banksData = await getBanks(); // Await the getBanks() function to resolve the Promise
+          setBanks(banksData); // Update the banks state with the fetched data
+          console.log(banks);
+        };
+        
+        if ( data?.id ) 
+        {
+            fetchBanks();
+            setPaymentBank(searchBankID);
+            
+        }
+      }, [data]);
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -36,7 +82,7 @@ export const VisualizarPublicacionCreada = () => {
                 
                 // console.log(response.data);
                 setData(() => response.data);               
-
+                console.log(data);
                 // SERVICE
                 if(data.service=='NIN'){
                     setServicio('Niñero(a)')
@@ -54,8 +100,46 @@ export const VisualizarPublicacionCreada = () => {
         fetchPost();
         }, []);
 
-        console.log(data);
+        //fetching the user
+        useEffect(()=>{
+            const handleSubmit = async () => {
+                try {
+                        // Request was successful
+                    if(authState.id != undefined){
+                        let response = await fetch( `http://localhost:8000/users/${authState.id}`,{
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': authState.token,
+                                }
+                                // body: JSON.stringify({Authorization: responseDataAuth.token})
+                            }
+                        );
+                        
+        
+                        if(response.ok){
+                          
+                            const responseDataUser = await response.json();
+    
+                            setUserData(responseDataUser);
+                            console.log(responseDataUser)
+                        }else{
+                            console.log("GET request failed: error fetching user data");
+                            console.log(response);
+                        }
+                    }
+        
+                    } catch (error) {
+                        console.log("error");
+                        console.log(error);
+                    }
+        
+            }
+            handleSubmit();
+        },[authState])
+
+        
         return (
+            
             <section id="publicacion-creada">    
                  {/* Encabezado perfil */}
                 <div className='header'>
@@ -67,7 +151,7 @@ export const VisualizarPublicacionCreada = () => {
                             <b>Nombre Apellido </b>
                         </div>
                         <div>
-                            
+                            {authState.name}
                         </div>
                         <div className='subtitle blue space'>
                             <b>{t('publicacionCreada.pais_cuidador')}</b>
@@ -85,16 +169,16 @@ export const VisualizarPublicacionCreada = () => {
                             <div className='rectangle yellow'> {t('publicacionCreada.correo_electronico')} </div>
                         </div>
                         <div>                            
-                            <div className='data'> { data?.phone || 'No disponible'} </div>
-                            <div className='data'> {data?.phone || 'No disponible'} </div>
-                            <div className='data'> {data?.email ||'No disponible'}</div>
+                            <div className='data'> { userData?.cellphone || 'No disponible'} </div>
+                            <div className='data'> { userData?.telephone || 'No disponible'} </div>
+                            <div className='data'> { authState?.email ||'No disponible'}</div>
                         </div>
                         <div>
-                            <div className='pais red'>Venezuela</div>                        
+                            <div className='pais red'>{userData.country}</div>                        
                             <div className='pais blue'> {t('publicacionCreada.provincia__cuidador')} </div>
                             <div className='pais red'>Distrito Capital</div>
                         </div>
-
+                        
                     </section>
                 </div> 
 
@@ -481,6 +565,46 @@ export const VisualizarPublicacionCreada = () => {
                     <div className='rectangle text'>{t('publicacionCreada.sugerencias.adicional')}</div>                   
                 </div>
                 
+                <div className="basico">
+                        <div>{data.bank_country}
+                            <div className="blue-box">
+                                Datos de Facturacion
+                            </div>
+                            <h2 className="blue">Plan Seleccionado</h2>
+                            
+                                { data?.publication_plan == "1" &&
+                                  "1"+ t('publicacionCreada.mes') + publication_choices[Number(data.publication_plan)-1].value
+                                }
+                                { (data?.publication_plan == "2" || data?.publication_plan == "3" || data?.publication_plan == "4" || data?.publication_plan == "5") &&
+                                  data.publication_plan + t('publicacionCreada.meses') + publication_choices[Number(data.publication_plan)-1].value
+                                }
+                            
+                        </div>
+                        <div>
+                            <div>Datos de Facturación</div>
+                            <div>
+                                <div>
+                                    <p> Pais donde va a realizar el Depósito</p> {data.billing_country}
+                                </div>
+                                <div>
+                                    Datos de la cuenta seleccionada
+                                </div>
+                            </div>
+                            <div>
+                                <div>{paymentBank?.name}</div>
+                                <div>
+                                    <span>Forma de Pago</span>
+                                    Deposito
+                                    Transferencia Bancaria
+
+                                    Pais: {paymentBank?.country}
+                                    Banco: {paymentBank?.name}
+                                    Nro de Cuenta: {paymentBank?.account}
+                                </div>
+
+                            </div>
+                        </div>
+                </div>           
                 
                 { /* DATOS DE FACTURACIÓN */ }
                 {/*
