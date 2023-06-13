@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 //import { RegisterFormContext } from "../context/RegisterFormContext";
 
 import { useNavigate, useParams } from "react-router-dom";
@@ -7,21 +7,29 @@ import { useTranslation } from 'react-i18next';
 
 import "../styles/VisualizarPublicacionCreada.scss"
 import fotoPerfil from '../assets/default-user-icon.jpg';
+import AuthContext from '../context/AuthContext';
 
 export const VisualizarPublicacionCreada = () => {
     const { t } = useTranslation();
-
+    const {authState, setAuthState} = useContext(AuthContext);
     const [data, setData] = useState({});
-    const {id} = useParams();
-    let searchParams = location?.search;
-    const postType = searchParams.includes('provide')? 'provide':'request';
+    // parametros especificados despues del ? en el link
+    let searchParams = new URLSearchParams(location.search);
+
+    // obtener tipo de post del link
+    let postType = searchParams.get("postType");
+    if (postType == null)   // si no está definido se asume provide
+        postType = "provide";
+
+    // obtener id del link
+    const id = searchParams.get("id");
 
 
     useEffect(() => {
         const fetchPosts = async () => {
             try {
             
-                const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}/get_post/ea695afc-5d49-4b97-a1bf-fb721271ee81`, {
+                const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}/get_post/${id}`, {
                     headers: {}
                 });
 
@@ -54,7 +62,7 @@ export const VisualizarPublicacionCreada = () => {
                             <b>Nombre Apellido </b>
                         </div>
                         <div>
-                            
+                            {authState.name}
                         </div>
                         <div className='subtitle blue space'>
                             <b>{t('publicacionCreada.pais_cuidador')}</b>
@@ -74,7 +82,7 @@ export const VisualizarPublicacionCreada = () => {
                         <div>                            
                             <div className='data'> { data?.phone || 'No disponible'} </div>
                             <div className='data'> {data?.phone || 'No disponible'} </div>
-                            <div className='data'> {data?.email ||'No disponible'}</div>
+                            <div className='data'> {authState?.email ||'No disponible'}</div>
                         </div>
                         <div>
                             <div className='pais red'>Venezuela</div>                        
