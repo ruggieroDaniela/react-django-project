@@ -298,7 +298,20 @@ export const VisualizarPublicacionCreada = () => {
                         <div className='data'>  San Jose  </div>
                     </div>
                 </div>
+                
+                { /* DOCUMENTOS QUE PUEDO PRESENTAR A LOS CLIENTES  */ }
+                <div className='basico'>
+                    <div className='rectangle blue tag'>{t('publicacionCreada.documentos_solicitar')}</div>                    
+                </div>
 
+                <div className='basico'>
+                    <div className='rectangle text'> Si </div>                   
+                </div>
+                <div className='basico'>
+                    {true && <div className='rectangle text'> {data?.benefits_description ||
+                                                               "Especifique: Seguro social obligatorio,Póliza de HCM y cobertura a mis familiares, Ayuda para útiles escolares, Otros"} </div>}                  
+                </div>
+                
                 
                 {/*        
 

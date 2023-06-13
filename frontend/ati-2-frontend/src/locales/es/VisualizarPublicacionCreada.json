@@ -5,7 +5,7 @@
         "correo_electronico": "Correo Electrónico",
         "pais_cuidador": "Pais",
         "provincia__cuidador": "Estado, provincia/ Capital",
-        
+
         "ciudad_cuidador":"Ciudad",
         "zona_cuidador": "Zona",
         "edad_cuidador": "Edad que se solicita",
@@ -28,7 +28,7 @@
         "salario_ofrecido": "Salario deseado",
         "beneficios":"¿SOLICITO OTROS BENEFICIOS?", 
         "funciones_cumplir":"FUNCIONES QUE DEBE CUMPLIR",
-        "documentos_solicitar":"Documentos a Solicitar",
+        "documentos_solicitar":"DOCUMENTOS A SOLICITAR",
         "disponibilidad_viajar":"Disponibilidad para Viajar",
         "disponibilidad_trabajar": "DISPONIBILIDAD PARA COMENZAR A TRABAJAR", 
         "fecha_inicio": "Fecha Inicio",
