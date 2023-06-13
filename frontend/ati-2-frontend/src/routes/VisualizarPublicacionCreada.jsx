@@ -16,31 +16,31 @@ export const VisualizarPublicacionCreada = () => {
     let searchParams = location?.search;
     const postType = searchParams.includes('provide')? 'provide':'request';
 
-
     useEffect(() => {
-        const fetchPosts = async () => {
+        const fetchPost = async () => {
             try {
-            
-                const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}/get_post/ea695afc-5d49-4b97-a1bf-fb721271ee81`, {
-                    headers: {}
-                });
+            const response = await fetch(`http://127.0.0.1:8000/api-services/provide/get_post/ea695afc-5d49-4b97-a1bf-fb721271ee81/`, {
+                method: 'GET',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+            });
+    
+            if (response.ok) {
+                const data = await response.json();                
+                //setReady(true);
+                console.log(data);
 
-                setData(response.data)
-                console.log(response.data);
-                console.log(postType);
-                return response.data;
-            
-            } catch (error) {
-            
+            } else {
+                console.log('Error retrieving post');
             }
-    }
-
-
-    fetchPosts();
-
-
-         //fetchPosts();
-    }, []);
+            } catch (error) {
+            console.log('An error occurred:', error);
+            }
+        };
+    
+        fetchPost();
+        }, []);
 
         return (
             <section id="publicacion-creada">    
@@ -48,7 +48,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='header'>
                     <section className='encabezado-perfil'>                       
                         <div className='subtitle blue margin'>
-                            <b>Niñero(a)</b>
+                            <b>data.</b>
                         </div>
                         <div className='user-name'>
                             <b>Nombre Apellido </b>
