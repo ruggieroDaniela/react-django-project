@@ -151,15 +151,15 @@ export const ListarPublicaciones = () => {
                     {
                         /* eslint-disable-next-line */
                         tipoPersona.map( (item, i) => 
-                            <li className="checkbox" key={`${"self.crypto.randomUUID"()}`}>
-                                <label key={`${"self.crypto.randomUUID"()}`}>
+                            <li className="checkbox" key={`${"self.crypto.randomUUID()"}`}>
+                                <label key={`${"self.crypto.randomUUID()"}`}>
                                     <input
                                         type="checkbox"
-                                        key={`${"self.crypto.randomUUID"()}`}
+                                        key={`${"self.crypto.randomUUID()"}`}
                                         checked={ services.length > i && selectedTipoPersona.includes(services[i]) }
                                         onChange={ () => setSelectedTipoPersona( prev => prev.includes(services[i])? prev.replace(services[i]+",", ""):prev+services[i]+"," ) }
                                     />
-                                    <div className="checkbox-label" key={`${"self.crypto.randomUUID"()}`}>
+                                    <div className="checkbox-label" key={`${"self.crypto.randomUUID()"}`}>
                                         {t(`lista_publicaciones.tipos_personal.${i}`)}
                                     </div>
                                 </label>
@@ -176,9 +176,9 @@ export const ListarPublicaciones = () => {
                 <ul className="input-group">
                     {
                         ordenes.map( (item, i) => 
-                            <li className="button" key={`${"self.crypto.randomUUID"()}`}>
+                            <li className="button" key={`${"self.crypto.randomUUID()"}`}>
                                 <button
-                                    key={`${"self.crypto.randomUUID"()}`}
+                                    key={`${"self.crypto.randomUUID()"}`}
                                     onClick={ () => {
                                         if( searchParams.includes("ordering") )
                                             searchParams = searchParams.substring( 0, searchParams.indexOf("ordering") );
@@ -200,9 +200,9 @@ export const ListarPublicaciones = () => {
                         {t(`lista_publicaciones.acciones`)}:
                     </span>
                     <ul className="input-group">
-                        <li className="button" key={`${"self.crypto.randomUUID"()}`}>
+                        <li className="button" key={`${"self.crypto.randomUUID()"}`}>
                             <button
-                                key={`${"self.crypto.randomUUID"()}`}
+                                key={`${"self.crypto.randomUUID()"}`}
                                 onClick={ async () => {
                                     // habilitar 
                                     for (let i = 0; i < selectedPosts.length; i++) {
@@ -215,9 +215,9 @@ export const ListarPublicaciones = () => {
                             </button>
                         </li>
                         
-                        <li className="button" key={`${"self.crypto.randomUUID"()}`}>
+                        <li className="button" key={`${"self.crypto.randomUUID()"}`}>
                             <button
-                                key={`${"self.crypto.randomUUID"()}`}
+                                key={`${"self.crypto.randomUUID()"}`}
                                 onClick={ async () => {
                                     // eliminar 
                                     for (let i = 0; i < selectedPosts.length; i++) {
@@ -231,9 +231,9 @@ export const ListarPublicaciones = () => {
                         </li>
 
                         {selectedPosts.length<=1 &&
-                            <li className="button" key={`${"self.crypto.randomUUID"()}`}>
+                            <li className="button" key={`${"self.crypto.randomUUID()"}`}>
                                 <button
-                                    key={`${"self.crypto.randomUUID"()}`}
+                                    key={`${"self.crypto.randomUUID()"}`}
                                     onClick={ () => {
                                         // modificar
                                         console.log("update");
