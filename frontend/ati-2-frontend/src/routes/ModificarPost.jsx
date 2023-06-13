@@ -52,7 +52,7 @@ export const ModificarPost = () => {
                 zone: post.zone,
                 description: post.description,
                 travel: post.travel,
-                travel_description: post.travel_description,
+                travel_decription: post.travel_decription,
                 activities: post.activities,
                 workday: post.workday,
                 workday_other: post.workday_other,
