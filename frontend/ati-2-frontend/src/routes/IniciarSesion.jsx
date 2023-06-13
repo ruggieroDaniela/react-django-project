@@ -34,8 +34,11 @@ export const IniciarSesion = () => {
             password: password
         };
 
-        const url = `${import.meta.env.DJANGO_API_URL}/token-auth/`
+        const url = `${import.meta.env.VITE_DJANGO_API_URL}/token-auth/`
         console.log(url);
+
+        console.log(import.meta.env);
+
         try {
             
             let response = await fetch( url,{
@@ -55,7 +58,7 @@ export const IniciarSesion = () => {
                 console.log('POST request successful');
                 const responseDataAuth = await response.json();
 
-                response = await fetch( `${import.meta.env.DJANGO_API_URL}/users/${responseDataAuth.user_id}`,{
+                response = await fetch( `${import.meta.env.VITE_DJANGO_API_URL}/users/${responseDataAuth.user_id}`,{
                         method: 'GET',
                         headers: {
                             'Authorization': responseDataAuth.token,

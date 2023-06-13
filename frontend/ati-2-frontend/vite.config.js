@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // define: {
-  //   'import.meta.env.DJANGO_API_URL': process.env.DJANGO_API_URL,
+  //   'import.meta.env.VITE_DJANGO_API_URL': process.env.DJANGO_API_URL,
   // },
   server: {
     watch: {

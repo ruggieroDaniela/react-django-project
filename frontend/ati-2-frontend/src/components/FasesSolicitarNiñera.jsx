@@ -1748,7 +1748,7 @@ const Fase11 = () => {
     useEffect(() => {
         const getBanks = async () => {
           try {
-            const response = await axios.get(`${import.meta.env.DJANGO_API_URL}/banks/`);
+            const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/banks/`);
             return response.data; // Return the response data instead of the entire response
           } catch (error) {
             console.error(error);
@@ -2010,7 +2010,7 @@ const botonEnviar = () => {
                           })
                     }
 
-                    const url = `${import.meta.env.DJANGO_API_URL}/api-services/requestService/post_ad/`
+                    const url = `${import.meta.env.VITE_DJANGO_API_URL}/api-services/requestService/post_ad/`
                     try {
                         
                         const response = await fetch( url,{

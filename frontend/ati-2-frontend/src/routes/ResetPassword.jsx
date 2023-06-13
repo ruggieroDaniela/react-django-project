@@ -21,7 +21,7 @@ export const ResetPassword = () => {
   useEffect(() => {
     const fetchMail = async () => {
       try {
-        const response = await axios.post(`${import.meta.env.DJANGO_API_URL}/users/get_email/`, {id: params.id})
+        const response = await axios.post(`${import.meta.env.VITE_DJANGO_API_URL}/users/get_email/`, {id: params.id})
         setEmail(response.data.email)
       } catch(error){
         console.log(error)
@@ -57,7 +57,7 @@ export const ResetPassword = () => {
 
       if(password.length >= 8){
         try{
-          const url = `${import.meta.env.DJANGO_API_URL}/users/change_password/`
+          const url = `${import.meta.env.VITE_DJANGO_API_URL}/users/change_password/`
           await axios.post(url, {'id': params.id, 'new_password': password, 'confirm_password': confirmPassword})
 
           setInvalidPassword(false)
