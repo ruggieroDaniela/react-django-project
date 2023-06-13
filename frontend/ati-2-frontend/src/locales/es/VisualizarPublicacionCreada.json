@@ -23,8 +23,6 @@
         "cliente_estado": "Estado / Provincia", 
         "cliente_ciudad": "Ciudad", 
 
-
-
         "persona_cuidar":"SOBRE LA PERSONA A CUIDAR",
         "cant_persona_cuidar":"Cantidad de personas a cuidar",
         "edad_cuidar":"Edad(es)",
@@ -57,9 +55,49 @@
         "datos_cuenta":"Datos de la cuenta seleccionada",
         "n_cuenta":"Num de Cuenta",
         "banco":"Banco",
-        "pais_banco":"Pais"
+        "pais_banco":"Pais", 
 
+        "sugerencias_tags": {
+            "antes": "SUGERENCIAS ANTES DE REALIZAR UNA ENTREVISTA DE TRABAJO", 
+            "momento": "SUGERENCIAS AL MOMENTO DE REALIZAR LA ENTREVISTA", 
+            "dia": "SUGERENCIAS DE TRABAJO PARA EL DÍA A DÍA CON EL CLIENTE", 
+            "dia_antes": "Antes de iniciar sus labores", 
+            "dia_a_dia": "En el día a día", 
+            "abuso": "Si consideras que estas recibiendo un trato inadecuado por parte de tu empleador", 
+            "pago": "Cuando recibas tu pago", 
+            "finalizar": "Cuando el personal finalice sus labores", 
+            "no_seguir": "Si usted decide no seguir trabajando con el cliente", 
+            "adicional": "Sugerencias adicionales "
+        }, 
 
+        "sugerencias": {
+            "antes": [
+                "Elije que ropa vas a utilizar en caso de una entrevista en vivo, o vía internet con tu empleador", 
+                "Descarta la ropa sexy. No es profesional", 
+                "Lee varias veces el anuncio que coloca un cliente, y elabora una lista de preguntas que quieras realizarle al potencial empleador", 
+                "Ten a la mano la documentación que se te sugirió en puntos anteriores, en caso de que algún cliente te la solicite. Así puedes incrementar tus probabilidades de éxito de ser contratado más rápidamente"
+            ], 
+            "momento": [
+                "Trate de determinar, con el mayor detalle posible, cuales son las necesidades del cliente, y pregunte todo lo que considere, y que le ayude a determinar si usted desea trabajar con ese cliente, o no", 
+                "Averigüe dónde viven, datos de los familiares para avisar en caso de alguna emergencia (eso también le servirá a usted en caso de que su empleador, la exponga a maltratos laborales que no están permitidos en la ley, como explotación laboral, el no recibir la compensación acordada en el contrato de trabajo, humillaciones, gritos, entre otros."
+            ], 
+            "dia_antes": [
+                "Solicita tu contrato de trabajo por escrito, ya que este es el documento que certifica que estas laborando para el cliente", 
+                "Asegúrese de tener una buena higiene personal, y abstenerse de fumar, ingerir bebidas alcohólicas o tener conductas que atenten contra la moral y las buenas costumbres, principalmente delante de los niños", 
+                "Pregúntele al cliente cuáles son los procedimientos de seguridad para abrir la puerta, contestar el teléfono, personas a recibir en el inmueble, y cualquier otro asunto relacionado con las personas a su cuidado, o con el inmueble donde se realizarán las labores", 
+                "Solicite información de contacto a su cliente sobre las personas a su cuidado como: Médico tratante, teléfono de empresas donde la(s) persona(s) bajo su cuidado están aseguradas, listado de clínicas cercanas a las que se pueda llevar a la persona en caso de emergencia, datos de contacto directo con el cliente, y con usted en caso de cualquier emergencia, o consulta que pueda tener la persona contratada o usted.", 
+                "Si puede, registre las huellas dactilares del personal a su servicio para que tenga una base para deslindar responsabilidades en caso de robo o cualquier incidente que podría haber originado dicha persona en el inmueble, o hacia las personas bajo su cuidado"
+            ], 
+            "dia_a_dia": [
+                "Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado.", 
+                "Mantén una comunicación constante con tu empleador,  y solicítale que quieres saber su opinión en relación al trabajo que estas desempeñando."
+            ], 
+            "abuso": "Convérsalo con el y determina si las cosas pueden mejorar. Si las cosas no mejoran, puedes irte si lo deseas. Y en este caso ningún empleador puede retenerte por la fuerza, porque esto es un delito. Además también existen otros organismos que defienden los derechos de los trabajadores en caso de explotación laboral, o de condiciones no aptas para trabajar, y en los cuales debes presentar tu contrato y recibos de pago.", 
+            "pago": "Solicita tu recibo de pago al cliente, para tener constancias de los pagos recibidos, ya que este documento, junto con el contrato de trabajo son tus pruebas ante las autoridades competentes de que tienes una relación laboral con el cliente, y para que ellos puedan ayudarte si tienes algún problema de explotación laboral, o falta de pago por parte de tu empleador", 
+            "finalizar": "Muestra tu bolso antes de salir del lugar de trabajo", 
+            "no_seguir": "Avise con anticipación para que el cliente pueda buscar otra persona. Esto también ayuda a que deje una buena referencia con el cliente", 
+            "adicional": "Guarda joyas u objetos que sean de valor para ti en lugares seguros"
+        }
     }
 }
 

@@ -51,6 +51,10 @@ export const VisualizarPublicacionCreada = () => {
         fetchPost();
         }, []);
 
+    
+
+    
+/*
         const DOCUMENTS_CHOICES = {
             'PASAPORTE': 'Documento de identidad o pasaporte',
             'CURRICULUM': 'Currículum actualizado',
@@ -63,7 +67,7 @@ export const VisualizarPublicacionCreada = () => {
             'OTRO': 'Otro documento'
           };
           
-        const documentsString = data.documents.map(key => DOCUMENTS_CHOICES[key]).join(', ');
+        const documentsString = data.documents.map(key => DOCUMENTS_CHOICES[key]).join(', ');*/
 
         return (
             <section id="publicacion-creada">    
@@ -344,118 +348,135 @@ export const VisualizarPublicacionCreada = () => {
                     <div className='rectangle text'> {data.have_documentation ? "Si" : "No"} </div>                   
                 </div>
                 <div className='basico'>
-                    {data.have_documentation && <div className='rectangle text'> {documentsString} </div>}                  
+                    {data.have_documentation && <div className='rectangle text'>  </div>}                  
                 </div>
                 
                 
                 {/* SUGERENCIAS ANTES DE REALZIAR UNA ENTREVISTA DE TRABAJO */ }
                 <div className='basico'>
-                    <div className='rectangle blue tag'>SUGERENCIAS ANTES DE REALZIAR UNA ENTREVISTA DE TRABAJO</div>                    
+                    <div className='rectangle blue tag'>{t('publicacionCreada.sugerencias_tags.antes')}</div>                    
                 </div>
                 <br></br>
+                <ul>
+                    <li className='basico'>
+                        <li className='rectangle text'> {t('publicacionCreada.sugerencias.antes.1')}</li>                   
+                    </li>
 
-                <div className='basico'>
-                    <div className='rectangle text'> {data?.description || "* Elije que ropa vas a utilizar en caso de una entrevista en vivo, o vía internet con tu empleador \n . Descarta la ropa sexy. No es profesional Lee varias veces el anuncio que coloca un cliente, y elabora una lista de preguntas que quieras realizarle al potencial empleador \n * Ten a la mano la documentación que se te sugirió en puntos anteriores, en caso de que algún cliente te la solicite. Así puedes incrementar tus probabilidades de éxito de ser contratado más rápidamente" }</div>                   
-                </div>
+                    <li className='basico'>
+                        <li className='rectangle text'> {t('publicacionCreada.sugerencias.antes.2')}</li>                   
+                    </li>
+
+                    <li className='basico'>
+                        <li className='rectangle text'> {t('publicacionCreada.sugerencias.antes.3')}</li>                   
+                    </li>
+                </ul>
+                
                 
                 {/* SUGERENCIAS AL MOMENTO DE REALIZAR LA ENTREVISTA  */ }
                 <div className='basico'>
-                    <div className='rectangle blue tag'>SUGERENCIAS AL MOMENTO DE REALIZAR LA ENTREVISTA</div>                    
+                    <div className='rectangle blue tag'>{t('publicacionCreada.sugerencias_tags.momento')}</div>                    
                 </div>
                 <br></br>
+                
+                <ul>
+                    <li className='basico'>
+                        <li className='rectangle text'>{t('publicacionCreada.sugerencias.momento.0')} </li>                   
+                    </li>
+                    
+                    <li className='basico'>
+                        <li className='rectangle text'>{t('publicacionCreada.sugerencias.momento.1')} </li>                   
+                    </li>
+                </ul>
 
-                <div className='basico'>
-                    <div className='rectangle text'> {data?.description || "* Elije que ropa vas a utilizar en caso de una entrevista en vivo, o vía internet con tu empleador \n . Descarta la ropa sexy. No es profesional Lee varias veces el anuncio que coloca un cliente, y elabora una lista de preguntas que quieras realizarle al potencial empleador \n * Ten a la mano la documentación que se te sugirió en puntos anteriores, en caso de que algún cliente te la solicite. Así puedes incrementar tus probabilidades de éxito de ser contratado más rápidamente" }</div>                   
-                </div>
 
                 {/* SUGERENCIAS DE TRABAJO PARA EL DÍA A DÍA CON EL CLIENTE  */ }
                 <div className='basico'>
-                    <div className='rectangle blue tag'>SUGERENCIAS AL MOMENTO DE REALIZAR LA ENTREVISTA</div>                    
+                    <div className='rectangle blue tag'>{t('publicacionCreada.sugerencias_tags.dia')}</div>                    
                 </div>
                 <br></br>
 
                 { /* Antes de iniciar sus labores  */ }
                 <div className='basico'>
-                    <div className='rectangle yellow tag right'> Antes de iniciar sus labores </div>
+                    <div className='rectangle yellow tag right'>{t('publicacionCreada.sugerencias_tags.dia_antes')}  </div>
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>Solicita tu contrato de trabajo por escrito, ya que este es el documento que certifica que estas laborando para el cliente </div>                   
+                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.dia_antes.0')}</div>                   
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>Asegúrese de tener una buena higiene personal, y abstenerse de fumar, ingerir bebidas alcohólicas o tener conductas que atenten contra la moral y las buenas costumbres, principalmente delante de los niños </div>                   
+                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.dia_antes.1')}</div>                   
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>Pregúntele al cliente cuáles son los procedimientos de seguridad para abrir la puerta, contestar el teléfono, personas a recibir en el inmueble, y cualquier otro asunto relacionado con las personas a su cuidado, o con el inmueble donde se realizarán las labores </div>                   
+                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.dia_antes.2')}</div>                   
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>Solicite información de contacto a su cliente sobre las personas a su cuidado como: Médico tratante, teléfono de empresas donde la(s) persona(s) bajo su cuidado están aseguradas, listado de clínicas cercanas a las que se pueda llevar a la persona en caso de emergencia, datos de contacto directo con el cliente, y con usted en caso de cualquier emergencia, o consulta que pueda tener la persona contratada o usted.  </div>                   
+                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.dia_antes.3')}</div>                   
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>Si puede, registre las huellas dactilares del personal a su servicio para que tenga una base para deslindar responsabilidades en caso de robo o cualquier incidente que podría haber originado dicha persona en el inmueble, o hacia las personas bajo su cuidado </div>                   
+                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.dia_antes.4')}</div>                   
                 </div>
 
                 { /* En el día a día   */ }
                 <div className='basico'>
-                    <div className='rectangle yellow tag right'> En el día a día  </div>
+                    <div className='rectangle yellow tag right'> {t('publicacionCreada.sugerencias_tags.dia_a_dia')}  </div>
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado. </div>                   
+                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.dia_a_dia.0')}</div>                   
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>Mantén una comunicación constante con tu empleador,  y solicítale que quieres saber su opinión en relación al trabajo que estas desempeñando.</div>                   
+                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.dia_a_dia.1')}</div>                   
                 </div>
 
                 { /* Si consideras que estas recibiendo un trato inadecuado por parte de tu empleador  */ }
                 <div className='basico'>
-                    <div className='rectangle yellow tag right'>Si consideras que estas recibiendo un trato inadecuado por parte de tu empleador  </div>
+                    <div className='rectangle yellow tag right'>{t('publicacionCreada.sugerencias_tags.abuso')}</div>
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado. </div>                   
+                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.abuso')}</div>                   
                 </div>
                 
                 { /* Cuando recibas tu pago  */ }
                 <div className='basico'>
-                    <div className='rectangle yellow tag right'>Cuando recibas tu pago </div>
+                    <div className='rectangle yellow tag right'>{t('publicacionCreada.sugerencias_tags.pago')}</div>
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado. </div>                   
+                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.pago')}</div>                   
                 </div>
 
                 { /* Cuando el personal finalice sus labores */ }
                 <div className='basico'>
-                    <div className='rectangle yellow tag right'>Cuando el personal finalice sus labores </div>
+                    <div className='rectangle yellow tag right'>{t('publicacionCreada.sugerencias_tags.finalizar')}</div>
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado. </div>                   
+                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.finalizar')}</div>                   
                 </div>
                 
                 
                 { /* Si usted decide no seguir trabajando con el cliente */ }
                 <div className='basico'>                   
-                    <div className='rectangle yellow tag right'>Si usted decide no seguir trabajando con el cliente </div>                    
+                    <div className='rectangle yellow tag right'>{t('publicacionCreada.sugerencias_tags.no_seguir')} </div>                    
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado. </div>                   
+                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.no_seguir')}</div>                   
                 </div>
 
                 { /* Sugerencias adicionales */ }
                 <div className='basico'>
-                    <div className='rectangle yellow tag right'>Sugerencias adicionales </div>
+                    <div className='rectangle yellow tag right'>{t('publicacionCreada.sugerencias_tags.adicional')}</div>
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado. </div>                   
+                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.adicional')}</div>                   
                 </div>
                 
                 
