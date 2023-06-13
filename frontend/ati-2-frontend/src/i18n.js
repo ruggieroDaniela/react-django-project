@@ -15,6 +15,7 @@ import OfrecermeNiñera_en from "./locales/en/OfrecermeNiñera.json"
 import SolicitarNiñera_en  from './locales/en/SolicitarNiñera.json';
 import OfrecermeCuidador_en from "./locales/en/OfrecermeCuidador.json"
 import listar_publicaciones_en from "./locales/en/ListarPublicaciones.json"
+import publicacionCreada_en from "./locales/en/VisualizarPublicacionCreada.json"
 
 import navbar_es from './locales/es/Navbar.json';
 import registrar_es from "./locales/es/Registrar.json";
@@ -29,6 +30,7 @@ import OfrecermeNiñera_es from "./locales/es/OfrecermeNiñera.json"
 import SolicitarNiñera_es  from './locales/es/SolicitarNiñera.json';
 import OfrecermeCuidador_es from "./locales/es/OfrecermeCuidador.json"
 import listar_publicaciones_es from "./locales/es/ListarPublicaciones.json"
+import publicacionCreada_es from "./locales/es/VisualizarPublicacionCreada.json"
 
 const en = Object.assign(
   {},
@@ -44,9 +46,14 @@ const en = Object.assign(
   reset_password_en,
   forgot_password_en,
   OfrecermeNiñera_en,
+<<<<<<< HEAD
   OfrecermeCuidador_en,
   listar_publicaciones_en
 
+=======
+  listar_publicaciones_en,
+  publicacionCreada_en,
+>>>>>>> e1dd81042bba643324f1abb4ff6bba340f7175c6
 );
 
 const es = Object.assign(
@@ -59,12 +66,17 @@ const es = Object.assign(
   servicios_es,
   buscar_personal_domestico_es,
   OfrecermeNiñera_es,
+<<<<<<< HEAD
   SolicitarNiñera_es,
   reset_password_es,
   forgot_password_es,
   OfrecermeNiñera_es,
   OfrecermeCuidador_es,
   listar_publicaciones_es
+=======
+  listar_publicaciones_es,
+  publicacionCreada_es,
+>>>>>>> e1dd81042bba643324f1abb4ff6bba340f7175c6
 );
 
 i18n

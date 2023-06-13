@@ -1,0 +1,55 @@
+{
+    "publicacionCreada":{
+        "telefono_fijo": "Teléfono Fijo",
+        "telefono_celular": "Teléfono Celular",
+        "correo_electronico": "Correo Electrónico",
+        "pais_cuidador": "Pais",
+        "provincia__cuidador": "Estado, provincia/ Capital",
+
+        "ciudad_cuidador":"Ciudad",
+        "zona_cuidador": "Zona",
+        "edad_cuidador": "Edad que se solicita",
+        "sexo_cuidador": "Sexo",
+        "situcion_familiar_cuidador": "Situción Familiar",
+        "grado_instrucción_cuidador":"Grado de instrucción",
+        "datos_basicos_cuidador":"DATOS BÁSICOS DE LA NIÑERA(O)",
+        "lugar_procedencia_cuidador":"LUGAR DE PROCEDENCIA",
+
+        "persona_cuidar":"SOBRE LA PERSONA A CUIDAR",
+        "cant_persona_cuidar":"Cantidad de personas a cuidar",
+        "edad_cuidar":"Edad(es)",
+        "sexo_cuidar":"Sexo",
+        "tiene_dispacacidad_cuidar":"¿Posee(n) alguna discapacidad o enfermedad?",
+        "indique_capacidad":"Indique la(s) discapacidad(es)",
+        "enfermedad_cuidar":"Enfermedad(es) que presenta(n",
+        "condiciones_trabajo":"CONDICIONES DE TRABAJO",
+        "salida_cuidador":"Salidas que prefiero",
+        "horario_trabajo": "Horario",
+        "salario_ofrecido": "Salario deseado",
+        "beneficios":"¿SOLICITO OTROS BENEFICIOS?", 
+        "funciones_cumplir":"FUNCIONES QUE DEBE CUMPLIR",
+        "documentos_solicitar":"DOCUMENTOS A SOLICITAR",
+        "disponibilidad_viajar":"Disponibilidad para Viajar",
+        "disponibilidad_trabajar": "DISPONIBILIDAD PARA COMENZAR A TRABAJAR", 
+        "fecha_inicio": "Fecha Inicio",
+        "sugenrencia_trabajo":"Sugerencias de trabajo para el día a día con el personal contratado",
+        "sugencia_entrevista": "Sugerencias al momento de realizar la entrevista",
+        "consideraciones_del_servicio": "Consideraciones del Servicio",
+        "datos_facturacion": "Datos de Facturacion",
+        "iniciar_labores":"Antes de iniciar sus labores",
+        "finalizar_labores":"Cuando el personal finalice sus labores",
+        "dia_dia":"En el día a día",
+        "sugerencia_adicionales":"Sugerencias adicionales",
+        "sugenrencia_entrevista":"sugerencias al momento de realizar la entrevista",
+        "sugerencia_servicio":"Consideraciones del Servicio", 
+        "plan_seleccionado": "Plan seleccionado",
+        "pais_a_depositar":"País donde va a realizar el depósito",
+        "datos_cuenta":"Datos de la cuenta seleccionada",
+        "n_cuenta":"Num de Cuenta",
+        "banco":"Banco",
+        "pais_banco":"Pais"
+
+
+    }
+}
+
