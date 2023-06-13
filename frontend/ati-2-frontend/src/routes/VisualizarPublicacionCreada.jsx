@@ -33,6 +33,7 @@ export const VisualizarPublicacionCreada = () => {
                 setData(data);               
                 console.log(data);
 
+                // SERVICE
                 if(data.service=='NIN'){
                     setServicio('Niñero(a)')
                 }
@@ -149,9 +150,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle blue'><b> {t('publicacionCreada.grado_instrucción_cuidador')}</b></div>
-                        {data.education_level == 'PRI' &&  <div> Primaria </div> }
-                        {data.education_level == 'TEC' &&  <div> Técnico Univeristario </div> }
-                        {data.education_level == 'PRI' && <div> Primaria </div> }
+                        <div> {t(`publicaciones_vista_lista.${data.education_level}`)} </div>                        
                     </div>
                 </div>
 
