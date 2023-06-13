@@ -16,6 +16,7 @@ export const VisualizarPublicacionCreada = () => {
     let searchParams = location?.search;
     const postType = searchParams.includes('provide')? 'provide':'request';
     const [servicio, setServicio] = useState('');
+    const [documents, setDocuments] = useState(''); 
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -40,6 +41,20 @@ export const VisualizarPublicacionCreada = () => {
                     setServicio('Cuidador(a) Ocupacional')
                 }
 
+                const DOCUMENTS_CHOICES = {
+                    'PASAPORTE': 'Documento de identidad o pasaporte',
+                    'CURRICULUM': 'Currículum actualizado',
+                    'TITULOS': 'Títulos o certificados',
+                    'REF_TRABAJO': 'Referencias comprobables de trabajo',
+                    'REF_FAMILIAR': 'Referencias familiares indicando nombre y apellido, teléfono local, Teléfono móvil, correo electrónico (opcional), y dirección',
+                    'CONST_RESIDENCIA': 'Constancia de residencia',
+                    'CONST_ANTECEDENTES': 'Constancia de no poseer antecedentes penales',
+                    'SALUD': 'Certificado de salud',
+                    'OTRO': 'Otro documento'
+                };
+          
+                setDocuments(data.documents.map(key => DOCUMENTS_CHOICES[key]).join(', ')); 
+
             } else {
                 console.log('Error retrieving post');
             }
@@ -55,19 +70,7 @@ export const VisualizarPublicacionCreada = () => {
 
     
 /*
-        const DOCUMENTS_CHOICES = {
-            'PASAPORTE': 'Documento de identidad o pasaporte',
-            'CURRICULUM': 'Currículum actualizado',
-            'TITULOS': 'Títulos o certificados',
-            'REF_TRABAJO': 'Referencias comprobables de trabajo',
-            'REF_FAMILIAR': 'Referencias familiares indicando nombre y apellido, teléfono local, Teléfono móvil, correo electrónico (opcional), y dirección',
-            'CONST_RESIDENCIA': 'Constancia de residencia',
-            'CONST_ANTECEDENTES': 'Constancia de no poseer antecedentes penales',
-            'SALUD': 'Certificado de salud',
-            'OTRO': 'Otro documento'
-          };
-          
-        const documentsString = data.documents.map(key => DOCUMENTS_CHOICES[key]).join(', ');*/
+;*/
 
         return (
             <section id="publicacion-creada">    
@@ -119,14 +122,14 @@ export const VisualizarPublicacionCreada = () => {
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'> <b>{data?.description} </b></div>                   
+                    <div className='rectangle text'> <b>{data.description} </b></div>                   
                 </div>
 
                 { /* Edad que solicita */ }
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle blue'><b>{t('publicacionCreada.edad_cuidador')}</b></div>
-                        <div> { data.age} años </div>
+                        <div> {data.age}  {t('publicacionCreada.annios')} </div>
                     </div>
                 </div>
 
@@ -348,7 +351,7 @@ export const VisualizarPublicacionCreada = () => {
                     <div className='rectangle text'> {data.have_documentation ? "Si" : "No"} </div>                   
                 </div>
                 <div className='basico'>
-                    {data.have_documentation && <div className='rectangle text'>  </div>}                  
+                    {data.have_documentation && <div className='rectangle text'>{documents} </div>}                  
                 </div>
                 
                 
