@@ -13,11 +13,8 @@ import reset_password_en from "./locales/en/RestablecerContraseña.json"
 import forgot_password_en from "./locales/en/ForgotPassword.json"
 import OfrecermeNiñera_en from "./locales/en/OfrecermeNiñera.json"
 import SolicitarNiñera_en  from './locales/en/SolicitarNiñera.json';
-<<<<<<< HEAD
 import SolicitarCuidador_en  from './locales/en/SolicitarCuidador.json';
-=======
 import OfrecermeCuidador_en from "./locales/en/OfrecermeCuidador.json"
->>>>>>> a3038235f5723ebaa962535cc497a4d2fc83ad92
 import listar_publicaciones_en from "./locales/en/ListarPublicaciones.json"
 
 import navbar_es from './locales/es/Navbar.json';
