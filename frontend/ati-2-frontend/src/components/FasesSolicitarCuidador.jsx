@@ -19,13 +19,13 @@ const Fase0 = () => {
   return (
     <div id="fase0">
           <div id="small">
-              <p>{t('SolicitarNiñera.fases.0.mensaje')}</p>
-              <span className="red">*  </span> <span>=</span> <span className="blue">{t('SolicitarNiñera.fases.0.campos')}</span>
+              <p>{t('SolicitarCuidador.fases.0.mensaje')}</p>
+              <span className="red">*  </span> <span>=</span> <span className="blue">{t('SolicitarCuidador.fases.0.campos')}</span>
           </div>
 
           <div>
               
-              <h2 className="rosa"><span className="red">*  </span>{t('SolicitarNiñera.fases.0.solicito')}</h2>
+              <h2 className="rosa"><span className="red">*  </span>{t('SolicitarCuidador.fases.0.solicito')}</h2>
               
               <div className="form">
                       <div>
@@ -43,7 +43,7 @@ const Fase0 = () => {
                                     } );
                             }}
                             />
-                          <label htmlFor="c1">{t('SolicitarNiñera.fases.0.niñera')}</label>
+                          <label htmlFor="c1">{t('SolicitarCuidador.fases.0.niñera')}</label>
                       </div>    
 
                       <div>
@@ -61,7 +61,7 @@ const Fase0 = () => {
                                     } );
                             }}
                             />
-                          <label htmlFor="c2">{t('SolicitarNiñera.fases.0.niñero')}</label>
+                          <label htmlFor="c2">{t('SolicitarCuidador.fases.0.niñero')}</label>
                       </div>    
 
                       <div>
@@ -79,82 +79,81 @@ const Fase0 = () => {
                                     } );
                             }}
                          />    
-                          <label htmlFor="c3">{t('SolicitarNiñera.fases.0.indiferente-sexo')}</label>
+                          <label htmlFor="c3">{t('SolicitarCuidador.fases.0.indiferente-sexo')}</label>
                       </div>
               </div>
           </div>
 
           <div>
-              <h2 className="blue"><span className="red">*  </span> {t('SolicitarNiñera.fases.0.edad-solicita')}</h2>
+              <h2 className="blue"><span className="red">*  </span> {t('SolicitarCuidador.fases.0.edad-solicita')}</h2>
               
               <div className="form">
 
-            <div>
-                <input 
-                    type="radio" 
-                    id="c4" 
-                    name="edad"
-                    checked={ requestDomesticFormState.age_requirement }
-                    onChange={ e => {
-                        setRequestDomesticFormState( prev => {
-                                const newState = {...prev};
-                                newState.age_requirement= true;
-                                return newState;
-                            } );
-                    }}
-                />    
+                      <div>
+                      <input 
+                            type="radio" 
+                            id="c4" 
+                            name="edad"
+                            checked={ requestDomesticFormState.age_requirement }
+                            onChange={ e => {
+                                setRequestDomesticFormState( prev => {
+                                        const newState = {...prev};
+                                        newState.age_requirement= true;
+                                        return newState;
+                                    } );
+                            }}
+                        />      
 
-                <label htmlFor="c4">{t('SolicitarCuidador.fases.0.entre')} 
-                    <input 
-                        type="text"
-                        onChange={ e => {
-                            setRequestDomesticFormState( prev => {
-                                    const newState = {...prev};
-                                    newState.age_required_from = e.target.value;
-                                    return newState;
-                                } );
-                        }}
-                    /> 
-                    &nbsp;&nbsp;&nbsp;&nbsp;{t('SolicitarCuidador.fases.0.y')} 
-                    <input 
-                        type="text"
-                        onChange={ e => {
-                            setRequestDomesticFormState( prev => {
-                                    const newState = {...prev};
-                                    newState.age_required_to = e.target.value;
-                                    return newState;
-                                } );
-                        }}
-                    /> 
-                    {t('SolicitarCuidador.fases.0.años')} 
-                </label>
-            </div>    
+                          <label htmlFor="c4">{t('SolicitarCuidador.fases.0.entre')} 
+                                <input 
+                                    type="text"
+                                    onChange={ e => {
+                                        setRequestDomesticFormState( prev => {
+                                                const newState = {...prev};
+                                                newState.age_required_from = e.target.value;
+                                                return newState;
+                                            } );
+                                    }}
+                                /> 
+                                &nbsp;&nbsp;&nbsp;&nbsp;{t('SolicitarCuidador.fases.0.y')} 
+                                <input 
+                                    type="text"
+                                    onChange={ e => {
+                                        setRequestDomesticFormState( prev => {
+                                                const newState = {...prev};
+                                                newState.age_required_to = e.target.value;
+                                                return newState;
+                                            } );
+                                    }}
+                                /> 
+                                {t('SolicitarCuidador.fases.0.años')} 
+                          </label>
+                      </div>    
 
-            <div>
-                <input 
-                    type="radio" 
-                    id="c5" 
-                    name="edad"
-                    checked={ !requestDomesticFormState.age_requirement }
-                    onChange={ e => {
-                        setRequestDomesticFormState( prev => {
-                                const newState = {...prev};
-                                newState.age_requirement = false;
-                                return newState;
-                            } );
-                    }}
-                />    
-                <label htmlFor="c5">{t('SolicitarCuidador.fases.0.indiferente-edad')}</label>
-            </div>    
+                      <div>
+                      <input 
+                            type="radio" 
+                            id="c5" 
+                            name="edad"
+                            checked={ !requestDomesticFormState.age_requirement }
+                            onChange={ e => {
+                                setRequestDomesticFormState( prev => {
+                                        const newState = {...prev};
+                                        newState.age_requirement = false;
+                                        return newState;
+                                    } );
+                            }}
+                        />     
+                          <label htmlFor="c5">{t('SolicitarCuidador.fases.0.indiferente-edad')}</label>
+                      </div>    
 
-
-            </div>
-
+                      
+              </div>
               { age_range_invalid && <ErrorMessage message={t('SolicitarNiñera.errores.rango_edad')}/>  }
           </div>
 
           <div>
-              <h2 className="blue"><span className="red">*  </span> {t('SolicitarNiñera.fases.0.situacion-familiar')}</h2>
+              <h2 className="blue"><span className="red">*  </span> {t('SolicitarCuidador.fases.0.situacion-familiar')}</h2>
               
               <div className="form">
                     <div>
@@ -172,7 +171,7 @@ const Fase0 = () => {
                                     } );
                             }}
                          /> 
-                          <label htmlFor="c6">{t('SolicitarNiñera.fases.0.sin-hijos')}</label>
+                          <label htmlFor="c6">{t('SolicitarCuidador.fases.0.sin-hijos')}</label>
                     </div>    
 
                     <div>
@@ -190,7 +189,7 @@ const Fase0 = () => {
                                     } );
                             }}
                          />
-                          <label htmlFor="c7">{t('SolicitarNiñera.fases.0.con-hijos')}</label>
+                          <label htmlFor="c7">{t('SolicitarCuidador.fases.0.con-hijos')}</label>
                     </div>    
 
                     <div>
@@ -208,13 +207,13 @@ const Fase0 = () => {
                                     } );
                             }}
                          />
-                          <label htmlFor="c8">{t('SolicitarNiñera.fases.0.indiferente-hijos')}</label>
+                          <label htmlFor="c8">{t('SolicitarCuidador.fases.0.indiferente-hijos')}</label>
                     </div>
               </div>
           </div>
 
           <div>
-              <h2 className="blue"><span className="red">*  </span> {t('SolicitarNiñera.fases.0.grado-instruccion')}</h2>
+              <h2 className="blue"><span className="red">*  </span> {t('SolicitarCuidador.fases.0.grado-instruccion')}</h2>
               
               <div className="form">
                       <div>
@@ -232,7 +231,7 @@ const Fase0 = () => {
                                     } );
                             }}
                         />
-                        <label htmlFor="c9">{t('SolicitarNiñera.fases.0.grado.0')}</label>
+                        <label htmlFor="c9">{t('SolicitarCuidador.fases.0.grado.0')}</label>
                       </div>    
 
                       <div>
@@ -250,7 +249,7 @@ const Fase0 = () => {
                                     } );
                             }}
                           />
-                          <label htmlFor="c10">{t('SolicitarNiñera.fases.0.grado.1')}</label>
+                          <label htmlFor="c10">{t('SolicitarCuidador.fases.0.grado.1')}</label>
                       </div>    
 
                       <div>
@@ -268,7 +267,7 @@ const Fase0 = () => {
                                     } );
                             }}
                           />
-                          <label htmlFor="c11">{t('SolicitarNiñera.fases.0.grado.2')}</label>
+                          <label htmlFor="c11">{t('SolicitarCuidador.fases.0.grado.2')}</label>
                       </div>
 
                       <div>
@@ -286,7 +285,7 @@ const Fase0 = () => {
                                     } );
                             }}
                           />
-                          <label htmlFor="c12">{t('SolicitarNiñera.fases.0.grado.3')}</label>
+                          <label htmlFor="c12">{t('SolicitarCuidador.fases.0.grado.3')}</label>
                       </div>
               </div>
           </div>
@@ -317,6 +316,7 @@ const Fase1 = () => {
   const [countriesList, setCountriesList] =useState([]);
   const [statesList, setStatesList] =useState([]);
   const [citiesList, setCitiesList] =useState([]);
+
 
   const country_required = requestDomesticFormState.errors.country_required
   const state_required = requestDomesticFormState.errors.state_required
@@ -454,17 +454,17 @@ const Fase1 = () => {
   return ( 
       <div id="fase1">
           <div id="small">
-              <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.1.mensaje')}</span>
+              <span className="red">*  </span><span className="blue">{t('SolicitarCuidador.fases.1.mensaje')}</span>
           </div>
 
           <div>
-              <h2 className="blue">{t('SolicitarNiñera.fases.1.nombre')}</h2>
-              <p>{t('SolicitarNiñera.fases.1.prefiero')}</p>
+              <h2 className="blue">{t('SolicitarCuidador.fases.1.nombre')}</h2>
+              <p>{t('SolicitarCuidador.fases.1.prefiero')}</p>
           </div>
 
           <div id="formulario">
               <div>
-                  <label htmlFor="pais" className="bold">{t('SolicitarNiñera.fases.1.pais')}</label> 
+                  <label htmlFor="pais" className="bold">{t('SolicitarCuidador.fases.1.pais')}</label> 
               </div>
 
               <div>
@@ -493,7 +493,7 @@ const Fase1 = () => {
               </div>
 
               <div >
-                  <label htmlFor="estados" className="bold">{t('SolicitarNiñera.fases.1.estado')}</label> 
+                  <label htmlFor="estados" className="bold">{t('SolicitarCuidador.fases.1.estado')}</label> 
               </div>
               <div>
                     <select name="estados" 
@@ -511,13 +511,13 @@ const Fase1 = () => {
                             }> 
                         {readyStates && renderOptions(states,"states")}
                         {!readyStates && (
-                        <option>{t('SolicitarNiñera.fases.1.select-state')}</option>
+                        <option>{t('SolicitarCuidador.fases.1.select-state')}</option>
                         )}
                     </select>
                     { state_required && <ErrorMessage message={t('SolicitarNiñera.errores.estado')}/>  }
               </div>
               <div>
-                  <label htmlFor="ciudad" className="bold">{t('SolicitarNiñera.fases.1.ciudad')}</label> 
+                  <label htmlFor="ciudad" className="bold">{t('SolicitarCuidador.fases.1.ciudad')}</label> 
               </div>
               <div>
                     <select name="ciudad"
@@ -536,14 +536,14 @@ const Fase1 = () => {
                             > 
                         {readyCities && renderOptions(cities,"cities")}
                         {!readyCities && (
-                        <option>{t('SolicitarNiñera.fases.1.select-city')}</option>
+                        <option>{t('SolicitarCuidador.fases.1.select-city')}</option>
                         )}
                     </select>
                     { city_required && <ErrorMessage message={t('SolicitarNiñera.errores.ciudad')}/>  }
               </div>
 
               <div>
-                  <label htmlFor="zona" className="bold">{t('SolicitarNiñera.fases.1.zona')}</label> 
+                  <label htmlFor="zona" className="bold">{t('SolicitarCuidador.fases.1.zona')}</label> 
               </div>
               <div>
                     <input  type="text"
@@ -581,15 +581,15 @@ const Fase2 = () => {
   return (
     <div id="fase2">
           <div id="small">
-              <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.2.mensaje')}</span><br />
+              <span className="red">*  </span><span className="blue">{t('SolicitarCuidador.fases.2.mensaje')}</span><br />
           </div>
 
           <div>
-              <h2 className="blue">{t('SolicitarNiñera.fases.2.titulo')}</h2>
+              <h2 className="blue">{t('SolicitarCuidador.fases.2.titulo')}</h2>
 
               <div className="form">
                     <div>
-                        <span className="red">*  </span><label htmlFor="cantidad">{t('SolicitarNiñera.fases.2.cantidad')}</label>
+                        <span className="red">*  </span><label htmlFor="cantidad">{t('SolicitarCuidador.fases.2.cantidad')}</label>
                         <input  id="cantidad"
                                 type="text"
                                 value={requestDomesticFormState.number_tco} 
@@ -602,12 +602,11 @@ const Fase2 = () => {
                                 }}
                         />
                         { number_tco_required && <ErrorMessage message={t('SolicitarNiñera.errores.numero')}/>  }
-                        
                     </div>
 
                     <div>
                         <div>
-                            <label className="bold" htmlFor="edad"><span className="red">*  </span>{t('SolicitarNiñera.fases.2.edad')}</label>
+                            <label className="bold" htmlFor="edad"><span className="red">*  </span>{t('SolicitarCuidador.fases.2.edad')}</label>
                             <input  id="edad"
                                     type="text"
                                     value={requestDomesticFormState.age_tco} 
@@ -619,10 +618,9 @@ const Fase2 = () => {
                                         });
                                     }}
                             />
-                            
                         </div>
                         <div>
-                            <label className="bold" htmlFor="sexo"> <span className="red">* </span> {t('SolicitarNiñera.fases.2.sexo')}</label>
+                            <label className="bold" htmlFor="sexo"> <span className="red">*  </span> {t('SolicitarCuidador.fases.2.sexo')}</label>
                             <input  id="sexo"
                                     type="text"
                                     value={requestDomesticFormState.gender_tco} 
@@ -634,16 +632,12 @@ const Fase2 = () => {
                                         });
                                     }}
                             />
-
                         </div>
-
-                        
                     </div>
                     { age_tco_required && <ErrorMessage message={t('SolicitarNiñera.errores.edad')}/>  }
                     { gender_tco_required && <ErrorMessage message={t('SolicitarNiñera.errores.genero')}/>  }
-
                     <div>
-                        <span className="red">*  </span><label className="bold">{t('SolicitarNiñera.fases.2.posee-discapacidad')}</label>
+                        <span className="red">*  </span><label className="bold">{t('SolicitarCuidador.fases.2.posee-discapacidad')}</label>
                         
                         <input 
                             type="radio" 
@@ -658,7 +652,7 @@ const Fase2 = () => {
                                     } );
                             }}
                         />
-                        <label htmlFor="c1">{t('SolicitarNiñera.fases.2.no')}</label>
+                        <label htmlFor="c1">{t('SolicitarCuidador.fases.2.no')}</label>
 
                         <input 
                             type="radio" 
@@ -674,11 +668,11 @@ const Fase2 = () => {
                             }}
                         />
                         
-                        <label htmlFor="c2">{t('SolicitarNiñera.fases.2.si')}</label>
+                        <label htmlFor="c2">{t('SolicitarCuidador.fases.2.si')}</label>
                     </div>
 
                     <div>
-                        <label className="bold" htmlFor="discapacidades">{t('SolicitarNiñera.fases.2.indique-discapacidad')}</label>
+                        <label className="bold" htmlFor="discapacidades">{t('SolicitarCuidador.fases.2.indique-discapacidad')}</label>
                         <textarea  id="discapacidades"
                                 type="textarea"
                                 value={requestDomesticFormState.disabilities_tco_decrip} 
@@ -693,11 +687,10 @@ const Fase2 = () => {
                     </div>
 
                     <div>
-                        <p className="bold">{t('SolicitarNiñera.fases.2.enfermedades-que-presenta')}</p>
-                        <p className="ml">{t('SolicitarNiñera.fases.2.enfermedades')}</p>
+                        <p className="bold">{t('SolicitarCuidador.fases.2.enfermedades-que-presenta')}</p>
+                        <p className="ml">{t('SolicitarCuidador.fases.2.enfermedades')}</p>
                         <textarea
                             type="textarea"
-                            value={requestDomesticFormState.diseases_tco_descrip}
                             onChange={ e => {
                                 setRequestDomesticFormState( prev => {
                                         const newState = {...prev}
@@ -707,7 +700,6 @@ const Fase2 = () => {
                                 }} 
                         />
                     </div>
-                    
                     { diseases_required && <ErrorMessage message={t('SolicitarNiñera.errores.enfermedad')}/>  }
               </div>
           </div>
@@ -716,115 +708,115 @@ const Fase2 = () => {
 }
 
 const Fase3 = () => {
-  const { t, i18n } = useTranslation();
-  const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
-  const travel_desc_required = requestDomesticFormState.errors.travel_desc_required
-
-  return (     
-  <div id="fase3">
-
-      <div id="small">
-          <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.3.mensaje')}</span><br />
-      </div>
-      <div id="titulos">
-          <span className="red">* </span>
-          <h4 style={{display: "inline"}} >{t('SolicitarNiñera.fases.3.pregunta')}</h4>
-          <div id="form">
-                  <div>
-                        <input  type="radio"
-                                name="interest"
-                                id="c1"
-                                onChange={
-                                    e => {
-                                        setRequestDomesticFormState ( prev => {
-                                            const newState = {... prev};
-                                            newState.travel = false;
-                                            return newState;
-                                        });
-                                    } 
-                                }
-                                checked={!requestDomesticFormState.travel}
-                        />
-                      <label for="c1">{t('SolicitarNiñera.fases.3.no')}</label>
-                  </div>
-
-                  <div>
-                        <input  type="radio"
-                                className="segundo" 
-                                name="interest" 
-                                id="c2"
-                                onChange={
-                                    e => {
-                                        setRequestDomesticFormState ( prev => {
-                                            const newState = {... prev};
-                                            newState.travel = true;
-                                            return newState;
-                                        });
-                                    } 
-                                }
-                                checked={requestDomesticFormState.travel}        
-                        />
-                      <label for="c2">{t('SolicitarNiñera.fases.3.si')}</label>
-                  </div>
+    const { t, i18n } = useTranslation();
+    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+    const travel_desc_required = requestDomesticFormState.errors.travel_desc_required
+  
+    return (     
+    <div id="fase3">
+  
+        <div id="small">
+            <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.3.mensaje')}</span><br />
+        </div>
+        <div id="titulos">
+            <span className="red">* </span>
+            <h4 style={{display: "inline"}} >{t('SolicitarNiñera.fases.3.pregunta')}</h4>
+            <div id="form">
+                    <div>
+                          <input  type="radio"
+                                  name="interest"
+                                  id="c1"
+                                  onChange={
+                                      e => {
+                                          setRequestDomesticFormState ( prev => {
+                                              const newState = {... prev};
+                                              newState.travel = false;
+                                              return newState;
+                                          });
+                                      } 
+                                  }
+                                  checked={!requestDomesticFormState.travel}
+                          />
+                        <label for="c1">{t('SolicitarNiñera.fases.3.no')}</label>
+                    </div>
+  
+                    <div>
+                          <input  type="radio"
+                                  className="segundo" 
+                                  name="interest" 
+                                  id="c2"
+                                  onChange={
+                                      e => {
+                                          setRequestDomesticFormState ( prev => {
+                                              const newState = {... prev};
+                                              newState.travel = true;
+                                              return newState;
+                                          });
+                                      } 
+                                  }
+                                  checked={requestDomesticFormState.travel}        
+                          />
+                        <label for="c2">{t('SolicitarNiñera.fases.3.si')}</label>
+                    </div>
+            </div>
+        </div>
+        { requestDomesticFormState.travel && (
+          <div id="form" >
+          <div >
+              <div id="peq">{t('OfrecermeNiñera.fases.3.especifique')}</div>
           </div>
-      </div>
-      { requestDomesticFormState.travel && (
-        <div id="form" >
-        <div >
-            <div id="peq">{t('OfrecermeNiñera.fases.3.especifique')}</div>
-        </div>
-            <textarea 
-                    onChange={
-                        e => {
-                            setRequestDomesticFormState ( prev => {
-                                const newState = {... prev};
-                                newState.travel_decription = e.target.value;
-                                return newState;
-                            });
-                        } 
-                    }
-                    value={requestDomesticFormState.travel_decription}
-            ></textarea>
-
-        { travel_desc_required && <ErrorMessage message={t('OfrecermeNiñera.errores.requerido')}/>  }
-        </div>
-        )}
-
-  </div>
-);
-}
+              <textarea 
+                      onChange={
+                          e => {
+                              setRequestDomesticFormState ( prev => {
+                                  const newState = {... prev};
+                                  newState.travel_decription = e.target.value;
+                                  return newState;
+                              });
+                          } 
+                      }
+                      value={requestDomesticFormState.travel_decription}
+              ></textarea>
+  
+          { travel_desc_required && <ErrorMessage message={t('OfrecermeNiñera.errores.requerido')}/>  }
+          </div>
+          )}
+  
+    </div>
+  );
+  }
 
 const Fase4 = () => {
   const { t, i18n } = useTranslation();
   const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
-    const activities_required = requestDomesticFormState.errors.activities_required
+  const activities_required = requestDomesticFormState.errors.activities_required
 
   return ( 
   <div id="fase4">
 
       <div id="small">
-          <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.4.mensaje')}</span><br />
+          <span className="red">*  </span><span className="blue">{t('SolicitarCuidador.fases.4.mensaje')}</span><br />
       </div>
 
       <div id="titulo">
-          <h2 className="blue" >{t('SolicitarNiñera.fases.4.titulo')}</h2><br />
+          <h2 className="blue" >{t('SolicitarCuidador.fases.4.titulo')}</h2><br />
       </div>
       <div id="contenido">
           <div id="titulos">
-              <p>{t('SolicitarNiñera.fases.4.indique')} </p>
-              <h2>{t('SolicitarNiñera.fases.4.ejemplo')}</h2>
+              <p>{t('SolicitarCuidador.fases.4.indique')} </p>
+              <h2>{t('SolicitarCuidador.fases.4.ejemplo')}</h2>
               <ul>
-                  <li>{t('SolicitarNiñera.fases.4.ejemplos.0')}</li>
-                  <li>{t('SolicitarNiñera.fases.4.ejemplos.1')}</li>
-                  <li>{t('SolicitarNiñera.fases.4.ejemplos.2')}</li>
-                  <li>{t('SolicitarNiñera.fases.4.ejemplos.3')}</li>
-                  <li>{t('SolicitarNiñera.fases.4.ejemplos.4')}</li>
-                  <li>{t('SolicitarNiñera.fases.4.ejemplos.5')}</li>
-                  <li>{t('SolicitarNiñera.fases.4.ejemplos.6')}</li>
+                  <li>{t('SolicitarCuidador.fases.4.ejemplos.0')}</li>
+                  <li>{t('SolicitarCuidador.fases.4.ejemplos.1')}</li>
+                  <li>{t('SolicitarCuidador.fases.4.ejemplos.2')}</li>
+                  <li>{t('SolicitarCuidador.fases.4.ejemplos.3')}</li>
+                  <li>{t('SolicitarCuidador.fases.4.ejemplos.4')}</li>
+                  <li>{t('SolicitarCuidador.fases.4.ejemplos.5')}</li>
+                  <li>{t('SolicitarCuidador.fases.4.ejemplos.6')}</li>
               </ul>
           </div>
           <div >
-              <div id="peq"><span className="red">* </span><h2>{t('SolicitarNiñera.fases.4.especifique')}</h2></div>
+              <div id="peq"><span className="red">* </span><h2>{t('SolicitarCuidador.fases.4.especifique')}</h2></div>
           </div>
 
             <div id="form">
@@ -843,9 +835,9 @@ const Fase4 = () => {
 
                 { activities_required && <ErrorMessage message={t('SolicitarNiñera.errores.requerido')}/>  }
             </div>
-
-
+            
       </div>
+      
   </div>
 
    );
@@ -863,17 +855,16 @@ const Fase5 = () => {
     const [salaryType, setSalaryType] = useState("");
 
     //dropdown currency
-    let currency = ["USD","EUR",t('SolicitarNiñera.fases.5.otro')];
+    let currency = ["USD","EUR",t('SolicitarCuidador.fases.5.otro')];
     const [selectedCurrency,setSelectedCurrency] = useState(switchCurrency());
     
 
     //dropdown salary
-    let salary = [t('SolicitarNiñera.fases.5.salario-opciones.0'), t('SolicitarNiñera.fases.5.salario-opciones.1'), t('SolicitarNiñera.fases.5.salario-opciones.2'), t('SolicitarNiñera.fases.5.salario-opciones.3'), t('SolicitarNiñera.fases.5.salario-opciones.4')];
+    let salary = [t('SolicitarCuidador.fases.5.salario-opciones.0'), t('SolicitarCuidador.fases.5.salario-opciones.1'), t('SolicitarCuidador.fases.5.salario-opciones.2'), t('SolicitarCuidador.fases.5.salario-opciones.3'), t('SolicitarCuidador.fases.5.salario-opciones.4')];
     const [selectedSalary, setSelectedSalary] = useState(switchSalary());
 
     const [selectedServices, setSelectedServices] = useState("");
 
- 
     const workday_required = requestDomesticFormState.errors.workday_required
     const workday_other_required = requestDomesticFormState.errors.workday_other_required
     const schedule_required = requestDomesticFormState.errors.schedule_required
@@ -882,6 +873,7 @@ const Fase5 = () => {
     const salary_required = requestDomesticFormState.errors.salary_required
     const salary_other_required = requestDomesticFormState.errors.salary_other_required
     const benefits_required = requestDomesticFormState.errors.benefits_required
+
 
     function setTheWorkdays (e){
 
@@ -997,17 +989,17 @@ const Fase5 = () => {
     return ( 
         <div id="fase5">
             <div className="small">
-                <span className="red">* </span><span className="blue">{t('SolicitarNiñera.fases.5.mensaje')}</span>
+                <span className="red">* </span><span className="blue">{t('SolicitarCuidador.fases.5.mensaje')}</span>
             </div>
 
             <div>
-                <h1 className="blue">{t('SolicitarNiñera.fases.5.nombre')}</h1>
+                <h1 className="blue">{t('SolicitarCuidador.fases.5.nombre')}</h1>
             </div>
 
             
                 <div>
                     <div className="titulos">
-                        <span className="red">* </span><h2>{t('SolicitarNiñera.fases.5.salidas-jornada')}</h2>
+                        <span className="red">* </span><h2>{t('SolicitarCuidador.fases.5.salidas-jornada')}</h2>
                     </div>
                     <div className="form" >
                         <div>
@@ -1237,7 +1229,6 @@ const Fase5 = () => {
 
                         { schedule_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option')}/>  }
                     { schedule_other_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
-
                     </div>
 
                 </div>
@@ -1300,10 +1291,10 @@ const Fase5 = () => {
 
                         <div className="dropdown-content" style={{ visibility: requestDomesticFormState.payment == "MONTO" ? 'visible' : 'hidden' }}>
                             <FieldDropdown
-                                title={t('SolicitarNiñera.fases.5.moneda')}
+                                title={t('SolicitarCuidador.fases.5.moneda')}
                                 placeholder={
                                     selectedCurrency != -1?
-                                        currency[selectedCurrency]:t('SolicitarNiñera.fases.5.selecciona-moneda')
+                                        currency[selectedCurrency]:t('SolicitarCuidador.fases.5.selecciona-moneda')
                                 }
                                 items={currency}
                                 setSelectedState={setSelectedCurrency}
@@ -1311,7 +1302,7 @@ const Fase5 = () => {
                             
                             {selectedCurrency==2 && 
                                 <div>
-                                    <label htmlFor="especifique">{t('SolicitarNiñera.fases.5.especifique')}</label>    
+                                    <label htmlFor="especifique">{t('SolicitarCuidador.fases.5.especifique')}</label>    
                                     <input  id="especifique"
                                             type="text"
                                             value={requestDomesticFormState.currency_other} 
@@ -1331,17 +1322,16 @@ const Fase5 = () => {
 
                         <div className="dropdown-content" style={{ visibility: requestDomesticFormState.payment == "MONTO" ? 'visible' : 'hidden' }}>
                             <FieldDropdown
-                                    title={t('SolicitarNiñera.fases.5.salario-ofrecido')}
+                                    title={t('SolicitarCuidador.fases.5.salario-ofrecido')}
                                     placeholder={
                                         selectedSalary != -1?
-                                            salary[selectedSalary]:t('SolicitarNiñera.fases.5.seleccione-salario')
+                                            salary[selectedSalary]:t('SolicitarCuidador.fases.5.seleccione-salario')
                                     }
                                     items={salary}
                                     setSelectedState={setSelectedSalary}
                             />
                         </div>
-                        
-                      
+
                         
 
                     </div>
@@ -1349,19 +1339,20 @@ const Fase5 = () => {
                     { salary_option_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option_required')}/>  }
                         { salary_required && <ErrorMessage message={t('OfrecermeNiñera.errores.salario')}/>  }
                         { salary_other_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
+
                 </div>
 
                 <div id="beneficio-laboral">
                     <div className="titulos">
-                        <span className="red">* </span><h2 className="blue">{t('SolicitarNiñera.fases.5.beneficio-laboral')}</h2>
+                        <span className="red">* </span><h2 className="blue">{t('SolicitarCuidador.fases.5.beneficio-laboral')}</h2>
                     </div>
                     <div id="row">
                         <div>
-                            <h2>{t('SolicitarNiñera.fases.5.ejemplo')}</h2>
-                            <p> {t('SolicitarNiñera.fases.5.ejemplos.0')}<br/>
-                                {t('SolicitarNiñera.fases.5.ejemplos.1')}<br/>
-                                {t('SolicitarNiñera.fases.5.ejemplos.2')}<br/>
-                                {t('SolicitarNiñera.fases.5.ejemplos.3')}</p>
+                            <h2>{t('SolicitarCuidador.fases.5.ejemplo')}</h2>
+                            <p> {t('SolicitarCuidador.fases.5.ejemplos.0')}<br/>
+                                {t('SolicitarCuidador.fases.5.ejemplos.1')}<br/>
+                                {t('SolicitarCuidador.fases.5.ejemplos.2')}<br/>
+                                {t('SolicitarCuidador.fases.5.ejemplos.3')}</p>
                         </div>
                         
                         <div id="form-horizontal">
@@ -1421,9 +1412,9 @@ const Fase5 = () => {
                                 </textarea>
                             </div>
                         </div>
-                       
+                        { benefits_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
                     </div>
-                    { benefits_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
+                    
                 </div>
         </div>
      );
@@ -1434,7 +1425,7 @@ const  Fase6= () => {
   const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
 
   const date_required = requestDomesticFormState.errors.date_required
-    const date_opt_required = requestDomesticFormState.errors.date_opt_required 
+  const date_opt_required = requestDomesticFormState.errors.date_opt_required 
 
   return(
       <div id="fase6">
@@ -1501,7 +1492,7 @@ const  Fase6= () => {
                         </div>
                     }
               </div>
-              { date_opt_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option_required')}/>  }
+                { date_opt_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option_required')}/>  }
                 { date_required && <ErrorMessage message={t('OfrecermeNiñera.errores.fecha')}/>  }
       </div>
   </div>
@@ -1535,14 +1526,14 @@ const Fase7 = () => {
         <div id="fase8">
 
         <div id="small">
-            <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.8.mensaje')}</span><br />
+            <span className="red">*  </span><span className="blue">{t('SolicitarCuidador.fases.8.mensaje')}</span><br />
         </div>
 
         <div id="titulo">
-            <h2 className="blue" >{t('SolicitarNiñera.fases.8.titulo')}</h2><br />
+            <h2 className="blue" >{t('SolicitarCuidador.fases.8.titulo')}</h2><br />
         </div>
         <div id="contenido">
-            <h2>{t('SolicitarNiñera.fases.8.posee-documentacion')}</h2>
+            <h2>{t('SolicitarCuidador.fases.8.posee-documentacion')}</h2>
 
             <div id="form">
                 <div id="form-horizontal">
@@ -1558,7 +1549,7 @@ const Fase7 = () => {
                                     })
                                 }}
                                 />
-                        <label htmlFor="c1">{t('SolicitarNiñera.fases.8.si')}</label> 
+                        <label htmlFor="c1">{t('SolicitarCuidador.fases.8.si')}</label> 
                     </div>
 
                     <div id="segundo">
@@ -1573,53 +1564,53 @@ const Fase7 = () => {
                                     })
                                 }}
                         />
-                        <label htmlFor="c2">{t('SolicitarNiñera.fases.8.no')}</label> 
+                        <label htmlFor="c2">{t('SolicitarCuidador.fases.8.no')}</label> 
                     </div>
                 </div>
                 { requestDomesticFormState.have_documentation &&
                 <div >
-                    <h2>{t('SolicitarNiñera.fases.8.documentos')}</h2>
+                    <h2>{t('SolicitarCuidador.fases.8.documentos')}</h2>
                     <div id="selects">
                         <div>
                             <input type="checkbox" id="d1" value="PASAPORTE" checked={requestDomesticFormState.documents.includes("PASAPORTE")} onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d1">{t('SolicitarNiñera.fases.8.documentos-opciones.0')}</label>
+                            <label htmlFor="d1">{t('SolicitarCuidador.fases.8.documentos-opciones.0')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d2" value="CURRICULUM" checked={requestDomesticFormState.documents.includes("CURRICULUM")}  onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d2">{t('SolicitarNiñera.fases.8.documentos-opciones.1')}</label>
+                            <label htmlFor="d2">{t('SolicitarCuidador.fases.8.documentos-opciones.1')}</label>
                         </div>    
                         <div>
                             <input type="checkbox" id="d3" value="TITULOS" checked={requestDomesticFormState.documents.includes("TITULOS")} onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d3">{t('SolicitarNiñera.fases.8.documentos-opciones.2')}</label>
+                            <label htmlFor="d3">{t('SolicitarCuidador.fases.8.documentos-opciones.2')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d4" value="REF_TRABAJO" checked={requestDomesticFormState.documents.includes("REF_TRABAJO")}  onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d4">{t('SolicitarNiñera.fases.8.documentos-opciones.3')}</label>
+                            <label htmlFor="d4">{t('SolicitarCuidador.fases.8.documentos-opciones.3')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d5" value="REF_FAMILIAR" checked={requestDomesticFormState.documents.includes("REF_FAMILIAR")}  onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d5">{t('SolicitarNiñera.fases.8.documentos-opciones.4')}</label>
+                            <label htmlFor="d5">{t('SolicitarCuidador.fases.8.documentos-opciones.4')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d6" value="CONST_RESIDENCIA" checked={requestDomesticFormState.documents.includes("CONST_RESIDENCIA")}  onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d6">{t('SolicitarNiñera.fases.8.documentos-opciones.5')}</label>
+                            <label htmlFor="d6">{t('SolicitarCuidador.fases.8.documentos-opciones.5')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d7" value="CONST_ANTECEDENTES" checked={requestDomesticFormState.documents.includes("CONST_ANTECEDENTES")} onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d7">{t('SolicitarNiñera.fases.8.documentos-opciones.6')}</label>
+                            <label htmlFor="d7">{t('SolicitarCuidador.fases.8.documentos-opciones.6')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d8" value="SALUD" checked={requestDomesticFormState.documents.includes("SALUD")}  onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d8">{t('SolicitarNiñera.fases.8.documentos-opciones.7')}</label>
+                            <label htmlFor="d8">{t('SolicitarCuidador.fases.8.documentos-opciones.7')}</label>
                         </div>
                         <div>
                             <input type="checkbox" id="d9" value="OTRO" checked={requestDomesticFormState.documents.includes("OTRO")}  onChange={ e => selectDocuments(e)}/>
-                            <label htmlFor="d9">{t('SolicitarNiñera.fases.8.documentos-opciones.8')}</label>
+                            <label htmlFor="d9">{t('SolicitarCuidador.fases.8.documentos-opciones.8')}</label>
                         </div>
                         
                         { requestDomesticFormState.documents.includes("OTRO") &&
                         <div>
-                            <p> {t('OfrecermeNiñera.fases.3.especifique')}</p> <input  type="text" 
+                            <p> {t('OfrecermeNiñera.fases.3.especifique')} </p> <input  type="text" 
                                                         onChange={ e => {
                                                             setRequestDomesticFormState( prev => {
                                                                 const newState = {...prev};
@@ -1630,9 +1621,7 @@ const Fase7 = () => {
                                                         value={requestDomesticFormState.documents_other}
                                                 />
                         </div>}
-                        
                         { other_doc_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
-
                     </div>
                 </div>
                 }
@@ -1651,30 +1640,30 @@ const Fase8 = () => {
   return ( 
       <div id="fase11">
           <div id="small">
-              <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.11.mensaje')}</span><br />
+              <span className="red">*  </span><span className="blue">{t('SolicitarCuidador.fases.11.mensaje')}</span><br />
           </div>
-          <h2 className="blue">{t("SolicitarNiñera.fases.11.titulo")}</h2>
+          <h2 className="blue">{t("SolicitarCuidador.fases.11.titulo")}</h2>
           <div>
-              <h2>{t("SolicitarNiñera.fases.11.titulos.0")}</h2>
-              <p>{t("SolicitarNiñera.fases.11.parrafos.1")}</p>
-              <p>{t("SolicitarNiñera.fases.11.parrafos.2")}</p>
-              <p>{t("SolicitarNiñera.fases.11.parrafos.3")}</p>
-              <p>{t("SolicitarNiñera.fases.11.parrafos.4")}</p>
+              <h2>{t("SolicitarCuidador.fases.11.titulos.0")}</h2>
+              <p>{t("SolicitarCuidador.fases.11.parrafos.1")}</p>
+              <p>{t("SolicitarCuidador.fases.11.parrafos.2")}</p>
+              <p>{t("SolicitarCuidador.fases.11.parrafos.3")}</p>
+              <p>{t("SolicitarCuidador.fases.11.parrafos.4")}</p>
           </div>
           <div>
-              <h2>{t("SolicitarNiñera.fases.11.titulos.1")}</h2>
-              <p>{t("SolicitarNiñera.fases.11.parrafos.5")}</p>
-              <p>{t("SolicitarNiñera.fases.11.parrafos.12")}</p>
-              <p>{t("SolicitarNiñera.fases.11.parrafos.6")}</p>
+              <h2>{t("SolicitarCuidador.fases.11.titulos.1")}</h2>
+              <p>{t("SolicitarCuidador.fases.11.parrafos.5")}</p>
+              <p>{t("SolicitarCuidador.fases.11.parrafos.12")}</p>
+              <p>{t("SolicitarCuidador.fases.11.parrafos.6")}</p>
           </div>
           
           <div>
-              <h2>{t("SolicitarNiñera.fases.11.titulos.4")}</h2>
-              <p>{t("SolicitarNiñera.fases.11.parrafos.9")}</p>
+              <h2>{t("SolicitarCuidador.fases.11.titulos.4")}</h2>
+              <p>{t("SolicitarCuidador.fases.11.parrafos.9")}</p>
           </div>
           <div>
-              <h2>{t("SolicitarNiñera.fases.11.titulos.6")}</h2>
-              <p>{t("SolicitarNiñera.fases.11.parrafos.11")}</p>
+              <h2>{t("SolicitarCuidador.fases.11.titulos.6")}</h2>
+              <p>{t("SolicitarCuidador.fases.11.parrafos.11")}</p>
           </div>
 
       </div>
@@ -1688,13 +1677,13 @@ const Fase9 = () => {
   return ( 
       <div id="fase10">
           <div id="small">
-              <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.10.mensaje')}</span><br />
+              <span className="red">*  </span><span className="blue">{t('SolicitarCuidador.fases.10.mensaje')}</span><br />
           </div>
           <div>
-              <h2 className="blue">{t("SolicitarNiñera.fases.10.titulo")}</h2>
+              <h2 className="blue">{t("SolicitarCuidador.fases.10.titulo")}</h2>
               
-                  <p>{t("SolicitarNiñera.fases.10.sugerencias.0")}</p>
-                  <p>{t("SolicitarNiñera.fases.10.sugerencias.1")}</p>
+                  <p>{t("SolicitarCuidador.fases.10.sugerencias.0")}</p>
+                  <p>{t("SolicitarCuidador.fases.10.sugerencias.1")}</p>
               
           </div>
       </div>
@@ -1708,23 +1697,23 @@ const Fase10 = () => {
   return ( 
       <div id="fase12">
           <div id="small">
-              <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.12.mensaje')}</span><br />
+              <span className="red">*  </span><span className="blue">{t('SolicitarCuidador.fases.12.mensaje')}</span><br />
           </div>
           
           <div className="red">
-              <p>{t("SolicitarNiñera.fases.12.parrafos.0")}</p>
-              <p>{t("SolicitarNiñera.fases.12.parrafos.1")}</p>
+              <p>{t("SolicitarCuidador.fases.12.parrafos.0")}</p>
+              <p>{t("SolicitarCuidador.fases.12.parrafos.1")}</p>
 
           </div>
       </div>
    );
 }
 
-const Fase11 = () => {
+const Fase111 = () => {
     
     const { t, i18n } = useTranslation();
-    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
-
+  const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+  
     var val=[1,2,3];
     
     //radio buttons form
@@ -1740,16 +1729,11 @@ const Fase11 = () => {
     // aux haves the values for each bank of the selectedCountry
     const [aux,setaux] = useState([]);
     const [aux2,setaux2] = useState([]);
-
-    //bank selected
-    const [foundBank,setFoundBank] = useState(-1);
     
-    const billing_required = requestDomesticFormState.errors.billing_required 
-
     useEffect(() => {
         const getBanks = async () => {
           try {
-            const response = await axios.get(`http://localhost:8000/banks/`);
+            const response = await axios.get(`http://127.0.0.1:8000/banks/`);
             return response.data; // Return the response data instead of the entire response
           } catch (error) {
             console.error(error);
@@ -1772,7 +1756,241 @@ const Fase11 = () => {
             if(!bank_countries.includes(banks[i].country)) auxC.push(banks[i].country);
 
         setbank_countries(auxC);
-        console.log("***", banks)
+        
+        
+        if (requestDomesticFormState.billing_country !== "" && bank_countries.length > 0) {
+            const foundCountry = bank_countries.find(
+              (country) => country === requestDomesticFormState.billing_country
+            );
+            if (foundCountry) {
+                setSelectedCountry(foundCountry);
+            }
+          }
+
+    },[banks]);
+
+    useEffect(()=>{
+        let aux1 = [];
+        let aux12 = [];
+        if (selectedCountry != -1){
+            for (let i=0; i<banks.length; i++){
+                if ( banks[i].country == bank_countries[selectedCountry] ) aux1.push(banks[i].name+ " - "+ banks[i].account +" - "+ banks[i].swift_code);
+                aux12.push(banks[i].name+ " - "+ banks[i].account +" - "+ banks[i].swift_code);
+            }
+            setaux(aux1);
+            setaux2(aux12);
+        }
+        
+
+        if( bank_countries != undefined && bank_countries.length > 0 ) 
+            setRequestDomesticFormState ( prev => {
+                const newState = {...prev};
+                newState.billing_country = bank_countries[selectedCountry];
+                return newState
+            });
+
+    },[selectedCountry]);
+
+    useEffect(() => {
+        if (aux2 !== undefined && aux2.length > 0 && aux !== undefined) {
+            
+            const foundBank = aux2.indexOf(aux[selectedBanks]);
+          if (foundBank !== undefined) {
+            setRequestDomesticFormState((prev) => {
+              const newState = { ...prev };
+              newState.billing_bank = foundBank;
+              return newState;
+            });
+          }
+        }
+      }, [selectedBanks, aux2, aux]);
+
+    function changePlan(e){
+        
+        setRequestDomesticFormState( prev =>{
+            const newState = {...prev};
+            newState.publication_time = e.target.value;
+            newState.publication_plan = e.target.value;
+            return newState;
+        });
+    }
+
+    return ( 
+        <div id="fase13">
+            
+            
+            <div id="small">
+                <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.13.mensaje')}</span><br />
+            </div>
+
+            <div id="two-columns">
+                <div id="first-column">
+                    <h2 className="blue">{t('OfrecermeNiñera.fases.13.plan-seleccionado')}</h2>
+                    <div id="form-vertical">
+                    
+                        <div>
+                            <input type="radio" value="1" id="c1" checked={requestDomesticFormState.publication_time == "1"} onChange={(e)=>{changePlan(e)}}/>
+                            <label htmlFor="c1">1 {t('OfrecermeNiñera.fases.13.mes')}</label>
+                        </div>
+                        <div>
+                            <h3 className="red">10 USD</h3>
+                        </div>
+                        <div>
+                            <input type="radio" value="3" id="c2" checked={requestDomesticFormState.publication_time == "3"} onChange={(e)=>{changePlan(e)}}/>
+                            <label htmlFor="c2">3 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                        </div>
+                        
+                        <div>
+                            <h3 className="red">25 USD</h3>
+                        </div>    
+
+                        <div>
+                            <input type="radio" value="6" id="c3" checked={requestDomesticFormState.publication_time == "6"} onChange={(e)=>{changePlan(e)}}/>
+                            <label htmlFor="c3">6 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                        </div>    
+
+                        <div>
+                            <h3 className="red">50 USD</h3>
+                        </div>
+
+                        <div>
+                            <input type="radio" value="9" id="c4" checked={requestDomesticFormState.publication_time == "9"} onChange={(e)=>{changePlan(e)}}/>
+                            <label htmlFor="c4">9 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                        </div>    
+
+                        <div>
+                            <h3 className="red">70 USD</h3>
+                        </div>
+
+                        <div>
+                            <input type="radio" value="12" id="c5" checked={requestDomesticFormState.publication_time == "12"} onChange={(e)=>{changePlan(e)}}/>
+                            <label htmlFor="c5">12 {t('OfrecermeNiñera.fases.13.meses')}</label>
+                        </div>    
+
+                        <div>
+                            <h3 className="red">90 USD</h3>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div id="second-column">
+                    <div className="blue-box">
+                        <p>{t('OfrecermeNiñera.fases.13.forma-pago')}</p>
+                    </div>
+                    <p>{t('OfrecermeNiñera.fases.13.forma-pago-descripcion')}</p>
+
+                    <div className="blue-box">
+                        <p>{t('OfrecermeNiñera.fases.13.pais-titulo')}</p>
+                    </div>
+                    <p id="less-margin">{t('OfrecermeNiñera.fases.13.pais-titulo-descripcion')}</p>
+
+                    
+                        <div className="dropdown-content">
+                            <FieldDropdown 
+                                title={t('OfrecermeNiñera.fases.13.pais')}
+                                placeholder={t('SolicitarCuidador.fases.13.seleccione-pais')}
+                                items={bank_countries}
+                                setSelectedState={setSelectedCountry}
+                            />
+                        </div>
+                    
+                    
+                    <div className="blue-box">
+                        <p>{t('OfrecermeNiñera.fases.13.cuentas')}</p>
+                    </div>
+                        <div className="dropdown-content" id="bancos">
+                        
+                            {selectedCountry != -1 &&
+                            
+                                <FieldDropdown    
+                                    title={t('OfrecermeNiñera.fases.13.banco')}
+                                    placeholder={t('OfrecermeNiñera.fases.13.seleccione-banco')}
+                                    items= {aux}
+                                    setSelectedState={setSelectedBanks}
+                                />
+                            }
+                        </div>
+
+                        { requestDomesticFormState.billing_bank != -1 && banks.length>0 && selectedBanks != -1 && selectedCountry != -1 &&    
+                        <div id="bank-info">
+                            <div id="azul">
+                                {banks[0].name}
+                            </div>
+                            <div id="columns">
+                                <div>
+                                    <span className="red">{t('OfrecermeNiñera.fases.13.formadepago')}</span>
+                                        <ul>
+                                            <li>{t('OfrecermeNiñera.fases.13.deposito')}</li>
+                                            <li>{t('OfrecermeNiñera.fases.13.transferencia-bancaria')}</li>
+                                        </ul>
+                                </div>
+                                <div>
+                                    <p><span>{t('OfrecermeNiñera.fases.13.pais')}</span>: {banks[0].country}</p>
+                                    <p><span>{t('OfrecermeNiñera.fases.13.banco')}</span>: {banks[0].name}</p>
+                                    <p><span>{t('OfrecermeNiñera.fases.13.numero-cuenta')}</span>: {banks[0].account}</p>
+                                    <p><span>{t('OfrecermeNiñera.fases.13.codigo-swift')}</span>: {banks[0].swift_code}</p>
+                                </div>
+                            </div>
+                        </div>
+                        }
+
+                </div>
+            </div>
+        </div>
+     );
+}
+
+const Fase11 = () => {
+    
+    const { t, i18n } = useTranslation();
+    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+
+    var val=[1,2,3];
+    
+    //radio buttons form
+    const [publication_time, setpublication_time] = useState(requestDomesticFormState.publication_time);
+
+    const billing_required = requestDomesticFormState.errors.billing_required 
+
+    //this is for the dropdowns
+    const [banks, setBanks] = useState([]);
+    const [bank_countries,setbank_countries] = useState([]);
+    
+    const [selectedBanks, setSelectedBanks] = useState(-1);
+    const [selectedCountry, setSelectedCountry] = useState(-1) 
+    // aux haves the values for each bank of the selectedCountry
+    const [aux,setaux] = useState([]);
+    const [aux2,setaux2] = useState([]);
+
+    //bank selected
+    const [foundBank,setFoundBank] = useState(-1);
+    
+    useEffect(() => {
+        const getBanks = async () => {
+          try {
+            const response = await axios.get(`http://127.0.0.1:8000/banks/`);
+            return response.data; // Return the response data instead of the entire response
+          } catch (error) {
+            console.error(error);
+          }
+        };
+      
+        const fetchBanks = async () => {
+          const banksData = await getBanks(); // Await the getBanks() function to resolve the Promise
+          setBanks(banksData); // Update the banks state with the fetched data
+        };
+      
+        fetchBanks();
+      }, []);
+    
+    
+    useEffect(() =>{
+        let auxC = []
+
+        for (let i=0; i<banks.length; i++)
+            if(!bank_countries.includes(banks[i].country)) auxC.push(banks[i].country);
+
+        setbank_countries(auxC);
         
         
         if (requestDomesticFormState.billing_country !== "" && bank_countries.length > 0) {
@@ -1911,7 +2129,6 @@ const Fase11 = () => {
                                 items={bank_countries}
                                 setSelectedState={setSelectedCountry}
                             />
-                            {console.log(bank_countries)}
                         </div>
                     
                     
@@ -1954,7 +2171,7 @@ const Fase11 = () => {
                             </div>
                         </div>
                         }
-                     { billing_required && <ErrorMessage message={t('OfrecermeNiñera.errores.banco')}/>  }
+                        { billing_required && <ErrorMessage message={t('OfrecermeNiñera.errores.banco')}/>  }
                 </div>
             </div>
         </div>
@@ -1981,20 +2198,19 @@ const botonEnviar = () => {
         setRequestDomesticFormState ( prev => {
             const newState = {... prev};
             newState.user = authState.id;
-            newState.service = "NIN";
+            newState.service = "CUI";
             return newState;
         });
     }, [])
 
-    console.log(postData);
-
+    console.log(JSON.stringify(postData));
     return(
         <button
             id="boton_registrar"
             
             onClick={
                 async () => {
-
+                    
                     //Autenticar última fase
                     if(!requestDomesticFormState.billing_country || !requestDomesticFormState.billing_bank){
                         setRequestDomesticFormState((prev) => {
@@ -2010,8 +2226,8 @@ const botonEnviar = () => {
                             return newState;
                           })
                     }
-
-                    const url = 'http://localhost:8000/api-services/requestService/post_ad/'
+                    
+                    const url = 'http://127.0.0.1:8000/api-services/requestService/post_ad/'
                     try {
                         
                         const response = await fetch( url,{
@@ -2373,6 +2589,6 @@ const useValidar = () => {
     return { validate };
 };
 
-const FasesSolicitarNiñera = [Fase0, Fase1, Fase2, Fase3, Fase4, Fase5, Fase6, Fase7, Fase8, Fase9, Fase10, Fase11];
+const FasesSolicitarCuidador = [Fase0, Fase1, Fase2, Fase3, Fase4, Fase5, Fase6, Fase7, Fase8, Fase9, Fase10, Fase11];
 
-export {FasesSolicitarNiñera, botonEnviar, useValidar};
+export {FasesSolicitarCuidador, botonEnviar, useValidar};

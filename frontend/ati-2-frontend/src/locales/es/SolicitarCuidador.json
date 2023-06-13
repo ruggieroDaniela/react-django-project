@@ -1,10 +1,10 @@
 {
-    "SolicitarNiñera":{
-        "niñera": "Niñera",
+    "SolicitarCuidador":{
+        "niñera": "Cuidador",
         "cliente": "Cliente",
         "pais":"País",
         "estado":"Estado, provincia o cantón  ",
-        "titulo": "SOLICITAR NIÑERA(O)",
+        "titulo": "SOLICITAR CUIDADOR(A) OCUPACIONAL",
         "telefono_movil":"Télefono Móvil",
         "telefono_fijo":"Télefono Fijo",
         "correo":"Correo electrónico",
@@ -23,15 +23,15 @@
               "campos": "Campos obligatorios",
               "solicito": "Solicito",
               "mensaje":"Por favor, proporcione los datos especificados a continuación",
-              "niñera": "Niñera",
-              "niñero": "Niñero",
+              "niñera": "Cuidadora",
+              "niñero": "Cuidador",
               "indiferente-sexo": "Me es indiferente su sexo",
               "indiferente-edad": "Me es indiferente su edad",
               "indiferente-hijos": "Me es indiferente si tiene hijos o no",
               "presencia": "Con buena presencia, responsable, honesta, buen carácter, que le gusten los niños",
               "entre": "Entre",
               "y": "y",
-              "años":" años",
+              "años":"años",
               "edad-solicita": "Edad que se solicita",
               "edad":"Edad",
               "situacion-familiar":"Situación familiar",
@@ -75,15 +75,15 @@
               "enfermedades":"Indique la(s) enfermedad(es), si tienen tratamiento, y otros detalles de su interés"
             },
             {
-              "nombre":"Disponibilidad para viajar de la niñera(o)",
+              "nombre":"Disponibilidad para viajar del niñero(a)",
               "mensaje":"Por favor, indique la disponibilidad para viajar de la niñera(o)",
-              "pregunta":"¿La niñera o niñero debe estar dispuesta a viajar, para acompañar a la persona a cuidar?",
+              "pregunta":"¿El cuidador o cuidadora debe estar dispuesta a viajar, para acompañar a la persona a cuidar?",
               "si":"si",
               "no":"no",
               "especifique":"Especifique"
             },
             {
-              "nombre": "Funciones desempeñadas como niñera(o)",
+              "nombre": "Funciones que debe cumplir la cuidadora o el cuidador",
               "mensaje":"Por favor, indique las actividades que ha desempeñado como niñera(o)",
               "titulo":"Funciones que ha desempeñado como niñera o niñero",
               "indique":"Indique las actividades que ha realizado en esta vacante",
@@ -291,19 +291,7 @@
               "tipo-cuenta":"Tipo de cuenta"
             }
           ],
-        "continuar": "Continuar",
-        "atras": "Atrás",
-        "errores": {
-          "rango_edad": "Rango de edad inválido. Debe estar entre 0 y 12",
-          "pais": "Debe seleccionar un país",
-          "estado": "Debe seleccionar un estado/provincia",
-          "ciudad": "Debe seleccionar una ciudad",
-          "requerido": "Este campo es obligatorio",
-          "numero": "Debe ingresar un número válido",
-          "edad": "Debe ingresar las edades de las personas",
-          "genero": "Debe ingresar los géneros de las personas",
-          "enfermedad": "Debe indicar al menos una discapacidad o una enfermedad",
-          "fecha": "Debe seleccionar una fecha"
-          }
+        "continuar": "",
+        "atras": "Back"
     }
 }
