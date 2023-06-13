@@ -7,7 +7,6 @@
 
     .rectangle{
         color: white;
-        font-weight: bold;
         box-shadow: none;
         border: none;
         border-radius: 0.25rem;
@@ -22,6 +21,7 @@
             background-color: $azul-claro;
 
             &.tag{
+                font-weight: bold;
                 margin-top: 3rem;
                 width: 80%;
                 text-align: center;
@@ -31,12 +31,25 @@
 
         &.yellow{
             background-color: $dorado;
+            &.tag{
+                font-weight: bold;
+                width: fit-content;
+                text-align: center;
+                //margin-left: 8rem;
+            }
+        }
+
+        &.text{
+            width: 80%;
+            text-align: justify;
+            margin-left: 8rem;
+            color: black;
         }
     }
 
     .encabezado-perfil{
         display: grid;
-        grid-template-columns: 30% 20% 20% 30%;
+        grid-template-columns: 30% 10% 20% 20%;
         justify-content: center;
         margin-bottom: 0.2rem;
         
@@ -112,6 +125,16 @@
             grid-template-columns: 30% 70% ;
             margin-left: 10rem;
             padding-bottom: 0.4rem;
+        }
+
+        .data{
+            font-weight: bold;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            width: fit-content;        
+            margin-bottom: 0.5rem;    
         }
 
         p{

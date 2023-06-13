@@ -92,7 +92,7 @@ export const VisualizarPublicacionCreada = () => {
                 </div>
 
                 <div className='basico'>
-                    <p> <b>{data?.description || "Soy persona responsable, honesta, de buen carácter, y me gustan los niños(as)" } </b></p>                   
+                    <div className='rectangle text'> <b>{data?.description || "Soy persona responsable, honesta, de buen carácter, y me gustan los niños(as)" } </b></div>                   
                 </div>
 
                 { /* Edad que solicita */ }
@@ -117,6 +117,7 @@ export const VisualizarPublicacionCreada = () => {
                         <div className='subtitle blue'><b>{t('publicacionCreada.situcion_familiar_cuidador')}</b></div>
                         <div>{data?.have_children ? "Con hijos" : "Sin hijos" || 'con hijos'}</div>
                     </div>
+                    <div className='subtitle red'><b>PENDIENTE POR ACTIVAR</b></div>
                 </div>
 
                 { /* Grado de Instrucción */ }
@@ -169,7 +170,88 @@ export const VisualizarPublicacionCreada = () => {
 
                 <br></br>
 
+                {/* DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL */ }
+                <div className='basico'>
+                    <div className='rectangle blue tag'>DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL</div>                    
+                </div>
+                <br></br>
+
+                <div className='basico'>
+                    <div className='rectangle text'> {data?.description || "Persona con 5 años de experiencia en el cuidado de niños entre 0 y 11 años, en la ayuda de sus tareas, prepararles la comida, jugar con ellos. Tengo referencias laborales comprobables" }</div>                   
+                </div>
+
+                {/* FUNCIONES QUE HE DESEMPEÑADO */ }
+                <div className='basico'>
+                    <div className='rectangle blue tag'>{t('publicacionCreada.funciones_cumplir')}</div>                    
+                </div>
+                <br></br>
+
+                <div className='basico'>
+                    <div className='rectangle text'> Preparación de alimentos, Control de medicamentos, Baño e  higiene, Cambio de pañal, Jugar con los niños, Limpieza del hogar, Otros</div>                   
+                </div>
+
+                { /* DISPONIBILIDAD PARA VIAJAR */ }
+                <div className='basico'>
+                    <div className='rectangle blue tag'>{t('publicacionCreada.disponibilidad_viajar')}</div>                    
+                </div>
+                <br></br>
+
+                <div className='basico'>
+                    <div className='rectangle text'> Si </div>                   
+                </div>
+
+                <div className='basico'>
+                    {true && <div className='rectangle text'> Si, La persona debe estar dispuesta a viajar 1 vez al mes al exterior</div>}                  
+                </div>
+               
+                { /* CONDICIONES DE TRABAJO */ }
+                <div className='basico'>
+                    <div className='rectangle blue tag'>{t('publicacionCreada.condiciones_trabajo')}</div>                    
+                </div>
+                <br></br>
+
+                { /* Salidas que prefiero  */ }
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='rectangle yellow tag'>{t('publicacionCreada.salida_cuidador')}</div>
+                        <div className='data'>  {data?.workday || "Fin de semana"}  </div>
+                    </div>
+                </div>
+
+                { /* Horario  */ }
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='rectangle yellow tag'>{t('publicacionCreada.horario_trabajo')}</div>
+                        <div className='data'> { data?.schedule || "Lunes a Viernes"}  </div>
+                    </div>
+                </div>
+
+                { /* Salario deseado  */ }
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='rectangle yellow tag'>{t('publicacionCreada.salario_ofrecido')} </div>
+                        <div className='data'> { (data?.payment_amount + " " + data?.currency + " " ) || "300$" }  </div>
+                    </div>
+                </div>
+
+                { /* SOLICITO OTRO BENEFICIO  */ }
+                <div className='basico'>
+                    <div className='rectangle blue tag'>{t('publicacionCreada.beneficios')}</div>                    
+                </div>
+               
+
+                { /* Solicito otros beneficios  */ }
+                <div className='basico'>
+                    <div className='rectangle text'> Si </div>                   
+                </div>
+                <div className='basico'>
+                    {true && <div className='rectangle text'> {data?.benefits_description ||
+                                                               "Especifique: Seguro social obligatorio,Póliza de HCM y cobertura a mis familiares, Ayuda para útiles escolares, Otros"} </div>}                  
+                </div>
                 
+                
+                { /* DISPONIBILIDAD PARA COMENZAR A TRABAJAR  */ }
+
                 {/*        
 
 
@@ -241,17 +323,6 @@ export const VisualizarPublicacionCreada = () => {
                                     
                             </section>
                         </section>
-                        <section className='container-01'>
-                            <section className='informacion-basica'>
-                                <section className='titulo-02'>
-                                    <h1 >{t('publicacionCreada.funciones_cumplir')}</h1>
-                                </section>                        
-                                <section>
-                                    <ul>
-                                        <li> Jugar</li>
-                                        <li> Dar Clases</li>
-                                    </ul>
-                                </section>
                         
                         
                             </section>
@@ -276,17 +347,7 @@ export const VisualizarPublicacionCreada = () => {
                 {
                     <>
                         <section className='container-01'>
-                            <section className='informacion-basica'>
-                                <section className='titulo-02'>
-                                    <h1> {t('publicacionCreada.disponibilidad_viajar')}</h1>
-                                </section>
-
-                                <section>
-                                    <p>
-                                        Si, La persona debe estar dispuesta a viajar 1 vez al mes al exterior
-                                    </p>
-                                </section>
-                            </section>
+                           
                             <section className='informacion-basica'>
                                 <section className='titulo-02'>
                                         <h1 >{t('publicacionCreada.disponibilidad_trabajar')} </h1>
