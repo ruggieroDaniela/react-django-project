@@ -422,8 +422,10 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='rectangle text'>Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado. </div>                   
                 </div>
-
+                
+                
                 { /* DATOS DE FACTURACIÓN */ }
+                {/*
                 <div className='basico'>
                     <div className='banco'>
                         <div className='rectangle blue tag smaller'> DATOS DE FACTURACIÓN </div>
@@ -441,6 +443,7 @@ export const VisualizarPublicacionCreada = () => {
                         <div className='subtitle black margin'> <b> 3 meses </b> 50 USD </div>                        
                     </div>                    
                 </div>
+                */}
 
                 {/*        
 
