@@ -9,7 +9,6 @@ import { AppContextProvider } from './context/AppContext';
 // Components
 import User from './components/user';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 
 // Routes
 import { NuestrosServicios } from './routes/NuestrosServicios';
