@@ -15,14 +15,14 @@ export const VisualizarPublicacionCreada = () => {
     const [data, setData] = useState({schedule: []});
     const {id} = useParams();
     let searchParams = location?.search;
-    const postType = searchParams.includes('provide')? 'provide':'request';
+    const postType = searchParams.includes('request')? 'request':'provide';
     const [servicio, setServicio] = useState('');
     const [documents, setDocuments] = useState(''); 
 
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api-services/provide/get_post/ea695afc-5d49-4b97-a1bf-fb721271ee81/`);
+                const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}/get_post/ea695afc-5d49-4b97-a1bf-fb721271ee81/`);
                 
                 // console.log(response.data);
                 setData(() => response.data);               
