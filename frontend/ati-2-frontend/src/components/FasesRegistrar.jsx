@@ -1902,7 +1902,7 @@ const useValidarRegistrar = () => {
 
     const uniqueEmail = async (email) => {
         try {
-            const response = await axios.post('http://localhost:8000/users/unique_email/', {"email": email })
+            const response = await axios.post(`${import.meta.env.VITE_DJANGO_API_URL}/users/unique_email/`, {"email": email })
             registerFormState.phase[5].client_code = response.data.client_code
             return true
         } catch(error) {
