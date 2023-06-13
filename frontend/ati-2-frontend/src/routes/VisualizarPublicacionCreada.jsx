@@ -250,7 +250,11 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.horario_trabajo')}</div>
-                        <div className='data'>  {t(`publicaciones_vista_lista.${data.schedule}`)}</div>
+                        <div className='data'>
+                        {data.schedule.map((scheduleItem, index) => (
+                            <div key={index}>{t(`publicaciones_vista_lista.${scheduleItem}`)}</div>
+                        ))}
+                        </div>
                     </div>
                 </div>
 
@@ -273,9 +277,9 @@ export const VisualizarPublicacionCreada = () => {
                 { /* Solicito otros beneficios  */ }
                 <div className='basico'>
                     {data.benefits === 1 ? (
-                    <div className='rectangle text'>Si</div>
+                    <div className='rectangle text'>{t('publicacionCreada.si')}</div>
                     ) : (
-                    <div className='rectangle text'>No</div>
+                    <div className='rectangle text'>{t('publicacionCreada.no')}o</div>
                     )}
                 </div>
 
@@ -348,10 +352,20 @@ export const VisualizarPublicacionCreada = () => {
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'> {data.have_documentation ? "Si" : "No"} </div>                   
+                    <div className='rectangle text'>
+                        {data.have_documentation ? t('publicacionCreada.si') : t('publicacionCreada.no')}
+                    </div>
                 </div>
                 <div className='basico'>
-                    {data.have_documentation && <div className='rectangle text'>{documents} </div>}                  
+                    {data.have_documentation && (
+                        <div>
+                        {data.documents.map((document, index) => (
+                            <div key={index} className='rectangle text'>
+                            {t(`publicaciones_vista_lista.${document}`)}
+                            </div>
+                        ))}
+                        </div>
+                    )}
                 </div>
                 
                 
