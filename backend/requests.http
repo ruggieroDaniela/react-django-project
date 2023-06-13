@@ -1,5 +1,5 @@
 ### ---- USUARIOS ----
-POST http://127.0.0.1:8000/users/
+POST http://localhost:8000/users/
 content-type: application/json
 
 {
@@ -27,7 +27,7 @@ content-type: application/json
     "want_inform" : true
 }
 ###
-POST http://127.0.0.1:8000/users/
+POST http://localhost:8000/users/
 content-type: application/json
 
 {
@@ -47,7 +47,7 @@ content-type: application/json
 }
 
 ###
-POST http://127.0.0.1:8000/users/
+POST http://localhost:8000/users/
 content-type: application/json
 
 {
@@ -74,12 +74,12 @@ POST http://localhost:8000/token-auth/
 content-type: application/json
 
 {
-    "username": "ati2.proyecto+carlos95@gmail.com",
-    "password": "12345678"
+    "username": "chachy.drs@gmail.com",
+    "password": "d12345678"
 }
 
 ### ---- FORMATO PARA LAS REQUEST A UNIQUE_EMAIL ---- 
-POST http://127.0.0.1:8000/users/unique_email/
+POST http://localhost:8000/users/unique_email/
 content-type: application/json
 
 {
@@ -87,7 +87,7 @@ content-type: application/json
 }
 
 ### ---- FORMATO PARA LAS REQUEST A GET_NAME ---- 
-POST http://127.0.0.1:8000/users/get_name/
+POST http://localhost:8000/users/get_name/
 content-type: application/json
 
 {
@@ -95,7 +95,7 @@ content-type: application/json
 }
 ###
 
-POST http://127.0.0.1:8000/users/get_email/
+POST http://localhost:8000/users/get_email/
 content-type: application/json
 
 {
@@ -104,7 +104,7 @@ content-type: application/json
 
 
 ### ---- BANKS ----
-POST http://127.0.0.1:8000/banks/
+POST http://localhost:8000/banks/
 content-type: application/json
 
 {
@@ -115,11 +115,11 @@ content-type: application/json
 }
 
 ###
-GET http://127.0.0.1:8000/banks/
+GET http://localhost:8000/banks/
 
 
 ### ----  A) Ofrecer mis servicios como personal domestico ----
-POST http://127.0.0.1:8000/api-services/provideService/post_ad/
+POST http://localhost:8000/api-services/provideService/post_ad/
 Authorization: "Token 840c5d2b1393d0ac78010861ff7473fac4fdc7eb"
 content-type: application/json
 
@@ -130,9 +130,9 @@ content-type: application/json
     "have_children": false,
     "education_level": "PRI",
     "continent": "Suramerica", 
-    "country": "VE",
-    "state": "Distrito Capital",
-    "city": "Caracas",
+    "country": "US",
+    "state": "US-CA",
+    "city": "V-Caracas",
     "zone": "La Pastora",
     "description": "Persona con 5 años de experiencia en el cuidado de niños entre 0 y 11 años, en la ayuda de sus tareas, prepararles la comida, jugar con ellos. Tengo referencias laborales comprobables",
     "travel": false,
@@ -167,22 +167,23 @@ content-type: application/json
 }
 
 ### B - Solicitar personal domestico
-POST http://127.0.0.1:8000/api-services/requestService/post_ad/
-Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
+POST http://localhost:8000/api-services/requestService/post_ad/
+Authorization: Token 37a1d6f044b37b12f9fafac9d2e89953e111aafd
 content-type: application/json
 
 {
-    "user": 11, 
+    "user": 40, 
     "service": "CUI",
     "gender": "IDC",
-    "age_required_from": 18,
-    "age_required_to": 26,
+    "age_requirement": false, 
+    "age_required_from": null,
+    "age_required_to": 23,
     "children": "IDC",
     "education_level": "PRI",
     "continent": "Suramerica", 
-    "country": "VE",
-    "state": "Carabobo",
-    "city": "San Diego",
+    "country": "US",
+    "state": "US-CA",
+    "city": "U-San Diego",
     "zone": "El Calabozo",
     "number_tco": 2,
     "age_tco": "18 y 25",
@@ -217,12 +218,12 @@ content-type: application/json
 
 ###
 
-POST http://127.0.0.1:8000/api-services/requestService/post_ad/
-Authorization: Token a64c87a4ff096c01bef71b1c9d8dc5445b578ec6
+POST http://localhost:8000/api-services/requestService/post_ad/
+Authorization: Token 37a1d6f044b37b12f9fafac9d2e89953e111aafd
 content-type: application/json
 
 {
-    "user": 11, 
+    "user": 40, 
     "service": "NIN",
     "gender": "IDC",
     "age_required_from": 10,
@@ -268,32 +269,32 @@ content-type: application/json
 ### C - Buscar personal doméstico 
 # Búsqueda : ?field__in=valor,valor&field=valor
 # Ordenar: ?ordering=field
-GET http://127.0.0.1:8000/api-services/provideService/?country=Venezuela
+GET http://localhost:8000/api-services/provideService/?country=Venezuela
 Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
 
 
 ### D - Buscar clientes 
 # Búsqueda : ?field__in=valor,valor&field=valor
 # Ordenar: ?ordering=field
-GET http://127.0.0.1:8000/api-services/requestService/?country=Venezuela
+GET http://localhost:8000/api-services/requestService/?country=Venezuela
 Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
 
 ### Ver mis publicaciones {user_id}
 ### Ofrecer/Provide 
-GET http://127.0.0.1:8000/api-services/provideService/2/
+GET http://localhost:8000/api-services/provideService/2/
 Authorization: Token 4c8522bf15678b3683239cb5d61bd3934aae3878
 
 ### Solicitar/Request 
-GET http://127.0.0.1:8000/api-services/requestService/2/
+GET http://localhost:8000/api-services/requestService/2/
 Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
 
 ### Ver publicaciones de otros 
 ### Ofrecer/Provide
-GET http://127.0.0.1:8000/api-services/provideService/
+GET http://localhost:8000/api-services/provideService/
 Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
 
 ### Solicitar/Provide
-GET http://127.0.0.1:8000/api-services/requestService/
+GET http://localhost:8000/api-services/requestService/
 Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
 
 ### Ver detalles: {id}: 
@@ -413,18 +414,18 @@ content-type: application/json
 
 ### Delete {id}: 
 ### Ofrecer/Provide
-DELETE http://127.0.0.1:8000/api-services/provide/delete_post/9f989823-ea54-40af-b379-198633fdaa79/
+DELETE http://localhost:8000/api-services/provide/delete_post/9f989823-ea54-40af-b379-198633fdaa79/
 Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
 
 ### Solicitar/Request
-DELETE http://127.0.0.1:8000/api-services/request/delete_post/b57e824d-190c-423b-b550-21966bdfb846/
+DELETE http://localhost:8000/api-services/request/delete_post/b57e824d-190c-423b-b550-21966bdfb846/
 Authorization: Token c0cf83709dcf55b15767dde6905c2515854e6856
 
 
 
 
 ###
-POST http://127.0.0.1:8000/users/
+POST http://localhost:8000/users/
 content-type: application/json
 
 {
@@ -448,11 +449,11 @@ content-type: application/json
 }
 
 ###
-GET http://127.0.0.1:8000/users/14
+GET http://localhost:8000/users/14
 Authorization: Token 6ba4807aa91fa9f95a9c696e003f42b2473d8863
 
 ###
-POST http://127.0.0.1:8000/forgot-password/
+POST http://localhost:8000/forgot-password/
 content-type: application/json
 
 {
@@ -471,7 +472,7 @@ content-type: application/json
 }
 
 ###
-POST http://127.0.0.1:8000/users/14/change_password/
+POST http://localhost:8000/users/14/change_password/
 content-type: application/json
 
 {

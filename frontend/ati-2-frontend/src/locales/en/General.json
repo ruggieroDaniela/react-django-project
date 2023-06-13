@@ -1,4 +1,10 @@
 {
     "otro": "Other",
-    "especifique": "Specify"
+    "sin_especificar": "Not specified",
+    "especifique": "Specify",
+    "si": "Yes",
+    "no": "No",
+    "CUI": "Occupational Caretaker",
+    "NIN": "Babysitter",
+    "aquí": "here"
 }

@@ -20,9 +20,47 @@
             "Grado de Instrucción",
             "Disponibilidad para viajar"
         ],
-        "pagina": "Página"
+        "pagina": "Página",
+        "accion":[
+            "Habilitar/Deshabilitar",
+            "Eliminar",
+            "Actualizar"
+        ],
+        "acciones": "Acciones",
+        "no_posts": "Todavía no hay publicaciones disponibles"
     },
     "publicaciones_vista_lista": {
+        "LUN": "Lunes", 
+        "MAR": "Martes",
+        "MIE": "Miércoles",
+        "JUE": "Jueves",
+        "VIE": "Viernes", 
+        "SAB": "Sábado",
+        "DOM": "Domingo",
+        "LUN_VIE": "De Lunes a Viernes",
+        "FIN": "Fin de semana",
+        "OTRO": "Otros a considerar",
+
+        "HORA": "Por hora",
+        "DIA" : "Por dia",
+        "SEMANAL": "Semanal",
+        "QUINCENAL": "Quincenal",
+        "MENSUAL": "Mensual",
+
+        "INTERDIARIO": "Interdiario",
+        "MEDIO_TIEMPO": "Medio tiempo",
+        "FIN_SEMANA": "Fin de Semana",
+        "NOCHE": "En la noche",
+        "HORAS": "Por horas",
+
+        "PASAPORTE": "Documento de identidad o pasaporte",
+        "CURRICULUM": "Currículum actualizado",
+        "TITULOS": "Títulos o certificados", 
+        "REF_TRABAJO": "Referencias comprobables de trabajo", 
+        "REF_FAMILIAR": "Referencias familiares indicando nombre y apellido, teléfono local, Teléfono móvil, correo electrónico (opcional), y dirección", 
+        "CONST_ANTECEDENTES": "Constancia de no poseer antecedentes penales", 
+        "SALUD": "Certificado de salud", 
+
         "CUI": "Cuidador(a) ocupacional",
         "NIN": "Niñera(o)",
         "ENF": "Enfermera(o)",

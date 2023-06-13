@@ -28,32 +28,11 @@ import { SolicitarCuidador } from './routes/SolicitarCuidador';
 import { ListarPublicaciones } from './routes/ListarPublicaciones';
 import { ChangeLanguage } from './routes/Language';
 import { BuscarCliente } from './routes/BuscarCliente';
+import { OfrecermeCuidador } from './routes/OfrecermeCuidador';
+import { ModificarPost } from './routes/ModificarPost';
 
 
 function App() {
-
-  
-  // init internationalization module
-  // const {t, i18n} = useTranslation();
-  // useEffect(
-  //   () => {
-  //     const lng = navigator.language;
-  //     i18n.changeLanguage(lng);
-  //   }
-  // );
-  // const lng = navigator.language;
-  
-  const [users, setUsers] = useState([]);
-
-  // useEffect(() => {
-  //   fetch('http://localhost:8000/users')
-  //     .then(response => {
-  //       return response.json()
-  //     })
-  //     .then(data => {
-  //       setUsers(data)
-  //     })
-  // }, []);
 
   return (
     <>
@@ -67,7 +46,7 @@ function App() {
             <Route exact path="/help" element={<Ayuda/>} />
             <Route exact path="/employment" element={<Empleo/>} />
             <Route exact path="/sign-up" element={<Registrar/>} />
-            <Route exact path="/login" element={<IniciarSesion />} />
+            <Route exact path="/login/:noAuth?" element={<IniciarSesion />} />
             <Route exact path='/search-clients' element={<BuscarCliente/>}/>
             <Route exact path='/search-domestic-staff' element={<BuscarPersonalDomestico/>}/>
             <Route exact path='/request-babysitter' element={<SolicitarÑiñera/>}/>
@@ -75,22 +54,15 @@ function App() {
             <Route exact path="/forgot-password" element={<ForgotPassword />} />
             <Route exact path="/lang" element={<ChangeLanguage/>} />
             <Route exact path="/reset-password/:id" element={<ResetPassword/>}/>
-            <Route exact path='/offer-my-services/post-add/offer-me-as-babysitter' element={<OfrecermeNiñera/>}/>
+            <Route exact path='/modify-post/:id' element={<ModificarPost/>}/>
+            <Route exact path='/post-ad/offer/babysitter' element={<OfrecermeNiñera/>}/>
+            <Route exact path='/post-ad/offer/caretaker' element={<OfrecermeCuidador/>}/>
             <Route path='/show-posts' element={<ListarPublicaciones/>}/>
           </Routes>
           <Footer/>
         </Router>
       </AppContextProvider>
       
-      {/* <h1>Vite + React</h1>
-      <div className="card">
-        <p> Los usuarios actuales son: </p>
-        <ul>
-          {users.map(user => 
-            <User key={user.id} user={user} />
-          )}
-        </ul>
-      </div> */}
     </>
   )
 }

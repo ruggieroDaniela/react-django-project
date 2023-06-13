@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-
 import { Multiform } from "../components/Multiform";
+import { RequestDomesticFormContext } from "../context/RequestDomesticFormContext";
 import { FasesSolicitarNiñera, botonEnviar, useValidar } from "../components/FasesSolicitarNiñera";
 import "../styles/SolicitarNiñera.scss"
 
@@ -12,7 +12,7 @@ export const SolicitarÑiñera = () => {
     const { t } = useTranslation();
 
     let navigate = useNavigate(); 
-
+   
     const goHome = () => {
         navigate(`/`);
     };

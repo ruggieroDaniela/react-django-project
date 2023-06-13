@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react'
+import React, { useState, useContext } from 'react'
 import "../styles/IniciarSesion.scss"
 import { useTranslation } from 'react-i18next';
 
@@ -6,11 +6,14 @@ import { useNavigate } from 'react-router-dom';
 
 import AuthContext from '../context/AuthContext';
 import ErrorMessage from "../components/ErrorMessage";
+import { useParams } from 'react-router';
 
 export const IniciarSesion = () => {
     
     const { t, i18n } = useTranslation();
     const {authState, setAuthState} = useContext(AuthContext);
+
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -19,7 +22,11 @@ export const IniciarSesion = () => {
     const [invalidPassword, setInvalidPassword] = useState(false)
     const [inexistentEmail, setInexistentEmail] = useState(false)
 
+    const params = useParams()
+    const noAuth = params.noAuth
+
     const handleSubmit = async (e) => {
+        setLoading(true);
         e.preventDefault();
     
         const data = {
@@ -27,7 +34,7 @@ export const IniciarSesion = () => {
             password: password
         };
 
-        const url = 'http://127.0.0.1:8000/token-auth/'
+        const url = 'http://localhost:8000/token-auth/'
         try {
             
             let response = await fetch( url,{
@@ -47,7 +54,7 @@ export const IniciarSesion = () => {
                 console.log('POST request successful');
                 const responseDataAuth = await response.json();
 
-                response = await fetch( `http://127.0.0.1:8000/users/${responseDataAuth.user_id}`,{
+                response = await fetch( `http://localhost:8000/users/${responseDataAuth.user_id}`,{
                         method: 'GET',
                         headers: {
                             'Authorization': responseDataAuth.token,
@@ -59,18 +66,19 @@ export const IniciarSesion = () => {
                 if(response.ok){
                   
                     const responseDataUser = await response.json();
-                    setAuthState(
-                        () => {
-                            return {
-                                token: responseDataAuth.token,
-                                id: responseDataAuth.user_id,
-                                logged_in: true,
-                                email: responseDataUser.contact_email,
-                                name: responseDataUser.first_name + " " + responseDataUser.last_name,
-                                lang: responseDataUser.language
-                            }
-                        }
-                    );
+
+                    const sessionData = {
+                        token: responseDataAuth.token,
+                        id: responseDataAuth.user_id,
+                        logged_in: true,
+                        email: responseDataUser.contact_email,
+                        name: responseDataUser.first_name + " " + responseDataUser.last_name,
+                        lang: responseDataUser.language
+                    }
+
+                    setAuthState( () => sessionData );
+
+                    localStorage.setItem('sessionData', JSON.stringify(sessionData))
 
                     i18n.changeLanguage(authState.lang);
                     navigate('/');
@@ -99,12 +107,16 @@ export const IniciarSesion = () => {
             console.log(error);
         }
 
+        setLoading(false);
     }
 
 
   return (
     <div id='iniciar-sesion' className='container'>
+        {noAuth && <p> <ErrorMessage message={t('login.noAuth')}/> </p>}
         <div className='login'>
+
+          
             <h2 className='title'>{t('login.titulo')}</h2>
 
             <form onSubmit={handleSubmit} className='form'>
@@ -124,7 +136,14 @@ export const IniciarSesion = () => {
                 {invalidPassword && <ErrorMessage message={t('login.claveInvalida')}/> }
                 {inexistentEmail && <ErrorMessage message={t('login.correoInexistente')}/> }
 
-                <button type="submit">{t('login.boton')}</button>
+                <button
+                    type="submit"
+                    disabled={loading}
+                >
+                    <span className={loading? "loading":""}>
+                        {loading? "..." : t('login.boton')}
+                    </span>
+                </button>
                 
                 <a href="/forgot-password">{t('login.olvide_contrasena')}</a>
 

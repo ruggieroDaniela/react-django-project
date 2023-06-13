@@ -28,9 +28,9 @@
               "indiferente-edad": "I am indifferent to their age",
               "indiferente-hijos": "I am indifferent whether they have children or not",
               "presencia": "With good appearance, responsible, honest, good character, and who likes children",
-              "entre": "between",
+              "entre": "Between",
               "y": "and",
-              "años": "years old",
+              "años": " years old",
               "edad-solicita": "Preferred age",
               "edad": "Age",
               "situacion-familiar": "Family Situation",
@@ -290,7 +290,19 @@
           "tipo-cuenta":"Account type"
         }
       ],
-      "continuar": "",
-      "atras": "Back"  
+      "continuar": "Continue",
+      "atras": "Back",
+      "errores": {
+        "rango_edad": "Invalid age range. It must be between 0 and 12",
+        "pais": "Must select a country",
+        "estado": "Must select an state/province",
+        "ciudad": "Must select a city",
+        "requerido": "This is a required field",
+        "numero": "Must enter a valid number",
+        "edad": "Must enter peoples ages",
+        "genero": "Must enter peoples genders",
+        "enfermedad": "Must indicate at least one disability or one illness",
+        "fecha": "Must select a date"
+      }
     }
 }

@@ -18,6 +18,8 @@ export const ListarPublicaciones = () => {
     let searchParams = location.search;
     const postType = searchParams.includes('provide')? 'provide':'request';
 
+    
+
     const [postList, setPostList] = useState([]);
     const [selectedPosts, setSelectedPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
@@ -25,6 +27,8 @@ export const ListarPublicaciones = () => {
     const [selectedTipoPersona, setSelectedTipoPersona] = useState("");
     const [selectedOrdering, setSelectedOrdering] = useState("");
     const [pageLinks, setPageLinks] = useState([]);
+
+    const [__refreshPostList, refreshPostList] = useState(true);
 
     // Tipo de Vista
     const [listView, setListView] = useState(true);
@@ -57,6 +61,9 @@ export const ListarPublicaciones = () => {
 
     useEffect(() => {
         const fetchPosts = async () => {
+            
+            setPostList([]);
+
             try {
                 if( selectedTipoPersona.length > 0 ){
                     if( searchParams.length > 0 )
@@ -79,7 +86,7 @@ export const ListarPublicaciones = () => {
                     console.log(searchParams);
                 }
 
-                const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}Service/${searchParams}`, {
+                const response = await axios.get(`http://localhost:8000/api-services/${postType}Service/${searchParams}`, {
                     headers: {}
                 });
 
@@ -90,7 +97,7 @@ export const ListarPublicaciones = () => {
 
                 setPostList(response.data)
                 console.log(response.data);
-                console.log(postType);
+                // console.log(postType);
                 return response.data;
 
             } catch (error) {
@@ -99,7 +106,7 @@ export const ListarPublicaciones = () => {
         };
 
         fetchPosts();
-    }, [selectedTipoPersona, selectedOrdering]);
+    }, [selectedTipoPersona, selectedOrdering, __refreshPostList, location.search]);
 
     const {authState, setAuthState} = useContext(AuthContext);
 
@@ -199,28 +206,12 @@ export const ListarPublicaciones = () => {
                                 onClick={ async () => {
                                     // habilitar 
                                     for (let i = 0; i < selectedPosts.length; i++) {
-                                        await axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${selectedPosts[i]}/`)
+                                        await axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${selectedPosts[i].id}/`)
                                     }
-                                    setSelectedTipoPersona(prev => prev);
+                                    refreshPostList(prev => !prev);
                                 } }
                             >
                                 {t(`lista_publicaciones.accion.${0}`)}
-                            </button>
-                        </li>
-                        <li className="button" key={`${self.crypto.randomUUID()}`}>
-                            <button
-                                key={`${self.crypto.randomUUID()}`}
-                                onClick={ async () => {
-                                    // deshabilitar 
-                                    for (let i = 0; i < selectedPosts.length; i++) {
-                                        console.log(i);
-                                        const response = await axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${selectedPosts[i]}/`)
-                                        console.log(response);
-                                    }
-                                    setSelectedTipoPersona(prev => prev);
-                                } }
-                            >
-                                {t(`lista_publicaciones.accion.${1}`)}
                             </button>
                         </li>
                         
@@ -230,12 +221,12 @@ export const ListarPublicaciones = () => {
                                 onClick={ async () => {
                                     // eliminar 
                                     for (let i = 0; i < selectedPosts.length; i++) {
-                                        await axios.put(`http://localhost:8000/api-services/${postType}/delete_post/${selectedPosts[i]}/`)
+                                        await axios.put(`http://localhost:8000/api-services/${postType}/delete_post/${selectedPosts[i].id}/`)
                                     }
-                                    setSelectedTipoPersona(prev => prev);
+                                    refreshPostList(prev => !prev);
                                 } }
                             >
-                                {t(`lista_publicaciones.accion.${3}`)}
+                                {t(`lista_publicaciones.accion.${1}`)}
                             </button>
                         </li>
 
@@ -265,6 +256,12 @@ export const ListarPublicaciones = () => {
                     { pageLinks }
                 </ul>
             </div>
+
+            { postList.length == 0 &&
+                <div id='no-post-msg'>
+                    <h3>{t('lista_publicaciones.no_posts')}...</h3>
+                </div>
+            }
 
             <div className="row" id='post-group'>
                 {   
