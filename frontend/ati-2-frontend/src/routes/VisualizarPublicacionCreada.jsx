@@ -251,6 +251,16 @@ export const VisualizarPublicacionCreada = () => {
                 
                 
                 { /* DISPONIBILIDAD PARA COMENZAR A TRABAJAR  */ }
+                <div className='basico'>
+                    <div className='rectangle blue tag'>{t('publicacionCreada.disponibilidad_trabajar')} </div>                    
+                </div>
+
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='rectangle yellow tag'>{t('publicacionCreada.salario_ofrecido')} </div>
+                        <div className='data'>  2023-10-02  </div>
+                    </div>
+                </div>
 
                 {/*        
 
@@ -282,7 +292,7 @@ export const VisualizarPublicacionCreada = () => {
                                         <section className='container-span'>
                                             <span className='titulo'>{t('publicacionCreada.indique_capacidad')}</span>
                                             <span> {data?.data ||  "Caminar"}</span>
-                                        </section>
+                                        </secti-on>
                                         <section className='container-span'>
                                             <span className='titulo'>{t('publicacionCreada.enfermedad_cuidar')}</span>
                                             <span> {data?.data ||  "no"} </span>
@@ -292,36 +302,7 @@ export const VisualizarPublicacionCreada = () => {
 
                             </section>    
 
-                            <section className='informacion-basica'>
-                                    <section className='titulo-02'>
-                                        <h1 >{t('publicacionCreada.condiciones_trabajo')}</h1>
-                                    </section>                      
-                                    <section>
-                                
-                                        <section className='container-span'>
-                                            <span className='titulo'>{t('publicacionCreada.salida_cuidador')} </span>
-                                            <span> {data?.workday || "fin de semana"}</span>
-                                        </section>
-                                        <section className='container-span'>
-                                            <span className='titulo'>{t('publicacionCreada.horario_trabajo')} </span>
-                                            <span> {data?.workday || "Lunes-viernes"}</span>
-                                        </section>
-                                        <section className='container-span'>
-                                            <span className='titulo'>{t('publicacionCreada.salario_ofrecido')} </span>
-                                            <span>{data?.payment_amount + " " + data?.currency + " " || "300$"}</span>
-                                        </section>
-                                        <section className='container-span'>
-                                            <span className='titulo'>{t('publicacionCreada.beneficios')} </span>
-                                            <span>{
-                                                    data?.benefits ===0 ? "No" : "Si" &&
-                                                    data?.benefits_description ||
-                                                    "Especifique: Seguro social obligatorio,Póliza de HCM y cobertura a mis familiares, Ayuda para útiles escolares, Otros"
-                                                }
-                                            </span>
-                                        </section>
-                                    </section>
-                                    
-                            </section>
+                            
                         </section>
                         
                         
