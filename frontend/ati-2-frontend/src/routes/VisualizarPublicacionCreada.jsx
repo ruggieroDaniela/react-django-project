@@ -42,20 +42,6 @@ export const VisualizarPublicacionCreada = () => {
                     setServicio('Cuidador(a) Ocupacional')
                 }
 
-                const DOCUMENTS_CHOICES = {
-                    'PASAPORTE': 'Documento de identidad o pasaporte',
-                    'CURRICULUM': 'Currículum actualizado',
-                    'TITULOS': 'Títulos o certificados',
-                    'REF_TRABAJO': 'Referencias comprobables de trabajo',
-                    'REF_FAMILIAR': 'Referencias familiares indicando nombre y apellido, teléfono local, Teléfono móvil, correo electrónico (opcional), y dirección',
-                    'CONST_RESIDENCIA': 'Constancia de residencia',
-                    'CONST_ANTECEDENTES': 'Constancia de no poseer antecedentes penales',
-                    'SALUD': 'Certificado de salud',
-                    'OTRO': 'Otro documento'
-                };
-          
-                setDocuments(data.documents.map(key => DOCUMENTS_CHOICES[key]).join(', ')); 
-
             } else {
                 console.log('Error retrieving post');
             }
