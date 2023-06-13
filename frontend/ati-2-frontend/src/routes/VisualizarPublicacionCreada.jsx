@@ -27,8 +27,8 @@ export const VisualizarPublicacionCreada = () => {
             });
     
             if (response.ok) {
-                const data = await response.json();                
-                //setReady(true);
+                const data = await response.json();  
+                setData(data)              
                 console.log(data);
 
             } else {
@@ -48,7 +48,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='header'>
                     <section className='encabezado-perfil'>                       
                         <div className='subtitle blue margin'>
-                            <b>data.</b>
+                            <b>{data.activities}</b>
                         </div>
                         <div className='user-name'>
                             <b>Nombre Apellido </b>
