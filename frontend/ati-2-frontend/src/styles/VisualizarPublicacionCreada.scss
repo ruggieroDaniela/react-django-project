@@ -5,6 +5,35 @@
     display: grid;
     padding: 1rem;
 
+    .rectangle{
+        color: white;
+        font-weight: bold;
+        box-shadow: none;
+        border: none;
+        border-radius: 0.25rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        width: fit-content;        
+        margin-bottom: 0.5rem;    
+
+        &.blue{
+            background-color: $azul-claro;
+
+            &.tag{
+                margin-top: 3rem;
+                width: 80%;
+                text-align: center;
+                margin-left: 8rem;
+            }
+        }
+
+        &.yellow{
+            background-color: $dorado;
+        }
+    }
+
     .encabezado-perfil{
         display: grid;
         grid-template-columns: 30% 20% 20% 30%;
@@ -32,21 +61,6 @@
             &.margin{
                 margin-left: 13rem; 
             }
-        }
-
-        .rectangle{
-            background-color: $dorado;
-            color: white;
-            font-weight: bold;
-            box-shadow: none;
-            border: none;
-            border-radius: 0.25rem;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            width: fit-content;        
-            margin-bottom: 0.5rem;    
         }
 
         .data{
@@ -83,65 +97,29 @@
             margin-left: 12rem;     
         }
 
-        //align-items: center;
     }
 
-
-
-
-    //justify-content: center;
-    //align-items: center;
-    /*
-    .encabezado-perfil{
+    .basico{
         display: grid;
-        grid-template-columns: 2fr 8fr 6fr;
-        //justify-items: center;
-        //align-items: center;
-
-        border: 2px solid black;
-        width: 100%;  
+        grid-template-columns: 80% 20% ;
+        justify-content: center;
         
-        
-    
-        
-        .general{
-            justify-content: center;
-            align-items: center;
-            
-            //border: 2px solid black;
-
-            .subtitle{
-                font-weight: bold;
-                .blue{
-                    color: $azul-oscuro;
-                }
-        
-                .red{
-                    color: red
-                }
-            }
-            
-            
+        .info{
+            grid-template-columns: 30% 70% ;
+            margin-left: 10rem;
+            padding-bottom: 0.4rem;
         }
-        
 
+        p{
+            margin-left: 10rem;
+        }
     }
 
-    .rectangle{
-        background-color: $dorado;
-        color: white;
-        font-weight: bold;
-        box-shadow: none;
-        border: none;
-        border-radius: 0.25rem;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        width: auto;        
-        margin-bottom: 0.5rem;    
-    }
+
+
+
     
 
-    */
 
 
     

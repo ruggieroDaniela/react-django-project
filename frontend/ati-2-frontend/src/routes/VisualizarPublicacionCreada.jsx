@@ -43,46 +43,93 @@ export const VisualizarPublicacionCreada = () => {
     // }, []);
 
         return (
-            <section id="publicacion-creada">     
-                <section className='encabezado-perfil'>
-
-                    {/* First Row */}
-                    <div className='subtitle blue margin'>
-                        <b>Niñero(a)</b>
-                    </div>
-                    <div className='user-name'>
-                        <b>Nombre Apellido </b>
-                    </div>
-                    <div>
-                        
-                    </div>
-                    <div className='subtitle blue space'>
-                        <b>{t('publicacionCreada.pais_cuidador')}</b>
-                    </div>
+            <section id="publicacion-creada">    
+                 {/* Encabezado perfil */}
+                <div className='header'>
+                    <section className='encabezado-perfil'>                       
+                        <div className='subtitle blue margin'>
+                            <b>Niñero(a)</b>
+                        </div>
+                        <div className='user-name'>
+                            <b>Nombre Apellido </b>
+                        </div>
+                        <div>
+                            
+                        </div>
+                        <div className='subtitle blue space'>
+                            <b>{t('publicacionCreada.pais_cuidador')}</b>
+                        </div>
                 
-                </section>
+                    </section>
 
-                <section className='encabezado-perfil'>
-                    <div>
-                        <img className='img-user' src={fotoPerfil} />
-                    </div>
-                    <div>
-                        <div className='rectangle'>{t('publicacionCreada.telefono_celular')}</div>
-                        <div className='rectangle'> {t('publicacionCreada.telefono_fijo')}</div>
-                        <div className='rectangle'> {t('publicacionCreada.correo_electronico')} </div>
-                    </div>
-                    <div>
-                        <div className='data'> { data?.phone || 'No disponible'} </div>
-                        <div className='data'> {data?.phone || 'No disponible'} </div>
-                        <div className='data'> {data?.email ||'No disponible'}</div>
-                    </div>
-                    <div>
-                        <div className='pais red'>Venezuela</div>                        
-                        <div className='pais blue'> {t('publicacionCreada.provincia__cuidador')} </div>
-                        <div className='pais red'>Distrito Capital</div>
-                    </div>
+                    <section className='encabezado-perfil'>
+                        <div>
+                            <img className='img-user' src={fotoPerfil} />
+                        </div>
+                        <div>
+                            <div className='rectangle yellow'>{t('publicacionCreada.telefono_celular')}</div>
+                            <div className='rectangle yellow'> {t('publicacionCreada.telefono_fijo')}</div>
+                            <div className='rectangle yellow'> {t('publicacionCreada.correo_electronico')} </div>
+                        </div>
+                        <div>
+                            <div className='data'> { data?.phone || 'No disponible'} </div>
+                            <div className='data'> {data?.phone || 'No disponible'} </div>
+                            <div className='data'> {data?.email ||'No disponible'}</div>
+                        </div>
+                        <div>
+                            <div className='pais red'>Venezuela</div>                        
+                            <div className='pais blue'> {t('publicacionCreada.provincia__cuidador')} </div>
+                            <div className='pais red'>Distrito Capital</div>
+                        </div>
 
-                </section>
+                    </section>
+                </div> 
+
+                
+                {/* DATOS BASICOS DE LA NIÑERA*/ }
+                <div className='basico'>
+                    <div className='rectangle blue tag'>{t('publicacionCreada.datos_basicos_cuidador')}</div>                    
+                </div>
+
+                <div className='basico'>
+                    <p> <b>{data?.description || "Soy persona responsable, honesta, de buen carácter, y me gustan los niños(as)" } </b></p>                   
+                </div>
+
+                { /* Edad que solicita */ }
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='subtitle blue'><b>{t('publicacionCreada.edad_cuidador')}</b></div>
+                        <div> { data?.data || "Entre 20 y 30 años / Con hijos"}</div>
+                    </div>
+                </div>
+                
+                { /* Sexo */ }
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='subtitle blue'><b>{t('publicacionCreada.sexo_cuidador')}</b></div>
+                        <div> { data?.data || "Masculino" }</div>
+                    </div>
+                </div>
+
+                { /* Situación Familiar */ }
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='subtitle blue'><b>{t('publicacionCreada.situcion_familiar_cuidador')}</b></div>
+                        <div>{data?.have_children ? "Con hijos" : "Sin hijos" || 'con hijos'}</div>
+                    </div>
+                </div>
+
+                { /* Grado de Instrucción */ }
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='subtitle blue'><b> {t('publicacionCreada.grado_instrucción_cuidador')}</b></div>
+                        <div>{data?.education_level || "Técnico Univeristario"}</div>
+                    </div>
+                </div>
+
+                <br></br>
+
+                
                 {/*        
                 <section className='encabezado-perfil'>
                 <section>

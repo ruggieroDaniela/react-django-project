@@ -7,7 +7,7 @@
         "provincia__cuidador": "Estado, provincia/ Capital",
         "ciudad_cuidador":"Ciudad",
         "zona_cuidador": "Zona",
-        "edad_cuidador": "Edad",
+        "edad_cuidador": "Edad que se solicita",
         "sexo_cuidador": "Sexo",
         "situcion_familiar_cuidador": "Situción Familiar",
         "grado_instrucción_cuidador":"Grado de instrucción",
