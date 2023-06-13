@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 //import { RegisterFormContext } from "../context/RegisterFormContext";
 
 import { useNavigate, useParams } from "react-router-dom";
@@ -11,7 +12,7 @@ import fotoPerfil from '../assets/default-user-icon.jpg';
 export const VisualizarPublicacionCreada = () => {
     const { t } = useTranslation();
 
-    const [data, setData] = useState({});
+    const [data, setData] = useState({schedule: []});
     const {id} = useParams();
     let searchParams = location?.search;
     const postType = searchParams.includes('provide')? 'provide':'request';
@@ -21,17 +22,10 @@ export const VisualizarPublicacionCreada = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-            const response = await fetch(`http://127.0.0.1:8000/api-services/provide/get_post/ea695afc-5d49-4b97-a1bf-fb721271ee81/`, {
-                method: 'GET',
-                headers: {
-                'Content-Type': 'application/json',
-                },
-            });
-    
-            if (response.ok) {
-                const data = await response.json();  
-                setData(data);               
-                console.log(data);
+                const response = await axios.get(`http://127.0.0.1:8000/api-services/provide/get_post/ea695afc-5d49-4b97-a1bf-fb721271ee81/`);
+                
+                // console.log(response.data);
+                setData(() => response.data);               
 
                 // SERVICE
                 if(data.service=='NIN'){
@@ -42,23 +36,15 @@ export const VisualizarPublicacionCreada = () => {
                     setServicio('Cuidador(a) Ocupacional')
                 }
 
-            } else {
-                console.log('Error retrieving post');
-            }
             } catch (error) {
-            console.log('An error occurred:', error);
+                console.log('An error occurred:', error);
             }
         };
     
         fetchPost();
         }, []);
 
-    
-
-    
-/*
-;*/
-
+        console.log(data);
         return (
             <section id="publicacion-creada">    
                  {/* Encabezado perfil */}
@@ -237,9 +223,12 @@ export const VisualizarPublicacionCreada = () => {
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.horario_trabajo')}</div>
                         <div className='data'>
-                        {data.schedule.map((scheduleItem, index) => (
-                            <div key={index}>{t(`publicaciones_vista_lista.${scheduleItem}`)}</div>
-                        ))}
+                        {data?.schedule.map(
+                            (scheduleItem, index) => 
+                                <div key={index}>
+                                    {t(`publicaciones_vista_lista.${scheduleItem}`)}
+                                </div>
+                        )}
                         </div>
                     </div>
                 </div>
