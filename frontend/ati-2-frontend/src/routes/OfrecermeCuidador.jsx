@@ -21,7 +21,7 @@ export const OfrecermeCuidador = () => {
             try {
                     // Request was successful
                 if(authState.id != undefined){
-                    let response = await fetch( `http://127.0.0.1:8000/users/${authState.id}`,{
+                    let response = await fetch( `http://localhost:8000/users/${authState.id}`,{
                             method: 'GET',
                             headers: {
                                 'Authorization': authState.token,
@@ -74,7 +74,7 @@ export const OfrecermeCuidador = () => {
             disabilities_tco: true,
             disabilities_tco_decrip: "sssssssssssss",
             travel: true,
-            travel_decription: "asdasd",
+            travel_decription: "",
             activities: "",
             workday: [],
             workday_other: "",
@@ -90,7 +90,7 @@ export const OfrecermeCuidador = () => {
             availability: "",
             availability_date: null,
             have_documentation: false,
-            documents: [],
+            documents: ["PASAPORTE"],
             documents_other: "",
             publication_time: "1",
             publication_plan: "1",
@@ -99,12 +99,12 @@ export const OfrecermeCuidador = () => {
             age: "0",
             have_children: false,
             description: "",
-            origin: "",
+            origin: "NO",
             origin_continent: "",
             origin_country: "",
             origin_state: "",
             origin_city: "",
-            client_type: "",
+            client_type: "NO",
             errors: {
                 invalid_age: false,
                 country_required: false,

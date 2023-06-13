@@ -11,6 +11,7 @@ import { FieldDropdownSearch } from "../components/search/FieldDropdownSearch";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ErrorMessage from "./ErrorMessage";
+import AuthContext from '../context/AuthContext';
 
 import "../styles/BuscarPersonalDomestico.scss"
  
@@ -1204,12 +1205,8 @@ const Fase5 = () => {
                                         return newState
                                     });    
                                 }}>
-                                </textarea>
-
-                               
-                            </div>
-
-                           
+                                </textarea>   
+                            </div>                    
                         </div>
                     </div>
                     { benefits_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
@@ -1847,7 +1844,7 @@ const Fase13 = () => {
     useEffect(() => {
         const getBanks = async () => {
           try {
-            const response = await axios.get(`http://127.0.0.1:8000/banks/`);
+            const response = await axios.get(`http://localhost:8000/banks/`);
             return response.data; // Return the response data instead of the entire response
           } catch (error) {
             console.error(error);
@@ -2352,8 +2349,17 @@ const useValidar = () => {
 const botonEnviar = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+    const {authState, setAuthState} = useContext(AuthContext);
     const navigate = useNavigate();
  
+    useEffect(() => {
+        setOfferDomesticFormState( prev => {
+            const newState = {... prev};
+            newState.user = authState.id;
+            newState.service = "NIN";
+            return newState;
+        });
+    }, [])
 
     const postData = {...offerDomesticFormState};
     //console.log(JSON.stringify(postData));
@@ -2381,7 +2387,7 @@ const botonEnviar = () => {
                           })
                     }
 
-                    const url = 'http://127.0.0.1:8000/api-services/provideService/post_ad/'
+                    const url = 'http://localhost:8000/api-services/provideService/post_ad/'
                     try {
                         
                         const response = await fetch( url,{

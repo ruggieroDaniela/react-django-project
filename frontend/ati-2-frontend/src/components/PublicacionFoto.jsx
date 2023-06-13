@@ -65,7 +65,7 @@ export const PublicacionFoto = ({post, postType}) => {
         const fetchUserData = async () => {
             try {
 
-                const response = await axios.post(`http://127.0.0.1:8000/users/get_name/`, {id: post.user});
+                const response = await axios.post(`http://localhost:8000/users/get_name/`, {id: post.user});
 
                 // console.log(response.data);
                 setUsername( () => response.data.name + " " + response.data.last_name );
@@ -299,7 +299,7 @@ export const PublicacionFoto = ({post, postType}) => {
                     <button
                         disabled={ !(canEdit) }
                         onClick={ async () => {
-                            await axios.delete(`http://127.0.0.1:8000/api-services/${postType}/delete_post/${post.id}/`)
+                            await axios.delete(`http://localhost:8000/api-services/${postType}/delete_post/${post.id}/`)
                             window.location.reload();
                         } }
                     >
