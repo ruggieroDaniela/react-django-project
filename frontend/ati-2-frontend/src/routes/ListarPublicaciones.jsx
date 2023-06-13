@@ -18,8 +18,6 @@ export const ListarPublicaciones = () => {
     let searchParams = location.search;
     const postType = searchParams.includes('provide')? 'provide':'request';
 
-    
-
     const [postList, setPostList] = useState([]);
     const [selectedPosts, setSelectedPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
@@ -30,12 +28,13 @@ export const ListarPublicaciones = () => {
 
     const [__refreshPostList, refreshPostList] = useState(true);
 
+    const [loading, setLoading] = useState(false);
+
     // Tipo de Vista
     const [listView, setListView] = useState(true);
 
     const tipoPersona = ["1", "2", "3", "4", "5"];
     const ordenes = ["payment_amount", "availability_date", "education_level", "travel"];
-    const acciones = ["Habilitar", "Deshabilitar", "Modificar", "Eliminar"];
 
     const services = getServices();
 
@@ -61,7 +60,7 @@ export const ListarPublicaciones = () => {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            
+            setLoading(true);
             setPostList([]);
 
             try {
@@ -72,8 +71,6 @@ export const ListarPublicaciones = () => {
                         searchParams += "?service__in=";
                 
                     searchParams += selectedTipoPersona.substring(0, selectedTipoPersona.length-1);
-                    // console.log(selectedTipoPersona);
-                    // console.log(searchParams);
                 }
 
                 if( selectedOrdering.length > 0 ){
@@ -90,17 +87,13 @@ export const ListarPublicaciones = () => {
                     headers: {}
                 });
 
-                const totalPages = response.data.length/sizeOfPage;
-                // console.log(totalPages);
-
-                // console.log(pageLinks);
-
                 setPostList(response.data)
                 console.log(response.data);
-                // console.log(postType);
+                setLoading(false);
                 return response.data;
 
             } catch (error) {
+                setLoading(false);
                 console.error(error);
             } 
         };
@@ -257,24 +250,33 @@ export const ListarPublicaciones = () => {
                 </ul>
             </div>
 
-            { postList.length == 0 &&
-                <div id='no-post-msg'>
-                    <h3>{t('lista_publicaciones.no_posts')}...</h3>
+            { loading?
+                <div className="parent">
+                    <div className='loading'></div>
                 </div>
+                :
+                <>
+                    { postList.length == 0 &&
+                        <div id='no-post-msg'>
+                            <h3>{t('lista_publicaciones.no_posts')}...</h3>
+                        </div>
+                    }
+
+                    <div className="row" id='post-group'>
+                        { listView? 
+                            postList
+                                .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
+                                .map( (post) => <PublicacionLista key={post.id} post={post} postType={postType} selectedPosts={selectedPosts} setSelectedPosts={setSelectedPosts}/> )
+                            :
+                            postList
+                                .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
+                                .map( (post) => <PublicacionFoto key={post.id} post={post} postType={postType}/> )               
+                        }
+                    </div>
+                </>
             }
 
-            <div className="row" id='post-group'>
-                {   
-                    /* eslint-disable-next-line */
-                    listView
-                        ? postList
-                        .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
-                        .map( (post) => <PublicacionLista key={post.id} post={post} postType={postType} selectedPosts={selectedPosts} setSelectedPosts={setSelectedPosts}/> )
-                        : postList
-                        .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
-                        .map( (post) => <PublicacionFoto key={post.id} post={post} postType={postType}/> )               
-                }
-            </div>
+            
 
         </div>
     </>);
