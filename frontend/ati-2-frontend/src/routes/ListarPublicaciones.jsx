@@ -86,7 +86,7 @@ export const ListarPublicaciones = () => {
                     console.log(searchParams);
                 }
 
-                const response = await axios.get(`${import.meta.env.API_KEY}/api-services/${postType}Service/${searchParams}`, {
+                const response = await axios.get(`${import.meta.env.DJANGO_API_URL}/api-services/${postType}Service/${searchParams}`, {
                     headers: {}
                 });
 
@@ -206,7 +206,7 @@ export const ListarPublicaciones = () => {
                                 onClick={ async () => {
                                     // habilitar 
                                     for (let i = 0; i < selectedPosts.length; i++) {
-                                        await axios.put(`${import.meta.env.API_KEY}/api-services/${postType}/enable_post/${selectedPosts[i].id}/`)
+                                        await axios.put(`${import.meta.env.DJANGO_API_URL}/api-services/${postType}/enable_post/${selectedPosts[i].id}/`)
                                     }
                                     refreshPostList(prev => !prev);
                                 } }
@@ -221,7 +221,7 @@ export const ListarPublicaciones = () => {
                                 onClick={ async () => {
                                     // eliminar 
                                     for (let i = 0; i < selectedPosts.length; i++) {
-                                        await axios.put(`${import.meta.env.API_KEY}/api-services/${postType}/delete_post/${selectedPosts[i].id}/`)
+                                        await axios.put(`${import.meta.env.DJANGO_API_URL}/api-services/${postType}/delete_post/${selectedPosts[i].id}/`)
                                     }
                                     refreshPostList(prev => !prev);
                                 } }

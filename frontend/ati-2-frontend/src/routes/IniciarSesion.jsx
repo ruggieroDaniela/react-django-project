@@ -34,7 +34,7 @@ export const IniciarSesion = () => {
             password: password
         };
 
-        const url = `${import.meta.env.API_KEY}/token-auth/`
+        const url = `${import.meta.env.DJANGO_API_URL}/token-auth/`
         console.log(url);
         try {
             
@@ -55,7 +55,7 @@ export const IniciarSesion = () => {
                 console.log('POST request successful');
                 const responseDataAuth = await response.json();
 
-                response = await fetch( `${import.meta.env.API_KEY}/users/${responseDataAuth.user_id}`,{
+                response = await fetch( `${import.meta.env.DJANGO_API_URL}/users/${responseDataAuth.user_id}`,{
                         method: 'GET',
                         headers: {
                             'Authorization': responseDataAuth.token,

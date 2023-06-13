@@ -29,7 +29,7 @@ export const ModificarPost = () => {
     useEffect(() => {
     const fetchPost = async () => {
         try {
-        const response = await fetch(`${import.meta.env.API_KEY}/api-services/provide/get_post/${id}/`, {
+        const response = await fetch(`${import.meta.env.DJANGO_API_URL}/api-services/provide/get_post/${id}/`, {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ export const ModificarPost = () => {
             try {
                     // Request was successful
                 if(authState.id != undefined){
-                    let response = await fetch( `${import.meta.env.API_KEY}/users/${authState.id}`,{
+                    let response = await fetch( `${import.meta.env.DJANGO_API_URL}/users/${authState.id}`,{
                             method: 'GET',
                             headers: {
                                 'Authorization': authState.token,
@@ -173,7 +173,7 @@ export const ModificarPost = () => {
                 onClick={
                     async () => {
                          
-                        const url = `${import.meta.env.API_KEY}/api-services/provide/update_post/${id}/`
+                        const url = `${import.meta.env.DJANGO_API_URL}/api-services/provide/update_post/${id}/`
                         try {
                             
                             const response = await fetch( url,{

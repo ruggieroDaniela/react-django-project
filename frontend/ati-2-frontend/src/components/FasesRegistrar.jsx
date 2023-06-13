@@ -1408,7 +1408,7 @@ const Fase5 = () => {
 
         useEffect(() => {
             const fetchBanks = async () => {
-                await axios.get(`${import.meta.env.API_KEY}/banks/`)
+                await axios.get(`${import.meta.env.DJANGO_API_URL}/banks/`)
                     .then(({data}) => {
                         setBanks(data); 
                     }); 
@@ -1655,7 +1655,7 @@ const registrarUsuario = () => {
     // send request
     const fetchData = async () => {
 
-        const url = `${import.meta.env.API_KEY}/users`
+        const url = `${import.meta.env.DJANGO_API_URL}/users`
         try {
             
             const response = await fetch( url,{
@@ -1842,7 +1842,7 @@ const botonRegistrar = () => {
                     }
 
                     // Enviar datos
-                    const url = `${import.meta.env.API_KEY}/users/`
+                    const url = `${import.meta.env.DJANGO_API_URL}/users/`
                     try {
                         const response = await axios.post(url, postBody)
 
