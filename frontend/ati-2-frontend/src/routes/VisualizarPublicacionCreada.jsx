@@ -12,17 +12,27 @@ import fotoPerfil from '../assets/default-user-icon.jpg';
 export const VisualizarPublicacionCreada = () => {
     const { t } = useTranslation();
 
+    // post data
     const [data, setData] = useState({schedule: []});
-    const {id} = useParams();
-    let searchParams = location?.search;
-    const postType = searchParams.includes('request')? 'request':'provide';
+    
+    // parametros especificados despues del ? en el link
+    let searchParams = new URLSearchParams(location.search);
+
+    // obtener tipo de post del link
+    let postType = searchParams.get("postType");
+    if (postType == null)   // si no está definido se asume provide
+        postType = "provide";
+    
+    // obtener id del link
+    const id = searchParams.get("id");
+    
     const [servicio, setServicio] = useState('');
     const [documents, setDocuments] = useState(''); 
 
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}/get_post/ea695afc-5d49-4b97-a1bf-fb721271ee81/`);
+                const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}/get_post/${id}/`);
                 
                 // console.log(response.data);
                 setData(() => response.data);               
