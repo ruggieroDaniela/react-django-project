@@ -2335,7 +2335,7 @@ const botonEnviar = () => {
         setOfferDomesticFormState( prev => {
             const newState = {... prev};
             newState.user = authState.id;
-            newState.service = "NIN";
+            newState.service = "CUI";
             return newState;
         });
     }, [])

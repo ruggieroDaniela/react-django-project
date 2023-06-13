@@ -11,6 +11,7 @@ import { FieldDropdownSearch } from "../components/search/FieldDropdownSearch";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ErrorMessage from "./ErrorMessage";
+import AuthContext from '../context/AuthContext';
 
 import "../styles/BuscarPersonalDomestico.scss"
  
@@ -2348,8 +2349,17 @@ const useValidar = () => {
 const botonEnviar = () => {
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+    const {authState, setAuthState} = useContext(AuthContext);
     const navigate = useNavigate();
  
+    useEffect(() => {
+        setOfferDomesticFormState( prev => {
+            const newState = {... prev};
+            newState.user = authState.id;
+            newState.service = "NIN";
+            return newState;
+        });
+    }, [])
 
     const postData = {...offerDomesticFormState};
     //console.log(JSON.stringify(postData));
