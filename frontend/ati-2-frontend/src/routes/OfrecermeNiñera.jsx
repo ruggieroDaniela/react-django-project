@@ -21,7 +21,7 @@ export const OfrecermeNiñera = () => {
             try {
                     // Request was successful
                 if(authState.id != undefined){
-                    let response = await fetch( `http://127.0.0.1:8000/users/${authState.id}`,{
+                    let response = await fetch( `http://localhost:8000/users/${authState.id}`,{
                             method: 'GET',
                             headers: {
                                 'Authorization': authState.token,
