@@ -107,7 +107,8 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    "http://3.137.150.119:5173"
+    "http://3.137.150.119:5173",
+    "http://3.137.150.119"
 ]
 
 # Password validation
