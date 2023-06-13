@@ -30,7 +30,7 @@ import { ChangeLanguage } from './routes/Language';
 import { BuscarCliente } from './routes/BuscarCliente';
 import { OfrecermeCuidador } from './routes/OfrecermeCuidador';
 import { ModificarPost } from './routes/ModificarPost';
-
+import FooterNavbar from './components/FooterNavbar';
 
 function App() {
 
@@ -59,7 +59,7 @@ function App() {
             <Route exact path='/post-ad/offer/caretaker' element={<OfrecermeCuidador/>}/>
             <Route path='/show-posts' element={<ListarPublicaciones/>}/>
           </Routes>
-          <Footer/>
+          <FooterNavbar/>
         </Router>
       </AppContextProvider>
       

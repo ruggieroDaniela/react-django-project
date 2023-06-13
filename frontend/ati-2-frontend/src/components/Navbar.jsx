@@ -21,7 +21,7 @@ const Navbar = () => {
     const { t, i18n } = useTranslation();
 
     return (
-        <>  {!isAuth?
+        <span>  {!isAuth?
 
             // Login/Signup (When NOT authenticated)
             <div className="user">
@@ -248,7 +248,7 @@ const Navbar = () => {
                     /> 
                 </ul>
             </nav>
-        </>
+        </span>
     );
 };
 
