@@ -15,6 +15,7 @@ export const VisualizarPublicacionCreada = () => {
     const {id} = useParams();
     let searchParams = location?.search;
     const postType = searchParams.includes('provide')? 'provide':'request';
+    const [servicio, setServicio] = useState('');
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -28,8 +29,16 @@ export const VisualizarPublicacionCreada = () => {
     
             if (response.ok) {
                 const data = await response.json();  
-                setData(data)              
+                setData(data);               
                 console.log(data);
+
+                if(data.service=='NIN'){
+                    setServicio('Niñero(a)')
+                }
+
+                if(data.service=='CUI'){
+                    setServicio('Cuidador(a) Ocupacional')
+                }
 
             } else {
                 console.log('Error retrieving post');
@@ -42,13 +51,27 @@ export const VisualizarPublicacionCreada = () => {
         fetchPost();
         }, []);
 
+        const DOCUMENTS_CHOICES = {
+            'PASAPORTE': 'Documento de identidad o pasaporte',
+            'CURRICULUM': 'Currículum actualizado',
+            'TITULOS': 'Títulos o certificados',
+            'REF_TRABAJO': 'Referencias comprobables de trabajo',
+            'REF_FAMILIAR': 'Referencias familiares indicando nombre y apellido, teléfono local, Teléfono móvil, correo electrónico (opcional), y dirección',
+            'CONST_RESIDENCIA': 'Constancia de residencia',
+            'CONST_ANTECEDENTES': 'Constancia de no poseer antecedentes penales',
+            'SALUD': 'Certificado de salud',
+            'OTRO': 'Otro documento'
+          };
+          
+        const documentsString = data.documents.map(key => DOCUMENTS_CHOICES[key]).join(', ');
+
         return (
             <section id="publicacion-creada">    
                  {/* Encabezado perfil */}
                 <div className='header'>
                     <section className='encabezado-perfil'>                       
                         <div className='subtitle blue margin'>
-                            <b>{data.activities}</b>
+                            <b>{servicio}</b>                            
                         </div>
                         <div className='user-name'>
                             <b>Nombre Apellido </b>
@@ -92,22 +115,14 @@ export const VisualizarPublicacionCreada = () => {
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'> <b>{data?.description || "Soy persona responsable, honesta, de buen carácter, y me gustan los niños(as)" } </b></div>                   
+                    <div className='rectangle text'> <b>{data?.description} </b></div>                   
                 </div>
 
                 { /* Edad que solicita */ }
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle blue'><b>{t('publicacionCreada.edad_cuidador')}</b></div>
-                        <div> { data?.data || "Entre 20 y 30 años / Con hijos"}</div>
-                    </div>
-                </div>
-                
-                { /* Sexo */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='subtitle blue'><b>{t('publicacionCreada.sexo_cuidador')}</b></div>
-                        <div> { data?.data || "Masculino" }</div>
+                        <div> { data.age} años </div>
                     </div>
                 </div>
 
@@ -115,16 +130,21 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle blue'><b>{t('publicacionCreada.situcion_familiar_cuidador')}</b></div>
-                        <div>{data?.have_children ? "Con hijos" : "Sin hijos" || 'con hijos'}</div>
+                        {data.have_children == true && <span>Con Hijos</span>}
+                        {data.have_children === false && <span>Sin Hijos</span>}
                     </div>
-                    <div className='subtitle red'><b>PENDIENTE POR ACTIVAR</b></div>
+                    <div className='subtitle red'>
+                        <b>PENDIENTE POR ACTIVAR</b>
+                    </div>
                 </div>
 
                 { /* Grado de Instrucción */ }
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle blue'><b> {t('publicacionCreada.grado_instrucción_cuidador')}</b></div>
-                        <div>{data?.education_level || "Técnico Univeristario"}</div>
+                        {data.education_level == 'PRI' &&  <div> Primaria </div> }
+                        {data.education_level == 'TEC' &&  <div> Técnico Univeristario </div> }
+                        {data.education_level == 'PRI' && <div> Primaria </div> }
                     </div>
                 </div>
 
@@ -140,7 +160,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle black'><b>{t('publicacionCreada.pais_cuidador')}</b></div>
-                        <div> { data?.country || "Venezuela"}  </div>
+                        <div> { data.country }  </div>
                     </div>
                 </div>
                 
@@ -148,7 +168,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle black'><b>{t('publicacionCreada.provincia__cuidador')}</b></div>
-                        <div>{data?.state || "Distrito Capital"}</div>
+                        <div>{data.state}</div>
                     </div>
                 </div>
 
@@ -156,7 +176,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle black'><b>{t('publicacionCreada.ciudad_cuidador')}</b></div>
-                        <div>{data?.city || "Caracas"} </div>
+                        <div>{data.city} </div>
                     </div>
                 </div>
 
@@ -164,7 +184,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle black'><b>{t('publicacionCreada.zona_cuidador')}</b></div>
-                        <div>{data?.zone || "Candelaria"}</div>
+                        <div>{data.zone}</div>
                     </div>
                 </div>
 
@@ -172,12 +192,12 @@ export const VisualizarPublicacionCreada = () => {
 
                 {/* DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL */ }
                 <div className='basico'>
-                    <div className='rectangle blue tag'>DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL</div>                    
+                    <div className='rectangle blue tag'>{t('publicacionCreada.perfilLaboral')}</div>                    
                 </div>
                 <br></br>
 
                 <div className='basico'>
-                    <div className='rectangle text'> {data?.description || "Persona con 5 años de experiencia en el cuidado de niños entre 0 y 11 años, en la ayuda de sus tareas, prepararles la comida, jugar con ellos. Tengo referencias laborales comprobables" }</div>                   
+                    <div className='rectangle text'> { data?.description }</div>                   
                 </div>
 
                 {/* FUNCIONES QUE HE DESEMPEÑADO */ }
@@ -187,7 +207,7 @@ export const VisualizarPublicacionCreada = () => {
                 <br></br>
 
                 <div className='basico'>
-                    <div className='rectangle text'> Preparación de alimentos, Control de medicamentos, Baño e  higiene, Cambio de pañal, Jugar con los niños, Limpieza del hogar, Otros</div>                   
+                    <div className='rectangle text'> {data.activities}</div>                   
                 </div>
 
                 { /* DISPONIBILIDAD PARA VIAJAR */ }
@@ -197,11 +217,12 @@ export const VisualizarPublicacionCreada = () => {
                 <br></br>
 
                 <div className='basico'>
-                    <div className='rectangle text'> Si </div>                   
+                    {data.travel == true && <div className='rectangle text'> Si </div>}            
+                    {data.travel == false && <div className='rectangle text'> No </div>}         
                 </div>
 
                 <div className='basico'>
-                    {true && <div className='rectangle text'> Si, La persona debe estar dispuesta a viajar 1 vez al mes al exterior</div>}                  
+                    {data.travel && <div className='rectangle text'>{data.travel_decription}</div>}                 
                 </div>
                
                 { /* CONDICIONES DE TRABAJO */ }
@@ -214,7 +235,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.salida_cuidador')}</div>
-                        <div className='data'>  {data?.workday || "Fin de semana"}  </div>
+                        <div className='data'>  { data.workday }  </div>
                     </div>
                 </div>
 
@@ -222,7 +243,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.horario_trabajo')}</div>
-                        <div className='data'> { data?.schedule || "Lunes a Viernes"}  </div>
+                        <div className='data'> { data.schedule }  </div>
                     </div>
                 </div>
 
@@ -230,7 +251,9 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.salario_ofrecido')} </div>
-                        <div className='data'> { (data?.payment_amount + " " + data?.currency + " " ) || "300$" }  </div>
+                        <div className='data'>
+                            {data?.payment === 'MONTO' ? (data?.payment_amount + " " + data?.currency) : data?.payment}
+                        </div>
                     </div>
                 </div>
 
@@ -242,11 +265,15 @@ export const VisualizarPublicacionCreada = () => {
 
                 { /* Solicito otros beneficios  */ }
                 <div className='basico'>
-                    <div className='rectangle text'> Si </div>                   
+                    {data.benefits === 1 ? (
+                    <div className='rectangle text'>Si</div>
+                    ) : (
+                    <div className='rectangle text'>No</div>
+                    )}
                 </div>
+
                 <div className='basico'>
-                    {true && <div className='rectangle text'> {data?.benefits_description ||
-                                                               "Especifique: Seguro social obligatorio,Póliza de HCM y cobertura a mis familiares, Ayuda para útiles escolares, Otros"} </div>}                  
+                    {data.benefits === 1 && <div className='rectangle text'> {data.benefits_description} </div>}                  
                 </div>
                 
                 
@@ -257,47 +284,56 @@ export const VisualizarPublicacionCreada = () => {
 
                 <div className='basico'>
                     <div className='basico info'>
-                        <div className='rectangle yellow tag'>{t('publicacionCreada.salario_ofrecido')} </div>
-                        <div className='data'>  2023-10-02  </div>
+                        <div className='rectangle yellow tag'>{t('publicacionCreada.fecha_inicio')} </div>
+                        <div className='data'>
+                            {data?.availability === 'FECHA' ? (data.availability_date) : data.availability}
+                        </div>
                     </div>
                 </div>
 
                 { /* CLIENTES CON LOS QUE QUIERO TRABAJAR  */ }
                 <div className='basico'>
-                    <div className='rectangle blue tag'>CLIENTES CON LOS QUE QUIERO TRABAJAR </div>                    
+                    <div className='rectangle blue tag'>{t('publicacionCreada.clientes')} </div>                    
                 </div>
                 
                 { /* Lugar de Procedencia  */ }
                 <div className='basico'>
                     <div className='basico info'>
-                        <div className='rectangle yellow tag'>Lugar de Procedencia </div>
-                        <div className='data'>  Quiero especificar   </div>
+                        <div className='rectangle yellow tag'> {t('publicacionCreada.cliente_procedencia')}</div>
+                        <div className='data'> {data.origin}  </div>
                     </div>
                 </div>
                 
                 { /* Pais de Procedencia  */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='rectangle yellow tag'>Pais de Procedencia </div>
-                        <div className='data'>  Estados Unidos  </div>
+                {data.origin === "SI" && (
+                    <div className='basico'>
+                        <div className='basico info'>
+                            <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_pais')}</div>
+                            <div className='data'>{data.origin_country}</div>
+                        </div>
                     </div>
-                </div>
+                )}
 
                 { /* Estado / Provincia  */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='rectangle yellow tag'> Estado / Provincia </div>
-                        <div className='data'>  California  </div>
+                {data.origin === "SI" && (
+                    <div className='basico'>
+                        <div className='basico info'>
+                            <div className='rectangle yellow tag'> {t('publicacionCreada.cliente_estado')} </div>
+                            <div className='data'> {data.origin_state} </div>
+                        </div>
                     </div>
-                </div>
+                )}
                 
                 { /* Ciudad  */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='rectangle yellow tag'> Ciudad </div>
-                        <div className='data'>  San Jose  </div>
+                {data.origin === "SI" && (
+                    <div className='basico'>
+                        <div className='basico info'>
+                            <div className='rectangle yellow tag'>  {t('publicacionCreada.cliente_estado')} </div>
+                            <div className='data'>  {data.origin_city}  </div>
+                        </div>
                     </div>
-                </div>
+                )}
+                
                 
                 { /* DOCUMENTOS QUE PUEDO PRESENTAR A LOS CLIENTES  */ }
                 <div className='basico'>
@@ -305,11 +341,10 @@ export const VisualizarPublicacionCreada = () => {
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'> Si </div>                   
+                    <div className='rectangle text'> {data.have_documentation ? "Si" : "No"} </div>                   
                 </div>
                 <div className='basico'>
-                    {true && <div className='rectangle text'> {data?.benefits_description ||
-                                                               "Especifique: Seguro social obligatorio,Póliza de HCM y cobertura a mis familiares, Ayuda para útiles escolares, Otros"} </div>}                  
+                    {data.have_documentation && <div className='rectangle text'> {documentsString} </div>}                  
                 </div>
                 
                 

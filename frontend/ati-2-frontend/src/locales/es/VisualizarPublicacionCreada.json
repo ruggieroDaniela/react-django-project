@@ -12,8 +12,18 @@
         "sexo_cuidador": "Sexo",
         "situcion_familiar_cuidador": "Situción Familiar",
         "grado_instrucción_cuidador":"Grado de instrucción",
-        "datos_basicos_cuidador":"DATOS BÁSICOS DE LA NIÑERA(O)",
+        "datos_basicos_cuidador":"DATOS BÁSICOS DEL ",
         "lugar_procedencia_cuidador":"LUGAR DE PROCEDENCIA",
+
+        "perfilLaboral": "DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL", 
+
+        "clientes": "CLIENTES CON LOS QUE QUIERO TRABAJAR", 
+        "cliente_procedencia": "Lugar de Procedencia", 
+        "cliente_pais": "Pais de Procedencia", 
+        "cliente_estado": "Estado / Provincia", 
+        "cliente_ciudad": "Ciudad", 
+
+
 
         "persona_cuidar":"SOBRE LA PERSONA A CUIDAR",
         "cant_persona_cuidar":"Cantidad de personas a cuidar",
