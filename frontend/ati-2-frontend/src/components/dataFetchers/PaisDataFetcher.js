@@ -145,7 +145,7 @@ export const getCountryDetails = countryCode => {
     return null;
 }
 
-export const getStateName = async (stateCode) => {
+export const getStateName = (stateCode) => {
 
     for(const reg of continents){
         if( stateCode.substring(0,2) in data[reg] ){
