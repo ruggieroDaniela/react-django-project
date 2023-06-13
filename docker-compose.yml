@@ -18,6 +18,7 @@ services:
         target: /app
     ports:
       - "5173:5173"
-    # environment:
-    #   - REACT_APP_API_URL=http://web:8000/api/
+    environment:
+      # - DJANGO_API_URL=http://localhost:8000
+      - DJANGO_API_URL=http://3.137.150.119:8000
 

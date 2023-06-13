@@ -1408,7 +1408,7 @@ const Fase5 = () => {
 
         useEffect(() => {
             const fetchBanks = async () => {
-                await axios.get('http://localhost:8000/banks/')
+                await axios.get(`${process.env.API_KEY}/banks/`)
                     .then(({data}) => {
                         setBanks(data); 
                     }); 
@@ -1655,7 +1655,7 @@ const registrarUsuario = () => {
     // send request
     const fetchData = async () => {
 
-        const url = 'http://localhost:8000/users'
+        const url = `${process.env.API_KEY}/users`
         try {
             
             const response = await fetch( url,{
@@ -1842,7 +1842,7 @@ const botonRegistrar = () => {
                     }
 
                     // Enviar datos
-                    const url = 'http://localhost:8000/users/'
+                    const url = `${process.env.API_KEY}/users/`
                     try {
                         const response = await axios.post(url, postBody)
 
