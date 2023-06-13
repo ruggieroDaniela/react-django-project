@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
@@ -6,16 +6,58 @@ import { useTranslation } from 'react-i18next';
 import { Multiform } from "../components/Multiform";
 import { FasesOfrecermeNiñera, botonEnviar, useValidar } from "../components/FasesOfrecermeNiñera";
 import { OfferDomesticFormContext } from "../context/OfferDomesticFormContext";
+import AuthContext from '../context/AuthContext';
 
 import "../styles/OfrecermeNiñera.scss"
 
 export const OfrecermeNiñera = () => {
     
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+    const {authState, setAuthState} = useContext(AuthContext);
+    const [userData, setUserData] = useState("");
+
+    useEffect(()=>{
+        const handleSubmit = async () => {
+            try {
+                    // Request was successful
+                if(authState.id != undefined){
+                    let response = await fetch( `http://localhost:8000/users/${authState.id}`,{
+                            method: 'GET',
+                            headers: {
+                                'Authorization': authState.token,
+                            }
+                            // body: JSON.stringify({Authorization: responseDataAuth.token})
+                        }
+                    );
+                    
+    
+                    if(response.ok){
+                      
+                        const responseDataUser = await response.json();
+
+                        setUserData(responseDataUser);
+                        console.log(responseDataUser)
+                    }else{
+                        console.log("GET request failed: error fetching user data");
+                        console.log(response);
+                    }
+                }
+    
+                } catch (error) {
+                    console.log("error");
+                    console.log(error);
+                }
+    
+        }
+        handleSubmit();
+    },[authState])
+
+
+
     useEffect(()=>{
         setOfferDomesticFormState({
-            user: -1, 
-            service: "CUI",
+            user: authState.id, 
+            service: "NIN",
             gender: "IDC",
             age_required_from: 13,
             age_required_to: 13,
@@ -32,7 +74,7 @@ export const OfrecermeNiñera = () => {
             disabilities_tco: true,
             disabilities_tco_decrip: "sssssssssssss",
             travel: true,
-            travel_decription: "asdasd",
+            travel_decription: "",
             activities: "",
             workday: [],
             workday_other: "",
@@ -41,14 +83,14 @@ export const OfrecermeNiñera = () => {
             payment: "",
             payment_amount: "0.0",
             currency: -1,
-            currency_other: "",
+            currency_other: null,
             salary_offered: -1,
-            benefits: false,
+            benefits: 0,
             benefits_description: "",
             availability: "",
-            availability_date: "",
+            availability_date: null,
             have_documentation: false,
-            documents: [],
+            documents: ["PASAPORTE"],
             documents_other: "",
             publication_time: "1",
             publication_plan: "1",
@@ -57,12 +99,34 @@ export const OfrecermeNiñera = () => {
             age: "0",
             have_children: false,
             description: "",
-            origin: "",
+            origin: "NO",
             origin_continent: "",
             origin_country: "",
             origin_state: "",
             origin_city: "",
-            client_type: ""
+            client_type: "NO",
+            errors: {
+                invalid_age: false,
+                country_required: false,
+                state_required: false,
+                city_required: false,
+                description_required: false,
+                travel_desc_required: false,
+                activities_required: false,
+                workday_required: false,
+                workday_other_required: false,
+                schedule_required: false,
+                schedule_other_required: false,
+                salary_option_required: false,
+                salary_required: false,
+                salary_other_required: false,
+                benefits_required: false,
+                date_opt_required: false,
+                date_required: false,
+                other_doc_required: false,
+                billing_required: false,
+                origin_required: false
+            }
         });
     },[]);
 
@@ -95,11 +159,11 @@ export const OfrecermeNiñera = () => {
                 <div className="row">
                     <div className="first-row blue first-column" id="niñera"><h2>{t('OfrecermeNiñera.niñera')}</h2></div>
                     <div className="first-row" id="n-niñera" >
-                        <h1>Ana Silva</h1>
+                        <h1>{authState.name}</h1>
                     </div>
                     <div className="first-row" id="pais">
 
-                        <h2><span className="blue">{t('OfrecermeNiñera.pais')}</span> <span className="red" >Venezuela</span></h2>
+                        <h2><span className="blue">{t('OfrecermeNiñera.pais')}</span> <span className="red" >{userData.country}</span></h2>
 
                         
                     </div>
@@ -114,23 +178,24 @@ export const OfrecermeNiñera = () => {
                                 <h4>{t('OfrecermeNiñera.telefono_movil')}</h4>
                             </div>
                             <div className="second-column">
-                                <h4>+58-412-703-88-88</h4>
+                                
+                                <h4>{userData.cellphone != null  ? userData.cellphone :t('OfrecermeNiñera.no-tiene')}</h4>
                             </div>
                             <div className="first-column">
                                 <h4>{t('OfrecermeNiñera.telefono_fijo')}</h4>
                             </div>
                             <div className="second-column">
-                                <h4>+58-212-235-78-88</h4>
+                                <h4>{userData.telephone != null  ? userData.telephone :t('OfrecermeNiñera.no-tiene')}</h4>
                             </div>
                             <div className="first-column">
                                 <h4>{t('OfrecermeNiñera.correo')}</h4>
                             </div>
                             <div className="second-column">
-                                <h4>nirvana01@gmail.com</h4>
+                                <h4>{authState.email}</h4>
                             </div>
                         </div>
                     </div>
-                    <div className="second-row">
+                    <div className="second-row" style={{visibility:'hidden'}}>
                         <h2><span className="blue">{t('OfrecermeNiñera.estado')}</span> <span className="red" >Distrito Capital</span></h2>
                     </div>
                 </div>

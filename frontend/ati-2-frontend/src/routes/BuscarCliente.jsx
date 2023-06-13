@@ -204,8 +204,8 @@ export const BuscarCliente = () => {
                             onClick={ () => {
                                 let query = "?type=request&";
 
-                                if(selectedContinent != -1)
-                                    query += `continent=${regions[selectedContinent]}&`
+                                // if(selectedContinent != -1)
+                                //     query += `continent=${regions[selectedContinent]}&`
                                 
                                 if(selectedCountries != "")
                                     query += `country__in=${selectedCountries.substring(1)}&`
@@ -442,8 +442,8 @@ export const BuscarCliente = () => {
                             onClick={ () => {
                                 let query = "?type=request&";
 
-                                if(selectedContinent != -1)
-                                    query += `continent=${regions[selectedContinent]}&`
+                                // if(selectedContinent != -1)
+                                //     query += `continent=${regions[selectedContinent]}&`
                                 
                                 if(selectedCountries != "")
                                     query += `country__in=${selectedCountries.substring(1)}&`

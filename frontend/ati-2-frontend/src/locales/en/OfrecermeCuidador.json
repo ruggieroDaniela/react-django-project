@@ -1,0 +1,293 @@
+{
+    "OfrecermeCuidador":{
+        "no-tiene":"Not available",
+        "niñera": "Caretaker",
+        "pais":"Country",
+        "estado":"State, province or canton",
+        "titulo": "OFFER MY SERVICES AS A OCCUPATIONAL CARETAKER",
+        "telefono_movil":"Mobile Phone",
+        "telefono_fijo":"Landline",
+        "correo":"Email",
+        "panel-opciones":"OPTIONS PANEL",
+        "indicaciones": [
+            "These are the steps to follow to complete your registration.",
+            "If at any time you need to access a section of the registry, click on the green panel, which is your preference"
+        ],
+        "botones":{
+            "registrar": "Register",
+            "cancelar": "Cancel"
+        },
+        "fases":[
+            {
+              "nombre": "Basic caretaker information",
+              "mensaje":"Please, provide provide the specified data below",
+              "condiciones":"I am a responsible, honest, good-natured person, and I like children.",
+              "edad":"Age",
+              "situacion-familiar":"Family situation",
+              "grado-instruccion":"Degree of instruction",
+              "años":"years",
+              "con-hijos":"With children",
+              "sin-hijos":"Childless",
+              "grado":[
+                "Elementary",
+                "High School",
+                "University technician",
+                "Universitary"
+              ],
+              "campos-obligatorios":"Required fields"
+            },
+            {
+              "nombre": "Place of Origin",
+              "mensaje": "Please, indicate your place of origin",
+              "prefiero": "I prefer it from",
+              "pais": "Country of origin",
+              "estado": "State/Province",
+              "ciudad": "City",
+              "zona": "Zone",
+              "select-country":"Select a country",
+              "select-state":"Select a state",
+              "select-city":"Select a city"
+            },
+            {
+              "nombre": "General description of my work profile",
+              "mensaje": "Please provide a brief and direct description of your professional profile",
+              "descripcion-perfil": "General description of your professional profile",
+              "indique": "Please indicate"
+            },
+            {
+              "nombre": "Caretaker's travel availability",
+              "mensaje": "Please indicate if you have availability to travel or not.",
+              "mensaje2": "If you have availability, please specify additional details about the travel.",
+              "pregunta": "Are you willing to travel to accompany the person(s) to be taken care of?",
+              "si": "Yes",
+              "no": "No",
+              "especifique": "Please specify"            
+            },
+            {
+              "nombre": "Functions performed as a caretaker",
+              "mensaje": "Please indicate the activities you have performed as a caretaker",
+              "titulo": "Functions you have performed as a caretaker",
+              "indique": "Please indicate the activities you have performed in this position",
+              "ejemplos": [
+                "Preparing meals",
+                "Medication control",
+                "Bathing and hygiene",
+                "Diaper changing",
+                "Playing with the children",
+                "House cleaning",
+                "Others"
+              ],
+              "especifique": "Please specify",
+              "ejemplo":"Example"  
+            },
+            {
+              "nombre": "Working Conditions",
+              "mensaje": "Please indicate the working conditions you expect from the client or employer",
+              "salidas-jornada": "How do you want the end of your workday to be?",
+              "salidas-jornada-opciones": [
+                "Weekly",
+                "Bi-weekly",
+                "Monthly",
+                "Every other day",
+                "Part-time",
+                "Weekend",
+                "In the evening",
+                "Seasonally",
+                "Hourly",
+                "Other",
+                "Please specify"
+              ],
+              "horario": "Schedule",
+              "horario-mensaje": "Select the days you are willing to work",
+              "horario-opciones": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+                "Monday to Friday",
+                "Weekend",
+                "Other considerations",
+                "Please specify"
+              ],
+              "salario-deseado": "Desired salary",
+              "salario-deseado-opciones": [
+                "Amount",
+                "To be agreed"
+              ],
+              "beneficio-laboral": "Do you expect any other employment benefits?",
+              "ejemplo": "Example",
+              "ejemplos": [
+                "Daily meal allowance",
+                "Mandatory social security",
+                "Insurance coverage",
+                "Year-end bonuses"
+              ],
+              "especifique": "Please specify",
+              "no": "No",
+              "si": "Yes",
+              "otro": "Other",
+              "moneda": "Currency",
+              "selecciona-moneda": "Select the currency",
+              "salario-ofrecido": "The offered salary is",
+              "seleccione-salario": "Select the salary",
+              "salario-opciones": [
+                "Per hour",
+                "Per day",
+                "Weekly",
+                "Bi-weekly",
+                "Monthly"
+              ]
+            },
+            {
+              "nombre": "Availability to start working",
+              "mensaje": "Please indicate your availability to start working with the client",
+              "titulo": "What availability do you have to start working after being selected?",
+              "fecha-inicio": "Start date",
+              "fecha-convenir": "To be agreed"
+            },
+            {
+              "nombre": "Clients I want to work with",
+              "mensaje": "Please indicate the location of the clients you wish to work with",
+              "mensaje1": "You can select more than one country or city",
+              "lugar-procedencia": "Place of origin",
+              "lugar-procedencia-opciones": [
+                "I am indifferent",
+                "I want to specify the client's origin"
+              ],
+              "tipo-cliente": "Client type",
+              "tipo-cliente-opciones": [
+                "Individual",
+                "Company",
+                "I am indifferent"
+              ],
+              "continente": "Continent",
+              "select-continente": "Select the continent",
+              "pais": "Country",
+              "select-pais": "Select the country",
+              "estado": "State",
+              "select-estado": "Select the state",
+              "ciudad": "City",
+              "select-ciudad": "Select the city",
+              "continentes":[
+                "North America",
+                "South America",
+                "Europe",
+                "Asia",
+                "Oceania"
+            ]
+
+            },
+            {
+              "nombre": "Documents I can provide to clients",
+              "mensaje": "Please indicate which documents you can present to the clients",
+              "titulo": "Documents I can present to the clients (Optional)",
+              "posee-documentacion": "Do you have any documentation that can be shown to the client?",
+              "si": "Yes",
+              "no": "No",
+              "documentos": "Select one or more preferred documents",
+              "documentos-opciones": [
+                "Identification document or passport",
+                "Updated resume",
+                "Degrees or certificates",
+                "Verifiable work references",
+                "Family references indicating full name, local telephone, mobile telephone, email (optional), and address",
+                "Proof of residency",
+                "Certificate of no criminal record",
+                "Health certificate",
+                "Other document"
+              ],
+              "especifique": "Please specify"
+            },
+            {
+              "nombre": "Suggestions before a job interview",
+              "mensaje": "Please read these suggestions. They can be helpful",
+              "titulo": "Suggestions before a job interview",
+              "sugerencias": [
+                "Choose what clothes you will wear for an in-person or online interview with your employer",
+                "Avoid wearing revealing or provocative clothing. It is not professional",
+                "Read the client's job posting multiple times and prepare a list of questions you want to ask the potential employer",
+                "Keep the documentation suggested in previous points handy in case a client requests it. This can increase your chances of being hired more quickly"
+              ]
+            },
+            {
+              "nombre": "Suggestions during a job interview",
+              "mensaje": "Please read these suggestions. They can be helpful",
+              "titulo": "Suggestions during the interview",
+              "sugerencias": [
+                "Try to determine, in as much detail as possible, the client's needs, and ask any questions that help you determine if you want to work with that client or not",
+                "Find out where they live, gather information about their family members to contact in case of an emergency (this will also be useful for you in case your employer exposes you to labor abuses that are not allowed by law, such as labor exploitation, not receiving the agreed compensation in the employment contract, humiliation, yelling, among others)"
+              ]
+            },
+            {
+              "nombre": "Work suggestions for day-to-day with the client",
+              "mensaje": "Please read these suggestions. They can be helpful",
+              "titulo": "Work suggestions for day-to-day with the client",
+              "titulos": [
+                "Before starting your tasks",
+                "On a daily basis",
+                "If you feel you are receiving inappropriate treatment from your employer",
+                "When you receive your payment",
+                "When the personnel finish their tasks",
+                "If you decide not to continue working with the client",
+                "Additional suggestions"
+              ],
+              "parrafos": [
+                "Request your employment contract in writing, as this is the document that certifies that you are working for the client.",
+                "Ensure good personal hygiene and refrain from smoking, consuming alcoholic beverages, or engaging in behaviors that go against morals and good customs, especially in front of children.",
+                "Ask the client about security procedures for opening doors, answering the phone, receiving visitors in the property, and any other matters related to the individuals under your care or the property where you will be working.",
+                "Request contact information from the client regarding the individuals under your care, such as the attending physician, phone numbers of insurance companies covering the individuals, a list of nearby clinics for emergencies, direct contact details for the client and for you in case of any emergencies or inquiries from the hired person or yourself.",
+                "If possible, record the fingerprints of the personnel serving you as a basis for accountability in case of theft or any incidents that the person may have caused in the property or towards the individuals under your care.",
+                "Strive to maintain good communication with the individuals under your care in a friendly and respectful manner, and do your job to the best of your ability. Be attentive to their needs. Remember that your employer is placing their trust in you, and there is no better way to repay that trust than by doing a job well and ensuring the well-being of the people you are caring for.",
+                "Maintain regular communication with your employer and request feedback on the work you are performing.",
+                "Discuss the situation with your employer and determine if things can improve. If the situation does not improve, you have the option to leave if you wish. In this case, no employer can detain you by force, as it is a crime. Additionally, there are other organizations that defend workers' rights in case of labor exploitation or unsuitable working conditions, to which you should present your employment contract and payment receipts.",
+                "Request a payment receipt from the client to have evidence of the payments received. This document, along with the employment contract, serves as proof to the competent authorities that you have an employment relationship with the client and allows them to assist you if you encounter any problems related to labor exploitation or non-payment by your employer.",
+                "Show your bag before leaving the workplace.",
+                "Give advance notice so that the client can find another person. This also helps to leave a good reference with the client.",
+                "Store valuable jewelry or belongings in secure places."
+              ]
+            },
+            {
+              "nombre": "Service considerations",
+              "mensaje": "Please read the service considerations",
+              "parrafos": [
+                "The data provided is the responsibility of the advertiser, and the company is exempt from verifying its veracity.",
+                "The suggestions provided are to guide the caretaker, and by accepting the publication of such announcement, the company is exempt from any incidents that may occur between the caretaker and the client."
+              ]
+            },
+            {
+              "nombre": "Billing information",
+              "mensaje": "Select the account where you will make the payment for your publication",
+              "plan-seleccionado": "Selected plan",
+              "mes": "month",
+              "meses": "months",
+              "forma-pago": "Payment methods",
+              "forma-pago-descripcion": "Below are the payment methods associated with your publication",
+              "pais-titulo": "Country to which you will send the payment for the publication",
+              "pais-titulo-descripcion": "Select one of the countries where the company has an account for you to make your payment",
+              "cuentas": "Account(s) where you can make your payment",
+              "formas-pago": [
+                "Deposit",
+                "Bank transfer"
+              ],
+              "pais": "Country",
+              "seleccione-pais":"Select a country",
+              "banco": "Bank",
+              "seleccione-banco": "Select your preferred bank",
+              "nro-cuenta": "Account number",
+              "codigo-swift": "SWIFT code",
+              "a-nombre-de": "In the name of",
+              "correo": "Email",
+              "tipo-cuenta": "Account type",
+              "formadepago":"Payment method",
+              "deposito":"Deposit",
+              "transferencia-bancaria":"Bank transfer",
+              "numero-cuenta":"Account number"
+            }
+        ],
+        "continuar": "Continue",
+        "atras": "Back"
+    }
+}

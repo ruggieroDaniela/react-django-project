@@ -5,6 +5,9 @@
         "descripcion": "Select the account you want to access",
         "correo": "Email",
         "contrasena": "Password",
-        "olvide_contrasena": "I forgot my password, or my data"
+        "olvide_contrasena": "I forgot my password, or my data",
+        "claveInvalida": "The password you entered is incorrect", 
+        "correoInexistente": "There is no registered user with this email",
+        "noAuth": "Before requesting or offering a service you must register and log in"
     }
 }

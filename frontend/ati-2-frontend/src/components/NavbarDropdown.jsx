@@ -22,7 +22,7 @@ const NavbarDropdown = ({label, items}) =>{
                         keyIndex++;
                         
                         return 'link' in item?
-                            <li key={Math.random().toString(36)} className="item"> <a className="link" href={item.link} onClick={() => i18n.changeLanguage(item.lan)} >{item.label}</a> </li>
+                        <   li key={Math.random().toString(36)} className="item"> <a className="link" href={item.link} onClick={() => i18n.changeLanguage(item.lan)} >{item.label}</a> </li>
                             :
                             <NavbarDropdown
                                 key={Math.random().toString(36)}

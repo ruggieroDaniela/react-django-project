@@ -43,8 +43,19 @@ class ServicesSerializer(serializers.ModelSerializer):
         if data['payment'] == 'MONTO' and not data.get('payment_amount'):
             raise serializers.ValidationError("Por favor, especifique el monto deseado")
         
-        if data['currency'] == 'OTRA' and not data.get('currency_other'):
+        if data['payment'] == 'MONTO' and not data.get('currency'):
             raise serializers.ValidationError("Por favor, especifique la moneda")
+        
+        if data['payment'] == 'MONTO' and not data.get('salary_offered'):
+            raise serializers.ValidationError("Por favor, especifique el salario")
+        
+        if data['payment'] == 'CONVENIR' and ( data.get('currency') or data.get('currency_other') or data.get('salary_offered') or data.get('payment_amount') ) : 
+            raise serializers.ValidationError("Error, no debe especificar el salario deseado")
+
+ 
+
+        if data['currency'] == 'OTRA' and not data.get('currency_other'):
+            raise serializers.ValidationError("Por favor, especifique otra moneda")
         
         if data['benefits'] == 1 and not data.get('benefits_description'):
             raise serializers.ValidationError("Por favor, especifique otro beneficio laboral")
@@ -82,12 +93,6 @@ class RequestServiceSerializer(ServicesSerializer):
     def validate(self, data):
         data =  super().validate(data)
 
-        if data['service'] == 'NIN' and not ( data['age_required_from'] >= 0 and data['age_required_to'] <=12 ):
-            raise serializers.ValidationError("Edad no permitida, debe ser entre 0 y 12 años")
-
-        if data['service'] == 'CUI' and not ( data['age_required_from'] >= 13 and data['age_required_to'] >= 13):
-            raise serializers.ValidationError("Edad no permitida, debe ser mayor de 13 años")
-
         if data['disabilities_tco'] == True and not data.get('disabilities_tco_decrip'):
             raise serializers.ValidationError("Por favor, indique las discapacidades que presentan")
         
@@ -98,4 +103,4 @@ class RequestServiceSerializer(ServicesSerializer):
     
     class Meta: 
         model = RequestService
-        fields = ['id', 'user' , 'service', 'enable', 'created_at', 'gender', 'age_required_from', 'age_required_to', 'children', 'education_level', 'continent', 'country', 'state', 'city', 'zone', 'number_tco', 'age_tco', 'gender_tco', 'disabilities_tco', 'disabilities_tco_decrip', 'diseases_tco_descrip', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'have_documentation', 'documents', 'documents_other',  'publication_time', 'publication_plan', 'billing_country', 'billing_bank']
+        fields = ['id', 'user' , 'service', 'enable', 'created_at', 'gender', 'age_requirement', 'age_required_from', 'age_required_to', 'children', 'education_level', 'continent', 'country', 'state', 'city', 'zone', 'number_tco', 'age_tco', 'gender_tco', 'disabilities_tco', 'disabilities_tco_decrip', 'diseases_tco_descrip', 'travel', 'travel_decription', 'activities', 'workday', 'workday_other', 'schedule', 'schedule_other', 'payment', 'payment_amount', 'currency', 'currency_other', 'salary_offered', 'benefits', 'benefits_description', 'availability', 'availability_date', 'have_documentation', 'documents', 'documents_other',  'publication_time', 'publication_plan', 'billing_country', 'billing_bank']

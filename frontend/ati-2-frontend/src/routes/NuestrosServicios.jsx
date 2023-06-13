@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { RequestDomesticFormContext, RequestDomesticFormContextProvider } from "../context/RequestDomesticFormContext";
+import AuthContext from "../context/AuthContext";
 
 import "../styles/NuestrosServicios.scss"
 
@@ -11,11 +11,19 @@ import "../styles/NuestrosServicios.scss"
 export const NuestrosServicios = () => {
 
     const { t } = useTranslation();
-    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+    const {authState, setAuthState} = useContext(AuthContext);
+    const isAuth = authState.logged_in;
     const navigate = useNavigate();
 
     const [clickPostAd, setClickPostAd] = useState(false);
     const [clickFind, setClickFind] = useState(false);
+
+    const [postAdSelected, setPostAdSelected] = useState(-1);
+
+    const postAdLinks = [
+        "/post-ad/offer",
+        "/post-ad/request"
+    ]
 
     return <>
         <div id="nuestros-servicios">
@@ -63,43 +71,17 @@ export const NuestrosServicios = () => {
                             <span className="required">*</span> {t('nuestros_servicios.seleccionar_opcion')}
                             <div className="button_dropdown_content">
                                 <button
-                                    // onClick={
-                                    //     async () => {
-                                    //         const data = {...requestDomesticFormState};
-                                    //         console.log(data);
-
-                                    //         const url = 'http://127.0.0.1:8000/api-services/requestService/post_ad/'
-                                    //         try {
-                                                
-                                    //             const response = await fetch( url,{
-                                    //                     method: 'POST',
-                                    //                     headers: {
-                                    //                         'Content-Type': 'application/json',
-                                    //                     },
-                                    //                     body: JSON.stringify(data),
-                                    //                 }
-                                    //             );
-                                        
-                                    //             if (response.ok) {
-                                    //                 // Request was successful
-                                    //                 console.log('POST request successful');
-                                    //                 console.log(response);
-                                    //             } else {
-                                    //                 // Request failed
-                                    //                 console.log('POST request failed');
-                                    //             }
-                                        
-                                    //         } catch (error) {
-                                    //             console.log("error registrando");
-                                    //             console.log(error);
-                                    //         }
-
-                                    //     }
-                                    // }
+                                    onClick={() => {
+                                        setPostAdSelected(prev => prev == 0? -1:0);
+                                    }}
                                 >
                                     A- {t('nuestros_servicios.opciones.0')}
                                 </button>
-                                <button>
+                                <button
+                                    onClick={() => {
+                                        setPostAdSelected(prev => prev == 1? -1:1);
+                                    }}
+                                >
                                     B- {t('nuestros_servicios.opciones.1')}
                                 </button>
                             </div>
@@ -134,6 +116,72 @@ export const NuestrosServicios = () => {
                     </div>
                 </div>
             </div>
+            {postAdSelected != -1 && clickPostAd &&
+                <>
+                    <div id="more-options-header">
+                        <h4>
+                            {postAdSelected == 0?
+                                `A- ${t('nuestros_servicios.opciones.0')}`
+                                :
+                                `B- ${t('nuestros_servicios.opciones.1')}`
+                            }
+                        </h4>
+                        <p>
+                            {postAdSelected == 0?
+                                `${t('nuestros_servicios.offer_desc')}`
+                                :
+                                `${t('nuestros_servicios.request_desc')}`
+                            }
+                        </p>
+                    </div>
+                    <div id="more-options">
+                        
+                        <button 
+                            onClick={() => { 
+                                if(!isAuth)
+                                    navigate(`/login`)
+                                else
+                                    navigate(`${postAdLinks[postAdSelected]}/babysitter`)
+                            }}
+                        >
+                            {t('NIN')}
+                        </button>
+                        <div className="desc">
+                            {t('nuestros_servicios.NIN_desc')}
+                        </div>
+                        <button 
+                            onClick={() => { 
+                                if(!isAuth)
+                                    navigate(`/login`)
+                                else
+                                    navigate(`${postAdLinks[postAdSelected]}/caretaker`)
+                            }}
+                        >
+                            {t('CUI')}
+                        </button>
+                        <div className="desc">
+                            {t('nuestros_servicios.CUI_desc')}
+                        </div>
+                        
+                    </div>
+                    <div id="how-to">
+                        <h4>
+                            {postAdSelected == 0?
+                                `${t('nuestros_servicios.como_ofrezco')}`
+                                :
+                                `${t('nuestros_servicios.como_solicito')}`
+                            }
+                        </h4>
+                        <ol id="steps">
+                            <li>{t('nuestros_servicios.pasos_solicitar.0')} <a href="/sign-up">{t('aquí')}</a></li>
+                            <li>{t('nuestros_servicios.pasos_solicitar.1')} <a href="/login">{t('aquí')}</a></li>
+                            {postAdSelected == 1 &&
+                                <li>{t('nuestros_servicios.pasos_solicitar.2')}</li>
+                            }
+                        </ol>
+                    </div>
+                </>
+            }
         </div>
     </>
 

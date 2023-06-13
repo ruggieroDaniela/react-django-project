@@ -136,9 +136,9 @@ class Services(models.Model):
     # Salary
     payment = models.CharField(blank=False, max_length=8, choices=PAYMENT_CHOICES)
     payment_amount = models.FloatField(null=True, blank=True)
-    currency = models.CharField(blank=False, max_length=4, choices=CURRENCY_CHOICES)
-    currency_other = models.TextField(blank=True)
-    salary_offered = models.CharField(blank=False, max_length=9, choices=SALARY_OFFERED_CHOICES)
+    currency = models.CharField(blank=True, null=True, max_length=4, choices=CURRENCY_CHOICES)
+    currency_other = models.TextField(blank=True, null=True)
+    salary_offered = models.CharField(blank=True, null=True,  max_length=9, choices=SALARY_OFFERED_CHOICES)
 
     benefits = models.IntegerField(blank=False)
     benefits_description = models.TextField(blank=True)
@@ -225,8 +225,9 @@ class RequestService(Services):
 
     # 1 - Basic data
     gender = models.CharField(blank=False, max_length=3, choices=GENDER_CHOICES)
-    age_required_from = models.PositiveIntegerField()
-    age_required_to = models.PositiveIntegerField()
+    age_requirement = models.BooleanField(blank=False)
+    age_required_from = models.PositiveIntegerField(blank=True, null=True)
+    age_required_to = models.PositiveIntegerField(blank=True, null=True)
     children = models.CharField(blank=False, max_length=3, choices=CHILDREN_CHOICES)
 
     # 2 - Place of Origin 

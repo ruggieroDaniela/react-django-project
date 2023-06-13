@@ -12,6 +12,8 @@ import buscar_personal_domestico_en from "./locales/en/BuscarPersonalDomestico.j
 import reset_password_en from "./locales/en/RestablecerContraseña.json"
 import forgot_password_en from "./locales/en/ForgotPassword.json"
 import OfrecermeNiñera_en from "./locales/en/OfrecermeNiñera.json"
+import SolicitarNiñera_en  from './locales/en/SolicitarNiñera.json';
+import OfrecermeCuidador_en from "./locales/en/OfrecermeCuidador.json"
 import listar_publicaciones_en from "./locales/en/ListarPublicaciones.json"
 import publicacionCreada_en from "./locales/en/VisualizarPublicacionCreada.json"
 
@@ -25,6 +27,8 @@ import buscar_personal_domestico_es from "./locales/es/BuscarPersonalDomestico.j
 import reset_password_es from "./locales/es/RestablecerContraseña.json"
 import forgot_password_es from "./locales/es/ForgotPassword.json"
 import OfrecermeNiñera_es from "./locales/es/OfrecermeNiñera.json"
+import SolicitarNiñera_es  from './locales/es/SolicitarNiñera.json';
+import OfrecermeCuidador_es from "./locales/es/OfrecermeCuidador.json"
 import listar_publicaciones_es from "./locales/es/ListarPublicaciones.json"
 import publicacionCreada_es from "./locales/es/VisualizarPublicacionCreada.json"
 
@@ -37,11 +41,15 @@ const en = Object.assign(
   login_en,
   servicios_en,
   buscar_personal_domestico_en,
+  OfrecermeNiñera_en,
+  SolicitarNiñera_en,
   reset_password_en,
   forgot_password_en,
   OfrecermeNiñera_en,
   listar_publicaciones_en,
   publicacionCreada_en,
+  OfrecermeCuidador_en,
+
 );
 
 const es = Object.assign(
@@ -53,11 +61,14 @@ const es = Object.assign(
   login_es,
   servicios_es,
   buscar_personal_domestico_es,
+  OfrecermeNiñera_es,
+  SolicitarNiñera_es,
   reset_password_es,
-  forgot_password_en,
+  forgot_password_es,
   OfrecermeNiñera_es,
   listar_publicaciones_es,
   publicacionCreada_es,
+  OfrecermeCuidador_es,
 );
 
 i18n

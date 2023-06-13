@@ -1,14 +1,24 @@
 // GlobalStateContext.js
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({children}) => {
     const [authState, setAuthState] = useState({
+        token: "",
+        id: -1,
         logged_in: false,
-        user_id: -1,
-        token: ""
+        email: "",
+        name: "",
+        lang: "en"
     });
+
+    useEffect(() => {
+        const sessionData = JSON.parse(localStorage.getItem('sessionData'));
+        if (sessionData) 
+            setAuthState(sessionData);
+        
+    }, []);
 
     return(
         <AuthContext.Provider value={{authState, setAuthState}}>

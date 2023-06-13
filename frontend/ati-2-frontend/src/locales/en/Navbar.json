@@ -52,7 +52,10 @@
 
         "idiomas": "Language",
         "espagnol": "Spanish",
-        "ingles": "English"
+        "ingles": "English",
+
+        "datos_usuario": "User Data",
+        "cerrar_sesion": "Logout"
 
     }
 }

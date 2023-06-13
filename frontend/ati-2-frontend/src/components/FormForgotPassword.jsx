@@ -16,9 +16,9 @@ export const FormForgotPassword = ({ message, info }) => {
     const handleSubmit  = async (e) =>  {
         e.preventDefault();
 
-        if(info==="identification"){
+        if(info==="id"){
             try {
-                const response = await axios.post('http://127.0.0.1:8000/forgot-password/', {dni: input})
+                const response = await axios.post('http://localhost:8000/forgot-password/', {dni: input})
                 setUserMail(response.data.email) 
                 setInvalidInput(false)
                 setCorreoEnviado(true);
@@ -29,7 +29,7 @@ export const FormForgotPassword = ({ message, info }) => {
             
         else if(info==="email"){
             try {
-                const response = await axios.post('http://127.0.0.1:8000/forgot-password/', {email: input})
+                const response = await axios.post('http://localhost:8000/forgot-password/', {email: input})
                 setUserMail(response.data.email) 
                 setInvalidInput(false)
                 setCorreoEnviado(true);

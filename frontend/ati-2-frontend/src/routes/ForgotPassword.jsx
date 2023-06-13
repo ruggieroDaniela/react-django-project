@@ -8,7 +8,7 @@ import { FormForgotPassword } from '../components/FormForgotPassword';
 export const ForgotPassword = () => {
 
     const { t, i18n } = useTranslation();
-    const [info, setInfo] = useState('');
+    const [info, setInfo] = useState("cedula");
     const [formIdDoc, setformIdDoc] = useState(false);
     const [formEmail, setFormEmail] = useState(false);
     const navigate = useNavigate();
@@ -40,7 +40,7 @@ export const ForgotPassword = () => {
             ? 
                 <FormForgotPassword
                     message = {t("forgotPassword.mensaje1")}
-                    info="identification" 
+                    info="id" 
                 />
             : 
                 null

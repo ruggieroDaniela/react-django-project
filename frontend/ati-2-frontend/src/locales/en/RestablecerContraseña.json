@@ -1,20 +1,20 @@
 {
     "resetPassword": {
-    "titulo1": "Reset Password",
-    "titulo2": "Reset your password",
-    "botonAceptar": "Accept",
-    "botonCancelar": "Cancel",
-    "descripcion": "Select the information you will provide",
-    "descripcion2": "Changing the person's email password",
-    "descripcion3": "Your password has been changed",
-    "pregunta": "What do you want to do?",
-    "radio1": "Log in",
-    "radio2": "Continue browsing the portal",
-    "radio3": "Exit",
-    "contraseña": "Password",
-    "confirmarContraseña": "Confirm password",
-    "cambiarContraseña": "Change password",
-    "passwordInvalido": "The passwords do not match",
-    "passwordCorto": "The new password must be at least 8 characters long"
+        "titulo1": "Reset Password",
+        "titulo2": "Reset your password",
+        "botonAceptar": "Accept",
+        "botonCancelar": "Cancel",
+        "descripcion": "Select the information you will provide",
+        "descripcion2": "Changing the person's email password",
+        "descripcion3": "Your password has been changed",
+        "pregunta": "What do you want to do?",
+        "radio1": "Log in",
+        "radio2": "Continue browsing the portal",
+        "radio3": "Exit",
+        "contraseña": "Password",
+        "confirmarContraseña": "Confirm password",
+        "cambiarContraseña": "Change password",
+        "passwordInvalido": "The passwords do not match",
+        "passwordCorto": "The new password must be at least 8 characters long"
     }
 }

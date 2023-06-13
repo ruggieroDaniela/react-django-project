@@ -1,201 +1,157 @@
+import data from "../../data/countries.json"
 import axios from 'axios';
 
 const API_KEY = "M3F5RW5Hb1dkWFpNN2kwN1k1eEhNYlRYZUJuQW5Wb3NETlF6YTd5cg=="
 
+const continents = ["north america", "south america", "europe", "asia", "oceania"]
+
 export const getContinents = () => ["north america", "south america", "europe", "asia", "oceania"]
 
-export const getCountryName = async countryCode => {
-    try {
-        const response = await axios.get(`https://api.countrystatecity.in/v1/countries/${countryCode}`, {
-            headers: {
-                'X-CSCAPI-KEY': API_KEY
-            }
-        });
+export const getCountryName = (countryCode, lang = "en") => {
 
-        // console.log(response.data);
-        return response.data.name;
+    for (let i = 0; i < continents.length; i++) {
         
-    } catch (error) {
-        console.error(error);
+        if( countryCode in data[ continents[i] ] ){
+            console.log(data[ continents[i] ][countryCode][lang] );
+            return data[ continents[i] ][countryCode][lang];
+        }
+        
     }
+
+    return null;
 }
 
-export const getAllCountries = async () => {
+export const getAllCountries = (lang = "en") => {
     
-    try {
-        const response = await axios.get("https://api.countrystatecity.in/v1/countries", {
-            headers: {
-                'X-CSCAPI-KEY': API_KEY
-            }
-        });
+    const names = []
+    const values = []
 
-        // console.log(response.data);
-
-        const names = response.data.map( x => x.name );
-        const values = response.data.map( x => x.iso2 );
-        return [names, values];
+    for (let i = 0; i < continents.length; i++) {
         
-    } catch (error) {
-        console.error(error);
-    }
-
-};
-
-export const getCountriesInRegion = async (reg) => {
-    try {
-        const response = await axios.get(`https://restcountries.com/v3.1/region/${reg}`);
-        const names = response.data.map( x => x.name.common );
-        const values = response.data.map( x => x.cca2 );
-
-        return [names, values];
-        
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-export const getStatesInCountry = async (countries) => {
-    try {
-
-        let response;
-
-        const names = [];
-        const values = [];
-
-        const codes = countries.split(",");
-        for (let i = 0; i < codes.length; i++) {
-            if(codes[i].length > 0 ){
-                response = await axios.get(`https://api.countrystatecity.in/v1/countries/${codes[i]}/states`, {
-                    headers: {
-                        'X-CSCAPI-KEY': API_KEY
-                    }
-                });
-
-                for (let j = 0; j < response.data.length; j++) {
-                    names.push( response.data[j].name );
-                    values.push( `${codes[i]}-${response.data[j].iso2}` );
-                }
-            }
-
-        }
-
-        return [names, values];
-        
-    } catch (error) {
-        console.error(error);
-    }
-};
-
-export const getStatesInOneCountry = async (countries) => {
-    try {
-
-        let response;
-
-        const names = [];
-        const values = [];
-
-        const codes = countries.split(",");
-        for (let i = 1; i < codes.length; i++) {
-            response = await axios.get(`https://api.countrystatecity.in/v1/countries/${codes[i]}/states`, {
-                headers: {
-                    'X-CSCAPI-KEY': API_KEY
-                }
+        Object.keys( data[ continents[i] ] )
+            .forEach(code => {
+                names.push( data[ continents[i] ][code][lang] );
+                values.push(code);
             });
-
-            for (let j = 0; j < response.data.length; j++) {
-                names.push( response.data[j].name );
-                values.push( `${codes[i]}/${response.data[j].iso2}` );
-            }
-
-        }
-
-        return [names, values];
         
-    } catch (error) {
-        console.error(error);
     }
+
+    return [names, values]
+
 };
 
-export const getCitiesInStates = async (stateCodes) => {
-    try {
+export const getCountriesInRegion = (reg, lang="en") => {
 
-        let response;
-        let country = "";
-        let state = "";
+    if( !reg in continents )
+        return null
 
-        const names = [];
-        const values = [];
+    const names = []
+    const values = []
+        
+    Object.keys( data[reg] )
+        .forEach(code => {
+            names.push( data[reg][code][lang] );
+            values.push(code);
+        });
 
-        const codes = stateCodes.split(",");
-        for (let i = 0; i < codes.length; i++) {
+    return [names, values]
 
-            if(codes[i].length > 0 ){
-                country = codes[i].split("-")[0];
-                state = codes[i].split("-")[1];
+};
 
-                response = await axios.get(`https://api.countrystatecity.in/v1/countries/${country}/states/${state}/cities`, {
-                    headers: {
-                        'X-CSCAPI-KEY': API_KEY
+export const getStatesInCountry = (countries, lang="en") => {
+
+    const names = [];
+    const values = [];
+
+    const codes = countries.split(",");
+    
+    for(const countryCode of codes){
+        for(const reg of continents){
+            if( countryCode in data[reg] ){
+                Object.keys( data[reg][countryCode]["states"] ).forEach(
+                    stateCode => {
+                        values.push(`${countryCode}-${stateCode}`);
+                        names.push(data[reg][countryCode]["states"][stateCode]["name"])
                     }
-                });
-
-                for (let j = 0; j < response.data.length; j++) {
-                    names.push( response.data[j].name );
-                    values.push( `${stateCodes[i]}-${response.data[j].name}` );
-                }
+                )
+                break;
             }
-
         }
-
-        return [names, values];
-        
-    } catch (error) {
-        console.error(error);
     }
+
+    return [names, values];
+
 };
 
 
-export const getCitiesInCountry = async (countryCode) => {
-    try {
+export const getCitiesInStates = (stateCodes) => {
 
-        let response;
-        const names = [];
-        const values = [];
+    let names = [];
+    let values = [];
 
-        response = await axios.get(`https://api.countrystatecity.in/v1/countries/${countryCode}/cities`, {
-            headers: {
-                'X-CSCAPI-KEY': API_KEY
+    const codes = stateCodes.split(",");
+    
+    for(const stateCode of codes){
+        for(const reg of continents){
+            if( stateCode.substring(0,2) in data[reg] ){
+                names = [...names, ...data[reg][stateCode.substring(0,2)]["states"][stateCode.substring(3)]["cities"]];
+
+                data[reg][stateCode.substring(0,2)]["states"][stateCode.substring(3)]["cities"].forEach(
+                    city => {
+                        values.push(stateCode.substring(0,2)+"-"+city) 
+                    }
+                )
+
+                break;
             }
-        });
-
-
-        for (let j = 0; j < response.data.length; j++) {
-            names.push( response.data[j].name );
-            values.push( `${countryCode}-${response.data[j].name}` );
         }
-
-        return [names, values];
-        
-    } catch (error) {
-        console.error(error);
     }
+
+    return [names, values];
 };
 
-export const getCountryDetails = async countryCode => {
-    try {
 
-        let response;
+export const getCitiesInCountry = (countryCode) => {
 
-        response = await axios.get(`https://api.countrystatecity.in/v1/countries/${countryCode}`, {
-            headers: {
-                'X-CSCAPI-KEY': API_KEY
-            }
-        });
+    let names = [];
+    let values = [];
 
-        return [response.data.phonecode, response.data.emoji];
-        
-    } catch (error) {
-        console.error(error);
-        return null;
+    for(const reg of continents){
+        if( countryCode in data[reg] ){
+            Object.keys( data[reg][countryCode]["states"] ).forEach( stateCode => {
+                const state = data[reg][countryCode]["states"][stateCode];
+                names = [...names, ...state["cities"]];
+                state["cities"].forEach( city => {
+                    values.push(countryCode+"-"+city) 
+                })
+
+            } );
+
+            break;
+        }
     }
+
+    return [names, values];
+};
+
+export const getCountryDetails = countryCode => {
+
+    for(const reg of continents){
+        if( countryCode in data[reg] ){
+            return [ data[reg][countryCode]["phonecode"], data[reg][countryCode]["flag_emoji"] ]
+        }
+    }
+
+    return null;
 }
+
+export const getStateName = (stateCode) => {
+
+    for(const reg of continents){
+        if( stateCode.substring(0,2) in data[reg] ){
+            return data[reg][stateCode.substring(0,2)]["states"][stateCode.substring(3)]["name"]
+        }
+    }
+
+    return null;
+};

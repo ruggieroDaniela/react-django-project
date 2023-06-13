@@ -5,6 +5,9 @@
         "descripcion": "Selecciona la cuenta en la que desea acceder",
         "correo": "Correo",
         "contrasena": "Contraseña",
-        "olvide_contrasena": "Olvidé mi contraseña, o mis datos"
+        "olvide_contrasena": "Olvidé mi contraseña, o mis datos",
+        "claveInvalida": "La contraseña que introdujo es incorrecta", 
+        "correoInexistente": "No hay un usuario registrado con este correo",
+        "noAuth": "Antes de solicitar u ofrecer un servicio debe registrarse e iniciar sesión"
     }
 }

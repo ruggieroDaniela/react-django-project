@@ -1,0 +1,14 @@
+button{
+    background-color: $dorado;
+    color: white;
+    font-weight: bold;
+    box-shadow: none;
+    border: none;
+    border-radius: 0.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    &:hover{
+        cursor: pointer;
+    }
+}
