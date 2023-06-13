@@ -6,12 +6,15 @@ import { FieldDropdown } from "../components/search/FieldDropdown";
 import { FieldDropdownCheckbox } from "./search/FieldDropdownCheckbox";
 import axios from 'axios';
 import "../styles/SolicitarNiñera.scss"
-
-
+import AuthContext from '../context/AuthContext';
+import ErrorMessage from "./ErrorMessage";
+import { useNavigate } from 'react-router-dom';
 
 const Fase0 = () => {
   const { t, i18n } = useTranslation();
   const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+
+  const age_range_invalid = requestDomesticFormState.errors.age_range_invalid
 
   return (
     <div id="fase0">
@@ -87,10 +90,19 @@ const Fase0 = () => {
               <div className="form">
 
                       <div>
-                          <input 
+                      <input 
                             type="radio" 
                             id="c4" 
-                            name="edad"/>
+                            name="edad"
+                            checked={ requestDomesticFormState.age_requirement }
+                            onChange={ e => {
+                                setRequestDomesticFormState( prev => {
+                                        const newState = {...prev};
+                                        newState.age_requirement= true;
+                                        return newState;
+                                    } );
+                            }}
+                        />      
 
                           <label htmlFor="c4">{t('SolicitarCuidador.fases.0.entre')} 
                                 <input 
@@ -119,25 +131,25 @@ const Fase0 = () => {
                       </div>    
 
                       <div>
-                          <input 
-                                type="radio" 
-                                id="c5" 
-                                name="edad"
-                                value="IDC"
-                                checked={ requestDomesticFormState.age_required === 'IDC' }
-                                onChange={ e => {
-                                    setRequestDomesticFormState( prev => {
-                                            const newState = {...prev};
-                                            newState.age_required = e.target.value;
-                                            return newState;
-                                        } );
-                                }}
-                          />    
+                      <input 
+                            type="radio" 
+                            id="c5" 
+                            name="edad"
+                            checked={ !requestDomesticFormState.age_requirement }
+                            onChange={ e => {
+                                setRequestDomesticFormState( prev => {
+                                        const newState = {...prev};
+                                        newState.age_requirement = false;
+                                        return newState;
+                                    } );
+                            }}
+                        />     
                           <label htmlFor="c5">{t('SolicitarCuidador.fases.0.indiferente-edad')}</label>
                       </div>    
 
                       
               </div>
+              { age_range_invalid && <ErrorMessage message={t('SolicitarNiñera.errores.rango_edad')}/>  }
           </div>
 
           <div>
@@ -306,6 +318,10 @@ const Fase1 = () => {
   const [citiesList, setCitiesList] =useState([]);
 
 
+  const country_required = requestDomesticFormState.errors.country_required
+  const state_required = requestDomesticFormState.errors.state_required
+  const city_required = requestDomesticFormState.errors.city_required
+
   //Countries
   useEffect(() => {
       const fetchCountries = async () => {
@@ -473,6 +489,7 @@ const Fase1 = () => {
                     <option>Loading ...</option>
                 )}
                 </select>
+                { country_required && <ErrorMessage message={t('SolicitarNiñera.errores.pais')}/>  }
               </div>
 
               <div >
@@ -497,6 +514,7 @@ const Fase1 = () => {
                         <option>{t('SolicitarCuidador.fases.1.select-state')}</option>
                         )}
                     </select>
+                    { state_required && <ErrorMessage message={t('SolicitarNiñera.errores.estado')}/>  }
               </div>
               <div>
                   <label htmlFor="ciudad" className="bold">{t('SolicitarCuidador.fases.1.ciudad')}</label> 
@@ -521,6 +539,7 @@ const Fase1 = () => {
                         <option>{t('SolicitarCuidador.fases.1.select-city')}</option>
                         )}
                     </select>
+                    { city_required && <ErrorMessage message={t('SolicitarNiñera.errores.ciudad')}/>  }
               </div>
 
               <div>
@@ -554,6 +573,11 @@ const Fase2 = () => {
     const { t, i18n } = useTranslation();
     const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
 
+    const number_tco_required = requestDomesticFormState.errors.number_tco_required
+    const age_tco_required = requestDomesticFormState.errors.age_tco_required
+    const gender_tco_required = requestDomesticFormState.errors.gender_tco_required
+    const diseases_required = requestDomesticFormState.errors.diseases_required
+
   return (
     <div id="fase2">
           <div id="small">
@@ -577,6 +601,7 @@ const Fase2 = () => {
                                     });
                                 }}
                         />
+                        { number_tco_required && <ErrorMessage message={t('SolicitarNiñera.errores.numero')}/>  }
                     </div>
 
                     <div>
@@ -595,7 +620,7 @@ const Fase2 = () => {
                             />
                         </div>
                         <div>
-                            <label className="bold" htmlFor="sexo">{t('SolicitarCuidador.fases.2.sexo')}</label>
+                            <label className="bold" htmlFor="sexo"> <span className="red">*  </span> {t('SolicitarCuidador.fases.2.sexo')}</label>
                             <input  id="sexo"
                                     type="text"
                                     value={requestDomesticFormState.gender_tco} 
@@ -609,7 +634,8 @@ const Fase2 = () => {
                             />
                         </div>
                     </div>
-
+                    { age_tco_required && <ErrorMessage message={t('SolicitarNiñera.errores.edad')}/>  }
+                    { gender_tco_required && <ErrorMessage message={t('SolicitarNiñera.errores.genero')}/>  }
                     <div>
                         <span className="red">*  </span><label className="bold">{t('SolicitarCuidador.fases.2.posee-discapacidad')}</label>
                         
@@ -647,9 +673,8 @@ const Fase2 = () => {
 
                     <div>
                         <label className="bold" htmlFor="discapacidades">{t('SolicitarCuidador.fases.2.indique-discapacidad')}</label>
-                        <input type="text" id="discapacidades" />
-                        <input  id="discapacidades"
-                                type="text"
+                        <textarea  id="discapacidades"
+                                type="textarea"
                                 value={requestDomesticFormState.disabilities_tco_decrip} 
                                 onChange={ e => {
                                     setRequestDomesticFormState( prev => {
@@ -675,7 +700,7 @@ const Fase2 = () => {
                                 }} 
                         />
                     </div>
-                    
+                    { diseases_required && <ErrorMessage message={t('SolicitarNiñera.errores.enfermedad')}/>  }
               </div>
           </div>
     </div>
@@ -683,83 +708,88 @@ const Fase2 = () => {
 }
 
 const Fase3 = () => {
-  const { t, i18n } = useTranslation();
-  const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
-
-  return (     
-  <div id="fase3">
-
-      <div id="small">
-          <span className="red">*  </span><span className="blue">{t('SolicitarCuidador.fases.3.mensaje')}</span><br />
-      </div>
-      <div id="titulos">
-          <h4 >{t('SolicitarCuidador.fases.3.pregunta')}</h4>
-          <div id="form">
-                  <div>
-                        <input  type="radio"
-                                name="interest"
-                                id="c1"
-                                onChange={
-                                    e => {
-                                        setRequestDomesticFormState ( prev => {
-                                            const newState = {... prev};
-                                            newState.travel = true;
-                                            return newState;
-                                        });
-                                    } 
-                                }
-                                checked={requestDomesticFormState.travel}
-                        />
-                      <label for="c1">{t('SolicitarCuidador.fases.3.no')}</label>
-                  </div>
-
-                  <div>
-                        <input  type="radio"
-                                className="segundo" 
-                                name="interest" 
-                                id="c2"
-                                onChange={
-                                    e => {
-                                        setRequestDomesticFormState ( prev => {
-                                            const newState = {... prev};
-                                            newState.travel = false;
-                                            return newState;
-                                        });
-                                    } 
-                                }
-                                checked={!requestDomesticFormState.travel}        
-                        />
-                      <label for="c2">{t('SolicitarCuidador.fases.3.si')}</label>
-                  </div>
+    const { t, i18n } = useTranslation();
+    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+    const travel_desc_required = requestDomesticFormState.errors.travel_desc_required
+  
+    return (     
+    <div id="fase3">
+  
+        <div id="small">
+            <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.3.mensaje')}</span><br />
+        </div>
+        <div id="titulos">
+            <span className="red">* </span>
+            <h4 style={{display: "inline"}} >{t('SolicitarNiñera.fases.3.pregunta')}</h4>
+            <div id="form">
+                    <div>
+                          <input  type="radio"
+                                  name="interest"
+                                  id="c1"
+                                  onChange={
+                                      e => {
+                                          setRequestDomesticFormState ( prev => {
+                                              const newState = {... prev};
+                                              newState.travel = false;
+                                              return newState;
+                                          });
+                                      } 
+                                  }
+                                  checked={!requestDomesticFormState.travel}
+                          />
+                        <label for="c1">{t('SolicitarNiñera.fases.3.no')}</label>
+                    </div>
+  
+                    <div>
+                          <input  type="radio"
+                                  className="segundo" 
+                                  name="interest" 
+                                  id="c2"
+                                  onChange={
+                                      e => {
+                                          setRequestDomesticFormState ( prev => {
+                                              const newState = {... prev};
+                                              newState.travel = true;
+                                              return newState;
+                                          });
+                                      } 
+                                  }
+                                  checked={requestDomesticFormState.travel}        
+                          />
+                        <label for="c2">{t('SolicitarNiñera.fases.3.si')}</label>
+                    </div>
+            </div>
+        </div>
+        { requestDomesticFormState.travel && (
+          <div id="form" >
+          <div >
+              <div id="peq">{t('OfrecermeNiñera.fases.3.especifique')}</div>
           </div>
-      </div>
-      { !requestDomesticFormState.travel && (
-        <div id="form" >
-        <div >
-            <div id="peq">{t('OfrecermeNiñera.fases.3.especifique')}</div>
-        </div>
-            <textarea 
-                    onChange={
-                        e => {
-                            setRequestDomesticFormState ( prev => {
-                                const newState = {... prev};
-                                newState.travel_description = e.target.value;
-                                return newState;
-                            });
-                        } 
-                    }
-                    value={requestDomesticFormState.travel_description}
-            ></textarea>
-        </div>
-        )}
-
-  </div>
-);
-}
+              <textarea 
+                      onChange={
+                          e => {
+                              setRequestDomesticFormState ( prev => {
+                                  const newState = {... prev};
+                                  newState.travel_decription = e.target.value;
+                                  return newState;
+                              });
+                          } 
+                      }
+                      value={requestDomesticFormState.travel_decription}
+              ></textarea>
+  
+          { travel_desc_required && <ErrorMessage message={t('OfrecermeNiñera.errores.requerido')}/>  }
+          </div>
+          )}
+  
+    </div>
+  );
+  }
 
 const Fase4 = () => {
   const { t, i18n } = useTranslation();
   const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+  const activities_required = requestDomesticFormState.errors.activities_required
 
   return ( 
   <div id="fase4">
@@ -802,8 +832,12 @@ const Fase4 = () => {
                         }
                         value={requestDomesticFormState.activities}                        
                 ></textarea>
+
+                { activities_required && <ErrorMessage message={t('SolicitarNiñera.errores.requerido')}/>  }
             </div>
+            
       </div>
+      
   </div>
 
    );
@@ -831,7 +865,14 @@ const Fase5 = () => {
 
     const [selectedServices, setSelectedServices] = useState("");
 
- 
+    const workday_required = requestDomesticFormState.errors.workday_required
+    const workday_other_required = requestDomesticFormState.errors.workday_other_required
+    const schedule_required = requestDomesticFormState.errors.schedule_required
+    const schedule_other_required = requestDomesticFormState.errors.schedule_other_required
+    const salary_option_required = requestDomesticFormState.errors.salary_option_required
+    const salary_required = requestDomesticFormState.errors.salary_required
+    const salary_other_required = requestDomesticFormState.errors.salary_other_required
+    const benefits_required = requestDomesticFormState.errors.benefits_required
 
 
     function setTheWorkdays (e){
@@ -1072,7 +1113,8 @@ const Fase5 = () => {
                                 });
                             }}/>
                         </div>
-                        
+                        { workday_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option_required')}/>  }
+                        { workday_other_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
                     </div>
                 </div>
                 
@@ -1184,6 +1226,9 @@ const Fase5 = () => {
                                 });
                             }} />
                         </div>
+
+                        { schedule_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option')}/>  }
+                    { schedule_other_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
                     </div>
 
                 </div>
@@ -1290,6 +1335,11 @@ const Fase5 = () => {
                         
 
                     </div>
+
+                    { salary_option_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option_required')}/>  }
+                        { salary_required && <ErrorMessage message={t('OfrecermeNiñera.errores.salario')}/>  }
+                        { salary_other_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
+
                 </div>
 
                 <div id="beneficio-laboral">
@@ -1362,7 +1412,9 @@ const Fase5 = () => {
                                 </textarea>
                             </div>
                         </div>
+                        { benefits_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
                     </div>
+                    
                 </div>
         </div>
      );
@@ -1371,6 +1423,9 @@ const Fase5 = () => {
 const  Fase6= () => {
   const { t, i18n } = useTranslation();
   const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+
+  const date_required = requestDomesticFormState.errors.date_required
+  const date_opt_required = requestDomesticFormState.errors.date_opt_required 
 
   return(
       <div id="fase6">
@@ -1437,7 +1492,8 @@ const  Fase6= () => {
                         </div>
                     }
               </div>
-
+                { date_opt_required && <ErrorMessage message={t('OfrecermeNiñera.errores.option_required')}/>  }
+                { date_required && <ErrorMessage message={t('OfrecermeNiñera.errores.fecha')}/>  }
       </div>
   </div>
   );
@@ -1446,6 +1502,7 @@ const  Fase6= () => {
 const Fase7 = () => {
     const { t, i18n } = useTranslation();
     const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+    const other_doc_required = requestDomesticFormState.errors.other_doc_required
 
     function selectDocuments (e){
          
@@ -1553,7 +1610,7 @@ const Fase7 = () => {
                         
                         { requestDomesticFormState.documents.includes("OTRO") &&
                         <div>
-                            <p> Especifique</p> <input  type="text" 
+                            <p> {t('OfrecermeNiñera.fases.3.especifique')} </p> <input  type="text" 
                                                         onChange={ e => {
                                                             setRequestDomesticFormState( prev => {
                                                                 const newState = {...prev};
@@ -1564,7 +1621,7 @@ const Fase7 = () => {
                                                         value={requestDomesticFormState.documents_other}
                                                 />
                         </div>}
-
+                        { other_doc_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
                     </div>
                 </div>
                 }
@@ -1893,6 +1950,7 @@ const Fase11 = () => {
     //radio buttons form
     const [publication_time, setpublication_time] = useState(requestDomesticFormState.publication_time);
 
+    const billing_required = requestDomesticFormState.errors.billing_required 
 
     //this is for the dropdowns
     const [banks, setBanks] = useState([]);
@@ -2113,7 +2171,7 @@ const Fase11 = () => {
                             </div>
                         </div>
                         }
-
+                        { billing_required && <ErrorMessage message={t('OfrecermeNiñera.errores.banco')}/>  }
                 </div>
             </div>
         </div>
@@ -2123,13 +2181,27 @@ const Fase11 = () => {
 const botonEnviar = () => {
     const { t, i18n } = useTranslation();
     const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
-    
+    const {authState, setAuthState} = useContext(AuthContext);
+    const navigate = useNavigate();
     const postData = {...requestDomesticFormState};
 
     postData.number_tco = parseInt(postData.number_tco)
     postData.age_required_from = parseInt(postData.age_required_from)
     postData.age_required_to = parseInt(postData.age_required_to)
     postData.payment_amount = parseFloat(postData.payment_amount)
+
+    if(!postData.currency){
+        postData.currency = ""
+    }
+
+    useEffect(() => {
+        setRequestDomesticFormState ( prev => {
+            const newState = {... prev};
+            newState.user = authState.id;
+            newState.service = "CUI";
+            return newState;
+        });
+    }, [])
 
     console.log(JSON.stringify(postData));
     return(
@@ -2138,6 +2210,22 @@ const botonEnviar = () => {
             
             onClick={
                 async () => {
+                    
+                    //Autenticar última fase
+                    if(!requestDomesticFormState.billing_country || !requestDomesticFormState.billing_bank){
+                        setRequestDomesticFormState((prev) => {
+                            const newState = { ...prev };
+                            newState.errors.billing_required = true
+                            return newState;
+                          })
+                          return
+                    } else {
+                        setRequestDomesticFormState((prev) => {
+                            const newState = { ...prev };
+                            newState.errors.billing_required = false
+                            return newState;
+                          })
+                    }
                     
                     const url = 'http://127.0.0.1:8000/api-services/requestService/post_ad/'
                     try {
@@ -2156,6 +2244,7 @@ const botonEnviar = () => {
                             // Request was successful
                             console.log('POST request successful');
                             console.log(response);
+                            navigate('/');
                         } else {
                             // Request failed
                             console.log('POST request failed');
@@ -2175,9 +2264,325 @@ const botonEnviar = () => {
 }
 
 const useValidar = () => {
+
+    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
+
+    const validateNumber = (number) => {
+        return /^\+?(0|[1-9]\d*)$/.test(number);
+    }
+
+    const validFloat = (float) => {
+        return /^([1-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$/.test(float)
+    }
+
+    const ageRange = (min, max) => {
+        return min >= 0 && max <= 12
+    }
+
     const validate = (currentStage) => {
         // Empty implementation
         let valid =true;
+
+        console.log(requestDomesticFormState)
+        if(currentStage === 0){
+            if(requestDomesticFormState.age_requirement && (!validateNumber(requestDomesticFormState.age_required_from) 
+            || !validateNumber(requestDomesticFormState.age_required_to ) || !ageRange(requestDomesticFormState.age_required_from, requestDomesticFormState.age_required_to))){
+                valid = false
+                setRequestDomesticFormState( prev => {
+                    const newState = {...prev};
+                    requestDomesticFormState.errors.age_range_invalid = true
+                    return newState;
+                } );
+                
+            } else {
+                setRequestDomesticFormState( prev => {
+                    const newState = {...prev};
+                    requestDomesticFormState.errors.age_range_invalid = false
+                    return newState;
+                } );    
+            }
+        }else if (currentStage === 1){
+            if(!requestDomesticFormState.country){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.country_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.country_required = false
+                    return newState;
+                })
+            }
+
+            if(!requestDomesticFormState.state){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.state_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.state_required = false
+                    return newState;
+                })
+            }
+
+            if(!requestDomesticFormState.city){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.city_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.city_required = false
+                    return newState;
+                })
+            }
+        } else if (currentStage === 2){
+            if(!requestDomesticFormState.number_tco || !validateNumber(requestDomesticFormState.number_tco)){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.number_tco_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.number_tco_required= false
+                    return newState;
+                })
+            }
+
+            if(!requestDomesticFormState.age_tco){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.age_tco_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.age_tco_required = false
+                    return newState;
+                })
+            }
+
+            if(!requestDomesticFormState.gender_tco){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.gender_tco_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.gender_tco_required = false
+                    return newState;
+                })
+            }
+
+            if(requestDomesticFormState.disabilities_tco && !requestDomesticFormState.disabilities_tco_decrip && !requestDomesticFormState.diseases_tco_descrip){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.diseases_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.diseases_required = false
+                    return newState;
+                })
+            }
+        } else if (currentStage === 3){
+            if(requestDomesticFormState.travel && !requestDomesticFormState.travel_decription)                {
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.travel_desc_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.travel_desc_required = false
+                    return newState;
+                })
+            }
+        } else if (currentStage === 4){
+            if(!requestDomesticFormState.activities){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.activities_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.activities_required = false
+                    return newState;
+                })
+            }
+        } else if (currentStage === 5){
+            if(requestDomesticFormState.workday.length === 0){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.workday_required = true
+                    newState.errors.workday_other_required = false
+                    return newState;
+                  })
+            } else if(requestDomesticFormState.workday.includes('OTRO') && !requestDomesticFormState.workday_other){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.workday_required = false
+                    newState.errors.workday_other_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.workday_required = false
+                    newState.errors.workday_other_required = false
+                    return newState;
+                  })
+            }
+
+            if(requestDomesticFormState.schedule.length === 0){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.schedule_required = true
+                    newState.errors.schedule_other_required = false
+                    return newState;
+                  })
+            } else if(requestDomesticFormState.schedule.includes('OTRO') && !requestDomesticFormState.schedule_other){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.schedule_required = false
+                    newState.errors.schedule_other_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.schedule_required = false
+                    newState.errors.schedule_other_required = false
+                    return newState;
+                  })
+            }
+
+            if(!requestDomesticFormState.payment){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.salary_option_required = true
+                    newState.errors.salary_required = false
+                    newState.errors.salary_other_required = false
+                    return newState;
+                  })
+            }
+            else if(requestDomesticFormState.payment === "MONTO" && ((requestDomesticFormState.currency === -1 || !requestDomesticFormState.currency) 
+                || (requestDomesticFormState.salary_offered === -1 || !requestDomesticFormState.salary_offered )  ||  !validFloat(requestDomesticFormState.payment_amount))){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.salary_option_required = false
+                    newState.errors.salary_required = true
+                    newState.errors.salary_other_required = false
+                    return newState;
+                  })
+            } else if(requestDomesticFormState.payment === "MONTO" && requestDomesticFormState.currency === "OTRA" && !requestDomesticFormState.currency_other){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.salary_option_required = false
+                    newState.errors.salary_required = false
+                    newState.errors.salary_other_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.salary_option_required = false
+                    newState.errors.salary_required = false
+                    newState.errors.salary_other_required = false
+                    return newState;
+                  })
+            }
+
+            if(requestDomesticFormState.benefits && !requestDomesticFormState.benefits_description){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.benefits_required = true
+                    return newState;
+                  })
+            } else{
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.benefits_required = false
+                    return newState;
+                  })
+            }
+        }  else if(currentStage === 6){
+            if(!requestDomesticFormState.availability){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.date_opt_required = true
+                    newState.errors.date_required = false
+                    return newState;
+                  })
+            }
+            else if(requestDomesticFormState.availability === "FECHA" && !requestDomesticFormState.availability_date){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.date_opt_required = false
+                    newState.errors.date_required = true
+                    return newState;
+                  })
+            } else{
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.date_opt_required = false
+                    newState.errors.date_required = false
+                    return newState;
+                  })
+            }
+        } else if(currentStage === 7){
+            if(requestDomesticFormState.documents.includes('OTRO') && !requestDomesticFormState.documents_other){
+                valid = false
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.other_doc_required = true
+                    return newState;
+                  })
+            } else {
+                setRequestDomesticFormState((prev) => {
+                    const newState = { ...prev };
+                    newState.errors.other_doc_required = false
+                    return newState;
+                  })
+            }
+        }
+
         return valid
     };
 

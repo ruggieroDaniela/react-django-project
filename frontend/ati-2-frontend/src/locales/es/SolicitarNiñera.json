@@ -1,9 +1,10 @@
 {
     "SolicitarNiñera":{
-        "niñera": "Babysitter",
-        "pais":"Country",
+        "niñera": "Niñera",
+        "cliente": "Cliente",
+        "pais":"País",
         "estado":"Estado, provincia o cantón  ",
-        "titulo": "OFRECER MIS SERVICIOS COMO NIÑERA(O)",
+        "titulo": "SOLICITAR NIÑERA(O)",
         "telefono_movil":"Télefono Móvil",
         "telefono_fijo":"Télefono Fijo",
         "correo":"Correo electrónico",

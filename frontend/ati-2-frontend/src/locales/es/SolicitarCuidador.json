@@ -1,9 +1,10 @@
 {
     "SolicitarCuidador":{
         "niñera": "Cuidador",
+        "cliente": "Cliente",
         "pais":"País",
         "estado":"Estado, provincia o cantón  ",
-        "titulo": "OFRECER MIS SERVICIOS COMO NIÑERA(O)",
+        "titulo": "SOLICITAR CUIDADOR(A) OCUPACIONAL",
         "telefono_movil":"Télefono Móvil",
         "telefono_fijo":"Télefono Fijo",
         "correo":"Correo electrónico",

@@ -8,7 +8,7 @@ import axios from 'axios';
 import "../styles/SolicitarNiñera.scss"
 import AuthContext from '../context/AuthContext';
 import ErrorMessage from "./ErrorMessage";
-
+import { useNavigate } from 'react-router-dom';
 
 const Fase0 = () => {
   const { t, i18n } = useTranslation();
@@ -89,65 +89,66 @@ const Fase0 = () => {
               
               <div className="form">
 
-                      <div>
-                          <input 
-                            type="radio" 
-                            id="c4" 
-                            name="edad"     
-                            checked={ requestDomesticFormState.age_requirement }
-                            onChange={ e => {
-                                setRequestDomesticFormState( prev => {
-                                        const newState = {...prev};
-                                        newState.age_requirement = !newState.age_requirement;
-                                        return newState;
-                                    } );
-                            }}/>
+            <div>
+                <input 
+                    type="radio" 
+                    id="c4" 
+                    name="edad"
+                    checked={ requestDomesticFormState.age_requirement }
+                    onChange={ e => {
+                        setRequestDomesticFormState( prev => {
+                                const newState = {...prev};
+                                newState.age_requirement= true;
+                                return newState;
+                            } );
+                    }}
+                />    
 
-                          <label htmlFor="c4">{t('SolicitarNiñera.fases.0.entre')} 
-                                <input 
-                                    type="text"
-                                    onChange={ e => {
-                                        setRequestDomesticFormState( prev => {
-                                                const newState = {...prev};
-                                                newState.age_required_from = e.target.value;
-                                                return newState;
-                                            } );
-                                    }}
-                                /> 
-                                &nbsp;&nbsp;&nbsp;&nbsp;{t('SolicitarNiñera.fases.0.y')} 
-                                <input 
-                                    type="text"
-                                    onChange={ e => {
-                                        setRequestDomesticFormState( prev => {
-                                                const newState = {...prev};
-                                                newState.age_required_to = e.target.value;
-                                                return newState;
-                                            } );
-                                    }}
-                                /> 
-                                {t('SolicitarNiñera.fases.0.años')} 
-                          </label>
-                      </div>    
+                <label htmlFor="c4">{t('SolicitarCuidador.fases.0.entre')} 
+                    <input 
+                        type="text"
+                        onChange={ e => {
+                            setRequestDomesticFormState( prev => {
+                                    const newState = {...prev};
+                                    newState.age_required_from = e.target.value;
+                                    return newState;
+                                } );
+                        }}
+                    /> 
+                    &nbsp;&nbsp;&nbsp;&nbsp;{t('SolicitarCuidador.fases.0.y')} 
+                    <input 
+                        type="text"
+                        onChange={ e => {
+                            setRequestDomesticFormState( prev => {
+                                    const newState = {...prev};
+                                    newState.age_required_to = e.target.value;
+                                    return newState;
+                                } );
+                        }}
+                    /> 
+                    {t('SolicitarCuidador.fases.0.años')} 
+                </label>
+            </div>    
 
-                      <div>
-                          <input 
-                                type="radio" 
-                                id="c5" 
-                                name="edad"
-                                checked={ !requestDomesticFormState.age_requirement }
-                                onChange={ e => {
-                                    setRequestDomesticFormState( prev => {
-                                            const newState = {...prev};
-                                            newState.age_requirement = !newState.age_requirement;
-                                            return newState;
-                                        } );
-                                }}
-                          />    
-                          <label htmlFor="c5">{t('SolicitarNiñera.fases.0.indiferente-edad')}</label>
-                      </div>    
+            <div>
+                <input 
+                    type="radio" 
+                    id="c5" 
+                    name="edad"
+                    checked={ !requestDomesticFormState.age_requirement }
+                    onChange={ e => {
+                        setRequestDomesticFormState( prev => {
+                                const newState = {...prev};
+                                newState.age_requirement = false;
+                                return newState;
+                            } );
+                    }}
+                />    
+                <label htmlFor="c5">{t('SolicitarCuidador.fases.0.indiferente-edad')}</label>
+            </div>    
 
-                      
-              </div>
+
+            </div>
 
               { age_range_invalid && <ErrorMessage message={t('SolicitarNiñera.errores.rango_edad')}/>  }
           </div>
@@ -1964,7 +1965,7 @@ const botonEnviar = () => {
     const { t, i18n } = useTranslation();
     const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
     const {authState, setAuthState} = useContext(AuthContext);
-    
+    const navigate = useNavigate();
     const postData = {...requestDomesticFormState};
 
     postData.number_tco = parseInt(postData.number_tco)
@@ -2027,6 +2028,7 @@ const botonEnviar = () => {
                             // Request was successful
                             console.log('POST request successful');
                             console.log(response);
+                            navigate('/');
                         } else {
                             // Request failed
                             console.log('POST request failed');
