@@ -1204,12 +1204,8 @@ const Fase5 = () => {
                                         return newState
                                     });    
                                 }}>
-                                </textarea>
-
-                               
-                            </div>
-
-                           
+                                </textarea>   
+                            </div>                    
                         </div>
                     </div>
                     { benefits_required && <ErrorMessage message={t('OfrecermeNiñera.errores.especificar')}/>  }
