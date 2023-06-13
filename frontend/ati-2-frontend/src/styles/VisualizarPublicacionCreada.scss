@@ -26,6 +26,10 @@
                 width: 80%;
                 text-align: center;
                 margin-left: 8rem;
+
+                &.smaller{
+                    width: 60%;
+                }
             }
         }
 
@@ -53,6 +57,32 @@
         }
     }
 
+    .subtitle{
+        font-weight: bold;
+        &.blue{
+            color:blue;
+
+            &.space{
+                margin-top: 0.3rem;
+            }
+
+        }
+
+        &.red{
+            color: red; 
+        }
+
+        &.margin{
+            margin-left: 13rem; 
+        }
+
+        
+
+        &.black{
+            color: black;
+        }
+    }
+
     .encabezado-perfil{
         display: grid;
         grid-template-columns: 30% 10% 20% 20%;
@@ -63,28 +93,7 @@
             margin-left: 1rem;
         }
 
-        .subtitle{
-            font-weight: bold;
-            &.blue{
-                color:blue;
 
-                &.space{
-                    margin-top: 0.3rem;
-                }
-            }
-    
-            &.red{
-                color: red; 
-            }
-    
-            &.margin{
-                margin-left: 13rem; 
-            }
-
-            &.black{
-                color: black;
-            }
-        }
 
         .data{
             font-weight: bold;
@@ -145,6 +154,12 @@
         p{
             margin-left: 10rem;
         }
+
+    .banco{
+        display: grid;
+        grid-template-columns: 50% 50% ;
+        justify-content: center;
+    }
     }
 
 
