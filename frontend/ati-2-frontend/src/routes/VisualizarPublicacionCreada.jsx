@@ -138,11 +138,11 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle blue'><b>{t('publicacionCreada.situcion_familiar_cuidador')}</b></div>
-                        {data.have_children == true && <span>Con Hijos</span>}
-                        {data.have_children === false && <span>Sin Hijos</span>}
+                        {data.have_children == true && <span>{t('publicacionCreada.hijos')}</span>}
+                        {data.have_children === false && <span>{t('publicacionCreada.no_hijos')}</span>}
                     </div>
                     <div className='subtitle red'>
-                        <b>PENDIENTE POR ACTIVAR</b>
+                        <b>{t('publicacionCreada.PEN')}</b>
                     </div>
                 </div>
 
@@ -203,7 +203,7 @@ export const VisualizarPublicacionCreada = () => {
                 <br></br>
 
                 <div className='basico'>
-                    <div className='rectangle text'> { data?.description }</div>                   
+                    <div className='rectangle text'> { data.description }</div>                   
                 </div>
 
                 {/* FUNCIONES QUE HE DESEMPEÑADO */ }
@@ -223,8 +223,8 @@ export const VisualizarPublicacionCreada = () => {
                 <br></br>
 
                 <div className='basico'>
-                    {data.travel == true && <div className='rectangle text'> Si </div>}            
-                    {data.travel == false && <div className='rectangle text'> No </div>}         
+                    {data.travel == true && <div className='rectangle text'>{t('publicacionCreada.si')} </div>}            
+                    {data.travel == false && <div className='rectangle text'>{t('publicacionCreada.no')}  </div>}         
                 </div>
 
                 <div className='basico'>
@@ -241,7 +241,8 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.salida_cuidador')}</div>
-                        <div className='data'>  { data.workday }  </div>
+                        <div className='data'>  {t(`publicaciones_vista_lista.${data.workday}`)} </div>
+                       
                     </div>
                 </div>
 
@@ -249,7 +250,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.horario_trabajo')}</div>
-                        <div className='data'> { data.schedule }  </div>
+                        <div className='data'>  {t(`publicaciones_vista_lista.${data.schedule}`)}</div>
                     </div>
                 </div>
 

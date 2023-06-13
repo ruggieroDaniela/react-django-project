@@ -99,7 +99,12 @@
             "adicional": "Guarda joyas u objetos que sean de valor para ti en lugares seguros"
         }, 
 
-        "annios": "años"
+        "annios": "años", 
+        "hijos": "Con hijos", 
+        "no_hijos": "Sin hijos", 
+        "PEN": "PENDIENTE POR ACTIVAR", 
+        "si": "Si", 
+        "no": "No"
 
     }
 }
