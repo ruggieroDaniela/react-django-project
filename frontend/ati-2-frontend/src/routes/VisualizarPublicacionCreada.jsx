@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 //import { RegisterFormContext } from "../context/RegisterFormContext";
 
 import { useNavigate, useParams } from "react-router-dom";
@@ -13,34 +13,34 @@ export const VisualizarPublicacionCreada = () => {
 
     const [data, setData] = useState({});
     const {id} = useParams();
-    //let searchParams = location?.search;
-    //const postType = searchParams.includes('provide')? 'provide':'request';
+    let searchParams = location?.search;
+    const postType = searchParams.includes('provide')? 'provide':'request';
 
 
-    // useEffect(() => {
-    //     const fetchPosts = async () => {
-    //         try {
-    //           
-    //             const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}/get_post/is`, {
-    //                 headers: {}
-    //             });
-    
-    //             setData(response.data)
-    //             console.log(response.data);
-    //             console.log(postType);
-    //             return response.data;
-                
-    //         } catch (error) {
-                
-    //         }
-    // }
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+            
+                const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}/get_post/ea695afc-5d49-4b97-a1bf-fb721271ee81`, {
+                    headers: {}
+                });
+
+                setData(response.data)
+                console.log(response.data);
+                console.log(postType);
+                return response.data;
+            
+            } catch (error) {
+            
+            }
+    }
 
 
-    // fetchPosts();
+    fetchPosts();
 
 
-    //     //fetchPosts();
-    // }, []);
+         //fetchPosts();
+    }, []);
 
         return (
             <section id="publicacion-creada">    
@@ -71,7 +71,7 @@ export const VisualizarPublicacionCreada = () => {
                             <div className='rectangle yellow'> {t('publicacionCreada.telefono_fijo')}</div>
                             <div className='rectangle yellow'> {t('publicacionCreada.correo_electronico')} </div>
                         </div>
-                        <div>
+                        <div>                            
                             <div className='data'> { data?.phone || 'No disponible'} </div>
                             <div className='data'> {data?.phone || 'No disponible'} </div>
                             <div className='data'> {data?.email ||'No disponible'}</div>
