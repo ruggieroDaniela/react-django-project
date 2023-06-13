@@ -35,6 +35,7 @@ export const IniciarSesion = () => {
         };
 
         const url = `${import.meta.env.API_KEY}/token-auth/`
+        console.log(url);
         try {
             
             let response = await fetch( url,{
