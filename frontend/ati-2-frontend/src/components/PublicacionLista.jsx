@@ -125,44 +125,44 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
 
             <section key={`post ${post.id} details`} className="detalles">
 
-                <div className="column" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                    <div className="header-grid" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                <div className="column" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
+                    <div className="header-grid" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
                         <div>
-                            <div className="detalles-title" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                            <div className="detalles-title" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
                                 {t(`publicaciones_vista_lista.${post.service}`)}
                             </div>
-                            <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                            <div className="bold-subtitle" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
                                 {username}
                             </div>
                             {postType == "provide"?
-                                <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                                <div key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
                                     {post.age} {t(`publicaciones_vista_lista.años`)}
                                 </div>
                             :
-                                <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                                <div key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
                                     {post.age_required_from} - {post.age_required_to} {t(`publicaciones_vista_lista.edad_requerida`)}
                                 </div>
                             }
                         </div>
-                        <div className="subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                        <div className="subtitle" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
                             {post.country.length == 2? countryName:post.country}
                         </div>
-                        <div key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                            <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                        <div key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
+                            <div className="bold-subtitle" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
                                 {t(`publicaciones_vista_lista.estado`)}: <span className="blue-body">{stateName!=""? stateName : post.state}</span>
                             </div>
-                            <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                            <div className="bold-subtitle" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
                                 {t(`publicaciones_vista_lista.ciudad`)}: <span className="blue-body">{post.city}</span>
                             </div>
                         </div>
                     
                     </div>
-                    <div className="title" style={ {width: "100%"} } key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                    <div className="title" style={ {width: "100%"} } key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
                         {t(`publicaciones_vista_lista.publicado`)}{post.created_at.split("T")[0]}
                     </div>
-                    <div className="desc-body" key={`post ${post.id} ${self.crypto.randomUUID()}`}>{post.description}</div>
-                    <div className="info-and-contact" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                        <ul className="info-list" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                    <div className="desc-body" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>{post.description}</div>
+                    <div className="info-and-contact" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
+                        <ul className="info-list" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
                             <li key={`post ${post.id} instruccion`}>
                                 <span className="item-title">{t(`publicaciones_vista_lista.grado_instruccion`)}: </span> {t(`publicaciones_vista_lista.${post.education_level}`)}
                             </li>
@@ -195,19 +195,19 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                                 />
                             </li>
                         </ul>
-                        <button key={`post ${post.id} ${self.crypto.randomUUID()}`}>{t(`publicaciones_vista_lista.contactar`)}</button>
+                        <button key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>{t(`publicaciones_vista_lista.contactar`)}</button>
                     </div>
-                    <div className="more-info" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                        <a href="" className="title link" key={`post ${post.id} ${self.crypto.randomUUID()}`}>{t(`publicaciones_vista_lista.ver_informacion`)}</a>
+                    <div className="more-info" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
+                        <a href="" className="title link" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>{t(`publicaciones_vista_lista.ver_informacion`)}</a>
                     </div>
                 </div>
 
-                <div className="column" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                    <div className="info-container" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                        <div className="container-title" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                <div className="column" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
+                    <div className="info-container" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
+                        <div className="container-title" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
                             {t(`publicaciones_vista_lista.condiciones`)}
                         </div>
-                        <ul className="info-list" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                        <ul className="info-list" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
                             <li key={`post ${post.id} salario`}>
                                 <span className="item-title">{t(`publicaciones_vista_lista.salario`)}: </span> {post.payment_amount? `${post.payment_amount} ${post.currency == "OTRA"? post.currency_other:post.currency}` : t('publicaciones_vista_lista.a_convenir')}
                             </li>
@@ -274,13 +274,13 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                             }
                         </ul>
                     </div>
-                    <div className="more-info" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                        <a href="" className="title link" key={`post ${post.id} ${self.crypto.randomUUID()}`}>{t(`publicaciones_vista_lista.ver_informacion`)}</a>
+                    <div className="more-info" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
+                        <a href="" className="title link" key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>{t(`publicaciones_vista_lista.ver_informacion`)}</a>
                     </div>
                 </div>
             </section>
             {canEdit?
-                <section className='button-group' key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                <section className='button-group' key={`post ${post.id} ${"self.crypto.randomUUID"()}`}>
                     <button
                         disabled={ !(canEdit) }
                         onClick={ async () => {
