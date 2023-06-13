@@ -34,7 +34,7 @@ export const IniciarSesion = () => {
             password: password
         };
 
-        const url = 'http://localhost:8000/token-auth/'
+        const url = 'http://127.0.0.1:8000/token-auth/'
         try {
             
             let response = await fetch( url,{
@@ -54,7 +54,7 @@ export const IniciarSesion = () => {
                 console.log('POST request successful');
                 const responseDataAuth = await response.json();
 
-                response = await fetch( `http://localhost:8000/users/${responseDataAuth.user_id}`,{
+                response = await fetch( `http://127.0.0.1:8000/users/${responseDataAuth.user_id}`,{
                         method: 'GET',
                         headers: {
                             'Authorization': responseDataAuth.token,

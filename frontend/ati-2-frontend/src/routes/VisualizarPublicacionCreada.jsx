@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 //import { RegisterFormContext } from "../context/RegisterFormContext";
 
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,56 +11,44 @@ import fotoPerfil from '../assets/default-user-icon.jpg';
 export const VisualizarPublicacionCreada = () => {
     const { t } = useTranslation();
 
-    // post data
-    const [data, setData] = useState({schedule: []});
-    
-    // parametros especificados despues del ? en el link
-    let searchParams = new URLSearchParams(location.search);
+    const [data, setData] = useState({});
+    const {id} = useParams();
+    let searchParams = location?.search;
+    const postType = searchParams.includes('provide')? 'provide':'request';
 
-    // obtener tipo de post del link
-    let postType = searchParams.get("postType");
-    if (postType == null)   // si no está definido se asume provide
-        postType = "provide";
-    
-    // obtener id del link
-    const id = searchParams.get("id");
-    
-    const [servicio, setServicio] = useState('');
-    const [documents, setDocuments] = useState(''); 
 
     useEffect(() => {
-        const fetchPost = async () => {
+        const fetchPosts = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}/get_post/${id}/`);
-                
-                // console.log(response.data);
-                setData(() => response.data);               
+            
+                const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}/get_post/ea695afc-5d49-4b97-a1bf-fb721271ee81`, {
+                    headers: {}
+                });
 
-                // SERVICE
-                if(data.service=='NIN'){
-                    setServicio('Niñero(a)')
-                }
-
-                if(data.service=='CUI'){
-                    setServicio('Cuidador(a) Ocupacional')
-                }
-
+                setData(response.data)
+                console.log(response.data);
+                console.log(postType);
+                return response.data;
+            
             } catch (error) {
-                console.log('An error occurred:', error);
+            
             }
-        };
-    
-        fetchPost();
-        }, []);
+    }
 
-        console.log(data);
+
+    fetchPosts();
+
+
+         //fetchPosts();
+    }, []);
+
         return (
             <section id="publicacion-creada">    
                  {/* Encabezado perfil */}
                 <div className='header'>
                     <section className='encabezado-perfil'>                       
                         <div className='subtitle blue margin'>
-                            <b>{servicio}</b>                            
+                            <b>Niñero(a)</b>
                         </div>
                         <div className='user-name'>
                             <b>Nombre Apellido </b>
@@ -105,14 +92,22 @@ export const VisualizarPublicacionCreada = () => {
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'> <b>{data.description} </b></div>                   
+                    <div className='rectangle text'> <b>{data?.description || "Soy persona responsable, honesta, de buen carácter, y me gustan los niños(as)" } </b></div>                   
                 </div>
 
                 { /* Edad que solicita */ }
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle blue'><b>{t('publicacionCreada.edad_cuidador')}</b></div>
-                        <div> {data.age}  {t('publicacionCreada.annios')} </div>
+                        <div> { data?.data || "Entre 20 y 30 años / Con hijos"}</div>
+                    </div>
+                </div>
+                
+                { /* Sexo */ }
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='subtitle blue'><b>{t('publicacionCreada.sexo_cuidador')}</b></div>
+                        <div> { data?.data || "Masculino" }</div>
                     </div>
                 </div>
 
@@ -120,19 +115,16 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle blue'><b>{t('publicacionCreada.situcion_familiar_cuidador')}</b></div>
-                        {data.have_children == true && <span>{t('publicacionCreada.hijos')}</span>}
-                        {data.have_children === false && <span>{t('publicacionCreada.no_hijos')}</span>}
+                        <div>{data?.have_children ? "Con hijos" : "Sin hijos" || 'con hijos'}</div>
                     </div>
-                    <div className='subtitle red'>
-                        <b>{t('publicacionCreada.PEN')}</b>
-                    </div>
+                    <div className='subtitle red'><b>PENDIENTE POR ACTIVAR</b></div>
                 </div>
 
                 { /* Grado de Instrucción */ }
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle blue'><b> {t('publicacionCreada.grado_instrucción_cuidador')}</b></div>
-                        <div> {t(`publicaciones_vista_lista.${data.education_level}`)} </div>                        
+                        <div>{data?.education_level || "Técnico Univeristario"}</div>
                     </div>
                 </div>
 
@@ -148,7 +140,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle black'><b>{t('publicacionCreada.pais_cuidador')}</b></div>
-                        <div> { data.country }  </div>
+                        <div> { data?.country || "Venezuela"}  </div>
                     </div>
                 </div>
                 
@@ -156,7 +148,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle black'><b>{t('publicacionCreada.provincia__cuidador')}</b></div>
-                        <div>{data.state}</div>
+                        <div>{data?.state || "Distrito Capital"}</div>
                     </div>
                 </div>
 
@@ -164,7 +156,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle black'><b>{t('publicacionCreada.ciudad_cuidador')}</b></div>
-                        <div>{data.city} </div>
+                        <div>{data?.city || "Caracas"} </div>
                     </div>
                 </div>
 
@@ -172,7 +164,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle black'><b>{t('publicacionCreada.zona_cuidador')}</b></div>
-                        <div>{data.zone}</div>
+                        <div>{data?.zone || "Candelaria"}</div>
                     </div>
                 </div>
 
@@ -180,12 +172,12 @@ export const VisualizarPublicacionCreada = () => {
 
                 {/* DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL */ }
                 <div className='basico'>
-                    <div className='rectangle blue tag'>{t('publicacionCreada.perfilLaboral')}</div>                    
+                    <div className='rectangle blue tag'>DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL</div>                    
                 </div>
                 <br></br>
 
                 <div className='basico'>
-                    <div className='rectangle text'> { data.description }</div>                   
+                    <div className='rectangle text'> {data?.description || "Persona con 5 años de experiencia en el cuidado de niños entre 0 y 11 años, en la ayuda de sus tareas, prepararles la comida, jugar con ellos. Tengo referencias laborales comprobables" }</div>                   
                 </div>
 
                 {/* FUNCIONES QUE HE DESEMPEÑADO */ }
@@ -195,7 +187,7 @@ export const VisualizarPublicacionCreada = () => {
                 <br></br>
 
                 <div className='basico'>
-                    <div className='rectangle text'> {data.activities}</div>                   
+                    <div className='rectangle text'> Preparación de alimentos, Control de medicamentos, Baño e  higiene, Cambio de pañal, Jugar con los niños, Limpieza del hogar, Otros</div>                   
                 </div>
 
                 { /* DISPONIBILIDAD PARA VIAJAR */ }
@@ -205,12 +197,11 @@ export const VisualizarPublicacionCreada = () => {
                 <br></br>
 
                 <div className='basico'>
-                    {data.travel == true && <div className='rectangle text'>{t('publicacionCreada.si')} </div>}            
-                    {data.travel == false && <div className='rectangle text'>{t('publicacionCreada.no')}  </div>}         
+                    <div className='rectangle text'> Si </div>                   
                 </div>
 
                 <div className='basico'>
-                    {data.travel && <div className='rectangle text'>{data.travel_decription}</div>}                 
+                    {true && <div className='rectangle text'> Si, La persona debe estar dispuesta a viajar 1 vez al mes al exterior</div>}                  
                 </div>
                
                 { /* CONDICIONES DE TRABAJO */ }
@@ -223,8 +214,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.salida_cuidador')}</div>
-                        <div className='data'>  {t(`publicaciones_vista_lista.${data.workday}`)} </div>
-                       
+                        <div className='data'>  {data?.workday || "Fin de semana"}  </div>
                     </div>
                 </div>
 
@@ -232,14 +222,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.horario_trabajo')}</div>
-                        <div className='data'>
-                        {data?.schedule.map(
-                            (scheduleItem, index) => 
-                                <div key={index}>
-                                    {t(`publicaciones_vista_lista.${scheduleItem}`)}
-                                </div>
-                        )}
-                        </div>
+                        <div className='data'> { data?.schedule || "Lunes a Viernes"}  </div>
                     </div>
                 </div>
 
@@ -247,9 +230,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.salario_ofrecido')} </div>
-                        <div className='data'>
-                            {data?.payment === 'MONTO' ? (data?.payment_amount + " " + data?.currency) : data?.payment}
-                        </div>
+                        <div className='data'> { (data?.payment_amount + " " + data?.currency + " " ) || "300$" }  </div>
                     </div>
                 </div>
 
@@ -261,15 +242,11 @@ export const VisualizarPublicacionCreada = () => {
 
                 { /* Solicito otros beneficios  */ }
                 <div className='basico'>
-                    {data.benefits === 1 ? (
-                    <div className='rectangle text'>{t('publicacionCreada.si')}</div>
-                    ) : (
-                    <div className='rectangle text'>{t('publicacionCreada.no')}o</div>
-                    )}
+                    <div className='rectangle text'> Si </div>                   
                 </div>
-
                 <div className='basico'>
-                    {data.benefits === 1 && <div className='rectangle text'> {data.benefits_description} </div>}                  
+                    {true && <div className='rectangle text'> {data?.benefits_description ||
+                                                               "Especifique: Seguro social obligatorio,Póliza de HCM y cobertura a mis familiares, Ayuda para útiles escolares, Otros"} </div>}                  
                 </div>
                 
                 
@@ -280,56 +257,47 @@ export const VisualizarPublicacionCreada = () => {
 
                 <div className='basico'>
                     <div className='basico info'>
-                        <div className='rectangle yellow tag'>{t('publicacionCreada.fecha_inicio')} </div>
-                        <div className='data'>
-                            {data?.availability === 'FECHA' ? (data.availability_date) : data.availability}
-                        </div>
+                        <div className='rectangle yellow tag'>{t('publicacionCreada.salario_ofrecido')} </div>
+                        <div className='data'>  2023-10-02  </div>
                     </div>
                 </div>
 
                 { /* CLIENTES CON LOS QUE QUIERO TRABAJAR  */ }
                 <div className='basico'>
-                    <div className='rectangle blue tag'>{t('publicacionCreada.clientes')} </div>                    
+                    <div className='rectangle blue tag'>CLIENTES CON LOS QUE QUIERO TRABAJAR </div>                    
                 </div>
                 
                 { /* Lugar de Procedencia  */ }
                 <div className='basico'>
                     <div className='basico info'>
-                        <div className='rectangle yellow tag'> {t('publicacionCreada.cliente_procedencia')}</div>
-                        <div className='data'> {data.origin}  </div>
+                        <div className='rectangle yellow tag'>Lugar de Procedencia </div>
+                        <div className='data'>  Quiero especificar   </div>
                     </div>
                 </div>
                 
                 { /* Pais de Procedencia  */ }
-                {data.origin === "SI" && (
-                    <div className='basico'>
-                        <div className='basico info'>
-                            <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_pais')}</div>
-                            <div className='data'>{data.origin_country}</div>
-                        </div>
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='rectangle yellow tag'>Pais de Procedencia </div>
+                        <div className='data'>  Estados Unidos  </div>
                     </div>
-                )}
+                </div>
 
                 { /* Estado / Provincia  */ }
-                {data.origin === "SI" && (
-                    <div className='basico'>
-                        <div className='basico info'>
-                            <div className='rectangle yellow tag'> {t('publicacionCreada.cliente_estado')} </div>
-                            <div className='data'> {data.origin_state} </div>
-                        </div>
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='rectangle yellow tag'> Estado / Provincia </div>
+                        <div className='data'>  California  </div>
                     </div>
-                )}
+                </div>
                 
                 { /* Ciudad  */ }
-                {data.origin === "SI" && (
-                    <div className='basico'>
-                        <div className='basico info'>
-                            <div className='rectangle yellow tag'>  {t('publicacionCreada.cliente_estado')} </div>
-                            <div className='data'>  {data.origin_city}  </div>
-                        </div>
+                <div className='basico'>
+                    <div className='basico info'>
+                        <div className='rectangle yellow tag'> Ciudad </div>
+                        <div className='data'>  San Jose  </div>
                     </div>
-                )}
-                
+                </div>
                 
                 { /* DOCUMENTOS QUE PUEDO PRESENTAR A LOS CLIENTES  */ }
                 <div className='basico'>
@@ -337,148 +305,122 @@ export const VisualizarPublicacionCreada = () => {
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>
-                        {data.have_documentation ? t('publicacionCreada.si') : t('publicacionCreada.no')}
-                    </div>
+                    <div className='rectangle text'> Si </div>                   
                 </div>
                 <div className='basico'>
-                    {data.have_documentation && (
-                        <div>
-                        {data.documents.map((document, index) => (
-                            <div key={index} className='rectangle text'>
-                            {t(`publicaciones_vista_lista.${document}`)}
-                            </div>
-                        ))}
-                        </div>
-                    )}
+                    {true && <div className='rectangle text'> {data?.benefits_description ||
+                                                               "Especifique: Seguro social obligatorio,Póliza de HCM y cobertura a mis familiares, Ayuda para útiles escolares, Otros"} </div>}                  
                 </div>
                 
                 
                 {/* SUGERENCIAS ANTES DE REALZIAR UNA ENTREVISTA DE TRABAJO */ }
                 <div className='basico'>
-                    <div className='rectangle blue tag'>{t('publicacionCreada.sugerencias_tags.antes')}</div>                    
+                    <div className='rectangle blue tag'>SUGERENCIAS ANTES DE REALZIAR UNA ENTREVISTA DE TRABAJO</div>                    
                 </div>
                 <br></br>
-                <ul>
-                    <li className='basico'>
-                        <li className='rectangle text'> {t('publicacionCreada.sugerencias.antes.1')}</li>                   
-                    </li>
 
-                    <li className='basico'>
-                        <li className='rectangle text'> {t('publicacionCreada.sugerencias.antes.2')}</li>                   
-                    </li>
-
-                    <li className='basico'>
-                        <li className='rectangle text'> {t('publicacionCreada.sugerencias.antes.3')}</li>                   
-                    </li>
-                </ul>
-                
+                <div className='basico'>
+                    <div className='rectangle text'> {data?.description || "* Elije que ropa vas a utilizar en caso de una entrevista en vivo, o vía internet con tu empleador \n . Descarta la ropa sexy. No es profesional Lee varias veces el anuncio que coloca un cliente, y elabora una lista de preguntas que quieras realizarle al potencial empleador \n * Ten a la mano la documentación que se te sugirió en puntos anteriores, en caso de que algún cliente te la solicite. Así puedes incrementar tus probabilidades de éxito de ser contratado más rápidamente" }</div>                   
+                </div>
                 
                 {/* SUGERENCIAS AL MOMENTO DE REALIZAR LA ENTREVISTA  */ }
                 <div className='basico'>
-                    <div className='rectangle blue tag'>{t('publicacionCreada.sugerencias_tags.momento')}</div>                    
+                    <div className='rectangle blue tag'>SUGERENCIAS AL MOMENTO DE REALIZAR LA ENTREVISTA</div>                    
                 </div>
                 <br></br>
-                
-                <ul>
-                    <li className='basico'>
-                        <li className='rectangle text'>{t('publicacionCreada.sugerencias.momento.0')} </li>                   
-                    </li>
-                    
-                    <li className='basico'>
-                        <li className='rectangle text'>{t('publicacionCreada.sugerencias.momento.1')} </li>                   
-                    </li>
-                </ul>
 
+                <div className='basico'>
+                    <div className='rectangle text'> {data?.description || "* Elije que ropa vas a utilizar en caso de una entrevista en vivo, o vía internet con tu empleador \n . Descarta la ropa sexy. No es profesional Lee varias veces el anuncio que coloca un cliente, y elabora una lista de preguntas que quieras realizarle al potencial empleador \n * Ten a la mano la documentación que se te sugirió en puntos anteriores, en caso de que algún cliente te la solicite. Así puedes incrementar tus probabilidades de éxito de ser contratado más rápidamente" }</div>                   
+                </div>
 
                 {/* SUGERENCIAS DE TRABAJO PARA EL DÍA A DÍA CON EL CLIENTE  */ }
                 <div className='basico'>
-                    <div className='rectangle blue tag'>{t('publicacionCreada.sugerencias_tags.dia')}</div>                    
+                    <div className='rectangle blue tag'>SUGERENCIAS AL MOMENTO DE REALIZAR LA ENTREVISTA</div>                    
                 </div>
                 <br></br>
 
                 { /* Antes de iniciar sus labores  */ }
                 <div className='basico'>
-                    <div className='rectangle yellow tag right'>{t('publicacionCreada.sugerencias_tags.dia_antes')}  </div>
+                    <div className='rectangle yellow tag right'> Antes de iniciar sus labores </div>
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.dia_antes.0')}</div>                   
+                    <div className='rectangle text'>Solicita tu contrato de trabajo por escrito, ya que este es el documento que certifica que estas laborando para el cliente </div>                   
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.dia_antes.1')}</div>                   
+                    <div className='rectangle text'>Asegúrese de tener una buena higiene personal, y abstenerse de fumar, ingerir bebidas alcohólicas o tener conductas que atenten contra la moral y las buenas costumbres, principalmente delante de los niños </div>                   
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.dia_antes.2')}</div>                   
+                    <div className='rectangle text'>Pregúntele al cliente cuáles son los procedimientos de seguridad para abrir la puerta, contestar el teléfono, personas a recibir en el inmueble, y cualquier otro asunto relacionado con las personas a su cuidado, o con el inmueble donde se realizarán las labores </div>                   
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.dia_antes.3')}</div>                   
+                    <div className='rectangle text'>Solicite información de contacto a su cliente sobre las personas a su cuidado como: Médico tratante, teléfono de empresas donde la(s) persona(s) bajo su cuidado están aseguradas, listado de clínicas cercanas a las que se pueda llevar a la persona en caso de emergencia, datos de contacto directo con el cliente, y con usted en caso de cualquier emergencia, o consulta que pueda tener la persona contratada o usted.  </div>                   
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.dia_antes.4')}</div>                   
+                    <div className='rectangle text'>Si puede, registre las huellas dactilares del personal a su servicio para que tenga una base para deslindar responsabilidades en caso de robo o cualquier incidente que podría haber originado dicha persona en el inmueble, o hacia las personas bajo su cuidado </div>                   
                 </div>
 
                 { /* En el día a día   */ }
                 <div className='basico'>
-                    <div className='rectangle yellow tag right'> {t('publicacionCreada.sugerencias_tags.dia_a_dia')}  </div>
+                    <div className='rectangle yellow tag right'> En el día a día  </div>
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.dia_a_dia.0')}</div>                   
+                    <div className='rectangle text'>Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado. </div>                   
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.dia_a_dia.1')}</div>                   
+                    <div className='rectangle text'>Mantén una comunicación constante con tu empleador,  y solicítale que quieres saber su opinión en relación al trabajo que estas desempeñando.</div>                   
                 </div>
 
                 { /* Si consideras que estas recibiendo un trato inadecuado por parte de tu empleador  */ }
                 <div className='basico'>
-                    <div className='rectangle yellow tag right'>{t('publicacionCreada.sugerencias_tags.abuso')}</div>
+                    <div className='rectangle yellow tag right'>Si consideras que estas recibiendo un trato inadecuado por parte de tu empleador  </div>
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.abuso')}</div>                   
+                    <div className='rectangle text'>Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado. </div>                   
                 </div>
                 
                 { /* Cuando recibas tu pago  */ }
                 <div className='basico'>
-                    <div className='rectangle yellow tag right'>{t('publicacionCreada.sugerencias_tags.pago')}</div>
+                    <div className='rectangle yellow tag right'>Cuando recibas tu pago </div>
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.pago')}</div>                   
+                    <div className='rectangle text'>Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado. </div>                   
                 </div>
 
                 { /* Cuando el personal finalice sus labores */ }
                 <div className='basico'>
-                    <div className='rectangle yellow tag right'>{t('publicacionCreada.sugerencias_tags.finalizar')}</div>
+                    <div className='rectangle yellow tag right'>Cuando el personal finalice sus labores </div>
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.finalizar')}</div>                   
+                    <div className='rectangle text'>Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado. </div>                   
                 </div>
                 
                 
                 { /* Si usted decide no seguir trabajando con el cliente */ }
                 <div className='basico'>                   
-                    <div className='rectangle yellow tag right'>{t('publicacionCreada.sugerencias_tags.no_seguir')} </div>                    
+                    <div className='rectangle yellow tag right'>Si usted decide no seguir trabajando con el cliente </div>                    
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.no_seguir')}</div>                   
+                    <div className='rectangle text'>Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado. </div>                   
                 </div>
 
                 { /* Sugerencias adicionales */ }
                 <div className='basico'>
-                    <div className='rectangle yellow tag right'>{t('publicacionCreada.sugerencias_tags.adicional')}</div>
+                    <div className='rectangle yellow tag right'>Sugerencias adicionales </div>
                 </div>
 
                 <div className='basico'>
-                    <div className='rectangle text'>{t('publicacionCreada.sugerencias.adicional')}</div>                   
+                    <div className='rectangle text'>Procura tener una buena comunicación, de forma amable y respetuosa, con las personas que tendrá bajo su cargo, y trate de hacer su trabajo lo mejor posible. Este pendiente de las necesidades de las personas bajo tu cuidado. Recuerda que tu empleador está depositando su confianza en ti, y no hay mejor forma de retribuirle, que un trabajo bien hecho, y que la gente que cuidas se sienta bien a tu lado. </div>                   
                 </div>
                 
                 

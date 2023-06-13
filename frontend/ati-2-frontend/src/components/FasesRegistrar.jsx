@@ -1408,7 +1408,7 @@ const Fase5 = () => {
 
         useEffect(() => {
             const fetchBanks = async () => {
-                await axios.get('http://localhost:8000/banks/')
+                await axios.get('http://127.0.0.1:8000/banks/')
                     .then(({data}) => {
                         setBanks(data); 
                     }); 
@@ -1842,7 +1842,7 @@ const botonRegistrar = () => {
                     }
 
                     // Enviar datos
-                    const url = 'http://localhost:8000/users/'
+                    const url = 'http://127.0.0.1:8000/users/'
                     try {
                         const response = await axios.post(url, postBody)
 
@@ -1902,7 +1902,7 @@ const useValidarRegistrar = () => {
 
     const uniqueEmail = async (email) => {
         try {
-            const response = await axios.post('http://localhost:8000/users/unique_email/', {"email": email })
+            const response = await axios.post('http://127.0.0.1:8000/users/unique_email/', {"email": email })
             registerFormState.phase[5].client_code = response.data.client_code
             return true
         } catch(error) {

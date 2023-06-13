@@ -1748,7 +1748,7 @@ const Fase11 = () => {
     useEffect(() => {
         const getBanks = async () => {
           try {
-            const response = await axios.get(`http://localhost:8000/banks/`);
+            const response = await axios.get(`http://127.0.0.1:8000/banks/`);
             return response.data; // Return the response data instead of the entire response
           } catch (error) {
             console.error(error);
@@ -2010,7 +2010,7 @@ const botonEnviar = () => {
                           })
                     }
 
-                    const url = 'http://localhost:8000/api-services/requestService/post_ad/'
+                    const url = 'http://127.0.0.1:8000/api-services/requestService/post_ad/'
                     try {
                         
                         const response = await fetch( url,{

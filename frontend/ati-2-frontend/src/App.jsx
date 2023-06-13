@@ -27,13 +27,9 @@ import { SolicitarÑiñera } from './routes/SolicitarÑiñera';
 import { ListarPublicaciones } from './routes/ListarPublicaciones';
 import { ChangeLanguage } from './routes/Language';
 import { BuscarCliente } from './routes/BuscarCliente';
-import { VisualizarPublicacionCreada } from './routes/VisualizarPublicacionCreada';
 import { OfrecermeCuidador } from './routes/OfrecermeCuidador';
 import { ModificarPost } from './routes/ModificarPost';
 import { VisualizarPublicacionCreada } from './routes/VisualizarPublicacionCreada';
-import { OfrecermeCuidador } from './routes/OfrecermeCuidador';
-import { ModificarPost } from './routes/ModificarPost';
-
 
 function App() {
 
