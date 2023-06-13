@@ -34,7 +34,7 @@ export const IniciarSesion = () => {
             password: password
         };
 
-        const url = `${process.env.API_KEY}/token-auth/`
+        const url = `${import.meta.env.API_KEY}/token-auth/`
         try {
             
             let response = await fetch( url,{
@@ -54,7 +54,7 @@ export const IniciarSesion = () => {
                 console.log('POST request successful');
                 const responseDataAuth = await response.json();
 
-                response = await fetch( `${process.env.API_KEY}/users/${responseDataAuth.user_id}`,{
+                response = await fetch( `${import.meta.env.API_KEY}/users/${responseDataAuth.user_id}`,{
                         method: 'GET',
                         headers: {
                             'Authorization': responseDataAuth.token,

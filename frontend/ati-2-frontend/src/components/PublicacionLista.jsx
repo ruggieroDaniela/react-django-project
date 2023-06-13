@@ -69,7 +69,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
         const fetchUserData = async () => {
             try {
 
-                const response = await axios.post(`${process.env.API_KEY}/users/get_name/`, {id: post.user});
+                const response = await axios.post(`${import.meta.env.API_KEY}/users/get_name/`, {id: post.user});
 
                 // console.log(response.data);
                 setUsername( () => response.data.name + " " + response.data.last_name );
@@ -285,7 +285,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                         disabled={ !(canEdit) }
                         onClick={ async () => {
                             setPostEnabled(prev=>!prev);
-                            await axios.put(`${process.env.API_KEY}/api-services/${postType}/enable_post/${post.id}/`)
+                            await axios.put(`${import.meta.env.API_KEY}/api-services/${postType}/enable_post/${post.id}/`)
                             console.log("wtf");
                             
                         } }
@@ -303,7 +303,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                     <button
                         disabled={ !(canEdit) }
                         onClick={ async () => {
-                            await axios.delete(`${process.env.API_KEY}/api-services/${postType}/delete_post/${post.id}/`)
+                            await axios.delete(`${import.meta.env.API_KEY}/api-services/${postType}/delete_post/${post.id}/`)
                             window.location.reload();
                         } }
                     >

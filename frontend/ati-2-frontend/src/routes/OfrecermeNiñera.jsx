@@ -21,7 +21,7 @@ export const OfrecermeNiñera = () => {
             try {
                     // Request was successful
                 if(authState.id != undefined){
-                    let response = await fetch( `${process.env.API_KEY}/users/${authState.id}`,{
+                    let response = await fetch( `${import.meta.env.API_KEY}/users/${authState.id}`,{
                             method: 'GET',
                             headers: {
                                 'Authorization': authState.token,

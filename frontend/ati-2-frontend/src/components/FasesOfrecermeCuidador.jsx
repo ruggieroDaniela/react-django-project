@@ -1825,7 +1825,7 @@ const Fase13 = () => {
     useEffect(() => {
         const getBanks = async () => {
           try {
-            const response = await axios.get(`${process.env.API_KEY}/banks/`);
+            const response = await axios.get(`${import.meta.env.API_KEY}/banks/`);
             return response.data; // Return the response data instead of the entire response
           } catch (error) {
             console.error(error);
@@ -2366,7 +2366,7 @@ const botonEnviar = () => {
                           })
                     }
 
-                    const url = `${process.env.API_KEY}/api-services/provideService/post_ad/`
+                    const url = `${import.meta.env.API_KEY}/api-services/provideService/post_ad/`
                     try {
                         
                         const response = await fetch( url,{
