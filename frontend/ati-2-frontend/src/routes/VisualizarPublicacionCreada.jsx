@@ -682,7 +682,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='rectangle text'>{t('publicacionCreada.sugerencias.adicional')}</div>                   
                 </div>
-                
+                <br></br>
                 { /* DATOS DE FACTURACIÓN */ }
                 <div className="basico">
                         <div>{data.bank_country}
