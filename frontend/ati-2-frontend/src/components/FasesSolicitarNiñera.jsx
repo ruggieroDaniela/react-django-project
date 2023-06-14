@@ -2024,9 +2024,9 @@ const botonEnviar = () => {
                         );
                 
                         if (response.ok) {
-                            // Request was successful
+                            const data = await response.json(); 
                             console.log('POST request successful');
-                            console.log(response);
+                            navigate(`/visualizar-publicacion-creada?postType=request&id=${data.post_code}`);
                         } else {
                             // Request failed
                             console.log('POST request failed');
