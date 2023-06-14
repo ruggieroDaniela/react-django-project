@@ -686,18 +686,10 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='rectangle text'>{t('publicacionCreada.sugerencias.adicional')}</div>                   
                 </div>
-<<<<<<< HEAD
-                
-                <div className="basico" id='banco'>
-                        <div id='go-flex'>
-                            <div id='left'>
-                                <div className="rectangle blue-box" id='top-left'>
-                                    Datos de Facturacion
-=======
                 <br></br>
                 { /* DATOS DE FACTURACIÓN */ }
                 <div className="basico">
-                        <div>{data.bank_country}
+                        <div>
                             <div className="blue-box">
                                 Datos de Facturacion
                             </div>
@@ -716,7 +708,6 @@ export const VisualizarPublicacionCreada = () => {
                             <div>
                                 <div>
                                     <p> Pais donde va a realizar el Depósito</p> {data.billing_country}
->>>>>>> c5dd68e8d2757786b82748d749afb125f0fdd37e
                                 </div>
                                 <h2 className="blue">Plan Seleccionado</h2>
 
