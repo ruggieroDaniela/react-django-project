@@ -106,8 +106,9 @@
         "si": "Si", 
         "no": "No",
         "mes":"Mes",
-        "meses":"Meses"
-
+        "meses":"Meses", 
+        "entre": "Entre ", 
+        "y": "y"
     }
 }
 

@@ -41,10 +41,13 @@
                 width: fit-content;
                 height: fit-content;
                 text-align: center;
-                //margin-left: 8rem;
 
                 &.right{
                     margin-left: 8rem;
+                }
+
+                &.larger{
+                    margin-left: 10rem;
                 }
             }
 
@@ -56,6 +59,10 @@
             text-align: justify;
             margin-left: 8rem;
             color: black;
+
+            &.right{
+                margin-left: 9rem;
+            }
         }
     }
 
@@ -154,7 +161,11 @@
             padding-left: 1rem;
             padding-right: 1rem;
             width: fit-content;        
-            margin-bottom: 0.5rem;    
+            margin-bottom: 0.5rem;   
+            
+            &right{
+                margin-left: 10rem;
+            }
         }
 
         p{

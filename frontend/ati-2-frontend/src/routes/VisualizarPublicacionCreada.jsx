@@ -220,7 +220,7 @@ export const VisualizarPublicacionCreada = () => {
 
                         { postType === 'request' ? (
                             data.age_requirement ? (
-                                <div> Entre {data.age_required_from} y {data.age_required_to} años </div>
+                                <div>  {t('publicacionCreada.entre')} {data.age_required_from}  {t('publicacionCreada.y')} {data.age_required_to}  {t('publicacionCreada.annios')} </div>
                             ) : (
                                 <div> {data.age_requirement} </div>
                             )                            
@@ -324,7 +324,7 @@ export const VisualizarPublicacionCreada = () => {
                             {/* Cantidad de personas */} 
                             <div className='basico info'>
                                 <div className='rectangle yellow tag'>{t('publicacionCreada.cant_persona_cuidar')}</div>
-                                <div className='data'>  2 </div>                                
+                                <div className='data'>  {data.number_tco} </div>                                
                             </div>
                         </div>
 
@@ -332,7 +332,7 @@ export const VisualizarPublicacionCreada = () => {
                             {/* Edad(es) */} 
                             <div className='basico info'>
                                 <div className='rectangle yellow tag'>{t('publicacionCreada.edad_cuidar')} </div>
-                                <div className='data'>  18 y 15 </div>                                
+                                <div className='data'>  {data.age_tco} </div>                                
                             </div>
                         </div>
 
@@ -340,28 +340,52 @@ export const VisualizarPublicacionCreada = () => {
                             {/* Sexo(s) */} 
                             <div className='basico info'>
                                 <div className='rectangle yellow tag'>{t('publicacionCreada.sexo_cuidar')} </div>
-                                <div className='data'> Masculino, Femenino</div>                                
+                                <div className='data'> {data.gender_tco}</div>                                
                             </div>
                         </div>
 
                         <div className='basico'>
-                            {/* Discapacidad o enfermedad */} 
-                            <div className='basico info'>
+                            {/* ¿Posee(n) alguna discapacidad o enfermedad? */} 
+                            <div className='basico info larger'>
                                 <div className='rectangle yellow tag'> {t('publicacionCreada.tiene_dispacacidad_cuidar')}</div>
-                                <div className='data'>  Si </div>                                
+                                { data.disabilities_tco ? (
+                                    <div className='data'> {t('publicacionCreada.si')}</div>   
+                                ) : (
+                                    <div className='data'> {t('publicacionCreada.no')} </div> 
+                                )}
+                                                             
                             </div>
                         </div>
 
+                        { /* Discapacidad */ }
+                        { data.disabilities_tco &&  (
+                            <div>
+                                <div className='basico'>                        
+                                    <div className='rectangle yellow tag larger'> {t('publicacionCreada.indique_capacidad')}</div>                                
+                                </div>          
+                                <div className='basico'>
+                                    <div className='rectangle text right'> {data.disabilities_tco_decrip}</div>                   
+                                </div>
+                                
+                            </div>                            
+                        )}
 
+                        {  /* Enfermedad */ }
+                        { data.disabilities_tco &&  (
+                            <div>
+                                <div className='basico'>                        
+                                    <div className='rectangle yellow tag larger'> {t('publicacionCreada.enfermedad_cuidar')}</div>                                
+                                </div>          
+                                <div className='basico'>
+                                    <div className='rectangle text right'> {data.diseases_tco_descrip}</div>                   
+                                </div>
+                                
+                            </div>                            
+                        )}
                     </div>       
                     
-                )}
-
-                
-                
-
-
-
+                )}              
+            
 
                 {/* FUNCIONES QUE HE DESEMPEÑADO */ }
                 <div className='basico'>
@@ -461,50 +485,53 @@ export const VisualizarPublicacionCreada = () => {
                         </div>
                     </div>
                 </div>
+                
+                {postType === 'provide' && (
+                    <div>
+                        {/* CLIENTES CON LOS QUE QUIERO TRABAJAR */}
+                        <div className='basico'>
+                        <div className='rectangle blue tag'>{t('publicacionCreada.clientes')}</div>
+                        </div>
 
-                { /* CLIENTES CON LOS QUE QUIERO TRABAJAR  */ }
-                <div className='basico'>
-                    <div className='rectangle blue tag'>{t('publicacionCreada.clientes')} </div>                    
-                </div>
-                
-                { /* Lugar de Procedencia  */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='rectangle yellow tag'> {t('publicacionCreada.cliente_procedencia')}</div>
-                        <div className='data'> {data.origin}  </div>
-                    </div>
-                </div>
-                
-                { /* Pais de Procedencia  */ }
-                {data.origin === "SI" && (
-                    <div className='basico'>
+                        {/* Lugar de Procedencia */}
+                        <div className='basico'>
                         <div className='basico info'>
+                            <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_procedencia')}</div>
+                            <div className='data'>{data.origin}</div>
+                        </div>
+                        </div>
+
+                        {/* Pais de Procedencia */}
+                        {data.origin === "SI" && (
+                        <div className='basico'>
+                            <div className='basico info'>
                             <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_pais')}</div>
                             <div className='data'>{data.origin_country}</div>
+                            </div>
                         </div>
-                    </div>
-                )}
+                        )}
 
-                { /* Estado / Provincia  */ }
-                {data.origin === "SI" && (
-                    <div className='basico'>
-                        <div className='basico info'>
-                            <div className='rectangle yellow tag'> {t('publicacionCreada.cliente_estado')} </div>
-                            <div className='data'> {data.origin_state} </div>
+                        {/* Estado / Provincia */}
+                        {data.origin === "SI" && (
+                        <div className='basico'>
+                            <div className='basico info'>
+                            <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_estado')}</div>
+                            <div className='data'>{data.origin_state}</div>
+                            </div>
                         </div>
+                        )}
+
+                        {/* Ciudad */}
+                        {data.origin === "SI" && (
+                        <div className='basico'>
+                            <div className='basico info'>
+                            <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_ciudad')}</div>
+                            <div className='data'>{data.origin_city}</div>
+                            </div>
+                        </div>
+                        )}
                     </div>
                 )}
-                
-                { /* Ciudad  */ }
-                {data.origin === "SI" && (
-                    <div className='basico'>
-                        <div className='basico info'>
-                            <div className='rectangle yellow tag'>  {t('publicacionCreada.cliente_estado')} </div>
-                            <div className='data'>  {data.origin_city}  </div>
-                        </div>
-                    </div>
-                )}
-                
                 
                 { /* DOCUMENTOS QUE PUEDO PRESENTAR A LOS CLIENTES  */ }
                 <div className='basico'>
@@ -529,7 +556,7 @@ export const VisualizarPublicacionCreada = () => {
                 </div>
                 
                 
-                {/* SUGERENCIAS ANTES DE REALZIAR UNA ENTREVISTA DE TRABAJO */ }
+                {/* SUGERENCIAS ANTES DE REALIZAR UNA ENTREVISTA DE TRABAJO */ }
                 <div className='basico'>
                     <div className='rectangle blue tag'>{t('publicacionCreada.sugerencias_tags.antes')}</div>                    
                 </div>
