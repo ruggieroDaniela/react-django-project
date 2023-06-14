@@ -109,7 +109,10 @@
         "entre": "Between ", 
         "y": "and", 
         "Solicito": "Request", 
-        "No_disponible": "Not available"
+        "No_disponible": "Not available", 
+        "Facturacion": "BILLING INFORMATION", 
+        "forma_pago": "Forma de pago"
+
     }
 }
 

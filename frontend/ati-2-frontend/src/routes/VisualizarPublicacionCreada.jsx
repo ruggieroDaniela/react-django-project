@@ -145,7 +145,7 @@ export const VisualizarPublicacionCreada = () => {
                     <div className='header'>                        
                         <section className='encabezado-perfil'>                       
                             <div className='subtitle blue margin header'>
-                                <b>{t(`publicaciones_vista_lista.${data?.service}`)}</b>                            
+                                <b>{t(`publicaciones_vista_lista.${data.service}`)}</b>                            
                             </div>
                             <div className='user-name header'>
                                 <b>{authState?.name} </b>
@@ -676,10 +676,11 @@ export const VisualizarPublicacionCreada = () => {
                         <div id='go-flex'>
                             <div id='left'>
                                 <div className=" rectangle blue-box" id='top-left'>
-                                    Datos de Facturacion
+                                    {t('publicacionCreada.Facturacion')}
                                 </div>
+                                
                                 <div >
-                                    <h2 className="blue">Plan Seleccionado</h2>
+                                    <h2 className="blue">{t('publicacionCreada.plan_seleccionado')}</h2>
 
                                         <span>
                                         { data?.publication_plan == "1" &&
@@ -702,28 +703,28 @@ export const VisualizarPublicacionCreada = () => {
                                 
 
                                 <div id='right'>
-                                    <div className='rectangle blue-box' id='top-right'>Datos de Facturación</div>
+                                    <div className='rectangle blue-box' id='top-right'>{t('publicacionCreada.Facturacion')}</div>
                                     <div id='boxes'>
                                         <div>
-                                            <p className='rectangle blue-box' id='enlinea'> Pais donde va a realizar el Depósito</p> <span>{data.billing_country}</span>
+                                            <p className='rectangle blue-box' id='enlinea'>{t('publicacionCreada.pais_a_depositar')}</p> <span>{data.billing_country}</span>
                                         </div>
                                         <div className='rectangle blue-box' >
-                                            Datos de la cuenta seleccionada
+                                            {t('publicacionCreada.datos_cuenta')}
                                         </div>
                                     </div>
                                     <div>
                                         <div className='rectangle blue-box' id="middle-box">{paymentBank?.name}</div>
                                         <div id='yellow-border'>
                                             <div id='sangria'>
-                                                <h2 className='red'>Forma de Pago</h2>
+                                                <h2 className='red'>{t('publicacionCreada.forma_pago')}</h2>
                                                 <div id='sangria'>
                                                     <p>* Deposito</p>
                                                     <p>* Transferencia Bancaria</p>
                                                 </div>
 
-                                                <p><span>Pais:</span> {paymentBank?.country}</p>
-                                                <p><span>Banco:</span> {paymentBank?.name}</p>
-                                                <p><span>Nro de Cuenta:</span> {paymentBank?.account}</p>
+                                                <p><span>{t('publicacionCreada.pais_cuidador')}</span> {paymentBank?.country}</p>
+                                                <p><span>{t('publicacionCreada.banco')}</span> {paymentBank?.name}</p>
+                                                <p><span>{t('publicacionCreada.n_cuenta')}</span> {paymentBank?.account}</p>
                                             </div>
                                         </div>
 
