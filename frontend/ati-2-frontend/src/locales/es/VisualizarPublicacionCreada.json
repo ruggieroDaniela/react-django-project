@@ -50,6 +50,7 @@
         "sugerencia_adicionales":"Sugerencias adicionales",
         "sugenrencia_entrevista":"sugerencias al momento de realizar la entrevista",
         "sugerencia_servicio":"Consideraciones del Servicio", 
+
         "plan_seleccionado": "Plan seleccionado",
         "pais_a_depositar":"País donde va a realizar el depósito",
         "datos_cuenta":"Datos de la cuenta seleccionada",
@@ -110,7 +111,22 @@
         "entre": "Entre ", 
         "y": "y", 
         "Solicito": "Solicito", 
-        "No_disponible": "No disponible"
+        "No_disponible": "No disponible", 
+        "Facturacion": "DATOS DE FACTURACIÓN", 
+        "forma_pago": "Forma de pago", 
+        "deposito": "Depósito", 
+        "transferencia": "Transferencia Bancaria", 
+
+        "NO": "Sin hijos", 
+        "SI": "Con hijos", 
+        "IDC": "Me es indiferente si tiene hijos o no", 
+
+        "gender": {
+            "FEM": "Femenino", 
+            "MAS": "Masculino", 
+            "IDC": "Me es indiferente su sexo"
+        }
+
     }
 }
 
