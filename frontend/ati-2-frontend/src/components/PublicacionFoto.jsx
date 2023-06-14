@@ -244,7 +244,7 @@ export const PublicacionFoto = ({post, postType}) => {
                                 <FieldViewDetails
                                     label={t(`publicaciones_vista_lista.horario`)}
                                     detalles_texto={
-                                        t(`${post.schedule.map(x => t(`publicaciones_vista_lista.${x}`)).join(", ") }`)
+                                        `${post.schedule.map(x => t(`publicaciones_vista_lista.${x}`)).join(", ") }`
                                     }
                                 />
                             </li>
