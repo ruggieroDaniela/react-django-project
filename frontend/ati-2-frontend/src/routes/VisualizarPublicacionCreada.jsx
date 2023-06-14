@@ -718,8 +718,10 @@ export const VisualizarPublicacionCreada = () => {
                                             <div id='sangria'>
                                                 <h2 className='red'>{t('publicacionCreada.forma_pago')}</h2>
                                                 <div id='sangria'>
-                                                    <p>* Deposito</p>
-                                                    <p>* Transferencia Bancaria</p>
+                                                    <ul>
+                                                        <li>Depósito</li>
+                                                        <li>Transferencia Bancaria</li>
+                                                    </ul>
                                                 </div>
 
                                                 <p><span>{t('publicacionCreada.pais_cuidador')}</span> {paymentBank?.country}</p>

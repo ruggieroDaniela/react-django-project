@@ -111,7 +111,9 @@
         "Solicito": "Request", 
         "No_disponible": "Not available", 
         "Facturacion": "BILLING INFORMATION", 
-        "forma_pago": "Forma de pago"
+        "forma_pago": "Payment method", 
+        "deposito": "Deposit", 
+        "transferencia": "Bank Transfer"
 
     }
 }

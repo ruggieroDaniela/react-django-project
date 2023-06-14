@@ -113,7 +113,9 @@
         "Solicito": "Solicito", 
         "No_disponible": "No disponible", 
         "Facturacion": "DATOS DE FACTURACIÓN", 
-        "forma_pago": "Forma de pago"
+        "forma_pago": "Forma de pago", 
+        "deposito": "Depósito", 
+        "transferencia": "Transferencia Bancaria"
 
     }
 }
