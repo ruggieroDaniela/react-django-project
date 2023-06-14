@@ -672,71 +672,62 @@ export const VisualizarPublicacionCreada = () => {
                 </div>
                 <br></br>
                 { /* DATOS DE FACTURACIÓN */ }
-                <div className="basico">
-                        <div>
-                            <div className="blue-box">
-                                Datos de Facturacion
-                            </div>
-                            <h2 className="blue">Plan Seleccionado</h2>
-                            
-                                { data?.publication_plan == "1" &&
-                                  "1"+ t('publicacionCreada.mes') + publication_choices[Number(data.publication_plan)-1].value
-                                }
-                                { (data?.publication_plan == "2" || data?.publication_plan == "3" || data?.publication_plan == "4" || data?.publication_plan == "5") &&
-                                  data.publication_plan + t('publicacionCreada.meses') + publication_choices[Number(data.publication_plan)-1].value
-                                }
-                            
-                        </div>
-                        <div>
-                            <div>Datos de Facturación</div>
-                            <div>
-                                <div>
-                                    <p> Pais donde va a realizar el Depósito</p> {data.billing_country}
+                <div className="basico" id='banco'>
+                        <div id='go-flex'>
+                            <div id='left'>
+                                <div className=" rectangle blue-box" id='top-left'>
+                                    Datos de Facturacion
                                 </div>
-                                <h2 className="blue">Plan Seleccionado</h2>
+                                <div >
+                                    <h2 className="blue">Plan Seleccionado</h2>
 
-                                    <span>
-                                    { data?.publication_plan == "1" &&
-                                        <>
-                                        {"1 "+ t('publicacionCreada.mes') + " " }
-                                        <span className='red'>{ publication_choices[ Number( data.publication_plan ) -1 ].value }</span>
-                                        </>
-                                    }
-                                    { 
-                                        (data?.publication_plan == "2" || data?.publication_plan == "3" || data?.publication_plan == "4" || data?.publication_plan == "5") &&
-                                        <>
-                                            {data.publication_plan +" "+t('publicacionCreada.meses') +" "} 
-                                            <span className='red'>{publication_choices[Number(data.publication_plan)-1].value}</span>
-                                        </>
-                                    }
-                                    </span>
+                                        <span>
+                                        { data?.publication_plan == "1" &&
+                                            <>
+                                            {"1 "+ t('publicacionCreada.mes') + " " }
+                                            <span className='red'>{ publication_choices[ Number( data.publication_plan ) -1 ].value }</span>
+                                            </>
+                                        }
+                                        { 
+                                            (data?.publication_plan == "2" || data?.publication_plan == "3" || data?.publication_plan == "4" || data?.publication_plan == "5") &&
+                                            <>
+                                                {data.publication_plan +" "+t('publicacionCreada.meses') +" "} 
+                                                <span className='red'>{publication_choices[Number(data.publication_plan)-1].value}</span>
+                                            </>
+                                        }
+                                        </span>
+                                </div>
                             </div>
                             <div id='right'>
-                                <div className='rectangle blue-box' id='top-right'>Datos de Facturación</div>
-                                <div id='boxes'>
-                                    <div>
-                                        <p className='rectangle blue-box' id='enlinea'> Pais donde va a realizar el Depósito</p> <span>{data.billing_country}</span>
-                                    </div>
-                                    <div className='rectangle blue-box' >
-                                        Datos de la cuenta seleccionada
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className='rectangle blue-box' id="middle-box">{paymentBank?.name}</div>
-                                    <div id='yellow-border'>
-                                        <div id='sangria'>
-                                            <h2 className='red'>Forma de Pago</h2>
-                                            <div id='sangria'>
-                                                <p>* Deposito</p>
-                                                <p>* Transferencia Bancaria</p>
-                                            </div>
+                                
 
-                                            <p><span>Pais:</span> {paymentBank?.country}</p>
-                                            <p><span>Banco:</span> {paymentBank?.name}</p>
-                                            <p><span>Nro de Cuenta:</span> {paymentBank?.account}</p>
+                                <div id='right'>
+                                    <div className='rectangle blue-box' id='top-right'>Datos de Facturación</div>
+                                    <div id='boxes'>
+                                        <div>
+                                            <p className='rectangle blue-box' id='enlinea'> Pais donde va a realizar el Depósito</p> <span>{data.billing_country}</span>
+                                        </div>
+                                        <div className='rectangle blue-box' >
+                                            Datos de la cuenta seleccionada
                                         </div>
                                     </div>
+                                    <div>
+                                        <div className='rectangle blue-box' id="middle-box">{paymentBank?.name}</div>
+                                        <div id='yellow-border'>
+                                            <div id='sangria'>
+                                                <h2 className='red'>Forma de Pago</h2>
+                                                <div id='sangria'>
+                                                    <p>* Deposito</p>
+                                                    <p>* Transferencia Bancaria</p>
+                                                </div>
 
+                                                <p><span>Pais:</span> {paymentBank?.country}</p>
+                                                <p><span>Banco:</span> {paymentBank?.name}</p>
+                                                <p><span>Nro de Cuenta:</span> {paymentBank?.account}</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
