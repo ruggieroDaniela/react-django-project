@@ -80,7 +80,6 @@ export const VisualizarPublicacionCreada = () => {
             try {
                 const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}/get_post/${id}/`);
                 
-                
                 // console.log(response.data);
                 setData(() => response.data);               
                 console.log(data);
@@ -142,69 +141,52 @@ export const VisualizarPublicacionCreada = () => {
         return (
             
             <section id="publicacion-creada">    
-                {/* Encabezado perfil */}
+                 {/* Encabezado perfil */}
+                <div className='header'>
+                    <section className='encabezado-perfil'>                       
+                        <div className='subtitle blue margin'>
+                            <b>{servicio}</b>                            
+                        </div>
+                        <div className='user-name'>
+                            <b>Nombre Apellido </b>
+                        </div>
+                        <div>
+                            {authState.name}
+                        </div>
+                        <div className='subtitle blue space'>
+                            <b>{t('publicacionCreada.pais_cuidador')}</b>
+                        </div>
                 
-                { postType === 'provide' && (
-                    // something
-                    <div className='header'>                        
-                        <section className='encabezado-perfil'>                       
-                            <div className='subtitle blue margin'>
-                                <b>{servicio}</b>                            
-                            </div>
-                            <div className='user-name'>
-                                <b>Nombre Apellido </b>
-                            </div>
-                            <div>
-                                {authState.name}
-                            </div>
-                            <div className='subtitle blue space'>
-                                <b>{t('publicacionCreada.pais_cuidador')}</b>
-                            </div>
-                    
-                        </section>
+                    </section>
 
-                        <section className='encabezado-perfil'>
-                            <div>
-                                <img className='img-user' src={fotoPerfil} />
-                            </div>
-                            <div>
-                                <div className='rectangle yellow'>{t('publicacionCreada.telefono_celular')}</div>
-                                <div className='rectangle yellow'> {t('publicacionCreada.telefono_fijo')}</div>
-                                <div className='rectangle yellow'> {t('publicacionCreada.correo_electronico')} </div>
-                            </div>
-                            <div>                            
-                                <div className='data'> { userData?.cellphone || 'No disponible'} </div>
-                                <div className='data'> { userData?.telephone || 'No disponible'} </div>
-                                <div className='data'> { authState?.email ||'No disponible'}</div>
-                            </div>
-                            <div>
-                                <div className='pais red'>{userData.country}</div>                        
-                                <div className='pais blue'> {t('publicacionCreada.provincia__cuidador')} </div>
-                                <div className='pais red'>Distrito Capital</div>
-                            </div>
-                            
-                        </section>
-                    </div> 
-                    )
-                }
-
-                
+                    <section className='encabezado-perfil'>
+                        <div>
+                            <img className='img-user' src={fotoPerfil} />
+                        </div>
+                        <div>
+                            <div className='rectangle yellow'>{t('publicacionCreada.telefono_celular')}</div>
+                            <div className='rectangle yellow'> {t('publicacionCreada.telefono_fijo')}</div>
+                            <div className='rectangle yellow'> {t('publicacionCreada.correo_electronico')} </div>
+                        </div>
+                        <div>                            
+                            <div className='data'> { userData?.cellphone || 'No disponible'} </div>
+                            <div className='data'> { userData?.telephone || 'No disponible'} </div>
+                            <div className='data'> { authState?.email ||'No disponible'}</div>
+                        </div>
+                        <div>
+                            <div className='pais red'>{userData.country}</div>                        
+                            <div className='pais blue'> {t('publicacionCreada.provincia__cuidador')} </div>
+                            <div className='pais red'>Distrito Capital</div>
+                        </div>
+                        
+                    </section>
+                </div> 
 
                 
                 {/* DATOS BASICOS DE LA NIÑERA*/ }
                 <div className='basico'>
                     <div className='rectangle blue tag'>{t('publicacionCreada.datos_basicos_cuidador')}</div>                    
                 </div>
-
-                { /* REQUEST: Solicito */ }
-                { postType === 'request' &&  (
-                    <div className='basico'>
-                        <div className='basico info'>
-                            <div className='subtitle red'><b>Solicito</b></div>
-                            <div>{data.gender} </div>
-                        </div>
-                    </div>
-                )}
 
                 <div className='basico'>
                     <div className='rectangle text'> <b>{data.description} </b></div>                   
@@ -214,17 +196,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle blue'><b>{t('publicacionCreada.edad_cuidador')}</b></div>
-
-                        { postType === 'request' ? (
-                            data.age_requirement ? (
-                                <div> Entre {data.age_required_from} y {data.age_required_to} años </div>
-                            ) : (
-                                <div> {data.age_requirement} </div>
-                            )                            
-                        ) : (
-                           <div> {data.age}  {t('publicacionCreada.annios')} </div>
-                        )}
-                        
+                        <div> {data.age}  {t('publicacionCreada.annios')} </div>
                     </div>
                 </div>
 
@@ -290,29 +262,15 @@ export const VisualizarPublicacionCreada = () => {
 
                 <br></br>
 
-                { postType === 'provide' ? (
-                    <div>
-                        {/* DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL */}
-                        
-                        <div className='basico'>
-                        <div className='rectangle blue tag'>{t('publicacionCreada.perfilLaboral')}</div>
-                        </div>
-                        <br></br>
+                {/* DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL */ }
+                <div className='basico'>
+                    <div className='rectangle blue tag'>{t('publicacionCreada.perfilLaboral')}</div>                    
+                </div>
+                <br></br>
 
-                        <div className='basico'>
-                            <div className='rectangle text'> { data.description }</div>                   
-                        </div>
-                        
-                    </div>
-                ) : (
-                    <p>request</p>
-                )}
-
-                
-                
-
-
-
+                <div className='basico'>
+                    <div className='rectangle text'> { data.description }</div>                   
+                </div>
 
                 {/* FUNCIONES QUE HE DESEMPEÑADO */ }
                 <div className='basico'>
