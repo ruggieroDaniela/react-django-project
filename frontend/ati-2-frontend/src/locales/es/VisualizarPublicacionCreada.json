@@ -109,7 +109,8 @@
         "meses":"Meses", 
         "entre": "Entre ", 
         "y": "y", 
-        "Solicito": "Solicito"
+        "Solicito": "Solicito", 
+        "No_disponible": "No disponible"
     }
 }
 

@@ -108,7 +108,8 @@
         "meses": "Months", 
         "entre": "Between ", 
         "y": "and", 
-        "Solicito": "Request"
+        "Solicito": "Request", 
+        "No_disponible": "Not available"
     }
 }
 
