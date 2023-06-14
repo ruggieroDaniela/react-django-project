@@ -88,9 +88,9 @@ export const ListarPublicaciones = () => {
                 const response = await axios.get(`http://localhost:8000/api-services/${postType}Service/${searchParams}`, {
                     headers: {}
                 });
-
-                setPostList(response.data)
-                // console.log(response.data);
+                
+                console.log(response.data);
+                setPostList(response.data.filter( x => x.enable || (authState.logged_in && authState.id == x.user ) ) );
                 setLoading(false);
                 return response.data;
 
