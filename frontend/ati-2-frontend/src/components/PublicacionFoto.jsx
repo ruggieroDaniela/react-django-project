@@ -151,7 +151,7 @@ export const PublicacionFoto = ({post, postType}) => {
                         
                         { /* Ciudad  */ }  
                         <div className="bold-state" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                            {t(`publicaciones_vista_lista.ciudad`)}: <span className="blue-body">{post.city.substring(2)}</span>
+                            {t(`publicaciones_vista_lista.ciudad`)}: <span className="blue-body">{post.city.substring(post.city.indexOf("-")+1)}</span>
                         </div>
                     </div>
 

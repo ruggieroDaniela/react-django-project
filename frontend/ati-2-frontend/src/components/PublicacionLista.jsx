@@ -152,7 +152,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                                 {t(`publicaciones_vista_lista.estado`)}: <span className="blue-body">{stateName!=""? stateName : post.state}</span>
                             </div>
                             <div className="bold-subtitle" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                                {t(`publicaciones_vista_lista.ciudad`)}: <span className="blue-body">{post.city.substring(2)}</span>
+                                {t(`publicaciones_vista_lista.ciudad`)}: <span className="blue-body">{post.city.substring( post.city.indexOf("-")+1 )}</span>
                             </div>
                         </div>
                     
