@@ -113,7 +113,18 @@
         "Facturacion": "BILLING INFORMATION", 
         "forma_pago": "Payment method", 
         "deposito": "Deposit", 
-        "transferencia": "Bank Transfer"
+        "transferencia": "Bank Transfer", 
+
+        
+        "NO": "No children",
+        "SI": "With children",
+        "IDC": "I don't care if they have children or not", 
+
+        "gender": {
+            "FEM": "Female", 
+            "MAS": "Male", 
+            "IDC": "I don't care about their gender"
+        }
 
     }
 }

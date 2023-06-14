@@ -193,7 +193,7 @@ export const VisualizarPublicacionCreada = () => {
                     <div className='basico'>
                         <div className='basico info'>
                             <div className='subtitle red'><b>{t('publicacionCreada.Solicito')}</b></div>
-                            <div>{data.gender} </div>
+                            <div> {t(`publicacionCreada.gender.${data.gender}`)}</div>
                         </div>
                     </div>
                 )}
@@ -234,7 +234,7 @@ export const VisualizarPublicacionCreada = () => {
                                 <span>{t('publicacionCreada.no_hijos')}</span>
                             )
                             ) : (
-                            data.children
+                            t(`publicacionCreada.${data.children}`)
                         )}                        
                     </div>
                     <div className='subtitle red'>

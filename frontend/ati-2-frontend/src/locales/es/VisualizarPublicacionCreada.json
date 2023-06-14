@@ -115,7 +115,17 @@
         "Facturacion": "DATOS DE FACTURACIÓN", 
         "forma_pago": "Forma de pago", 
         "deposito": "Depósito", 
-        "transferencia": "Transferencia Bancaria"
+        "transferencia": "Transferencia Bancaria", 
+
+        "NO": "Sin hijos", 
+        "SI": "Con hijos", 
+        "IDC": "Me es indiferente si tiene hijos o no", 
+
+        "gender": {
+            "FEM": "Femenino", 
+            "MAS": "Masculino", 
+            "IDC": "Me es indiferente su sexo"
+        }
 
     }
 }
