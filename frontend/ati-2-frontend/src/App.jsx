@@ -27,6 +27,7 @@ import { SolicitarCuidador } from './routes/SolicitarCuidador';
 import { ListarPublicaciones } from './routes/ListarPublicaciones';
 import { ChangeLanguage } from './routes/Language';
 import { BuscarCliente } from './routes/BuscarCliente';
+import { VisualizarPublicacionCreada } from './routes/VisualizarPublicacionCreada';
 import { OfrecermeCuidador } from './routes/OfrecermeCuidador';
 import { ModificarPost } from './routes/ModificarPost';
 import FooterNavbar from './components/FooterNavbar';
@@ -57,6 +58,7 @@ function App() {
             <Route exact path='/post-ad/offer/babysitter' element={<OfrecermeNiñera/>}/>
             <Route exact path='/post-ad/offer/caretaker' element={<OfrecermeCuidador/>}/>
             <Route path='/show-posts' element={<ListarPublicaciones/>}/>
+            <Route path='/visualizar-publicacion-creada' element={<VisualizarPublicacionCreada/>}/>
           </Routes>
           <FooterNavbar/>
         </Router>

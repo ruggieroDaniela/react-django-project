@@ -1066,7 +1066,7 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
             queryset = self.queryset.get(id=pk)
             serializer = self.serializer_class(queryset, many=False)
             return Response(serializer.data)
-        except DatabaseError:
+        except RequestService.DoesNotExist:
             return Response({'message': 'Not found'}, status=404)
 
     # Enable post

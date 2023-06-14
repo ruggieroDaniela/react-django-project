@@ -1,0 +1,249 @@
+@import 'colors';
+
+
+#publicacion-creada{
+    display: grid;
+    padding: 1rem;
+
+    .rectangle{
+        color: white;
+        box-shadow: none;
+        border: none;
+        border-radius: 0.25rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        width: fit-content;        
+        margin-bottom: 0.5rem;    
+
+        &.blue{
+            background-color: $azul-claro;
+
+            &.tag{
+                font-weight: bold;
+                margin-top: 3rem;
+                width: 80%;
+                text-align: center;
+                margin-left: 8rem;
+
+                &.smaller{
+                    width: 60%;
+                }
+            }
+        }
+
+        &.yellow{
+            background-color: $dorado;
+            &.tag{
+                //display: flex;
+                font-weight: bold;
+                width: fit-content;
+                height: fit-content;
+                text-align: center;
+                //margin-left: 8rem;
+
+                &.right{
+                    margin-left: 8rem;
+                }
+            }
+
+            
+        }
+
+        &.text{
+            width: 80%;
+            text-align: justify;
+            margin-left: 8rem;
+            color: black;
+        }
+    }
+
+    .subtitle{
+        font-weight: bold;
+        &.blue{
+            color:blue;
+
+            &.space{
+                margin-top: 0.3rem;
+            }
+
+        }
+
+        &.red{
+            color: red; 
+        }
+
+        &.margin{
+            margin-left: 13rem; 
+        }
+
+        
+
+        &.black{
+            color: black;
+        }
+    }
+
+    .encabezado-perfil{
+        display: grid;
+        grid-template-columns: 30% 15% 20% 20%;
+        justify-content: center;
+        margin-bottom: 0.2rem;
+        
+        .user-name{
+            margin-left: 1rem;
+        }
+
+
+
+        .data{
+            font-weight: bold;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            width: fit-content;        
+            margin-bottom: 0.5rem;    
+        }
+
+        .pais{
+            font-weight: bold;
+            padding-right: 1rem;
+            width: fit-content;        
+            margin-bottom: 0.2rem;  
+            
+            &.blue{
+                color: blue;
+                padding-top: 1.3rem;
+            }
+
+            &.red{
+                color: red;
+                margin-left: 1rem;
+                padding-top: 0.2rem;
+                margin-bottom: 1rem;  
+            }
+        }
+    
+        .img-user{
+            width: 20%;
+            margin-left: 12rem;     
+        }
+
+    }
+
+    .basico{
+        display: grid;
+        grid-template-columns: 80% 20% ;
+        justify-content: center;
+        
+        .info{
+            grid-template-columns: 40% 60% ;
+            margin-left: 10rem;
+            padding-bottom: 0.4rem;
+
+            &.larger{
+                grid-template-columns: 60% 40% ;
+            }
+        }
+
+        .data{
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            width: fit-content;        
+            margin-bottom: 0.5rem;    
+        }
+
+        p{
+            margin-left: 10rem;
+        }
+
+    .banco{
+        display: grid;
+        grid-template-columns: 50% 50% ;
+        justify-content: center;
+    }
+    }
+
+
+
+
+    
+
+
+
+    
+/*
+    .informacion-perfil{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        align-items: center;
+    }
+    .informacion-pais{
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+        justify-items: center;
+        align-items: center;
+        width: 100%;
+    }
+    .span-01{
+        color:$azul-oscuro;
+        font-size: 1.2em;
+        font-weight: bold;
+
+    }
+    .titulo{
+        background-color: $dorado;
+        border: 1px $dorado solid;
+        width: 100%;
+        margin: 0.2em;
+    }
+    .container-span{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        align-items: center;
+    }
+
+    .container-span02{
+        display: grid;
+        grid-template-rows: repeat(2, auto);
+        justify-items: center;
+        align-items: center;
+        width: 100%;
+    }
+    .container-01{
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        align-items: flex-start;
+        width: 100%;
+        height: 100%;
+    }
+    .informacion-basica{
+        display: grid;
+        grid-template-rows: repeat(2, auto);
+        align-items: center;
+        width: 95%;
+    }
+    .titulo-02{
+        background-color: $azul-oscuro;
+        border: 1px $azul-oscuro solid;
+        width: 100%;
+        h1{
+            display: flex;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            color:  #FFFFFF;
+            padding: 1em 0em;
+        }
+    }
+
+*/
+}
