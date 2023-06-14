@@ -90,13 +90,14 @@ export const ListarPublicaciones = () => {
                 });
                 
                 console.log(response.data);
-                setPostList(response.data.filter( x => (
-                    x.enable ||
-                    (authState.logged_in && authState.id == x.user)
-                ) ) );
+
+                // const filteredPostList = response.data.filter( x => (
+                //     (x.enable ||( authState.logged_in && authState.id == x.user))
+                // ) ) 
+
+                setPostList(response.data);
                 
                 setLoading(false);
-                return response.data;
 
             } catch (error) {
                 setLoading(false);
@@ -272,11 +273,17 @@ export const ListarPublicaciones = () => {
                         { listView? 
                             postList
                                 .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
-                                .map( (post) => <PublicacionLista key={post.id} post={post} postType={postType} selectedPosts={selectedPosts} setSelectedPosts={setSelectedPosts}/> )
+                                .map( (post) => <>{
+                                    (post.enable ||( authState.logged_in && authState.id == post.user)) &&
+                                    <PublicacionLista key={post.id} post={post} postType={postType} selectedPosts={selectedPosts} setSelectedPosts={setSelectedPosts}/>
+                                }</>)
                             :
                             postList
                                 .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
-                                .map( (post) => <PublicacionFoto key={post.id} post={post} postType={postType}/> )               
+                                .map( (post) => <>{
+                                    (post.enable ||( authState.logged_in && authState.id == post.user)) &&
+                                    <PublicacionFoto key={post.id} post={post} postType={postType}/>
+                                }</>)               
                         }
                     </div>
                 </>
