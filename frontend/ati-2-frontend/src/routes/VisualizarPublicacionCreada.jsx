@@ -247,7 +247,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle blue'><b> {t('publicacionCreada.grado_instrucción_cuidador')}</b></div>
-                        <div> {t(`publicaciones_vista_lista.${data.education_level}`)} </div>                        
+                        <div> {data.education_level &&t(`publicaciones_vista_lista.${data.education_level}`)} </div>                        
                     </div>
                 </div>
 
