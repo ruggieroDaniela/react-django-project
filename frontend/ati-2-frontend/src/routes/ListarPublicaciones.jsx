@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 
 import AuthContext from '../context/AuthContext';
@@ -13,12 +13,12 @@ import "../styles/ListarPublicaciones.scss"
 
 export const ListarPublicaciones = () => {
 
+    const navigate = useNavigate();
+
     const {t} = useTranslation();
     const location = useLocation();
     let searchParams = location.search;
     const postType = searchParams.includes('provide')? 'provide':'request';
-
-    
 
     const [postList, setPostList] = useState([]);
     const [selectedPosts, setSelectedPosts] = useState([]);
@@ -30,12 +30,13 @@ export const ListarPublicaciones = () => {
 
     const [__refreshPostList, refreshPostList] = useState(true);
 
+    const [loading, setLoading] = useState(false);
+
     // Tipo de Vista
     const [listView, setListView] = useState(true);
 
     const tipoPersona = ["1", "2", "3", "4", "5"];
     const ordenes = ["payment_amount", "availability_date", "education_level", "travel"];
-    const acciones = ["Habilitar", "Deshabilitar", "Modificar", "Eliminar"];
 
     const services = getServices();
 
@@ -61,7 +62,7 @@ export const ListarPublicaciones = () => {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            
+            setLoading(true);
             setPostList([]);
 
             try {
@@ -72,8 +73,6 @@ export const ListarPublicaciones = () => {
                         searchParams += "?service__in=";
                 
                     searchParams += selectedTipoPersona.substring(0, selectedTipoPersona.length-1);
-                    // console.log(selectedTipoPersona);
-                    // console.log(searchParams);
                 }
 
                 if( selectedOrdering.length > 0 ){
@@ -83,24 +82,25 @@ export const ListarPublicaciones = () => {
                         searchParams += "?ordering=";
                 
                     searchParams += selectedOrdering;
-                    console.log(searchParams);
+                    // console.log(searchParams);
                 }
 
                 const response = await axios.get(`http://localhost:8000/api-services/${postType}Service/${searchParams}`, {
                     headers: {}
                 });
-
-                const totalPages = response.data.length/sizeOfPage;
-                // console.log(totalPages);
-
-                // console.log(pageLinks);
-
-                setPostList(response.data)
+                
                 console.log(response.data);
-                // console.log(postType);
-                return response.data;
+
+                // const filteredPostList = response.data.filter( x => (
+                //     (x.enable ||( authState.logged_in && authState.id == x.user))
+                // ) ) 
+
+                setPostList(response.data);
+                
+                setLoading(false);
 
             } catch (error) {
+                setLoading(false);
                 console.error(error);
             } 
         };
@@ -235,8 +235,8 @@ export const ListarPublicaciones = () => {
                                 <button
                                     key={`${self.crypto.randomUUID()}`}
                                     onClick={ () => {
-                                        // modificar
-                                        console.log("update");
+                                        if(selectedPosts.length == 1)
+                                            navigate(`/modify-post/${selectedPosts[0]}`);
                                     } }
                                     disabled={selectedPosts.length>1}
                                 >
@@ -257,24 +257,39 @@ export const ListarPublicaciones = () => {
                 </ul>
             </div>
 
-            { postList.length == 0 &&
-                <div id='no-post-msg'>
-                    <h3>{t('lista_publicaciones.no_posts')}...</h3>
+            { loading?
+                <div className="parent">
+                    <div className='loading'></div>
                 </div>
+                :
+                <>
+                    { postList.length == 0 &&
+                        <div id='no-post-msg'>
+                            <h3>{t('lista_publicaciones.no_posts')}...</h3>
+                        </div>
+                    }
+
+                    <div className="row" id='post-group'>
+                        { listView? 
+                            postList
+                                .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
+                                .map( (post) => <>{
+                                    (post.enable ||( authState.logged_in && authState.id == post.user)) &&
+                                    <PublicacionLista key={post.id} post={post} postType={postType} selectedPosts={selectedPosts} setSelectedPosts={setSelectedPosts}/>
+                                }</>)
+                            :
+                            postList
+                                .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
+                                .map( (post) => <>{
+                                    (post.enable ||( authState.logged_in && authState.id == post.user)) &&
+                                    <PublicacionFoto key={post.id} post={post} postType={postType}/>
+                                }</>)               
+                        }
+                    </div>
+                </>
             }
 
-            <div className="row" id='post-group'>
-                {   
-                    /* eslint-disable-next-line */
-                    listView
-                        ? postList
-                        .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
-                        .map( (post) => <PublicacionLista key={post.id} post={post} postType={postType} selectedPosts={selectedPosts} setSelectedPosts={setSelectedPosts}/> )
-                        : postList
-                        .slice(currentPage*sizeOfPage, currentPage*sizeOfPage + sizeOfPage)
-                        .map( (post) => <PublicacionFoto key={post.id} post={post} postType={postType}/> )               
-                }
-            </div>
+            
 
         </div>
     </>);

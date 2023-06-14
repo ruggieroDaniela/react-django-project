@@ -12,7 +12,7 @@ export const getCountryName = (countryCode, lang = "en") => {
     for (let i = 0; i < continents.length; i++) {
         
         if( countryCode in data[ continents[i] ] ){
-            console.log(data[ continents[i] ][countryCode][lang] );
+            // console.log(data[ continents[i] ][countryCode][lang] );
             return data[ continents[i] ][countryCode][lang];
         }
         

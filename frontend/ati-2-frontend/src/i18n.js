@@ -16,6 +16,7 @@ import SolicitarNiñera_en  from './locales/en/SolicitarNiñera.json';
 import SolicitarCuidador_en  from './locales/en/SolicitarCuidador.json';
 import OfrecermeCuidador_en from "./locales/en/OfrecermeCuidador.json"
 import listar_publicaciones_en from "./locales/en/ListarPublicaciones.json"
+import publicacionCreada_en from "./locales/en/VisualizarPublicacionCreada.json"
 
 import navbar_es from './locales/es/Navbar.json';
 import registrar_es from "./locales/es/Registrar.json";
@@ -32,6 +33,7 @@ import OfrecermeCuidador_es from "./locales/es/OfrecermeCuidador.json"
 import SolicitarCuidador_es  from './locales/es/SolicitarCuidador.json';
 
 import listar_publicaciones_es from "./locales/es/ListarPublicaciones.json"
+import publicacionCreada_es from "./locales/es/VisualizarPublicacionCreada.json"
 
 const en = Object.assign(
   {},
@@ -48,8 +50,9 @@ const en = Object.assign(
   reset_password_en,
   forgot_password_en,
   OfrecermeNiñera_en,
+  listar_publicaciones_en,
+  publicacionCreada_en,
   OfrecermeCuidador_en,
-  listar_publicaciones_en
 
 );
 
@@ -68,8 +71,9 @@ const es = Object.assign(
   reset_password_es,
   forgot_password_es,
   OfrecermeNiñera_es,
+  listar_publicaciones_es,
+  publicacionCreada_es,
   OfrecermeCuidador_es,
-  listar_publicaciones_es
 );
 
 i18n

@@ -65,7 +65,7 @@ export const BuscarPersonalDomestico = () => {
     useEffect(() => {
         const fetchCountries = async () => {
             try {
-                {console.log(regions[selectedContinent])}
+                // {console.log(regions[selectedContinent])}
                 let [names, values] = await ( selectedContinent == -1? getAllCountries(): getCountriesInRegion( regions[selectedContinent])  );
                 setCountries( [names, values] );
             } catch (error) {
@@ -95,7 +95,7 @@ export const BuscarPersonalDomestico = () => {
     useEffect(() => {
         const fetchCities = async () => {
             try {
-                console.log(selectedStates);
+                // console.log(selectedStates);
                 let [names, values] = await ( selectedStates.length > 0? getCitiesInStates(selectedStates): [[], []])
                 setCities( [names, values] );
             } catch (error) {

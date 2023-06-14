@@ -30,6 +30,28 @@
         "no_posts": "Todavía no hay publicaciones disponibles"
     },
     "publicaciones_vista_lista": {
+        "CUI": "Cuidador(a) ocupacional",
+        "NIN": "Niñero(a)",
+        "ENF": "Enfermera(o)",
+        
+        "PRI": "Primaria",
+        "TEC": "Técnico Univeristario", 
+        "BAC":  "Bachillerato", 
+        "UNI": "Universitario", 
+
+        "estado": "Estado",
+        "ciudad": "Ciudad",
+        "años": "años",
+        "publicado": "Publicado el  ",
+        "ver_detalles": "Ver detalles",
+        "contactar": "Contactar",
+
+        "tipo_cliente":{
+            "NO": "Me es indiferente si es persona natural o empresa",
+            "EMP": "Empresa",
+            "NAT": "Natural"
+        }, 
+
         "LUN": "Lunes", 
         "MAR": "Martes",
         "MIE": "Miércoles",
@@ -61,17 +83,6 @@
         "CONST_ANTECEDENTES": "Constancia de no poseer antecedentes penales", 
         "SALUD": "Certificado de salud", 
 
-        "CUI": "Cuidador(a) ocupacional",
-        "NIN": "Niñera(o)",
-        "ENF": "Enfermera(o)",
-        "estado": "Estado",
-        "ciudad": "Ciudad",
-        "años": "años",
-        "publicado": "Publicado el  ",
-        "ver_detalles": "Ver detalles",
-        "contactar": "Contactar",
-        "PRI": "Primaria",
-        "UNI": "Universitaria",
         "ver_informacion": "Ver información completa",
         "grado_instruccion": "Grado de Instrucción",
         "perfil_laboral": "Descripción de mi perfil laboral",
@@ -87,12 +98,6 @@
         "salidas": "Salidas que prefiero",
         "clientes": "Clientes con los que quiero trabajar",
         "CONST_RESIDENCIA": "Constancia de Residencia",
-        "Cocinar": "Cocinar",
-        "tipo_cliente":{
-            "NO": "Me es indiferente si es persona natural o empresa",
-            "EMP": "Empresa",
-            "NAT": "Natural"
-        }
-
+        "Cocinar": "Cocinar"
     }
 }
