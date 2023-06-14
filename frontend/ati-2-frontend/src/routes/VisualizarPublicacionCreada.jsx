@@ -145,10 +145,10 @@ export const VisualizarPublicacionCreada = () => {
                     <div className='header'>                        
                         <section className='encabezado-perfil'>                       
                             <div className='subtitle blue margin header'>
-                                <b>{t(`publicaciones_vista_lista.${data.service}`)}</b>                            
+                                <b>{t(`publicaciones_vista_lista.${data?.service}`)}</b>                            
                             </div>
                             <div className='user-name header'>
-                                <b>{authState.name} </b>
+                                <b>{authState?.name} </b>
                             </div>
                             <div></div>                           
                             
