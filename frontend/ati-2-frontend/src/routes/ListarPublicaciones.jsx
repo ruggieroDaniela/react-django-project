@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useTranslation } from 'react-i18next'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 
 import AuthContext from '../context/AuthContext';
@@ -12,6 +12,8 @@ import { getServices } from '../components/dataFetchers/ServicesDataFetcher';
 import "../styles/ListarPublicaciones.scss"
 
 export const ListarPublicaciones = () => {
+
+    const navigate = useNavigate();
 
     const {t} = useTranslation();
     const location = useLocation();
@@ -228,8 +230,8 @@ export const ListarPublicaciones = () => {
                                 <button
                                     key={`${self.crypto.randomUUID()}`}
                                     onClick={ () => {
-                                        // modificar
-                                        // console.log("update");
+                                        if(selectedPosts.length == 1)
+                                            navigate(`/modify-post/${selectedPosts[0]}`);
                                     } }
                                     disabled={selectedPosts.length>1}
                                 >
