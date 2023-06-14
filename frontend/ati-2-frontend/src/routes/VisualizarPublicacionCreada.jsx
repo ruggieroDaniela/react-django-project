@@ -145,10 +145,10 @@ export const VisualizarPublicacionCreada = () => {
                     <div className='header'>                        
                         <section className='encabezado-perfil'>                       
                             <div className='subtitle blue margin header'>
-                                <b>{t(`publicaciones_vista_lista.${data.service}`)}</b>                            
+                                <b>{t(`publicaciones_vista_lista.${data?.service}`)}</b>                            
                             </div>
                             <div className='user-name header'>
-                                <b>{authState.name} </b>
+                                <b>{authState?.name} </b>
                             </div>
                             <div></div>                           
                             
@@ -165,15 +165,15 @@ export const VisualizarPublicacionCreada = () => {
                                 <div className='rectangle yellow tag header'> {t('publicacionCreada.correo_electronico')} </div>
                             </div>
                             <div>                            
-                                <div className='data header'> { userData?.cellphone || 'No disponible'} </div>
-                                <div className='data header'> { userData?.telephone || 'No disponible'} </div>
-                                <div className='data header'> { authState?.email ||'No disponible'}</div>
+                                <div className='data header'> { userData?.cellphone || t('publicacionCreada.No_disponible')} </div>
+                                <div className='data header'> { userData?.telephone || t('publicacionCreada.No_disponible')} </div>
+                                <div className='data header'> { authState?.email || t('publicacionCreada.No_disponible')}</div>
                             </div>
                             <div>
                                 <div className='pais blue'> {t('publicacionCreada.pais_cuidador')}</div>
                                 <div className='pais red'>{userData.country}</div>                        
                                 <div className='pais blue'> {t('publicacionCreada.provincia__cuidador')}</div>
-                                <div className='pais red'>Distrito Capital</div>
+                                <div className='pais red'> {t('publicacionCreada.No_disponible')}</div>
                                 
                             </div>
                             
@@ -192,7 +192,7 @@ export const VisualizarPublicacionCreada = () => {
                 { postType === 'request' &&  (
                     <div className='basico'>
                         <div className='basico info'>
-                            <div className='subtitle red'><b>{t('publicacionCreada.solicito')}</b></div>
+                            <div className='subtitle red'><b>{t('publicacionCreada.Solicito')}</b></div>
                             <div>{data.gender} </div>
                         </div>
                     </div>
