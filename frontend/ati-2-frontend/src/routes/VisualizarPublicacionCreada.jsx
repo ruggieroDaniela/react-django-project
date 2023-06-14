@@ -44,14 +44,14 @@ export const VisualizarPublicacionCreada = () => {
       function searchBankID(){
         for( let i=0 ; i< banks.length ; i++){
             if (data.billing_bank == banks[i].id ){
-                console.log(banks[i].id);
                 return banks[i];
             }
         }
-
       }
-      //fetch banks data
-      useEffect(() => {
+
+      
+    //fetch banks data
+    useEffect(() => {
         const getBanks = async () => {
           try {
             const response = await axios.get(`http://localhost:8000/banks/`);
@@ -64,16 +64,20 @@ export const VisualizarPublicacionCreada = () => {
         const fetchBanks = async () => {
           const banksData = await getBanks(); // Await the getBanks() function to resolve the Promise
           setBanks(banksData); // Update the banks state with the fetched data
-          console.log(banks);
+          console.log("banksData:"+banksData.id);
         };
         
-        if ( data?.id ) 
-        {
-            fetchBanks();
-            setPaymentBank(searchBankID);
-            
-        }
-      }, [data]);
+
+        fetchBanks();
+
+    }, [data]);
+
+    useEffect(()=>{
+        
+        setPaymentBank(searchBankID);
+        console.log(paymentBank);
+    },[banks])
+        
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -565,45 +569,60 @@ export const VisualizarPublicacionCreada = () => {
                     <div className='rectangle text'>{t('publicacionCreada.sugerencias.adicional')}</div>                   
                 </div>
                 
-                <div className="basico">
-                        <div>{data.bank_country}
-                            <div className="blue-box">
-                                Datos de Facturacion
-                            </div>
-                            <h2 className="blue">Plan Seleccionado</h2>
-                            
-                                { data?.publication_plan == "1" &&
-                                  "1"+ t('publicacionCreada.mes') + publication_choices[Number(data.publication_plan)-1].value
-                                }
-                                { (data?.publication_plan == "2" || data?.publication_plan == "3" || data?.publication_plan == "4" || data?.publication_plan == "5") &&
-                                  data.publication_plan + t('publicacionCreada.meses') + publication_choices[Number(data.publication_plan)-1].value
-                                }
-                            
-                        </div>
-                        <div>
-                            <div>Datos de Facturación</div>
-                            <div>
-                                <div>
-                                    <p> Pais donde va a realizar el Depósito</p> {data.billing_country}
+                <div className="basico" id='banco'>
+                        <div id='go-flex'>
+                            <div id='left'>
+                                <div className="rectangle blue-box" id='top-left'>
+                                    Datos de Facturacion
                                 </div>
-                                <div>
-                                    Datos de la cuenta seleccionada
-                                </div>
-                            </div>
-                            <div>
-                                <div>{paymentBank?.name}</div>
-                                <div>
-                                    <span>Forma de Pago</span>
-                                    Deposito
-                                    Transferencia Bancaria
+                                <h2 className="blue">Plan Seleccionado</h2>
 
-                                    Pais: {paymentBank?.country}
-                                    Banco: {paymentBank?.name}
-                                    Nro de Cuenta: {paymentBank?.account}
+                                    <span>
+                                    { data?.publication_plan == "1" &&
+                                        <>
+                                        {"1 "+ t('publicacionCreada.mes') + " " }
+                                        <span className='red'>{ publication_choices[ Number( data.publication_plan ) -1 ].value }</span>
+                                        </>
+                                    }
+                                    { 
+                                        (data?.publication_plan == "2" || data?.publication_plan == "3" || data?.publication_plan == "4" || data?.publication_plan == "5") &&
+                                        <>
+                                            {data.publication_plan +" "+t('publicacionCreada.meses') +" "} 
+                                            <span className='red'>{publication_choices[Number(data.publication_plan)-1].value}</span>
+                                        </>
+                                    }
+                                    </span>
+                            </div>
+                            <div id='right'>
+                                <div className='rectangle blue-box' id='top-right'>Datos de Facturación</div>
+                                <div id='boxes'>
+                                    <div>
+                                        <p className='rectangle blue-box' id='enlinea'> Pais donde va a realizar el Depósito</p> <span>{data.billing_country}</span>
+                                    </div>
+                                    <div className='rectangle blue-box' >
+                                        Datos de la cuenta seleccionada
+                                    </div>
                                 </div>
+                                <div>
+                                    <div className='rectangle blue-box' id="middle-box">{paymentBank?.name}</div>
+                                    <div id='yellow-border'>
+                                        <div id='sangria'>
+                                            <h2 className='red'>Forma de Pago</h2>
+                                            <div id='sangria'>
+                                                <p>* Deposito</p>
+                                                <p>* Transferencia Bancaria</p>
+                                            </div>
 
+                                            <p><span>Pais:</span> {paymentBank?.country}</p>
+                                            <p><span>Banco:</span> {paymentBank?.name}</p>
+                                            <p><span>Nro de Cuenta:</span> {paymentBank?.account}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
+                        
                 </div>           
                 
                 { /* DATOS DE FACTURACIÓN */ }

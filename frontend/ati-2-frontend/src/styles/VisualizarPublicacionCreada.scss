@@ -162,7 +162,74 @@
     }
     }
 
+#banco{
+    margin-left: 8rem;
+    .blue-box{
+        background-color: $azul-claro;
+        color: white;
+        font-weight: bold;
+    }
 
+    #go-flex{
+        display: flex;
+        #left{
+            width: 40%;
+        }
+        #right{
+            width: 60%;
+        }
+    }
+
+    p{
+        margin-left: 0;
+    }
+
+    #enlinea{
+        display: inline;
+        margin-right: 4vh;
+    }
+
+    #middle-box{
+        width: 96%;
+        text-align: center;
+        margin-top: 2vh;
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        margin-bottom: 0;
+    }
+
+    #sangria{
+        margin-left: 2vh;
+    }
+    #yellow-border{
+        border: solid;
+        border-color: $dorado;
+        width: 100%;
+    }
+    #boxes{
+        margin-top: 4vh;
+        div{
+            margin-top: 2vh;
+        }
+    }
+
+    span{
+        font-weight: bold;
+    }
+
+    #top-left{
+        width: 80%;
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+    }
+
+    #top-right{
+        width: 100%;
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+    }
+    
+}
 
 
     
