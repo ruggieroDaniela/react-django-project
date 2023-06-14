@@ -36,13 +36,18 @@
         &.yellow{
             background-color: $dorado;
             &.tag{
+                //display: flex;
                 font-weight: bold;
                 width: fit-content;
+                height: fit-content;
                 text-align: center;
-                //margin-left: 8rem;
 
                 &.right{
                     margin-left: 8rem;
+                }
+
+                &.larger{
+                    margin-left: 10rem;
                 }
             }
 
@@ -54,6 +59,10 @@
             text-align: justify;
             margin-left: 8rem;
             color: black;
+
+            &.right{
+                margin-left: 9rem;
+            }
         }
     }
 
@@ -137,9 +146,13 @@
         justify-content: center;
         
         .info{
-            grid-template-columns: 30% 70% ;
+            grid-template-columns: 40% 60% ;
             margin-left: 10rem;
             padding-bottom: 0.4rem;
+
+            &.larger{
+                grid-template-columns: 60% 40% ;
+            }
         }
 
         .data{
@@ -148,7 +161,11 @@
             padding-left: 1rem;
             padding-right: 1rem;
             width: fit-content;        
-            margin-bottom: 0.5rem;    
+            margin-bottom: 0.5rem;   
+            
+            &right{
+                margin-left: 10rem;
+            }
         }
 
         p{
