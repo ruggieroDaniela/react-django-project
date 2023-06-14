@@ -105,8 +105,9 @@
         "si": "Yes",
         "no": "No",
         "mes": "Month",
-        "meses": "Months"
-
+        "meses": "Months", 
+        "entre": "Between ", 
+        "y": "and"
     }
 }
 

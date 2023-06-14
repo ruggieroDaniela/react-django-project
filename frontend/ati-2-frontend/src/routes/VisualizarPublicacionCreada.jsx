@@ -44,14 +44,14 @@ export const VisualizarPublicacionCreada = () => {
       function searchBankID(){
         for( let i=0 ; i< banks.length ; i++){
             if (data.billing_bank == banks[i].id ){
-                console.log(banks[i].id);
                 return banks[i];
             }
         }
-
       }
-      //fetch banks data
-      useEffect(() => {
+
+      
+    //fetch banks data
+    useEffect(() => {
         const getBanks = async () => {
           try {
             const response = await axios.get(`http://localhost:8000/banks/`);
@@ -64,16 +64,20 @@ export const VisualizarPublicacionCreada = () => {
         const fetchBanks = async () => {
           const banksData = await getBanks(); // Await the getBanks() function to resolve the Promise
           setBanks(banksData); // Update the banks state with the fetched data
-          console.log(banks);
+          console.log("banksData:"+banksData.id);
         };
         
-        if ( data?.id ) 
-        {
-            fetchBanks();
-            setPaymentBank(searchBankID);
-            
-        }
-      }, [data]);
+
+        fetchBanks();
+
+    }, [data]);
+
+    useEffect(()=>{
+        
+        setPaymentBank(searchBankID);
+        console.log(paymentBank);
+    },[banks])
+        
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -220,7 +224,7 @@ export const VisualizarPublicacionCreada = () => {
 
                         { postType === 'request' ? (
                             data.age_requirement ? (
-                                <div> Entre {data.age_required_from} y {data.age_required_to} años </div>
+                                <div>  {t('publicacionCreada.entre')} {data.age_required_from}  {t('publicacionCreada.y')} {data.age_required_to}  {t('publicacionCreada.annios')} </div>
                             ) : (
                                 <div> {data.age_requirement} </div>
                             )                            
@@ -324,7 +328,7 @@ export const VisualizarPublicacionCreada = () => {
                             {/* Cantidad de personas */} 
                             <div className='basico info'>
                                 <div className='rectangle yellow tag'>{t('publicacionCreada.cant_persona_cuidar')}</div>
-                                <div className='data'>  2 </div>                                
+                                <div className='data'>  {data.number_tco} </div>                                
                             </div>
                         </div>
 
@@ -332,7 +336,7 @@ export const VisualizarPublicacionCreada = () => {
                             {/* Edad(es) */} 
                             <div className='basico info'>
                                 <div className='rectangle yellow tag'>{t('publicacionCreada.edad_cuidar')} </div>
-                                <div className='data'>  18 y 15 </div>                                
+                                <div className='data'>  {data.age_tco} </div>                                
                             </div>
                         </div>
 
@@ -340,28 +344,52 @@ export const VisualizarPublicacionCreada = () => {
                             {/* Sexo(s) */} 
                             <div className='basico info'>
                                 <div className='rectangle yellow tag'>{t('publicacionCreada.sexo_cuidar')} </div>
-                                <div className='data'> Masculino, Femenino</div>                                
+                                <div className='data'> {data.gender_tco}</div>                                
                             </div>
                         </div>
 
                         <div className='basico'>
-                            {/* Discapacidad o enfermedad */} 
-                            <div className='basico info'>
+                            {/* ¿Posee(n) alguna discapacidad o enfermedad? */} 
+                            <div className='basico info larger'>
                                 <div className='rectangle yellow tag'> {t('publicacionCreada.tiene_dispacacidad_cuidar')}</div>
-                                <div className='data'>  Si </div>                                
+                                { data.disabilities_tco ? (
+                                    <div className='data'> {t('publicacionCreada.si')}</div>   
+                                ) : (
+                                    <div className='data'> {t('publicacionCreada.no')} </div> 
+                                )}
+                                                             
                             </div>
                         </div>
 
+                        { /* Discapacidad */ }
+                        { data.disabilities_tco &&  (
+                            <div>
+                                <div className='basico'>                        
+                                    <div className='rectangle yellow tag larger'> {t('publicacionCreada.indique_capacidad')}</div>                                
+                                </div>          
+                                <div className='basico'>
+                                    <div className='rectangle text right'> {data.disabilities_tco_decrip}</div>                   
+                                </div>
+                                
+                            </div>                            
+                        )}
 
+                        {  /* Enfermedad */ }
+                        { data.disabilities_tco &&  (
+                            <div>
+                                <div className='basico'>                        
+                                    <div className='rectangle yellow tag larger'> {t('publicacionCreada.enfermedad_cuidar')}</div>                                
+                                </div>          
+                                <div className='basico'>
+                                    <div className='rectangle text right'> {data.diseases_tco_descrip}</div>                   
+                                </div>
+                                
+                            </div>                            
+                        )}
                     </div>       
                     
-                )}
-
-                
-                
-
-
-
+                )}              
+            
 
                 {/* FUNCIONES QUE HE DESEMPEÑADO */ }
                 <div className='basico'>
@@ -461,50 +489,53 @@ export const VisualizarPublicacionCreada = () => {
                         </div>
                     </div>
                 </div>
+                
+                {postType === 'provide' && (
+                    <div>
+                        {/* CLIENTES CON LOS QUE QUIERO TRABAJAR */}
+                        <div className='basico'>
+                        <div className='rectangle blue tag'>{t('publicacionCreada.clientes')}</div>
+                        </div>
 
-                { /* CLIENTES CON LOS QUE QUIERO TRABAJAR  */ }
-                <div className='basico'>
-                    <div className='rectangle blue tag'>{t('publicacionCreada.clientes')} </div>                    
-                </div>
-                
-                { /* Lugar de Procedencia  */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='rectangle yellow tag'> {t('publicacionCreada.cliente_procedencia')}</div>
-                        <div className='data'> {data.origin}  </div>
-                    </div>
-                </div>
-                
-                { /* Pais de Procedencia  */ }
-                {data.origin === "SI" && (
-                    <div className='basico'>
+                        {/* Lugar de Procedencia */}
+                        <div className='basico'>
                         <div className='basico info'>
+                            <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_procedencia')}</div>
+                            <div className='data'>{data.origin}</div>
+                        </div>
+                        </div>
+
+                        {/* Pais de Procedencia */}
+                        {data.origin === "SI" && (
+                        <div className='basico'>
+                            <div className='basico info'>
                             <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_pais')}</div>
                             <div className='data'>{data.origin_country}</div>
+                            </div>
                         </div>
-                    </div>
-                )}
+                        )}
 
-                { /* Estado / Provincia  */ }
-                {data.origin === "SI" && (
-                    <div className='basico'>
-                        <div className='basico info'>
-                            <div className='rectangle yellow tag'> {t('publicacionCreada.cliente_estado')} </div>
-                            <div className='data'> {data.origin_state} </div>
+                        {/* Estado / Provincia */}
+                        {data.origin === "SI" && (
+                        <div className='basico'>
+                            <div className='basico info'>
+                            <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_estado')}</div>
+                            <div className='data'>{data.origin_state}</div>
+                            </div>
                         </div>
+                        )}
+
+                        {/* Ciudad */}
+                        {data.origin === "SI" && (
+                        <div className='basico'>
+                            <div className='basico info'>
+                            <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_ciudad')}</div>
+                            <div className='data'>{data.origin_city}</div>
+                            </div>
+                        </div>
+                        )}
                     </div>
                 )}
-                
-                { /* Ciudad  */ }
-                {data.origin === "SI" && (
-                    <div className='basico'>
-                        <div className='basico info'>
-                            <div className='rectangle yellow tag'>  {t('publicacionCreada.cliente_estado')} </div>
-                            <div className='data'>  {data.origin_city}  </div>
-                        </div>
-                    </div>
-                )}
-                
                 
                 { /* DOCUMENTOS QUE PUEDO PRESENTAR A LOS CLIENTES  */ }
                 <div className='basico'>
@@ -529,7 +560,7 @@ export const VisualizarPublicacionCreada = () => {
                 </div>
                 
                 
-                {/* SUGERENCIAS ANTES DE REALZIAR UNA ENTREVISTA DE TRABAJO */ }
+                {/* SUGERENCIAS ANTES DE REALIZAR UNA ENTREVISTA DE TRABAJO */ }
                 <div className='basico'>
                     <div className='rectangle blue tag'>{t('publicacionCreada.sugerencias_tags.antes')}</div>                    
                 </div>
@@ -655,10 +686,10 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='rectangle text'>{t('publicacionCreada.sugerencias.adicional')}</div>                   
                 </div>
-                
+                <br></br>
                 { /* DATOS DE FACTURACIÓN */ }
                 <div className="basico">
-                        <div>{data.bank_country}
+                        <div>
                             <div className="blue-box">
                                 Datos de Facturacion
                             </div>
@@ -678,24 +709,54 @@ export const VisualizarPublicacionCreada = () => {
                                 <div>
                                     <p> Pais donde va a realizar el Depósito</p> {data.billing_country}
                                 </div>
-                                <div>
-                                    Datos de la cuenta seleccionada
-                                </div>
+                                <h2 className="blue">Plan Seleccionado</h2>
+
+                                    <span>
+                                    { data?.publication_plan == "1" &&
+                                        <>
+                                        {"1 "+ t('publicacionCreada.mes') + " " }
+                                        <span className='red'>{ publication_choices[ Number( data.publication_plan ) -1 ].value }</span>
+                                        </>
+                                    }
+                                    { 
+                                        (data?.publication_plan == "2" || data?.publication_plan == "3" || data?.publication_plan == "4" || data?.publication_plan == "5") &&
+                                        <>
+                                            {data.publication_plan +" "+t('publicacionCreada.meses') +" "} 
+                                            <span className='red'>{publication_choices[Number(data.publication_plan)-1].value}</span>
+                                        </>
+                                    }
+                                    </span>
                             </div>
-                            <div>
-                                <div>{paymentBank?.name}</div>
-                                <div>
-                                    <span>Forma de Pago</span>
-                                    Deposito
-                                    Transferencia Bancaria
-
-                                    Pais: {paymentBank?.country}
-                                    Banco: {paymentBank?.name}
-                                    Nro de Cuenta: {paymentBank?.account}
+                            <div id='right'>
+                                <div className='rectangle blue-box' id='top-right'>Datos de Facturación</div>
+                                <div id='boxes'>
+                                    <div>
+                                        <p className='rectangle blue-box' id='enlinea'> Pais donde va a realizar el Depósito</p> <span>{data.billing_country}</span>
+                                    </div>
+                                    <div className='rectangle blue-box' >
+                                        Datos de la cuenta seleccionada
+                                    </div>
                                 </div>
+                                <div>
+                                    <div className='rectangle blue-box' id="middle-box">{paymentBank?.name}</div>
+                                    <div id='yellow-border'>
+                                        <div id='sangria'>
+                                            <h2 className='red'>Forma de Pago</h2>
+                                            <div id='sangria'>
+                                                <p>* Deposito</p>
+                                                <p>* Transferencia Bancaria</p>
+                                            </div>
 
+                                            <p><span>Pais:</span> {paymentBank?.country}</p>
+                                            <p><span>Banco:</span> {paymentBank?.name}</p>
+                                            <p><span>Nro de Cuenta:</span> {paymentBank?.account}</p>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
+                        
                 </div>           
                 
                 

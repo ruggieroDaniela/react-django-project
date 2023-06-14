@@ -2347,55 +2347,32 @@ const botonEnviar = () => {
             id="boton_registrar"
             
 
-            onClick={
-                async () => {
-                    
-                    //Autenticar última fase
-                    if(!offerDomesticFormState.billing_country || !offerDomesticFormState.billing_bank){
-                        setOfferDomesticFormState((prev) => {
-                            const newState = { ...prev };
-                            newState.errors.billing_required = true
-                            return newState;
-                          })
-                          return
+            onClick={ async () => {
+                
+                const url = 'http://localhost:8000/api-services/provideService/post_ad/';
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(postData),
+                    });
+            
+                    if (response.ok) {
+                        const data = await response.json(); 
+                        console.log('POST request successful');
+                        navigate(`/visualizar-publicacion-creada?postType=provide&id=${data.post_code}`);
                     } else {
-                        setOfferDomesticFormState((prev) => {
-                            const newState = { ...prev };
-                            newState.errors.billing_required = false
-                            return newState;
-                          })
+                        // Request failed
+                        console.log('POST request failed');
+                        console.log(response);
                     }
-
-                    const url = 'http://localhost:8000/api-services/provideService/post_ad/'
-                    try {
-                        
-                        const response = await fetch( url,{
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(postData),
-                                // body: JSON.stringify(postBody),
-                            }
-                        );
-                
-                        if (response.ok) {
-                            // Request was successful
-                            console.log('POST request successful');
-                            console.log(response);
-                            navigate('/');
-                        } else {
-                            // Request failed
-                            console.log('POST request failed');
-                            console.log(response);
-                        }
-                
-                    } catch (error) {
-                        console.log("error registrando");
-                        console.log(error);
-                    }
+                } catch (error) {
+                    console.log("error registrando");
+                    console.log(error);
                 }
-            }
+            }}
             >
             {t('multiform.registrar')}
         </button>
