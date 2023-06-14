@@ -221,10 +221,35 @@
         margin-left: 0;
     }
 
-    .enlinea{
+    #enlinea{
         display: inline;
         margin-right: 4vh;
 
+    }
+
+    .same-size{
+        width: 60%;
+        
+    }
+
+    #matrix{
+        display: flex;
+        flex-flow: wrap;
+        #item{
+            width: 70%;
+            div{
+                width: 70%;
+            }
+        }
+        #item1{
+            width: 30%;
+        }
+        #item2{
+            width: 70%;
+            div{
+                width: 70%;
+            }
+        }
     }
 
     #middle-box{

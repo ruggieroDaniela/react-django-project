@@ -704,11 +704,18 @@ export const VisualizarPublicacionCreada = () => {
                                 <div id='right'>
                                     <div className='rectangle blue-box' id='top-right'>Datos de Facturación</div>
                                     <div id='boxes'>
-                                        <div>
-                                            <p className='rectangle blue-box' id='enlinea'> Pais donde va a realizar el Depósito</p> <span>{data.billing_country}</span>
-                                        </div>
-                                        <div className='rectangle blue-box' >
-                                            Datos de la cuenta seleccionada
+                                        <div id='matrix'>
+                                            <div id='item'>
+                                                <div className='rectangle blue-box ' > Pais donde va a realizar el Depósito</div> 
+                                            </div>
+                                            <div id='item1'>
+                                                <span>{data.billing_country}</span>
+                                            </div>
+                                            <div id='item2'>
+                                                <div className='rectangle blue-box'  >
+                                                    Datos de la cuenta seleccionada
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div>
