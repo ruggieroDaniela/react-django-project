@@ -80,7 +80,7 @@ export const ListarPublicaciones = () => {
                         searchParams += "?ordering=";
                 
                     searchParams += selectedOrdering;
-                    console.log(searchParams);
+                    // console.log(searchParams);
                 }
 
                 const response = await axios.get(`http://localhost:8000/api-services/${postType}Service/${searchParams}`, {
@@ -88,7 +88,7 @@ export const ListarPublicaciones = () => {
                 });
 
                 setPostList(response.data)
-                console.log(response.data);
+                // console.log(response.data);
                 setLoading(false);
                 return response.data;
 
@@ -229,7 +229,7 @@ export const ListarPublicaciones = () => {
                                     key={`${self.crypto.randomUUID()}`}
                                     onClick={ () => {
                                         // modificar
-                                        console.log("update");
+                                        // console.log("update");
                                     } }
                                     disabled={selectedPosts.length>1}
                                 >

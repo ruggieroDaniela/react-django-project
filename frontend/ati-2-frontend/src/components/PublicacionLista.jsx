@@ -286,7 +286,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                         onClick={ async () => {
                             setPostEnabled(prev=>!prev);
                             await axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${post.id}/`)
-                            console.log("wtf");
+                            // console.log("wtf");
                             
                         } }
                     >
