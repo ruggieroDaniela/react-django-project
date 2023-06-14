@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import { getCountryName, getStateName } from "../components/dataFetchers/PaisDataFetcher";
 //import { publicacionCreada } from "../components/FasesRegistrar";
 
 import "../styles/VisualizarPublicacionCreada.scss"
@@ -145,7 +146,7 @@ export const VisualizarPublicacionCreada = () => {
                     <div className='header'>                        
                         <section className='encabezado-perfil'>                       
                             <div className='subtitle blue margin header'>
-                                <b>{t(`publicaciones_vista_lista.${data.service}`)}</b>                            
+                                <b>{ t(`publicaciones_vista_lista.${data.service}`)}</b>                            
                             </div>
                             <div className='user-name header'>
                                 <b>{authState?.name} </b>
@@ -171,7 +172,7 @@ export const VisualizarPublicacionCreada = () => {
                             </div>
                             <div>
                                 <div className='pais blue'> {t('publicacionCreada.pais_cuidador')}</div>
-                                <div className='pais red'>{userData.country}</div>                        
+                                <div className='pais red'>{getCountryName(userData.country)}</div>                        
                                 <div className='pais blue'> {t('publicacionCreada.provincia__cuidador')}</div>
                                 <div className='pais red'> {t('publicacionCreada.No_disponible')}</div>
                                 
@@ -260,7 +261,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle black'><b>{t('publicacionCreada.pais_cuidador')}</b></div>
-                        <div> { data.country }  </div>
+                        <div> { getCountryName(userData.country) }  </div>
                     </div>
                 </div>
                 
@@ -268,7 +269,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle black'><b>{t('publicacionCreada.provincia__cuidador')}</b></div>
-                        <div>{data.state}</div>
+                        <div>{data.state != undefined && getStateName(data.state)}</div>
                     </div>
                 </div>
 
@@ -276,7 +277,7 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle black'><b>{t('publicacionCreada.ciudad_cuidador')}</b></div>
-                        <div>{data.city} </div>
+                        <div>{data.state != undefined && (data.city).substr((data.city).indexOf('-')+1)} </div>
                     </div>
                 </div>
 
