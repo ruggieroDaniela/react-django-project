@@ -206,9 +206,12 @@ export const VisualizarPublicacionCreada = () => {
                     </div>
                 )}
 
-                <div className='basico'>
-                    <div className='rectangle text'> <b>{data.description} </b></div>                   
-                </div>
+                { postType === 'provide' && (
+                    <div className='basico'>
+                        <div className='rectangle text'> <b>{data.description} </b></div>                   
+                    </div>
+                    )                
+                }
 
                 { /* Edad que solicita */ }
                 <div className='basico'>
@@ -232,8 +235,15 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle blue'><b>{t('publicacionCreada.situcion_familiar_cuidador')}</b></div>
-                        {data.have_children == true && <span>{t('publicacionCreada.hijos')}</span>}
-                        {data.have_children === false && <span>{t('publicacionCreada.no_hijos')}</span>}
+                        {postType === 'provide' ? (
+                            data.have_children === true ? (
+                                <span>{t('publicacionCreada.hijos')}</span>
+                            ) : (
+                                <span>{t('publicacionCreada.no_hijos')}</span>
+                            )
+                            ) : (
+                            data.children
+                        )}                        
                     </div>
                     <div className='subtitle red'>
                         <b>{t('publicacionCreada.PEN')}</b>
@@ -292,8 +302,7 @@ export const VisualizarPublicacionCreada = () => {
 
                 { postType === 'provide' ? (
                     <div>
-                        {/* DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL */}
-                        
+                        {/* DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL */}                        
                         <div className='basico'>
                         <div className='rectangle blue tag'>{t('publicacionCreada.perfilLaboral')}</div>
                         </div>
@@ -304,8 +313,48 @@ export const VisualizarPublicacionCreada = () => {
                         </div>
                         
                     </div>
-                ) : (
-                    <p>request</p>
+                ) : (          
+                    <div>
+                        <div className='basico'>
+                            {/* SOBRE LA PERSONA A CUIDAR */} 
+                            <div className='rectangle blue tag'> {t('publicacionCreada.persona_cuidar')}</div>
+                        </div>
+
+                        <div className='basico'>
+                            {/* Cantidad de personas */} 
+                            <div className='basico info'>
+                                <div className='rectangle yellow tag'>{t('publicacionCreada.cant_persona_cuidar')}</div>
+                                <div className='data'>  2 </div>                                
+                            </div>
+                        </div>
+
+                        <div className='basico'>
+                            {/* Edad(es) */} 
+                            <div className='basico info'>
+                                <div className='rectangle yellow tag'>{t('publicacionCreada.edad_cuidar')} </div>
+                                <div className='data'>  18 y 15 </div>                                
+                            </div>
+                        </div>
+
+                        <div className='basico'>
+                            {/* Sexo(s) */} 
+                            <div className='basico info'>
+                                <div className='rectangle yellow tag'>{t('publicacionCreada.sexo_cuidar')} </div>
+                                <div className='data'> Masculino, Femenino</div>                                
+                            </div>
+                        </div>
+
+                        <div className='basico'>
+                            {/* Discapacidad o enfermedad */} 
+                            <div className='basico info'>
+                                <div className='rectangle yellow tag'> {t('publicacionCreada.tiene_dispacacidad_cuidar')}</div>
+                                <div className='data'>  Si </div>                                
+                            </div>
+                        </div>
+
+
+                    </div>       
+                    
                 )}
 
                 

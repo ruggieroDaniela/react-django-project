@@ -36,8 +36,10 @@
         &.yellow{
             background-color: $dorado;
             &.tag{
+                //display: flex;
                 font-weight: bold;
                 width: fit-content;
+                height: fit-content;
                 text-align: center;
                 //margin-left: 8rem;
 
@@ -137,9 +139,13 @@
         justify-content: center;
         
         .info{
-            grid-template-columns: 30% 70% ;
+            grid-template-columns: 40% 60% ;
             margin-left: 10rem;
             padding-bottom: 0.4rem;
+
+            &.larger{
+                grid-template-columns: 60% 40% ;
+            }
         }
 
         .data{
