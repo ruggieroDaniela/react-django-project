@@ -198,7 +198,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                         <button key={`post ${post.id} ${self.crypto.randomUUID()}`}>{t(`publicaciones_vista_lista.contactar`)}</button>
                     </div>
                     <div className="more-info" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                        <a href="" className="title link" key={`post ${post.id} ${self.crypto.randomUUID()}`}>{t(`publicaciones_vista_lista.ver_informacion`)}</a>
+                        <a href={`/visualizar-publicacion-creada?id=${post.id}&postType=${postType}`} className="title link" key={`post ${post.id} ${self.crypto.randomUUID()}`}>{t(`publicaciones_vista_lista.ver_informacion`)}</a>
                     </div>
                 </div>
 
@@ -275,7 +275,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                         </ul>
                     </div>
                     <div className="more-info" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                        <a href="" className="title link" key={`post ${post.id} ${self.crypto.randomUUID()}`}>{t(`publicaciones_vista_lista.ver_informacion`)}</a>
+                        <a href={`/visualizar-publicacion-creada?id=${post.id}&postType=${postType}`} className="title link" key={`post ${post.id} ${self.crypto.randomUUID()}`}>{t(`publicaciones_vista_lista.ver_informacion`)}</a>
                     </div>
                 </div>
             </section>
