@@ -243,7 +243,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                             <li key={`post ${post.id} horario`}>
                                 <FieldViewDetails
                                     label={t(`publicaciones_vista_lista.horario`)}
-                                    detalles_texto={t(`${post.schedule.map(x => t(`publicaciones_vista_lista.${x}`)).join(", ") }`)}
+                                    detalles_texto={`${post.schedule.map(x => t(`publicaciones_vista_lista.${x}`)).join(", ") }`}
                                 />
                             </li>
                             <li key={`post ${post.id} salidas`}>
