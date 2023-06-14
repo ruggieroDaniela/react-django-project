@@ -107,7 +107,8 @@
         "mes": "Month",
         "meses": "Months", 
         "entre": "Between ", 
-        "y": "and"
+        "y": "and", 
+        "Solicito": "Request"
     }
 }
 

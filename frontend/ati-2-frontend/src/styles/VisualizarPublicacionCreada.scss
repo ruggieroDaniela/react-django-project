@@ -46,6 +46,10 @@
                     margin-left: 8rem;
                 }
 
+                &.header{
+                    margin-left: 12rem;
+                }
+
                 &.larger{
                     margin-left: 10rem;
                 }
@@ -82,10 +86,13 @@
         }
 
         &.margin{
-            margin-left: 13rem; 
+            margin-left: 4rem; 
         }
 
-        
+        &.header{
+            font-size: 1.4rem;
+            margin-left: 13rem; 
+        }
 
         &.black{
             color: black;
@@ -94,12 +101,14 @@
 
     .encabezado-perfil{
         display: grid;
-        grid-template-columns: 30% 15% 20% 20%;
+        grid-template-columns: 15% 30% 30% 25%;
         justify-content: center;
         margin-bottom: 0.2rem;
+        align-items: center;
         
         .user-name{
             margin-left: 1rem;
+            margin-left: 13rem;
         }
 
 
@@ -117,25 +126,33 @@
         .pais{
             font-weight: bold;
             padding-right: 1rem;
-            width: fit-content;        
+            width: fit-content; 
+                   
             margin-bottom: 0.2rem;  
             
             &.blue{
                 color: blue;
-                padding-top: 1.3rem;
+                font-size: 1.3rem;
+                //padding-bottom: 0.7rem;
+                margin-bottom: 0.7rem;
+                //padding-top: 1.3rem;
             }
 
             &.red{
                 color: red;
                 margin-left: 1rem;
-                padding-top: 0.2rem;
-                margin-bottom: 1rem;  
+                //margin-bottom: 0.rem;
+                padding-bottom: 0.5rem;
+                //padding-top: 0.2rem;
+                //margin-bottom: 1rem;  
             }
         }
     
         .img-user{
-            width: 20%;
-            margin-left: 12rem;     
+            width: 100%;
+            //height: 30%; 
+            margin-left: 10rem;     
+            
         }
 
     }
@@ -163,10 +180,12 @@
             width: fit-content;        
             margin-bottom: 0.5rem;   
             
-            &right{
+            &.right{
                 margin-left: 10rem;
             }
+
         }
+
 
         p{
             margin-left: 10rem;

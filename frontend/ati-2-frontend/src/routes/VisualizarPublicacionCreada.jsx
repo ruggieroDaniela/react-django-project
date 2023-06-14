@@ -88,15 +88,7 @@ export const VisualizarPublicacionCreada = () => {
                 // console.log(response.data);
                 setData(() => response.data);               
                 console.log(data);
-                // SERVICE
-                if(data.service=='NIN'){
-                    setServicio('Niñero(a)')
-                }
-
-                if(data.service=='CUI'){
-                    setServicio('Cuidador(a) Ocupacional')
-                }
-
+                
             } catch (error) {
                 console.log('An error occurred:', error);
             }
@@ -152,18 +144,14 @@ export const VisualizarPublicacionCreada = () => {
                     // something
                     <div className='header'>                        
                         <section className='encabezado-perfil'>                       
-                            <div className='subtitle blue margin'>
-                                <b>{servicio}</b>                            
+                            <div className='subtitle blue margin header'>
+                                <b>{t(`publicaciones_vista_lista.${data.service}`)}</b>                            
                             </div>
-                            <div className='user-name'>
-                                <b>Nombre Apellido </b>
+                            <div className='user-name header'>
+                                <b>{authState.name} </b>
                             </div>
-                            <div>
-                                {authState.name}
-                            </div>
-                            <div className='subtitle blue space'>
-                                <b>{t('publicacionCreada.pais_cuidador')}</b>
-                            </div>
+                            <div></div>                           
+                            
                     
                         </section>
 
@@ -172,39 +160,39 @@ export const VisualizarPublicacionCreada = () => {
                                 <img className='img-user' src={fotoPerfil} />
                             </div>
                             <div>
-                                <div className='rectangle yellow'>{t('publicacionCreada.telefono_celular')}</div>
-                                <div className='rectangle yellow'> {t('publicacionCreada.telefono_fijo')}</div>
-                                <div className='rectangle yellow'> {t('publicacionCreada.correo_electronico')} </div>
+                                <div className='rectangle yellow tag header'>{t('publicacionCreada.telefono_celular')}</div>
+                                <div className='rectangle yellow tag header'> {t('publicacionCreada.telefono_fijo')}</div>
+                                <div className='rectangle yellow tag header'> {t('publicacionCreada.correo_electronico')} </div>
                             </div>
                             <div>                            
-                                <div className='data'> { userData?.cellphone || 'No disponible'} </div>
-                                <div className='data'> { userData?.telephone || 'No disponible'} </div>
-                                <div className='data'> { authState?.email ||'No disponible'}</div>
+                                <div className='data header'> { userData?.cellphone || 'No disponible'} </div>
+                                <div className='data header'> { userData?.telephone || 'No disponible'} </div>
+                                <div className='data header'> { authState?.email ||'No disponible'}</div>
                             </div>
                             <div>
+                                <div className='pais blue'> {t('publicacionCreada.pais_cuidador')}</div>
                                 <div className='pais red'>{userData.country}</div>                        
-                                <div className='pais blue'> {t('publicacionCreada.provincia__cuidador')} </div>
+                                <div className='pais blue'> {t('publicacionCreada.provincia__cuidador')}</div>
                                 <div className='pais red'>Distrito Capital</div>
+                                
                             </div>
                             
                         </section>
                     </div> 
                     )
-                }
-
-                
+                }                
 
                 
                 {/* DATOS BASICOS DE LA NIÑERA*/ }
                 <div className='basico'>
-                    <div className='rectangle blue tag'>{t('publicacionCreada.datos_basicos_cuidador')}</div>                    
+                    <div className='rectangle blue tag'>{t('publicacionCreada.datos_basicos_cuidador')} {t(`publicaciones_vista_lista.${data.service}`)}</div>                    
                 </div>
 
                 { /* REQUEST: Solicito */ }
                 { postType === 'request' &&  (
                     <div className='basico'>
                         <div className='basico info'>
-                            <div className='subtitle red'><b>Solicito</b></div>
+                            <div className='subtitle red'><b>{t('publicacionCreada.solicito')}</b></div>
                             <div>{data.gender} </div>
                         </div>
                     </div>
@@ -262,8 +250,6 @@ export const VisualizarPublicacionCreada = () => {
                     </div>
                 </div>
 
-                <br></br>
-
                 {/* LUGAR DE PROCEDENCIA */ }
                 <div className='basico'>
                     <div className='rectangle blue tag'>{t('publicacionCreada.lugar_procedencia_cuidador')}</div>                    
@@ -301,8 +287,6 @@ export const VisualizarPublicacionCreada = () => {
                         <div>{data.zone}</div>
                     </div>
                 </div>
-
-                <br></br>
 
                 { postType === 'provide' ? (
                     <div>
