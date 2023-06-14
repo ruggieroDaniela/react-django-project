@@ -90,7 +90,11 @@ export const ListarPublicaciones = () => {
                 });
                 
                 console.log(response.data);
-                setPostList(response.data.filter( x => x.enable || (authState.logged_in && authState.id == x.user ) ) );
+                setPostList(response.data.filter( x => (
+                    x.enable ||
+                    (authState.logged_in && authState.id == x.user)
+                ) ) );
+                
                 setLoading(false);
                 return response.data;
 
