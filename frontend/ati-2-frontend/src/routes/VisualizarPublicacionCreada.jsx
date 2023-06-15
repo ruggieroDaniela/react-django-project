@@ -36,10 +36,10 @@ export const VisualizarPublicacionCreada = () => {
 
     let publication_choices = [
         { plan: "1", value: "10 USD" },
-        { plan: "2", value: "25 USD" },
-        { plan: "3", value: "50 USD" },
-        { plan: "4", value: "70 USD" },
-        { plan: "5", value: "90 USD" }
+        { plan: "3", value: "25 USD" },
+        { plan: "6", value: "50 USD" },
+        { plan: "9", value: "70 USD" },
+        { plan: "12", value: "90 USD" }
       ];
     
       function searchBankID(){
