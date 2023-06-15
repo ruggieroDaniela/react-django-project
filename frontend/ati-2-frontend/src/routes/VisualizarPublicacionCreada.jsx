@@ -60,7 +60,7 @@ export const VisualizarPublicacionCreada = () => {
         const getBanks = async () => {
         setLoadingBanks(true);
           try {
-            const response = await axios.get(`http://localhost:8000/banks/`);
+            const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/banks/`);
             return response.data; // Return the response data instead of the entire response
           } catch (error) {
             console.error(error);
@@ -89,7 +89,7 @@ export const VisualizarPublicacionCreada = () => {
         const fetchPost = async () => {
             setLoadingData(true);
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}/get_post/${id}/`);
+                const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/get_post/${id}/`);
                 
                 
                 // console.log(response.data);
@@ -111,7 +111,7 @@ export const VisualizarPublicacionCreada = () => {
                 try {
                         // Request was successful
                     if(authState.id != undefined){
-                        let response = await fetch( `http://localhost:8000/users/${authState.id}`,{
+                        let response = await fetch( `${import.meta.env.VITE_DJANGO_API_URL}/users/${authState.id}`,{
                                 method: 'GET',
                                 headers: {
                                     'Authorization': authState.token,

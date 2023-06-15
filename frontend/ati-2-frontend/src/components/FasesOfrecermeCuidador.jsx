@@ -2355,7 +2355,7 @@ const botonEnviar = () => {
 
                 setLoading(true);
                 
-                const url = 'http://localhost:8000/api-services/provideService/post_ad/';
+                const url = `${import.meta.env.VITE_DJANGO_API_URL}/api-services/provideService/post_ad/`;
                 try {
                     const response = await fetch(url, {
                         method: 'POST',
