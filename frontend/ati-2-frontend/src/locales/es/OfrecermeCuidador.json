@@ -68,7 +68,7 @@
             {
               "nombre": " Funciones que de desempeñado como cuidador(a) ocupacional",
               "mensaje":"Funciones que ha desempeñado como cuidador o cuidadora",
-              "titulo":"Funciones que ha desempeñado como niñera o niñero",
+              "titulo":"Funciones que ha desempeñado como cuidador",
               "indique":"Indique las actividades que ha realizado en esta vacante",
               "ejemplos":[
                 "Preparar Comidas",
@@ -259,7 +259,7 @@
               "mensaje":"Por favor, lea las consideraciones del servicio",
               "parrafos":[
                 "Los datos proporcionados son bajo la responsabilidad del anunciante, y la empresa queda exonerada de verificar su veracidad",
-                "Las sugerencias proporcionadas son para orientar a la niñera(o), y al aceptar la publicación de dicho anuncio la empresa queda exonerada de cualquier incidente que pudiera ocurrir entre la niñera(o) y el cliente"
+                "Las sugerencias proporcionadas son para orientar al cuidador, y al aceptar la publicación de dicho anuncio la empresa queda exonerada de cualquier incidente que pudiera ocurrir entre el cuidador y el cliente"
               ]
             },
             {
