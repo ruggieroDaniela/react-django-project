@@ -2004,7 +2004,7 @@ const Fase13 = () => {
                         <div className="dropdown-content">
                             <FieldDropdown 
                                 title={t('OfrecermeNiñera.fases.13.pais')}
-                                placeholder={selectedCountry==""?t('OfrecermeNiñera.fases.13.seleccione-pais'):selectedCountry}
+                                placeholder={selectedCountry!=-1? bank_countries[selectedCountry]:t('OfrecermeNiñera.fases.13.seleccione-pais')}
                                 items={bank_countries}
                                 setSelectedState={setSelectedCountry}
                             />
