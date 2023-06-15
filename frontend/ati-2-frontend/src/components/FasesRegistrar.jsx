@@ -1692,6 +1692,7 @@ const botonRegistrar = () => {
     const {registerFormState, setRegisterFormState} = useContext(RegisterFormContext);
     const {authState, setAuthState} = useContext(AuthContext);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const userData = {...registerFormState};
     let postBody = {};
@@ -1796,9 +1797,11 @@ const botonRegistrar = () => {
     return(
         <button
             id="boton_registrar"
-            
+            className={ loading?"loading-button":"" }
             onClick={
                 async () => {
+
+                    setLoading(true);
 
                     // Validar la última fase
                     let valid = true
@@ -1863,16 +1866,17 @@ const botonRegistrar = () => {
                         );
     
                         i18n.changeLanguage(authState.lang);
-        
+                        setLoading(false);
                         navigate('/');
 
                     } catch (error) {
+                        setLoading(false);
                         console.log(error);
                     }
                 }
             }
             >
-            {t('multiform.registrar')}
+            {loading?"...":t('multiform.registrar')}
         </button>
     );
 }

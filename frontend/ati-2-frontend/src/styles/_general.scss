@@ -12,3 +12,21 @@ button{
         cursor: pointer;
     }
 }
+
+@keyframes loading {
+    0%, 80%, 100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    40% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.loading-button{
+    animation: loading 1s infinite linear;
+    font-size: 2rem;
+    line-height: 0.8rem;
+}
+
