@@ -78,9 +78,11 @@ export const IniciarSesion = () => {
 
                     setAuthState( () => sessionData );
 
+                    // console.log(responseDataUser);
+
                     localStorage.setItem('sessionData', JSON.stringify(sessionData))
 
-                    i18n.changeLanguage(authState.lang);
+                    i18n.changeLanguage(sessionData.lang);
                     navigate('/');
                 }else{
                     console.log("GET request failed: error fetching user data");
