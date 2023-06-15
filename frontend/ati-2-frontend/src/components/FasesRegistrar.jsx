@@ -1797,7 +1797,6 @@ const botonRegistrar = () => {
     return(
         <button
             id="boton_registrar"
-            className={ loading?"loading-button":"" }
             onClick={
                 async () => {
 
@@ -1876,7 +1875,9 @@ const botonRegistrar = () => {
                 }
             }
             >
-            {loading?"...":t('multiform.registrar')}
+                <span className={ loading?"loading-button":"" }>
+                    {loading?"...":t('multiform.registrar')}
+                </span>
         </button>
     );
 }
