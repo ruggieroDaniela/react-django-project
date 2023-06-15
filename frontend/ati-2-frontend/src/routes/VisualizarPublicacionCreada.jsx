@@ -445,9 +445,17 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.salario_ofrecido')} </div>
-                        <div className='data'>
-                            {data?.payment === 'MONTO' ? (data?.payment_amount + " " + data?.currency) : data?.payment}
-                        </div>
+
+                        { data.currency === 'OTRA' ? (
+                            <div className='data'>
+                                {data?.payment === 'MONTO' ? (data?.payment_amount + " " + data?.currency_other) : data?.payment}
+                            </div> 
+                        ) : (
+                            <div className='data'>
+                                {data?.payment === 'MONTO' ? (data?.payment_amount + " " + data?.currency) : data?.payment}
+                            </div> 
+                        ) }
+                        
                     </div>
                 </div>
 
