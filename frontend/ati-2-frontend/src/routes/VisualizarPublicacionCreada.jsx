@@ -317,18 +317,7 @@ export const VisualizarPublicacionCreada = () => {
                                 <div>{data.zone}</div>
                             </div>
                         </div>
-                    </>
-                }
 
-                {
-                    (loadingData || loadingUser)?
-                    <>
-                        <div className="parent-loading-screen">
-                            <div className='loading-screen'></div>
-                        </div>
-                    </>
-                    :
-                    <>
                         { postType === 'provide' ? (
                             <div>
                                 {/* DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL */}                        
