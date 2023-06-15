@@ -54,7 +54,7 @@ function App() {
             <Route exact path="/forgot-password" element={<ForgotPassword />} />
             <Route exact path="/lang" element={<ChangeLanguage/>} />
             <Route exact path="/reset-password/:id" element={<ResetPassword/>}/>
-            <Route exact path='/modify-post/:id' element={<ModificarPost/>}/>
+            <Route exact path='/modify-post/:postType/:id' element={<ModificarPost/>}/>
             <Route exact path='/post-ad/offer/babysitter' element={<OfrecermeNiñera/>}/>
             <Route exact path='/post-ad/offer/caretaker' element={<OfrecermeCuidador/>}/>
             <Route path='/show-posts' element={<ListarPublicaciones/>}/>
