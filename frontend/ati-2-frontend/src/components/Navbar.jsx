@@ -54,11 +54,11 @@ const Navbar = () => {
                         <p className="arrow">▾</p>
                     </div>
                     <ul className={`list ${userDropdownVisible? "show" : ""}`}>
-                        <li className="item">
+                        {/* <li className="item">
                             <a className="link" href="#">
                                 {t("navbar.datos_usuario")}
                             </a>
-                        </li>
+                        </li> */}
                         <li 
                             className="item"
                             onClick={ () => {
