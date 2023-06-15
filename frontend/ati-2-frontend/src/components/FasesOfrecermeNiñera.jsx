@@ -2004,7 +2004,7 @@ const Fase13 = () => {
                         <div className="dropdown-content">
                             <FieldDropdown 
                                 title={t('OfrecermeNiñera.fases.13.pais')}
-                                placeholder={t('OfrecermeNiñera.fases.13.seleccione-pais')}
+                                placeholder={selectedCountry==""?t('OfrecermeNiñera.fases.13.seleccione-pais'):selectedCountry}
                                 items={bank_countries}
                                 setSelectedState={setSelectedCountry}
                             />
@@ -2020,7 +2020,7 @@ const Fase13 = () => {
                             
                                 <FieldDropdown    
                                     title={t('OfrecermeNiñera.fases.13.banco')}
-                                    placeholder={t('OfrecermeNiñera.fases.13.seleccione-banco')}
+                                    placeholder={selectedBanks != -1? aux[selectedBanks] : t('OfrecermeNiñera.fases.13.seleccione-banco')}
                                     items= {aux}
                                     setSelectedState={setSelectedBanks}
                                 />
