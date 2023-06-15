@@ -411,7 +411,11 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.salida_cuidador')}</div>
-                        <div className='data'>  {t(`publicaciones_vista_lista.${data.workday}`)} </div>
+                        { data.workday == 'OTRO' ? (
+                            <div className='data'>  data.workday_other </div>
+                        ): (
+                            <div className='data'>  {t(`publicaciones_vista_lista.${data.workday}`)} </div>
+                        )}                    
                        
                     </div>
                 </div>
