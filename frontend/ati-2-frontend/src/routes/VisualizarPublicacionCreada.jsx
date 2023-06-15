@@ -412,7 +412,7 @@ export const VisualizarPublicacionCreada = () => {
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.salida_cuidador')}</div>
                         { data.workday == 'OTRO' ? (
-                            <div className='data'>  data.workday_other </div>
+                            <div className='data'> { data.workday_other} </div>
                         ): (
                             <div className='data'>  {t(`publicaciones_vista_lista.${data.workday}`)} </div>
                         )}                    
@@ -424,14 +424,20 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.horario_trabajo')}</div>
-                        <div className='data'>
-                        {data?.schedule.map(
+
+                        { data.schedule == 'OTRO' ? (
+                            <div className='data'>  { data.schedule_other} </div>
+                        ) : (
+                            <div className='data'>
+                            {data?.schedule.map(
                             (scheduleItem, index) => 
                                 <div key={index}>
                                     {t(`publicaciones_vista_lista.${scheduleItem}`)}
                                 </div>
+                            )}
+                            </div>
                         )}
-                        </div>
+                        
                     </div>
                 </div>
 
