@@ -78,8 +78,8 @@
               "nombre":"Disponibilidad para viajar de la niñera(o)",
               "mensaje":"Por favor, indique la disponibilidad para viajar de la niñera(o)",
               "pregunta":"¿La niñera o niñero debe estar dispuesta a viajar, para acompañar a la persona a cuidar?",
-              "si":"si",
-              "no":"no",
+              "si":"Si",
+              "no":"No",
               "especifique":"Especifique"
             },
             {

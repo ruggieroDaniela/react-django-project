@@ -19,7 +19,7 @@
         },
         "fases":[
             {
-              "nombre": "Datos básicos de niñera(o)",
+              "nombre": "Datos básicos del cuidador(a) ocupacional",
               "campos": "Campos obligatorios",
               "solicito": "Solicito",
               "mensaje":"Por favor, proporcione los datos especificados a continuación",
@@ -75,17 +75,17 @@
               "enfermedades":"Indique la(s) enfermedad(es), si tienen tratamiento, y otros detalles de su interés"
             },
             {
-              "nombre":"Disponibilidad para viajar del niñero(a)",
-              "mensaje":"Por favor, indique la disponibilidad para viajar de la niñera(o)",
+              "nombre":"Disponibilidad para viajar del cuidador(a)",
+              "mensaje":"Por favor, indique la disponibilidad para viajar de la cuidador(a) ocupacional",
               "pregunta":"¿El cuidador o cuidadora debe estar dispuesta a viajar, para acompañar a la persona a cuidar?",
-              "si":"si",
-              "no":"no",
+              "si":"Si",
+              "no":"No",
               "especifique":"Especifique"
             },
             {
               "nombre": "Funciones que debe cumplir la cuidadora o el cuidador",
-              "mensaje":"Por favor, indique las actividades que ha desempeñado como niñera(o)",
-              "titulo":"Funciones que ha desempeñado como niñera o niñero",
+              "mensaje":"Por favor, indique las actividades que ha desempeñado como cuidador(a) ocupacional",
+              "titulo":"Funciones que ha desempeñado como cuidadora o cuidador",
               "indique":"Indique las actividades que ha realizado en esta vacante",
               "ejemplos":[
                 "Preparación de alimentos",
@@ -246,7 +246,7 @@
                 "Solicita tu contrato de trabajo por escrito, ya que este es el documento que certifica que estas laborando para el cliente.", 
                 "Indicarle a la persona contratada que debe mantener una buena higiene personal, y abstenerse de fumar, ingerir bebidas alcohólicas o tener conductas que atenten contrala moral y las buenas costumbres, principalmente delante de los niños",
                 "Indíquele al personal recomendaciones o procedimientos de seguridad para abrir la puerta, contestar el teléfono, personas a recibir en el inmueble, y cualquier otro asunto relacionado con las personas a su cuidado, o con el inmueble donde se realizarán las labores",
-                "Proporcione información de contacto a su niñera(o) en caso de emergencia, como: Médico tratante, teléfono de empresas donde la(s) persona(s) bajo su cuidado están aseguradas, listado de clínicas cercanas a las que se pueda llevar a la persona en caso de emergencia, datos de contacto directo con usted en caso de cualquier emergencia, o consulta que pueda tener la persona contratada",
+                "Proporcione información de contacto a su cuidador(a) ocupacional en caso de emergencia, como: Médico tratante, teléfono de empresas donde la(s) persona(s) bajo su cuidado están aseguradas, listado de clínicas cercanas a las que se pueda llevar a la persona en caso de emergencia, datos de contacto directo con usted en caso de cualquier emergencia, o consulta que pueda tener la persona contratada",
                 "Si puede, registre las huellas dactilares del personal a su servicio para que tenga una base para deslindar responsabilidades en caso de robo o cualquier incidente que podría haber originado dicha persona en el inmueble, o hacia las personas bajo su cuidado",
                 "Conversar con las personas que el cuidador(a) tendrá bajo su cargo, para verificar que la persona contratada le proporciona un buen trato a la persona",
                 "Se le recomienda instalar cámaras de seguridad para supervisar las labores del personal, y verificar el trato que se le proporciona a las personas a cuidar",

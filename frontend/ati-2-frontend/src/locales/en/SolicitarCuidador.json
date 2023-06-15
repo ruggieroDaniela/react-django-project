@@ -1,10 +1,10 @@
 {
     "SolicitarCuidador": {
-        "niñera": "Babysitter",
+        "niñera": "Caretaker",
         "cliente": "Client",
         "pais": "Country",
         "estado": "State, Province or Canton",
-        "titulo": "OFFER MY SERVICES AS A BABYSITTER",
+        "titulo": "OFFER MY SERVICES AS A CARETAKER",
         "telefono_movil": "Mobile Phone",
         "telefono_fijo": "Landline Phone",
         "correo": "Email",
@@ -19,12 +19,12 @@
         },
         "fases": [
             {
-                "nombre": "Basic Information of Babysitter",
+                "nombre": "Basic Information of Caretaker",
                 "campos": "Required Fields",
                 "solicito": "I Request",
                 "mensaje": "Please provide the specified data below",
-                "niñera": "Babysitter",
-                "niñero": "Babysitter (male)",
+                "niñera": "Caretaker",
+                "niñero": "Caretaker (male)",
                 "indiferente-sexo": "I am indifferent to their gender",
                 "indiferente-edad": "I am indifferent to their age",
                 "indiferente-hijos": "I am indifferent whether they have children or not",
@@ -75,16 +75,16 @@
             },
             {
                 "nombre":"About the person to be cared for",
-                "mensaje": "Please indicate the availability for the babysitter to travel",
-                "pregunta": "Should the babysitter be willing to travel to accompany the person being cared for?",
+                "mensaje": "Please indicate the availability for the caretaker to travel",
+                "pregunta": "Should the caretaker be willing to travel to accompany the person being cared for?",
                 "si": "Yes",
                 "no": "No",
                 "especifique": "Specify"
             },
             {
-                "nombre": "Functions Performed as a Babysitter",
-                "mensaje": "Please indicate the activities you have performed as a babysitter",
-                "titulo": "Functions you have performed as a babysitter",
+                "nombre": "Functions Performed as a Caretaker",
+                "mensaje": "Please indicate the activities you have performed as a Caretaker",
+                "titulo": "Functions you have performed as a Caretaker",
                 "indique": "Indicate the activities you have performed in this vacancy",
                 "ejemplos": [
                     "Preparation of meals",
