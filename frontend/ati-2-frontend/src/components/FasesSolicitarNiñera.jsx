@@ -332,6 +332,14 @@ const Fase1 = () => {
               let [names, values] = await ( getAllCountries() );
               setCountries( [names, values] );
               setReadyCountries(true);
+
+                if(values.length != 0)
+                    setRequestDomesticFormState ( prev => {
+                        const newState = {... prev};
+                        newState.country = values[0];
+                        return newState;
+                    });
+
           } catch (error) {
               console.error(error);
           } 
@@ -368,6 +376,13 @@ const Fase1 = () => {
                                   
               let [names, values] = await ( selectedCountry!="" ? getStatesInCountry(","+selectedCountry): ["Select a Country","loading"])
               setStates( [names, values] );
+              if(values.length != 0)
+                setRequestDomesticFormState ( prev => {
+                    const newState = {... prev};
+                    newState.state = values[0];
+                    return newState;
+                });
+
               if (selectedCountry !="")
                   setReadyStates(true);
           } catch (error) {
@@ -403,6 +418,12 @@ const Fase1 = () => {
               let [names, values] = await ( selectedState != "" ? getCitiesInStates(","+selectedState): ["Select a State","loading"])
               
               setCities( [names, values] );
+              if(values.length!=0)
+                setRequestDomesticFormState ( prev => {
+                    const newState = {... prev};
+                    newState.city = values[0];
+                    return newState;
+                });
               
               if (selectedState !="")
                   setReadyCities(true);
