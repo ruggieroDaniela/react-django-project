@@ -13,8 +13,9 @@ import { useNavigate } from 'react-router-dom';
 const Fase0 = () => {
   const { t, i18n } = useTranslation();
   const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
-
+    
   const age_range_invalid = requestDomesticFormState.errors.age_range_invalid
+  
 
   return (
     <div id="fase0">
@@ -107,6 +108,7 @@ const Fase0 = () => {
                 <label htmlFor="c4">{t('SolicitarCuidador.fases.0.entre')} 
                     <input 
                         type="text"
+                        value={requestDomesticFormState.age_required_from}
                         onChange={ e => {
                             setRequestDomesticFormState( prev => {
                                     const newState = {...prev};
@@ -118,6 +120,7 @@ const Fase0 = () => {
                     &nbsp;&nbsp;&nbsp;&nbsp;{t('SolicitarCuidador.fases.0.y')} 
                     <input 
                         type="text"
+                        value={requestDomesticFormState.age_required_to}
                         onChange={ e => {
                             setRequestDomesticFormState( prev => {
                                     const newState = {...prev};

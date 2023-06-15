@@ -1049,7 +1049,7 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             post = serializer.save()
             sendEmail(post)
-            return Response({'message': 'OK', 'post_code(id)': post.id})
+            return Response({'message': 'OK', 'post_code': post.id})
         else:
             return Response(serializer.errors, status=400)
         

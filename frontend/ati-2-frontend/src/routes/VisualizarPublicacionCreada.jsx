@@ -141,12 +141,12 @@ export const VisualizarPublicacionCreada = () => {
             <section id="publicacion-creada">    
                 {/* Encabezado perfil */}
                 
-                { postType === 'provide' && (
+                { (postType === 'provide') && (
                     // something
                     <div className='header'>                        
                         <section className='encabezado-perfil'>                       
                             <div className='subtitle blue margin header'>
-                                <b>{ t(`publicaciones_vista_lista.${data.service}`)}</b>                            
+                                <b>{ data.service && t(`publicaciones_vista_lista.${data.service}`)}</b>                            
                             </div>
                             <div className='user-name header'>
                                 <b>{authState?.name} </b>
@@ -254,14 +254,14 @@ export const VisualizarPublicacionCreada = () => {
                 {/* LUGAR DE PROCEDENCIA */ }
                 <div className='basico'>
                     <div className='rectangle blue tag'>{t('publicacionCreada.lugar_procedencia_cuidador')}</div>                    
-                </div>
+                </div>  
                 <br></br>
 
                 { /* País de procedencia */ }
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='subtitle black'><b>{t('publicacionCreada.pais_cuidador')}</b></div>
-                        <div> { getCountryName(userData.country) }  </div>
+                        <div> { getCountryName(data.country) }  </div>
                     </div>
                 </div>
                 

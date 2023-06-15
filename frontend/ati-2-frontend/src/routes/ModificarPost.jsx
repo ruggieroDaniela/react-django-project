@@ -108,7 +108,7 @@ export const ModificarPost = () => {
                 }   
             });
 
-            if ( postType == "request")
+            if ( postType == "request"){
             setRequestDomesticFormState(
                 {
                     user: post.user, 
@@ -180,9 +180,15 @@ export const ModificarPost = () => {
                     }
                 }      
             );
-
+                setRequestDomesticFormState( prev =>{
+                    const newState = {...prev};
+                    newState.user = post.user
+                    return newState;
+                })
+            }
+            
             setReady(true);
-            console.log(offerDomesticFormState);
+            
             // Perform any further actions with the retrieved post data
         } else {
             console.log('Error retrieving post');
@@ -236,8 +242,9 @@ export const ModificarPost = () => {
         const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
         const navigate = useNavigate();
      
-    
-        const postData = {...offerDomesticFormState};
+        let postData = "";
+        if (postType == 'provide') postData = {...offerDomesticFormState};
+        if (postType == 'request') postData = {...requestDomesticFormState};
         //console.log(JSON.stringify(postData));
         return(
             <button
@@ -264,7 +271,7 @@ export const ModificarPost = () => {
                                 // Request was successful
                                 console.log('POST request successful');
                                 console.log(response);
-                                navigate('/');
+                                navigate(`/visualizar-publicacion-creada?postType=${postType}&id=${id}`);
                             } else {
                                 // Request failed
                                 console.log('POST request failed');

@@ -107,6 +107,7 @@ const Fase0 = () => {
                           <label htmlFor="c4">{t('SolicitarCuidador.fases.0.entre')} 
                                 <input 
                                     type="text"
+                                    value={requestDomesticFormState.age_required_from}
                                     onChange={ e => {
                                         setRequestDomesticFormState( prev => {
                                                 const newState = {...prev};
@@ -118,6 +119,7 @@ const Fase0 = () => {
                                 &nbsp;&nbsp;&nbsp;&nbsp;{t('SolicitarCuidador.fases.0.y')} 
                                 <input 
                                     type="text"
+                                    value={requestDomesticFormState.age_required_to}
                                     onChange={ e => {
                                         setRequestDomesticFormState( prev => {
                                                 const newState = {...prev};
@@ -2242,9 +2244,9 @@ const botonEnviar = () => {
                 
                         if (response.ok) {
                             // Request was successful
+                            const data = await response.json(); 
                             console.log('POST request successful');
-                            console.log(response);
-                            navigate('/');
+                            navigate(`/visualizar-publicacion-creada?postType=request&id=${data.post_code}`);
                         } else {
                             // Request failed
                             console.log('POST request failed');
