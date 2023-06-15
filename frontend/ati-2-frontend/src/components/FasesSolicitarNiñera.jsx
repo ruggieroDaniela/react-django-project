@@ -332,6 +332,14 @@ const Fase1 = () => {
               let [names, values] = await ( getAllCountries() );
               setCountries( [names, values] );
               setReadyCountries(true);
+
+                if(values.length != 0)
+                    setRequestDomesticFormState ( prev => {
+                        const newState = {... prev};
+                        newState.country = values[0];
+                        return newState;
+                    });
+
           } catch (error) {
               console.error(error);
           } 
@@ -368,6 +376,13 @@ const Fase1 = () => {
                                   
               let [names, values] = await ( selectedCountry!="" ? getStatesInCountry(","+selectedCountry): ["Select a Country","loading"])
               setStates( [names, values] );
+              if(values.length != 0)
+                setRequestDomesticFormState ( prev => {
+                    const newState = {... prev};
+                    newState.state = values[0];
+                    return newState;
+                });
+
               if (selectedCountry !="")
                   setReadyStates(true);
           } catch (error) {
@@ -403,6 +418,12 @@ const Fase1 = () => {
               let [names, values] = await ( selectedState != "" ? getCitiesInStates(","+selectedState): ["Select a State","loading"])
               
               setCities( [names, values] );
+              if(values.length!=0)
+                setRequestDomesticFormState ( prev => {
+                    const newState = {... prev};
+                    newState.city = values[0];
+                    return newState;
+                });
               
               if (selectedState !="")
                   setReadyCities(true);
@@ -486,7 +507,7 @@ const Fase1 = () => {
                         }
                         value={requestDomesticFormState.country}
                 >
-                
+                <option disabled selected value="">{t('search.selecciona_pais')}</option>
                 {readyCountries && renderOptions(countries,"countries")}
                 {!readyCountries && (
                     <option>Loading ...</option>
@@ -512,6 +533,7 @@ const Fase1 = () => {
                                     });
                                 }
                             }> 
+                            <option disabled selected value="">{t('search.selecciona_estado')}</option>
                         {readyStates && renderOptions(states,"states")}
                         {!readyStates && (
                         <option>{t('SolicitarNiñera.fases.1.select-state')}</option>
@@ -537,6 +559,7 @@ const Fase1 = () => {
                                 }
                             }
                             > 
+                            <option disabled selected value="">{t('search.selecciona_ciudad')}</option>
                         {readyCities && renderOptions(cities,"cities")}
                         {!readyCities && (
                         <option>{t('SolicitarNiñera.fases.1.select-city')}</option>
@@ -1965,6 +1988,7 @@ const Fase11 = () => {
 }
 
 const botonEnviar = () => {
+    const [loading, setLoading] = useState(false);
     const { t, i18n } = useTranslation();
     const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
     const {authState, setAuthState} = useContext(AuthContext);
@@ -1997,7 +2021,7 @@ const botonEnviar = () => {
             
             onClick={
                 async () => {
-
+                    setLoading(true);
                     //Autenticar última fase
                     if(!requestDomesticFormState.billing_country || !requestDomesticFormState.billing_bank){
                         setRequestDomesticFormState((prev) => {
@@ -2041,10 +2065,13 @@ const botonEnviar = () => {
                         console.log("error registrando");
                         console.log(error);
                     }
+                    setLoading(false);
                 }
             }
             >
-            {t('multiform.registrar')}
+            <span className={loading?"loading-button":""}>
+                {loading?"...":t('multiform.registrar')}
+            </span>
         </button>
     );
 }

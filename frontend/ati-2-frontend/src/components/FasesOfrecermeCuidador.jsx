@@ -362,6 +362,7 @@ const Fase1 = () => {
                                 }
                             }
                     >
+                    <option disabled selected value="">{t('search.selecciona_pais')}</option>
                     {console.log(offerDomesticFormState.country)}
                     {readyCountries && renderOptions(countries,"countries",offerDomesticFormState.country)}
                     {!readyCountries && (
@@ -390,6 +391,7 @@ const Fase1 = () => {
                                     });
                                 }
                             }> 
+                            <option disabled selected value="">{t('search.selecciona_estado')}</option>
                         {readyStates && renderOptions(states,"states")}
                         {!readyStates && (
                         <option>{t('OfrecermeCuidador.fases.1.select-country')}</option>
@@ -417,6 +419,7 @@ const Fase1 = () => {
                                 }
                             }
                             > 
+                            <option disabled selected value="">{t('search.selecciona_ciudad')}</option>
                         {readyCities && renderOptions(cities,"cities")}
                         {!readyCities && (
                         <option>{t('OfrecermeCuidador.fases.1.select-state')}</option>
@@ -2326,6 +2329,7 @@ const useValidar = () => {
 
 
 const botonEnviar = () => {
+    const [loading, setLoading] = useState(false);
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
     const {authState, setAuthState} = useContext(AuthContext);
@@ -2348,6 +2352,8 @@ const botonEnviar = () => {
             
 
             onClick={ async () => {
+
+                setLoading(true);
                 
                 const url = 'http://localhost:8000/api-services/provideService/post_ad/';
                 try {
@@ -2368,13 +2374,18 @@ const botonEnviar = () => {
                         console.log('POST request failed');
                         console.log(response);
                     }
+                    setLoading(false);
                 } catch (error) {
                     console.log("error registrando");
                     console.log(error);
+                    setLoading(false);
                 }
             }}
             >
-            {t('multiform.registrar')}
+                <span className={loading?"loading-button":""}>
+                    {loading?"...":t('multiform.registrar')}
+                </span>
+           
         </button>
     );
 }

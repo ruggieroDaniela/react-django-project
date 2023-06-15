@@ -285,7 +285,7 @@ export const ModificarPost = () => {
                     }
                 }
                 >
-                {t('multiform.registrar')}
+                {t('multiform.modificar')}
             </button>
         );
     }
