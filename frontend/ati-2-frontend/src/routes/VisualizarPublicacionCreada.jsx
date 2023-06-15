@@ -12,6 +12,10 @@ import fotoPerfil from '../assets/default-user-icon.jpg';
 import AuthContext from '../context/AuthContext';
 
 export const VisualizarPublicacionCreada = () => {
+    
+    const [loadingData, setLoadingData] = useState(false);
+    const [loadingUser, setLoadingUser] = useState(false);
+    const [loadingBanks, setLoadingBanks] = useState(false);
     const { t } = useTranslation();
     const [userData, setUserData] = useState("");
     const {authState, setAuthState} = useContext(AuthContext);
@@ -54,12 +58,14 @@ export const VisualizarPublicacionCreada = () => {
     //fetch banks data
     useEffect(() => {
         const getBanks = async () => {
+        setLoadingBanks(true);
           try {
             const response = await axios.get(`http://localhost:8000/banks/`);
             return response.data; // Return the response data instead of the entire response
           } catch (error) {
             console.error(error);
           }
+          setLoadingBanks(false);
         };
       
         const fetchBanks = async () => {
@@ -68,7 +74,6 @@ export const VisualizarPublicacionCreada = () => {
           console.log("banksData:"+banksData.id);
         };
         
-
         fetchBanks();
 
     }, [data]);
@@ -82,6 +87,7 @@ export const VisualizarPublicacionCreada = () => {
 
     useEffect(() => {
         const fetchPost = async () => {
+            setLoadingData(true);
             try {
                 const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}/get_post/${id}/`);
                 
@@ -93,14 +99,15 @@ export const VisualizarPublicacionCreada = () => {
             } catch (error) {
                 console.log('An error occurred:', error);
             }
+            setLoadingData(false);
         };
-    
         fetchPost();
         }, []);
-
+        
         //fetching the user
         useEffect(()=>{
             const handleSubmit = async () => {
+                setLoadingUser(true);
                 try {
                         // Request was successful
                     if(authState.id != undefined){
@@ -130,6 +137,7 @@ export const VisualizarPublicacionCreada = () => {
                         console.log("error");
                         console.log(error);
                     }
+                    setLoadingUser(false);
         
             }
             handleSubmit();
@@ -189,67 +197,79 @@ export const VisualizarPublicacionCreada = () => {
                     <div className='rectangle blue tag'>{t('publicacionCreada.datos_basicos_cuidador')} {t(`publicaciones_vista_lista.${data.service}`)}</div>                    
                 </div>
 
-                { /* REQUEST: Solicito */ }
-                { postType === 'request' &&  (
-                    <div className='basico'>
-                        <div className='basico info'>
-                            <div className='subtitle red'><b>{t('publicacionCreada.Solicito')}</b></div>
-                            <div> {t(`publicacionCreada.gender.${data.gender}`)}</div>
+                {
+                    (loadingData || loadingUser)?
+                    <>
+                        <div className="parent-loading-screen">
+                            <div className='loading-screen'></div>
                         </div>
-                    </div>
-                )}
+                    </>
+                    :
+                    <>
+                        { /* REQUEST: Solicito */ }
+                        { postType === 'request' &&  (
+                            <div className='basico'>
+                                <div className='basico info'>
+                                    <div className='subtitle red'><b>{t('publicacionCreada.Solicito')}</b></div>
+                                    <div> {t(`publicacionCreada.gender.${data.gender}`)}</div>
+                                </div>
+                            </div>
+                        )}
 
-                { postType === 'provide' && (
-                    <div className='basico'>
-                        <div className='rectangle text'> <b>{data.description} </b></div>                   
-                    </div>
-                    )                
+                        { postType === 'provide' && (
+                            <div className='basico'>
+                                <div className='rectangle text'> <b>{data.description} </b></div>                   
+                            </div>
+                            )                
+                        }
+
+                        { /* Edad que solicita */ }
+                        <div className='basico'>
+                            <div className='basico info'>
+                                <div className='subtitle blue'><b>{t('publicacionCreada.edad_cuidador')}</b></div>
+
+                                { postType === 'request' ? (
+                                    data.age_requirement ? (
+                                        <div>  {t('publicacionCreada.entre')} {data.age_required_from}  {t('publicacionCreada.y')} {data.age_required_to}  {t('publicacionCreada.annios')} </div>
+                                    ) : (
+                                        <div> {data.age_requirement} </div>
+                                    )                            
+                                ) : (
+                                <div> {data.age}  {t('publicacionCreada.annios')} </div>
+                                )}
+                                
+                            </div>
+                        </div>
+
+                        { /* Situación Familiar */ }
+                        <div className='basico'>
+                            <div className='basico info'>
+                                <div className='subtitle blue'><b>{t('publicacionCreada.situcion_familiar_cuidador')}</b></div>
+                                {postType === 'provide' ? (
+                                    data.have_children === true ? (
+                                        <span>{t('publicacionCreada.hijos')}</span>
+                                    ) : (
+                                        <span>{t('publicacionCreada.no_hijos')}</span>
+                                    )
+                                    ) : (
+                                    t(`publicacionCreada.${data.children}`)
+                                )}                        
+                            </div>
+                            <div className='subtitle red'>
+                                <b>{t('publicacionCreada.PEN')}</b>
+                            </div>
+                        </div>
+
+                        { /* Grado de Instrucción */ }
+                        <div className='basico'>
+                            <div className='basico info'>
+                                <div className='subtitle blue'><b> {t('publicacionCreada.grado_instrucción_cuidador')}</b></div>
+                                <div> {data.education_level &&t(`publicaciones_vista_lista.${data.education_level}`)} </div>                        
+                            </div>
+                        </div>
+                    </>
                 }
 
-                { /* Edad que solicita */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='subtitle blue'><b>{t('publicacionCreada.edad_cuidador')}</b></div>
-
-                        { postType === 'request' ? (
-                            data.age_requirement ? (
-                                <div>  {t('publicacionCreada.entre')} {data.age_required_from}  {t('publicacionCreada.y')} {data.age_required_to}  {t('publicacionCreada.annios')} </div>
-                            ) : (
-                                <div> {data.age_requirement} </div>
-                            )                            
-                        ) : (
-                           <div> {data.age}  {t('publicacionCreada.annios')} </div>
-                        )}
-                        
-                    </div>
-                </div>
-
-                { /* Situación Familiar */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='subtitle blue'><b>{t('publicacionCreada.situcion_familiar_cuidador')}</b></div>
-                        {postType === 'provide' ? (
-                            data.have_children === true ? (
-                                <span>{t('publicacionCreada.hijos')}</span>
-                            ) : (
-                                <span>{t('publicacionCreada.no_hijos')}</span>
-                            )
-                            ) : (
-                            t(`publicacionCreada.${data.children}`)
-                        )}                        
-                    </div>
-                    <div className='subtitle red'>
-                        <b>{t('publicacionCreada.PEN')}</b>
-                    </div>
-                </div>
-
-                { /* Grado de Instrucción */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='subtitle blue'><b> {t('publicacionCreada.grado_instrucción_cuidador')}</b></div>
-                        <div> {data.education_level &&t(`publicaciones_vista_lista.${data.education_level}`)} </div>                        
-                    </div>
-                </div>
 
                 {/* LUGAR DE PROCEDENCIA */ }
                 <div className='basico'>
@@ -257,123 +277,147 @@ export const VisualizarPublicacionCreada = () => {
                 </div>  
                 <br></br>
 
-                { /* País de procedencia */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='subtitle black'><b>{t('publicacionCreada.pais_cuidador')}</b></div>
-                        <div> { getCountryName(data.country) }  </div>
-                    </div>
-                </div>
-                
-                { /* Estado / Provincia  */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='subtitle black'><b>{t('publicacionCreada.provincia__cuidador')}</b></div>
-                        <div>{data.state != undefined && getStateName(data.state)}</div>
-                    </div>
-                </div>
-
-                { /* Ciudad */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='subtitle black'><b>{t('publicacionCreada.ciudad_cuidador')}</b></div>
-                        <div>{data.state != undefined && (data.city).substr((data.city).indexOf('-')+1)} </div>
-                    </div>
-                </div>
-
-                { /* Zona */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='subtitle black'><b>{t('publicacionCreada.zona_cuidador')}</b></div>
-                        <div>{data.zone}</div>
-                    </div>
-                </div>
-
-                { postType === 'provide' ? (
-                    <div>
-                        {/* DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL */}                        
-                        <div className='basico'>
-                        <div className='rectangle blue tag'>{t('publicacionCreada.perfilLaboral')}</div>
+                {
+                    (loadingData || loadingUser)?
+                    <>
+                        <div className="parent-loading-screen">
+                            <div className='loading-screen'></div>
                         </div>
-                        <br></br>
-
+                    </>
+                    :
+                    <>
+                        { /* País de procedencia */ }
                         <div className='basico'>
-                            <div className='rectangle text'> { data.description }</div>                   
+                            <div className='basico info'>
+                                <div className='subtitle black'><b>{t('publicacionCreada.pais_cuidador')}</b></div>
+                                <div> { getCountryName(data.country) }  </div>
+                            </div>
                         </div>
                         
-                    </div>
-                ) : (          
-                    <div>
+                        { /* Estado / Provincia  */ }
                         <div className='basico'>
-                            {/* SOBRE LA PERSONA A CUIDAR */} 
-                            <div className='rectangle blue tag'> {t('publicacionCreada.persona_cuidar')}</div>
-                        </div>
-
-                        <div className='basico'>
-                            {/* Cantidad de personas */} 
                             <div className='basico info'>
-                                <div className='rectangle yellow tag'>{t('publicacionCreada.cant_persona_cuidar')}</div>
-                                <div className='data'>  {data.number_tco} </div>                                
+                                <div className='subtitle black'><b>{t('publicacionCreada.provincia__cuidador')}</b></div>
+                                <div>{data.state != undefined && getStateName(data.state)}</div>
                             </div>
                         </div>
 
+                        { /* Ciudad */ }
                         <div className='basico'>
-                            {/* Edad(es) */} 
                             <div className='basico info'>
-                                <div className='rectangle yellow tag'>{t('publicacionCreada.edad_cuidar')} </div>
-                                <div className='data'>  {data.age_tco} </div>                                
+                                <div className='subtitle black'><b>{t('publicacionCreada.ciudad_cuidador')}</b></div>
+                                <div>{data.state != undefined && (data.city).substr((data.city).indexOf('-')+1)} </div>
                             </div>
                         </div>
 
+                        { /* Zona */ }
                         <div className='basico'>
-                            {/* Sexo(s) */} 
                             <div className='basico info'>
-                                <div className='rectangle yellow tag'>{t('publicacionCreada.sexo_cuidar')} </div>
-                                <div className='data'> {data.gender_tco}</div>                                
+                                <div className='subtitle black'><b>{t('publicacionCreada.zona_cuidador')}</b></div>
+                                <div>{data.zone}</div>
                             </div>
                         </div>
+                    </>
+                }
 
-                        <div className='basico'>
-                            {/* ¿Posee(n) alguna discapacidad o enfermedad? */} 
-                            <div className='basico info larger'>
-                                <div className='rectangle yellow tag'> {t('publicacionCreada.tiene_dispacacidad_cuidar')}</div>
-                                { data.disabilities_tco ? (
-                                    <div className='data'> {t('publicacionCreada.si')}</div>   
-                                ) : (
-                                    <div className='data'> {t('publicacionCreada.no')} </div> 
+                {
+                    (loadingData || loadingUser)?
+                    <>
+                        <div className="parent-loading-screen">
+                            <div className='loading-screen'></div>
+                        </div>
+                    </>
+                    :
+                    <>
+                        { postType === 'provide' ? (
+                            <div>
+                                {/* DESCRIPCIÓN GENERAL DE MI PERFIL LABORAL */}                        
+                                <div className='basico'>
+                                <div className='rectangle blue tag'>{t('publicacionCreada.perfilLaboral')}</div>
+                                </div>
+                                <br></br>
+
+                                <div className='basico'>
+                                    <div className='rectangle text'> { data.description }</div>                   
+                                </div>
+                                
+                            </div>
+                        ) : (          
+                            <div>
+                                <div className='basico'>
+                                    {/* SOBRE LA PERSONA A CUIDAR */} 
+                                    <div className='rectangle blue tag'> {t('publicacionCreada.persona_cuidar')}</div>
+                                </div>
+
+                                <div className='basico'>
+                                    {/* Cantidad de personas */} 
+                                    <div className='basico info'>
+                                        <div className='rectangle yellow tag'>{t('publicacionCreada.cant_persona_cuidar')}</div>
+                                        <div className='data'>  {data.number_tco} </div>                                
+                                    </div>
+                                </div>
+
+                                <div className='basico'>
+                                    {/* Edad(es) */} 
+                                    <div className='basico info'>
+                                        <div className='rectangle yellow tag'>{t('publicacionCreada.edad_cuidar')} </div>
+                                        <div className='data'>  {data.age_tco} </div>                                
+                                    </div>
+                                </div>
+
+                                <div className='basico'>
+                                    {/* Sexo(s) */} 
+                                    <div className='basico info'>
+                                        <div className='rectangle yellow tag'>{t('publicacionCreada.sexo_cuidar')} </div>
+                                        <div className='data'> {data.gender_tco}</div>                                
+                                    </div>
+                                </div>
+
+                                <div className='basico'>
+                                    {/* ¿Posee(n) alguna discapacidad o enfermedad? */} 
+                                    <div className='basico info larger'>
+                                        <div className='rectangle yellow tag'> {t('publicacionCreada.tiene_dispacacidad_cuidar')}</div>
+                                        { data.disabilities_tco ? (
+                                            <div className='data'> {t('publicacionCreada.si')}</div>   
+                                        ) : (
+                                            <div className='data'> {t('publicacionCreada.no')} </div> 
+                                        )}
+                                                                    
+                                    </div>
+                                </div>
+
+                                { /* Discapacidad */ }
+                                { data.disabilities_tco &&  (
+                                    <div>
+                                        <div className='basico'>                        
+                                            <div className='rectangle yellow tag larger'> {t('publicacionCreada.indique_capacidad')}</div>                                
+                                        </div>          
+                                        <div className='basico'>
+                                            <div className='rectangle text right'> {data.disabilities_tco_decrip}</div>                   
+                                        </div>
+                                        
+                                    </div>                            
                                 )}
-                                                             
-                            </div>
-                        </div>
 
-                        { /* Discapacidad */ }
-                        { data.disabilities_tco &&  (
-                            <div>
-                                <div className='basico'>                        
-                                    <div className='rectangle yellow tag larger'> {t('publicacionCreada.indique_capacidad')}</div>                                
-                                </div>          
-                                <div className='basico'>
-                                    <div className='rectangle text right'> {data.disabilities_tco_decrip}</div>                   
-                                </div>
-                                
-                            </div>                            
-                        )}
+                                {  /* Enfermedad */ }
+                                { data.disabilities_tco &&  (
+                                    <div>
+                                        <div className='basico'>                        
+                                            <div className='rectangle yellow tag larger'> {t('publicacionCreada.enfermedad_cuidar')}</div>                                
+                                        </div>          
+                                        <div className='basico'>
+                                            <div className='rectangle text right'> {data.diseases_tco_descrip}</div>                   
+                                        </div>
+                                        
+                                    </div>                            
+                                )}
+                            </div>       
+                            
+                        )
+                    }
+                    </>
+                }
 
-                        {  /* Enfermedad */ }
-                        { data.disabilities_tco &&  (
-                            <div>
-                                <div className='basico'>                        
-                                    <div className='rectangle yellow tag larger'> {t('publicacionCreada.enfermedad_cuidar')}</div>                                
-                                </div>          
-                                <div className='basico'>
-                                    <div className='rectangle text right'> {data.diseases_tco_descrip}</div>                   
-                                </div>
-                                
-                            </div>                            
-                        )}
-                    </div>       
-                    
-                )}              
             
 
                 {/* FUNCIONES QUE HE DESEMPEÑADO */ }
@@ -382,9 +426,21 @@ export const VisualizarPublicacionCreada = () => {
                 </div>
                 <br></br>
 
-                <div className='basico'>
-                    <div className='rectangle text'> {data.activities}</div>                   
-                </div>
+                {
+                    (loadingData || loadingUser)?
+                    <>
+                        <div className="parent-loading-screen">
+                            <div className='loading-screen'></div>
+                        </div>
+                    </>
+                    :
+                    <>
+                        <div className='basico'>
+                            <div className='rectangle text'> {data.activities}</div>                   
+                        </div>
+                    </>
+                }
+
 
                 { /* DISPONIBILIDAD PARA VIAJAR */ }
                 <div className='basico'>
@@ -392,14 +448,26 @@ export const VisualizarPublicacionCreada = () => {
                 </div>
                 <br></br>
 
-                <div className='basico'>
-                    {data.travel == true && <div className='rectangle text'>{t('publicacionCreada.si')} </div>}            
-                    {data.travel == false && <div className='rectangle text'>{t('publicacionCreada.no')}  </div>}         
-                </div>
+                {
+                    (loadingData)?
+                    <>
+                        <div className="parent-loading-screen">
+                            <div className='loading-screen'></div>
+                        </div>
+                    </>
+                    :
+                    <>
+                        <div className='basico'>
+                            {data.travel == true && <div className='rectangle text'>{t('publicacionCreada.si')} </div>}            
+                            {data.travel == false && <div className='rectangle text'>{t('publicacionCreada.no')}  </div>}         
+                        </div>
 
-                <div className='basico'>
-                    {data.travel && <div className='rectangle text'>{data.travel_decription}</div>}                 
-                </div>
+                        <div className='basico'>
+                            {data.travel && <div className='rectangle text'>{data.travel_decription}</div>}                 
+                        </div>
+                    </>
+                }
+
                
                 { /* CONDICIONES DE TRABAJO */ }
                 <div className='basico'>
@@ -407,57 +475,68 @@ export const VisualizarPublicacionCreada = () => {
                 </div>
                 <br></br>
 
-                { /* Salidas que prefiero  */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='rectangle yellow tag'>{t('publicacionCreada.salida_cuidador')}</div>
-                        { data.workday == 'OTRO' ? (
-                            <div className='data'> { data.workday_other} </div>
-                        ): (
-                            <div className='data'>  {t(`publicaciones_vista_lista.${data.workday}`)} </div>
-                        )}                    
-                       
-                    </div>
-                </div>
-
-                { /* Horario  */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='rectangle yellow tag'>{t('publicacionCreada.horario_trabajo')}</div>
-
-                        { data.schedule == 'OTRO' ? (
-                            <div className='data'>  { data.schedule_other} </div>
-                        ) : (
-                            <div className='data'>
-                            {data?.schedule.map(
-                            (scheduleItem, index) => 
-                                <div key={index}>
-                                    {t(`publicaciones_vista_lista.${scheduleItem}`)}
-                                </div>
-                            )}
+                {loadingData?
+                    <>
+                        <div className="parent-loading-screen">
+                            <div className='loading-screen'></div>
+                        </div>
+                    </>
+                    :
+                    <>
+                        { /* Salidas que prefiero  */ }
+                        <div className='basico'>
+                            <div className='basico info'>
+                                <div className='rectangle yellow tag'>{t('publicacionCreada.salida_cuidador')}</div>
+                                { data.workday == 'OTRO' ? (
+                                    <div className='data'> { data.workday_other} </div>
+                                ): (
+                                    <div className='data'>  {t(`publicaciones_vista_lista.${data.workday}`)} </div>
+                                )}                    
+                            
                             </div>
-                        )}
-                        
-                    </div>
-                </div>
+                        </div>
 
-                { /* Salario deseado  */ }
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='rectangle yellow tag'>{t('publicacionCreada.salario_ofrecido')} </div>
+                        { /* Horario  */ }
+                        <div className='basico'>
+                            <div className='basico info'>
+                                <div className='rectangle yellow tag'>{t('publicacionCreada.horario_trabajo')}</div>
 
-                        { data.currency === 'OTRA' ? (
-                            <div className='data'>
-                                {data?.payment === 'MONTO' ? (data?.payment_amount + " " + data?.currency_other) : data?.payment}
-                            </div> 
-                        ) : (
-                            <div className='data'>
-                                {data?.payment === 'MONTO' ? (data?.payment_amount + " " + data?.currency) : data?.payment}
-                            </div> 
-                        ) }
-                        
-                    </div>
-                </div>
+                                { data.schedule == 'OTRO' ? (
+                                    <div className='data'>  { data.schedule_other} </div>
+                                ) : (
+                                    <div className='data'>
+                                    {data?.schedule.map(
+                                    (scheduleItem, index) => 
+                                        <div key={index}>
+                                            {t(`publicaciones_vista_lista.${scheduleItem}`)}
+                                        </div>
+                                    )}
+                                    </div>
+                                )}
+                                
+                            </div>
+                        </div>
+
+                        { /* Salario deseado  */ }
+                        <div className='basico'>
+                            <div className='basico info'>
+                                <div className='rectangle yellow tag'>{t('publicacionCreada.salario_ofrecido')} </div>
+
+                                { data.currency === 'OTRA' ? (
+                                    <div className='data'>
+                                        {data?.payment === 'MONTO' ? (data?.payment_amount + " " + data?.currency_other) : data?.payment}
+                                    </div> 
+                                ) : (
+                                    <div className='data'>
+                                        {data?.payment === 'MONTO' ? (data?.payment_amount + " " + data?.currency) : data?.payment}
+                                    </div> 
+                                ) }
+                                
+                            </div>
+                        </div>
+                    </>
+                }
+
 
                 { /* SOLICITO OTRO BENEFICIO  */ }
                 <div className='basico'>
@@ -465,18 +544,29 @@ export const VisualizarPublicacionCreada = () => {
                 </div>
                
 
-                { /* Solicito otros beneficios  */ }
-                <div className='basico'>
-                    {data.benefits === 1 ? (
-                    <div className='rectangle text'>{t('publicacionCreada.si')}</div>
-                    ) : (
-                    <div className='rectangle text'>{t('publicacionCreada.no')}o</div>
-                    )}
-                </div>
+                {
+                    loadingData?
+                    <>
+                        <div className="parent-loading-screen">
+                            <div className='loading-screen'></div>
+                        </div>
+                    </>
+                    :
+                    <>
+                        { /* Solicito otros beneficios  */ }
+                        <div className='basico'>
+                            {data.benefits === 1 ? (
+                            <div className='rectangle text'>{t('publicacionCreada.si')}</div>
+                            ) : (
+                            <div className='rectangle text'>{t('publicacionCreada.no')}o</div>
+                            )}
+                        </div>
 
-                <div className='basico'>
-                    {data.benefits === 1 && <div className='rectangle text'> {data.benefits_description} </div>}                  
-                </div>
+                        <div className='basico'>
+                            {data.benefits === 1 && <div className='rectangle text'> {data.benefits_description} </div>}                  
+                        </div>
+                    </>
+                }
                 
                 
                 { /* DISPONIBILIDAD PARA COMENZAR A TRABAJAR  */ }
@@ -484,83 +574,95 @@ export const VisualizarPublicacionCreada = () => {
                     <div className='rectangle blue tag'>{t('publicacionCreada.disponibilidad_trabajar')} </div>                    
                 </div>
 
-                <div className='basico'>
-                    <div className='basico info'>
-                        <div className='rectangle yellow tag'>{t('publicacionCreada.fecha_inicio')} </div>
-                        <div className='data'>
-                            {data?.availability === 'FECHA' ? (data.availability_date) : data.availability}
+                {
+                    loadingData?
+                    <>
+                        <div className="parent-loading-screen">
+                            <div className='loading-screen'></div>
                         </div>
-                    </div>
-                </div>
-                
-                {postType === 'provide' && (
-                    <div>
-                        {/* CLIENTES CON LOS QUE QUIERO TRABAJAR */}
-                        <div className='basico'>
-                        <div className='rectangle blue tag'>{t('publicacionCreada.clientes')}</div>
-                        </div>
-
-                        {/* Lugar de Procedencia */}
-                        <div className='basico'>
-                        <div className='basico info'>
-                            <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_procedencia')}</div>
-                            <div className='data'>{data.origin}</div>
-                        </div>
-                        </div>
-
-                        {/* Pais de Procedencia */}
-                        {data.origin === "SI" && (
+                    </>
+                    :
+                    <>
                         <div className='basico'>
                             <div className='basico info'>
-                            <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_pais')}</div>
-                            <div className='data'>{data.origin_country}</div>
+                                <div className='rectangle yellow tag'>{t('publicacionCreada.fecha_inicio')} </div>
+                                <div className='data'>
+                                    {data?.availability === 'FECHA' ? (data.availability_date) : data.availability}
+                                </div>
                             </div>
                         </div>
-                        )}
+                        
+                        {postType === 'provide' && (
+                            <div>
+                                {/* CLIENTES CON LOS QUE QUIERO TRABAJAR */}
+                                <div className='basico'>
+                                <div className='rectangle blue tag'>{t('publicacionCreada.clientes')}</div>
+                                </div>
 
-                        {/* Estado / Provincia */}
-                        {data.origin === "SI" && (
+                                {/* Lugar de Procedencia */}
+                                <div className='basico'>
+                                <div className='basico info'>
+                                    <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_procedencia')}</div>
+                                    <div className='data'>{data.origin}</div>
+                                </div>
+                                </div>
+
+                                {/* Pais de Procedencia */}
+                                {data.origin === "SI" && (
+                                <div className='basico'>
+                                    <div className='basico info'>
+                                    <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_pais')}</div>
+                                    <div className='data'>{data.origin_country}</div>
+                                    </div>
+                                </div>
+                                )}
+
+                                {/* Estado / Provincia */}
+                                {data.origin === "SI" && (
+                                <div className='basico'>
+                                    <div className='basico info'>
+                                    <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_estado')}</div>
+                                    <div className='data'>{data.origin_state}</div>
+                                    </div>
+                                </div>
+                                )}
+
+                                {/* Ciudad */}
+                                {data.origin === "SI" && (
+                                <div className='basico'>
+                                    <div className='basico info'>
+                                    <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_ciudad')}</div>
+                                    <div className='data'>{data.origin_city}</div>
+                                    </div>
+                                </div>
+                                )}
+                            </div>
+                        )}
+                        
+                        { /* DOCUMENTOS QUE PUEDO PRESENTAR A LOS CLIENTES  */ }
                         <div className='basico'>
-                            <div className='basico info'>
-                            <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_estado')}</div>
-                            <div className='data'>{data.origin_state}</div>
-                            </div>
+                            <div className='rectangle blue tag'>{t('publicacionCreada.documentos_solicitar')}</div>                    
                         </div>
-                        )}
 
-                        {/* Ciudad */}
-                        {data.origin === "SI" && (
                         <div className='basico'>
-                            <div className='basico info'>
-                            <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_ciudad')}</div>
-                            <div className='data'>{data.origin_city}</div>
+                            <div className='rectangle text'>
+                                {data.have_documentation ? t('publicacionCreada.si') : t('publicacionCreada.no')}
                             </div>
                         </div>
-                        )}
-                    </div>
-                )}
-                
-                { /* DOCUMENTOS QUE PUEDO PRESENTAR A LOS CLIENTES  */ }
-                <div className='basico'>
-                    <div className='rectangle blue tag'>{t('publicacionCreada.documentos_solicitar')}</div>                    
-                </div>
+                        <div className='basico'>
+                            {data.have_documentation && (
+                                <div>
+                                {data.documents.map((document, index) => (
+                                    <div key={index} className='rectangle text'>
+                                    {t(`publicaciones_vista_lista.${document}`)}
+                                    </div>
+                                ))}
+                                </div>
+                            )}
+                        </div>
+                    </>
+                }
 
-                <div className='basico'>
-                    <div className='rectangle text'>
-                        {data.have_documentation ? t('publicacionCreada.si') : t('publicacionCreada.no')}
-                    </div>
-                </div>
-                <div className='basico'>
-                    {data.have_documentation && (
-                        <div>
-                        {data.documents.map((document, index) => (
-                            <div key={index} className='rectangle text'>
-                            {t(`publicaciones_vista_lista.${document}`)}
-                            </div>
-                        ))}
-                        </div>
-                    )}
-                </div>
                 
                 
                 {/* SUGERENCIAS ANTES DE REALIZAR UNA ENTREVISTA DE TRABAJO */ }
