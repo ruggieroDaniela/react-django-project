@@ -319,10 +319,10 @@ const Fase1 = () => {
             const fetchCountryDetails = async () => {
                 if(countryCode){
                     let resp = {};
-                    [resp.phonecode, resp.flag] = await getCountryDetails(countryCode);
+                    [resp.phonecode, resp.flag] = getCountryDetails(countryCode);
                     setCountryDetails(() => resp);
                     
-                    let [names, values] = await getCitiesInCountry(countryCode);
+                    let [names, values] = getCitiesInCountry(countryCode);
                     names  = [...new Set(names)];
                     setCities(names);
 
@@ -493,10 +493,10 @@ const Fase1 = () => {
                                         return newState;
                                     } )
                                 }}>
-
-                                {countries?.map( country => {
-                                      return (<option key={country.code} value={country.name} data-country={JSON.stringify(country)}> {country.name}</option>);
-                                })}
+                                    <option disabled selected value="">{t('search.selecciona_pais')}</option>
+                                    {countries?.map( country => {
+                                        return (<option key={country.code} value={country.name} data-country={JSON.stringify(country)}> {country.name}</option>);
+                                    })}
 
                             </select>
                             
@@ -699,7 +699,7 @@ const Fase1 = () => {
                                             return newState;
                                         } )
                                     }}>
-
+                                        <option disabled selected value="">{t('search.selecciona_pais')}</option>
                                     {countries?.map( country => {
                                         return (<option key={country.code} value={country.name} data-country={JSON.stringify(country)}> {country.name}</option>);
                                     })}
@@ -723,7 +723,7 @@ const Fase1 = () => {
                                             return newState;
                                         } );
                                     }}>
-
+                                        <option disabled selected value="">{t('search.selecciona_ciudad')}</option>
                                     {cities?.map( city => {
                                         return (<option key={city} value={city}>{city}</option>);
                                     })}
@@ -1486,7 +1486,7 @@ const Fase5 = () => {
                                             return newState;
                                         } )
                                     }}>
-
+                                        <option disabled selected value="">{t('search.selecciona_pais')}</option>
                                     {countries?.map( country => {
                                         return (<option key={country.code} value={country.name} data-country={JSON.stringify(country)}> {country.name}</option>);
                                     })}
@@ -1511,8 +1511,7 @@ const Fase5 = () => {
                                         return newState;
                                     } );   
                                 }}>
-                                
-                                <option value="" disabled> {t('registrar.fases.5.seleccionar_destino')} </option>
+                                <option value="" selected disabled> {t('registrar.fases.5.seleccionar_destino')} </option>
 
                                 {banks.map( bank => { 
                                     const value = bank.name + " - " + "Cuenta nro: " + bank.account + " - " + "Código SWIFT: " + bank.swift_code
@@ -1875,7 +1874,7 @@ const botonRegistrar = () => {
                         console.log(error);
                     }
                 }
-            }
+            }getAllCountries
             >
                 <span className={ loading?"loading-button":"" }>
                     {loading?"...":t('multiform.registrar')}

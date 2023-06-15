@@ -362,6 +362,7 @@ const Fase1 = () => {
                                 }
                             }
                     >
+                    <option disabled selected value="">{t('search.selecciona_pais')}</option>
                     {console.log(offerDomesticFormState.country)}
                     {readyCountries && renderOptions(countries,"countries",offerDomesticFormState.country)}
                     {!readyCountries && (
@@ -390,6 +391,7 @@ const Fase1 = () => {
                                     });
                                 }
                             }> 
+                            <option disabled selected value="">{t('search.selecciona_estado')}</option>
                         {readyStates && renderOptions(states,"states")}
                         {!readyStates && (
                         <option>{t('OfrecermeCuidador.fases.1.select-country')}</option>
@@ -417,6 +419,7 @@ const Fase1 = () => {
                                 }
                             }
                             > 
+                            <option disabled selected value="">{t('search.selecciona_ciudad')}</option>
                         {readyCities && renderOptions(cities,"cities")}
                         {!readyCities && (
                         <option>{t('OfrecermeCuidador.fases.1.select-state')}</option>
