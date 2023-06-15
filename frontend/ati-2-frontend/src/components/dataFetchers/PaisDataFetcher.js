@@ -21,6 +21,25 @@ export const getCountryName = (countryCode, lang = "en") => {
     return null;
 }
 
+const namesSort = (names, values) => {
+
+    if (names.length !== values.length)
+        console.log("length diff");
+
+    // Create an array of objects with name-value pairs
+    var pairs = names.map((name, index) => ({ name: name, value: values[index] }));
+
+    // Sort the array based on names
+    pairs.sort((a, b) => a.name.localeCompare(b.name));
+
+    // Separate the sorted names and values into separate arrays
+    names = pairs.map(pair => pair.name);
+    values = pairs.map(pair => pair.value);
+
+    return [names, values];
+
+}
+
 export const getAllCountries = (lang = "en") => {
     
     const names = []
@@ -36,7 +55,7 @@ export const getAllCountries = (lang = "en") => {
         
     }
 
-    return [names, values]
+    return namesSort(names, values);
 
 };
 
@@ -54,8 +73,7 @@ export const getCountriesInRegion = (reg, lang="en") => {
             values.push(code);
         });
 
-    return [names, values]
-
+    return namesSort(names, values);
 };
 
 export const getStatesInCountry = (countries, lang="en") => {
@@ -79,7 +97,7 @@ export const getStatesInCountry = (countries, lang="en") => {
         }
     }
 
-    return [names, values];
+    return namesSort(names, values);
 
 };
 
@@ -107,7 +125,7 @@ export const getCitiesInStates = (stateCodes) => {
         }
     }
 
-    return [names, values];
+    return namesSort(names, values);
 };
 
 
@@ -131,7 +149,7 @@ export const getCitiesInCountry = (countryCode) => {
         }
     }
 
-    return [names, values];
+    return namesSort(names, values);
 };
 
 export const getCountryDetails = countryCode => {
