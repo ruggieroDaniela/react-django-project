@@ -1,15 +1,15 @@
-import React, { useState, useContext, useEffect } from 'react'
-
+import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+
 import { Multiform } from "../components/Multiform";
-import { RequestDomesticFormContext } from "../context/RequestDomesticFormContext";
-import { FasesSolicitarNiñera, botonEnviar, useValidar } from "../components/FasesSolicitarNiñera";
+import { FasesSolicitarCuidador, botonEnviar, useValidar } from "../components/FasesSolicitarCuidador";
 import { getCountryName } from "../components/dataFetchers/PaisDataFetcher";
 import "../styles/SolicitarNiñera.scss"
 import AuthContext from '../context/AuthContext';
 
-export const SolicitarÑiñera = () => {
+export const SolicitarCuidador = () => {
+
     const {authState, setAuthState} = useContext(AuthContext);
     const [userData, setUserData] = useState("");
 
@@ -48,31 +48,32 @@ export const SolicitarÑiñera = () => {
         }
         handleSubmit();
     },[authState])
+
     const { t } = useTranslation();
 
     let navigate = useNavigate(); 
-   
+
     const goHome = () => {
         navigate(`/`);
     };
 
     //let stagesNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
     let stagesNames = [];
-    for (let i = 0; i < FasesSolicitarNiñera.length; i++) {
-        stagesNames.push(t('SolicitarNiñera.fases.'+i+'.nombre'));
+    for (let i = 0; i < FasesSolicitarCuidador.length; i++) {
+        stagesNames.push(t('SolicitarCuidador.fases.'+i+'.nombre'));
     }
 
     return (
         <div id="SolicitarNiñera">
             
             <div id="titulo">
-                <h4>{t('SolicitarNiñera.titulo')}</h4>
+                <h4>{t('SolicitarCuidador.titulo')}</h4>
             </div>
 
             <div  id="info-niñera">
 
                 <div className="row">
-                    <div className="first-row blue first-column" id="niñera"><h2>{t('SolicitarNiñera.cliente')}</h2></div>
+                    <div className="first-row blue first-column" id="niñera"><h2>{t('SolicitarCuidador.cliente')}</h2></div>
                     <div className="first-row" id="n-niñera" >
                         <h1>{authState.name}</h1>
                     </div>
@@ -128,7 +129,7 @@ export const SolicitarÑiñera = () => {
             </div>
    
             <Multiform
-                stages={FasesSolicitarNiñera}         // array de componentes que serán usados como stages
+                stages={FasesSolicitarCuidador}         // array de componentes que serán usados como stages
                 stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
                 cancelEvent={goHome}            // onClick event del botón de cancelar
                 SubmitButton={botonEnviar}   // componente con el botón de submit

@@ -4,15 +4,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
 import { Multiform } from "../components/Multiform";
-import { FasesOfrecermeCuidador, 
-         botonEnviar as botonEnviarCuidador,
-         useValidar as useValidarCuidador } from "../components/FasesOfrecermeCuidador";
 
-import { FasesOfrecermeNiñera,
-         botonEnviar as botonEnviarNiñera,
-         useValidar as useValidarNiñera } from "../components/FasesOfrecermeNiñera";
+import { FasesSolicitarCuidador, useValidar as useValidarSolicitarCuidador } from "../components/FasesSolicitarCuidador";
+import { FasesSolicitarNiñera, useValidar as useValidarSolicitarNiñera } from "../components/FasesSolicitarNiñera";
+
+import { FasesOfrecermeCuidador, useValidar as useValidarOfrecerCuidador } from "../components/FasesOfrecermeCuidador";
+import { FasesOfrecermeNiñera, useValidar as useValidarOfrecerNiñera} from "../components/FasesOfrecermeNiñera";
 
 import { OfferDomesticFormContext } from "../context/OfferDomesticFormContext";
+import { RequestDomesticFormContext } from "../context/RequestDomesticFormContext";
+
 import AuthContext from '../context/AuthContext';
 
 import "../styles/OfrecermeCuidador.scss"
@@ -20,9 +21,10 @@ import "../styles/OfrecermeCuidador.scss"
 export const ModificarPost = () => {
     
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
+    const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
     const {authState, setAuthState} = useContext(AuthContext);
     const [userData, setUserData] = useState("");
-    const { id } = useParams();
+    const { id , postType } = useParams();
     const [ready, setReady] = useState(false);
 
     //fetching the post
@@ -39,6 +41,8 @@ export const ModificarPost = () => {
 
         if (response.ok) {
             const post = await response.json();
+            
+            if ( postType == "provide")
             setOfferDomesticFormState({
                 user: post.user,
                 service: post.service,
@@ -52,7 +56,7 @@ export const ModificarPost = () => {
                 zone: post.zone,
                 description: post.description,
                 travel: post.travel,
-                travel_description: post.travel_description,
+                travel_decription: post.travel_decription,
                 activities: post.activities,
                 workday: post.workday,
                 workday_other: post.workday_other,
@@ -103,8 +107,88 @@ export const ModificarPost = () => {
                     origin_required: false
                 }   
             });
+
+            if ( postType == "request"){
+            setRequestDomesticFormState(
+                {
+                    user: post.user, 
+                    service: post.service,
+                    gender: post.gender,
+                    age_requirement: post.age_requirement,
+                    age_required_from: post.age_required_from,
+                    age_required_to: post.age_required_to,
+                    children: post.children,
+                    education_level: post.education_level,
+                    continent: post.continent,
+                    country: post.country,
+                    state: post.state,
+                    city: post.city,
+                    zone: post.zone,
+                    number_tco: post.number_tco,
+                    age_tco: post.age_tco,
+                    gender_tco: post.gender_tco,
+                    disabilities_tco: post.disabilities_tco,
+                    disabilities_tco_decrip: post.disabilities_tco_decrip,
+                    diseases_tco_descrip: post.diseases_tco_descrip,
+                    travel: post.travel,
+                    travel_decription: post.travel_decription,
+                    activities: post.activities,
+                    workday: post.workday,
+                    workday_other: post.workday_other,
+                    schedule: post.schedule,
+                    schedule_other: post.schedule_other,
+                    payment: post.payment,
+                    payment_amount: post.payment_amount,
+                    currency: post.currency,
+                    currency_other: post.currency_other,
+                    salary_offered: post.salary_offered,
+                    benefits: post.benefits,
+                    benefits_description: post.benefits_description,
+                    availability: post.availability,
+                    availability_date: post.availability_date,
+                    have_documentation: post.have_documentation,
+                    documents: post.documents,
+                    documents_other: post.documents_other,
+                    publication_time: post.publication_time,
+                    publication_plan: post.publication_plan,
+                    billing_country: post.billing_country,
+                    billing_bank: post.billing_bank,
+                    errors: {
+                        age_range_invalid: false,
+                        country_requered: false,
+                        state_required: false,
+                        city_required: false,
+                        number_tco_required: false,
+                        age_tco_required: false,
+                        gender_tco_required: false,
+                        diseases_required: false,
+                        travel_desc_required: false,
+                        activities_required: false,
+                        workday_required: false,
+                        workday_other_required: false,
+                        schedule_required: false,
+                        schedule_other_required: false,
+                        salary_option_required: false,
+                        salary_required: false,
+                        salary_other_required: false,
+                        benefits_required: false,
+                        date_opt_required: false,
+                        date_required: false,
+                        other_doc_required: false,
+                        billing_required: false,
+                        origin_required: false
+                    }
+                }      
+            );
+                setRequestDomesticFormState( prev =>{
+                    const newState = {...prev};
+                    newState.user = post.user
+                    return newState;
+                })
+            }
+            
             setReady(true);
-            console.log(offerDomesticFormState);
+            
             // Perform any further actions with the retrieved post data
         } else {
             console.log('Error retrieving post');
@@ -132,15 +216,11 @@ export const ModificarPost = () => {
                             }
                             // body: JSON.stringify({Authorization: responseDataAuth.token})
                         }
-                    );
-                    
+                    ); 
     
                     if(response.ok){
-                      
                         const responseDataUser = await response.json();
-
                         setUserData(responseDataUser);
-                        console.log(responseDataUser)
                     }else{
                         console.log("GET request failed: error fetching user data");
                         console.log(response);
@@ -162,8 +242,9 @@ export const ModificarPost = () => {
         const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
         const navigate = useNavigate();
      
-    
-        const postData = {...offerDomesticFormState};
+        let postData = "";
+        if (postType == 'provide') postData = {...offerDomesticFormState};
+        if (postType == 'request') postData = {...requestDomesticFormState};
         //console.log(JSON.stringify(postData));
         return(
             <button
@@ -190,7 +271,7 @@ export const ModificarPost = () => {
                                 // Request was successful
                                 console.log('POST request successful');
                                 console.log(response);
-                                navigate('/');
+                                navigate(`/visualizar-publicacion-creada?postType=${postType}&id=${id}`);
                             } else {
                                 // Request failed
                                 console.log('POST request failed');
@@ -204,7 +285,7 @@ export const ModificarPost = () => {
                     }
                 }
                 >
-                {t('multiform.registrar')}
+                {t('multiform.modificar')}
             </button>
         );
     }
@@ -292,25 +373,52 @@ export const ModificarPost = () => {
                 <span>*</span> <span className="indicacion">{t('registrar.indicaciones.1')}</span>
             </div>
 
-            {console.log( id)}
-            { ready && offerDomesticFormState.service === "NIN" &&
-                <Multiform
-                    stages={FasesOfrecermeNiñera}         // array de componentes que serán usados como stages
-                    stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
-                    cancelEvent={goHome}            // onClick event del botón de cancelar
-                    SubmitButton={botonEnviar}   // componente con el botón de submit
-                    validateStages={useValidarNiñera}
-                />
+            { postType == "provide" &&
+            <>
+                { ready && offerDomesticFormState.service === "NIN" &&
+                    <Multiform
+                        stages={FasesOfrecermeNiñera}         // array de componentes que serán usados como stages
+                        stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
+                        cancelEvent={goHome}            // onClick event del botón de cancelar
+                        SubmitButton={botonEnviar}   // componente con el botón de submit
+                        validateStages={useValidarOfrecerNiñera}
+                    />
+                }
+                { ready && offerDomesticFormState.service === "CUI" &&
+                    <Multiform
+                        stages={FasesOfrecermeCuidador}         // array de componentes que serán usados como stages
+                        stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
+                        cancelEvent={goHome}            // onClick event del botón de cancelar
+                        SubmitButton={botonEnviar}   // componente con el botón de submit
+                        validateStages={useValidarOfrecerCuidador}
+                    />
+                }
+            </>
             }
-            { ready && offerDomesticFormState === "CUI" &&
-                <Multiform
-                    stages={FasesOfrecermeCuidador}         // array de componentes que serán usados como stages
-                    stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
-                    cancelEvent={goHome}            // onClick event del botón de cancelar
-                    SubmitButton={botonEnviar}   // componente con el botón de submit
-                    validateStages={useValidarCuidador}
-                />
+
+            { postType == "request" &&
+            <>
+                { ready && offerDomesticFormState.service === "NIN" &&
+                    <Multiform
+                        stages={FasesSolicitarNiñera}         // array de componentes que serán usados como stages
+                        stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
+                        cancelEvent={goHome}            // onClick event del botón de cancelar
+                        SubmitButton={botonEnviar}   // componente con el botón de submit
+                        validateStages={useValidarSolicitarNiñera}
+                    />
+                }
+                { ready && offerDomesticFormState.service === "CUI" &&
+                    <Multiform
+                        stages={FasesSolicitarCuidador}         // array de componentes que serán usados como stages
+                        stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
+                        cancelEvent={goHome}            // onClick event del botón de cancelar
+                        SubmitButton={botonEnviar}   // componente con el botón de submit
+                        validateStages={useValidarSolicitarCuidador}
+                    />
+                }
+            </>
             }
+
         </div>
 
     )

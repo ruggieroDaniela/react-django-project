@@ -366,6 +366,7 @@ const Fase1 = () => {
                                 }
                             }
                     >
+                        <option disabled selected value="">{t('search.selecciona_pais')}</option>
                     {console.log(offerDomesticFormState.country)}
                     {readyCountries && renderOptions(countries,"countries",offerDomesticFormState.country)}
                     {!readyCountries && (
@@ -394,6 +395,7 @@ const Fase1 = () => {
                                     });
                                 }
                             }> 
+                            <option disabled selected value="">{t('search.selecciona_estado')}</option>
                         {readyStates && renderOptions(states,"states")}
                         {!readyStates && (
                         <option>{t('OfrecermeNiñera.fases.1.select-country')}</option>
@@ -421,6 +423,7 @@ const Fase1 = () => {
                                 }
                             }
                             > 
+                            <option disabled selected value="">{t('search.selecciona_ciudad')}</option>
                         {readyCities && renderOptions(cities,"cities")}
                         {!readyCities && (
                         <option>{t('OfrecermeNiñera.fases.1.select-state')}</option>
@@ -2347,6 +2350,7 @@ const useValidar = () => {
 };
 
 const botonEnviar = () => {
+    const [loading, setLoading] = useState(false);
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
     const {authState, setAuthState} = useContext(AuthContext);
@@ -2370,6 +2374,8 @@ const botonEnviar = () => {
 
             onClick={
                 async () => {
+
+                    setLoading(true);
                     
                     //Autenticar última fase
                     if(!offerDomesticFormState.billing_country || !offerDomesticFormState.billing_bank){
@@ -2402,9 +2408,9 @@ const botonEnviar = () => {
                 
                         if (response.ok) {
                             // Request was successful
+                            const data = await response.json(); 
                             console.log('POST request successful');
-                            console.log(response);
-                            navigate('/');
+                            navigate(`/visualizar-publicacion-creada?postType=provide&id=${data.post_code}`);
                         } else {
                             // Request failed
                             console.log('POST request failed');
@@ -2415,10 +2421,14 @@ const botonEnviar = () => {
                         console.log("error registrando");
                         console.log(error);
                     }
+
+                    setLoading(false);
                 }
             }
             >
-            {t('multiform.registrar')}
+            <span className={loading?"loading-button":""}>
+                {loading?"...":t('multiform.registrar')}
+            </span>
         </button>
     );
 }

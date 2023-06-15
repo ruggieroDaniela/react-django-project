@@ -362,6 +362,7 @@ const Fase1 = () => {
                                 }
                             }
                     >
+                    <option disabled selected value="">{t('search.selecciona_pais')}</option>
                     {console.log(offerDomesticFormState.country)}
                     {readyCountries && renderOptions(countries,"countries",offerDomesticFormState.country)}
                     {!readyCountries && (
@@ -390,6 +391,7 @@ const Fase1 = () => {
                                     });
                                 }
                             }> 
+                            <option disabled selected value="">{t('search.selecciona_estado')}</option>
                         {readyStates && renderOptions(states,"states")}
                         {!readyStates && (
                         <option>{t('OfrecermeCuidador.fases.1.select-country')}</option>
@@ -417,6 +419,7 @@ const Fase1 = () => {
                                 }
                             }
                             > 
+                            <option disabled selected value="">{t('search.selecciona_ciudad')}</option>
                         {readyCities && renderOptions(cities,"cities")}
                         {!readyCities && (
                         <option>{t('OfrecermeCuidador.fases.1.select-state')}</option>
@@ -2326,6 +2329,7 @@ const useValidar = () => {
 
 
 const botonEnviar = () => {
+    const [loading, setLoading] = useState(false);
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
     const {authState, setAuthState} = useContext(AuthContext);
@@ -2347,57 +2351,41 @@ const botonEnviar = () => {
             id="boton_registrar"
             
 
-            onClick={
-                async () => {
-                    
-                    //Autenticar última fase
-                    if(!offerDomesticFormState.billing_country || !offerDomesticFormState.billing_bank){
-                        setOfferDomesticFormState((prev) => {
-                            const newState = { ...prev };
-                            newState.errors.billing_required = true
-                            return newState;
-                          })
-                          return
-                    } else {
-                        setOfferDomesticFormState((prev) => {
-                            const newState = { ...prev };
-                            newState.errors.billing_required = false
-                            return newState;
-                          })
-                    }
+            onClick={ async () => {
 
-                    const url = `${import.meta.env.VITE_DJANGO_API_URL}/api-services/provideService/post_ad/`
-                    try {
-                        
-                        const response = await fetch( url,{
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify(postData),
-                                // body: JSON.stringify(postBody),
-                            }
-                        );
+                setLoading(true);
                 
-                        if (response.ok) {
-                            // Request was successful
-                            console.log('POST request successful');
-                            console.log(response);
-                            navigate('/');
-                        } else {
-                            // Request failed
-                            console.log('POST request failed');
-                            console.log(response);
-                        }
-                
-                    } catch (error) {
-                        console.log("error registrando");
-                        console.log(error);
+                const url = 'http://localhost:8000/api-services/provideService/post_ad/';
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(postData),
+                    });
+            
+                    if (response.ok) {
+                        const data = await response.json(); 
+                        console.log('POST request successful');
+                        navigate(`/visualizar-publicacion-creada?postType=provide&id=${data.post_code}`);
+                    } else {
+                        // Request failed
+                        console.log('POST request failed');
+                        console.log(response);
                     }
+                    setLoading(false);
+                } catch (error) {
+                    console.log("error registrando");
+                    console.log(error);
+                    setLoading(false);
                 }
-            }
+            }}
             >
-            {t('multiform.registrar')}
+                <span className={loading?"loading-button":""}>
+                    {loading?"...":t('multiform.registrar')}
+                </span>
+           
         </button>
     );
 }

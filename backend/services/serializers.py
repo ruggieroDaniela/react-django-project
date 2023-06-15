@@ -54,8 +54,6 @@ class ServicesSerializer(serializers.ModelSerializer):
 
  
 
-        if data['currency'] == 'OTRA' and not data.get('currency_other'):
-            raise serializers.ValidationError("Por favor, especifique otra moneda")
         
         if data['benefits'] == 1 and not data.get('benefits_description'):
             raise serializers.ValidationError("Por favor, especifique otro beneficio laboral")
@@ -92,13 +90,6 @@ class ProvideServiceSerializer(ServicesSerializer):
 class RequestServiceSerializer(ServicesSerializer):
     def validate(self, data):
         data =  super().validate(data)
-
-        if data['disabilities_tco'] == True and not data.get('disabilities_tco_decrip'):
-            raise serializers.ValidationError("Por favor, indique las discapacidades que presentan")
-        
-        if data['disabilities_tco'] == True and not data.get('diseases_tco_descrip'):
-            raise serializers.ValidationError("Por favor, indique las enfermedades que presentan")
-
         return data
     
     class Meta: 

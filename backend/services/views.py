@@ -1049,7 +1049,7 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             post = serializer.save()
             sendEmail(post)
-            return Response({'message': 'OK', 'post_code(id)': post.id})
+            return Response({'message': 'OK', 'post_code': post.id})
         else:
             return Response(serializer.errors, status=400)
         
@@ -1066,7 +1066,7 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
             queryset = self.queryset.get(id=pk)
             serializer = self.serializer_class(queryset, many=False)
             return Response(serializer.data)
-        except DatabaseError:
+        except RequestService.DoesNotExist:
             return Response({'message': 'Not found'}, status=404)
 
     # Enable post

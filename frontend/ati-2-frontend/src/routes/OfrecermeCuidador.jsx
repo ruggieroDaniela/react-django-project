@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Multiform } from "../components/Multiform";
 import { FasesOfrecermeCuidador, botonEnviar, useValidar } from "../components/FasesOfrecermeCuidador";
 import { OfferDomesticFormContext } from "../context/OfferDomesticFormContext";
+import { getCountryName } from "../components/dataFetchers/PaisDataFetcher";
 import AuthContext from '../context/AuthContext';
 
 import "../styles/OfrecermeCuidador.scss"
@@ -163,7 +164,7 @@ export const OfrecermeCuidador = () => {
                     </div>
                     <div className="first-row" id="pais">
 
-                        <h2><span className="blue">{t('OfrecermeCuidador.pais')}</span> <span className="red" >{userData.country}</span></h2>
+                        <h2><span className="blue">{t('OfrecermeCuidador.pais')}</span> <span className="red" >{getCountryName(userData.country)}</span></h2>
 
                         
                     </div>

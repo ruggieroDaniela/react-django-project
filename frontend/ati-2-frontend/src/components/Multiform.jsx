@@ -18,6 +18,8 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames, valid
     // pointer al stage que se muestra actualmente
     const RenderStage = stages[currentStage];
 
+    const [loadingNext, setLoadingNext] = useState(false);
+
     const { validate } = validateStages();
 
     return (
@@ -70,7 +72,9 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames, valid
                 <button 
                     className={`${currentStage === stages.length-1?"ghost":""}`}
                     onClick={async () => {
+                        setLoadingNext(true);
                         const valid = await validate(currentStage)
+                        setLoadingNext(false);
                         
                         if(valid){
                             if(currentStage+1 < stages.length){
@@ -81,7 +85,9 @@ export const Multiform = ({stages, SubmitButton, cancelEvent, stagesNames, valid
                         }
                     }}
                 >
-                    {t('multiform.continuar')} →
+                    <label className={loadingNext?"loading-button":""}>
+                        {loadingNext?"...":t('multiform.continuar')+" →"}
+                    </label>
                 </button>
             
             </div>

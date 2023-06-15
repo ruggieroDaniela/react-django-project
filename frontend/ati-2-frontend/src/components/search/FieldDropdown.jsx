@@ -8,6 +8,8 @@ export const FieldDropdown = ({title, placeholder, items, setSelectedState}) => 
 
     const [displayContent, setDisplayContent] = useState(false);
 
+    setSelectedState( prev => prev<0? 0:prev );
+
     return <>
         <div className="field">
             <div className="field-title">

@@ -6,7 +6,7 @@ function OfferDomesticFormContextProvider({children}){
 
     const [offerDomesticFormState, setOfferDomesticFormState] = useState(
         {
-            user: 2, 
+            user: -1, 
             service: "CUI",
             gender: "IDC",
             age_required_from: 13,

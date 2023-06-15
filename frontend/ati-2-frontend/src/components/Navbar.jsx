@@ -21,7 +21,7 @@ const Navbar = () => {
     const { t, i18n } = useTranslation();
 
     return (
-        <>  {!isAuth?
+        <span>  {!isAuth?
 
             // Login/Signup (When NOT authenticated)
             <div className="user">
@@ -54,11 +54,11 @@ const Navbar = () => {
                         <p className="arrow">▾</p>
                     </div>
                     <ul className={`list ${userDropdownVisible? "show" : ""}`}>
-                        <li className="item">
+                        {/* <li className="item">
                             <a className="link" href="#">
                                 {t("navbar.datos_usuario")}
                             </a>
-                        </li>
+                        </li> */}
                         <li 
                             className="item"
                             onClick={ () => {
@@ -96,7 +96,7 @@ const Navbar = () => {
                                     },
                                     items:[
                                         {label: t("navbar.solicitar.babysitter"), link: isAuth == true ? "/request-babysitter" : "#"},
-                                        {label: t("navbar.solicitar.cuidador"), link:"#"}
+                                        {label: t("navbar.solicitar.cuidador"), link: isAuth == true ? "/request-carer" : "#"}
                                     ]
                                 },
                                 {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=request&user=${authState.id}`},
@@ -248,7 +248,7 @@ const Navbar = () => {
                     /> 
                 </ul>
             </nav>
-        </>
+        </span>
     );
 };
 

@@ -1,6 +1,7 @@
 {
   "SolicitarNiñera": {
       "niñera": "Babysitter",
+      "cliente": "Client",
       "pais": "Country",
       "estado": "State, Province or Canton",
       "titulo": "OFFER MY SERVICES AS A BABYSITTER",
@@ -293,7 +294,7 @@
       "continuar": "Continue",
       "atras": "Back",
       "errores": {
-        "rango_edad": "Invalid age range. It must be between 0 and 12",
+        "rango_edad": "Invalid age range",
         "pais": "Must select a country",
         "estado": "Must select an state/province",
         "ciudad": "Must select a city",
