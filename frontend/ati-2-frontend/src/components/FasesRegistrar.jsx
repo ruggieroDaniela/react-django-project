@@ -956,6 +956,7 @@ const Fase2 = () => {
                                         newState.phase[2].idioma = 'english';
                                         return newState;
                                     } );
+                                i18n.changeLanguage("en");
                             }}
                         />
                         <div>
@@ -973,6 +974,7 @@ const Fase2 = () => {
                                         newState.phase[2].idioma = 'español';
                                         return newState;
                                     } );
+                                i18n.changeLanguage("es");
                             }}
                         />
                         <div>
