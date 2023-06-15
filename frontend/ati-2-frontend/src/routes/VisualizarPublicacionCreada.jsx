@@ -411,7 +411,11 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.salida_cuidador')}</div>
-                        <div className='data'>  {t(`publicaciones_vista_lista.${data.workday}`)} </div>
+                        { data.workday == 'OTRO' ? (
+                            <div className='data'> { data.workday_other} </div>
+                        ): (
+                            <div className='data'>  {t(`publicaciones_vista_lista.${data.workday}`)} </div>
+                        )}                    
                        
                     </div>
                 </div>
@@ -420,14 +424,20 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.horario_trabajo')}</div>
-                        <div className='data'>
-                        {data?.schedule.map(
+
+                        { data.schedule == 'OTRO' ? (
+                            <div className='data'>  { data.schedule_other} </div>
+                        ) : (
+                            <div className='data'>
+                            {data?.schedule.map(
                             (scheduleItem, index) => 
                                 <div key={index}>
                                     {t(`publicaciones_vista_lista.${scheduleItem}`)}
                                 </div>
+                            )}
+                            </div>
                         )}
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -435,9 +445,17 @@ export const VisualizarPublicacionCreada = () => {
                 <div className='basico'>
                     <div className='basico info'>
                         <div className='rectangle yellow tag'>{t('publicacionCreada.salario_ofrecido')} </div>
-                        <div className='data'>
-                            {data?.payment === 'MONTO' ? (data?.payment_amount + " " + data?.currency) : data?.payment}
-                        </div>
+
+                        { data.currency === 'OTRA' ? (
+                            <div className='data'>
+                                {data?.payment === 'MONTO' ? (data?.payment_amount + " " + data?.currency_other) : data?.payment}
+                            </div> 
+                        ) : (
+                            <div className='data'>
+                                {data?.payment === 'MONTO' ? (data?.payment_amount + " " + data?.currency) : data?.payment}
+                            </div> 
+                        ) }
+                        
                     </div>
                 </div>
 
