@@ -2089,7 +2089,7 @@ const useValidar = () => {
     }
 
     const ageRange = (min, max) => {
-        return min >= 0 && max <= 12
+        return max >= min
     }
 
     const validate = (currentStage) => {

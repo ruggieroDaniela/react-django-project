@@ -720,11 +720,11 @@ const Fase3 = () => {
     <div id="fase3">
   
         <div id="small">
-            <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.3.mensaje')}</span><br />
+            <span className="red">*  </span><span className="blue">{t('SolicitarCuidador.fases.3.mensaje')}</span><br />
         </div>
         <div id="titulos">
             <span className="red">* </span>
-            <h4 style={{display: "inline"}} >{t('SolicitarNiñera.fases.3.pregunta')}</h4>
+            <h4 style={{display: "inline"}} >{t('SolicitarCuidador.fases.3.pregunta')}</h4>
             <div id="form">
                     <div>
                           <input  type="radio"
@@ -741,7 +741,7 @@ const Fase3 = () => {
                                   }
                                   checked={!requestDomesticFormState.travel}
                           />
-                        <label for="c1">{t('SolicitarNiñera.fases.3.no')}</label>
+                        <label for="c1">{t('SolicitarCuidador.fases.3.no')}</label>
                     </div>
   
                     <div>
@@ -760,7 +760,7 @@ const Fase3 = () => {
                                   }
                                   checked={requestDomesticFormState.travel}        
                           />
-                        <label for="c2">{t('SolicitarNiñera.fases.3.si')}</label>
+                        <label for="c2">{t('SolicitarCuidador.fases.3.si')}</label>
                     </div>
             </div>
         </div>
@@ -2284,7 +2284,7 @@ const useValidar = () => {
     }
 
     const ageRange = (min, max) => {
-        return min >= 0 && max <= 12
+        return max >= min
     }
 
     const validate = (currentStage) => {

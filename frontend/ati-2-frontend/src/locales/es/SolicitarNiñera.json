@@ -78,8 +78,8 @@
               "nombre":"Disponibilidad para viajar de la niñera(o)",
               "mensaje":"Por favor, indique la disponibilidad para viajar de la niñera(o)",
               "pregunta":"¿La niñera o niñero debe estar dispuesta a viajar, para acompañar a la persona a cuidar?",
-              "si":"si",
-              "no":"no",
+              "si":"Si",
+              "no":"No",
               "especifique":"Especifique"
             },
             {
@@ -294,7 +294,7 @@
         "continuar": "Continuar",
         "atras": "Atrás",
         "errores": {
-          "rango_edad": "Rango de edad inválido. Debe estar entre 0 y 12",
+          "rango_edad": "Rango de edad inválido",
           "pais": "Debe seleccionar un país",
           "estado": "Debe seleccionar un estado/provincia",
           "ciudad": "Debe seleccionar una ciudad",

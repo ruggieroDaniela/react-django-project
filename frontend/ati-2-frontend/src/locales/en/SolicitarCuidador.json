@@ -1,6 +1,7 @@
 {
     "SolicitarCuidador": {
         "niñera": "Caretaker",
+        "cliente": "Client",
         "pais": "Country",
         "estado": "State, Province or Canton",
         "titulo": "OFFER MY SERVICES AS A CARETAKER",
@@ -81,9 +82,9 @@
                 "especifique": "Specify"
             },
             {
-                "nombre": "Functions Performed as a caretaker",
-                "mensaje": "Please indicate the activities you have performed as a caretaker",
-                "titulo": "Functions you have performed as a caretaker",
+                "nombre": "Functions Performed as a Caretaker",
+                "mensaje": "Please indicate the activities you have performed as a Caretaker",
+                "titulo": "Functions you have performed as a Caretaker",
                 "indique": "Indicate the activities you have performed in this vacancy",
                 "ejemplos": [
                     "Preparation of meals",
