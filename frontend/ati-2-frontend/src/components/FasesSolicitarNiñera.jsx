@@ -1965,6 +1965,7 @@ const Fase11 = () => {
 }
 
 const botonEnviar = () => {
+    const [loading, setLoading] = useState(false);
     const { t, i18n } = useTranslation();
     const {requestDomesticFormState, setRequestDomesticFormState} = useContext(RequestDomesticFormContext);
     const {authState, setAuthState} = useContext(AuthContext);
@@ -1997,7 +1998,7 @@ const botonEnviar = () => {
             
             onClick={
                 async () => {
-
+                    setLoading(true);
                     //Autenticar última fase
                     if(!requestDomesticFormState.billing_country || !requestDomesticFormState.billing_bank){
                         setRequestDomesticFormState((prev) => {
@@ -2041,10 +2042,13 @@ const botonEnviar = () => {
                         console.log("error registrando");
                         console.log(error);
                     }
+                    setLoading(false);
                 }
             }
             >
-            {t('multiform.registrar')}
+            <span className={loading?"loading-button":""}>
+                {loading?"...":t('multiform.registrar')}
+            </span>
         </button>
     );
 }
