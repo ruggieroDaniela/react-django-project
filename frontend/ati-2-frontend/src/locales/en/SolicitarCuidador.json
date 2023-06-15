@@ -1,6 +1,7 @@
 {
     "SolicitarCuidador": {
         "niñera": "Babysitter",
+        "cliente": "Client",
         "pais": "Country",
         "estado": "State, Province or Canton",
         "titulo": "OFFER MY SERVICES AS A BABYSITTER",
