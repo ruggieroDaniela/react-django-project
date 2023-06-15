@@ -2347,6 +2347,7 @@ const useValidar = () => {
 };
 
 const botonEnviar = () => {
+    const [loading, setLoading] = useState(false);
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
     const {authState, setAuthState} = useContext(AuthContext);
@@ -2370,6 +2371,8 @@ const botonEnviar = () => {
 
             onClick={
                 async () => {
+
+                    setLoading(true);
                     
                     //Autenticar última fase
                     if(!offerDomesticFormState.billing_country || !offerDomesticFormState.billing_bank){
@@ -2415,10 +2418,14 @@ const botonEnviar = () => {
                         console.log("error registrando");
                         console.log(error);
                     }
+
+                    setLoading(false);
                 }
             }
             >
-            {t('multiform.registrar')}
+            <span className={loading?"loading-button":""}>
+                {loading?"...":t('multiform.registrar')}
+            </span>
         </button>
     );
 }
