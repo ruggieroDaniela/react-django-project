@@ -150,7 +150,7 @@ export const PublicacionFoto = ({post, postType}) => {
                         }
                         
                         { /* Ciudad  */ }  
-                        <div className="bold-state" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
+                        <div className="bold-state" key={`post ${post.id} ${"self.crypto.randomUUID()"}`}>
                             {t(`publicaciones_vista_lista.ciudad`)}: <span className="blue-body">{post.city.substring(post.city.indexOf("-")+1)}</span>
                         </div>
                     </div>
@@ -197,8 +197,8 @@ export const PublicacionFoto = ({post, postType}) => {
                         </ul>
                         <button key={`post ${post.id} ${"self.crypto.randomUUID()"}`}>{t(`publicaciones_vista_lista.contactar`)}</button>
                     </div>
-                    <div className="more-info" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                        <a href={`/visualizar-publicacion-creada?id=${post.id}&postType=${postType}`} className="title link" key={`post ${post.id} ${self.crypto.randomUUID()}`}>{t(`publicaciones_vista_lista.ver_informacion`)}</a>
+                    <div className="more-info" key={`post ${post.id} ${"self.crypto.randomUUID()"}`}>
+                        <a href={`/visualizar-publicacion-creada?id=${post.id}&postType=${postType}`} className="title link" key={`post ${post.id} ${"self.crypto.randomUUID()"}`}>{t(`publicaciones_vista_lista.ver_informacion`)}</a>
                     </div>
                 </div>
 
@@ -274,8 +274,8 @@ export const PublicacionFoto = ({post, postType}) => {
                             </li>
                         </ul>
                     </div>
-                    <div className="more-info" key={`post ${post.id} ${self.crypto.randomUUID()}`}>
-                        <a href={`/visualizar-publicacion-creada?id=${post.id}&postType=${postType}`} className="title link" key={`post ${post.id} ${self.crypto.randomUUID()}`}>{t(`publicaciones_vista_lista.ver_informacion`)}</a>
+                    <div className="more-info" key={`post ${post.id} ${"self.crypto.randomUUID()"}`}>
+                        <a href={`/visualizar-publicacion-creada?id=${post.id}&postType=${postType}`} className="title link" key={`post ${post.id} ${"self.crypto.randomUUID()"}`}>{t(`publicaciones_vista_lista.ver_informacion`)}</a>
                     </div>
                 </div>
             </section>
