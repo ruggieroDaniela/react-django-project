@@ -295,7 +295,7 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                     <button
                         disabled={ !(canEdit) }
                         onClick={ async() =>{
-                            navigate(`/modify-post/${post.id}`);
+                            navigate(`/modify-post/${postType}/${post.id}`);
                         }}
                     >
                         <img className='button-img' src={editar_img} alt="" />
