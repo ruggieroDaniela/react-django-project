@@ -2326,6 +2326,7 @@ const useValidar = () => {
 
 
 const botonEnviar = () => {
+    const [loading, setLoading] = useState(false);
     const { t, i18n } = useTranslation();
     const {offerDomesticFormState, setOfferDomesticFormState} = useContext(OfferDomesticFormContext);
     const {authState, setAuthState} = useContext(AuthContext);
@@ -2348,6 +2349,8 @@ const botonEnviar = () => {
             
 
             onClick={ async () => {
+
+                setLoading(true);
                 
                 const url = 'http://localhost:8000/api-services/provideService/post_ad/';
                 try {
@@ -2368,13 +2371,18 @@ const botonEnviar = () => {
                         console.log('POST request failed');
                         console.log(response);
                     }
+                    setLoading(false);
                 } catch (error) {
                     console.log("error registrando");
                     console.log(error);
+                    setLoading(false);
                 }
             }}
             >
-            {t('multiform.registrar')}
+                <span className={loading?"loading-button":""}>
+                    {loading?"...":t('multiform.registrar')}
+                </span>
+           
         </button>
     );
 }
