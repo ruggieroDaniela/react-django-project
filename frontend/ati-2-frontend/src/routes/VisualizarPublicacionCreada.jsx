@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import { getCountryName, getStateName } from "../components/dataFetchers/PaisDataFetcher";
+import { getCountryName, getStateName, getCountriesNames } from "../components/dataFetchers/PaisDataFetcher";
 //import { publicacionCreada } from "../components/FasesRegistrar";
 
 import "../styles/VisualizarPublicacionCreada.scss"
@@ -181,7 +181,7 @@ export const VisualizarPublicacionCreada = () => {
                             </div>
                             <div>
                                 <div className='pais blue'> {t('publicacionCreada.pais_cuidador')}</div>
-                                <div className='pais red'>{getCountryName(userData.country)}</div>                        
+                                <div className='pais red'>{getCountriesNames(userData.country)}</div>                        
                                 <div className='pais blue'> {t('publicacionCreada.provincia__cuidador')}</div>
                                 <div className='pais red'> {t('publicacionCreada.No_disponible')}</div>
                                 
@@ -291,7 +291,7 @@ export const VisualizarPublicacionCreada = () => {
                         <div className='basico'>
                             <div className='basico info'>
                                 <div className='subtitle black'><b>{t('publicacionCreada.pais_cuidador')}</b></div>
-                                <div> { getCountryName(data.country) }  </div>
+                                <div> { getCountriesNames(data.country) }  </div>
                             </div>
                         </div>
                         
