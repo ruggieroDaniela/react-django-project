@@ -63,9 +63,9 @@ export const ListarPublicaciones = () => {
     useEffect( () => {
         if(searchParams.includes("ordering")){
             let orderIndexStart = searchParams.indexOf("ordering");
-            orderIndexStart = searchParams.indexOf("=", orderIndexStart+1);
+            orderIndexStart = searchParams.indexOf("=", orderIndexStart+1)+1;
             const orderIndexEnd = searchParams.indexOf("&", orderIndexStart);
-            setSelectedOrdering(searchParams.substring( orderIndexStart, orderIndexEnd ));
+            setSelectedOrdering(searchParams.substring( orderIndexStart, orderIndexEnd == -1? searchParams.length:orderIndexEnd ));
             console.log("ordering: ");
             console.log(searchParams.substring( orderIndexStart, orderIndexEnd ));
         }else{
@@ -100,7 +100,8 @@ export const ListarPublicaciones = () => {
                         if(searchParams.includes("ordering")){
                             let orderIndexStart = searchParams.indexOf("ordering");
                             const orderIndexEnd = searchParams.indexOf("&", orderIndexStart);
-                            searchParams.replace( searchParams.substring( orderIndexStart, orderIndexEnd ), `ordering=${selectedOrdering}&` )
+
+                            searchParams.replace( searchParams.substring( orderIndexStart, orderIndexEnd == -1? searchParams.length:orderIndexEnd ), `ordering=${selectedOrdering}&` )
                         }else{
                             searchParams += "&ordering=" + selectedOrdering + "&";
                         }
