@@ -617,15 +617,15 @@ def provideCreatePDF(post):
     if post.origin == 'SI': 
         # País de procedencia
         y -= 30
-        drawTag(x, y, c, "País de procedencia", post.origin_country)
+        drawTag(x, y, c, "País de procedencia", get_country_name(post.origin_country))
 
         # Estado / Provincia
         y -= 30
-        drawTag(x, y, c, "Estado / Provincia ", post.origin_state)
+        drawTag(x, y, c, "Estado / Provincia ", get_state_name(post.origin_state))
 
         # Ciudad 
         y -= 30
-        drawTag(x, y, c, "Ciudad ", post.origin_city)
+        drawTag(x, y, c, "Ciudad ", get_city_name(post.origin_city))
 
 
     # DOCUMENTOS QUE PUEDO PRESENTAR A LOS CLIENTES
