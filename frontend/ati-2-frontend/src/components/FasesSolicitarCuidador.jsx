@@ -674,7 +674,8 @@ const Fase2 = () => {
                         
                         <label htmlFor="c2">{t('SolicitarCuidador.fases.2.si')}</label>
                     </div>
-
+                    { requestDomesticFormState.disabilities_tco &&                  
+                    <>
                     <div>
                         <label className="bold" htmlFor="discapacidades">{t('SolicitarCuidador.fases.2.indique-discapacidad')}</label>
                         <textarea  id="discapacidades"
@@ -704,6 +705,8 @@ const Fase2 = () => {
                                 }} 
                         />
                     </div>
+                    </>
+                    }
                     { diseases_required && <ErrorMessage message={t('SolicitarNiñera.errores.enfermedad')}/>  }
               </div>
           </div>
