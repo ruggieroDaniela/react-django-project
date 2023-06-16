@@ -24,6 +24,9 @@ from reportlab.lib import colors
 API_KEY = "M3F5RW5Hb1dkWFpNN2kwN1k1eEhNYlRYZUJuQW5Wb3NETlF6YTd5cg=="
 
 def get_country_name(country_code):
+    if country_code.startswith(","):
+        country_code = country_code[1:]  # Remover la primera coma
+
     url = f"https://api.countrystatecity.in/v1/countries/{country_code}"
     headers = {
         'X-CSCAPI-KEY': API_KEY
@@ -39,6 +42,9 @@ def get_country_name(country_code):
         print(e)
 
 def get_state_name(state_code):
+    if state_code.startswith(","):
+        state_code = state_code[1:]  # Remover la primera coma
+
     country, state = state_code.split("-")
 
     url = f"https://api.countrystatecity.in/v1/countries/{country}/states/{state}"
@@ -57,6 +63,9 @@ def get_state_name(state_code):
         return ""
     
 def get_city_name(city_code):
+    if city_code.startswith(","):
+        city_code = city_code[1:]  # Remover la primera coma
+
     country, city = city_code.split("-")
     return city
  
