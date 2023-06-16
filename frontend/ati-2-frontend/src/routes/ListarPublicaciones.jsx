@@ -238,7 +238,7 @@ export const ListarPublicaciones = () => {
                                 onClick={ async () => {
                                     // eliminar 
                                     for (let i = 0; i < selectedPosts.length; i++) {
-                                        await axios.put(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/delete_post/${selectedPosts[i].id}/`)
+                                        await axios.delete(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/delete_post/${selectedPosts[i].id}/`)
                                     }
                                     refreshPostList(prev => !prev);
                                     setSelectedPosts([]);

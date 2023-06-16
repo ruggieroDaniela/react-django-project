@@ -60,6 +60,7 @@ export const PublicacionFoto = ({post, postType}) => {
     const canEdit = authState.logged_in && post.user == authState.id;
     const [postEnabled, setPostEnabled] = useState(post.enable);
     const [loadEnable, setLoadEnable]=useState(false);
+    const [loadDelete, setLoadDelete]=useState(false);
     // const canEdit = true;
 
     useEffect(() => {
@@ -310,11 +311,18 @@ export const PublicacionFoto = ({post, postType}) => {
                     <button
                         disabled={ !(canEdit) }
                         onClick={ async () => {
+                            setLoadDelete(true);
                             await axios.delete(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/delete_post/${post.id}/`)
+                            setLoadDelete(false);
                             window.location.reload();
                         } }
                     >
-                        <img className='button-img' src={eliminar_img} alt="" />
+                        {
+                            loadDelete?
+                                <span className="loading-button">...</span>
+                                :
+                                <img className='button-img' src={eliminar_img} alt="" />
+                        }
                     </button>
                 </section>
             :""}

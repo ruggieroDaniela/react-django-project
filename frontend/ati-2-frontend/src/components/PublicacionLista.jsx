@@ -53,6 +53,7 @@ const FieldViewDetails = ({label, detalles_texto, value=""}) => {
 export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPosts}) => {
     
     const [loadEnable, setLoadEnable]=useState(false);
+    const [loadDelete, setLoadDelete]=useState(false);
     const {t} = useTranslation();
     const [username, setUsername] = useState("  ");
     const {authState, setAuthState} = useContext(AuthContext);
@@ -310,11 +311,18 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                     <button
                         disabled={ !(canEdit) }
                         onClick={ async () => {
+                            setLoadDelete(true);
                             await axios.delete(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/delete_post/${post.id}/`)
+                            setLoadDelete(false);
                             window.location.reload();
                         } }
                     >
-                        <img className='button-img' src={eliminar_img} alt="" />
+                        {
+                            loadDelete?
+                                <span className="loading-button">...</span>
+                                :
+                                <img className='button-img' src={eliminar_img} alt="" />
+                        }
                     </button>
                 </section>
             :""}
