@@ -29,7 +29,7 @@ export const getCountryName = (countryCode, lang = "en") => {
 export const getCountriesNames = (countryCodes)=>{
     const names = [];
 
-    const codes = countries.split(",");
+    const codes = countryCodes.split(",");
 
     for (let i = 0; i < codes.length; i++) {
         if( codes[i].length != 0 )
