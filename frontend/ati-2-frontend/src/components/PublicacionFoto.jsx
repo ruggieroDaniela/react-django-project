@@ -59,6 +59,7 @@ export const PublicacionFoto = ({post, postType}) => {
     const {authState, setAuthState} = useContext(AuthContext);
     const canEdit = authState.logged_in && post.user == authState.id;
     const [postEnabled, setPostEnabled] = useState(post.enable);
+    const [loadEnable, setLoadEnable]=useState(false);
     // const canEdit = true;
 
     useEffect(() => {
@@ -284,12 +285,19 @@ export const PublicacionFoto = ({post, postType}) => {
                     <button
                         disabled={ !(canEdit) }
                         onClick={ () => {
+                            setLoadEnable(true);
                             setPostEnabled(prev=>!prev);
                             axios.put(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/enable_post/${post.id}/`)
-                            setForceRefresh(prev => !prev);
+                            setLoadEnable(false);
                         } }
-                    >
-                        <img className='button-img' src={postEnabled? deshabilitar_img : habilitar_img} alt="" />
+                    >   
+                        {
+                            loadEnable?
+                                <span className="loading-button">...</span>
+                                :
+                                <img className='button-img' src={postEnabled? deshabilitar_img : habilitar_img} alt="" />
+                        }
+                        
                     </button>
                     <button
                         disabled={ !(canEdit) }

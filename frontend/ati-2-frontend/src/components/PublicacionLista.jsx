@@ -31,7 +31,7 @@ const FieldViewDetails = ({label, detalles_texto, value=""}) => {
     const {t} = useTranslation();
 
     const [hover, setHover] = useState(false);
-
+    
     return (<>
         <span className="item-title">{label}: </span>
         {value + " "}
@@ -41,17 +41,18 @@ const FieldViewDetails = ({label, detalles_texto, value=""}) => {
             onMouseEnter={ () => setHover(true) }
             onMouseLeave={ () => setHover(false) }
             onClick={ e => { e.preventDefault() } }
-        >
+            >
             {t(`publicaciones_vista_lista.ver_detalles`)}
         </a>
         {hover?
             <Tooltip title={label} text={detalles_texto} />
-        :""}
+            :""}
     </>)
 }
 
 export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPosts}) => {
-
+    
+    const [loadEnable, setLoadEnable]=useState(false);
     const {t} = useTranslation();
     const [username, setUsername] = useState("  ");
     const {authState, setAuthState} = useContext(AuthContext);
@@ -284,13 +285,19 @@ export const PublicacionLista = ({post, postType, selectedPosts, setSelectedPost
                     <button
                         disabled={ !(canEdit) }
                         onClick={ async () => {
+                            setLoadEnable(true);
                             setPostEnabled(prev=>!prev);
                             await axios.put(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/enable_post/${post.id}/`)
-                            console.log("wtf");
+                            setLoadEnable(false);
                             
                         } }
-                    >
-                        <img className='button-img' src={postEnabled? deshabilitar_img : habilitar_img} alt="" />
+                    >   
+                        {
+                            loadEnable?
+                                <span className="loading-button">...</span>
+                                :
+                                <img className='button-img' src={postEnabled? deshabilitar_img : habilitar_img} alt="" />
+                        }
                     </button>
                     <button
                         disabled={ !(canEdit) }
