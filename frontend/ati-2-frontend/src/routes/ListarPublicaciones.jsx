@@ -96,6 +96,8 @@ export const ListarPublicaciones = () => {
                     // console.log(searchParams);
                 }
 
+                console.log(searchParams);
+
                 const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}Service/${searchParams}`, {
                     headers: {}
                 });
