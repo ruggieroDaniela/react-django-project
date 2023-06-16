@@ -491,8 +491,6 @@ export const BuscarPersonalDomestico = () => {
                                 if(selectedSortBy != "")
                                     query += `ordering=${selectedSortBy} `
 
-                                query = query.substring(0, query.length-1)
-
                                 navigate(`/show-posts${query}`);
                             } }
                         >
