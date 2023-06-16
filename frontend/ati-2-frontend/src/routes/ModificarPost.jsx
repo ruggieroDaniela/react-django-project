@@ -307,20 +307,30 @@ export const ModificarPost = () => {
     // nombres de los stages en el idioma actual
     let stagesNames = [];
     for (let i = 0; i < FasesOfrecermeCuidador.length; i++) {
-        stagesNames.push(t('OfrecermeCuidador.fases.'+i+'.nombre'));
+        if(postType == "provide")
+            if (ready && offerDomesticFormState.service === "CUI")
+                stagesNames.push(t('OfrecermeCuidador.fases.'+i+'.nombre'));
+            if (ready && offerDomesticFormState.service === "NIN")
+                stagesNames.push(t('OfrecermeNiñera.fases.'+i+'.nombre'));
+        
+        if (postType == "request")
+            if (ready && requestDomesticFormState.service === "CUI")
+                i==11 ? stagesNames.push(t('SolicitarCuidador.fases.13.nombre')):stagesNames.push(t('SolicitarCuidador.fases.'+i+'.nombre'))
+            if (ready && requestDomesticFormState.service === "NIN")
+                i==11 ? stagesNames.push(t('SolicitarNiñera.fases.13.nombre')):stagesNames.push(t('SolicitarNiñera.fases.'+i+'.nombre'))
     }
 
     return (
         <div id="OfrecermeNiñera">
             
             <div id="titulo">
-                <h4>{t('OfrecermeCuidador.titulo')}</h4>
+                <h4>{t('OfrecermeCuidador.modificar')}</h4>
             </div>
 
             <div  id="info-niñera">
 
                 <div className="row">
-                    <div className="first-row blue first-column" id="niñera"><h2>{t('OfrecermeCuidador.niñera')}</h2></div>
+                    <div className="first-row blue first-column" id="niñera"><h2>{t('OfrecermeCuidador.cliente')}</h2></div>
                     <div className="first-row" id="n-niñera" >
                         <h1>{authState.name}</h1>
                     </div>
@@ -374,10 +384,10 @@ export const ModificarPost = () => {
                 <br />
                 <span>*</span> <span className="indicacion">{t('registrar.indicaciones.1')}</span>
             </div>
-
+            {console.log(postType)}
             { postType == "provide" &&
             <>
-                { ready && requestDomesticFormState.service === "NIN" &&
+                { ready && offerDomesticFormState.service === "NIN" &&
                     <Multiform
                         stages={FasesOfrecermeNiñera}         // array de componentes que serán usados como stages
                         stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
@@ -386,7 +396,7 @@ export const ModificarPost = () => {
                         validateStages={useValidarOfrecerNiñera}
                     />
                 }
-                { ready && requestDomesticFormState.service === "CUI" &&
+                { ready && offerDomesticFormState.service === "CUI" &&
                     <Multiform
                         stages={FasesOfrecermeCuidador}         // array de componentes que serán usados como stages
                         stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
@@ -400,7 +410,8 @@ export const ModificarPost = () => {
 
             { postType == "request" &&
             <>
-                { ready && offerDomesticFormState.service === "NIN" &&
+                { ready && requestDomesticFormState.service === "NIN" &&
+                    
                     <Multiform
                         stages={FasesSolicitarNiñera}         // array de componentes que serán usados como stages
                         stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
@@ -409,7 +420,7 @@ export const ModificarPost = () => {
                         validateStages={useValidarSolicitarNiñera}
                     />
                 }
-                { ready && offerDomesticFormState.service === "CUI" &&
+                { ready && requestDomesticFormState.service === "CUI" &&
                     <Multiform
                         stages={FasesSolicitarCuidador}         // array de componentes que serán usados como stages
                         stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente

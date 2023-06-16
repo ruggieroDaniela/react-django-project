@@ -287,6 +287,8 @@
               "numero-cuenta":"Account number"
             }
         ],
+        "cliente":"Customer",
+        "modificar":"MODIFY",
         "continuar": "Continue",
         "atras": "Back"
     }
