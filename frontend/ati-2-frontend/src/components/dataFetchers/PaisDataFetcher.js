@@ -62,6 +62,24 @@ export const getStatesNames = (stateCodes)=>{
     return names.join(", ");
 }
 
+export const getCitiesNames = (citiesCodes)=>{
+
+    if( citiesCodes == undefined )
+        return "";
+
+    const names = [];
+
+    const codes = citiesCodes.split(",");
+
+    for (let i = 0; i < codes.length; i++) {
+        if( codes[i].length != 0 )
+            names.push( codes[i].substring( codes[i].indexOf("-") ) );
+        
+    }
+
+    return names.join(", ");
+}
+
 const namesSort = (names, values) => {
 
     if (names.length !== values.length)

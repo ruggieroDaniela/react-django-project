@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import { getCountryName, getStateName, getCountriesNames, getStatesNames } from "../components/dataFetchers/PaisDataFetcher";
+import { getCountryName, getStateName, getCountriesNames, getStatesNames, getCitiesNames } from "../components/dataFetchers/PaisDataFetcher";
 //import { publicacionCreada } from "../components/FasesRegistrar";
 
 import "../styles/VisualizarPublicacionCreada.scss"
@@ -622,7 +622,7 @@ export const VisualizarPublicacionCreada = () => {
                                 <div className='basico'>
                                     <div className='basico info'>
                                     <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_ciudad')}</div>
-                                    <div className='data'>{data.origin_city}</div>
+                                    <div className='data'>{getCitiesNames( data.origin_city)}</div>
                                     </div>
                                 </div>
                                 )}
