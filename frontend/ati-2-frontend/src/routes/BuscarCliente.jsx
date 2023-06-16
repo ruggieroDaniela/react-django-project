@@ -483,7 +483,7 @@ export const BuscarCliente = () => {
                                     query += `availability=${selectedAvailability}&`
 
                                 if(selectedSortBy != "")
-                                    query += `ordering=${selectedSortBy} `
+                                    query += `ordering=${selectedSortBy}&`
 
 
                                 navigate(`/show-posts${query}`);
