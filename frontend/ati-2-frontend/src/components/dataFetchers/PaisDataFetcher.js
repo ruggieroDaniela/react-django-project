@@ -27,6 +27,10 @@ export const getCountryName = (countryCode, lang = "en") => {
 }
 
 export const getCountriesNames = (countryCodes)=>{
+
+    if( countryCodes == undefined )
+        return "";
+
     const names = [];
 
     const codes = countryCodes.split(",");
