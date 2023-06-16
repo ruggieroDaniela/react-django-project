@@ -100,7 +100,7 @@ const Navbar = () => {
                                     ]
                                 },
                                 {label: t("navbar.operaciones.ver_publicaciones"), link:`/show-posts?type=request&user=${authState.id}`},
-                                {label: t("navbar.operaciones.buscar"), link:"/search-domestic-staff"},
+                                {label: t("navbar.operaciones.buscar"), link:"/search-clients"},
                                 {label: t("navbar.operaciones.modificar"), link:`/show-posts?type=request&user=${authState.id}`},
                                 {label: t("navbar.operaciones.eliminar"), link:`/show-posts?type=request&user=${authState.id}`},
                                 {label: t("navbar.operaciones.habilitar"), link:`/show-posts?type=request&user=${authState.id}`},
