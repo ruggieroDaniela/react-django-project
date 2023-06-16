@@ -174,7 +174,7 @@ export const ListarPublicaciones = () => {
                                         checked={ services.length > i && selectedTipoPersona.includes(services[i]) }
                                         onChange={ () => 
                                             setSelectedTipoPersona( prev =>
-                                                prev.includes(services[i])? prev.replace(services[i]+",", ""):prev+services[i]+","
+                                                prev.includes(services[i])? prev.replace(services[i], ""):prev+services[i]+","
                                             )
                                         }
                                     />
