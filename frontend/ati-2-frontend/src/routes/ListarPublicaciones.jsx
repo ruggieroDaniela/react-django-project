@@ -13,6 +13,7 @@ import "../styles/ListarPublicaciones.scss"
 
 export const ListarPublicaciones = () => {
 
+    const {authState, setAuthState} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const {t} = useTranslation();
@@ -73,7 +74,6 @@ export const ListarPublicaciones = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true);
-            setPostList([]);
 
             try {
 
@@ -106,11 +106,7 @@ export const ListarPublicaciones = () => {
                 
                 console.log(response.data);
 
-                // const filteredPostList = response.data.filter( x => (
-                //     (x.enable ||( authState.logged_in && authState.id == x.user))
-                // ) ) 
-
-                setPostList(response.data);
+                setPostList(response.data.filter( x => (x.enable == true || authState.id == x.user) ));
                 
                 setLoading(false);
 
@@ -121,9 +117,9 @@ export const ListarPublicaciones = () => {
         };
 
         fetchPosts();
-    }, [selectedTipoPersona, selectedOrdering, __refreshPostList, location.search]);
+    }, [selectedTipoPersona, selectedOrdering, __refreshPostList, location.search, authState]);
 
-    const {authState, setAuthState} = useContext(AuthContext);
+    
 
     return(<>
         <div id="lista-posts">
