@@ -77,7 +77,7 @@ export const ListarPublicaciones = () => {
 
                     if( key == "service__in" )
                         query += `service__in=${ selectedTipoPersona == ""? value:selectedTipoPersona }&`
-                    else if (key == "ordering")
+                    else if (key == "ordering" && selectedOrdering != " ")
                         query += `ordering=${ selectedOrdering == ""? value:selectedOrdering }&`
                     else
                         query += `${key}=${value}&`
