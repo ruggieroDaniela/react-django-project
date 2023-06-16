@@ -73,7 +73,7 @@ export const getCitiesNames = (citiesCodes)=>{
 
     for (let i = 0; i < codes.length; i++) {
         if( codes[i].length != 0 )
-            names.push( codes[i].substring( codes[i].indexOf("-") ) );
+            names.push( codes[i].substring( codes[i].indexOf("-")+1 ) );
         
     }
 
