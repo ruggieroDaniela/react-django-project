@@ -72,7 +72,7 @@ export const ListarPublicaciones = () => {
                         if(searchParams.includes("service__in")){
                             let serviceIndexStart = searchParams.indexOf("service__in");
                             const serviceIndexEnd = searchParams.indexOf("&", serviceIndexStart);
-                            searchParams = searchParams.replace( searchParams.substring( serviceIndexStart, serviceIndexEnd ), `service__in=${selectedTipoPersona.substring(0, selectedTipoPersona.length-1)}` )
+                            searchParams.replace( searchParams.substring( serviceIndexStart, serviceIndexEnd ), `service__in=${selectedTipoPersona.substring(0, selectedTipoPersona.length-1)}` )
                         }else{
                             searchParams += "&service__in=" + selectedTipoPersona.substring(0, selectedTipoPersona.length-1);
                         }
@@ -86,7 +86,7 @@ export const ListarPublicaciones = () => {
                         if(searchParams.includes("ordering")){
                             let orderIndexStart = searchParams.indexOf("ordering");
                             const orderIndexEnd = searchParams.indexOf("&", orderIndexStart);
-                            searchParams = searchParams.replace( searchParams.substring( orderIndexStart, orderIndexEnd ), `ordering=${selectedOrdering}` )
+                            searchParams.replace( searchParams.substring( orderIndexStart, orderIndexEnd ), `ordering=${selectedOrdering}` )
                         }else{
                             searchParams += "&ordering=" + selectedOrdering;
                         }
@@ -170,7 +170,11 @@ export const ListarPublicaciones = () => {
                                         type="checkbox"
                                         key={`${"self.crypto.randomUUID()"}`}
                                         checked={ services.length > i && selectedTipoPersona.includes(services[i]) }
-                                        onChange={ () => setSelectedTipoPersona( prev => prev.includes(services[i])? prev.replace(services[i]+",", ""):prev+services[i]+"," ) }
+                                        onChange={ () => 
+                                            setSelectedTipoPersona( prev =>
+                                                prev.includes(services[i])? prev.replace(services[i]+",", ""):prev+services[i]+","
+                                            )
+                                        }
                                     />
                                     <div className="checkbox-label" key={`${"self.crypto.randomUUID()"}`}>
                                         {t(`lista_publicaciones.tipos_personal.${i}`)}
@@ -193,8 +197,8 @@ export const ListarPublicaciones = () => {
                                 <button
                                     key={`${"self.crypto.randomUUID()"}`}
                                     onClick={ () => {
-                                        if( searchParams.includes("ordering") )
-                                            searchParams = searchParams.substring( 0, searchParams.indexOf("ordering") );
+                                        // if( searchParams.includes("ordering") )
+                                        //     searchParams = searchParams.substring( 0, searchParams.indexOf("ordering") );
 
                                         setSelectedOrdering( () => selectedOrdering == ""? ordenes[i]:"" );
                                     } }
