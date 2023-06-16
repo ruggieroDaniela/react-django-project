@@ -238,7 +238,7 @@ export const ListarPublicaciones = () => {
                                     key={`${"self.crypto.randomUUID()"}`}
                                     onClick={ () => {
                                         if(selectedPosts.length == 1)
-                                            navigate(`/modify-post/${selectedPosts[0]}`);
+                                            navigate(`/modify-post/${selectedPosts[0].id}`);
                                     } }
                                     disabled={selectedPosts.length>1}
                                 >
