@@ -27,47 +27,76 @@ def get_country_name(country_code):
     if country_code.startswith(","):
         country_code = country_code[1:]  # Remover la primera coma
 
-    url = f"https://api.countrystatecity.in/v1/countries/{country_code}"
-    headers = {
-        'X-CSCAPI-KEY': API_KEY
-    }
+    country_codes = country_code.split(',')  # Separar los códigos de país
     
-    try:
-        response = requests.get(url, headers=headers)
-        data = response.json()
+    country_names = []  # Lista para almacenar los nombres de los países
+    print(country_codes)
+    
+    for code in country_codes:      
+        url = f"https://api.countrystatecity.in/v1/countries/{code}"
+        headers = {
+            'X-CSCAPI-KEY': API_KEY
+        }
         
-        return data['name']
-        
-    except requests.exceptions.RequestException as e:
-        print(e)
+        try:
+            response = requests.get(url, headers=headers)
+            data = response.json()
+            
+            country_names.append(data['name'])
+            
+        except requests.exceptions.RequestException as e:
+            print(e)
+    
+    # Concatenar los nombres de los países con ", " como separador
+    return ", ".join(country_names)
+
 
 def get_state_name(state_code):
     if state_code.startswith(","):
         state_code = state_code[1:]  # Remover la primera coma
 
-    country, state = state_code.split("-")
-
-    url = f"https://api.countrystatecity.in/v1/countries/{country}/states/{state}"
-    headers = {
-        'X-CSCAPI-KEY': API_KEY
-    }
-
-    try:
-        response = requests.get(url, headers=headers)
-        data = response.json()
-
-        return data['name']
-
-    except requests.exceptions.RequestException as e:
-        print(e)
-        return ""
+    state_codes = state_code.split(',')  # Separar los códigos de estado
+    print(state_codes)
+    
+    state_names = []  # Lista para almacenar los nombres de los estados
+    
+    for code in state_codes:
+        country, state = code.split('-')
+        
+        url = f"https://api.countrystatecity.in/v1/countries/{country}/states/{state}"
+        headers = {
+            'X-CSCAPI-KEY': API_KEY
+        }
+        
+        try:
+            response = requests.get(url, headers=headers)
+            data = response.json()
+            
+            if isinstance(data, dict) and 'name' in data:
+                state_names.append(data['name'])
+            else:
+                print(f"No se pudo obtener el nombre para el código de estado: {code}")
+            
+        except requests.exceptions.RequestException as e:
+            print(e)
+    
+    # Concatenar los nombres de los estados con ", " como separador
+    return ", ".join(state_names)
     
 def get_city_name(city_code):
     if city_code.startswith(","):
         city_code = city_code[1:]  # Remover la primera coma
 
-    country, city = city_code.split("-")
-    return city
+    city_codes = city_code.split(',')  # Separar los códigos de ciudad
+    print(city_codes)
+    city_names = []  # Lista para almacenar los nombres de las ciudades
+    
+    for code in city_codes:        
+        country, city = code.split('-')
+        city_names.append(city)
+    
+    # Concatenar los nombres de las ciudades con ", " como separador
+    return ", ".join(city_names)
  
 def setCost(plan): 
     cost = 0 
