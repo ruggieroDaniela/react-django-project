@@ -86,12 +86,12 @@ export const ListarPublicaciones = () => {
                         if(searchParams.includes("ordering")){
                             let orderIndexStart = searchParams.indexOf("ordering");
                             const orderIndexEnd = searchParams.indexOf("&", orderIndexStart);
-                            searchParams.replace( searchParams.substring( orderIndexStart, orderIndexEnd ), `ordering=${selectedOrdering}` )
+                            searchParams.replace( searchParams.substring( orderIndexStart, orderIndexEnd ), `ordering=${selectedOrdering}&` )
                         }else{
-                            searchParams += "&ordering=" + selectedOrdering;
+                            searchParams += "&ordering=" + selectedOrdering + "&";
                         }
                     }else{
-                        searchParams += "?ordering=" + selectedOrdering;
+                        searchParams += "?ordering=" + selectedOrdering + "&";
                     }
                     // console.log(searchParams);
                 }
@@ -200,7 +200,7 @@ export const ListarPublicaciones = () => {
                                         // if( searchParams.includes("ordering") )
                                         //     searchParams = searchParams.substring( 0, searchParams.indexOf("ordering") );
 
-                                        setSelectedOrdering( () => selectedOrdering == ""? ordenes[i]:"" );
+                                        setSelectedOrdering( () => selectedOrdering == ordenes[i]? "":ordenes[i] );
                                     } }
                                 >
                                     {t(`lista_publicaciones.ordenar_por.${i}`)}
