@@ -67,21 +67,32 @@ export const ListarPublicaciones = () => {
 
             try {
                 if( selectedTipoPersona.length > 0 ){
-                    if( searchParams.length > 0 )
-                        searchParams += "&service__in=";
-                    else
-                        searchParams += "?service__in=";
-                
-                    searchParams += selectedTipoPersona.substring(0, selectedTipoPersona.length-1);
+                    if( searchParams.length > 0 ){
+
+                        if(searchParams.includes("service__in")){
+                            let serviceIndexStart = searchParams.indexOf("service__in");
+                            const serviceIndexEnd = searchParams.indexOf("&", serviceIndexStart);
+                            searchParams = searchParams.replace( searchParams.substring( serviceIndexStart, serviceIndexEnd ), `service__in=${selectedTipoPersona.substring(0, selectedTipoPersona.length-1)}` )
+                        }else{
+                            searchParams += "&service__in=" + selectedTipoPersona.substring(0, selectedTipoPersona.length-1);
+                        }
+                    }else{
+                        searchParams += "?service__in=" + selectedTipoPersona.substring(0, selectedTipoPersona.length-1);
+                    }
                 }
 
                 if( selectedOrdering.length > 0 ){
-                    if( searchParams.length > 0 )
-                        searchParams += "&ordering=";
-                    else
-                        searchParams += "?ordering=";
-                
-                    searchParams += selectedOrdering;
+                    if( searchParams.length > 0 ){
+                        if(searchParams.includes("ordering")){
+                            let orderIndexStart = searchParams.indexOf("ordering");
+                            const orderIndexEnd = searchParams.indexOf("&", orderIndexStart);
+                            searchParams = searchParams.replace( searchParams.substring( orderIndexStart, orderIndexEnd ), `ordering=${selectedOrdering}` )
+                        }else{
+                            searchParams += "&ordering=" + selectedOrdering;
+                        }
+                    }else{
+                        searchParams += "?ordering=" + selectedOrdering;
+                    }
                     // console.log(searchParams);
                 }
 
