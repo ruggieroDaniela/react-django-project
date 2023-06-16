@@ -60,6 +60,15 @@ export const ListarPublicaciones = () => {
         
     }
 
+    useEffect( () => {
+        if(searchParams.includes("ordering")){
+            let orderIndexStart = searchParams.indexOf("ordering");
+            orderIndexStart = searchParams.indexOf("=", orderIndexStart+1);
+            const orderIndexEnd = searchParams.indexOf("&", orderIndexStart);
+            setSelectedOrdering(searchParams.substring( orderIndexStart, orderIndexEnd ));
+        }
+    }, [] );
+
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true);
