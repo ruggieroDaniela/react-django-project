@@ -9,11 +9,14 @@ export const getContinents = () => ["north america", "south america", "europe", 
 
 export const getCountryName = (countryCode, lang = "en") => {
 
+    const code = (countryCode[0]==",")? countryCode.substring(1): countryCode;
+    
+
     for (let i = 0; i < continents.length; i++) {
         
-        if( countryCode in data[ continents[i] ] ){
+        if( code in data[ continents[i] ] ){
             // console.log(data[ continents[i] ][countryCode][lang] );
-            return data[ continents[i] ][countryCode][lang];
+            return data[ continents[i] ][code][lang];
         }
         
     }
