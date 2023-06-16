@@ -66,8 +66,12 @@ export const ListarPublicaciones = () => {
             orderIndexStart = searchParams.indexOf("=", orderIndexStart+1);
             const orderIndexEnd = searchParams.indexOf("&", orderIndexStart);
             setSelectedOrdering(searchParams.substring( orderIndexStart, orderIndexEnd ));
+            console.log("ordering: ");
             console.log(searchParams.substring( orderIndexStart, orderIndexEnd ));
+        }else{
+            console.log("nor order");
         }
+        
     }, [] );
 
     useEffect(() => {
