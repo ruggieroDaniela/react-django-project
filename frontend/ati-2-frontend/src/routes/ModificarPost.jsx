@@ -306,14 +306,16 @@ export const ModificarPost = () => {
 
     // nombres de los stages en el idioma actual
     let stagesNames = [];
+    if(postType == "provide")
     for (let i = 0; i < FasesOfrecermeCuidador.length; i++) {
-        if(postType == "provide")
             if (ready && offerDomesticFormState.service === "CUI")
                 stagesNames.push(t('OfrecermeCuidador.fases.'+i+'.nombre'));
             if (ready && offerDomesticFormState.service === "NIN")
                 stagesNames.push(t('OfrecermeNiñera.fases.'+i+'.nombre'));
-        
-        if (postType == "request")
+    }
+
+    if (postType == "request")
+    for (let i = 0; i < FasesSolicitarCuidador.length; i++) {
             if (ready && requestDomesticFormState.service === "CUI")
                 i==11 ? stagesNames.push(t('SolicitarCuidador.fases.13.nombre')):stagesNames.push(t('SolicitarCuidador.fases.'+i+'.nombre'))
             if (ready && requestDomesticFormState.service === "NIN")
