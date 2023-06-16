@@ -9,6 +9,11 @@ export const getContinents = () => ["north america", "south america", "europe", 
 
 export const getCountryName = (countryCode, lang = "en") => {
 
+    // console.log(countryCode);
+
+    // if(countryCode.includes(","))
+    //     countryCode =  countryCode.substring(1);
+
     for (let i = 0; i < continents.length; i++) {
         
         if( countryCode in data[ continents[i] ] ){
@@ -19,6 +24,20 @@ export const getCountryName = (countryCode, lang = "en") => {
     }
 
     return null;
+}
+
+export const getCountriesNames = (countryCodes)=>{
+    const names = [];
+
+    const codes = countries.split(",");
+
+    for (let i = 0; i < codes.length; i++) {
+        if( codes[i].length != 0 )
+            names.push( getCountryName(codes[i]) );
+        
+    }
+
+    return names.join(", ");
 }
 
 const namesSort = (names, values) => {
