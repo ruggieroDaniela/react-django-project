@@ -84,10 +84,10 @@ export const ListarPublicaciones = () => {
 
                     if( key == "service__in" )
                         query += `service__in=${ selectedTipoPersona == ""? value:selectedTipoPersona }&`
-                    else if (key == "ordering")
+                    else if (key == "ordering"){
                         if(selectedOrdering != "_") 
                             query += `ordering=${ selectedOrdering == ""? value:selectedOrdering }&`
-                    else
+                    }else
                         query += `${key}=${value}&`
 
                 }
