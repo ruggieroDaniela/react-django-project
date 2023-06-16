@@ -63,16 +63,16 @@ export const ListarPublicaciones = () => {
         
     }
 
-    if( selectedOrdering == "" && searchParams.get("ordering") )
-        setSelectedOrdering(searchParams.get("ordering"))
     
-    if( selectedTipoPersona == "" && searchParams.get("service__in") )
-        setSelectedTipoPersona(searchParams.get("service__in"))
-
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true);
             setPostList([]);
+            if( selectedOrdering == "" && searchParams.get("ordering") )
+                setSelectedOrdering(searchParams.get("ordering"))
+            
+            if( selectedTipoPersona == "" && searchParams.get("service__in") )
+                setSelectedTipoPersona(searchParams.get("service__in"))
 
             try {
 
