@@ -14,6 +14,8 @@ import { FasesOfrecermeNiñera, useValidar as useValidarOfrecerNiñera} from "..
 import { OfferDomesticFormContext } from "../context/OfferDomesticFormContext";
 import { RequestDomesticFormContext } from "../context/RequestDomesticFormContext";
 
+import { getCountryName } from "../components/dataFetchers/PaisDataFetcher";
+
 import AuthContext from '../context/AuthContext';
 
 import "../styles/OfrecermeCuidador.scss"
@@ -31,7 +33,7 @@ export const ModificarPost = () => {
     useEffect(() => {
     const fetchPost = async () => {
         try {
-        const response = await fetch(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/provide/get_post/${id}/`, {
+        const response = await fetch(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/get_post/${id}/`, {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',
@@ -254,7 +256,7 @@ export const ModificarPost = () => {
                 onClick={
                     async () => {
                          
-                        const url = `${import.meta.env.VITE_DJANGO_API_URL}/api-services/provide/update_post/${id}/`
+                        const url = `${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/update_post/${id}/`
                         try {
                             
                             const response = await fetch( url,{
@@ -324,7 +326,7 @@ export const ModificarPost = () => {
                     </div>
                     <div className="first-row" id="pais">
 
-                        <h2><span className="blue">{t('OfrecermeCuidador.pais')}</span> <span className="red" >{userData.country}</span></h2>
+                        <h2><span className="blue">{t('OfrecermeCuidador.pais')}</span> <span className="red" >{getCountryName(userData.country)}</span></h2>
 
                         
                     </div>

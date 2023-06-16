@@ -1865,7 +1865,7 @@ const Fase11 = () => {
             
             
             <div id="small">
-                <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.13.mensaje')}</span><br />
+                <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.11.mensaje')}</span><br />
             </div>
 
             <div id="two-columns">
