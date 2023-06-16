@@ -185,7 +185,7 @@ export const ListarPublicaciones = () => {
                                 <button
                                     key={`${"self.crypto.randomUUID()"}`}
                                     onClick={ () => {
-                                        setSelectedOrdering( () => selectedOrdering == ordenes[i]? "":ordenes[i] );
+                                        setSelectedOrdering( () => selectedOrdering == ordenes[i]? " ":ordenes[i] );
                                     } }
                                 >
                                     {t(`lista_publicaciones.ordenar_por.${i}`)}
