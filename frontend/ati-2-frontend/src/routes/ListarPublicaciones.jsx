@@ -17,8 +17,11 @@ export const ListarPublicaciones = () => {
 
     const {t} = useTranslation();
     const location = useLocation();
-    let searchParams = location.search;
-    const postType = searchParams.includes('provide')? 'provide':'request';
+    // let searchParams = location.search;
+
+    let searchParams = new URLSearchParams(location.search);
+
+    const postType = searchParams.get('type');
 
     const [postList, setPostList] = useState([]);
     const [selectedPosts, setSelectedPosts] = useState([]);
@@ -60,60 +63,30 @@ export const ListarPublicaciones = () => {
         
     }
 
-    useEffect( () => {
-        if(searchParams.includes("ordering")){
-            let orderIndexStart = searchParams.indexOf("ordering");
-            orderIndexStart = searchParams.indexOf("=", orderIndexStart+1)+1;
-            const orderIndexEnd = searchParams.indexOf("&", orderIndexStart);
-            setSelectedOrdering(searchParams.substring( orderIndexStart, orderIndexEnd == -1? searchParams.length:orderIndexEnd ));
-            console.log("ordering: ");
-            console.log(searchParams.substring( orderIndexStart, orderIndexEnd == -1? searchParams.length:orderIndexEnd ));
-        }else{
-            console.log("nor order");
-        }
-        
-    }, [] );
-
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true);
             setPostList([]);
 
             try {
-                if( selectedTipoPersona.length > 0 ){
-                    if( searchParams.length > 0 ){
 
-                        if(searchParams.includes("service__in")){
-                            let serviceIndexStart = searchParams.indexOf("service__in");
-                            const serviceIndexEnd = searchParams.indexOf("&", serviceIndexStart);
-                            searchParams.replace( searchParams.substring( serviceIndexStart, serviceIndexEnd ), `service__in=${selectedTipoPersona.substring(0, selectedTipoPersona.length-1)}` )
-                        }else{
-                            searchParams += "&service__in=" + selectedTipoPersona.substring(0, selectedTipoPersona.length-1);
-                        }
-                    }else{
-                        searchParams += "?service__in=" + selectedTipoPersona.substring(0, selectedTipoPersona.length-1);
-                    }
+                let query = "?";
+
+                for( let pair of searchParams.entries() ){
+                    let [key, value] = pair;
+
+                    if( key == "service__in" )
+                        query += `service__in=${ selectedTipoPersona == ""? value:selectedTipoPersona }&`
+                    else if (key == "ordering")
+                        query += `ordering=${ selectedOrdering == ""? value:selectedOrdering }&`
+                    else
+                        query += `${key}=${value}&`
+
                 }
 
-                if( selectedOrdering.length > 0 ){
-                    if( searchParams.length > 0 ){
-                        if(searchParams.includes("ordering")){
-                            let orderIndexStart = searchParams.indexOf("ordering");
-                            const orderIndexEnd = searchParams.indexOf("&", orderIndexStart);
+                console.log(query);
 
-                            searchParams = searchParams.replace( searchParams.substring( orderIndexStart, orderIndexEnd == -1? searchParams.length:orderIndexEnd ), `ordering=${selectedOrdering}&` )
-                        }else{
-                            searchParams += "&ordering=" + selectedOrdering + "&";
-                        }
-                    }else{
-                        searchParams += "?ordering=" + selectedOrdering + "&";
-                    }
-                    // console.log(searchParams);
-                }
-
-                console.log(searchParams);
-
-                const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}Service/${searchParams}`, {
+                const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}Service/${query}`, {
                     headers: {}
                 });
                 
@@ -212,9 +185,6 @@ export const ListarPublicaciones = () => {
                                 <button
                                     key={`${"self.crypto.randomUUID()"}`}
                                     onClick={ () => {
-                                        // if( searchParams.includes("ordering") )
-                                        //     searchParams = searchParams.substring( 0, searchParams.indexOf("ordering") );
-
                                         setSelectedOrdering( () => selectedOrdering == ordenes[i]? "":ordenes[i] );
                                     } }
                                 >
