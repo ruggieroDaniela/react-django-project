@@ -602,7 +602,7 @@ export const VisualizarPublicacionCreada = () => {
                                 <div className='basico'>
                                     <div className='basico info'>
                                     <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_pais')}</div>
-                                    <div className='data'>{data.origin_country}</div>
+                                    <div className='data'>{getCountriesNames( data.origin_country)}</div>
                                     </div>
                                 </div>
                                 )}
