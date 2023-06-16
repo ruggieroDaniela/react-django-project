@@ -87,7 +87,7 @@ export const VisualizarPublicacionCreada = () => {
 
     useEffect(() => {
         const fetchPost = async () => {
-            // window.scrollTo(0, 0);
+            window.scrollTo(0, 0);
             setLoadingData(true);
             try {
                 const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/get_post/${id}/`);
