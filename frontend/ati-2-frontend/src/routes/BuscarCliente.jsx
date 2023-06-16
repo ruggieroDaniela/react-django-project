@@ -214,10 +214,8 @@ export const BuscarCliente = () => {
                                     query += `state__in=${selectedStates.substring(1)}&`
                                 
                                 if(selectedServices != "")
-                                    query += `service__in=${selectedServices.substring(1)}`
+                                    query += `service__in=${selectedServices.substring(1)}&`
                                 
-                                query = query.substring(0, query.length-1)
-
                                 navigate(`/show-posts${query}`);
                             } }
                         >
@@ -487,7 +485,6 @@ export const BuscarCliente = () => {
                                 if(selectedSortBy != "")
                                     query += `ordering=${selectedSortBy} `
 
-                                query = query.substring(0, query.length-1)
 
                                 navigate(`/show-posts${query}`);
                             } }
