@@ -209,6 +209,7 @@ export const ListarPublicaciones = () => {
                                         await axios.put(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/enable_post/${selectedPosts[i].id}/`)
                                     }
                                     refreshPostList(prev => !prev);
+                                    setSelectedPosts([]);
                                 } }
                             >
                                 {t(`lista_publicaciones.accion.${0}`)}
@@ -224,6 +225,7 @@ export const ListarPublicaciones = () => {
                                         await axios.put(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/delete_post/${selectedPosts[i].id}/`)
                                     }
                                     refreshPostList(prev => !prev);
+                                    setSelectedPosts([]);
                                 } }
                             >
                                 {t(`lista_publicaciones.accion.${1}`)}
