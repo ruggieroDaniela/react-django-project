@@ -63,6 +63,12 @@ export const ListarPublicaciones = () => {
         
     }
 
+    if( selectedOrdering == "" && searchParams.get("ordering") )
+        setSelectedOrdering(searchParams.get("ordering"))
+    
+    if( selectedTipoPersona == "" && searchParams.get("service__in") )
+        setSelectedTipoPersona(searchParams.get("service__in"))
+
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true);
@@ -77,7 +83,7 @@ export const ListarPublicaciones = () => {
 
                     if( key == "service__in" )
                         query += `service__in=${ selectedTipoPersona == ""? value:selectedTipoPersona }&`
-                    else if (key == "ordering" && selectedOrdering != " ")
+                    else if (key == "ordering" )
                         query += `ordering=${ selectedOrdering == ""? value:selectedOrdering }&`
                     else
                         query += `${key}=${value}&`
@@ -185,7 +191,7 @@ export const ListarPublicaciones = () => {
                                 <button
                                     key={`${"self.crypto.randomUUID()"}`}
                                     onClick={ () => {
-                                        setSelectedOrdering( () => selectedOrdering == ordenes[i]? " ":ordenes[i] );
+                                        setSelectedOrdering( () => selectedOrdering == ordenes[i]? "":ordenes[i] );
                                     } }
                                 >
                                     {t(`lista_publicaciones.ordenar_por.${i}`)}
