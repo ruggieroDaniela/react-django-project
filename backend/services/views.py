@@ -934,7 +934,7 @@ class ProvideServiceViewSet(viewsets.ModelViewSet):
         'availability': ['exact'], 
         'availability_date' : ['exact'],
     }
-    ordering_fields = ['payment_amount', 'availability_date', 'created_at', 'education_level']
+    ordering_fields = ['payment_amount', 'availability_date', 'created_at', 'education_level', 'travel']
 
     # Post ad 
     @action(detail=False, methods=['post'])
@@ -1039,7 +1039,7 @@ class RequestServiceViewSet(viewsets.ModelViewSet):
         'availability': ['exact'], 
         'availability_date' : ['exact'],
     }
-    ordering_fields = ['payment_amount', 'availability_date', 'created_at', 'education_level']
+    ordering_fields = ['payment_amount', 'availability_date', 'created_at', 'education_level', 'travel']
 
     # Post ad
     @action(detail=False, methods=['post'])
