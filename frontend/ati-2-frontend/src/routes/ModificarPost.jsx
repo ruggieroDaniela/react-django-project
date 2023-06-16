@@ -375,7 +375,7 @@ export const ModificarPost = () => {
 
             { postType == "provide" &&
             <>
-                { ready && offerDomesticFormState.service === "NIN" &&
+                { ready && requestDomesticFormState.service === "NIN" &&
                     <Multiform
                         stages={FasesOfrecermeNiñera}         // array de componentes que serán usados como stages
                         stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
@@ -384,7 +384,7 @@ export const ModificarPost = () => {
                         validateStages={useValidarOfrecerNiñera}
                     />
                 }
-                { ready && offerDomesticFormState.service === "CUI" &&
+                { ready && requestDomesticFormState.service === "CUI" &&
                     <Multiform
                         stages={FasesOfrecermeCuidador}         // array de componentes que serán usados como stages
                         stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
