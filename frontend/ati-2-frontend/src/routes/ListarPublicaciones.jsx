@@ -101,7 +101,7 @@ export const ListarPublicaciones = () => {
                             let orderIndexStart = searchParams.indexOf("ordering");
                             const orderIndexEnd = searchParams.indexOf("&", orderIndexStart);
 
-                            searchParams.replace( searchParams.substring( orderIndexStart, orderIndexEnd == -1? searchParams.length:orderIndexEnd ), `ordering=${selectedOrdering}&` )
+                            searchParams = searchParams.replace( searchParams.substring( orderIndexStart, orderIndexEnd == -1? searchParams.length:orderIndexEnd ), `ordering=${selectedOrdering}&` )
                         }else{
                             searchParams += "&ordering=" + selectedOrdering + "&";
                         }
