@@ -92,6 +92,12 @@ export const ListarPublicaciones = () => {
 
                 }
 
+                if( selectedTipoPersona != "" && !searchParams.get("service__in") )
+                    query += `service__in=${ selectedTipoPersona }&`
+
+                if( selectedOrdering != "_" && selectedOrdering != "" && !searchParams.get("ordering") )
+                    query += `ordering=${ selectedOrdering }&`
+
                 console.log(query);
 
                 const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}Service/${query}`, {
