@@ -703,6 +703,9 @@ const Fase2 = () => {
                         <label htmlFor="c2">{t('SolicitarNiñera.fases.2.si')}</label>
                     </div>
 
+                    { requestDomesticFormState.disabilities_tco &&                  
+                    <>
+                    
                     <div>
                         <label className="bold" htmlFor="discapacidades">{t('SolicitarNiñera.fases.2.indique-discapacidad')}</label>
                         <textarea  id="discapacidades"
@@ -733,6 +736,8 @@ const Fase2 = () => {
                                 }} 
                         />
                     </div>
+                    </>
+                    }
                     
                     { diseases_required && <ErrorMessage message={t('SolicitarNiñera.errores.enfermedad')}/>  }
               </div>
@@ -1775,7 +1780,7 @@ const Fase11 = () => {
     useEffect(() => {
         const getBanks = async () => {
           try {
-            const response = await axios.get(`http://localhost:8000/banks/`);
+            const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/banks/`);
             return response.data; // Return the response data instead of the entire response
           } catch (error) {
             console.error(error);
@@ -1865,7 +1870,7 @@ const Fase11 = () => {
             
             
             <div id="small">
-                <span className="red">*  </span><span className="blue">{t('OfrecermeNiñera.fases.13.mensaje')}</span><br />
+                <span className="red">*  </span><span className="blue">{t('SolicitarNiñera.fases.11.mensaje')}</span><br />
             </div>
 
             <div id="two-columns">
@@ -2038,7 +2043,7 @@ const botonEnviar = () => {
                           })
                     }
 
-                    const url = 'http://localhost:8000/api-services/requestService/post_ad/'
+                    const url = `${import.meta.env.VITE_DJANGO_API_URL}/api-services/requestService/post_ad/`
                     try {
                         
                         const response = await fetch( url,{

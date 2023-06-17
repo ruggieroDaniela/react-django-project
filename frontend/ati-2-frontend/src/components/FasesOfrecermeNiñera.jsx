@@ -1847,7 +1847,7 @@ const Fase13 = () => {
     useEffect(() => {
         const getBanks = async () => {
           try {
-            const response = await axios.get(`http://localhost:8000/banks/`);
+            const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/banks/`);
             return response.data; // Return the response data instead of the entire response
           } catch (error) {
             console.error(error);
@@ -2004,7 +2004,7 @@ const Fase13 = () => {
                         <div className="dropdown-content">
                             <FieldDropdown 
                                 title={t('OfrecermeNiñera.fases.13.pais')}
-                                placeholder={t('OfrecermeNiñera.fases.13.seleccione-pais')}
+                                placeholder={selectedCountry!=-1? bank_countries[selectedCountry]:t('OfrecermeNiñera.fases.13.seleccione-pais')}
                                 items={bank_countries}
                                 setSelectedState={setSelectedCountry}
                             />
@@ -2020,7 +2020,7 @@ const Fase13 = () => {
                             
                                 <FieldDropdown    
                                     title={t('OfrecermeNiñera.fases.13.banco')}
-                                    placeholder={t('OfrecermeNiñera.fases.13.seleccione-banco')}
+                                    placeholder={selectedBanks != -1? aux[selectedBanks] : t('OfrecermeNiñera.fases.13.seleccione-banco')}
                                     items= {aux}
                                     setSelectedState={setSelectedBanks}
                                 />
@@ -2393,7 +2393,7 @@ const botonEnviar = () => {
                           })
                     }
 
-                    const url = 'http://localhost:8000/api-services/provideService/post_ad/'
+                    const url = `${import.meta.env.VITE_DJANGO_API_URL}/api-services/provideService/post_ad/`
                     try {
                         
                         const response = await fetch( url,{

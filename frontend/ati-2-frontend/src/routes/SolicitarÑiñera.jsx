@@ -18,7 +18,7 @@ export const SolicitarÑiñera = () => {
             try {
                     // Request was successful
                 if(authState.id != undefined){
-                    let response = await fetch( `http://localhost:8000/users/${authState.id}`,{
+                    let response = await fetch( `${import.meta.env.VITE_DJANGO_API_URL}/users/${authState.id}`,{
                             method: 'GET',
                             headers: {
                                 'Authorization': authState.token,
@@ -59,7 +59,7 @@ export const SolicitarÑiñera = () => {
     //let stagesNames = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
     let stagesNames = [];
     for (let i = 0; i < FasesSolicitarNiñera.length; i++) {
-        stagesNames.push(t('SolicitarNiñera.fases.'+i+'.nombre'));
+        i==11 ? stagesNames.push(t('SolicitarNiñera.fases.13.nombre')):stagesNames.push(t('SolicitarNiñera.fases.'+i+'.nombre'))
     }
 
     return (

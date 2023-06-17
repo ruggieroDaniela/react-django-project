@@ -14,6 +14,8 @@ import { FasesOfrecermeNiñera, useValidar as useValidarOfrecerNiñera} from "..
 import { OfferDomesticFormContext } from "../context/OfferDomesticFormContext";
 import { RequestDomesticFormContext } from "../context/RequestDomesticFormContext";
 
+import { getCountryName } from "../components/dataFetchers/PaisDataFetcher";
+
 import AuthContext from '../context/AuthContext';
 
 import "../styles/OfrecermeCuidador.scss"
@@ -31,7 +33,7 @@ export const ModificarPost = () => {
     useEffect(() => {
     const fetchPost = async () => {
         try {
-        const response = await fetch(`http://localhost:8000/api-services/${postType}/get_post/${id}/`, {
+        const response = await fetch(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/get_post/${id}/`, {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',
@@ -209,7 +211,7 @@ export const ModificarPost = () => {
             try {
                     // Request was successful
                 if(authState.id != undefined){
-                    let response = await fetch( `http://localhost:8000/users/${authState.id}`,{
+                    let response = await fetch( `${import.meta.env.VITE_DJANGO_API_URL}/users/${authState.id}`,{
                             method: 'GET',
                             headers: {
                                 'Authorization': authState.token,
@@ -254,7 +256,7 @@ export const ModificarPost = () => {
                 onClick={
                     async () => {
                          
-                        const url = `http://localhost:8000/api-services/${postType}/update_post/${id}/`
+                        const url = `${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/update_post/${id}/`
                         try {
                             
                             const response = await fetch( url,{
@@ -304,27 +306,39 @@ export const ModificarPost = () => {
 
     // nombres de los stages en el idioma actual
     let stagesNames = [];
+    if(postType == "provide")
     for (let i = 0; i < FasesOfrecermeCuidador.length; i++) {
-        stagesNames.push(t('OfrecermeCuidador.fases.'+i+'.nombre'));
+            if (ready && offerDomesticFormState.service === "CUI")
+                stagesNames.push(t('OfrecermeCuidador.fases.'+i+'.nombre'));
+            if (ready && offerDomesticFormState.service === "NIN")
+                stagesNames.push(t('OfrecermeNiñera.fases.'+i+'.nombre'));
+    }
+
+    if (postType == "request")
+    for (let i = 0; i < FasesSolicitarCuidador.length; i++) {
+            if (ready && requestDomesticFormState.service === "CUI")
+                i==11 ? stagesNames.push(t('SolicitarCuidador.fases.13.nombre')):stagesNames.push(t('SolicitarCuidador.fases.'+i+'.nombre'))
+            if (ready && requestDomesticFormState.service === "NIN")
+                i==11 ? stagesNames.push(t('SolicitarNiñera.fases.13.nombre')):stagesNames.push(t('SolicitarNiñera.fases.'+i+'.nombre'))
     }
 
     return (
         <div id="OfrecermeNiñera">
             
             <div id="titulo">
-                <h4>{t('OfrecermeCuidador.titulo')}</h4>
+                <h4>{t('OfrecermeCuidador.modificar')}</h4>
             </div>
 
             <div  id="info-niñera">
 
                 <div className="row">
-                    <div className="first-row blue first-column" id="niñera"><h2>{t('OfrecermeCuidador.niñera')}</h2></div>
+                    <div className="first-row blue first-column" id="niñera"><h2>{t('OfrecermeCuidador.cliente')}</h2></div>
                     <div className="first-row" id="n-niñera" >
                         <h1>{authState.name}</h1>
                     </div>
                     <div className="first-row" id="pais">
 
-                        <h2><span className="blue">{t('OfrecermeCuidador.pais')}</span> <span className="red" >{userData.country}</span></h2>
+                        <h2><span className="blue">{t('OfrecermeCuidador.pais')}</span> <span className="red" >{getCountryName(userData.country)}</span></h2>
 
                         
                     </div>
@@ -372,7 +386,7 @@ export const ModificarPost = () => {
                 <br />
                 <span>*</span> <span className="indicacion">{t('registrar.indicaciones.1')}</span>
             </div>
-
+            {console.log(postType)}
             { postType == "provide" &&
             <>
                 { ready && offerDomesticFormState.service === "NIN" &&
@@ -398,7 +412,8 @@ export const ModificarPost = () => {
 
             { postType == "request" &&
             <>
-                { ready && offerDomesticFormState.service === "NIN" &&
+                { ready && requestDomesticFormState.service === "NIN" &&
+                    
                     <Multiform
                         stages={FasesSolicitarNiñera}         // array de componentes que serán usados como stages
                         stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente
@@ -407,7 +422,7 @@ export const ModificarPost = () => {
                         validateStages={useValidarSolicitarNiñera}
                     />
                 }
-                { ready && offerDomesticFormState.service === "CUI" &&
+                { ready && requestDomesticFormState.service === "CUI" &&
                     <Multiform
                         stages={FasesSolicitarCuidador}         // array de componentes que serán usados como stages
                         stagesNames={stagesNames}       // nombres de los stages en el idioma correspondiente

@@ -1410,7 +1410,7 @@ const Fase5 = () => {
 
         useEffect(() => {
             const fetchBanks = async () => {
-                await axios.get('http://localhost:8000/banks/')
+                await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/banks/`)
                     .then(({data}) => {
                         setBanks(data); 
                     }); 
@@ -1656,7 +1656,7 @@ const registrarUsuario = () => {
     // send request
     const fetchData = async () => {
 
-        const url = 'http://localhost:8000/users'
+        const url = `${import.meta.env.VITE_DJANGO_API_URL}/users`
         try {
             
             const response = await fetch( url,{
@@ -1845,7 +1845,7 @@ const botonRegistrar = () => {
                     }
 
                     // Enviar datos
-                    const url = 'http://localhost:8000/users/'
+                    const url = `${import.meta.env.VITE_DJANGO_API_URL}/users/`
                     try {
                         const response = await axios.post(url, postBody)
 
@@ -1908,7 +1908,7 @@ const useValidarRegistrar = () => {
 
     const uniqueEmail = async (email) => {
         try {
-            const response = await axios.post('http://localhost:8000/users/unique_email/', {"email": email })
+            const response = await axios.post(`${import.meta.env.VITE_DJANGO_API_URL}/users/unique_email/`, {"email": email })
             registerFormState.phase[5].client_code = response.data.client_code
             return true
         } catch(error) {

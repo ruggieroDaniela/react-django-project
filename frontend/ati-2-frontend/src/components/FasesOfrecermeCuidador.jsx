@@ -1828,7 +1828,7 @@ const Fase13 = () => {
     useEffect(() => {
         const getBanks = async () => {
           try {
-            const response = await axios.get(`http://localhost:8000/banks/`);
+            const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/banks/`);
             return response.data; // Return the response data instead of the entire response
           } catch (error) {
             console.error(error);
@@ -2355,7 +2355,7 @@ const botonEnviar = () => {
 
                 setLoading(true);
                 
-                const url = 'http://localhost:8000/api-services/provideService/post_ad/';
+                const url = `${import.meta.env.VITE_DJANGO_API_URL}/api-services/provideService/post_ad/`;
                 try {
                     const response = await fetch(url, {
                         method: 'POST',

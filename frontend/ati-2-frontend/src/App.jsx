@@ -49,8 +49,8 @@ function App() {
             <Route exact path="/login/:noAuth?" element={<IniciarSesion />} />
             <Route exact path='/search-clients' element={<BuscarCliente/>}/>
             <Route exact path='/search-domestic-staff' element={<BuscarPersonalDomestico/>}/>
-            <Route exact path='/request-babysitter' element={<SolicitarÑiñera/>}/>
-            <Route exact path='/request-carer' element={<SolicitarCuidador/>}/>
+            <Route exact path='/post-ad/request/babysitter' element={<SolicitarÑiñera/>}/>
+            <Route exact path='/post-ad/request/caretaker' element={<SolicitarCuidador/>}/>
             <Route exact path="/forgot-password" element={<ForgotPassword />} />
             <Route exact path="/lang" element={<ChangeLanguage/>} />
             <Route exact path="/reset-password/:id" element={<ResetPassword/>}/>

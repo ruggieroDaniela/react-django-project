@@ -674,7 +674,8 @@ const Fase2 = () => {
                         
                         <label htmlFor="c2">{t('SolicitarCuidador.fases.2.si')}</label>
                     </div>
-
+                    { requestDomesticFormState.disabilities_tco &&                  
+                    <>
                     <div>
                         <label className="bold" htmlFor="discapacidades">{t('SolicitarCuidador.fases.2.indique-discapacidad')}</label>
                         <textarea  id="discapacidades"
@@ -704,6 +705,8 @@ const Fase2 = () => {
                                 }} 
                         />
                     </div>
+                    </>
+                    }
                     { diseases_required && <ErrorMessage message={t('SolicitarNiñera.errores.enfermedad')}/>  }
               </div>
           </div>
@@ -1737,7 +1740,7 @@ const Fase111 = () => {
     useEffect(() => {
         const getBanks = async () => {
           try {
-            const response = await axios.get(`http://127.0.0.1:8000/banks/`);
+            const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/banks/`);
             return response.data; // Return the response data instead of the entire response
           } catch (error) {
             console.error(error);
@@ -1972,7 +1975,7 @@ const Fase11 = () => {
     useEffect(() => {
         const getBanks = async () => {
           try {
-            const response = await axios.get(`http://127.0.0.1:8000/banks/`);
+            const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/banks/`);
             return response.data; // Return the response data instead of the entire response
           } catch (error) {
             console.error(error);
@@ -2232,7 +2235,7 @@ const botonEnviar = () => {
                           })
                     }
                     
-                    const url = 'http://127.0.0.1:8000/api-services/requestService/post_ad/'
+                    const url = `${import.meta.env.VITE_DJANGO_API_URL}/api-services/requestService/post_ad/`
                     try {
                         
                         const response = await fetch( url,{

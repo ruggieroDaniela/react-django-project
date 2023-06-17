@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import { getCountryName, getStateName } from "../components/dataFetchers/PaisDataFetcher";
+import { getCountryName, getStateName, getCountriesNames, getStatesNames, getCitiesNames } from "../components/dataFetchers/PaisDataFetcher";
 //import { publicacionCreada } from "../components/FasesRegistrar";
 
 import "../styles/VisualizarPublicacionCreada.scss"
@@ -60,7 +60,7 @@ export const VisualizarPublicacionCreada = () => {
         const getBanks = async () => {
         setLoadingBanks(true);
           try {
-            const response = await axios.get(`http://localhost:8000/banks/`);
+            const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/banks/`);
             return response.data; // Return the response data instead of the entire response
           } catch (error) {
             console.error(error);
@@ -87,9 +87,10 @@ export const VisualizarPublicacionCreada = () => {
 
     useEffect(() => {
         const fetchPost = async () => {
+            window.scrollTo(0, 0);
             setLoadingData(true);
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api-services/${postType}/get_post/${id}/`);
+                const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/get_post/${id}/`);
                 
                 
                 // console.log(response.data);
@@ -111,7 +112,7 @@ export const VisualizarPublicacionCreada = () => {
                 try {
                         // Request was successful
                     if(authState.id != undefined){
-                        let response = await fetch( `http://localhost:8000/users/${authState.id}`,{
+                        let response = await fetch( `${import.meta.env.VITE_DJANGO_API_URL}/users/${authState.id}`,{
                                 method: 'GET',
                                 headers: {
                                     'Authorization': authState.token,
@@ -180,7 +181,7 @@ export const VisualizarPublicacionCreada = () => {
                             </div>
                             <div>
                                 <div className='pais blue'> {t('publicacionCreada.pais_cuidador')}</div>
-                                <div className='pais red'>{getCountryName(userData.country)}</div>                        
+                                <div className='pais red'>{getCountriesNames(userData.country)}</div>                        
                                 <div className='pais blue'> {t('publicacionCreada.provincia__cuidador')}</div>
                                 <div className='pais red'> {t('publicacionCreada.No_disponible')}</div>
                                 
@@ -290,7 +291,7 @@ export const VisualizarPublicacionCreada = () => {
                         <div className='basico'>
                             <div className='basico info'>
                                 <div className='subtitle black'><b>{t('publicacionCreada.pais_cuidador')}</b></div>
-                                <div> { getCountryName(data.country) }  </div>
+                                <div> { getCountriesNames(data.country) }  </div>
                             </div>
                         </div>
                         
@@ -601,7 +602,7 @@ export const VisualizarPublicacionCreada = () => {
                                 <div className='basico'>
                                     <div className='basico info'>
                                     <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_pais')}</div>
-                                    <div className='data'>{data.origin_country}</div>
+                                    <div className='data'>{getCountriesNames( data.origin_country)}</div>
                                     </div>
                                 </div>
                                 )}
@@ -611,7 +612,7 @@ export const VisualizarPublicacionCreada = () => {
                                 <div className='basico'>
                                     <div className='basico info'>
                                     <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_estado')}</div>
-                                    <div className='data'>{data.origin_state}</div>
+                                    <div className='data'>{getStatesNames(data.origin_state)}</div>
                                     </div>
                                 </div>
                                 )}
@@ -621,7 +622,7 @@ export const VisualizarPublicacionCreada = () => {
                                 <div className='basico'>
                                     <div className='basico info'>
                                     <div className='rectangle yellow tag'>{t('publicacionCreada.cliente_ciudad')}</div>
-                                    <div className='data'>{data.origin_city}</div>
+                                    <div className='data'>{getCitiesNames( data.origin_city)}</div>
                                     </div>
                                 </div>
                                 )}

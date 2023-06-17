@@ -22,7 +22,7 @@ export const OfrecermeCuidador = () => {
             try {
                     // Request was successful
                 if(authState.id != undefined){
-                    let response = await fetch( `http://localhost:8000/users/${authState.id}`,{
+                    let response = await fetch( `${import.meta.env.VITE_DJANGO_API_URL}/users/${authState.id}`,{
                             method: 'GET',
                             headers: {
                                 'Authorization': authState.token,

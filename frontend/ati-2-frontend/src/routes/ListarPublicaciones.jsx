@@ -13,12 +13,16 @@ import "../styles/ListarPublicaciones.scss"
 
 export const ListarPublicaciones = () => {
 
+    const {authState, setAuthState} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const {t} = useTranslation();
     const location = useLocation();
-    let searchParams = location.search;
-    const postType = searchParams.includes('provide')? 'provide':'request';
+    // let searchParams = location.search;
+
+    let searchParams = new URLSearchParams(location.search);
+
+    const postType = searchParams.get('type');
 
     const [postList, setPostList] = useState([]);
     const [selectedPosts, setSelectedPosts] = useState([]);
@@ -60,42 +64,49 @@ export const ListarPublicaciones = () => {
         
     }
 
+    
+    if( selectedOrdering == "" && searchParams.get("ordering") )
+        setSelectedOrdering(searchParams.get("ordering"))
+    
+    if( selectedTipoPersona == "" && searchParams.get("service__in") )
+        setSelectedTipoPersona(searchParams.get("service__in"))
+
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true);
-            setPostList([]);
 
             try {
-                if( selectedTipoPersona.length > 0 ){
-                    if( searchParams.length > 0 )
-                        searchParams += "&service__in=";
-                    else
-                        searchParams += "?service__in=";
-                
-                    searchParams += selectedTipoPersona.substring(0, selectedTipoPersona.length-1);
+
+                let query = "?";
+
+                for( let pair of searchParams.entries() ){
+                    let [key, value] = pair;
+
+                    if( key == "service__in" )
+                        query += `service__in=${ selectedTipoPersona == ""? value:selectedTipoPersona }&`
+                    else if (key == "ordering"){
+                        if(selectedOrdering != "_") 
+                            query += `ordering=${ selectedOrdering == ""? value:selectedOrdering }&`
+                    }else
+                        query += `${key}=${value}&`
+
                 }
 
-                if( selectedOrdering.length > 0 ){
-                    if( searchParams.length > 0 )
-                        searchParams += "&ordering=";
-                    else
-                        searchParams += "?ordering=";
-                
-                    searchParams += selectedOrdering;
-                    // console.log(searchParams);
-                }
+                if( selectedTipoPersona != "" && !searchParams.get("service__in") )
+                    query += `service__in=${ selectedTipoPersona }&`
 
-                const response = await axios.get(`http://localhost:8000/api-services/${postType}Service/${searchParams}`, {
+                if( selectedOrdering != "_" && selectedOrdering != "" && !searchParams.get("ordering") )
+                    query += `ordering=${ selectedOrdering }&`
+
+                console.log(query);
+
+                const response = await axios.get(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}Service/${query}`, {
                     headers: {}
                 });
                 
                 console.log(response.data);
 
-                // const filteredPostList = response.data.filter( x => (
-                //     (x.enable ||( authState.logged_in && authState.id == x.user))
-                // ) ) 
-
-                setPostList(response.data);
+                setPostList(response.data.filter( x => (x.enable == true || authState.id == x.user) ));
                 
                 setLoading(false);
 
@@ -106,9 +117,9 @@ export const ListarPublicaciones = () => {
         };
 
         fetchPosts();
-    }, [selectedTipoPersona, selectedOrdering, __refreshPostList, location.search]);
+    }, [selectedTipoPersona, selectedOrdering, __refreshPostList, location.search, authState]);
 
-    const {authState, setAuthState} = useContext(AuthContext);
+    
 
     return(<>
         <div id="lista-posts">
@@ -151,15 +162,19 @@ export const ListarPublicaciones = () => {
                     {
                         /* eslint-disable-next-line */
                         tipoPersona.map( (item, i) => 
-                            <li className="checkbox" key={`${self.crypto.randomUUID()}`}>
-                                <label key={`${self.crypto.randomUUID()}`}>
+                            <li className="checkbox" key={`${"self.crypto.randomUUID()"}`}>
+                                <label key={`${"self.crypto.randomUUID()"}`}>
                                     <input
                                         type="checkbox"
-                                        key={`${self.crypto.randomUUID()}`}
+                                        key={`${"self.crypto.randomUUID()"}`}
                                         checked={ services.length > i && selectedTipoPersona.includes(services[i]) }
-                                        onChange={ () => setSelectedTipoPersona( prev => prev.includes(services[i])? prev.replace(services[i]+",", ""):prev+services[i]+"," ) }
+                                        onChange={ () => 
+                                            setSelectedTipoPersona( prev =>
+                                                prev.includes(services[i])? prev.replace(services[i], ""):prev+services[i]+","
+                                            )
+                                        }
                                     />
-                                    <div className="checkbox-label" key={`${self.crypto.randomUUID()}`}>
+                                    <div className="checkbox-label" key={`${"self.crypto.randomUUID()"}`}>
                                         {t(`lista_publicaciones.tipos_personal.${i}`)}
                                     </div>
                                 </label>
@@ -176,14 +191,11 @@ export const ListarPublicaciones = () => {
                 <ul className="input-group">
                     {
                         ordenes.map( (item, i) => 
-                            <li className="button" key={`${self.crypto.randomUUID()}`}>
+                            <li className="button" key={`${"self.crypto.randomUUID()"}`}>
                                 <button
-                                    key={`${self.crypto.randomUUID()}`}
+                                    key={`${"self.crypto.randomUUID()"}`}
                                     onClick={ () => {
-                                        if( searchParams.includes("ordering") )
-                                            searchParams = searchParams.substring( 0, searchParams.indexOf("ordering") );
-
-                                        setSelectedOrdering( () => selectedOrdering == ""? ordenes[i]:"" );
+                                        setSelectedOrdering( () => selectedOrdering == ordenes[i]? "_":ordenes[i] );
                                     } }
                                 >
                                     {t(`lista_publicaciones.ordenar_por.${i}`)}
@@ -200,30 +212,32 @@ export const ListarPublicaciones = () => {
                         {t(`lista_publicaciones.acciones`)}:
                     </span>
                     <ul className="input-group">
-                        <li className="button" key={`${self.crypto.randomUUID()}`}>
+                        <li className="button" key={`${"self.crypto.randomUUID()"}`}>
                             <button
-                                key={`${self.crypto.randomUUID()}`}
+                                key={`${"self.crypto.randomUUID()"}`}
                                 onClick={ async () => {
                                     // habilitar 
                                     for (let i = 0; i < selectedPosts.length; i++) {
-                                        await axios.put(`http://localhost:8000/api-services/${postType}/enable_post/${selectedPosts[i].id}/`)
+                                        await axios.put(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/enable_post/${selectedPosts[i].id}/`)
                                     }
                                     refreshPostList(prev => !prev);
+                                    setSelectedPosts([]);
                                 } }
                             >
                                 {t(`lista_publicaciones.accion.${0}`)}
                             </button>
                         </li>
                         
-                        <li className="button" key={`${self.crypto.randomUUID()}`}>
+                        <li className="button" key={`${"self.crypto.randomUUID()"}`}>
                             <button
-                                key={`${self.crypto.randomUUID()}`}
+                                key={`${"self.crypto.randomUUID()"}`}
                                 onClick={ async () => {
                                     // eliminar 
                                     for (let i = 0; i < selectedPosts.length; i++) {
-                                        await axios.put(`http://localhost:8000/api-services/${postType}/delete_post/${selectedPosts[i].id}/`)
+                                        await axios.delete(`${import.meta.env.VITE_DJANGO_API_URL}/api-services/${postType}/delete_post/${selectedPosts[i].id}/`)
                                     }
                                     refreshPostList(prev => !prev);
+                                    setSelectedPosts([]);
                                 } }
                             >
                                 {t(`lista_publicaciones.accion.${1}`)}
@@ -231,12 +245,12 @@ export const ListarPublicaciones = () => {
                         </li>
 
                         {selectedPosts.length<=1 &&
-                            <li className="button" key={`${self.crypto.randomUUID()}`}>
+                            <li className="button" key={`${"self.crypto.randomUUID()"}`}>
                                 <button
-                                    key={`${self.crypto.randomUUID()}`}
+                                    key={`${"self.crypto.randomUUID()"}`}
                                     onClick={ () => {
                                         if(selectedPosts.length == 1)
-                                            navigate(`/modify-post/${selectedPosts[0]}`);
+                                            navigate(`/modify-post/${postType}/${selectedPosts[0].id}`);
                                     } }
                                     disabled={selectedPosts.length>1}
                                 >

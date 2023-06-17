@@ -292,6 +292,8 @@
               "numero-cuenta":"Número de cuenta"
             }
           ],
+        "cliente":"Cliente",
+        "modificar":"MODIFICAR",
         "continuar": "",
         "atras": "Back"
     }
